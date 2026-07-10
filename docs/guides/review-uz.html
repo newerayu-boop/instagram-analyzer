@@ -1,0 +1,93 @@
+<title>Claude — Senior Engineer Code Review (6 prompt) | Vaybecoder</title>
+<style>
+  :root{ --bg:#0B0A08; --panel:#16130E; --ink:#F4F1EA; --muted:#8C8578; --accent:#C6A15B; --line:#2A2620;
+    --code-bg:#141210; --code-ink:#EDE7DD; --code-line:#2E2A22; --maxw:720px; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  a{color:var(--accent);}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);} .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:60px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(31px,6vw,48px);line-height:1.08;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;} .lede{font-size:20px;color:var(--muted);margin:0;}
+  .src{margin-top:20px;font-size:15px;color:var(--muted);}
+  section{padding:32px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(23px,4vw,30px);line-height:1.14;margin:0 0 4px;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  p{margin:12px 0;} strong{font-weight:700;color:#fff;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid var(--code-line);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:var(--code-bg);padding:10px 14px;border-bottom:1px solid var(--code-line);}
+  .cmd .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
+  .cmd .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .cmd .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:14px;overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;line-height:1.55;white-space:pre-wrap;}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;} footer .spark{color:var(--accent);}
+  @media (max-width:560px){ body{font-size:17px;} }
+</style>
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> Vaybecoder <span class="hnd">· @Vaybcoder_qiz</span></div>
+</div></header>
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">Claude · Kod review · 6 prompt</div>
+  <h1>Claude'ni <em>$300/soatlik</em> senior injenerdek ishlating</h1>
+  <p class="lede">Kodingizni oddiy mashq kabi emas, production darajasida tekshiring. Mana 6 ta tayyor prompt.</p>
+  <p class="src">Manba: <a href="https://x.com/i/status/2075520910900216091">@jamescoder12 (X)</a> · o'zbekchaga Vaybecoder tayyorladi</p>
+</div>
+
+<section>
+  <h2><span class="n">·</span>Qanday ishlatiladi</h2>
+  <p>Har bir promptni <strong>nusxa oling</strong> va Claude'ga tashlang. Kvadrat qavs <code>[ ]</code> ichini o'zingiznikiga almashtiring (masalan, <code>[language]</code> o'rniga <code>Python</code>). Kodni <code>[paste]</code> joyiga qo'ying.</p>
+  <div class="callout">Maslahat: avval 1-promptni bering (rejimni yoqadi), keyin 2–6 ni ketma-ket ishlating.</div>
+</section>
+
+<section>
+  <h2><span class="n">01</span>Rejimni yoqish</h2>
+  <p>Claude'ga senior injener rolini beradi — u kodni production standartida ko'radi.</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Prompt 01</span><button class="copy">Nusxa olish</button></div><pre>Act as a staff engineer at a top tech company who has reviewed thousands of pull requests. From now on, whenever I paste code, review it with the standards of production software, not a coding exercise. My language is: [language].</pre></div>
+</section>
+
+<section>
+  <h2><span class="n">02</span>Birinchi ta'sir (60 soniya)</h2>
+  <p>Senior injener 60 soniyada nima deydi — nima yaxshi, nima shubhali, nimani chiqarmaydi.</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Prompt 02</span><button class="copy">Nusxa olish</button></div><pre>Give me your first-pass reaction to my code [paste code], the way a senior would react in 60 seconds: what is fine, what smells, what is the one thing you would not let ship.</pre></div>
+</section>
+
+<section>
+  <h2><span class="n">03</span>To'g'rilik va chekka holatlar</h2>
+  <p>O'rta darajali injener ko'pincha o'tkazib yuboradigan xatolarni topadi.</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Prompt 03</span><button class="copy">Nusxa olish</button></div><pre>Walk through my code [paste code] and identify the edge cases, race conditions, and failure modes a mid-level engineer is most likely to miss.</pre></div>
+</section>
+
+<section>
+  <h2><span class="n">04</span>Dizayn va chegaralar</h2>
+  <p>Mas'uliyat, chegara, nomlash — nimani ajratish, birlashtirish yoki qayta nomlash kerak.</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Prompt 04</span><button class="copy">Nusxa olish</button></div><pre>Critique the design of my code [paste code] at the level of responsibilities, boundaries, naming, and what should be extracted, inlined, or renamed for future maintainers.</pre></div>
+</section>
+
+<section>
+  <h2><span class="n">05</span>Tezlik va xarajat</h2>
+  <p>Haqiqatan muhim optimallashtirishlar — mayda-chuydalar emas.</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Prompt 05</span><button class="copy">Nusxa olish</button></div><pre>Profile my code [paste code] for likely hot paths, allocations, and N+1 traps, and suggest changes that meaningfully matter, not micro-optimizations.</pre></div>
+</section>
+
+<section>
+  <h2><span class="n">06</span>Namunaviy qayta yozish</h2>
+  <p>Eng muhim qismni senior injener qanday yozib chiqaradi — har bir o'zgarish izohi bilan.</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Prompt 06</span><button class="copy">Nusxa olish</button></div><pre>Rewrite the highest-impact section of my code [paste section] the way a senior engineer would ship it, with a short note on why each change matters.</pre></div>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>Vaybecoder</strong> · @Vaybcoder_qiz</p>
+  <p>Kodingizni bugun senior darajasida tekshiring 🚀</p>
+</footer>
+</div>
+<script>
+  document.querySelectorAll('.cmd').forEach(box=>{const b=box.querySelector('.copy'),p=box.querySelector('pre');
+    b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(p.innerText);const t=b.textContent;b.textContent='✓ Nusxa olindi';setTimeout(()=>b.textContent=t,1500);}catch(e){}});});
+</script>

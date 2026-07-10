@@ -1,0 +1,81 @@
+{
+  "handle": "@Vaybcoder_qiz",
+  "wordmark": "Vaybecoder",
+  "gold": true,
+  "slides": [
+    {
+      "type": "cover", "art": "network",
+      "kicker": "Claude · Kod review",
+      "title": "Claude'ni *$300/soatlik* injenerdek ishlating",
+      "sub": "Kodingizni katta kompaniya darajasida tekshiring. **6 ta prompt**.",
+      "swipe": "oxirigacha suring"
+    },
+    {
+      "type": "story",
+      "kicker": "Bu nima",
+      "title": "Senior *review* rejimi",
+      "paragraphs": [
+        "Claude'da yashirin imkoniyat bor: u kodingizni **oddiy mashq** kabi emas, **production** darajasida tekshiradi.",
+        "Ming PR ko'rgan senior injener kabi — xato, dizayn, tezlik va xarajatni ko'radi."
+      ],
+      "punch": "Mana 6 ta prompt 👇"
+    },
+    {
+      "type": "prompt",
+      "kicker": "Prompt 01",
+      "title": "Rejimni *yoqish*",
+      "body": "Avval Claude'ga rolni bering:",
+      "label": "PROMPT",
+      "prompt": "Act as a staff engineer who has reviewed thousands of PRs. Whenever I paste code, review it with production standards, not a coding exercise. My language is: [language]."
+    },
+    {
+      "type": "prompt",
+      "kicker": "Prompt 02",
+      "title": "Birinchi *ta'sir*",
+      "body": "60 soniyalik senior-reaksiya:",
+      "label": "PROMPT",
+      "prompt": "Give me your first-pass reaction to my code [paste], the way a senior would in 60 seconds: what's fine, what smells, and the one thing you would not let ship."
+    },
+    {
+      "type": "prompt",
+      "kicker": "Prompt 03",
+      "title": "Xato va *chekka holatlar*",
+      "body": "O'rta injener o'tkazib yuboradigan xatolar:",
+      "label": "PROMPT",
+      "prompt": "Walk through my code [paste] and identify the edge cases, race conditions, and failure modes a mid-level engineer is most likely to miss."
+    },
+    {
+      "type": "prompt",
+      "kicker": "Prompt 04",
+      "title": "Dizayn va *chegaralar*",
+      "body": "Struktura, nomlar, mas'uliyat:",
+      "label": "PROMPT",
+      "prompt": "Critique the design of my code [paste] at the level of responsibilities, boundaries, naming, and what should be extracted, inlined, or renamed for future maintainers."
+    },
+    {
+      "type": "prompt",
+      "kicker": "Prompt 05",
+      "title": "Tezlik va *xarajat*",
+      "body": "Muhim optimallashtirishlar (mayda emas):",
+      "label": "PROMPT",
+      "prompt": "Profile my code [paste] for likely hot paths, allocations, and N+1 traps, and suggest changes that meaningfully matter, not micro-optimizations."
+    },
+    {
+      "type": "prompt",
+      "kicker": "Prompt 06",
+      "title": "Namunaviy *qayta yozish*",
+      "body": "Eng muhim qismni senior uslubida:",
+      "label": "PROMPT",
+      "prompt": "Rewrite the highest-impact section of my code [paste section] the way a senior engineer would ship it, with a short note on why each change matters."
+    },
+    {
+      "type": "cta",
+      "kicker": "To'liq qo'llanma",
+      "title": "6 ta promptni *tayyor* oling",
+      "body": "Hammasi nusxa olishga tayyor — havolada.",
+      "action": "Izohga yozing:",
+      "keyword": "«REVIEW»",
+      "url": "to'liq qo'llanmani yuboraman"
+    }
+  ]
+}

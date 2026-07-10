@@ -45,6 +45,13 @@ const topbar = (k, i, total) => `<div class="top">${kicker(k)}<span class="page"
 function art(kind) {
   if (kind === 'spark') return `<svg class="art" viewBox="0 0 200 200" fill="none">${Array.from({length:16},(_, i)=>{const a=(i/16)*Math.PI*2,r1=34,r2=i%2?92:74;return `<line x1="${(100+Math.cos(a)*r1).toFixed(1)}" y1="${(100+Math.sin(a)*r1).toFixed(1)}" x2="${(100+Math.cos(a)*r2).toFixed(1)}" y2="${(100+Math.sin(a)*r2).toFixed(1)}" stroke="var(--accent)" stroke-width="9" stroke-linecap="round"/>`;}).join('')}<circle cx="100" cy="100" r="26" fill="var(--accent)"/></svg>`;
   if (kind === 'bolt') return `<svg class="art" viewBox="0 0 200 200" fill="none"><path d="M118 20 L60 110 H100 L82 180 L150 80 H108 Z" fill="var(--accent)"/></svg>`;
+  if (kind === 'network') {
+    const pts = [[40,50],[110,30],[170,70],[60,120],[130,110],[95,170],[175,150],[25,95]];
+    const edges = [[0,1],[1,2],[0,3],[1,4],[2,4],[3,4],[3,5],[4,5],[4,6],[2,6],[5,6],[0,7],[3,7]];
+    const lines = edges.map(([a,b]) => `<line x1="${pts[a][0]}" y1="${pts[a][1]}" x2="${pts[b][0]}" y2="${pts[b][1]}" stroke="var(--accent)" stroke-width="1.4" opacity=".55"/>`).join('');
+    const dots = pts.map((p, i) => `<circle cx="${p[0]}" cy="${p[1]}" r="${i % 3 === 0 ? 9 : 5}" fill="var(--accent)" opacity="${i % 2 ? .9 : .6}"/>`).join('');
+    return `<svg class="art" viewBox="0 0 200 200" fill="none">${lines}${dots}</svg>`;
+  }
   return `<svg class="art" viewBox="0 0 220 220" fill="none" stroke="var(--accent)" stroke-width="4"><rect x="58" y="70" width="104" height="86" rx="22"/><circle cx="90" cy="112" r="11" fill="var(--accent)" stroke="none"/><circle cx="130" cy="112" r="11"/><path d="M88 138 h44" stroke-linecap="round"/><line x1="110" y1="46" x2="110" y2="70"/><circle cx="110" cy="40" r="9" fill="var(--accent)" stroke="none"/><path d="M58 100 H30 M58 126 H36 M162 100 h34 M162 126 h26" stroke-linecap="round"/><circle cx="24" cy="100" r="7" fill="var(--accent)" stroke="none"/><circle cx="200" cy="100" r="7" fill="var(--accent)" stroke="none"/><rect x="80" y="156" width="60" height="30" rx="8"/></svg>`;
 }
 
