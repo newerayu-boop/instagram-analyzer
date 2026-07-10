@@ -3,3 +3,4 @@ engine/out/
 .env
 .env.local
 *.log
+data/

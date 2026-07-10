@@ -1,51 +1,42 @@
-// src/botServer.js — приём кнопок Telegram (✅/❌) и автопубликация в Instagram.
-// Запускается 24/7 на хостинге. Long-polling (getUpdates), без вебхуков — проще в деплое.
-//
-// При ✅ берёт слайды поста, поднимает публичные URL (PUBLIC_BASE_URL/out/<postId>/slide-XX.png)
-// и публикует карусель в Instagram. Пишет статус обратно в чат.
+// src/botServer.js — long-poll бот: ловит кнопки ✅/⏳/❌ и ведёт очередь.
+// Запускается, пока ноут открыт (наш сеанс). Обновляет data/queue.json и data/candidates.json.
+//   ap = tasdiqlash (approved)  ⏳ lt = keyinroq (postponed)  ❌ rj = rad etish (rejected)
+// Публикация в Instagram — отдельный шаг (после настройки Meta), тут только триаж.
 
-const fs = require('fs');
-const path = require('path');
 const cfg = require('./config');
 const { tg } = require('./telegram');
-const { publishCarousel } = require('./instagram');
+const store = require('./store');
 
-function slidesPublicUrls(postId) {
-  const dir = path.join(__dirname, '..', 'engine', 'out', postId);
-  const files = fs.readdirSync(dir).filter(f => /^slide-\d+\.png$/.test(f)).sort();
-  return files.map(f => `${cfg.publicBaseUrl.replace(/\/$/, '')}/out/${postId}/${f}`);
-}
-
-function captionFor(postId) {
-  const p = path.join(__dirname, '..', 'engine', 'out', postId, 'carousel.json');
-  return JSON.parse(fs.readFileSync(p, 'utf8')).caption || '';
-}
+const MAP = { ap: 'approved', lt: 'postponed', rj: 'rejected' };
+const LABEL = { ap: '✅ Tasdiqlandi', lt: '⏳ Keyinga qoldirildi', rj: '❌ Rad etildi' };
 
 async function handleCallback(cb) {
-  const [action, postId] = String(cb.data || '').split(':');
-  const chatId = cb.message?.chat?.id;
-  await tg('answerCallbackQuery', { callback_query_id: cb.id });
+  const [action, id] = String(cb.data || '').split(':');
+  const chatId = cb.message?.chat?.id, msgId = cb.message?.message_id;
+  await tg('answerCallbackQuery', { callback_query_id: cb.id, text: LABEL[action] || 'OK' });
+  const status = MAP[action];
+  if (!status) return;
 
-  if (action === 'no') {
-    await tg('sendMessage', { chat_id: chatId, text: `❌ Post ${postId} bekor qilindi.` });
-    return;
-  }
-  if (action === 'ok') {
-    await tg('sendMessage', { chat_id: chatId, text: `⏳ Instagramga chiqaryapman…` });
-    try {
-      const urls = slidesPublicUrls(postId);
-      const mediaId = await publishCarousel(urls, captionFor(postId));
-      await tg('sendMessage', { chat_id: chatId, text: `✅ Chop etildi! Instagram media id: ${mediaId}` });
-    } catch (e) {
-      await tg('sendMessage', { chat_id: chatId, text: `⚠️ Xato: ${e.message}` });
-    }
-  }
+  // обновляем кандидата
+  const cands = store.read('candidates.json', {});
+  if (cands[id]) { cands[id].status = status; store.write('candidates.json', cands); }
+
+  // обновляем очередь (id перемещается в нужный список)
+  const q = store.read('queue.json', { approved: [], postponed: [], rejected: [] });
+  for (const k of ['approved', 'postponed', 'rejected']) q[k] = (q[k] || []).filter(x => x !== id);
+  q[status].push(id);
+  store.write('queue.json', q);
+
+  // убираем кнопки, дописываем решение
+  const base = cb.message.text || '';
+  await tg('editMessageText', { chat_id: chatId, message_id: msgId, text: `${base}\n\n— ${LABEL[action]}` });
+  console.log(`[bot] ${id} → ${status}`);
 }
 
 async function main() {
-  console.log('Bot ishga tushdi (long-polling). Kutyapman…');
+  if (!cfg.telegramToken) { console.error('TELEGRAM_BOT_TOKEN yo‘q'); process.exit(1); }
+  console.log('[bot] long-polling ishga tushdi…');
   let offset;
-  // бесконечный цикл опроса
   // eslint-disable-next-line no-constant-condition
   while (true) {
     try {
@@ -56,7 +47,7 @@ async function main() {
         if (u.callback_query) await handleCallback(u.callback_query);
       }
     } catch (e) {
-      console.error('poll error:', e.message);
+      console.error('[bot] poll error:', e.message);
       await new Promise(res => setTimeout(res, 3000));
     }
   }
