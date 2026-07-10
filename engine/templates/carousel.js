@@ -105,13 +105,21 @@ function windowMock(w, c) {
    </div>`;
 }
 
+function pageStr(i, total) {
+  return `${String(i + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+}
+// верхняя строка: kicker слева + счётчик слайдов справа (как в эталоне)
+function topbar(kickerText, i, total, c) {
+  return `<div class="top">${kicker(kickerText, c)}<span class="page">${pageStr(i, total)}</span></div>`;
+}
+
 function slide(s, i, total, c) {
   const f = footer(c, i, total);
-  const k = kicker(s.kicker, c);
+  const k = topbar(s.kicker, i, total, c);
   switch (s.type) {
     case 'cover':
       return `<section class="slide cover">
-        <div class="top">${k}<span class="page">${String(i + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}</span></div>
+        <div class="top">${kicker(s.kicker, c)}<span class="page">${pageStr(i, total)}</span></div>
         <div class="cover-art">${art(s.art || 'robot', c)}</div>
         <h1 class="cover-title">${inline(s.title)}</h1>
         ${s.sub ? `<p class="cover-sub">${inline(s.sub)}</p>` : ''}
@@ -169,6 +177,15 @@ function slide(s, i, total, c) {
         </div>
         ${f}</section>`;
 
+    case 'story': {
+      const paras = (s.paragraphs || []).map(p => `<p class="body">${inline(p)}</p>`).join('');
+      return `<section class="slide">
+        ${k}${s.title ? `<h2 class="h">${inline(s.title)}</h2>` : ''}
+        <div class="paras">${paras}</div>
+        ${s.punch ? `<div class="punch">${inline(s.punch)}</div>` : ''}
+        ${f}</section>`;
+    }
+
     default:
       return `<section class="slide">${k}<h2 class="h">${inline(s.title || '')}</h2>${f}</section>`;
   }
@@ -198,7 +215,8 @@ function buildHTML(carousel, override = {}) {
   .acc{color:${c.accent};font-style:normal;}
   strong{font-weight:800;color:${c.ink};}
 
-  .top{display:flex;justify-content:space-between;align-items:center;}
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;}
+  .cover .top{margin-bottom:0;}
   .kicker{display:flex;align-items:center;gap:18px;font-weight:700;font-size:26px;
     letter-spacing:.2em;text-transform:uppercase;color:${c.accent};}
   .kicker .dash{width:42px;height:3px;background:${c.accent};}
@@ -220,6 +238,9 @@ function buildHTML(carousel, override = {}) {
   .h{font-family:${c.serif};font-weight:800;font-size:78px;line-height:1.04;margin:8px 0 8px;}
   .h .acc{color:${c.accent};font-style:italic;}
   .body{font-size:40px;line-height:1.4;color:${c.muted};margin:18px 0 30px;}
+  .paras{margin-top:22px;display:flex;flex-direction:column;gap:28px;}
+  .paras .body{margin:0;}
+  .punch{margin-top:auto;font-family:${c.serif};font-style:italic;font-weight:700;font-size:64px;color:${c.accent};line-height:1.08;}
   .body strong{color:${c.ink};font-weight:700;}
 
   /* stat cards */
