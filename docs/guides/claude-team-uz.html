@@ -1,0 +1,166 @@
+<title>Claude'ni ofis jamoasiga aylantiring — AI Strateg</title>
+<style>
+  :root{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; --maxw:720px; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488;
+    --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; } }
+  :root[data-theme="light"]{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; }
+  :root[data-theme="dark"]{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C;
+    --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  a{color:var(--accent);}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);}
+  .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:60px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(32px,6vw,50px);line-height:1.08;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  .src{margin-top:20px;font-size:15px;color:var(--muted);}
+  section{padding:36px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(25px,4vw,32px);line-height:1.12;margin:0 0 6px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:22px 0 4px;}
+  p{margin:12px 0;} strong{font-weight:700;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  ul.clean{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:12px;}
+  ul.clean li{padding-left:28px;position:relative;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:4px;background:var(--accent);}
+  ul.clean li b{color:var(--ink);}
+  ol.steps{padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:16px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;background:var(--ink);
+    color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:Georgia,serif;}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid var(--code-line);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:var(--code-bg);padding:10px 14px;border-bottom:1px solid var(--code-line);}
+  .cmd .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
+  .cmd .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .cmd .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:14px;overflow-x:auto;
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;line-height:1.5;white-space:pre-wrap;}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (max-width:560px){ body{font-size:17px;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">Claude · Ofis jamoasi · To'liq qo'llanma</div>
+  <h1>Claude'ni butun <em>ofis jamoasiga</em> aylantiring</h1>
+  <p class="lede">Bitta bepul repo bilan Claude sotuvchi, marketolog, moliyachi va data-analitikka aylanadi. 7 qadam.</p>
+  <p class="src">Manba: <a href="https://x.com/undefinedKi/status/2063601125270454593">@undefinedKi</a> · o'zbekchaga AI Strateg tayyorladi</p>
+</div>
+
+<section>
+  <h2><span class="n">·</span>Gap nima haqida</h2>
+  <p>Ko'pchilik Claude'ni shunday ishlatadi: chat ochadi, vazifa yozadi, javob oladi, yopadi. Keyingi safar <strong>noldan</strong> boshlaydi. Bu — xotirasi yo'q frilanser. Foydali, lekin kichik.</p>
+  <p>Anthropic <strong>bepul</strong> repo ochdi — u Claude'ni tayyor ofis rollariga aylantiradi. Endi noldan prompt yozmaysiz, siz <strong>xodim yollaysiz</strong>.</p>
+  <div class="callout">Repo: <a href="https://github.com/anthropics/knowledge-work-plugins">anthropics/knowledge-work-plugins</a> — Claude Cowork uchun rollarga asoslangan bepul, ochiq kodli plaginlar to'plami.</div>
+  <p>Har bir plagin ichida 3 narsa ishlaydi:</p>
+  <ul class="clean">
+    <li><b>Skills</b> — o'sha rol uchun bilim va tajriba. Claude kerak bo'lganda o'zi ishlatadi.</li>
+    <li><b>Commands</b> — slash bilan ishga tushadigan tayyor jarayonlar, masalan <code>/sales:call-prep</code>.</li>
+    <li><b>Connections</b> — rol ulanadigan vositalar (CRM, ma'lumotlar bazasi, Canva va h.k.).</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Qanday rollarni yollash mumkin</h2>
+  <ul class="clean">
+    <li><b>Productivity</b> — vazifa, kalendar, kunlik reja. Slack, Notion, Asana, Jira.</li>
+    <li><b>Sotuv</b> — mijoz tahlili, qo'ng'iroqqa tayyorgarlik, pipeline. HubSpot, Close, Clay.</li>
+    <li><b>Marketing</b> — kontent, kampaniya, brend ovozi, SEO audit. Canva, Figma, Ahrefs.</li>
+    <li><b>Qo'llab-quvvatlash</b> — murojaatlar, javob shablonlari, help-markaz maqolalari. Intercom, Guru.</li>
+    <li><b>Product</b> — spetsifikatsiya, roadmap, tadqiqot. Linear, Figma, Amplitude.</li>
+    <li><b>Moliya</b> — hisob, solishtirish, oyni yopish, audit. Snowflake, BigQuery.</li>
+    <li><b>Yuridik</b> — shartnoma tekshiruvi, NDA, risk baholash. Box, Microsoft 365.</li>
+    <li><b>Data</b> — so'rovlar, SQL, statistika, dashboard. Snowflake, Databricks, Hex.</li>
+    <li><b>Enterprise search</b> — email, chat, hujjat va wiki bo'ylab bitta qidiruv.</li>
+  </ul>
+  <p>Hammasini o'rnatmang. <strong>Faqat kerakli jamoani</strong> yig'ing.</p>
+</section>
+
+<section>
+  <h2><span class="n">1</span>Claude Cowork'ni oling</h2>
+  <p>Plaginlar Cowork — Anthropic'ning agentli desktop ilovasi uchun. <a href="https://claude.com/download">claude.com/download</a> dan Claude Desktop'ni yuklab oling va <strong>Cowork</strong> tabini oching. Shu yerda Claude oddiy chatdan haqiqiy fayl va vositalar bilan ishlaydigan yordamchiga aylanadi.</p>
+</section>
+
+<section>
+  <h2><span class="n">2</span>Marketplace'ni qo'shing</h2>
+  <p>Cowork terminaliga bitta buyruq. Buni faqat <strong>bir marta</strong> qilasiz:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal</span><button class="copy">Nusxa olish</button></div><pre>claude plugin marketplace add anthropics/knowledge-work-plugins</pre></div>
+</section>
+
+<section>
+  <h2><span class="n">3</span>Birinchi xodimni yollang</h2>
+  <p>Eng kerakli rolni o'rnating. Masalan, sotuvchi:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal</span><button class="copy">Nusxa olish</button></div><pre>claude plugin install sales@knowledge-work-plugins</pre></div>
+  <p><code>sales</code> o'rniga: <code>marketing</code>, <code>finance</code>, <code>legal</code>, <code>data</code>, <code>product-management</code>, <code>customer-support</code>, <code>productivity</code>. Plagin o'rnatilishi bilan <strong>o'zi yoqiladi</strong>. Bittadan boshlang.</p>
+</section>
+
+<section>
+  <h2><span class="n">4</span>Uni ishga soling (ulashsiz ham)</h2>
+  <p>Har bir plagin birinchi kundanoq, hech qanday tashqi vosita ulamasdan ishlaydi. Slash-buyruq bilan ishga tushiring:</p>
+  <ul class="clean">
+    <li><code>/sales:call-prep</code> — kompaniya nomini berasiz, to'liq qo'ng'iroq-brifing olasiz.</li>
+    <li><code>/data:write-query</code> — nima kerakligini yozasiz, tayyor SQL olasiz.</li>
+    <li><code>/marketing:seo-audit</code> — sahifani ko'rsatasiz, kalit so'z bo'shliqlari va tuzatishlar keladi.</li>
+  </ul>
+  <p>Eslatmalaringizni tashlang yoki CSV yuklang — plagin o'z ishini biladi, siz «yaxshi natija qanaqa bo'ladi»ni tushuntirmaysiz.</p>
+</section>
+
+<section>
+  <h2><span class="n">5</span>Vositalarini ulang — kuchaytiring</h2>
+  <p>Bu yerda xodim «bilag'on»dan «kuchli»ga aylanadi. Cowork'da <strong>Connectors</strong>ni oching va rol ishlatadigan vositalarni ulang. Sotuv plaginini CRM'ga ulasangiz — u pipeline'ni o'zi tortadi. Moliyani ma'lumotlar bazasiga ulasangiz — real raqamlar bilan solishtiradi.</p>
+  <div class="callout">Ulanmagan — bu amaliyotchi. Ulangan — bu <strong>tajribali xodim</strong>.</div>
+</section>
+
+<section>
+  <h2><span class="n">6</span>Qolgan jamoani yig'ing</h2>
+  <p>3-qadamni kerakli har bir rol uchun takrorlang. O'rnatilgach, ular <strong>bitta sessiyada birga</strong> ishlaydi: data-xodim raqamni tortadi, moliya solishtiradi, marketing esa hisobotga aylantiradi. Bitta operator — butun jamoa, oyliksiz.</p>
+</section>
+
+<section>
+  <h2><span class="n">7</span>O'zingizga moslang</h2>
+  <p>Standart plaginlar — kuchli boshlang'ich. Asl afzallik — ularni o'zingizning ishingizga moslashda. <code>cowork-plugin-management</code> plaginidan foydalaning: unga vositalaringiz, atamalaringiz va jarayoningizni ayting — u plaginni sizga moslaydi.</p>
+  <p>Plaginlar oddiy markdown fayllar, shuning uchun ularni to'g'ridan-to'g'ri tahrirlab, o'z shaxsiy versiyangizni saqlashingiz mumkin.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Natijada nima bo'ladi</h2>
+  <p>Avval Claude — savol beradigan chat. Bittadan, har safar noldan. Endi Claude — <strong>mutaxassislar bilan to'la bino</strong>: har qo'ng'iroqqa tayyorlanadigan sotuvchi, kampaniyani olib boradigan marketolog, so'rov yozadigan data-analitik, oyni yopadigan moliyachi. Hammasi bitta joyda, bepul ochiq repo asosida.</p>
+  <p><strong>Obuna o'sha-o'sha. Ish butunlay boshqacha.</strong> Model o'zgarmadi — sozlama o'zgardi. Va bu sozlamani deyarli hech kim qilmaydi.</p>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>Manba: <a href="https://x.com/undefinedKi/status/2063601125270454593">@undefinedKi</a> · Bugun birinchi buyruqni ishga tushiring 🚀</p>
+</footer>
+</div>
+
+<script>
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+  });
+  document.querySelectorAll('.cmd').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(pre.innerText);
+      const t=btn.textContent; btn.textContent='✓ Nusxa olindi'; setTimeout(()=>btn.textContent=t,1500);}catch(e){} });
+  });
+</script>
