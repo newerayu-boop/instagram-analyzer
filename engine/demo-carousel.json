@@ -1,55 +1,72 @@
 {
   "handle": "@kodiyusufbay",
-  "theme": { "wordmark": "AI Strateg" },
+  "wordmark": "AI Strateg",
+  "theme": { "mode": "light" },
   "slides": [
     {
       "type": "cover",
-      "kicker": "Bepul AI vosita",
-      "title": "GOOGLE'DAN *BEPUL* AI KOTIB",
+      "kicker": "AI biznes uchun",
+      "art": "robot",
+      "title": "1 soatlik ishni *5 daqiqada* qiling",
+      "sub": "3 ta tayyor AI buyruq. **Nusxa olib**, bugundan ishlatasiz.",
       "swipe": "Suring, ko'rsataman"
     },
     {
-      "type": "story",
-      "kicker": "Muammo",
-      "title": "*Hujjat* ko'p, vaqt yo'q.",
-      "paragraphs": [
-        "Shartnoma, hisobot, PDF, qo'llanma... Kerakli gapni topish uchun **soatlab** varaqlaysiz.",
-        "Biznesda esa vaqt — bu **pul**. Har bir daqiqa hisobda."
+      "type": "stat",
+      "kicker": "Nega kerak",
+      "title": "AI sizga *nima* beradi?",
+      "stats": [
+        { "big": "70%", "label": "vaqtni tejaysiz" },
+        { "big": "3x", "label": "tezroq ishlaysiz" },
+        { "big": "0 so'm", "label": "boshlash bepul" },
+        { "big": "24/7", "label": "charchamas yordamchi" }
       ],
-      "punch": "Yechim bormi?"
+      "note": "Eng muhimi: buni **hoziroq**, hech narsa o'rnatmasdan boshlaysiz."
     },
     {
-      "type": "list",
-      "kicker": "NotebookLM nima qiladi",
-      "title": "3 ta *asosiy* ish",
-      "items": [
-        { "n": "01", "text": "Hujjatlaringizni yuklaysiz — u **hammasini o'qib chiqadi**." },
-        { "n": "02", "text": "Savol berasiz — javobni **manba bilan** ko'rsatadi, o'zidan to'qimaydi." },
-        { "n": "03", "text": "Uzun matnni **qisqa xulosa** yoki hatto **audio**ga aylantiradi." }
-      ],
-      "callout": "Ya'ni sizga hujjatni **birga o'qiydigan yordamchi** kabi."
+      "type": "prompt",
+      "kicker": "Buyruq 01",
+      "title": "Mijozga *javob* yozing",
+      "body": "Mijoz xabar yozdi, lekin javob topolmayapsizmi? Shuni tashlang:",
+      "prompt": "Men [mahsulot] sotaman. Mijoz yozdi: «[mijoz xabari]». Menga hurmatli, qisqa va sotuvga undaydigan javob yoz. O'zbek tilida, oddiy qilib."
     },
     {
-      "type": "story",
-      "kicker": "Qanday boshlash",
-      "title": "3 daqiqada *tayyor*.",
-      "paragraphs": [
-        "**notebooklm.google.com** ga kiring — Google akkaunt bilan bepul kirasiz.",
-        "«Yangi daftar» → hujjat yoki havolani tashlang → savolingizni yozing. Tamom."
-      ]
+      "type": "prompt",
+      "kicker": "Buyruq 02",
+      "title": "Post uchun *matn*",
+      "body": "Instagram uchun ilhom yo'qmi? AI 10 soniyada yozib beradi:",
+      "prompt": "Men [biznes] egasiman. «[mavzu]» haqida Instagram uchun qiziqarli post yoz. Birinchi jumla e'tiborni tortsin, 5 qatordan oshmasin, oxirida harakatga chaqiruv bo'lsin."
     },
     {
-      "type": "callout",
-      "kicker": "Natija",
-      "text": "Bir kunlik *o'qish* — endi **10 daqiqada**. AI siz uchun eslab, izlab beradi."
+      "type": "mockup",
+      "kicker": "Natija qanday",
+      "title": "AI shunday *javob* beradi",
+      "body": "Bir buyruqdan keyin tayyor natija — tekshirib, jo'natasiz:",
+      "window": {
+        "name": "ChatGPT",
+        "rows": [
+          { "t": "Mijozga javob", "tag": { "v": "tayyor", "k": "ok" } },
+          { "t": "3 ta post g'oyasi", "tag": { "v": "tayyor", "k": "ok" } },
+          { "t": "Haftalik reja", "tag": { "v": "10 soniya", "k": "" } },
+          { "t": "Hisobot xulosasi", "tag": { "v": "tayyor", "k": "ok" } }
+        ]
+      }
+    },
+    {
+      "type": "prompt",
+      "kicker": "Buyruq 03",
+      "title": "Kunlik *reja* tuzing",
+      "body": "Nimadan boshlashni bilmasangiz — AI rejani tuzib beradi:",
+      "prompt": "Men [biznes] bilan shug'ullanaman. Bugun uchun 5 ta eng muhim vazifadan iborat reja tuz. Har biriga qancha vaqt ketishini yoz. Eng foydalisidan boshla."
     },
     {
       "type": "cta",
-      "kicker": "To'liq qo'llanma",
-      "title": "*Bosqichma-bosqich* qo'llanma",
-      "body": "Skrinshotlar bilan to'liq yo'riqnomani **bepul** olasiz.",
-      "action": "Izohga «AI» deb yozing →",
-      "url": "yoki havola bio'da"
+      "kicker": "Bepul qo'llanma",
+      "title": "10 ta buyruqni *hoziroq* oling",
+      "body": "To'liq qo'llanma + 10 ta tayyor buyruq. Nusxa olib, bugundan ishlatasiz.",
+      "action": "Izohga yozing:",
+      "keyword": "«AI»",
+      "url": "men to'liq faylni yuboraman"
     }
   ]
 }
