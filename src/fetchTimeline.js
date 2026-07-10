@@ -43,11 +43,19 @@ function clean(items) {
     .sort((a, b) => b.likes - a.likes);
 }
 
-// Топовые твиты с аккаунтов за последние дни
-async function fromAccounts(handles, perAccount = 15) {
+// Оставляет только твиты не старше sinceISO (по умолчанию — с середины июня 2026).
+// Правило пользователя: берём свежак, старое (март–май) не нужно.
+const DEFAULT_SINCE = '2026-06-15T00:00:00Z';
+function recent(list, sinceISO = DEFAULT_SINCE) {
+  const cut = new Date(sinceISO);
+  return list.filter(t => { const d = new Date(t.createdAt); return isNaN(d) || d >= cut; });
+}
+
+// Топовые твиты с аккаунтов за последние дни (по умолчанию — только свежие)
+async function fromAccounts(handles, perAccount = 15, sinceISO = DEFAULT_SINCE) {
   const searchTerms = handles.map(h => `from:${String(h).replace(/^@/, '')}`);
   const items = await runActor({ searchTerms, maxItems: perAccount * handles.length, sort: 'Latest', tweetLanguage: 'en' });
-  return clean(items);
+  return recent(clean(items), sinceISO);
 }
 
 // Поиск по ключевым словам (например, «AI tool for business»)
@@ -56,7 +64,7 @@ async function search(queries, maxItems = 30) {
   return clean(items);
 }
 
-module.exports = { fromAccounts, search, runActor };
+module.exports = { fromAccounts, search, runActor, recent, DEFAULT_SINCE };
 
 if (require.main === module) {
   const handles = process.argv.slice(2);
