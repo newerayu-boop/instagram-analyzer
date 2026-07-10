@@ -5,56 +5,52 @@
   "slides": [
     {
       "type": "cover",
-      "kicker": "Trend · AI reklama",
+      "kicker": "AI · Biznes",
       "art": "spark",
-      "title": "Bu uslub *millionlab* ko'rish yig'yapti",
-      "sub": "«Vox» uslubidagi qog'oz-kollaj videolar — TikTok va Instagramda **portlab ketdi**.",
+      "title": "*5 ta* AI yordamchi — bir kunda",
+      "sub": "Har biri siz **har kuni qo'lda** qiladigan ishni bajaradi.",
       "swipe": "Suring, ko'rsataman"
     },
     {
       "type": "story",
-      "kicker": "Nima bu?",
-      "title": "«Vox» *kollaj* uslubi",
+      "kicker": "Tanish muammo",
+      "title": "Har kuni *bir xil* ish",
       "paragraphs": [
-        "Bu — eski gazeta qirqimlariga o'xshagan, **oddiy va tushunarli** animatsion videolar.",
-        "Bir mavzuni 30–60 soniyada, chiroyli qilib tushuntiradi. Odamlar oxirigacha ko'radi."
+        "Hisob, javob, jadval, eslatma... Bir xil vazifalar **har kuni** vaqtingizni yeydi.",
+        "Bularni **qo'lda** qilasiz — boshqa yo'lini bilmaganingiz uchun."
       ],
-      "punch": "Nega ishlaydi?"
-    },
-    {
-      "type": "stat",
-      "kicker": "Haqiqiy raqamlar",
-      "title": "Bitta brend — *shunday* natija",
-      "stats": [
-        { "big": "1.3M", "label": "ko'rish · kreatin" },
-        { "big": "2.2M", "label": "ko'rish · tai chi" },
-        { "big": "800K", "label": "ko'rish · hujayra" },
-        { "big": "2.1M", "label": "ko'rish · sog'liq" }
-      ],
-      "note": "Bu raqamlar **@OriSilver** postidan — o'ylab topilgan emas."
-    },
-    {
-      "type": "story",
-      "kicker": "Biznes uchun nega muhim",
-      "title": "Endi *pullik* reklama",
-      "paragraphs": [
-        "Media-byuerlar bu videolarni **pullik reklama** sifatida ishlata boshladi.",
-        "Sababi oddiy: ular **sotadi** — arzon, tez va odamga yoqadi."
-      ]
+      "punch": "Yechim bor."
     },
     {
       "type": "callout",
-      "kicker": "Eng qizig'i",
-      "title": "",
-      "text": "Buni endi **bitta ham prompt yozmasdan**, AI yordamida *avtomatik* qilish mumkin."
+      "kicker": "Anthropic muhandisi",
+      "text": "«**Bir kunda 5 ta yordamchi** yasash mumkin. Har biri sizning bitta kunlik ishingizni bajaradi.»"
+    },
+    {
+      "type": "story",
+      "kicker": "Qanday ishlaydi",
+      "title": "Har biri — *bitta vazifa*",
+      "paragraphs": [
+        "Har bir yordamchi bitta kunlik ishingiz uchun sozlanadi.",
+        "Bir marta sozlaysiz — keyin u ishni **o'zi** bajaradi, siz vaqt yutasiz."
+      ]
+    },
+    {
+      "type": "story",
+      "kicker": "Qancha vaqt ketadi",
+      "title": "Atigi *45 daqiqa*",
+      "paragraphs": [
+        "Noldan, bosqichma-bosqich. Dasturchi bo'lish **shart emas**."
+      ],
+      "punch": "Va bu — bir marta."
     },
     {
       "type": "cta",
-      "kicker": "Batafsil qo'llanma",
-      "title": "Qanday qilishni *ko'rsataman*",
-      "body": "To'liq qadam-baqadam yo'riqnoma kerakmi? Izohga yozing:",
+      "kicker": "To'liq qo'llanma",
+      "title": "Bosqichlarni *ko'rsataymi?*",
+      "body": "5 ta yordamchini sozlashning to'liq yo'riqnomasi kerakmi?",
       "action": "Izohga yozing:",
-      "keyword": "«VOX»",
+      "keyword": "«5 AI»",
       "url": "men qo'llanmani yuboraman"
     }
   ]
