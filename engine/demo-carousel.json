@@ -1,48 +1,92 @@
 {
   "handle": "@kodiyusufbay",
   "wordmark": "AI Strateg",
-  "theme": { "mode": "light" },
   "slides": [
     {
-      "type": "cover",
-      "kicker": "Yangi AI vosita · OpenAI",
-      "art": "bolt",
-      "title": "ChatGPT endi *o'zi ishlaydigan* xodim",
-      "sub": "«ChatGPT Work» — ilova va fayllaringizda **o'zi** ish qiladi.",
-      "swipe": "Suring, ko'rsataman"
+      "type": "cover", "dark": false, "art": "robot",
+      "kicker": "AI-agentlar · 2026",
+      "title": "Bitta AI emas — AI'lar *jamoasi* ishlasin",
+      "sub": "Claude'ni butun **ofis jamoasiga** aylantiring. Hech narsa bilmasangiz ham.",
+      "swipe": "oxirigacha suring"
     },
     {
-      "type": "story",
-      "kicker": "Bu nima?",
-      "title": "Chat emas — *agent*",
+      "type": "story", "dark": true,
+      "kicker": "Tanish holat",
+      "title": "Ko'pchilik Claude'ni *shunday* ishlatadi",
       "paragraphs": [
-        "OpenAI **ChatGPT Work**ni chiqardi — Codex va GPT-5.6 asosidagi yangi agent.",
-        "U shunchaki javob bermaydi — sizning **o'rningizga ish bajaradi**."
+        "Chat ochadi, vazifa yozadi, javob oladi, oynani yopadi.",
+        "Keyingi safar **noldan** — hammasini qaytadan tushuntiradi."
       ],
-      "punch": "Farqi katta."
+      "punch": "Bu — xotirasi yo'q frilanser."
     },
     {
-      "type": "steps",
-      "kicker": "Nima qila oladi",
-      "title": "3 ta *asosiy* ish",
-      "items": [
-        { "n": "01", "text": "Ilova va fayllaringizda **o'zi harakat** qiladi." },
-        { "n": "02", "text": "Kerak bo'lsa, loyiha ustida **soatlab** ishlaydi." },
-        { "n": "03", "text": "Maqsad berasiz — uni **tayyor natijaga** aylantiradi." }
+      "type": "story", "dark": false,
+      "kicker": "Boshqa yo'l",
+      "title": "Claude → *butun bo'lim*",
+      "paragraphs": [
+        "Anthropic **bepul** repo ochdi: Claude'ni ofis rollariga aylantiradi — sotuvchi, marketolog, moliyachi, yurist, data-analitik.",
+        "Endi noldan prompt yozmaysiz. Siz **xodim yollaysiz**."
       ]
     },
     {
-      "type": "callout",
-      "kicker": "Biznes uchun nimasi zo'r",
-      "text": "Rutina ishlarni unga topshirasiz — **o'zingiz muhim ishga** vaqt topasiz."
+      "type": "diagram", "dark": true,
+      "kicker": "Qanday ishlaydi",
+      "title": "Ish shunday *bo'linadi*",
+      "top": { "title": "SIZ", "sub": "yo'naltirasiz · tekshirasiz" },
+      "nodes": [
+        { "n": "1", "label": "Sotuvchi" },
+        { "n": "2", "label": "Marketolog" },
+        { "n": "3", "label": "Data" }
+      ],
+      "caption": "Har bir 'xodim' bitta ishni **puxta** biladi.",
+      "callout": "Siz faqat natijani ko'rasiz."
     },
     {
-      "type": "cta",
-      "kicker": "Batafsil",
-      "title": "Qanday ishlashini *ko'rsataymi?*",
-      "body": "To'liq qo'llanma va misollar kerakmi?",
+      "type": "steps", "dark": false,
+      "kicker": "Kimni yollash mumkin",
+      "title": "Tayyor *rollar*",
+      "items": [
+        { "n": "→", "text": "**Sotuv** — mijoz tahlili, qo'ng'iroqqa tayyorgarlik, pipeline." },
+        { "n": "→", "text": "**Marketing** — kontent, kampaniya, SEO audit." },
+        { "n": "→", "text": "**Moliya** — hisob, oyni yopish, tahlil." },
+        { "n": "→", "text": "**Data** — SQL, statistika, dashboard. *va boshqalar*." }
+      ]
+    },
+    {
+      "type": "steps", "dark": true,
+      "kicker": "Boshlash · 1-qism",
+      "title": "3 qadamda *ishga tushiring*",
+      "items": [
+        { "n": "01", "text": "**Claude Cowork**ni yuklab oling (Claude Desktop)." },
+        { "n": "02", "text": "Marketplace'ni qo'shing — bitta buyruq bilan." },
+        { "n": "03", "text": "Kerakli rolni o'rnating — u **o'zi** yoqiladi." }
+      ]
+    },
+    {
+      "type": "prompt", "dark": false,
+      "kicker": "Buyruqlar",
+      "title": "Ikki *qator* — tamom",
+      "body": "Cowork terminaliga shu ikki buyruqni tashlang:",
+      "label": "TERMINAL",
+      "prompt": "claude plugin marketplace add anthropics/knowledge-work-plugins\nclaude plugin install sales@knowledge-work-plugins"
+    },
+    {
+      "type": "steps", "dark": true,
+      "kicker": "Boshlash · 2-qism",
+      "title": "Keyin *nima*?",
+      "items": [
+        { "n": "04", "text": "Slash-buyruq bilan ishga soling: **/sales:call-prep**." },
+        { "n": "05", "text": "Vositalarni ulang (CRM, analitika) — **kuchayadi**." },
+        { "n": "06", "text": "Boshqa rollarni qo'shing — ular **birga** ishlaydi." }
+      ]
+    },
+    {
+      "type": "cta", "dark": false,
+      "kicker": "To'liq qo'llanma",
+      "title": "Hammasi *bepul* — bir joyda",
+      "body": "7 qadam + rollar ro'yxati + buyruqlar.",
       "action": "Izohga yozing:",
-      "keyword": "«WORK»",
+      "keyword": "«TEAM»",
       "url": "to'liq qo'llanmani yuboraman"
     }
   ]
