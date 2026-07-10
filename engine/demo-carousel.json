@@ -3,7 +3,7 @@
   "wordmark": "AI Strateg",
   "slides": [
     {
-      "type": "cover", "dark": false, "art": "spark",
+      "type": "cover", "image": "engine/assets/vox-cover.jpg",
       "kicker": "AI · Reklama",
       "title": "«VOX» reklama — *promptsiz* yasang",
       "sub": "Millionlab ko'rish yig'ayotgan uslub. Endi AI **o'zi** yasaydi.",
