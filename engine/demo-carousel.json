@@ -5,71 +5,44 @@
   "slides": [
     {
       "type": "cover",
-      "kicker": "AI · Agentlar",
-      "art": "robot",
-      "title": "AI *agent* nima — va uni o'zingiz yasang",
-      "sub": "Hamma gapiradi, kam kishi tushunadi. **Kod yozmasdan** yasaymiz.",
-      "swipe": "Suring, tushuntiraman"
+      "kicker": "Yangi AI vosita · OpenAI",
+      "art": "bolt",
+      "title": "ChatGPT endi *o'zi ishlaydigan* xodim",
+      "sub": "«ChatGPT Work» — ilova va fayllaringizda **o'zi** ish qiladi.",
+      "swipe": "Suring, ko'rsataman"
     },
     {
       "type": "story",
-      "kicker": "Asosiy farq",
-      "title": "Chat va *agent*",
+      "kicker": "Bu nima?",
+      "title": "Chat emas — *agent*",
       "paragraphs": [
-        "«Bugun nima post qilay?» — bu **chat**.",
-        "«Trenddagi 3 mavzuni top, eng zo'rini tanla, mening uslubimda yozib, faylga saqla» — va u buni **o'zi** qilsa, bu **agent**."
+        "OpenAI **ChatGPT Work**ni chiqardi — Codex va GPT-5.6 asosidagi yangi agent.",
+        "U shunchaki javob bermaydi — sizning **o'rningizga ish bajaradi**."
       ],
-      "punch": "Farq — modelda emas, tuzilishda."
+      "punch": "Farqi katta."
     },
     {
       "type": "steps",
-      "kicker": "Agentda 3 narsa bor",
-      "title": "Chatda *yo'q* narsalar",
+      "kicker": "Nima qila oladi",
+      "title": "3 ta *asosiy* ish",
       "items": [
-        { "n": "01", "text": "**Tools** — qidiruv, fayllar, kod, tashqi API. Ularni o'zi chaqiradi." },
-        { "n": "02", "text": "**Xotira** — bitta sessiya bilan cheklanmaydi, vazifalar orasida saqlanadi." },
-        { "n": "03", "text": "**Loop** — vazifa tugaguncha ishlaydi, bitta javobda to'xtamaydi." }
+        { "n": "01", "text": "Ilova va fayllaringizda **o'zi harakat** qiladi." },
+        { "n": "02", "text": "Kerak bo'lsa, loyiha ustida **soatlab** ishlaydi." },
+        { "n": "03", "text": "Maqsad berasiz — uni **tayyor natijaga** aylantiradi." }
       ]
     },
     {
-      "type": "steps",
-      "kicker": "Spektr: chatdan agentgacha",
-      "title": "*4 daraja*",
-      "items": [
-        { "n": "1", "text": "**Oddiy chat** — so'rading, javob oldi, tugadi." },
-        { "n": "2", "text": "**Tools bilan** — javobdan oldin o'zi qidiradi, fayl o'qiydi." },
-        { "n": "3", "text": "**Ko'p bosqichli** — maqsad berasiz, u bosqichlarga bo'lib bajaradi." },
-        { "n": "4", "text": "**To'liq avtonom** — jadval bo'yicha o'zi ishlaydi, siz natijani ko'rasiz." }
-      ]
-    },
-    {
-      "type": "steps",
-      "kicker": "Qanday agent yasash mumkin",
-      "title": "Bugun *mumkin*",
-      "items": [
-        { "n": "→", "text": "**Research** — mavzuni o'rganib, tayyor xulosa beradi." },
-        { "n": "→", "text": "**Writing** — sizning uslubingizda kontent yozadi." },
-        { "n": "→", "text": "**Business** — xat, mijoz so'rovlari, hisobotlar — avtopilotda." },
-        { "n": "→", "text": "**Personal** — reja, vazifalar, kunlik brifinglar." }
-      ]
-    },
-    {
-      "type": "story",
-      "kicker": "Nima kerak",
-      "title": "*10–20 daqiqa*, kodsiz",
-      "paragraphs": [
-        "Claude Code hamma kodni **o'zi yozadi** — siz oddiy tilda tushuntirasiz.",
-        "Kerak: Claude API kaliti (~$1–5/oy), Telegram bot, kichik VPS (~$4–6/oy)."
-      ],
-      "punch": "Dasturchi bo'lish shart emas."
+      "type": "callout",
+      "kicker": "Biznes uchun nimasi zo'r",
+      "text": "Rutina ishlarni unga topshirasiz — **o'zingiz muhim ishga** vaqt topasiz."
     },
     {
       "type": "cta",
-      "kicker": "To'liq qo'llanma",
-      "title": "Butun *yo'riqnoma* — bepul",
-      "body": "Bosqichma-bosqich yasash + tayyor promptlar. Skrinshotlar bilan.",
+      "kicker": "Batafsil",
+      "title": "Qanday ishlashini *ko'rsataymi?*",
+      "body": "To'liq qo'llanma va misollar kerakmi?",
       "action": "Izohga yozing:",
-      "keyword": "«AGENT»",
+      "keyword": "«WORK»",
       "url": "to'liq qo'llanmani yuboraman"
     }
   ]
