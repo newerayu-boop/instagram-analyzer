@@ -5,68 +5,57 @@
   "slides": [
     {
       "type": "cover",
-      "kicker": "AI biznes uchun",
-      "art": "robot",
-      "title": "1 soatlik ishni *5 daqiqada* qiling",
-      "sub": "3 ta tayyor AI buyruq. **Nusxa olib**, bugundan ishlatasiz.",
+      "kicker": "Trend · AI reklama",
+      "art": "spark",
+      "title": "Bu uslub *millionlab* ko'rish yig'yapti",
+      "sub": "«Vox» uslubidagi qog'oz-kollaj videolar — TikTok va Instagramda **portlab ketdi**.",
       "swipe": "Suring, ko'rsataman"
     },
     {
-      "type": "stat",
-      "kicker": "Nega kerak",
-      "title": "AI sizga *nima* beradi?",
-      "stats": [
-        { "big": "70%", "label": "vaqtni tejaysiz" },
-        { "big": "3x", "label": "tezroq ishlaysiz" },
-        { "big": "0 so'm", "label": "boshlash bepul" },
-        { "big": "24/7", "label": "charchamas yordamchi" }
+      "type": "story",
+      "kicker": "Nima bu?",
+      "title": "«Vox» *kollaj* uslubi",
+      "paragraphs": [
+        "Bu — eski gazeta qirqimlariga o'xshagan, **oddiy va tushunarli** animatsion videolar.",
+        "Bir mavzuni 30–60 soniyada, chiroyli qilib tushuntiradi. Odamlar oxirigacha ko'radi."
       ],
-      "note": "Eng muhimi: buni **hoziroq**, hech narsa o'rnatmasdan boshlaysiz."
+      "punch": "Nega ishlaydi?"
     },
     {
-      "type": "prompt",
-      "kicker": "Buyruq 01",
-      "title": "Mijozga *javob* yozing",
-      "body": "Mijoz xabar yozdi, lekin javob topolmayapsizmi? Shuni tashlang:",
-      "prompt": "Men [mahsulot] sotaman. Mijoz yozdi: «[mijoz xabari]». Menga hurmatli, qisqa va sotuvga undaydigan javob yoz. O'zbek tilida, oddiy qilib."
+      "type": "stat",
+      "kicker": "Haqiqiy raqamlar",
+      "title": "Bitta brend — *shunday* natija",
+      "stats": [
+        { "big": "1.3M", "label": "ko'rish · kreatin" },
+        { "big": "2.2M", "label": "ko'rish · tai chi" },
+        { "big": "800K", "label": "ko'rish · hujayra" },
+        { "big": "2.1M", "label": "ko'rish · sog'liq" }
+      ],
+      "note": "Bu raqamlar **@OriSilver** postidan — o'ylab topilgan emas."
     },
     {
-      "type": "prompt",
-      "kicker": "Buyruq 02",
-      "title": "Post uchun *matn*",
-      "body": "Instagram uchun ilhom yo'qmi? AI 10 soniyada yozib beradi:",
-      "prompt": "Men [biznes] egasiman. «[mavzu]» haqida Instagram uchun qiziqarli post yoz. Birinchi jumla e'tiborni tortsin, 5 qatordan oshmasin, oxirida harakatga chaqiruv bo'lsin."
+      "type": "story",
+      "kicker": "Biznes uchun nega muhim",
+      "title": "Endi *pullik* reklama",
+      "paragraphs": [
+        "Media-byuerlar bu videolarni **pullik reklama** sifatida ishlata boshladi.",
+        "Sababi oddiy: ular **sotadi** — arzon, tez va odamga yoqadi."
+      ]
     },
     {
-      "type": "mockup",
-      "kicker": "Natija qanday",
-      "title": "AI shunday *javob* beradi",
-      "body": "Bir buyruqdan keyin tayyor natija — tekshirib, jo'natasiz:",
-      "window": {
-        "name": "ChatGPT",
-        "rows": [
-          { "t": "Mijozga javob", "tag": { "v": "tayyor", "k": "ok" } },
-          { "t": "3 ta post g'oyasi", "tag": { "v": "tayyor", "k": "ok" } },
-          { "t": "Haftalik reja", "tag": { "v": "10 soniya", "k": "" } },
-          { "t": "Hisobot xulosasi", "tag": { "v": "tayyor", "k": "ok" } }
-        ]
-      }
-    },
-    {
-      "type": "prompt",
-      "kicker": "Buyruq 03",
-      "title": "Kunlik *reja* tuzing",
-      "body": "Nimadan boshlashni bilmasangiz — AI rejani tuzib beradi:",
-      "prompt": "Men [biznes] bilan shug'ullanaman. Bugun uchun 5 ta eng muhim vazifadan iborat reja tuz. Har biriga qancha vaqt ketishini yoz. Eng foydalisidan boshla."
+      "type": "callout",
+      "kicker": "Eng qizig'i",
+      "title": "",
+      "text": "Buni endi **bitta ham prompt yozmasdan**, AI yordamida *avtomatik* qilish mumkin."
     },
     {
       "type": "cta",
-      "kicker": "Bepul qo'llanma",
-      "title": "10 ta buyruqni *hoziroq* oling",
-      "body": "To'liq qo'llanma + 10 ta tayyor buyruq. Nusxa olib, bugundan ishlatasiz.",
+      "kicker": "Batafsil qo'llanma",
+      "title": "Qanday qilishni *ko'rsataman*",
+      "body": "To'liq qadam-baqadam yo'riqnoma kerakmi? Izohga yozing:",
       "action": "Izohga yozing:",
-      "keyword": "«AI»",
-      "url": "men to'liq faylni yuboraman"
+      "keyword": "«VOX»",
+      "url": "men qo'llanmani yuboraman"
     }
   ]
 }
