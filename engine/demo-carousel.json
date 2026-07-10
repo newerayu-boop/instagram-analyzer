@@ -1,0 +1,47 @@
+{
+  "handle": "@ai_biznes",
+  "theme": { "accent": "#C6F542" },
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "AI · Biznes uchun",
+      "title": "Bu AI 5 daqiqada",
+      "highlight": "butun hisobotni yozadi",
+      "subtitle": "Endi Excel bilan tunni o‘tkazish **shart emas**",
+      "swipe": "Ko‘rish"
+    },
+    {
+      "type": "content",
+      "index": 1,
+      "title": "Muammo nimada?",
+      "body": "Kichik biznes egalari haftasiga **8 soatni** hisobot va tahlilga sarflaydi.",
+      "bullets": [
+        "Qo‘lda ma’lumot yig‘ish",
+        "Xatolar va aniqsizlik",
+        "Vaqt — eng qimmat resurs"
+      ]
+    },
+    {
+      "type": "content",
+      "index": 2,
+      "title": "Yechim",
+      "body": "Ushbu **AI-vosita** ma’lumotni o‘zi tahlil qiladi va tayyor hisobot beradi:",
+      "bullets": [
+        "Sotuvlarni avtomatik hisoblaydi",
+        "Grafik va xulosa tayyorlaydi",
+        "O‘zbek tilida javob beradi"
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "Men uni sinab ko‘rdim — **bir kunlik ish 10 daqiqada** bajarildi.",
+      "source": "biznes egasi, Toshkent"
+    },
+    {
+      "type": "cta",
+      "title": "To‘liq qo‘llanmani oling",
+      "body": "Ushbu vositani 0 dan sozlash bo‘yicha **bepul PDF** — izohga “AI” deb yozing.",
+      "action": "Izohga “AI” yozing →"
+    }
+  ]
+}
