@@ -15,11 +15,23 @@
 //
 // Разметка: *акцент*  **жирный**
 
+const fs = require('fs');
+const path = require('path');
 const BASE = {
   serif: "'Playfair Display', Georgia, serif",
   sans: "'Inter', system-ui, sans-serif",
   wordmark: 'AI Strateg', handle: '@kodiyusufbay',
 };
+// читает картинку с диска и возвращает data-URI (для обложки-баннера)
+function dataUri(p) {
+  try {
+    const abs = path.isAbsolute(p) ? p : path.join(process.cwd(), p);
+    const buf = fs.readFileSync(abs);
+    const ext = (p.split('.').pop() || 'jpg').toLowerCase();
+    const mime = ext === 'png' ? 'image/png' : 'image/jpeg';
+    return `data:${mime};base64,${buf.toString('base64')}`;
+  } catch (_) { return ''; }
+}
 const WIDTH = 1080, HEIGHT = 1350;
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 function inline(t = '') {
@@ -68,6 +80,17 @@ function slide(s, i, total, c) {
   const cls = `slide${c.gold ? ' gold' : (s.dark ? ' dark' : '')}`;
   switch (s.type) {
     case 'cover':
+      if (s.image) {
+        return `<section class="${cls} cover cover-img">
+          <div class="cbanner"><img src="${dataUri(s.image)}" alt=""></div>
+          <div class="cbody">
+            <div class="top">${kicker(s.kicker)}<span class="page">${pageStr(i, total)}</span></div>
+            <h1 class="cover-title">${inline(s.title)}</h1>
+            ${s.sub ? `<p class="cover-sub">${inline(s.sub)}</p>` : ''}
+            ${s.swipe ? `<div class="swipe">${esc(s.swipe)} <span>→</span></div>` : ''}
+          </div>
+          ${f}</section>`;
+      }
       return `<section class="${cls} cover">
         <div class="top">${kicker(s.kicker)}<span class="page">${pageStr(i, total)}</span></div>
         <div class="cover-art">${art(s.art || 'robot')}</div>
@@ -147,6 +170,15 @@ function buildHTML(carousel) {
   .dash.sm{width:26px;height:2px;background:var(--accent);display:inline-block;}
   .page{font-weight:600;font-size:28px;letter-spacing:.12em;color:var(--muted);}
 
+  .cover-img{padding:0;}
+  .cover-img .cbanner{width:100%;height:520px;overflow:hidden;position:relative;flex:0 0 auto;}
+  .cover-img .cbanner::after{content:'';position:absolute;inset:0;box-shadow:inset 0 -80px 90px -40px var(--bg);}
+  .cover-img .cbanner img{width:100%;height:100%;object-fit:cover;display:block;}
+  .cover-img .cbody{flex:1;display:flex;flex-direction:column;justify-content:center;padding:40px 78px 150px;}
+  .cover-img .cover-title{margin-top:0;font-size:88px;}
+  .cover-img .cover-sub{font-size:34px;margin-top:20px;}
+  .cover-img .swipe{margin-top:28px;}
+  .cover-img .top{margin-bottom:26px;}
   .cover-art{position:absolute;right:16px;top:210px;width:540px;height:540px;opacity:.85;z-index:0;}
   .cover-art .art{width:100%;height:100%;}
   .cover-title{margin-top:auto;font-family:${c.serif};font-weight:800;font-size:110px;line-height:1.0;letter-spacing:-0.02em;max-width:900px;}
