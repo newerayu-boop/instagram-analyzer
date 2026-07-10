@@ -1,47 +1,55 @@
 {
-  "handle": "@ai_biznes",
-  "theme": { "accent": "#C6F542" },
+  "handle": "@kodiyusufbay",
+  "theme": { "wordmark": "AI Strateg" },
   "slides": [
     {
       "type": "cover",
-      "kicker": "AI · Biznes uchun",
-      "title": "Bu AI 5 daqiqada",
-      "highlight": "butun hisobotni yozadi",
-      "subtitle": "Endi Excel bilan tunni o‘tkazish **shart emas**",
-      "swipe": "Ko‘rish"
+      "kicker": "Bepul AI vosita",
+      "title": "GOOGLE'DAN *BEPUL* AI KOTIB",
+      "swipe": "Suring, ko'rsataman"
     },
     {
-      "type": "content",
-      "index": 1,
-      "title": "Muammo nimada?",
-      "body": "Kichik biznes egalari haftasiga **8 soatni** hisobot va tahlilga sarflaydi.",
-      "bullets": [
-        "Qo‘lda ma’lumot yig‘ish",
-        "Xatolar va aniqsizlik",
-        "Vaqt — eng qimmat resurs"
+      "type": "story",
+      "kicker": "Muammo",
+      "title": "*Hujjat* ko'p, vaqt yo'q.",
+      "paragraphs": [
+        "Shartnoma, hisobot, PDF, qo'llanma... Kerakli gapni topish uchun **soatlab** varaqlaysiz.",
+        "Biznesda esa vaqt — bu **pul**. Har bir daqiqa hisobda."
+      ],
+      "punch": "Yechim bormi?"
+    },
+    {
+      "type": "list",
+      "kicker": "NotebookLM nima qiladi",
+      "title": "3 ta *asosiy* ish",
+      "items": [
+        { "n": "01", "text": "Hujjatlaringizni yuklaysiz — u **hammasini o'qib chiqadi**." },
+        { "n": "02", "text": "Savol berasiz — javobni **manba bilan** ko'rsatadi, o'zidan to'qimaydi." },
+        { "n": "03", "text": "Uzun matnni **qisqa xulosa** yoki hatto **audio**ga aylantiradi." }
+      ],
+      "callout": "Ya'ni sizga hujjatni **birga o'qiydigan yordamchi** kabi."
+    },
+    {
+      "type": "story",
+      "kicker": "Qanday boshlash",
+      "title": "3 daqiqada *tayyor*.",
+      "paragraphs": [
+        "**notebooklm.google.com** ga kiring — Google akkaunt bilan bepul kirasiz.",
+        "«Yangi daftar» → hujjat yoki havolani tashlang → savolingizni yozing. Tamom."
       ]
     },
     {
-      "type": "content",
-      "index": 2,
-      "title": "Yechim",
-      "body": "Ushbu **AI-vosita** ma’lumotni o‘zi tahlil qiladi va tayyor hisobot beradi:",
-      "bullets": [
-        "Sotuvlarni avtomatik hisoblaydi",
-        "Grafik va xulosa tayyorlaydi",
-        "O‘zbek tilida javob beradi"
-      ]
-    },
-    {
-      "type": "quote",
-      "text": "Men uni sinab ko‘rdim — **bir kunlik ish 10 daqiqada** bajarildi.",
-      "source": "biznes egasi, Toshkent"
+      "type": "callout",
+      "kicker": "Natija",
+      "text": "Bir kunlik *o'qish* — endi **10 daqiqada**. AI siz uchun eslab, izlab beradi."
     },
     {
       "type": "cta",
-      "title": "To‘liq qo‘llanmani oling",
-      "body": "Ushbu vositani 0 dan sozlash bo‘yicha **bepul PDF** — izohga “AI” deb yozing.",
-      "action": "Izohga “AI” yozing →"
+      "kicker": "To'liq qo'llanma",
+      "title": "*Bosqichma-bosqich* qo'llanma",
+      "body": "Skrinshotlar bilan to'liq yo'riqnomani **bepul** olasiz.",
+      "action": "Izohga «AI» deb yozing →",
+      "url": "yoki havola bio'da"
     }
   ]
 }
