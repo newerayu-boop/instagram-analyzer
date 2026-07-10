@@ -75,26 +75,29 @@ function slide(s, i, total, c) {
         ${s.sub ? `<p class="cover-sub">${inline(s.sub)}</p>` : ''}
         ${s.swipe ? `<div class="swipe">${esc(s.swipe)} <span>→</span></div>` : ''}
         ${f}</section>`;
-    case 'stat': {
-      const cards = (s.stats || []).map(st => `<div class="scard"><div class="sbig">${inline(st.big)}</div><div class="slab">${inline(st.label)}</div></div>`).join('');
-      return `<section class="${cls}">${k}${s.title ? `<h2 class="h">${inline(s.title)}</h2>` : ''}<div class="scards">${cards}</div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}${f}</section>`;
-    }
-    case 'steps': {
-      const rows = (s.items || []).map(it => `<div class="step"><span class="badge">${esc(it.n)}</span><div class="stext">${inline(it.text)}</div></div>`).join('');
-      return `<section class="${cls}">${k}${s.title ? `<h2 class="h">${inline(s.title)}</h2>` : ''}<div class="steps">${rows}</div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}${f}</section>`;
-    }
-    case 'diagram':
-      return `<section class="${cls}">${k}${s.title ? `<h2 class="h">${inline(s.title)}</h2>` : ''}${diagram(s)}${s.callout ? `<div class="callout"><span class="bar"></span><p>${inline(s.callout)}</p></div>` : ''}${f}</section>`;
-    case 'prompt':
-      return `<section class="${cls}">${k}${s.title ? `<h2 class="h">${inline(s.title)}</h2>` : ''}${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}<div class="pbox"><div class="pbox-h"><span class="dash sm"></span>${esc(s.label || 'TAYYOR PROMPT')}<span class="copy">⧉</span></div><div class="pbox-t">${inline(s.prompt)}</div></div>${f}</section>`;
-    case 'callout':
-      return `<section class="${cls} mid">${k}${s.title ? `<h2 class="h">${inline(s.title)}</h2>` : ''}<div class="callout big"><span class="bar"></span><p>${inline(s.text)}</p></div>${f}</section>`;
-    case 'cta':
-      return `<section class="${cls} mid">${k}<h2 class="h">${inline(s.title)}</h2>${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}<div class="ctacard"><div class="ctacard-l">${esc(s.action || 'Izohga yozing:')}</div><div class="ctacard-k">${esc(s.keyword || '«AI»')}</div>${s.url ? `<div class="ctacard-u">→ ${esc(s.url)}</div>` : ''}</div>${f}</section>`;
-    case 'story':
     default: {
-      const paras = (s.paragraphs || []).map(p => `<p class="body">${inline(p)}</p>`).join('');
-      return `<section class="${cls}">${k}${s.title ? `<h2 class="h">${inline(s.title)}</h2>` : ''}<div class="paras">${paras}</div>${s.punch ? `<div class="punch">${inline(s.punch)}</div>` : ''}${f}</section>`;
+      const bg = `<span class="bgnum">${String(i + 1).padStart(2, '0')}</span>`;
+      const title = s.title ? `<h2 class="h">${inline(s.title)}</h2>` : '';
+      let inner = '';
+      if (s.type === 'stat') {
+        const cards = (s.stats || []).map(st => `<div class="scard"><div class="sbig">${inline(st.big)}</div><div class="slab">${inline(st.label)}</div></div>`).join('');
+        inner = `${title}<div class="scards">${cards}</div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
+      } else if (s.type === 'steps') {
+        const rows = (s.items || []).map(it => `<div class="step"><span class="badge">${esc(it.n)}</span><div class="stext">${inline(it.text)}</div></div>`).join('');
+        inner = `${title}<div class="steps">${rows}</div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
+      } else if (s.type === 'diagram') {
+        inner = `${title}${diagram(s)}${s.callout ? `<div class="callout"><span class="bar"></span><p>${inline(s.callout)}</p></div>` : ''}`;
+      } else if (s.type === 'prompt') {
+        inner = `${title}${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}<div class="pbox"><div class="pbox-h"><span class="dash sm"></span>${esc(s.label || 'TAYYOR PROMPT')}<span class="copy">⧉</span></div><div class="pbox-t">${inline(s.prompt)}</div></div>`;
+      } else if (s.type === 'callout') {
+        inner = `${title}<div class="callout big"><span class="bar"></span><p>${inline(s.text)}</p></div>`;
+      } else if (s.type === 'cta') {
+        inner = `<h2 class="h">${inline(s.title)}</h2>${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}<div class="ctacard"><div class="ctacard-l">${esc(s.action || 'Izohga yozing:')}</div><div class="ctacard-k">${esc(s.keyword || '«AI»')}</div>${s.url ? `<div class="ctacard-u">→ ${esc(s.url)}</div>` : ''}</div>`;
+      } else { // story
+        const paras = (s.paragraphs || []).map(p => `<p class="body">${inline(p)}</p>`).join('');
+        inner = `${title}<div class="paras">${paras}</div>${s.punch ? `<div class="punch">${inline(s.punch)}</div>` : ''}`;
+      }
+      return `<section class="${cls}">${bg}${k}<div class="content">${inner}</div>${f}</section>`;
     }
   }
 }
@@ -126,9 +129,13 @@ function buildHTML(carousel) {
     --bg:#0B0A08; --ink:#F4F1EA; --muted:#8C8578; --accent:#C6A15B;
     --panel:#16130E; --line:#2A2620; --badge-bg:#C6A15B; --badge-ink:#0B0A08;
     --card:#16130E; --glow:#C6A15B1f;}
-  .slide::after{content:'';position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(900px 480px at 92% 6%, var(--glow), transparent 60%);}
+  .slide::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(900px 480px at 92% 6%, var(--glow), transparent 60%),
+               radial-gradient(760px 460px at -8% 104%, var(--glow), transparent 62%);}
   .slide>*{position:relative;z-index:1;}
+  .bgnum{position:absolute!important;right:-6px;bottom:-96px;z-index:0!important;pointer-events:none;
+    font-family:${c.serif};font-weight:800;font-size:460px;line-height:1;color:var(--ink);opacity:.045;}
+  .content{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;}
   .mid{justify-content:center;}
   .acc{color:var(--accent);font-style:normal;}
   strong{font-weight:800;color:var(--ink);}
@@ -154,7 +161,7 @@ function buildHTML(carousel) {
   .body strong{color:var(--ink);font-weight:700;}
   .paras{margin-top:22px;display:flex;flex-direction:column;gap:28px;}
   .paras .body{margin:0;}
-  .punch{margin-top:auto;font-family:${c.serif};font-style:italic;font-weight:700;font-size:64px;color:var(--accent);line-height:1.08;}
+  .punch{margin-top:30px;font-family:${c.serif};font-style:italic;font-weight:700;font-size:66px;color:var(--accent);line-height:1.08;}
 
   .scards{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:26px;}
   .scard{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:40px 38px;}
@@ -180,7 +187,7 @@ function buildHTML(carousel) {
   .dlabel{font-size:28px;color:var(--muted);}
   .dcaption{margin-top:30px;text-align:center;font-size:34px;color:var(--ink);}
 
-  .callout{margin-top:auto;display:flex;gap:26px;padding-top:26px;}
+  .callout{margin-top:30px;display:flex;gap:26px;}
   .callout .bar{width:5px;background:var(--accent);border-radius:3px;flex:0 0 auto;}
   .callout p{font-size:38px;line-height:1.35;color:var(--ink);}
   .callout p strong{color:var(--accent);}
