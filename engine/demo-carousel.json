@@ -5,53 +5,72 @@
   "slides": [
     {
       "type": "cover",
-      "kicker": "AI · Biznes",
-      "art": "spark",
-      "title": "*5 ta* AI yordamchi — bir kunda",
-      "sub": "Har biri siz **har kuni qo'lda** qiladigan ishni bajaradi.",
-      "swipe": "Suring, ko'rsataman"
+      "kicker": "AI · Agentlar",
+      "art": "robot",
+      "title": "AI *agent* nima — va uni o'zingiz yasang",
+      "sub": "Hamma gapiradi, kam kishi tushunadi. **Kod yozmasdan** yasaymiz.",
+      "swipe": "Suring, tushuntiraman"
     },
     {
       "type": "story",
-      "kicker": "Tanish muammo",
-      "title": "Har kuni *bir xil* ish",
+      "kicker": "Asosiy farq",
+      "title": "Chat va *agent*",
       "paragraphs": [
-        "Hisob, javob, jadval, eslatma... Bir xil vazifalar **har kuni** vaqtingizni yeydi.",
-        "Bularni **qo'lda** qilasiz — boshqa yo'lini bilmaganingiz uchun."
+        "«Bugun nima post qilay?» — bu **chat**.",
+        "«Trenddagi 3 mavzuni top, eng zo'rini tanla, mening uslubimda yozib, faylga saqla» — va u buni **o'zi** qilsa, bu **agent**."
       ],
-      "punch": "Yechim bor."
+      "punch": "Farq — modelda emas, tuzilishda."
     },
     {
-      "type": "callout",
-      "kicker": "Anthropic muhandisi",
-      "text": "«**Bir kunda 5 ta yordamchi** yasash mumkin. Har biri sizning bitta kunlik ishingizni bajaradi.»"
+      "type": "steps",
+      "kicker": "Agentda 3 narsa bor",
+      "title": "Chatda *yo'q* narsalar",
+      "items": [
+        { "n": "01", "text": "**Tools** — qidiruv, fayllar, kod, tashqi API. Ularni o'zi chaqiradi." },
+        { "n": "02", "text": "**Xotira** — bitta sessiya bilan cheklanmaydi, vazifalar orasida saqlanadi." },
+        { "n": "03", "text": "**Loop** — vazifa tugaguncha ishlaydi, bitta javobda to'xtamaydi." }
+      ]
     },
     {
-      "type": "story",
-      "kicker": "Qanday ishlaydi",
-      "title": "Har biri — *bitta vazifa*",
-      "paragraphs": [
-        "Har bir yordamchi bitta kunlik ishingiz uchun sozlanadi.",
-        "Bir marta sozlaysiz — keyin u ishni **o'zi** bajaradi, siz vaqt yutasiz."
+      "type": "steps",
+      "kicker": "Spektr: chatdan agentgacha",
+      "title": "*4 daraja*",
+      "items": [
+        { "n": "1", "text": "**Oddiy chat** — so'rading, javob oldi, tugadi." },
+        { "n": "2", "text": "**Tools bilan** — javobdan oldin o'zi qidiradi, fayl o'qiydi." },
+        { "n": "3", "text": "**Ko'p bosqichli** — maqsad berasiz, u bosqichlarga bo'lib bajaradi." },
+        { "n": "4", "text": "**To'liq avtonom** — jadval bo'yicha o'zi ishlaydi, siz natijani ko'rasiz." }
+      ]
+    },
+    {
+      "type": "steps",
+      "kicker": "Qanday agent yasash mumkin",
+      "title": "Bugun *mumkin*",
+      "items": [
+        { "n": "→", "text": "**Research** — mavzuni o'rganib, tayyor xulosa beradi." },
+        { "n": "→", "text": "**Writing** — sizning uslubingizda kontent yozadi." },
+        { "n": "→", "text": "**Business** — xat, mijoz so'rovlari, hisobotlar — avtopilotda." },
+        { "n": "→", "text": "**Personal** — reja, vazifalar, kunlik brifinglar." }
       ]
     },
     {
       "type": "story",
-      "kicker": "Qancha vaqt ketadi",
-      "title": "Atigi *45 daqiqa*",
+      "kicker": "Nima kerak",
+      "title": "*10–20 daqiqa*, kodsiz",
       "paragraphs": [
-        "Noldan, bosqichma-bosqich. Dasturchi bo'lish **shart emas**."
+        "Claude Code hamma kodni **o'zi yozadi** — siz oddiy tilda tushuntirasiz.",
+        "Kerak: Claude API kaliti (~$1–5/oy), Telegram bot, kichik VPS (~$4–6/oy)."
       ],
-      "punch": "Va bu — bir marta."
+      "punch": "Dasturchi bo'lish shart emas."
     },
     {
       "type": "cta",
       "kicker": "To'liq qo'llanma",
-      "title": "Bosqichlarni *ko'rsataymi?*",
-      "body": "5 ta yordamchini sozlashning to'liq yo'riqnomasi kerakmi?",
+      "title": "Butun *yo'riqnoma* — bepul",
+      "body": "Bosqichma-bosqich yasash + tayyor promptlar. Skrinshotlar bilan.",
       "action": "Izohga yozing:",
-      "keyword": "«5 AI»",
-      "url": "men qo'llanmani yuboraman"
+      "keyword": "«AGENT»",
+      "url": "to'liq qo'llanmani yuboraman"
     }
   ]
 }

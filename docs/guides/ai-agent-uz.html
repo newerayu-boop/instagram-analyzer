@@ -1,0 +1,423 @@
+<title>AI Agent yasash — to'liq qo'llanma | AI Strateg</title>
+<style>
+  :root{
+    --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61;
+    --accent:#C8613B; --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD;
+    --code-line:#3a352c; --maxw:720px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488;
+      --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; }
+  }
+  :root[data-theme="light"]{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61;
+    --accent:#C8613B; --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; }
+  :root[data-theme="dark"]{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488;
+    --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; }
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;font-size:18px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  a{color:var(--accent);}
+
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);}
+  .brand .hnd{color:var(--muted);font-family:inherit;font-weight:400;font-size:15px;}
+
+  .hero{padding:64px 0 30px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(34px,6vw,52px);line-height:1.08;
+    letter-spacing:-.01em;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  .src{margin-top:22px;font-size:15px;color:var(--muted);}
+  .src a{font-weight:600;}
+
+  nav.toc{margin:30px 0;padding:22px 24px;background:var(--panel);border:1px solid var(--line);border-radius:16px;}
+  nav.toc b{font-family:Georgia,serif;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+  nav.toc ol{margin:12px 0 0;padding-left:20px;columns:2;column-gap:26px;}
+  nav.toc li{margin:5px 0;}
+  nav.toc a{text-decoration:none;}
+  nav.toc a:hover{text-decoration:underline;}
+
+  section{padding:38px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(26px,4vw,34px);line-height:1.12;
+    margin:0 0 8px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:21px;margin:26px 0 6px;}
+  p{margin:12px 0;}
+  strong{font-weight:700;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;
+    padding:16px 20px;margin:20px 0;}
+  ul.clean{list-style:none;padding:0;margin:16px 0;display:flex;flex-direction:column;gap:12px;}
+  ul.clean li{padding-left:30px;position:relative;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:12px;height:12px;
+    border-radius:4px;background:var(--accent);}
+  ol.steps{padding-left:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:18px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;
+    background:var(--ink);color:var(--bg);border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:16px;font-family:Georgia,serif;}
+
+  .prompt{margin:18px 0;border-radius:14px;overflow:hidden;border:1px solid var(--code-line);}
+  .prompt .ph{display:flex;align-items:center;justify-content:space-between;
+    background:var(--code-bg);padding:12px 16px;border-bottom:1px solid var(--code-line);}
+  .prompt .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
+  .prompt .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);
+    font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .prompt .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .prompt .copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .prompt pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:16px;overflow-x:auto;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:14px;line-height:1.55;white-space:pre-wrap;}
+
+  .tags{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;}
+  .tag{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:14px;font-weight:600;}
+  .tag b{color:var(--accent);}
+
+  footer{padding:40px 0 70px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;
+    padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+  @media (max-width:560px){ nav.toc ol{columns:1;} body{font-size:17px;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg" aria-label="Mavzuni almashtirish">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="eyebrow">AI · Agentlar · To'liq qo'llanma</div>
+  <h1>AI <em>agent</em> nima — va uni o'zingiz qanday yasash mumkin</h1>
+  <p class="lede">Kod yozmasdan. Bosqichma-bosqich. Claude Code + Telegram yordamida — 10–20 daqiqada.</p>
+  <p class="src">Manba: <a href="https://x.com/AnatoliKopadze">@AnatoliKopadze</a> · o'zbek tiliga AI Strateg tayyorladi</p>
+</div>
+
+<nav class="toc">
+  <b>Ichida nima bor</b>
+  <ol>
+    <li><a href="#s1">Agent nima?</a></li>
+    <li><a href="#s2">Uni "agent" qiladigan 3 narsa</a></li>
+    <li><a href="#s3">Spektr: chatdan agentgacha</a></li>
+    <li><a href="#s4">Qanday agentlar mumkin</a></li>
+    <li><a href="#s5">Nima kerak</a></li>
+    <li><a href="#s6">Qaysi Claude modeli</a></li>
+    <li><a href="#s7">1-qadam: botni yasash</a></li>
+    <li><a href="#s8">Skill'lar qo'shish</a></li>
+    <li><a href="#s9">Xotira muammosi</a></li>
+    <li><a href="#s10">Tayyor system-promptlar</a></li>
+  </ol>
+</nav>
+
+<section id="s1">
+  <h2><span class="n">01</span>Agent nima?</h2>
+  <p>Hamma AI agentlar haqida gapiradi. Lekin ko'pchilik "agent nima?" degan savolga aniq javob bera olmaydi — faqat "mustaqil ish qiladigan AI" deb qo'ya qoladi.</p>
+  <p>Aslida rasm ancha foydali: <strong>agent — bu alohida tur emas, bu spektr.</strong> Oddiy chatdan to to'liq mustaqil tizimgacha bo'lgan yo'l.</p>
+  <div class="callout">Bu qo'llanma: agent nima, uni chatdan nima ajratadi, va <strong>Claude Code</strong> bilan o'z agentingizni yasab, uni <strong>Telegram</strong>ga ulashni — kod yozmasdan — ko'rsatadi.</div>
+</section>
+
+<section id="s2">
+  <h2><span class="n">02</span>Uni "agent" qiladigan 3 narsa</h2>
+  <p>Claude'dan "bugun nima post qilay?" deb so'rash — bu <strong>chat</strong>. Unga "trenddagi 3 mavzuni top, eng zo'rini tanla, mening uslubimda yozib faylga saqla" deb topshirsangiz va u buni <strong>o'zi</strong> bajarsa — bu <strong>agent</strong>.</p>
+  <p>Farq — modelda emas, uni <strong>o'rab turgan tuzilishda</strong>. Agentda chatda yo'q 3 narsa bor:</p>
+  <ul class="clean">
+    <li><strong>Tools</strong> — o'zi chaqira oladigan vositalar: qidiruv, fayllar, kod bajarish, tashqi API.</li>
+    <li><strong>Xotira (memory)</strong> — bitta sessiya ichida emas, vazifalar orasida ham saqlanadi.</li>
+    <li><strong>Loop</strong> — bitta javob berguncha emas, <strong>vazifa tugaguncha</strong> ishlaydigan tsikl.</li>
+  </ul>
+  <p>Bu uchtasidan qanchasini qo'shsangiz, siz shunchalik kam aralashasiz. Butun g'oya shunda.</p>
+</section>
+
+<section id="s3">
+  <h2><span class="n">03</span>Spektr: chatdan agentgacha</h2>
+  <ol class="steps">
+    <li><strong>Oddiy chat.</strong> So'radingiz — Claude javob berdi — sessiya tugadi. Tool yo'q, maqsad yo'q.</li>
+    <li><strong>Tools bilan Claude.</strong> Javobdan oldin o'zi internetdan qidiradi, fayl o'qiydi yoki rasm yasaydi. Buni siz aytmadingiz — o'zi kerak deb qaror qildi.</li>
+    <li><strong>Ko'p bosqichli workflow.</strong> Maqsad berasiz — Claude uni bosqichlarga bo'ladi, har birini bajaradi, natijani tekshiradi va tayyor javob beradi. Bosqichlar orasida siz yo'qsiz.</li>
+    <li><strong>To'liq avtonom agent.</strong> Jadval bo'yicha ishlaydi, kirishlarni kuzatadi, tashqi xizmatlarni chaqiradi. Maqsadni bir marta qo'yasiz — natijani tekshirasiz.</li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="n">04</span>Bugun qanday agentlar yasash mumkin</h2>
+  <p>Bu — chegara emas, shunchaki misol. O'z holatingizga mos keladiganini yasayvering.</p>
+  <ul class="clean">
+    <li><strong>Research agent</strong> — mavzu bo'yicha ma'lumot yig'adi, bir nechta manbani o'qiydi, muhimini ajratib, tuzilgan xulosa beradi.</li>
+    <li><strong>Writing agent</strong> — siz bergan tizim bo'yicha kontent yozadi: ohang, format, auditoriya, mavzu — drafт va tahrirni o'zi qiladi.</li>
+    <li><strong>Code agent</strong> — kod yozadi, ishga tushiradi, xatolarni o'qiydi, tuzatadi va davom etadi.</li>
+    <li><strong>Business agent</strong> — takroriy ishlar: xat yozish, mijoz so'rovlari, lidlarni saralash, hisobotlar — avtopilotda.</li>
+    <li><strong>Personal agent</strong> — jadvalingizni boshqaradi, vazifalarni tartiblaydi, brifing tayyorlaydi.</li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2><span class="n">05</span>Boshlashdan oldin nima kerak</h2>
+  <div class="tags">
+    <span class="tag"><b>1.</b> Claude API kaliti — <b>$1–5/oy</b></span>
+    <span class="tag"><b>2.</b> Telegram bot tokeni (BotFather)</span>
+    <span class="tag"><b>3.</b> Linux VPS — <b>$4–6/oy</b></span>
+  </div>
+  <p><strong>Claude API kaliti:</strong> <a href="https://console.anthropic.com/">console.anthropic.com</a> dan olasiz. Bu — ishlatganingiz uchun to'lov, oylik obuna emas. Kuniga 50 xabarli shaxsiy bot uchun oyiga $1–5.</p>
+  <p><strong>Telegram bot tokeni:</strong> Telegram'da <strong>BotFather</strong>ga yozib olasiz.</p>
+  <p><strong>VPS (server):</strong> Shaxsiy bot uchun 1 CPU, 1GB RAM, 20GB yetarli. DigitalOcean, Hetzner yoki Vultr'ning eng oddiy tarifi bo'ladi — $4–6/oy. Serverni olgach, terminalda <code>npm i -g @anthropic-ai/claude-code</code> bilan Claude Code'ni o'rnatasiz.</p>
+</section>
+
+<section id="s6">
+  <h2><span class="n">06</span>Qaysi Claude modelini tanlash</h2>
+  <ul class="clean">
+    <li><strong>Sonnet 4.6</strong> — ko'p botlar uchun eng to'g'ri tanlov. Har qanday vazifaga kuchli, kunlik ishlatishga arzon.</li>
+    <li><strong>Haiku 4.5</strong> — xarajatni minimallashtirmoqchi bo'lsangiz.</li>
+    <li><strong>Opus 4.8</strong> — faqat javob sifati juda muhim bo'lgan murakkab tahliliy agentlar uchun.</li>
+  </ul>
+</section>
+
+<section id="s7">
+  <h2><span class="n">07</span>1-qadam: birinchi botni yasash</h2>
+  <p>VPS terminalida Claude Code'ni oching va quyidagi promptni tashlang — u hamma kodni o'zi yozadi.</p>
+
+  <h3>Botga "shaxsiyat" berish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 1</span><button class="copy">Nusxa olish</button></div><pre>Build me a Telegram bot that uses the Claude API as its brain.
+
+Requirements:
+- Language: Python
+- Library for Telegram: python-telegram-bot
+- Claude model: claude-sonnet-4-6
+- The bot receives a message, sends it to Claude API, and returns Claude's response to Telegram
+- Maintain conversation history per user — each user has their own context within the session
+- Add a /start command that introduces the bot
+- Add a /clear command that resets conversation history for that user
+
+Create all necessary files: main bot file, requirements.txt, and a .env file template for API keys.
+Do not hardcode any API keys — read them from environment variables.</pre></div>
+
+  <h3>Fon xizmati sifatida ishga tushirish (systemd)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 2</span><button class="copy">Nusxa olish</button></div><pre>Create a systemd service file so this bot runs automatically on my Linux VPS and restarts if it crashes.
+
+The service should:
+- Start automatically when the server boots
+- Restart automatically if it crashes
+- Load environment variables from the .env file in the project folder
+- Save logs to a file I can check later
+
+Also write me the exact terminal commands to install the service, start it, check if it is running, and view the logs.</pre></div>
+
+  <h3>Sessiyalar orasida xotira qo'shish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 3</span><button class="copy">Nusxa olish</button></div><pre>The bot loses conversation history when it restarts. Fix this.
+
+Save each user's conversation history to a JSON file on disk after every message. Load it back automatically when the bot starts.
+
+Add a maximum history length — keep only the last 20 messages per user so the context window never gets too long.</pre></div>
+</section>
+
+<section id="s8">
+  <h2><span class="n">08</span>Skill'lar qo'shish</h2>
+  <p>Skill — botga vaqt o'tib qo'shadigan imkoniyat. Har biri — Claude Code'ga beradigan yangi prompt.</p>
+
+  <h3>Skill: Internetdan qidiruv</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt</span><button class="copy">Nusxa olish</button></div><pre>Add web search capability to the bot using the Tavily API.
+
+When the user asks something that requires current information — news, prices, recent events — the bot automatically searches the web and includes the results in its response.
+
+The bot should decide on its own when to search and when to answer from memory. Add TAVILY_API_KEY to the .env file template.
+
+Use Claude's tool use feature to implement this cleanly.</pre></div>
+
+  <h3>Skill: Eslatmalarni saqlash</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt</span><button class="copy">Nusxa olish</button></div><pre>Add a note-saving feature to the bot.
+
+When the user says "save this", "remember this", or "note:", the bot saves the content to a notes.txt file with a timestamp.
+
+Add a /notes command that returns the last 10 saved notes.
+Add a /clearnotes command that deletes all saved notes.</pre></div>
+
+  <h3>Skill: Faqat o'zingizga cheklash</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt</span><button class="copy">Nusxa olish</button></div><pre>Add user restriction to the bot so only I can use it.
+
+Add my Telegram user ID to the .env file as ALLOWED_USER_ID.
+If anyone else messages the bot, it responds with "This bot is private." and ignores all further messages from that user.
+
+Also add how I can find my own Telegram user ID — either through the bot itself or another method.</pre></div>
+
+  <h3>Skill: API xarajatini kuzatish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt</span><button class="copy">Nusxa olish</button></div><pre>Add basic cost tracking to the bot.
+
+After each Claude API response, log the number of input tokens and output tokens used.
+Keep a running total in a costs.json file.
+
+Add a /costs command that shows: total tokens used today, total tokens used all time, and an estimated cost in USD based on claude-sonnet-4-6 pricing.</pre></div>
+
+  <h3>Skill: Har kungi brifing</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt</span><button class="copy">Nusxa olish</button></div><pre>Add a scheduled daily briefing to the bot.
+
+Every day at 8:00am, the bot sends me a message with:
+1. A motivational one-liner (short, not cheesy)
+2. A reminder to check my top priority for the day
+3. One random useful fact about productivity or AI
+
+Send it to my Telegram user ID from the .env file.
+Use the schedule or APScheduler library to implement this.</pre></div>
+</section>
+
+<section id="s9">
+  <h2><span class="n">09</span>Har bir agentda bo'ladigan xotira muammosi</h2>
+  <p>Eng ko'p uchraydigan muammo: agent sessiyalar orasida yoki uzun vazifada kontekstni yo'qotadi va xato qila boshlaydi. To'rt yechim bor — quyidagi promptlar yordam beradi.</p>
+
+  <h3>Checkpoint (nazorat nuqtasi)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt</span><button class="copy">Nusxa olish</button></div><pre>Before we continue, write a brief checkpoint:
+1. What have you completed so far?
+2. What are the key decisions or findings from this session?
+3. What still needs to be done?
+4. What context would you need to continue this task in a new session?
+
+Keep it under 200 words.</pre></div>
+
+  <h3>Memory file (xotira yozuvi)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt</span><button class="copy">Nusxa olish</button></div><pre>After completing each major step, write a memory note in this format:
+
+STEP COMPLETED: [what was done]
+KEY DECISIONS: [choices made and why]
+CURRENT STATE: [where the task stands now]
+NEXT STEP: [what should happen next]
+
+This note will be used to resume the task in a new session without losing context.</pre></div>
+
+  <h3>Context recovery (kontekstni tiklash)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt</span><button class="copy">Nusxa olish</button></div><pre>We are resuming a task from a previous session. Here is the context:
+
+[paste your memory note here]
+
+Based on this:
+1. Confirm your understanding of where we are
+2. Identify the next step
+3. Ask any questions needed to continue
+
+Do not repeat work that has already been completed.</pre></div>
+
+  <h3>Rolling summary (aylanma xulosa)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt</span><button class="copy">Nusxa olish</button></div><pre>The conversation is getting long. Compress everything important into a summary:
+
+1. Original goal
+2. What has been done and what was found
+3. Key decisions made
+4. What still needs to happen
+
+After writing the summary, continue from there. Treat this summary as the new starting point.</pre></div>
+</section>
+
+<section id="s10">
+  <h2><span class="n">10</span>Tayyor system-prompt shablonlari</h2>
+  <p>Agentingiz qanday bo'lishini shu shablonlar bilan belgilaysiz. Mos kelganini nusxa olib ishlating.</p>
+
+  <h3>Research agent</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">System prompt</span><button class="copy">Nusxa olish</button></div><pre>You are a research agent. Your job is to gather, analyze, and synthesize information on any topic I give you.
+
+When given a research task:
+1. Identify the 3-5 most important sub-questions to answer
+2. Search for information on each one
+3. Evaluate the quality and relevance of each source
+4. Extract only what directly answers the question
+5. Deliver a structured summary with: key findings, supporting evidence, and gaps you could not fill
+
+Format: Use headers, bullet points, and clear sections.
+If you are uncertain about something, say so explicitly.
+Do not add filler. Every sentence should contain information.</pre></div>
+
+  <h3>Writing agent</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">System prompt</span><button class="copy">Nusxa olish</button></div><pre>You are a writing agent. You write content in my voice and style.
+
+My style:
+- Conversational, direct, no corporate language
+- Short sentences and paragraphs
+- Specific numbers and examples over vague claims
+- Always end with something the reader should do or think about
+
+When given a writing task:
+1. Ask for the topic, audience, and desired length if not provided
+2. Write a first draft
+3. Review it against my style rules
+4. Deliver the final version ready to publish
+
+Never add unnecessary introductions. Start with the most important point.</pre></div>
+
+  <h3>Code agent</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">System prompt</span><button class="copy">Nusxa olish</button></div><pre>You are a code agent. Your job is to write, debug, and improve code.
+
+When given a coding task:
+1. Confirm your understanding of what the code should do
+2. Write the solution with clear comments
+3. Identify any edge cases or potential failures
+4. If there are errors, debug them systematically before asking for help
+
+Rules:
+- Write clean, readable code with meaningful variable names
+- Always include error handling
+- Explain what each major section does in plain language
+- If you are unsure about requirements, ask one clarifying question before proceeding</pre></div>
+
+  <h3>Business email agent</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">System prompt</span><button class="copy">Nusxa olish</button></div><pre>You are a business email agent. You write professional emails on my behalf.
+
+My communication style:
+- Direct and respectful
+- No unnecessary formalities
+- Gets to the point in the first sentence
+- Closes with a clear next step
+
+When given an email task:
+1. Identify the goal of the email (inform, request, follow up, confirm)
+2. Write a subject line that reflects the email's purpose
+3. Draft the email in 3-5 short paragraphs maximum
+4. End with one clear action item or next step
+
+Always write ready-to-send emails, not templates with blanks to fill in.</pre></div>
+
+  <h3>Personal planning agent</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">System prompt</span><button class="copy">Nusxa olish</button></div><pre>You are my personal planning agent. You help me organize my work, prioritize tasks, and plan my week.
+
+When I share my tasks or goals:
+1. Identify what is urgent vs. important
+2. Suggest a realistic sequence based on dependencies
+3. Estimate time required for each task
+4. Flag anything that could be delegated or eliminated
+
+When I describe a project:
+- Break it into concrete next actions
+- Identify the single most important thing to do first
+- Create a simple checklist I can follow
+
+Keep everything practical. No motivational filler. Just the plan.</pre></div>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>Manba: <a href="https://x.com/AnatoliKopadze">@AnatoliKopadze</a> · Endi agentingizni yasang 🚀</p>
+</footer>
+
+</div>
+
+<script>
+  // тема
+  const tg=document.getElementById('tg');
+  tg.addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const isDark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', isDark?'light':'dark');
+  });
+  // копирование промптов
+  document.querySelectorAll('.prompt').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{
+      try{ await navigator.clipboard.writeText(pre.innerText);
+        const t=btn.textContent; btn.textContent='✓ Nusxa olindi';
+        setTimeout(()=>btn.textContent=t,1500);
+      }catch(e){ btn.textContent='Belgilab, qo‘lda nusxa oling'; }
+    });
+  });
+</script>
