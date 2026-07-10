@@ -55,15 +55,16 @@ function avatar(theme) {
 function footer(theme, index, total) {
   const dots = Array.from({ length: total }, (_, i) =>
     `<span class="dot ${i === index ? 'on' : ''}"></span>`).join('');
-  const page = `${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
   return `
     <div class="footer">
       <div class="brand">
-        <span class="brand-ava">${theme.avatarDataUri ? `<img src="${theme.avatarDataUri}" alt="">` : ''}</span>
         <span class="wordmark">${esc(theme.wordmark)}</span>
+        <div class="dots">${dots}</div>
       </div>
-      <div class="dots">${dots}</div>
-      <div class="page">${page}</div>
+      <div class="brand brand-r">
+        <span class="handle">${esc(theme.handle)}</span>
+        <span class="brand-ava">${theme.avatarDataUri ? `<img src="${theme.avatarDataUri}" alt="">` : 'Yu'}</span>
+      </div>
     </div>`;
 }
 
@@ -226,17 +227,19 @@ function buildHTML(carousel, themeOverride = {}) {
   .cta-url{margin-top:26px;font-family:${theme.sans};font-weight:600;font-size:32px;color:${theme.muted};}
 
   /* footer */
-  .footer{position:absolute;left:84px;right:84px;bottom:56px;display:flex;align-items:center;
+  .footer{position:absolute;left:84px;right:84px;bottom:52px;display:flex;align-items:center;
     justify-content:space-between;}
-  .brand{display:flex;align-items:center;gap:16px;}
-  .brand-ava{width:44px;height:44px;border-radius:50%;overflow:hidden;background:#17140F;
-    border:1px solid ${theme.gold}66;display:inline-block;}
+  .brand{display:flex;align-items:center;gap:18px;}
+  .brand-r{gap:16px;}
+  .brand-ava{width:56px;height:56px;border-radius:50%;overflow:hidden;background:#17140F;
+    border:2px solid ${theme.gold};display:inline-flex;align-items:center;justify-content:center;
+    font-family:${theme.serif};font-style:italic;font-weight:700;font-size:26px;color:${theme.gold};}
   .brand-ava img{width:100%;height:100%;object-fit:cover;}
-  .wordmark{font-family:${theme.serif};font-weight:700;font-size:34px;color:${theme.fg};}
+  .wordmark{font-family:${theme.serif};font-weight:700;font-size:36px;color:${theme.fg};}
+  .handle{font-family:${theme.sans};font-weight:600;font-size:30px;color:${theme.muted};}
   .dots{display:flex;gap:11px;}
   .dot{width:12px;height:12px;border-radius:50%;background:#ffffff26;}
-  .dot.on{background:${theme.gold};}
-  .page{font-family:${theme.sans};font-weight:600;font-size:28px;letter-spacing:.1em;color:${theme.muted};}
+  .dot.on{background:${theme.gold};width:30px;border-radius:6px;}
 </style></head>
 <body>
 ${body}
