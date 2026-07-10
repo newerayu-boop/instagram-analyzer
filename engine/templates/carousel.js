@@ -65,7 +65,7 @@ function diagram(d) {
 function slide(s, i, total, c) {
   const f = footer(c, i, total);
   const k = topbar(s.kicker, i, total);
-  const cls = `slide${s.dark ? ' dark' : ''}`;
+  const cls = `slide${c.gold ? ' gold' : (s.dark ? ' dark' : '')}`;
   switch (s.type) {
     case 'cover':
       return `<section class="${cls} cover">
@@ -101,6 +101,7 @@ function slide(s, i, total, c) {
 
 function buildHTML(carousel) {
   const c = { ...BASE };
+  c.gold = !!carousel.gold; // чёрно-золотая тема (стиль AI Strateg premium)
   if (carousel.wordmark) c.wordmark = carousel.wordmark;
   if (carousel.handle) c.handle = carousel.handle;
   const slides = carousel.slides || [];
@@ -121,6 +122,10 @@ function buildHTML(carousel) {
     --bg:#26221C; --ink:#EFE8DD; --muted:#A79E90; --accent:#D2703F;
     --panel:#332E27; --line:#41392F; --badge-bg:#EFE8DD; --badge-ink:#26221C;
     --card:#332E27; --glow:#D2703F26;}
+  .slide.gold{
+    --bg:#0B0A08; --ink:#F4F1EA; --muted:#8C8578; --accent:#C6A15B;
+    --panel:#16130E; --line:#2A2620; --badge-bg:#C6A15B; --badge-ink:#0B0A08;
+    --card:#16130E; --glow:#C6A15B1f;}
   .slide::after{content:'';position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(900px 480px at 92% 6%, var(--glow), transparent 60%);}
   .slide>*{position:relative;z-index:1;}

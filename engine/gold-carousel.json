@@ -1,0 +1,48 @@
+{
+  "handle": "@kodiyusufbay",
+  "wordmark": "AI Strateg",
+  "gold": true,
+  "slides": [
+    {
+      "type": "cover", "art": "bolt",
+      "kicker": "OpenAI · Yangi",
+      "title": "ChatGPT endi *o'zi ishlaydigan* xodim",
+      "sub": "«ChatGPT Work» — ilova va fayllaringizda **o'zi** ish qiladi.",
+      "swipe": "oxirigacha suring"
+    },
+    {
+      "type": "story",
+      "kicker": "Bu nima?",
+      "title": "Chat emas — *agent*",
+      "paragraphs": [
+        "OpenAI **ChatGPT Work**ni chiqardi — Codex va GPT-5.6 asosidagi yangi agent.",
+        "U shunchaki javob bermaydi — sizning **o'rningizga ish bajaradi**."
+      ],
+      "punch": "Farqi katta."
+    },
+    {
+      "type": "steps",
+      "kicker": "Nima qila oladi",
+      "title": "3 ta *asosiy* ish",
+      "items": [
+        { "n": "01", "text": "Ilova va fayllaringizda **o'zi harakat** qiladi." },
+        { "n": "02", "text": "Kerak bo'lsa, loyiha ustida **soatlab** ishlaydi." },
+        { "n": "03", "text": "Maqsad berasiz — uni **tayyor natijaga** aylantiradi." }
+      ]
+    },
+    {
+      "type": "callout",
+      "kicker": "Biznes uchun",
+      "text": "Rutina ishlarni unga topshirasiz — **o'zingiz muhim ishga** vaqt topasiz."
+    },
+    {
+      "type": "cta",
+      "kicker": "Batafsil",
+      "title": "Qanday ishlashini *ko'rsataymi?*",
+      "body": "To'liq qo'llanma va misollar kerakmi?",
+      "action": "Izohga yozing:",
+      "keyword": "«WORK»",
+      "url": "to'liq qo'llanmani yuboraman"
+    }
+  ]
+}

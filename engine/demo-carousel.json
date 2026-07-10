@@ -3,90 +3,74 @@
   "wordmark": "AI Strateg",
   "slides": [
     {
-      "type": "cover", "dark": false, "art": "robot",
-      "kicker": "AI-agentlar · 2026",
-      "title": "Bitta AI emas — AI'lar *jamoasi* ishlasin",
-      "sub": "Claude'ni butun **ofis jamoasiga** aylantiring. Hech narsa bilmasangiz ham.",
+      "type": "cover", "dark": false, "art": "spark",
+      "kicker": "AI · Reklama",
+      "title": "«VOX» reklama — *promptsiz* yasang",
+      "sub": "Millionlab ko'rish yig'ayotgan uslub. Endi AI **o'zi** yasaydi.",
       "swipe": "oxirigacha suring"
     },
     {
-      "type": "story", "dark": true,
-      "kicker": "Tanish holat",
-      "title": "Ko'pchilik Claude'ni *shunday* ishlatadi",
+      "type": "story", "dark": false,
+      "kicker": "Nima bo'lyapti",
+      "title": "Bu uslub *portlab* ketdi",
       "paragraphs": [
-        "Chat ochadi, vazifa yozadi, javob oladi, oynani yopadi.",
-        "Keyingi safar **noldan** — hammasini qaytadan tushuntiradi."
+        "«Vox» — qog'oz-kollaj uslubidagi tushuntiruvchi videolar TikTok va Instagramda **millionlab** ko'rish yig'yapti.",
+        "Media-byuerlar ularni **pullik reklama** qilyapti — chunki ular sotadi."
       ],
-      "punch": "Bu — xotirasi yo'q frilanser."
+      "punch": "Reklamaga emas, maqolaga o'xshaydi."
     },
     {
       "type": "story", "dark": false,
-      "kicker": "Boshqa yo'l",
-      "title": "Claude → *butun bo'lim*",
+      "kicker": "Avval va hozir",
+      "title": "Avval *qiyin* edi",
       "paragraphs": [
-        "Anthropic **bepul** repo ochdi: Claude'ni ofis rollariga aylantiradi — sotuvchi, marketolog, moliyachi, yurist, data-analitik.",
-        "Endi noldan prompt yozmaysiz. Siz **xodim yollaysiz**."
+        "Bitta shunday video uchun motion-dizayner yollash yoki After Effects'da **kunlab** o'tirish kerak edi.",
+        "Endi **Google Omni Flash** bu uslubni tez va sifatli o'zi yasaydi."
       ]
-    },
-    {
-      "type": "diagram", "dark": true,
-      "kicker": "Qanday ishlaydi",
-      "title": "Ish shunday *bo'linadi*",
-      "top": { "title": "SIZ", "sub": "yo'naltirasiz · tekshirasiz" },
-      "nodes": [
-        { "n": "1", "label": "Sotuvchi" },
-        { "n": "2", "label": "Marketolog" },
-        { "n": "3", "label": "Data" }
-      ],
-      "caption": "Har bir 'xodim' bitta ishni **puxta** biladi.",
-      "callout": "Siz faqat natijani ko'rasiz."
     },
     {
       "type": "steps", "dark": false,
-      "kicker": "Kimni yollash mumkin",
-      "title": "Tayyor *rollar*",
+      "kicker": "Skill nima qiladi",
+      "title": "Deyarli *avtomatik*",
       "items": [
-        { "n": "→", "text": "**Sotuv** — mijoz tahlili, qo'ng'iroqqa tayyorgarlik, pipeline." },
-        { "n": "→", "text": "**Marketing** — kontent, kampaniya, SEO audit." },
-        { "n": "→", "text": "**Moliya** — hisob, oyni yopish, tahlil." },
-        { "n": "→", "text": "**Data** — SQL, statistika, dashboard. *va boshqalar*." }
+        { "n": "01", "text": "Mahsulotingiz haqida aytasiz — u bir necha **savol** beradi." },
+        { "n": "02", "text": "Rasm yuklaysiz — har klipda mahsulot **bir xil** ko'rinadi." },
+        { "n": "03", "text": "Maskot yoki 'yuzsiz' explainer — o'zingiz tanlaysiz." },
+        { "n": "04", "text": "U skript + vizualni yozadi, siz **bir marta** tasdiqlaysiz." }
       ]
     },
     {
-      "type": "steps", "dark": true,
-      "kicker": "Boshlash · 1-qism",
-      "title": "3 qadamda *ishga tushiring*",
+      "type": "callout", "dark": false,
+      "kicker": "Muhim tanlov",
+      "text": "**Omni Flash** ni tanlang, Seedance emas: u matn va ovozni *buzmaydi*, tez va arzon."
+    },
+    {
+      "type": "steps", "dark": false,
+      "kicker": "Bitta ovoz uchun",
+      "title": "Ovozni *tekislash*",
       "items": [
-        { "n": "01", "text": "**Claude Cowork**ni yuklab oling (Claude Desktop)." },
-        { "n": "02", "text": "Marketplace'ni qo'shing — bitta buyruq bilan." },
-        { "n": "03", "text": "Kerakli rolni o'rnating — u **o'zi** yoqiladi." }
+        { "n": "01", "text": "Kliplarni **CapCut**'da birlashtiring va eksport qiling." },
+        { "n": "02", "text": "MaxFusion AI'ga yuklang → **Replace Voice**." },
+        { "n": "03", "text": "Bitta ovoz tanlang — butun reklamada **bir xil**." }
       ]
     },
     {
-      "type": "prompt", "dark": false,
-      "kicker": "Buyruqlar",
-      "title": "Ikki *qator* — tamom",
-      "body": "Cowork terminaliga shu ikki buyruqni tashlang:",
-      "label": "TERMINAL",
-      "prompt": "claude plugin marketplace add anthropics/knowledge-work-plugins\nclaude plugin install sales@knowledge-work-plugins"
-    },
-    {
-      "type": "steps", "dark": true,
-      "kicker": "Boshlash · 2-qism",
-      "title": "Keyin *nima*?",
-      "items": [
-        { "n": "04", "text": "Slash-buyruq bilan ishga soling: **/sales:call-prep**." },
-        { "n": "05", "text": "Vositalarni ulang (CRM, analitika) — **kuchayadi**." },
-        { "n": "06", "text": "Boshqa rollarni qo'shing — ular **birga** ishlaydi." }
-      ]
+      "type": "story", "dark": false,
+      "kicker": "Qayerda ishlaydi",
+      "title": "Faqat *kontent* emas",
+      "paragraphs": [
+        "Bu format **pullik reklama** sifatida ham sotadi: ilova, mahsulot — «bu qanday ishlaydi» momentiga ideal.",
+        "Editorial ko'rinish odamni **oxirigacha** ushlab turadi."
+      ],
+      "punch": "Ko'proq tomosha = ko'proq natija."
     },
     {
       "type": "cta", "dark": false,
       "kicker": "To'liq qo'llanma",
-      "title": "Hammasi *bepul* — bir joyda",
-      "body": "7 qadam + rollar ro'yxati + buyruqlar.",
+      "title": "Butun *jarayon* — qadam-baqadam",
+      "body": "Skill sozlash + Omni Flash + ovozni tuzatish. Bepul.",
       "action": "Izohga yozing:",
-      "keyword": "«TEAM»",
+      "keyword": "«VOX»",
       "url": "to'liq qo'llanmani yuboraman"
     }
   ]
