@@ -170,7 +170,119 @@ function s5() {
   </section>`;
 }
 
-const slides = [s1(), s2(), s3(), s4(), s5()];
+function s6() {
+  const hero = `<div class="mock hero">
+    ${macbar('hero — flashlight effekti')}
+    <div class="hero-stage">
+      <span class="hero-pill">kursor = chiroq</span>
+      <div class="hero-ph a"></div>
+      <div class="hero-ph b"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-cursor"></div>
+    </div>
+  </div>`;
+  return `<section class="slide light">
+    ${kicker('QADAM 04 / 06')}
+    ${stepHead('04', 'Hero bo&#8217;limga jon kiriting')}
+    <p class="body">Tekis surat jonsiz ko&#8217;rinadi. Men <span class="chip">&ldquo;chiroq&rdquo; (flashlight)</span> effektini qo&#8217;shdim — kursor yo&#8217;naltirgan joy yorishadi.</p>
+    ${hero}
+    ${promptBox(`In the hero: a flashlight/spotlight cursor effect. Dark background, photo barely visible; the cursor reveals a warm-lit version through a soft circular mask. Radius 100–150px.`)}
+    ${footer(5)}
+  </section>`;
+}
+
+function s7() {
+  const rows = [
+    'Sahifa o&#8217;tishlari keskin — silliq fade kerak',
+    'Chiroq kursordan orqada qolyapti',
+    'Ba&#8217;zi elementlar ekrandan chiqib ketyapti',
+    'Shriftlar oddiy — Il Capo ohangi yo&#8217;qolgan',
+  ].map((t, i) => `<div class="fixrow"><span class="fixn">${i + 1}</span>${t}</div>`).join('');
+  const win = `<div class="mock lwin">
+    ${macbar('Bitta xabarda — hammasi')}
+    <div class="lwin-body">
+      <div class="lwin-h">Here are several things to fix:</div>
+      <div class="fixlist">${rows}</div>
+      <div class="lwin-foot"><span>hammasi bitta kontekstda</span><span class="gbtn sm">Yuborish &rarr;</span></div>
+    </div>
+  </div>`;
+  return `<section class="slide light">
+    ${kicker('QADAM 05 / 06')}
+    ${stepHead('05', 'Xatolarni bitta xabarda tuzating')}
+    <p class="body">Saytni o&#8217;zingiz aylanib chiqing, <span class="chip">hamma kamchilikni</span> yozib oling va Claude&#8217;ga birdaniga yuboring.</p>
+    ${win}
+    ${promptBox(`Here are several things that need fixing. Please address all of them: 1)... 2)... 3)... — hammasini bitta xabarda ber, shunda Claude birini tuzatib boshqasini buzmaydi.`)}
+    ${footer(6)}
+  </section>`;
+}
+
+function s8() {
+  const rows = [
+    ['w', 'Typography', 'Inter kabi klishe shriftlar bormi?'],
+    ['c', 'Color', 'palitra vazmin yoki tarqoqmi?'],
+    ['c', 'Hierarchy', 'o&#8217;lchamlar ko&#8217;zni yo&#8217;naltiryaptimi?'],
+    ['w', 'Animation', 'silliq va maqsadli yoki tasodifiymi?'],
+    ['c', 'Mobile', 'telefon uchun chin dizayn yoki siqilganmi?'],
+    ['c', 'Copy', 'aniq va vazmin yoki AI-suvmi?'],
+  ].map(([ic, t, s]) => `<div class="evrow"><span class="ev ${ic}">${ic === 'w' ? '!' : '✓'}</span><div><b>${t}</b><span>${s}</span></div></div>`).join('');
+  const win = `<div class="mock lwin">
+    ${macbar('Strukturali baho')}
+    <div class="lwin-body">
+      <div class="lwin-h">Saytni mezonlar bo&#8217;yicha bahola</div>
+      <div class="evlist">${rows}</div>
+    </div>
+  </div>`;
+  return `<section class="slide light">
+    ${kicker('QADAM 06 / 06')}
+    ${stepHead('06', 'Sayqal bering — halol baho oling')}
+    <p class="body">Claude&#8217;ning o&#8217;zidan <span class="chip">tuzilgan baho</span> so&#8217;rang: shrift, rang, ierarxiya, animatsiya, mobil, matn.</p>
+    ${win}
+    ${promptBox(`Review this site and be honest about what needs work: Typography, Color, Hierarchy, Animation, Mobile, Copy. Rozi bo&#8217;lmagan nuqtalarni tashla — saytni sen yaxshiroq bilasan.`)}
+    ${footer(7)}
+  </section>`;
+}
+
+function s9() {
+  const diagram = `<div class="diag">
+    <div class="dnode black"><b>2 KO&#8217;NIKMA</b><span>bir marta sozlanadi</span></div>
+    <svg class="darrow one" viewBox="0 0 40 70"><line x1="20" y1="0" x2="20" y2="56" stroke="#B99A4E" stroke-width="2.4"/><polygon points="14,52 26,52 20,66" fill="#B99A4E"/></svg>
+    <div class="drow">
+      <div class="dnode white"><b class="g">/reference</b><span>har safar almashtiriladi</span></div>
+      <div class="dnode white"><b class="g">Prompt</b><span>har safar almashtiriladi</span></div>
+    </div>
+    <svg class="darrow two" viewBox="0 0 700 80" preserveAspectRatio="none"><line x1="175" y1="0" x2="350" y2="56" stroke="#B99A4E" stroke-width="2.4"/><line x1="525" y1="0" x2="350" y2="56" stroke="#B99A4E" stroke-width="2.4"/><polygon points="344,52 356,52 350,68" fill="#B99A4E"/></svg>
+    <div class="dnode gold"><b>TAYYOR SAYT</b><span>studiya darajasida</span></div>
+  </div>`;
+  return `<section class="slide light">
+    ${kicker('TIZIMNING YURAGI')}
+    <h2 class="h">Bir marta sozlang, har safar<br>takrorlang</h2>
+    <p class="body">Asosiy &ldquo;xarajat&rdquo; — odamlar emas, <span class="chip">ikkita ko&#8217;nikma</span>. Keyingi har bir loyihada faqat namunalar va promptni almashtirasiz.</p>
+    ${diagram}
+    <div class="note">
+      <div class="note-h"><span class="ktick g"></span>ESLAB QOLING</div>
+      <p>Ko&#8217;nikmalarni bir marta sozlang. Namunalarni almashtiring. Har safar topshiring. Butun &ldquo;studiya&rdquo; shu ustida ishlaydi.</p>
+    </div>
+    ${footer(8)}
+  </section>`;
+}
+
+function s10() {
+  return `<section class="slide dark cover cta">
+    <div class="starwrap bl">${star()}</div>
+    ${kicker(`OXIRGI QADAM &middot; ${HANDLE}`)}
+    <div class="cover-body">
+      <h1 class="cover-title"><span class="w">DEPLOY —</span><br><span class="g">SO&#8217;NGGI SIR</span></h1>
+      <p class="cover-sub">repozitoriy, build, domen<br>va <span class="g">Vercel — hammasi</span></p>
+      <p class="body dk">Saytni jonli serverga chiqarish alohida qadam. To&#8217;liq qo&#8217;llanmani — har bir buyruq va hech kim aytmaydigan domen qismi bilan — yozib qo&#8217;ydim.</p>
+      <div class="ctabtn">Izohga «DEPLOY» yozing</div>
+      <p class="ctasub">— to&#8217;liq qo&#8217;llanmani directga tashlayman.</p>
+      <p class="ctasub muted">Obuna bo&#8217;ling — keyingi qo&#8217;llanmalarni o&#8217;tkazib yubormang.</p>
+    </div>
+    ${footer(9, true)}
+  </section>`;
+}
+
+const slides = [s1(), s2(), s3(), s4(), s5(), s6(), s7(), s8(), s9(), s10()];
 
 function html() {
   return `<!doctype html><html lang="uz"><head><meta charset="utf-8"><style>
@@ -220,7 +332,7 @@ function html() {
   .stephead{display:flex;align-items:flex-start;gap:34px;margin-bottom:8px;}
   .stepnum{font-family:${SERIF};font-style:italic;font-weight:800;font-size:104px;line-height:.86;color:var(--gold);flex:0 0 auto;}
   .h.step{font-size:58px;padding-top:16px;}
-  .body{font-size:34px;line-height:1.4;color:var(--muted);margin:16px 0 22px;}
+  .body{font-size:34px;line-height:1.38;color:var(--muted);margin:14px 0 18px;}
   .body b{color:var(--ink);font-weight:800;}
   .chip{display:inline-block;background:var(--card);color:var(--ink);font-weight:700;
     padding:2px 16px;border-radius:12px;box-shadow:0 3px 12px -6px rgba(0,0,0,.3);}
@@ -284,8 +396,60 @@ function html() {
   .qrow{display:flex;gap:16px;background:#EFEBE1;border-radius:12px;padding:10px 20px;font-size:24px;color:#39352C;}
   .qn{color:var(--gold);font-weight:800;flex:0 0 auto;}
 
+  /* slide 6 — hero flashlight */
+  .hero{background:#0E0C0A;}
+  .hero .macbar{background:#EAE6DD;border-bottom:1px solid #DCD7CD;} .hero .mtitle{color:#8A857B;}
+  .hero-stage{position:relative;height:400px;background:#0B0906;overflow:hidden;}
+  .hero-pill{position:absolute;left:26px;top:24px;z-index:3;background:#3A362E;color:#CFC8BA;font-size:22px;padding:10px 22px;border-radius:30px;}
+  .hero-ph{position:absolute;background:#1A1712;border-radius:16px;}
+  .hero-ph.a{width:150px;height:190px;left:44%;top:26%;}
+  .hero-ph.b{width:180px;height:150px;left:34%;top:44%;}
+  .hero-glow{position:absolute;left:50%;top:50%;width:360px;height:360px;transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(226,182,98,.55), rgba(226,182,98,.14) 42%, transparent 62%);}
+  .hero-cursor{position:absolute;left:50%;top:50%;width:16px;height:16px;transform:translate(-50%,-50%);
+    background:#fff;border-radius:50%;box-shadow:0 0 18px rgba(255,255,255,.7);}
+
+  /* slides 7-8 — light window */
+  .lwin{background:#F4F1EA;box-shadow:0 26px 56px -34px rgba(0,0,0,.4);}
+  .lwin .macbar{background:#EAE6DD;border-bottom:1px solid #DCD7CD;} .lwin .mtitle{color:#8A857B;}
+  .lwin-body{padding:22px 28px 24px;}
+  .lwin-h{font-weight:700;font-size:26px;color:#201E18;margin-bottom:14px;}
+  .fixlist{display:flex;flex-direction:column;gap:12px;}
+  .fixrow{display:flex;align-items:center;gap:18px;background:#EFEBE1;border-radius:12px;padding:16px 22px;font-size:24px;color:#39352C;}
+  .fixn{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--gold);color:#141109;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;}
+  .lwin-foot{margin-top:20px;display:flex;align-items:center;justify-content:space-between;}
+  .lwin-foot>span:first-child{font-size:23px;color:#948E83;}
+  .gbtn.sm{margin:0;font-size:26px;padding:14px 30px;}
+  .evlist{display:flex;flex-direction:column;gap:4px;}
+  .evrow{display:flex;align-items:center;gap:16px;background:#EFEBE1;border-radius:12px;padding:5px 20px;}
+  .ev{flex:0 0 auto;width:30px;height:30px;border-radius:50%;color:#fff;font-weight:800;font-size:19px;display:flex;align-items:center;justify-content:center;}
+  .ev.w{background:#E07B3C;} .ev.c{background:#5AA95E;}
+  .evrow b{display:block;font-size:23px;color:#201E18;line-height:1.15;} .evrow span{font-size:19px;color:#8E887C;line-height:1.15;}
+
+  /* slide 9 — diagram */
+  .diag{margin-top:6px;display:flex;flex-direction:column;align-items:center;}
+  .dnode{border-radius:16px;padding:20px 30px;text-align:center;min-width:300px;}
+  .dnode b{display:block;font-weight:800;font-size:30px;letter-spacing:.02em;}
+  .dnode span{font-size:22px;}
+  .dnode.black{background:#0E0C0A;border:2px solid #B99A4E;} .dnode.black b{color:#F1ECE0;} .dnode.black span{color:#9A948A;}
+  .dnode.white{background:#fff;box-shadow:0 16px 34px -24px rgba(0,0,0,.35);flex:1;} .dnode.white b.g{color:#B08A3A;} .dnode.white span{color:#8A857B;}
+  .dnode.gold{background:var(--gold);min-width:440px;} .dnode.gold b{color:#141109;font-size:34px;} .dnode.gold span{color:#5A4A21;}
+  .drow{display:flex;gap:34px;width:100%;justify-content:center;}
+  .darrow.one{width:40px;height:70px;} .darrow.two{width:100%;height:80px;}
+
+  /* slide 10 — cta cover */
+  .cta .cover-body{margin-top:60px;}
+  .starwrap.bl{right:auto;left:-120px;top:auto;bottom:-140px;}
+  .cta .cover-title{font-size:88px;}
+  .body.dk{color:#B7B0A2;margin-top:24px;}
+  .body.dk strong{color:#EDE8DE;}
+  .ctabtn{margin-top:30px;background:var(--gold);color:#141109;font-weight:800;font-size:44px;
+    text-align:center;padding:30px 40px;border-radius:22px;}
+  .ctasub{margin-top:20px;font-weight:700;font-size:30px;color:#EDE8DE;}
+  .ctasub.muted{margin-top:12px;font-weight:400;color:#8E887C;}
+
   /* prompt box */
-  .pbox{margin-top:22px;background:var(--black);border-radius:22px;padding:30px 38px;}
+  .pbox{margin-top:20px;background:var(--black);border-radius:22px;padding:28px 38px;}
   .pbox-h{display:flex;align-items:center;justify-content:space-between;}
   .ph-l{display:flex;align-items:center;gap:14px;font-weight:800;font-size:24px;letter-spacing:.16em;color:var(--gold);}
   .ph-c{font-size:22px;letter-spacing:.1em;color:#8f887b;display:flex;align-items:center;gap:8px;}
