@@ -342,5 +342,25 @@ export function renderSlide(slide, ctx) {
     `);
   }
 
+  if (t === 'card') {
+    const cardNumber = String(slide.n || '01').padStart(2, '0');
+    const bgColor = slide.bgColor || '#F5F5F5';
+    const accentColor = slide.accentColor || '#E11D48';
+    const isLight = ctx.theme === 'light';
+    const textColor = isLight ? '#1F2937' : '#F2F6FF';
+    const secondaryText = isLight ? '#6B7280' : '#8A9AC0';
+
+    const cardStyle = 'background: ' + bgColor + '; border-radius: 32px; padding: 48px 42px; display: flex; flex-direction: column; gap: 24px; min-height: 600px; justify-content: center; position: relative; overflow: hidden;';
+    const numberStyle = 'font-family: Unbounded; font-weight: 900; font-size: 120px; color: ' + accentColor + '; line-height: 1; opacity: 0.15; position: absolute; top: -20px; right: 20px;';
+    const titleStyle = 'font-family: Unbounded; font-weight: 700; font-size: 54px; color: ' + textColor + '; line-height: 1.2; position: relative; z-index: 1;';
+    const descStyle = 'font-size: 38px; font-weight: 500; color: ' + secondaryText + '; line-height: 1.4; position: relative; z-index: 1;';
+    const ctaStyle = 'display: inline-flex; align-items: center; gap: 12px; font-family: Unbounded; font-weight: 700; font-size: 28px; color: ' + accentColor + '; margin-top: 16px; text-decoration: none; position: relative; z-index: 1;';
+
+    const html = '<div style="' + cardStyle + '"><div style="' + numberStyle + '">' + cardNumber + '</div><div style="' + titleStyle + '">' + em(slide.title || '') + '</div>';
+    const withDesc = slide.description ? html + '<div style="' + descStyle + '">' + rich(slide.description) + '</div>' : html;
+    const withCta = slide.cta ? withDesc + '<div style="' + ctaStyle + '">' + em(slide.cta.icon || '→') + ' ' + em(slide.cta.text || 'DAVOMI') + '</div>' : withDesc;
+    return doc(ctx, withCta + '</div>');
+  }
+
   throw new Error(`unknown slide type: ${t}`);
 }
