@@ -1,0 +1,98 @@
+{
+  "template": "news",
+  "slides": [
+    {
+      "type": "cover",
+      "badge": "O'zbekiston · AI Award 2026",
+      "lines": [
+        { "t": "$1 000 000", "em": false },
+        { "t": "AI startapga", "em": true },
+        { "t": "O'zbekistonda", "em": false }
+      ],
+      "sub": "**President AI Award** — prezident tashabbusi. Ariza **1-avgust**gacha ochiq.",
+      "eyebrow": "AI Yangiliklari",
+      "quote": "«Eng zo'r AI loyiha — 1 million dollar»",
+      "nav": "Boshlash →"
+    },
+    {
+      "type": "flow",
+      "eyebrow": "Bu nima?",
+      "lines": [ { "t": "AI startaplar uchun", "em": false }, { "t": "milliy tanlov", "em": true } ],
+      "sub": "Prezident tashabbusi bilan eng zo'r sun'iy intellekt loyihalariga katta investitsiya beriladi.",
+      "steps": [
+        { "icon": "doc", "grad": "purple", "label": "Ariza", "sub": "awards.gov.uz" },
+        { "icon": "target", "grad": "blue", "label": "Saralash", "sub": "ekspertlar" },
+        { "icon": "dollar", "grad": "green", "label": "Grant", "sub": "$1 mln gacha" }
+      ],
+      "stats": [
+        { "big": "$1 mln", "label": "Umumiy jamg'arma" },
+        { "big": "5", "label": "Yo'nalish" },
+        { "big": "3-8", "label": "Jamoa a'zolari" }
+      ]
+    },
+    {
+      "type": "cards",
+      "eyebrow": "Nega muhim?",
+      "lines": [ { "t": "Nega bunda", "em": false }, { "t": "qatnashish kerak", "em": true } ],
+      "cards": [
+        { "n": "01", "title": "$1 mln investitsiya", "desc": "G'oyangizni haqiqiy mahsulotga aylantirishga mablag'.", "icon": "dollar", "color": "linear-gradient(160deg,#FB7A3C,#EF5A20)" },
+        { "n": "02", "title": "Prezident e'tibori", "desc": "Davlat darajasidagi qo'llab-quvvatlash va tan olinish.", "icon": "star", "color": "linear-gradient(160deg,#8B6CF0,#6A44E0)" },
+        { "n": "03", "title": "Xalqaro ekspertlar", "desc": "Loyihangizni sohaning eng zo'rlari baholaydi.", "icon": "globe", "color": "linear-gradient(160deg,#22C58A,#12A060)" }
+      ]
+    },
+    {
+      "type": "list",
+      "eyebrow": "5 yo'nalish",
+      "lines": [ { "t": "Qaysi sohada", "em": false }, { "t": "qatnashasiz?", "em": true } ],
+      "rows": [
+        { "icon": "users", "title": "Davlat xizmatlari", "desc": "Fuqarolar uchun AI yechimlar.", "color": "#2E8FE0", "tag": "01" },
+        { "icon": "chart", "title": "Sanoat va biznes", "desc": "Korxona samaradorligi.", "color": "#EF5A20", "tag": "02" },
+        { "icon": "heart", "title": "Sog'liqni saqlash", "desc": "Tibbiyotda AI yordam.", "color": "#E0553A", "tag": "03" },
+        { "icon": "book", "title": "Ta'lim", "desc": "Shaxsiylashtirilgan o'qitish.", "color": "#7A5AF0", "tag": "04" },
+        { "icon": "leaf", "title": "Yashil iqtisod · Agrotech", "desc": "Ekologiya va qishloq xo'jaligi.", "color": "#17A06B", "tag": "05" }
+      ]
+    },
+    {
+      "type": "whofor",
+      "eyebrow": "Kim qatnasha oladi?",
+      "lines": [ { "t": "Ishtirok", "em": false }, { "t": "shartlari", "em": true } ],
+      "rows": [
+        { "title": "Jamoa: 3–8 kishi", "desc": "Yakka emas — jamoa bo'lib qatnashasiz.", "icon": "users", "grad": "blue" },
+        { "title": "O'zbekiston fuqarosi", "desc": "Yoki doimiy yashash huquqi bilan.", "icon": "globe", "grad": "purple" },
+        { "title": "Ishlaydigan MVP", "desc": "Tayyor, ishlaydigan prototip bo'lishi shart.", "icon": "rocket", "grad": "green" }
+      ]
+    },
+    {
+      "type": "list",
+      "eyebrow": "Nima tayyorlash kerak",
+      "lines": [ { "t": "Ariza uchun", "em": false }, { "t": "hujjatlar", "em": true } ],
+      "rows": [
+        { "icon": "bolt", "title": "3 daqiqalik video-pitch", "desc": "Loyihangizni qisqa tanishtiring.", "color": "#EF5A20" },
+        { "icon": "code", "title": "GitHub repozitoriy", "desc": "Kod ko'rigi uchun havola.", "color": "#2E8FE0" },
+        { "icon": "doc", "title": "Pitch Deck + logo", "desc": "PDF formatda.", "color": "#7A5AF0" },
+        { "icon": "globe", "title": "3 tilda", "desc": "O'zbek, rus va ingliz.", "color": "#17A06B" }
+      ]
+    },
+    {
+      "type": "steps",
+      "eyebrow": "Muhim sanalar",
+      "lines": [ { "t": "Sanalarni", "em": false }, { "t": "yodda tuting", "em": true } ],
+      "rows": [
+        { "title": "1-iyul — Ishga tushirish", "desc": "IT Park kompleksida tanishtiruv tadbiri." },
+        { "title": "1-avgust — Ariza deadline", "desc": "President AI Award bo'yicha oxirgi kun." },
+        { "title": "awards.gov.uz — Ro'yxatdan o'tish", "desc": "Barcha hujjatlarni shu platformada yuklang." }
+      ],
+      "note": "**1-avgust**dan keyin ariza qabul qilinmaydi — shoshiling!"
+    },
+    {
+      "type": "cta",
+      "eyebrow": "To'liq qo'llanma",
+      "lines": [ { "t": "Batafsil", "em": false }, { "t": "qo'llanma", "em": true } ],
+      "sub": "Shartlar, yo'nalishlar va ariza bosqichlari — hammasi bir joyda.",
+      "action": "Izohga «+» yoki yoz:",
+      "keyword": "«AI AWARD»",
+      "url": "to'liq qo'llanmani yuboraman (telefon + noutbuk)",
+      "nav": "Ulashing →"
+    }
+  ]
+}

@@ -9,10 +9,12 @@
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
-const { buildHTML, WIDTH, HEIGHT } = require('../templates/carousel');
 
 async function render(carousel, outDir) {
   fs.mkdirSync(outDir, { recursive: true });
+  // выбор шаблона: carousel.template === 'news' → светлый news-стиль, иначе классический
+  const tpl = require(`../templates/${carousel.template === 'news' ? 'news' : 'carousel'}`);
+  const { buildHTML, WIDTH, HEIGHT } = tpl;
   const html = buildHTML(carousel, carousel.theme || {});
 
   const browser = await chromium.launch({
