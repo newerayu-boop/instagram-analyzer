@@ -55,6 +55,21 @@ function art(kind) {
   return `<svg class="art" viewBox="0 0 220 220" fill="none" stroke="var(--accent)" stroke-width="4"><rect x="58" y="70" width="104" height="86" rx="22"/><circle cx="90" cy="112" r="11" fill="var(--accent)" stroke="none"/><circle cx="130" cy="112" r="11"/><path d="M88 138 h44" stroke-linecap="round"/><line x1="110" y1="46" x2="110" y2="70"/><circle cx="110" cy="40" r="9" fill="var(--accent)" stroke="none"/><path d="M58 100 H30 M58 126 H36 M162 100 h34 M162 126 h26" stroke-linecap="round"/><circle cx="24" cy="100" r="7" fill="var(--accent)" stroke="none"/><circle cx="200" cy="100" r="7" fill="var(--accent)" stroke="none"/><rect x="80" y="156" width="60" height="30" rx="8"/></svg>`;
 }
 
+// монохромные штрих-иконки (белые на цветном круге) для сетки категорий
+const ICONS = {
+  code: '<path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/>',
+  check: '<path d="M5 12l4 4L19 6"/>',
+  robot: '<rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 12h.01M15 12h.01M12 3v4M9 19v2M15 19v2"/>',
+  search: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/>',
+  bars: '<path d="M5 20V11M12 20V4M19 20v-6"/>',
+  target: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',
+  link: '<path d="M10 14a4 4 0 006 0l2-2a4 4 0 00-6-6l-1 1M14 10a4 4 0 00-6 0l-2 2a4 4 0 006 6l1-1"/>',
+  brief: '<rect x="4" y="8" width="16" height="11" rx="2"/><path d="M9 8V6a2 2 0 012-2h2a2 2 0 012 2v2"/>',
+};
+function icon(kind) {
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[kind] || ICONS.code}</svg>`;
+}
+
 function footer(c, i, total) {
   const dots = Array.from({ length: total }, (_, k) => `<span class="dot ${k === i ? 'on' : ''}"></span>`).join('');
   return `<div class="footer">
@@ -117,6 +132,9 @@ function slide(s, i, total, c) {
       } else if (s.type === 'steps') {
         const rows = (s.items || []).map(it => `<div class="step"><span class="badge">${esc(it.n)}</span><div class="stext">${inline(it.text)}</div></div>`).join('');
         inner = `${title}<div class="steps">${rows}</div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
+      } else if (s.type === 'grid') {
+        const cells = (s.cells || []).map(c => `<div class="gcell"><span class="gcirc" style="background:${c.color || 'var(--accent)'}">${icon(c.icon)}</span><span class="glabel">${inline(c.label)}</span>${c.sub ? `<span class="gsub">${inline(c.sub)}</span>` : ''}</div>`).join('');
+        inner = `${title}${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}<div class="grid">${cells}</div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
       } else if (s.type === 'diagram') {
         inner = `${title}${diagram(s)}${s.callout ? `<div class="callout"><span class="bar"></span><p>${inline(s.callout)}</p></div>` : ''}`;
       } else if (s.type === 'prompt') {
@@ -218,6 +236,14 @@ function buildHTML(carousel) {
   .badge{flex:0 0 auto;width:60px;height:60px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;}
   .stext{font-size:35px;line-height:1.3;color:var(--ink);padding-top:6px;}
   .stext strong{color:var(--accent);}
+
+  /* сетка категорий (цветные иконки) */
+  .grid{margin-top:34px;display:grid;grid-template-columns:repeat(4,1fr);gap:34px 24px;}
+  .gcell{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;}
+  .gcirc{width:118px;height:118px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -12px #000;}
+  .gcirc svg{width:56px;height:56px;}
+  .glabel{font-weight:800;font-size:29px;color:var(--ink);letter-spacing:.01em;}
+  .gsub{font-size:23px;color:var(--muted);margin-top:-6px;}
 
   /* diagram */
   .diagram{margin-top:20px;display:flex;flex-direction:column;align-items:center;position:relative;}

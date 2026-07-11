@@ -1,0 +1,82 @@
+{
+  "handle": "AI Strateg",
+  "wordmark": "@kodiyusufbay",
+  "gold": true,
+  "slides": [
+    {
+      "type": "cover", "art": "network",
+      "kicker": "Claude Code",
+      "title": "9000 PLAGIN. MEN 36 TASINI *TANLADIM*.",
+      "sub": "Claude Code'ni **super kuchli** qiladigan plaginlar — bitta buyruq bilan.",
+      "swipe": "ro'yxatni ko'ring"
+    },
+    {
+      "type": "story",
+      "kicker": "Bu nima?",
+      "title": "Plagin nima *o'zi*?",
+      "paragraphs": [
+        "Plagin — bu **tayyor to'plam**: ko'nikma, buyruq, hook va vositalar.",
+        "Bitta buyruq bilan o'rnatasan — Claude Code **yangi ishlarni o'zi** qila boshlaydi. Hech qanday sozlash yo'q."
+      ],
+      "punch": "Bir buyruq, bir klik."
+    },
+    {
+      "type": "grid",
+      "kicker": "8 yo'nalish",
+      "title": "36 plagin — 8 *toifada*.",
+      "cells": [
+        { "icon": "code", "label": "Dev", "color": "#C05A33" },
+        { "icon": "check", "label": "Sifat", "color": "#2E7D46" },
+        { "icon": "robot", "label": "Avtonom", "color": "#2A4A7A" },
+        { "icon": "search", "label": "Qidiruv", "color": "#7A4FA3" },
+        { "icon": "bars", "label": "Data", "color": "#1F8A70" },
+        { "icon": "target", "label": "DevOps", "color": "#33322E" },
+        { "icon": "link", "label": "Integratsiya", "color": "#8A5A3C" },
+        { "icon": "brief", "label": "Biznes", "color": "#9E3A6B" }
+      ],
+      "note": "Har toifada — sinovdan o'tgan eng foydalilari."
+    },
+    {
+      "type": "steps",
+      "kicker": "O'rnatish",
+      "title": "Har qanday plagin — *bir xil*.",
+      "items": [
+        { "n": "01", "text": "Terminalda **Claude Code**'ni och." },
+        { "n": "02", "text": "**/plugin** deb yoz → **Discover** bo'limiga o't." },
+        { "n": "03", "text": "Nomini top, tanla va **scope** (user yoki project) tanla." }
+      ],
+      "note": "Katalogni **claude.com/plugins**'da ham ko'rish mumkin."
+    },
+    {
+      "type": "steps",
+      "kicker": "Eng mashhurlari",
+      "title": "Birinchi *shularni* o'rnat.",
+      "items": [
+        { "n": "01", "text": "**Frontend Design** — chiroyli UI kodi. 400k+ o'rnatish, eng mashhuri." },
+        { "n": "02", "text": "**Superpowers** — 20+ ko'nikma: TDD, debug, rejadan kodgacha." },
+        { "n": "03", "text": "**Context7** — jonli hujjatlar. Claude eski kodni «to'qib» qo'ymaydi." },
+        { "n": "04", "text": "**GitHub** — PR, issue, CI/CD. Ko'pchilik birinchi o'rnatadigan plagin." }
+      ]
+    },
+    {
+      "type": "steps",
+      "kicker": "Nimadan boshlash",
+      "title": "Hammasi shart emas — *3-5 tasi* yetadi.",
+      "items": [
+        { "n": "»", "text": "**Har bir dasturchi:** Frontend Design + Code Review + Commit Commands + o'z LSP." },
+        { "n": "»", "text": "**Full-stack:** Superpowers + Context7 + GitHub + Supabase." },
+        { "n": "»", "text": "**Biznes/marketing:** Brand Voice + Marketing + Sales + Productivity." }
+      ],
+      "note": "Ko'p plagin = ko'p yuk. **3-5 ta faol** — eng ideal."
+    },
+    {
+      "type": "cta",
+      "kicker": "To'liq ro'yxat",
+      "title": "36 plagin *tayyor* — senga.",
+      "body": "Har biri: nima qiladi, qanday o'rnatiladi va qaysi ish uchun kerak.",
+      "action": "Izohga «+» yoki yoz:",
+      "keyword": "«PLUGIN»",
+      "url": "to'liq qo'llanmani (telefon + noutbuk) yuboraman"
+    }
+  ]
+}
