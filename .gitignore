@@ -6,3 +6,4 @@ engine/vibecode/out/
 *.log
 data/
 scratchpad/
+engine/vibecode/gold-out/
