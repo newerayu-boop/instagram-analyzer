@@ -1,6 +1,7 @@
 {
-  "handle": "@Vaybcoder_qiz",
-  "wordmark": "Vaybecoder",
+  "handle": "@kodiyusufbay",
+  "wordmark": "AI Strateg",
+  "palette": { "bg": "#0C1220", "ink": "#EAF0FA", "muted": "#8A93A8", "accent": "#4FA6E0", "panel": "#152034", "line": "#26314A", "card": "#152034", "glow": "#4FA6E033" },
   "slides": [
     {
       "type": "cover", "art": "bolt",

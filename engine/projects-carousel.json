@@ -1,6 +1,7 @@
 {
-  "handle": "@Vaybcoder_qiz",
-  "wordmark": "Vaybecoder",
+  "handle": "@kodiyusufbay",
+  "wordmark": "AI Strateg",
+  "palette": { "accent": "#4356C6", "glow": "#4356C61f" },
   "slides": [
     {
       "type": "cover", "image": "engine/assets/projects-cover.jpg",

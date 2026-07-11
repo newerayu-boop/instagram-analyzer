@@ -85,10 +85,12 @@ function slide(s, i, total, c) {
   const f = footer(c, i, total);
   const k = topbar(s.kicker, i, total);
   const cls = `slide${c.gold ? ' gold' : (s.dark ? ' dark' : '')}`;
+  const sv = `${c.palVars || ''}${s.accent ? `;--accent:${s.accent}` : ''}`.replace(/^;/, '');
+  const st = sv ? ` style="${sv}"` : '';
   switch (s.type) {
     case 'cover':
       if (s.image) {
-        return `<section class="${cls} cover cover-img">
+        return `<section class="${cls} cover cover-img"${st}>
           <div class="cbanner"><img src="${dataUri(s.image)}" alt=""></div>
           <div class="cbody">
             <div class="top">${kicker(s.kicker)}<span class="page">${pageStr(i, total)}</span></div>
@@ -98,7 +100,7 @@ function slide(s, i, total, c) {
           </div>
           ${f}</section>`;
       }
-      return `<section class="${cls} cover">
+      return `<section class="${cls} cover"${st}>
         <div class="top">${kicker(s.kicker)}<span class="page">${pageStr(i, total)}</span></div>
         <div class="cover-art">${art(s.art || 'robot')}</div>
         <h1 class="cover-title">${inline(s.title)}</h1>
@@ -127,7 +129,7 @@ function slide(s, i, total, c) {
         const paras = (s.paragraphs || []).map(p => `<p class="body">${inline(p)}</p>`).join('');
         inner = `${title}<div class="paras">${paras}</div>${s.punch ? `<div class="punch">${inline(s.punch)}</div>` : ''}`;
       }
-      return `<section class="${cls}">${bg}${k}<div class="content">${inner}</div>${f}</section>`;
+      return `<section class="${cls}"${st}>${bg}${k}<div class="content">${inner}</div>${f}</section>`;
     }
   }
 }
@@ -135,6 +137,10 @@ function slide(s, i, total, c) {
 function buildHTML(carousel) {
   const c = { ...BASE };
   c.gold = !!carousel.gold; // чёрно-золотая тема (стиль AI Strateg premium)
+  // палитра всей карусели (перекрывает переменные): {bg,ink,muted,accent,panel,line,card,glow}
+  c.palVars = carousel.palette
+    ? Object.entries(carousel.palette).map(([k, v]) => `--${k}:${v}`).join(';')
+    : '';
   if (carousel.wordmark) c.wordmark = carousel.wordmark;
   if (carousel.handle) c.handle = carousel.handle;
   const slides = carousel.slides || [];

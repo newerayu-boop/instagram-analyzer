@@ -1,6 +1,6 @@
 {
-  "handle": "@Vaybcoder_qiz",
-  "wordmark": "Vaybecoder",
+  "handle": "@kodiyusufbay",
+  "wordmark": "AI Strateg",
   "slides": [
     {
       "type": "cover", "image": "engine/assets/skills-cover.jpg",
@@ -20,7 +20,7 @@
       "punch": "20 ta — quyida."
     },
     {
-      "type": "steps",
+      "type": "steps", "accent": "#3E8E5A",
       "kicker": "01 · Yozuv va kontent",
       "title": "Writing *skills*",
       "items": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "type": "steps",
+      "type": "steps", "accent": "#C0862B",
       "kicker": "02 · Vizual va infografika",
       "title": "Visual *skills*",
       "items": [
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "type": "steps",
+      "type": "steps", "accent": "#3D6CB5",
       "kicker": "03 · Tadqiqot va tahlil",
       "title": "Research *skills*",
       "items": [
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "type": "steps",
+      "type": "steps", "accent": "#B5483D",
       "kicker": "04 · Video va media",
       "title": "Video *skills*",
       "items": [
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "type": "steps",
+      "type": "steps", "accent": "#7A5AB0",
       "kicker": "05 · Kod va avtomatlashtirish",
       "title": "Coding *skills*",
       "items": [
