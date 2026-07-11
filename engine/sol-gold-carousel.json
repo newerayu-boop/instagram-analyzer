@@ -6,56 +6,55 @@
     {
       "type": "cover", "art": "bolt",
       "kicker": "Shoshilinch xabar",
-      "title": "GPT-5.6 *Sol* keldi.",
-      "sub": "30 kun sinovdan o'tdi. Bu — **ishning kelajagi**.",
-      "swipe": "suring, ko'rsataman"
+      "title": "MEN UXLADIM. U *ISHLADI*.",
+      "sub": "30 kun sinadim. Bu — **ishning kelajagi**.",
+      "swipe": "nima bo'lganini ko'ring"
     },
     {
       "type": "story",
-      "kicker": "Nima bo'ldi",
-      "title": "Eng *kuchli* model almashdi.",
+      "kicker": "Ertalab",
+      "title": "Kompyuterni *ochdim*...",
       "paragraphs": [
-        "Kecha OpenAI **GPT-5.6 Sol**ni chiqardi. Ertalab sinab ko'rdim.",
-        "Bir necha soatlik ishni **o'zi** bajarib qo'ydi — men shunchaki qarab turdim."
+        "Pochtamdagi har bir xat — javobi bilan tayyor. Mening ovozimda yozilgan.",
+        "Slack, uchrashuvlar, yangiliklar — bitta ro'yxatga tushib, keyingi qadamigacha aytilgan.",
+        "Men esa hech narsa qilmagandim."
       ],
-      "punch": "Qanday qilib?"
-    },
-    {
-      "type": "stat",
-      "kicker": "Raqamlar",
-      "title": "Reyting *gapiradi*.",
-      "stats": [
-        { "big": "88.8%", "label": "Terminal-Bench 2.1" },
-        { "big": "91.9%", "label": "«ultra» rejimda" },
-        { "big": "#1", "label": "eng zo'r kod modeli" },
-        { "big": "30", "label": "kun sinovdan o'tdi" }
-      ],
-      "note": "Claude **Opus 4.8**, **Fable 5** va **Mythos 5**'dan ustun chiqdi."
+      "punch": "Kim qildi?"
     },
     {
       "type": "steps",
-      "kicker": "Nima mumkin",
-      "title": "Sizsiz *ishlaydi*.",
+      "kicker": "Sirning javobi",
+      "title": "Gap *GPT-5.6 Sol*da edi.",
       "items": [
-        { "n": "01", "text": "Pochtangiz har tong **kartochka**ga aylanadi — javob ovozingizda tayyor." },
-        { "n": "02", "text": "Slack, uchrashuv, yangilik → bitta **kunlik lenta** + keyingi qadam." },
-        { "n": "03", "text": "Uzoq maqsad qo'yasiz — **20 soat** o'zi ishlaydi." }
-      ]
+        { "n": "01", "text": "Kecha OpenAI uni chiqardi — rasmiy testda **eng zo'r kod modeli** (88.8%)." },
+        { "n": "02", "text": "Codex bilan u kompyuteringda **o'zi** ish qiladi. Sen faqat kuzatasan." }
+      ],
+      "note": "Claude **Opus 4.8**, **Fable 5**, hatto **Mythos 5**'dan ham ustun chiqdi."
+    },
+    {
+      "type": "steps",
+      "kicker": "Eng qizig'i",
+      "title": "U hech qachon *charchamaydi*.",
+      "items": [
+        { "n": "01", "text": "Bir marta ishni ko'rsatasan — u **skill** qilib, abadiy takrorlaydi." },
+        { "n": "02", "text": "Uzoq maqsad qo'yasan-u ketasan — **20 soat** to'xtamay ishlaydi." }
+      ],
+      "note": "Bir yil oldin bu faqat injenerlarga mumkin edi. **Endi — hammaga.**"
     },
     {
       "type": "story",
-      "kicker": "Qanday boshlash",
-      "title": "Atigi *3 qadam*.",
+      "kicker": "Boshlash oson",
+      "title": "Atigi *3 harakat*.",
       "paragraphs": [
-        "**Codex**ni oching va kompyuteringizga **ruxsat** bering.",
-        "«Ish uslubimga qarab nima qila olishingni ayt» deb **so'rang** — u o'zi taklif qiladi."
+        "**Codex**'ni och. Kompyuteringga **ruxsat** ber.",
+        "«Ishimga qarab, nima qila olasan?» deb **so'ra** — u o'zi taklif qiladi."
       ],
-      "punch": "Bitta zerikarli ishdan boshlang."
+      "punch": "Bitta zerikarli ishdan boshla."
     },
     {
       "type": "callout",
       "kicker": "Xulosa",
-      "text": "Sizsiz ishlaydigan **raqamli xodim** — bu endi *haqiqat*. To'liq 49 daqiqalik masterklass **startupideaspod**'da, **bepul**."
+      "text": "Endi savol «AI ishga tushadimi?» emas. Savol — *sen birinchi nimani topshirasan?* To'liq 49 daqiqalik masterklass **startupideaspod**'da, **bepul**."
     }
   ]
 }
