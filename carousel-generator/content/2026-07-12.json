@@ -1,0 +1,206 @@
+{
+  "date_slug": "2026-07-12",
+  "brand": {
+    "name": "AI UZBEKISTAN",
+    "sub": "SUN'IY INTELLEKT YANGILIKLARI",
+    "handle": "@sizning.sahifangiz",
+    "date": "12-IYUL, 2026"
+  },
+  "carousels": [
+    {
+      "id": "01-bepul-talim",
+      "accent": "#34D399",
+      "accent2": "#0EA5E9",
+      "tag": "BEPUL TA'LIM",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "🎓",
+          "title": "AI va IT'ni bepul o'rganish: 3 yo'l",
+          "subtitle": "Hammasi rasman <b>bepul</b> va qabul hozir ochiq — muddatlarga e'tibor bering",
+          "preview": [
+            "School 21 — saralash intensivi 20-iyulda",
+            "AI Leaders — davlatdan bepul AI kurslari",
+            "EPAM Campus — treninglar va amaliyot"
+          ]
+        },
+        {
+          "type": "news",
+          "n": 1,
+          "source": "21-SCHOOL.UZ",
+          "heading": "School 21 — bepul dasturlash maktabi",
+          "paragraphs": [
+            "Toshkent va Samarqanddagi <b>to'liq bepul</b> maktab: oldindan tajriba talab qilinmaydi, kampus 24/7 ochiq, yoshi bo'yicha yuqori chegara yo'q (18+, 17 yoshlilar — ota-ona roziligi bilan).",
+            "Kirish uchun saralash intensividan o'tiladi. Ariza: <b>applicant.21-school.uz</b>"
+          ],
+          "stat": { "value": "20-iyul", "label": "eng yaqin saralash intensivi — ikkala shaharda" }
+        },
+        {
+          "type": "news",
+          "n": 2,
+          "source": "AILEADERS.UZ",
+          "heading": "Davlatdan bepul AI kurslari",
+          "paragraphs": [
+            "«5 million AI liderlari» dasturining platformasi: <b>Coursera, Huawei (HCIA-AI), Oracle</b> kurslari — bepul, sertifikat bilan.",
+            "Hozir yurgan kurslar: <b>Introduction to Generative AI</b>, Python Basics, MySQL Explorer. Qabul doimiy — istalgan vaqtda boshlash mumkin."
+          ],
+          "stat": { "value": "24/7", "label": "onlayn, barcha fuqarolar uchun — aileaders.uz" }
+        },
+        {
+          "type": "news",
+          "n": 3,
+          "source": "EPAM CAMPUS",
+          "heading": "EPAM: bepul trening va amaliyot",
+          "paragraphs": [
+            "Xalqaro IT-gigant EPAM'ning bepul dasturlari: <b>Java, .NET, Cloud & DevOps, Software Testing</b>.",
+            "EPAM Lab'da <b>stajirovka</b>: onlayn, 2–4 oy, haftasiga 20–40 soat — yakunida texnik intervyu va EPAM'da ishga kirish imkoniyati. Talab: 18+, ingliz tili B1, O'zbekiston fuqaroligi."
+          ],
+          "stat": { "value": "B1", "label": "ingliz tili yetarli — campus.epam.com" }
+        },
+        {
+          "type": "facts",
+          "kicker": "XULOSA",
+          "heading": "Qaysi birini tanlash?",
+          "facts": [
+            { "icon": "🚀", "label": "Noldan kuchli dasturchi bo'lish", "value": "School 21", "note": "intensiv 20-iyul — applicant.21-school.uz" },
+            { "icon": "🤖", "label": "AI bilan tez tanishish", "value": "aileaders.uz", "note": "sertifikatli qisqa kurslar" },
+            { "icon": "📈", "label": "Amaliyot va karyera", "value": "EPAM Campus", "note": "campus.epam.com — stajirovka bilan" }
+          ],
+          "footnote": "Uchalasi ham bepul. Saqlab qo'ying va do'stlaringizga ulashing!"
+        }
+      ],
+      "caption_uz": "🎓 AI VA IT'NI BEPUL O'RGANISH — QABUL OCHIQ BO'LGAN 3 TA REAL VARIANT\n\n1️⃣ SCHOOL 21 — bepul dasturlash maktabi (Toshkent va Samarqand)\n▪️ Tajriba talab qilinmaydi, diplom shart emas\n▪️ Kampus 24/7 ochiq, «peer-to-peer» metodika\n▪️ 18+ (17 yosh — ota-ona roziligi bilan), yuqori yosh chegarasi YO'Q\n⏰ Eng yaqin saralash intensivi: 20-IYUL\n📝 Ariza: applicant.21-school.uz (yoki bot: t.me/school21_mainbot)\n\n2️⃣ AI LEADERS — davlatdan bepul AI kurslari\n▪️ «5 million AI liderlari» milliy dasturi platformasi\n▪️ Coursera, Huawei (HCIA-AI), Oracle kurslari — bepul, sertifikat bilan\n▪️ Hozir: Introduction to Generative AI, Python Basics, MySQL Explorer\n▪️ Qabul doimiy, barcha fuqarolar uchun\n📝 aileaders.uz\n\n3️⃣ EPAM CAMPUS — bepul treninglar va stajirovka\n▪️ Yo'nalishlar: Java, .NET, Cloud & DevOps, Software Testing\n▪️ EPAM Lab stajirovkasi: onlayn, 2–4 oy — yakunida ishga kirish imkoniyati\n▪️ Talab: 18+, ingliz tili B1, O'zbekiston fuqaroligi/rezidentligi\n📝 campus.epam.com\n\n💡 Qaysi birini tanlash: noldan kuchli dasturchi bo'lmoqchi bo'lsangiz — School 21; AI bilan tez tanishmoqchi bo'lsangiz — aileaders.uz; amaliyot va karyera kerak bo'lsa — EPAM.\n\n📌 Saqlab qo'ying — keyin qidirib yurmaysiz. O'rganishni istagan do'stingizga yuboring!\n\n#bepulkurs #AI #suniyintellekt #School21 #EPAM #aileaders #talim #IT #Toshkent #Samarqand #Uzbekistan",
+      "caption_ru": "🎓 ВЫУЧИТЬ AI И IT БЕСПЛАТНО — 3 РЕАЛЬНЫХ ВАРИАНТА С ОТКРЫТЫМ НАБОРОМ\n\n1️⃣ SCHOOL 21 — бесплатная школа программирования (Ташкент и Самарканд)\n▪️ Опыт не требуется, диплом не нужен\n▪️ Кампус открыт 24/7, методика peer-to-peer\n▪️ 18+ (17 лет — с согласия родителей), верхнего лимита по возрасту НЕТ\n⏰ Ближайший отборочный интенсив: 20 ИЮЛЯ\n📝 Заявка: applicant.21-school.uz (или бот: t.me/school21_mainbot)\n\n2️⃣ AI LEADERS — бесплатные AI-курсы от государства\n▪️ Платформа нацпрограммы «5 миллионов лидеров ИИ»\n▪️ Курсы Coursera, Huawei (HCIA-AI), Oracle — бесплатно, с сертификатами\n▪️ Сейчас идут: Introduction to Generative AI, Python Basics, MySQL Explorer\n▪️ Набор постоянный, для всех граждан\n📝 aileaders.uz\n\n3️⃣ EPAM CAMPUS — бесплатные тренинги и стажировка\n▪️ Направления: Java, .NET, Cloud & DevOps, Software Testing\n▪️ Стажировка EPAM Lab: онлайн, 2–4 месяца — в конце шанс на работу в EPAM\n▪️ Требования: 18+, английский B1, гражданство/резидентство Узбекистана\n📝 campus.epam.com\n\n💡 Что выбрать: хочешь стать сильным программистом с нуля — School 21; быстро познакомиться с ИИ — aileaders.uz; нужна практика и карьера — EPAM.\n\n📌 Сохрани, чтобы не потерять, и отправь другу, который хочет учиться!\n\n#бесплатныекурсы #ИИ #нейросети #School21 #EPAM #aileaders #образование #IT #Ташкент #Самарканд #Узбекистан"
+    },
+    {
+      "id": "02-avgust-muddatlari",
+      "accent": "#FB7185",
+      "accent2": "#F59E0B",
+      "tag": "MUDDATLAR • AVGUST",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "⚡",
+          "title": "Startapchilar: avgust — muddatlar oyi!",
+          "subtitle": "Prezident tanlovlarining 3 ta katta imkoniyati — barchasida ishtirok <b>bepul</b>",
+          "preview": [
+            "10-avgust — PTA Incubation (g'oya/MVP bosqichi)",
+            "15-avgust — President AI Award (early bird)",
+            "31-avgust — PTA Best Startup Project"
+          ]
+        },
+        {
+          "type": "news",
+          "n": 1,
+          "source": "AWARDS.GOV.UZ",
+          "heading": "Incubation: g'oyangiz bormi? 10-avgustgacha",
+          "paragraphs": [
+            "G'oya yoki MVP bosqichidagi jamoalar (2–5 kishi) uchun <b>3 oylik bepul onlayn-inkubatsiya</b>: mentorlar, vorkshoplar, mahsulotni bozorga olib chiqish.",
+            "Ariza: awards.gov.uz/en/pta → <b>Incubation Program</b>"
+          ],
+          "stat": { "value": "$1 mln", "label": "grant puli — 25 ta g'olib jamoaga" }
+        },
+        {
+          "type": "news",
+          "n": 2,
+          "source": "AWARDS.GOV.UZ",
+          "heading": "President AI Award: early bird — 15-avgust",
+          "paragraphs": [
+            "AI-startaplar uchun birinchi milliy tanlov: <b>5 trek</b> (davlat xizmatlari, sanoat, tibbiyot, ta'lim, yashil iqtisodiyot), har trekda $100K / $60K / $40K — jami <b>15 g'olib</b>.",
+            "Talablar: jamoa 3–8 kishi, ishlaydigan MVP, video-pitch. Yakuniy qabul — 30-sentabrgacha, lekin erta topshirganlar yutadi."
+          ],
+          "stat": { "value": "$1 mln", "label": "sovrin fondi — ariza: awards.gov.uz/en/paia/apply" }
+        },
+        {
+          "type": "news",
+          "n": 3,
+          "source": "AWARDS.GOV.UZ",
+          "heading": "Best Startup: traction bo'lsa — $125K gacha",
+          "paragraphs": [
+            "Seed/Series A bosqichidagi, real mijozlari bor startaplar uchun asosiy trek: <b>$125K / $75K / $50K</b> mukofotlar va IT Park Ventures'dan <b>$2,5 mln</b> investitsiya puli.",
+            "10 ta kategoriya: AI, FinTech, EdTech, HealthTech, GameDev, DeepTech va boshqalar. Muddat: <b>31-avgust</b>."
+          ],
+          "stat": { "value": "31.08", "label": "ariza muddati — awards.gov.uz/en/pta" }
+        },
+        {
+          "type": "facts",
+          "kicker": "BONUS",
+          "heading": "Yana 2 ta imkoniyat",
+          "facts": [
+            { "icon": "🚀", "label": "Startup Booster 2026", "value": "6 haftalik onlayn-akselerator", "note": "MVP+ bosqich uchun, qabul ochiq — startupbase.uz" },
+            { "icon": "🧠", "label": "AI-inkubator (School 21)", "value": "Yangi oqimni kuting", "note": "1-oqimga ~600 ariza tushdi; e'lonlar — Raqamli texnologiyalar vazirligi kanallarida" }
+          ],
+          "footnote": "Barcha tanlovlarda ishtirok bepul. Startapi bor do'stingizga ulashing!"
+        }
+      ],
+      "caption_uz": "⚡ STARTAPCHILAR, AVGUST — MUDDATLAR OYI! 3 TA KATTA IMKONIYAT\n\n1️⃣ PTA INCUBATION PROGRAM — 10-AVGUSTGACHA\n▪️ Kim uchun: g'oya yoki MVP bosqichidagi jamoalar (2–5 kishi)\n▪️ Nima beradi: 3 oylik bepul onlayn-inkubatsiya — mentorlar, vorkshoplar, bozorga chiqish\n▪️ Grant puli: $1 mln — 25 ta g'olib jamoaga\n📝 awards.gov.uz/en/pta → Incubation Program\n\n2️⃣ PRESIDENT AI AWARD — EARLY BIRD 15-AVGUST\n▪️ AI-startaplar uchun birinchi milliy tanlov\n▪️ 5 trek: davlat xizmatlari, sanoat/biznes, tibbiyot, ta'lim, yashil iqtisodiyot\n▪️ Har trekda: $100 000 / $60 000 / $40 000 — jami 15 g'olib, fond $1 mln\n▪️ Talablar: jamoa 3–8 kishi, ishlaydigan MVP, 3 daqiqalik video-pitch\n▪️ Yakuniy qabul 30-sentabrgacha, lekin kechiktirmang\n📝 awards.gov.uz/en/paia/apply\n\n3️⃣ PTA BEST STARTUP PROJECT — 31-AVGUSTGACHA\n▪️ Kim uchun: Seed/Series A bosqichidagi, trekshni bor startaplar\n▪️ Mukofotlar: $125 000 / $75 000 / $50 000 + IT Park Ventures'dan $2,5 mln investitsiya puli\n▪️ 10 kategoriya: AI, FinTech, EdTech, HealthTech, GameDev, DeepTech va b.\n📝 awards.gov.uz/en/pta/best-startup-project\n\n🎁 BONUS:\n▪️ Startup Booster 2026 — 6 haftalik onlayn-akselerator (MVP+), qabul ochiq: startupbase.uz\n▪️ School 21'dagi yangi AI-inkubator — 1-oqimga ~600 ariza tushdi, keyingi oqim e'lonini kuting\n\n📌 Saqlab qo'ying va jamoadoshlaringizga yuboring — muddatlar tez keladi!\n\n#PresidentAIAward #PresidentTechAward #startap #AI #grant #inkubator #akselerator #ITPark #Uzbekistan #imkoniyat",
+      "caption_ru": "⚡ СТАРТАПЕРЫ, АВГУСТ — МЕСЯЦ ДЕДЛАЙНОВ! 3 БОЛЬШИЕ ВОЗМОЖНОСТИ\n\n1️⃣ PTA INCUBATION PROGRAM — ДО 10 АВГУСТА\n▪️ Для кого: команды на стадии идеи или MVP (2–5 человек)\n▪️ Что даёт: 3-месячная бесплатная онлайн-инкубация — менторы, воркшопы, вывод продукта на рынок\n▪️ Грантовый пул: $1 млн на 25 команд-победителей\n📝 awards.gov.uz/en/pta → Incubation Program\n\n2️⃣ PRESIDENT AI AWARD — EARLY BIRD 15 АВГУСТА\n▪️ Первый национальный конкурс AI-стартапов\n▪️ 5 треков: госуслуги, промышленность/бизнес, медицина, образование, зелёная экономика\n▪️ В каждом треке: $100 000 / $60 000 / $40 000 — всего 15 победителей, фонд $1 млн\n▪️ Требования: команда 3–8 человек, рабочий MVP, 3-минутный видеопитч\n▪️ Финальный приём до 30 сентября, но лучше не тянуть\n📝 awards.gov.uz/en/paia/apply\n\n3️⃣ PTA BEST STARTUP PROJECT — ДО 31 АВГУСТА\n▪️ Для кого: стартапы Seed/Series A с трекшном\n▪️ Призы: $125 000 / $75 000 / $50 000 + инвестпул $2,5 млн от IT Park Ventures\n▪️ 10 категорий: AI, FinTech, EdTech, HealthTech, GameDev, DeepTech и др.\n📝 awards.gov.uz/en/pta/best-startup-project\n\n🎁 БОНУС:\n▪️ Startup Booster 2026 — 6-недельный онлайн-акселератор (MVP+), приём открыт: startupbase.uz\n▪️ Новый AI-инкубатор на базе School 21 — на 1-й поток пришло ~600 заявок, следите за анонсом следующего\n\n📌 Сохрани и отправь команде — дедлайны подкрадутся быстро!\n\n#PresidentAIAward #PresidentTechAward #стартап #ИИ #грант #инкубатор #акселератор #ITPark #Узбекистан #возможности"
+    },
+    {
+      "id": "03-startaplar-svodka",
+      "accent": "#38BDF8",
+      "accent2": "#8B5CF6",
+      "tag": "STARTAPLAR • SVODKA",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "💸",
+          "title": "O'zbek startaplari pul topmoqda",
+          "subtitle": "AI-startaplar bo'yicha yangi raqamlar — iyun-iyul svodkasi",
+          "preview": [
+            "Makon AI — $380K, loyiha bahosi $3 mln",
+            "Ayan Capital — IT Park Ventures'dan $1 mln",
+            "Sino AI — Ozarbayjon bozoriga chiqdi",
+            "TheCarGo, Joymee, Between — yangi raundlar"
+          ]
+        },
+        {
+          "type": "news",
+          "n": 1,
+          "source": "SPOT.UZ",
+          "heading": "Makon AI: asoschisi 18 yoshda, baho — $3 mln",
+          "paragraphs": [
+            "<b>Asilbek Ashurov</b> — prezident maktabi bitiruvchisi va Chikago universiteti talabasi. Uning Makon AI platformasi SAT/AP imtihonlariga sun'iy intellekt bilan tayyorlaydi — <b>100 000 foydalanuvchi</b>.",
+            "AQSh va MENA investorlaridan $380 000 jalb qilingan. Loyiha 30-iyunda Yoshlar kuni ko'rgazmasida prezidentga taqdim etildi."
+          ],
+          "stat": { "value": "$380K", "label": "investitsiya • loyiha bahosi — $3 mln" }
+        },
+        {
+          "type": "news",
+          "n": 2,
+          "source": "THE-TECH.KZ",
+          "heading": "Iyun raundlari: $1,5 mln'dan ortiq",
+          "paragraphs": [
+            "<b>Ayan Capital</b> (fintech) — IT Park Ventures'dan <b>$1 mln</b>. <b>TheCarGo</b> — AQSh bozori uchun AI-avtologistika — $110K.",
+            "Yana: <b>Joymee</b> — $150K, <b>Between</b> — $130K, <b>Avtomato.uz</b> — $100K, <b>Fonus Kids</b> — $55K. Ekotizim jonlanmoqda!"
+          ],
+          "stat": { "value": "6 ta", "label": "startap bir oyda investitsiya jalb qildi" }
+        },
+        {
+          "type": "news",
+          "n": 3,
+          "source": "IT PARK",
+          "heading": "Sino AI — endi Ozarbayjonda",
+          "paragraphs": [
+            "O'zbek HealthTech-startapi <b>Sino AI</b> Baku Med Travel bilan eksport shartnomasi imzoladi — o'zbek AI-yechimlariga xalqaro talab o'sib bormoqda.",
+            "Shu bilan birga davlat chet ellik IT-mutaxassislar uchun biznes ochishni soddalashtirmoqda (<b>Talent Hub</b>), Buxoro va Farg'onada esa 20+ startap uchun akseleratsiya dasturlari ochiladi."
+          ],
+          "stat": { "value": "9→", "label": "o'zbek startaplari tashqi bozorlarga chiqmoqda" }
+        },
+        {
+          "type": "cta",
+          "tag": "SIZ HAM QILA OLASIZ",
+          "title": "Navbat — sizning startapingizda!",
+          "subtitle": "G'oyangiz bormi? President AI Award'ga 15-avgustgacha ariza bering",
+          "actions": [
+            { "icon": "📝", "t": "ARIZA BERING", "d": "awards.gov.uz" },
+            { "icon": "📊", "t": "KUZATING", "d": "har hafta yangi svodka" },
+            { "icon": "📢", "t": "ULASHING", "d": "do'stlaringizga yuboring" }
+          ]
+        }
+      ],
+      "caption_uz": "💸 O'ZBEK STARTAPLARI PUL TOPMOQDA — IYUN-IYUL SVODKASI\n\n1️⃣ MAKON AI — $380 000, baho $3 mln\nAsilbek Ashurov 18 yoshda: prezident maktabi bitiruvchisi, Chikago universiteti talabasi. Makon AI — SAT/AP imtihonlariga AI bilan tayyorlaydigan platforma: 100 000 foydalanuvchi, AQSh va MENA investorlaridan $380K. 30-iyunda loyihani prezidentga taqdim etdi. (manba: spot.uz)\n\n2️⃣ IYUN RAUNDLARI — $1,5 MLN'DAN ORTIQ\n▪️ Ayan Capital (fintech) — IT Park Ventures'dan $1 mln\n▪️ TheCarGo (AQSh uchun AI-avtologistika) — $110K\n▪️ Joymee — $150K • Between — $130K • Avtomato.uz — $100K • Fonus Kids — $55K\n(manba: the-tech.kz)\n\n3️⃣ SINO AI — OZARBAYJONGA EKSPORT\nHealthTech-startapimiz Baku Med Travel bilan shartnoma imzoladi. Bonus yangilik: davlat chet ellik IT-mutaxassislar uchun biznes ochishni soddalashtiradi (Talent Hub), Buxoro va Farg'onada 20+ startapga akseleratsiya ochiladi. (manba: IT Park, gazeta.uz)\n\n🚀 Xulosa: ekotizim jonlanmoqda — investitsiyalar, eksport, yangi dasturlar. Navbat sizda: President AI Award'ga ariza 15-avgustgacha (awards.gov.uz).\n\n💬 Qaysi startap sizni ko'proq hayratlantirdi? Kommentda yozing!\n\n📌 Saqlab qo'ying — motivatsiya kerak bo'lganda qayta o'qiysiz.\n\n#startap #AI #suniyintellekt #MakonAI #investitsiya #ITPark #Uzbekistan #Toshkent #texnologiya #svodka",
+      "caption_ru": "💸 УЗБЕКСКИЕ СТАРТАПЫ ПОДНИМАЮТ ДЕНЬГИ — СВОДКА ИЮНЯ-ИЮЛЯ\n\n1️⃣ MAKON AI — $380 000, оценка $3 млн\nАсилбеку Ашурову 18 лет: выпускник президентской школы, студент Чикагского университета. Makon AI — платформа подготовки к SAT/AP с помощью ИИ: 100 000 пользователей, $380K от инвесторов из США и MENA. 30 июня показал проект президенту. (источник: spot.uz)\n\n2️⃣ ИЮНЬСКИЕ РАУНДЫ — БОЛЬШЕ $1,5 МЛН\n▪️ Ayan Capital (финтех) — $1 млн от IT Park Ventures\n▪️ TheCarGo (AI-автологистика для рынка США) — $110K\n▪️ Joymee — $150K • Between — $130K • Avtomato.uz — $100K • Fonus Kids — $55K\n(источник: the-tech.kz)\n\n3️⃣ SINO AI — ЭКСПОРТ В АЗЕРБАЙДЖАН\nНаш HealthTech-стартап подписал соглашение с Baku Med Travel. Бонусом: государство упрощает запуск бизнеса для иностранных IT-специалистов (Talent Hub), в Бухаре и Фергане откроют акселерацию для 20+ стартапов. (источники: IT Park, gazeta.uz)\n\n🚀 Вывод: экосистема оживает — инвестиции, экспорт, новые программы. Следующий может быть твой: заявки на President AI Award до 15 августа (awards.gov.uz).\n\n💬 Какой стартап впечатлил больше всего? Пиши в комментариях!\n\n📌 Сохрани — перечитаешь, когда нужна будет мотивация.\n\n#стартап #ИИ #нейросети #MakonAI #инвестиции #ITPark #Узбекистан #Ташкент #технологии #сводка"
+    }
+  ]
+}

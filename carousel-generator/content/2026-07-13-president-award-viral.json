@@ -1,0 +1,95 @@
+{
+  "date_slug": "2026-07-13-president-award-viral",
+  "theme": "light",
+  "brand": {
+    "name": "AI STRATEG",
+    "sub": "YUSUFBAYKODIROV",
+    "handle": "@yusufbaykodirov",
+    "date": "",
+    "tagline": "SUNIY INTELLEKT YANGILIKLARI"
+  },
+  "carousels": [
+    {
+      "id": "01-president-award-viral",
+      "accent": "#E11D48",
+      "accent2": "#F43F5E",
+      "tag": "SUNIY INTELLEKT YANGILIKLARI",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "🏆",
+          "title": "$1 MILLION IJRO ETUVCHILARI KUTDIDA",
+          "subtitle": "**31-AVGUSTGA** qadar Siz o'zingizni qo'yishi mumkin",
+          "preview": [
+            "Davlat $1M investitsiya qilmoqda — birinchi marta!",
+            "Siz fikra bo'lsa — ham ariza qilishingiz mumkin",
+            "25 ta g'olib — $125,000 gacha pul oladi"
+          ]
+        },
+        {
+          "type": "card",
+          "n": "01",
+          "bgColor": "#FEE2E8",
+          "accentColor": "#E11D48",
+          "title": "Hech qachon bunday bo'lmagan",
+          "description": "Uzbekistan davlati **birinchi marta** AI startaplari uchun **$1,000,000 jamg'armasi** yaratdi. Bu SIZNING uchun, SIZNING ideya uchun."
+        },
+        {
+          "type": "card",
+          "n": "02",
+          "bgColor": "#F3E8FF",
+          "accentColor": "#9333EA",
+          "title": "Fikra bo'lsa — qancha? 🤑",
+          "description": "• **Fikra bosqichi** — ham ariza qilish mumkin\n• **Prototip** — yo'q masala\n• **MVP** — qulay!\n\nHar bir bosqichda g'oliblar mavjud!"
+        },
+        {
+          "type": "card",
+          "n": "03",
+          "bgColor": "#DBEAFE",
+          "accentColor": "#0284C7",
+          "title": "Pul oshirilgan? ⭐",
+          "description": "**1-o'rin: $100,000**\n**2-o'rin: $75,000**\n**3-o'rin: $50,000**\n\n5 kategoriyada — 5-5 ta g'olib. Sizda imkoni bormi?"
+        },
+        {
+          "type": "card",
+          "n": "04",
+          "bgColor": "#DCFCE7",
+          "accentColor": "#16A34A",
+          "title": "Kim qatnashishi mumkin?",
+          "description": "✓ Fikra bo'lsa — ha\n✓ Jamoa: 2-5 kishi\n✓ Uzbekistanda ro'yxatga olingan\n\nQo'shimcha shart? YO'Q! Bugunday ariza qiling."
+        },
+        {
+          "type": "card",
+          "n": "05",
+          "bgColor": "#FEF08A",
+          "accentColor": "#EAB308",
+          "title": "3 DAQIQA = ARIZA",
+          "description": "🔗 awards.gov.uz\n📝 Profil oching\n✍️ Loyihani yozing\n\nXAMMAM! 31-AVGUSTGA qadar ariza qabul qilinadi."
+        },
+        {
+          "type": "cta",
+          "tag": "BUGUNDAN BOSHLANG!",
+          "title": "Kecha ariza qilgan startaplar bugun milliardni hisoblashmoqda",
+          "subtitle": "Siz ham ular orasiga kiravol. **Xitoylik Alibaba** ham fikradan boshlangan. O'zingizning Alibabasining vaqti keldi!",
+          "actions": [
+            {
+              "icon": "🚀",
+              "t": "ARIZA QILING",
+              "d": "awards.gov.uz"
+            },
+            {
+              "icon": "💬",
+              "t": "SAVOL BOR?",
+              "d": "t.me/president_ai_award"
+            },
+            {
+              "icon": "✅",
+              "t": "QABUL SHARTLARI",
+              "d": "Telegram"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

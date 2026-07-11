@@ -1,0 +1,97 @@
+{
+  "date_slug": "2026-07-13-president-award",
+  "theme": "light",
+  "brand": {
+    "name": "AI STRATEG",
+    "sub": "YUSUFBAYKODIROV",
+    "handle": "@yusufbaykodirov",
+    "date": ""
+  },
+  "carousels": [
+    {
+      "id": "01-president-award-2026",
+      "accent": "#E11D48",
+      "accent2": "#F43F5E",
+      "tag": "PREZIDENT MUKOFOTI",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "🏆",
+          "title": "Startap O'ynini O'zgartiraylik",
+          "subtitle": "President AI Award 2026: **$1,000,000** investitsiyaga yo'l ochildi",
+          "preview": [
+            "5 ta asosiy kategoriya",
+            "25 ta g'olib $125K dan",
+            "Taqdim qilish muddati: 31-Avgustga qadar"
+          ]
+        },
+        {
+          "type": "body",
+          "kicker": "KO'CHMA MILLIY DASTUR",
+          "heading": "Nima bu President AI Award?",
+          "paragraphs": [
+            "Bu Uzbekistonda barcha AI startaplarni qollab-quvvatlash uchun $1,000,000 investitsiya fondi. **Prezidentni qaror bilan** taqdiq etilgan, **davlatning birinchi marta** AI startaplarga bu qadar katta pul ajratildi.",
+            "Agar siz **fikra**, **prototip** yoki **minimal mahsulotga** ega bo'lsangiz — bu sizning dastlabki puli bo'lishi mumkin."
+          ],
+          "bullets": [
+            "🎯 5 kategoriya: Davlat hizmatlari, Biznes, Sog'liqlik, Ta'lim, Yashil iqtisodiyot",
+            "💰 1-o'rin: $100,000, 2-o'rin: $75,000, 3-o'rin: $50,000",
+            "📊 Har bir kategoriyada 5 ta g'olib (jami 25 ta)",
+            "🌍 Xalqaro investorlar va ekspertlar juda-juda qiziqmoqda"
+          ]
+        },
+        {
+          "type": "facts",
+          "facts": [
+            { "icon": "💵", "label": "Investitsiya", "value": "$1,000,000", "note": "Barcha startaplarga" },
+            { "icon": "🎯", "label": "Kategoriyalar", "value": "5 ta", "note": "Turli sohalarda" },
+            { "icon": "👥", "label": "G'oliblar", "value": "25 ta", "note": "Jami pul: $125K+" },
+            { "icon": "📅", "label": "Muddat", "value": "31-Avgust", "note": "Ariza qabuli oxiri" }
+          ],
+          "footnote": "2030 yilda Uzbekistan AI sohada Top-50 qatorida bo'lish maqsadi"
+        },
+        {
+          "type": "body",
+          "kicker": "KATEGORIYALAR",
+          "heading": "Qaysi sohada qatnashish mumkin?",
+          "bullets": [
+            "🏛️ **Davlat Hizmatlari** — Hukumatga AI vositalari",
+            "💼 **Biznes & Sanohiya** — Iqtisodiyotni avtomatlashtirish",
+            "⚕️ **Sog'liqlik** — Tibbiy AI, diagnostika",
+            "📚 **Ta'lim** — Oqituvchi AI, talim platforma",
+            "🌱 **Yashil Iqtisodiyot** — Atrof-muhit muammolari hal qilish"
+          ]
+        },
+        {
+          "type": "body",
+          "kicker": "QANDAY ISHTIROK ETISH",
+          "heading": "3 ta oson qadam",
+          "bullets": [
+            "1️⃣ **Veb-saytga kirgiz** — awards.gov.uz'da profil ochish",
+            "2️⃣ **Loyihani tavsifla** — fikra, jamoa, maqsad haqida bilgi",
+            "3️⃣ **Qator 31-Avgustga** — ekspertlar sifatini tekshirib, g'oliblarni e'lon qiladi"
+          ],
+          "box": {
+            "title": "⚠️ MUHIM TALABLAR",
+            "rows": [
+              { "icon": "👨‍💼", "label": "Jamoa", "value": "2–5 kishi" },
+              { "icon": "🇺🇿", "label": "Joyni", "value": "Uzbekistanda asos" },
+              { "icon": "📋", "label": "Vaqti", "value": "Davom etuvchi loyiha" }
+            ]
+          }
+        },
+        {
+          "type": "cta",
+          "tag": "KO'PROQ BILISH",
+          "title": "Bugundan Boshlang",
+          "subtitle": "Startaping AI bilan dunyo o'zgarishi boshlanishi shu vaqt",
+          "actions": [
+            { "icon": "🔗", "t": "awards.gov.uz", "d": "Saytga o'ting" },
+            { "icon": "📨", "t": "Ariza yubor", "d": "O'zingizni taqdim etish" },
+            { "icon": "💬", "t": "Savol bor?", "d": "Yo'riqnoma ko'ring" }
+          ]
+        }
+      ]
+    }
+  ]
+}

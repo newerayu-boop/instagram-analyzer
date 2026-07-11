@@ -1,0 +1,17 @@
+🤖 BU HAFTA AI OLAMIDA NIMA BO'LDI? — HAFTALIK DIGEST
+
+1️⃣ OpenAI GPT-5.6'ni chiqardi. Uch model: Sol (eng kuchlisi), Terra (narx/sifat), Luna (eng tezi). Sol'ning «ultra» rejimi murakkab vazifalarni sub-agentlarga bo'lib beradi. Sam Altman'ga ko'ra, agent-kodlashda tokenlar 54% tejamkor. ChatGPT va GitHub Copilot'da allaqachon mavjud.
+
+2️⃣ Grok 4.5 chiqdi. Elon Musk uni «Opus-class, lekin tezroq va arzonroq» deb atadi: $2/$6 (1 mln token) — raqobatchilardan ~4 barobar arzon. Kod va ish vazifalariga moslangan. Hozircha Yevropada yo'q.
+
+3️⃣ Claude Sonnet 5 hammaga bepul bo'ldi. 1-iyuldan barcha bepul foydalanuvchilar uchun asosiy model. SWE-bench Pro'da 63.2% — flagman Opus 4.8'ga (69.2%) juda yaqin. Dasturchilarga 31-avgustgacha $2/$10 chegirma narxi.
+
+4️⃣ Xitoyning GLM-5.2'si rekord o'rnatdi. MIT litsenziyali ochiq model Claude Opus 4.8'dan atigi ~1% orqada (kompaniya ma'lumoti), 1 mln token kontekst va — eng muhimi — 100% Huawei chiplarida o'qitilgan, NVIDIA'siz. Ochiq modellar reytingida 1-o'rin.
+
+💬 Sizningcha, qaysi biri eng muhim yangilik? Kommentda yozing!
+
+📌 Saqlab qo'ying — keyin qidirib yurmaysiz.
+
+Manbalar: openai.com, x.ai, anthropic.com, euronews.com, tomshardware.com
+
+#AI #suniyintellekt #GPT56 #Grok #Claude #texnologiya #yangiliklar #Uzbekistan #digest #neyroset

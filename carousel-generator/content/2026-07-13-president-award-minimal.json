@@ -1,0 +1,82 @@
+{
+  "date_slug": "2026-07-13-president-award-minimal",
+  "theme": "light",
+  "brand": {
+    "name": "AI STRATEG",
+    "sub": "YUSUFBAYKODIROV",
+    "handle": "@yusufbaykodirov",
+    "date": ""
+  },
+  "carousels": [
+    {
+      "id": "01-president-award-minimal",
+      "accent": "#E11D48",
+      "accent2": "#F43F5E",
+      "tag": "SUNIY INTELLEKT YANGILIKLARI",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "🏆",
+          "title": "President AI Award 2026",
+          "subtitle": "**$1,000,000** investitsiyaga yo'l ochildi",
+          "meta": [
+            { "icon": "💰", "text": "Jami $1M" },
+            { "icon": "👥", "text": "25 g'olib" },
+            { "icon": "📅", "text": "31-Avgust" }
+          ]
+        },
+        {
+          "type": "card",
+          "n": "01",
+          "bgColor": "#FEE2E8",
+          "accentColor": "#E11D48",
+          "title": "Investitsiya Fondi",
+          "description": "$1,000,000 AI startaplari uchun **davlatning birinchi marta** ayrilgan pul"
+        },
+        {
+          "type": "card",
+          "n": "02",
+          "bgColor": "#F3E8FF",
+          "accentColor": "#9333EA",
+          "title": "5 Kategoriya",
+          "description": "Davlat hizmatlari, Biznes, Sog'liqlik, Ta'lim, Yashil iqtisodiyot"
+        },
+        {
+          "type": "card",
+          "n": "03",
+          "bgColor": "#DBEAFE",
+          "accentColor": "#0284C7",
+          "title": "Hadyalar",
+          "description": "1-o'rin: **$100K**, 2-o'rin: **$75K**, 3-o'rin: **$50K**"
+        },
+        {
+          "type": "card",
+          "n": "04",
+          "bgColor": "#DCFCE7",
+          "accentColor": "#16A34A",
+          "title": "Kim Qatnashishi Mumkin",
+          "description": "Fikra, Prototip yoki MVP bo'lgan startaplar. Jamoa: 2-5 kishi"
+        },
+        {
+          "type": "card",
+          "n": "05",
+          "bgColor": "#FEF08A",
+          "accentColor": "#EAB308",
+          "title": "Ariza Qilish",
+          "description": "awards.gov.uz'ga kirgiz, profil och, loyihani tavsifla, 31-Avgustga qadar qabul"
+        },
+        {
+          "type": "cta",
+          "tag": "KO'PROQ BILISH",
+          "title": "Startaping AI bilan dunyo o'zgarisi",
+          "subtitle": "Bugun ariza qil va investitsiyani olib, yurtni rivojlant",
+          "actions": [
+            { "icon": "🔗", "t": "awards.gov.uz", "d": "Saytga o'ting" },
+            { "icon": "📨", "t": "Ariza yubor", "d": "Qatnashishni boshlang" },
+            { "icon": "❓", "t": "Savol bor?", "d": "t.me/president_ai_award" }
+          ]
+        }
+      ]
+    }
+  ]
+}

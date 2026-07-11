@@ -1,0 +1,95 @@
+{
+  "date_slug": "2026-07-13-president-award-prompt-lab",
+  "theme": "light",
+  "brand": {
+    "name": "AI STRATEG",
+    "sub": "YUSUFBAYKODIROV",
+    "handle": "@yusufbaykodirov",
+    "date": "",
+    "tagline": "SUNIY INTELLEKT YANGILIKLARI"
+  },
+  "carousels": [
+    {
+      "id": "01-president-award-prompt-lab",
+      "accent": "#E11D48",
+      "accent2": "#F43F5E",
+      "tag": "SUNIY INTELLEKT YANGILIKLARI",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "🏆",
+          "title": "President AI Award 2026",
+          "subtitle": "**$1,000,000** Uzbekistonda AI startaplari uchun",
+          "preview": [
+            "Davlatning birinchi marta katta investitsiya",
+            "5 kategoriya, 25 ta g'olib",
+            "31-Agosto — ariza qabuli muddati"
+          ]
+        },
+        {
+          "type": "card",
+          "n": "01",
+          "bgColor": "#FEE2E8",
+          "accentColor": "#E11D48",
+          "title": "$1,000,000",
+          "description": "**Davlatning birinchi marta** AI startaplarga ajratilgan investitsiya fondi. Fikra, prototip yoki MVP — barchangiz uchun!"
+        },
+        {
+          "type": "card",
+          "n": "02",
+          "bgColor": "#F3E8FF",
+          "accentColor": "#9333EA",
+          "title": "5 Kategoriya",
+          "description": "🏛️ Davlat hizmatlari • 💼 Biznes • ⚕️ Sog'liqlik • 📚 Ta'lim • 🌱 Yashil iqtisodiyot"
+        },
+        {
+          "type": "card",
+          "n": "03",
+          "bgColor": "#DBEAFE",
+          "accentColor": "#0284C7",
+          "title": "Hadyalar",
+          "description": "**1-o'rin: $100K** | **2-o'rin: $75K** | **3-o'rin: $50K** — har bir kategoriyada 5 ta g'olib"
+        },
+        {
+          "type": "card",
+          "n": "04",
+          "bgColor": "#DCFCE7",
+          "accentColor": "#16A34A",
+          "title": "Kim Qatnashishi Mumkin",
+          "description": "✓ Fikra yoki prototipga ega bo'lsang ✓ Jamoa: 2-5 kishi ✓ Uzbekistanda ro'yxatga olingan bo'lish"
+        },
+        {
+          "type": "card",
+          "n": "05",
+          "bgColor": "#FEF08A",
+          "accentColor": "#EAB308",
+          "title": "3 Oson Qadam",
+          "description": "1️⃣ awards.gov.uz saytiga o'ting 2️⃣ Profil oching 3️⃣ Loyihangizni tavsiflab qabul qiltirib, 31-Agosto'ga qadar ariza yuboring"
+        },
+        {
+          "type": "cta",
+          "tag": "BUGUNDAN BOSHLANG",
+          "title": "Startaping dunyoni o'zgartirish vaqti keldi",
+          "subtitle": "**awards.gov.uz** — to'liq qo'llanma va FAQ mavjud. **t.me/president_ai_award** — savollar uchun",
+          "actions": [
+            {
+              "icon": "🔗",
+              "t": "awards.gov.uz",
+              "d": "Ariza qilish saytiga o'ting"
+            },
+            {
+              "icon": "📱",
+              "t": "Telegram",
+              "d": "t.me/president_ai_award"
+            },
+            {
+              "icon": "📧",
+              "t": "Email",
+              "d": "info@president-award.uz"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

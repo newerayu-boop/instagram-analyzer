@@ -1,0 +1,293 @@
+{
+  "date_slug": "2026-07-11",
+  "brand": {
+    "name": "AI UZBEKISTAN",
+    "sub": "SUN'IY INTELLEKT YANGILIKLARI",
+    "handle": "@sizning.sahifangiz",
+    "date": "11-IYUL, 2026"
+  },
+  "carousels": [
+    {
+      "id": "01-president-awards",
+      "accent": "#FBBF24",
+      "accent2": "#F97316",
+      "tag": "TANLOV • $6 MLN",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "🏆",
+          "title": "Startaplar uchun $6 000 000",
+          "subtitle": "President AI Award va President Tech Award tanlovlariga ariza qabuli boshlandi. Ishtirok — <b>bepul</b>.",
+          "meta": [
+            { "icon": "📝", "text": "Ariza: <b>awards.gov.uz</b>" },
+            { "icon": "⚡", "text": "AI Award: <b>1-avgustgacha</b>" }
+          ]
+        },
+        {
+          "type": "body",
+          "kicker": "PRESIDENT AI AWARD",
+          "heading": "AI loyihalar uchun $1 mln jamg'arma",
+          "bullets": [
+            "<b>5 yo'nalish:</b> davlat xizmatlari, sanoat va biznes, tibbiyot, ta'lim, yashil iqtisodiyot",
+            "<b>Jamoa:</b> 3–8 kishi, O'zbekiston fuqarolari va rezidentlari",
+            "<b>Talablar:</b> ishlaydigan MVP, 3 daqiqalik video-pitch, GitHub, pitch-deck"
+          ],
+          "box": {
+            "title": "💰 Grantlar",
+            "text": "Eng yaxshi loyihalar <b>$40 000 dan $100 000 gacha</b> grant oladi — jami 15 jamoa, IT Park Ventures orqali bosqichma-bosqich moliyalashtiriladi."
+          }
+        },
+        {
+          "type": "body",
+          "kicker": "PRESIDENT TECH AWARD",
+          "heading": "Tech-startaplar uchun yana $5 mln",
+          "bullets": [
+            "<b>Incubation</b> — g'oya/MVP bosqichi: $40 000 dan, 25 g'olib",
+            "<b>Acceleration</b> — pre-seed/seed: $100 000 dan, 15 g'olib",
+            "<b>Best Startup Project</b> — $125K / $75K / $50K",
+            "10 yo'nalish: FinTech, AI, EdTech, HealthTech, GameDev va boshqalar"
+          ],
+          "box": {
+            "title": "📅 Muddatlar",
+            "text": "Ro'yxatdan o'tish: <b>1-iyul — 31-avgust</b> • Final: <b>23-dekabr 2026</b>"
+          }
+        },
+        {
+          "type": "facts",
+          "kicker": "QANDAY QATNASHISH MUMKIN?",
+          "heading": "Ariza topshirish",
+          "facts": [
+            { "icon": "🔗", "label": "Ariza (ikkala tanlov)", "value": "awards.gov.uz" },
+            { "icon": "📅", "label": "AI Award muddati", "value": "1-avgustgacha", "note": "rasmiy TG-kanallar ma'lumoti; saytda yakuniy muddat — 30-sentabr" },
+            { "icon": "💰", "label": "Ishtirok narxi", "value": "Bepul" },
+            { "icon": "🚀", "label": "Qo'shimcha resurslar", "value": "startupbase.uz" }
+          ]
+        },
+        {
+          "type": "cta",
+          "tag": "OMAD TILAYMIZ!",
+          "title": "G'oyangiz bormi? Hoziroq topshiring!",
+          "subtitle": "Kelajakdagi yirik startapingiz aynan shu tanlovdan boshlanishi mumkin",
+          "actions": [
+            { "icon": "📝", "t": "ARIZA BERING", "d": "awards.gov.uz" },
+            { "icon": "🧠", "t": "TAYYORLANING", "d": "startupbase.uz resurslari" },
+            { "icon": "📢", "t": "ULASHING", "d": "jamoadoshlarga yuboring" }
+          ]
+        }
+      ],
+      "caption_uz": "🏆 STARTAPLAR UCHUN $6 000 000 — PREZIDENT TANLOVLARI!\n\nPresident AI Award va President Tech Award'ga ariza qabuli boshlandi. Ishtirok — mutlaqo bepul.\n\n🤖 PRESIDENT AI AWARD — $1 mln jamg'arma\n▪️ 5 yo'nalish: davlat xizmatlarida AI, sanoat va biznes, tibbiyot, ta'lim, yashil iqtisodiyot va agrotech\n▪️ Jamoa: 3–8 kishi (O'zbekiston fuqarolari yoki rezidentlari)\n▪️ Talablar: ishlaydigan MVP, 3 daqiqalik video-pitch, GitHub-repozitoriy, pitch-deck\n▪️ Grantlar: $40 000 dan $100 000 gacha — jami 15 jamoa (IT Park Ventures orqali, KPI asosida)\n⏰ Muddat: rasmiy kanallarga ko'ra 1-avgustgacha (awards.gov.uz saytida yakuniy muddat 30-sentabr ko'rsatilgan — baribir kechiktirmang!)\n\n🚀 PRESIDENT TECH AWARD — $5 mln jamg'arma\n▪️ Incubation (g'oya/MVP): $40 000 dan, 25 g'olib\n▪️ Acceleration (pre-seed/seed): $100 000 dan, 15 g'olib\n▪️ Best Startup Project (seed/Series A): $125 000 / $75 000 / $50 000\n▪️ 10 yo'nalish: FinTech, AI, Enterprise, GameDev, EdTech, HealthTech, GovTech, DeepTech, Logistika, Creative & AdTech\n⏰ Ro'yxatdan o'tish: 31-avgustgacha • Final: 23-dekabr 2026\n\n📝 Ariza: awards.gov.uz\n➕ Startaplar uchun resurslar: startupbase.uz\n\n💡 Maslahat: startapingizni boshidanoq global bozorga mo'ljallang va pitch uchun ingliz tilini o'rganing!\n\n📌 Saqlab qo'ying va startapi bor do'stlaringizga ulashing!\n\n#PresidentAIAward #PresidentTechAward #startap #AI #suniyintellekt #Uzbekistan #ITPark #grant #tanlov #texnologiya #Toshkent",
+      "caption_ru": "🏆 $6 000 000 ДЛЯ СТАРТАПОВ — ПРЕЗИДЕНТСКИЕ КОНКУРСЫ!\n\nОткрыт приём заявок на President AI Award и President Tech Award. Участие полностью бесплатное.\n\n🤖 PRESIDENT AI AWARD — фонд $1 млн\n▪️ 5 направлений: ИИ в госуслугах, промышленность и бизнес, медицина, образование, зелёная экономика и агротех\n▪️ Команда: 3–8 человек (граждане или резиденты Узбекистана)\n▪️ Требования: рабочий MVP, 3-минутный видеопитч, GitHub-репозиторий, питч-дек\n▪️ Гранты: от $40 000 до $100 000 — всего 15 команд (через IT Park Ventures, транши по KPI)\n⏰ Дедлайн: по официальным каналам — до 1 августа (на сайте awards.gov.uz финальный срок 30 сентября — но лучше не тянуть!)\n\n🚀 PRESIDENT TECH AWARD — фонд $5 млн\n▪️ Incubation (идея/MVP): от $40 000, 25 победителей\n▪️ Acceleration (pre-seed/seed): от $100 000, 15 победителей\n▪️ Best Startup Project (seed/Series A): $125 000 / $75 000 / $50 000\n▪️ 10 направлений: FinTech, AI, Enterprise, GameDev, EdTech, HealthTech, GovTech, DeepTech, логистика, Creative & AdTech\n⏰ Регистрация: до 31 августа • Финал: 23 декабря 2026\n\n📝 Заявка: awards.gov.uz\n➕ Ресурсы для стартапов: startupbase.uz\n\n💡 Совет: с самого начала целься на глобальный рынок и учи английский для питчей!\n\n📌 Сохраняй и отправь друзьям, у которых есть стартап!\n\n#PresidentAIAward #PresidentTechAward #стартап #ИИ #нейросети #Узбекистан #ITPark #грант #конкурс #технологии #Ташкент"
+    },
+    {
+      "id": "02-datafest",
+      "accent": "#22D3EE",
+      "accent2": "#6366F1",
+      "tag": "TADBIR • TOSHKENT",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "📊",
+          "title": "DATA FEST 2026 — Toshkentda!",
+          "subtitle": "«AI in Data & BI Analytics» — sun'iy intellekt, data-tahlil va Business Intelligence'ga bag'ishlangan bir kunlik konferensiya",
+          "meta": [
+            { "icon": "📅", "text": "<b>18-iyul</b>, 09:00" },
+            { "icon": "📍", "text": "Raqamli texnologiyalar vazirligi" }
+          ]
+        },
+        {
+          "type": "body",
+          "kicker": "NIMA BO'LADI?",
+          "heading": "Dasturda nimalar bor?",
+          "bullets": [
+            "AI data-analitikani qanday o'zgartirmoqda — <b>real keyslar</b>",
+            "Prediktiv modellar va zamonaviy <b>data-platformalar</b>",
+            "Self-service <b>BI</b> va amaliy tajribalar",
+            "Xalqaro kompaniyalar mutaxassislari bilan <b>networking</b>"
+          ],
+          "box": {
+            "title": "⚡ Spikerlar",
+            "text": "<b>Firdavs Alinazarov</b> — Microsoft Fabric & Power BI Technology Leader, H&M Group • <b>Otabek Nurmuhammad</b> — AI-agentlar infratuzilmasi, ex-Dropbox/Google, 42.uz hammuassisi"
+          }
+        },
+        {
+          "type": "facts",
+          "kicker": "QATNASHISH UCHUN",
+          "heading": "Barcha ma'lumotlar",
+          "facts": [
+            { "icon": "📅", "label": "Sana va vaqt", "value": "18-iyul, soat 09:00" },
+            { "icon": "📍", "label": "Manzil", "value": "Raqamli texnologiyalar vazirligi", "note": "Muminov ko'chasi, 7/2" },
+            { "icon": "🧑", "label": "Kimlar uchun", "value": "Data-mutaxassislar, IT-liderlar, talabalar" },
+            { "icon": "🔗", "label": "Ro'yxatdan o'tish", "value": "mdcuzbekistan.com/register", "note": "oldindan ro'yxatdan o'tish shart" }
+          ],
+          "footnote": "Tashkilotchi: Microsoft Developers Community Uzbekistan"
+        }
+      ],
+      "caption_uz": "📊 DATA FEST 2026 — 18-IYUL, TOSHKENT!\n\nMicrosoft Developers Community Uzbekistan «AI in Data & BI Analytics» mavzusida yirik bir kunlik konferensiya o'tkazadi.\n\nDasturda:\n▪️ AI data-analitikani qanday o'zgartirmoqda — real keyslar\n▪️ Prediktiv modellar va zamonaviy data-platformalar\n▪️ Self-service BI va amaliy tajribalar\n▪️ Xalqaro kompaniyalarda ishlayotgan mutaxassislar bilan networking\n\n🎤 Spikerlar:\n— Firdavs Alinazarov — Microsoft Fabric & Power BI Technology Leader, H&M Group\n— Otabek Nurmuhammad — AI-agentlar uchun inference-infratuzilma; ex-Dropbox/Google, 42.uz hammuassisi\n— va boshqa ekspertlar\n\n📅 Qachon: 18-iyul, soat 09:00\n📍 Qayerda: Raqamli texnologiyalar vazirligi, Muminov ko'chasi 7/2\n📝 Ro'yxatdan o'tish: mdcuzbekistan.com/register\n\nKimlar uchun: data-analitiklar, BI-dasturchilar, data-injenerlar, IT-liderlar, product-menejerlar va talabalar. Sponsorlardan sovg'alar va sovrinlar ham bo'ladi!\n\n💾 Saqlab qo'ying va hamkasblaringizga ulashing!\n\n#DataFest2026 #AI #suniyintellekt #data #BI #Toshkent #Uzbekistan #ITyangiliklari #texnologiya #konferensiya",
+      "caption_ru": "📊 DATA FEST 2026 — 18 ИЮЛЯ, ТАШКЕНТ!\n\nMicrosoft Developers Community Uzbekistan проводит большую однодневную конференцию «AI in Data & BI Analytics».\n\nВ программе:\n▪️ Как ИИ меняет data-аналитику — реальные кейсы\n▪️ Предиктивные модели и современные data-платформы\n▪️ Self-service BI и практический опыт\n▪️ Нетворкинг со специалистами международных компаний\n\n🎤 Спикеры:\n— Фирдавс Алиназаров — Microsoft Fabric & Power BI Technology Leader, H&M Group\n— Отабек Нурмухаммад — инфраструктура инференса для AI-агентов; ex-Dropbox/Google, сооснователь 42.uz\n— и другие эксперты\n\n📅 Когда: 18 июля, 09:00\n📍 Где: Министерство цифровых технологий, ул. Муминова 7/2\n📝 Регистрация: mdcuzbekistan.com/register\n\nДля кого: data-аналитики, BI-разработчики, data-инженеры, IT-лидеры, продакт-менеджеры и студенты. Будут подарки и розыгрыши от спонсоров!\n\n💾 Сохрани и поделись с коллегами!\n\n#DataFest2026 #ИИ #нейросети #data #BI #Ташкент #Узбекистан #ITновости #технологии #конференция"
+    },
+    {
+      "id": "03-ai-digest",
+      "accent": "#A78BFA",
+      "accent2": "#EC4899",
+      "tag": "HAFTALIK DIGEST",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "🤖",
+          "title": "Bu hafta AI olamida nima bo'ldi?",
+          "preview": [
+            "OpenAI GPT-5.6'ni chiqardi: Sol, Terra, Luna",
+            "Grok 4.5 — flagman darajasi, 4x arzon",
+            "Claude Sonnet 5 endi hammaga bepul",
+            "Xitoyning GLM-5.2'si — Huawei chiplarida rekord"
+          ]
+        },
+        {
+          "type": "news",
+          "n": 1,
+          "source": "OPENAI",
+          "heading": "GPT-5.6 chiqdi: Sol, Terra va Luna",
+          "paragraphs": [
+            "OpenAI yangi avlod modellarini taqdim etdi: <b>Sol</b> — eng kuchlisi, <b>Terra</b> — narx/sifat balansi, <b>Luna</b> — eng tezkori.",
+            "Sol'da «ultra» rejimi bor: model uzoqroq o'ylaydi va vazifalarni sub-agentlarga bo'lib beradi. ChatGPT va GitHub Copilot'da allaqachon ishlayapti."
+          ],
+          "stat": { "value": "54%", "label": "token tejamkorligi agent-kodlashda — Sam Altman da'vosi" }
+        },
+        {
+          "type": "news",
+          "n": 2,
+          "source": "GROK • XAI",
+          "heading": "Grok 4.5 — kuchli model, 4 barobar arzon",
+          "paragraphs": [
+            "Elon Musk kompaniyasi Grok 4.5'ni chiqardi va uni «Opus-class» deb atadi: eng kuchli modellarga yaqin, lekin ancha arzon.",
+            "Narxi: <b>$2 / $6</b> (1 mln token) — taqqoslash uchun Claude Opus 4.7'da bu $5 / $25. Model kod yozish va ish vazifalariga moslangan. Hozircha Yevropada mavjud emas."
+          ],
+          "stat": { "value": "4x", "label": "raqobatchilardan arzon — deyarli bir xil imkoniyatlarda" }
+        },
+        {
+          "type": "news",
+          "n": 3,
+          "source": "ANTHROPIC",
+          "heading": "Claude Sonnet 5 — endi hammaga bepul",
+          "paragraphs": [
+            "Anthropic yangi Sonnet 5'ni <b>barcha bepul foydalanuvchilar</b> uchun asosiy model qildi. Bu — deyarli flagman darajasidagi model.",
+            "SWE-bench Pro testida 63.2% — flagman Opus 4.8 (69.2%) natijasiga juda yaqin. Dasturchilar uchun 31-avgustgacha chegirmali narx: $2 / $10."
+          ],
+          "stat": { "value": "63.2%", "label": "SWE-bench Pro — bepul model uchun rekord natija" }
+        },
+        {
+          "type": "news",
+          "n": 4,
+          "source": "Z.AI • XITOY",
+          "heading": "Xitoyning ochiq modeli AQSh flagmanlariga yetib oldi",
+          "paragraphs": [
+            "Z.ai kompaniyasi <b>GLM-5.2</b> modelini MIT litsenziyasi bilan ochiq tarqatdi: texnik vazifalarda Claude Opus 4.8'dan atigi ~1% orqada, GPT-5.5'dan esa o'zgan (kompaniya ma'lumoti). Kontekst — 1 mln token.",
+            "Eng qizig'i: model <b>100% Huawei Ascend chiplarida</b> o'qitilgan — birorta ham NVIDIA GPU ishlatilmagan. Ochiq modellar reytingida — 1-o'rin."
+          ],
+          "stat": { "value": "№1", "label": "dunyodagi ochiq (open-weight) modellar reytingida" }
+        },
+        {
+          "type": "cta",
+          "tag": "HAR KUNI YANGI POST",
+          "title": "AI'dan ortda qolmang!",
+          "subtitle": "Eng muhim AI yangiliklari — sodda tilda, har kuni shu sahifada"
+        }
+      ],
+      "caption_uz": "🤖 BU HAFTA AI OLAMIDA NIMA BO'LDI? — HAFTALIK DIGEST\n\n1️⃣ OpenAI GPT-5.6'ni chiqardi. Uch model: Sol (eng kuchlisi), Terra (narx/sifat), Luna (eng tezi). Sol'ning «ultra» rejimi murakkab vazifalarni sub-agentlarga bo'lib beradi. Sam Altman'ga ko'ra, agent-kodlashda tokenlar 54% tejamkor. ChatGPT va GitHub Copilot'da allaqachon mavjud.\n\n2️⃣ Grok 4.5 chiqdi. Elon Musk uni «Opus-class, lekin tezroq va arzonroq» deb atadi: $2/$6 (1 mln token) — raqobatchilardan ~4 barobar arzon. Kod va ish vazifalariga moslangan. Hozircha Yevropada yo'q.\n\n3️⃣ Claude Sonnet 5 hammaga bepul bo'ldi. 1-iyuldan barcha bepul foydalanuvchilar uchun asosiy model. SWE-bench Pro'da 63.2% — flagman Opus 4.8'ga (69.2%) juda yaqin. Dasturchilarga 31-avgustgacha $2/$10 chegirma narxi.\n\n4️⃣ Xitoyning GLM-5.2'si rekord o'rnatdi. MIT litsenziyali ochiq model Claude Opus 4.8'dan atigi ~1% orqada (kompaniya ma'lumoti), 1 mln token kontekst va — eng muhimi — 100% Huawei chiplarida o'qitilgan, NVIDIA'siz. Ochiq modellar reytingida 1-o'rin.\n\n💬 Sizningcha, qaysi biri eng muhim yangilik? Kommentda yozing!\n\n📌 Saqlab qo'ying — keyin qidirib yurmaysiz.\n\nManbalar: openai.com, x.ai, anthropic.com, euronews.com, tomshardware.com\n\n#AI #suniyintellekt #GPT56 #Grok #Claude #texnologiya #yangiliklar #Uzbekistan #digest #neyroset",
+      "caption_ru": "🤖 ЧТО ПРОИЗОШЛО В МИРЕ ИИ ЗА НЕДЕЛЮ — ДАЙДЖЕСТ\n\n1️⃣ OpenAI выпустила GPT-5.6. Три модели: Sol (самая мощная), Terra (баланс цены и качества), Luna (самая быстрая). Режим «ultra» у Sol дробит сложные задачи между суб-агентами. По словам Сэма Альтмана, в агентном программировании модель на 54% экономнее по токенам. Уже доступна в ChatGPT и GitHub Copilot.\n\n2️⃣ Вышел Grok 4.5. Илон Маск называет его «Opus-class, но быстрее и дешевле»: $2/$6 за млн токенов — примерно в 4 раза дешевле конкурентов. Заточен под код и рабочие задачи. В Европе пока недоступен.\n\n3️⃣ Claude Sonnet 5 стал бесплатным для всех. С 1 июля это модель по умолчанию для бесплатных пользователей. На SWE-bench Pro — 63.2%, почти уровень флагмана Opus 4.8 (69.2%). Для разработчиков до 31 августа скидочная цена $2/$10.\n\n4️⃣ Китайская GLM-5.2 поставила рекорд. Открытая модель (лицензия MIT) отстаёт от Claude Opus 4.8 всего на ~1% (по данным компании), контекст 1 млн токенов и — главное — обучена на 100% на чипах Huawei, без единого GPU NVIDIA. Первое место среди open-weight моделей мира.\n\n💬 Какая новость важнее всего? Пишите в комментариях!\n\n📌 Сохраняйте, чтобы не потерять.\n\nИсточники: openai.com, x.ai, anthropic.com, euronews.com, tomshardware.com\n\n#ИИ #нейросети #GPT56 #Grok #Claude #технологии #новости #Узбекистан #дайджест #AI"
+    },
+    {
+      "id": "04-free-ai-courses",
+      "accent": "#34D399",
+      "accent2": "#14B8A6",
+      "tag": "BEPUL TA'LIM",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "🎓",
+          "title": "Davlatdan BEPUL AI kurslari",
+          "subtitle": "«5 million AI liderlari» dasturi: yoshlar, o'qituvchilar va davlat xizmatchilari uchun — sertifikat bilan",
+          "meta": [
+            { "icon": "🔗", "text": "<b>aistudy.uz</b>" },
+            { "icon": "💰", "text": "Mutlaqo <b>bepul</b>" }
+          ]
+        },
+        {
+          "type": "body",
+          "kicker": "DASTUR HAQIDA",
+          "heading": "Nimalarni o'rganasiz?",
+          "bullets": [
+            "<b>Generativ AI</b> bilan ishlash asoslari",
+            "<b>Prompt-engineering</b> — neyrosetlarga to'g'ri savol berish san'ati",
+            "Xalqaro IT-sertifikatlarga <b>bepul tayyorlov</b>",
+            "Kursni tugatganlarga — <b>sertifikat</b>"
+          ],
+          "box": {
+            "title": "🎯 Maqsad",
+            "text": "2026-yilda <b>500 000 kishi</b>, 2035-yilgacha esa <b>5 million kishi</b> AI ko'nikmalariga ega bo'ladi. Bu — «Bir million dasturchi» loyihasining davomi."
+          }
+        },
+        {
+          "type": "body",
+          "kicker": "RAG'BATLANTIRISH",
+          "heading": "Eng faollarga — sovg'alar",
+          "paragraphs": [
+            "Dastur doirasida har yili eng yaxshi natija ko'rsatganlar taqdirlanadi:"
+          ],
+          "bullets": [
+            "<b>100 nafar o'qituvchi</b> — $1000 atrofida mukofot",
+            "<b>500 nafar yosh</b> — noutbuklar",
+            "<b>500 nafar ishtirokchi</b> — qimmatbaho sovg'alar",
+            "<b>2 ta maktab</b> — elektromobillar (prezident sovg'asi)"
+          ]
+        },
+        {
+          "type": "facts",
+          "kicker": "QANDAY BOSHLASH KERAK?",
+          "heading": "Hoziroq boshlang",
+          "facts": [
+            { "icon": "🔗", "label": "Bepul kurslar", "value": "aistudy.uz", "note": "generativ AI va prompt-engineering" },
+            { "icon": "💡", "label": "Savol-javob", "value": "aileaders.uz" },
+            { "icon": "📱", "label": "Aloqa", "value": "+998 71 203 03 43" },
+            { "icon": "✅", "label": "Kimlar uchun", "value": "Yoshlar, o'qituvchilar, davlat xizmatchilari" }
+          ]
+        }
+      ],
+      "caption_uz": "🎓 DAVLATDAN BEPUL AI KURSLARI — «5 MILLION AI LIDERLARI»\n\nO'zbekiston va BAA hamkorligidagi yirik davlat dasturi: yoshlar, o'qituvchilar va davlat xizmatchilari uchun sun'iy intellekt bo'yicha BEPUL ta'lim.\n\nNimalarni o'rganasiz:\n▪️ Generativ AI bilan ishlash asoslari\n▪️ Prompt-engineering — neyrosetlarga to'g'ri buyruq berish san'ati\n▪️ Xalqaro IT-sertifikatlarga bepul tayyorlov\n▪️ Kurs yakunida — sertifikat\n\n🎯 Maqsad: 2026-yilda 500 000 kishini, 2035-yilgacha 5 million kishini o'qitish. Bu — mashhur «Bir million dasturchi» loyihasining davomi.\n\n🎁 Rag'batlantirish (har yili):\n▪️ 100 nafar eng yaxshi o'qituvchiga ~$1000 mukofot\n▪️ 500 nafar yoshga noutbuk\n▪️ 500 nafar ishtirokchiga qimmatbaho sovg'alar\n▪️ 2 ta maktabga elektromobil — prezident sovg'asi\n\n🚀 Qanday boshlash kerak:\n1. aistudy.uz saytiga kiring\n2. Ro'yxatdan o'ting va kursni tanlang\n3. Savollar bo'lsa: aileaders.uz yoki +998 71 203 03 43\n\n📌 Saqlab qo'ying va o'rganishni istagan do'stlaringizga ulashing!\n\n#bepulkurs #AI #suniyintellekt #talim #aistudy #Uzbekistan #promptengineering #IT #kurs #yoshlar",
+      "caption_ru": "🎓 БЕСПЛАТНЫЕ AI-КУРСЫ ОТ ГОСУДАРСТВА — «5 МИЛЛИОНОВ ЛИДЕРОВ ИИ»\n\nКрупная госпрограмма Узбекистана и ОАЭ: бесплатное обучение искусственному интеллекту для молодёжи, учителей и госслужащих.\n\nЧему учат:\n▪️ Основы работы с генеративным ИИ\n▪️ Промпт-инжиниринг — искусство правильно ставить задачи нейросетям\n▪️ Бесплатная подготовка к международным IT-сертификациям\n▪️ Сертификат по окончании\n\n🎯 Цель: обучить 500 000 человек в 2026 году и 5 миллионов к 2035-му. Это продолжение известной программы «Один миллион программистов».\n\n🎁 Поощрения (ежегодно):\n▪️ 100 лучших учителей — премия ~$1000\n▪️ 500 молодых участников — ноутбуки\n▪️ 500 участников — ценные подарки\n▪️ 2 школы — электромобили в подарок от президента\n\n🚀 Как начать:\n1. Зайди на aistudy.uz\n2. Зарегистрируйся и выбери курс\n3. Вопросы: aileaders.uz или +998 71 203 03 43\n\n📌 Сохрани и отправь тем, кто хочет прокачаться в ИИ!\n\n#бесплатныекурсы #ИИ #нейросети #образование #aistudy #Узбекистан #промптинжиниринг #IT #курсы #обучение"
+    },
+    {
+      "id": "05-deadlines",
+      "accent": "#FB7185",
+      "accent2": "#F59E0B",
+      "tag": "SHOSHILING!",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "⚡",
+          "title": "Bu haftaning muddatlari!",
+          "subtitle": "IT Park va hamjamiyatlardan 4 ta imkoniyat — muddatlari tugashiga sanoqli kunlar qoldi",
+          "preview": [
+            "FLY ASIA 2026, Koreya — 14-iyulgacha",
+            "Gamescom 2026, Germaniya — 15-iyulgacha",
+            "GameDev Ideathon, Samarqand — 17-iyul",
+            "Data Fest 2026, Toshkent — 18-iyul"
+          ]
+        },
+        {
+          "type": "facts",
+          "kicker": "MUDDATLARNI O'TKAZIB YUBORMANG",
+          "heading": "Qayerga va qachon?",
+          "facts": [
+            { "icon": "🌍", "label": "14-iyul • FLY ASIA 2026", "value": "Pusanga to'liq bepul yo'llanma", "note": "1 ta startap uchun: aviabilet, mehmonxona, investorlar bilan B2B. Ariza: startupbase.uz" },
+            { "icon": "🏆", "label": "15-iyul • Gamescom 2026", "value": "Kyolnga GameDev-delegatsiya", "note": "o'ynaladigan demo talab qilinadi. IT Park orqali ariza" },
+            { "icon": "💡", "label": "17-iyul • GameDev Ideathon", "value": "Samarqand, School 21", "note": "11:00–19:30, Goethe GameDev inkubatorining ochilishi" },
+            { "icon": "📊", "label": "18-iyul • Data Fest 2026", "value": "Toshkent, AI va Data-tahlil", "note": "ro'yxat: mdcuzbekistan.com/register" }
+          ]
+        }
+      ],
+      "caption_uz": "⚡ SHOSHILING — BU HAFTANING MUDDATLARI!\n\nIT-hamjamiyat uchun 4 ta imkoniyat, muddatlari juda yaqin:\n\n1️⃣ FLY ASIA 2026 (Pusan, Koreya) — ariza 14-IYULGACHA\nIT Park 1 ta startap uchun to'liq bepul yo'llanma beradi: aviabilet, 3 kecha mehmonxona, investorlar va korporatsiyalar bilan B2B uchrashuvlar, $66 000 sovrin fondli tanlov. AI, SaaS, DeepTech, Enterprise startaplari uchun (IT Park rezidenti bo'lish shart). Ariza: startupbase.uz\n\n2️⃣ GAMESCOM 2026 (Kyoln, Germaniya) — ariza 15-IYULGACHA\nIT Park O'zbekiston nomidan qatnashadigan GameDev-jamoalarni yig'moqda. Shart: o'ynaladigan demo-versiya. Natijalar 16-iyulda. Aloqa: +998 90 069 69 22\n\n3️⃣ GAMEDEV IDEATHON (Samarqand) — 17-IYUL, 11:00\nSchool 21, East Games, Goethe-Institut va IT Park'dan yangi GameDev-inkubatorning ochilish tadbiri. Dasturchilar, geym-dizaynerlar, rassomlar, ssenaristlar — yakka yoki jamoa bo'lib kelish mumkin.\n\n4️⃣ DATA FEST 2026 (Toshkent) — 18-IYUL, 09:00\n«AI in Data & BI Analytics» konferensiyasi, Raqamli texnologiyalar vazirligida. Ro'yxat: mdcuzbekistan.com/register\n\n📌 Saqlab qo'ying — muddatini o'tkazib yubormang!\n📢 Kimga tegishli bo'lsa — ulashing!\n\n#ITPark #startap #GameDev #DataFest #AI #Uzbekistan #Toshkent #Samarqand #imkoniyat #deadline",
+      "caption_ru": "⚡ УСПЕЙ — ДЕДЛАЙНЫ ЭТОЙ НЕДЕЛИ!\n\n4 возможности для IT-сообщества, сроки горят:\n\n1️⃣ FLY ASIA 2026 (Пусан, Корея) — заявки ДО 14 ИЮЛЯ\nIT Park даёт одному стартапу полностью оплаченное место: перелёт, 3 ночи отеля, B2B-встречи с инвесторами и корпорациями, конкурс с призовым фондом $66 000. Для AI, SaaS, DeepTech, Enterprise стартапов (нужно быть резидентом IT Park). Заявка: startupbase.uz\n\n2️⃣ GAMESCOM 2026 (Кёльн, Германия) — заявки ДО 15 ИЮЛЯ\nIT Park набирает GameDev-команды, которые представят Узбекистан. Условие: играбельная демо-версия. Результаты 16 июля. Контакт: +998 90 069 69 22\n\n3️⃣ GAMEDEV IDEATHON (Самарканд) — 17 ИЮЛЯ, 11:00\nОткрытие GameDev-инкубатора от School 21, East Games, Goethe-Institut и IT Park. Ждут программистов, гейм-дизайнеров, художников, сценаристов — можно одному или командой.\n\n4️⃣ DATA FEST 2026 (Ташкент) — 18 ИЮЛЯ, 09:00\nКонференция «AI in Data & BI Analytics» в Министерстве цифровых технологий. Регистрация: mdcuzbekistan.com/register\n\n📌 Сохрани, чтобы не пропустить дедлайны!\n📢 Отправь тем, кому это нужно!\n\n#ITPark #стартап #GameDev #DataFest #ИИ #Узбекистан #Ташкент #Самарканд #возможности #дедлайн"
+    }
+  ]
+}

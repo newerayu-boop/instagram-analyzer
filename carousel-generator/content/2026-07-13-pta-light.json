@@ -1,0 +1,78 @@
+{
+  "date_slug": "2026-07-13",
+  "theme": "light",
+  "brand": {
+    "name": "AI UZBEKISTAN",
+    "sub": "SUN'IY INTELLEKT YANGILIKLARI",
+    "handle": "@sizning.sahifangiz",
+    "date": "13-IYUL, 2026"
+  },
+  "carousels": [
+    {
+      "id": "01-pta-incubation",
+      "accent": "#0EA5E9",
+      "accent2": "#06B6D4",
+      "tag": "STARTAPLAR UCHUN",
+      "slides": [
+        {
+          "type": "cover",
+          "heroEmoji": "🚀",
+          "title": "Startapiň uchun $1,000,000",
+          "subtitle": "PTA Incubation — 3 oylik intensiv mentorligi bilan",
+          "preview": [
+            "$40K grants uchun 15 g'olib",
+            "25 ta joyning raqobati",
+            "Fikr, MVP yoki prototipdan boshlang"
+          ]
+        },
+        {
+          "type": "body",
+          "kicker": "INCUBATION TRACK",
+          "heading": "$1 Milion Grantlar Fondi",
+          "paragraphs": [
+            "PTA Incubation programmasiga egalik qiling. **Erta bosqichda** startaplar uchun (fikr, MVP, prototip). **3 oylik** intensiv: master-klasslar, mentorligi, amaliy qo'llab-quvvatlash.",
+            "**25 ta g'olib** bilan roʻy beradi: **15 ta** startap $40,000 grantlar oladi dasturni tugatgandan keyin. Jamoa: 2–5 kishi, muammo va yechim aniq aniqlangan."
+          ],
+          "bullets": [
+            "Fikr, MVP yoki prototip bosqichida startaplar uchun",
+            "3 oylik intensiv mentorligi va amaliy qo'llab-quvvatlash",
+            "25 g'olib, 15 ta $40K grant tayyorlash uchun",
+            "Jamoa: 2–5 kishi, muammo aniq aniqlangan"
+          ]
+        },
+        {
+          "type": "facts",
+          "facts": [
+            { "icon": "💰", "label": "$40K", "value": "Grantlar", "note": "15 g'olib uchun" },
+            { "icon": "👥", "label": "25", "value": "G'oliblar", "note": "Jami raqobata" },
+            { "icon": "⏱️", "label": "3 oylik", "value": "Dastur", "note": "Mentorligi va qo'llab-quvvatlash" },
+            { "icon": "🏢", "label": "IT Park", "value": "Ortagi", "note": "PR va bozor yordami" }
+          ],
+          "footnote": "IT Park Uzbekistan hamisha sizning yonida"
+        },
+        {
+          "type": "body",
+          "kicker": "QO'LLAB-QUVVATLASH",
+          "heading": "Siz nimani olasiz?",
+          "bullets": [
+            "✓ Onlayn-dastur amaliy fokus bilan",
+            "✓ IT Park Uzbekistandan PR qo'llab-quvvatlash",
+            "✓ Shaxsiy mentorligi va erta trakeri",
+            "✓ Bozorga chiqish uchun yordami",
+            "✓ Jamoa qaytadigan imkoniyet"
+          ]
+        },
+        {
+          "type": "cta",
+          "tag": "ARIZANI TOPSHIRISH",
+          "title": "Ro'yxatdan o'ting bugun",
+          "subtitle": "PTA Incubation — startaplar uchun eng yaxshi tanlov",
+          "actions": [
+            { "icon": "🔗", "t": "awards.gov.uz", "d": "Sayt ochish" },
+            { "icon": "📋", "t": "Arizani topshirish", "d": "Ro'yxatdan o'ting" }
+          ]
+        }
+      ]
+    }
+  ]
+}
