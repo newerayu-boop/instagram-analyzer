@@ -4,3 +4,4 @@ engine/out/
 .env.local
 *.log
 data/
+scratchpad/
