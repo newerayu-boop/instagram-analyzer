@@ -1,0 +1,87 @@
+{
+  "handle": "@Vaybcoder_qiz",
+  "wordmark": "Vaybecoder",
+  "slides": [
+    {
+      "type": "cover", "image": "engine/assets/skills-cover.jpg",
+      "kicker": "AI · Skills to'plami",
+      "title": "20 ta kuchli AI *skill*",
+      "sub": "Claude, ChatGPT va Gemini uchun. **Nusxa olib** qo'shasiz.",
+      "swipe": "oxirigacha suring"
+    },
+    {
+      "type": "story",
+      "kicker": "Skill nima",
+      "title": "AI'ga *qo'shimcha kuch*",
+      "paragraphs": [
+        "Skill — bu **.md fayl**: AI'ga qo'shsangiz, u bitta ishni professional darajada bajaradi.",
+        "Bitta marta qo'yasiz — Claude, ChatGPT yoki Gemini'da ishlaydi. Mana 5 turkum."
+      ],
+      "punch": "20 ta — quyida."
+    },
+    {
+      "type": "steps",
+      "kicker": "01 · Yozuv va kontent",
+      "title": "Writing *skills*",
+      "items": [
+        { "n": "→", "text": "**SCQA** — matnni mantiqiy tuzadi (vaziyat→muammo→savol→javob)." },
+        { "n": "→", "text": "**Repurposing** — uzun matnni tred/skript/qisqacha qiladi." },
+        { "n": "→", "text": "**Tone Enforcer** — brend ovozini bir xil ushlaydi." },
+        { "n": "→", "text": "**Copywriting** — ilmoq + CTA bilan sotuvchi matn." }
+      ]
+    },
+    {
+      "type": "steps",
+      "kicker": "02 · Vizual va infografika",
+      "title": "Visual *skills*",
+      "items": [
+        { "n": "→", "text": "**Excalidraw** — g'oyani diagrammaga aylantiradi." },
+        { "n": "→", "text": "**Infographic** — matndan vizual xulosa." },
+        { "n": "→", "text": "**Flowchart** — qaror daraxti / jarayon sxemasi." },
+        { "n": "→", "text": "**UI/UX Advisor** — interfeys joylashuvi bo'yicha maslahat." }
+      ]
+    },
+    {
+      "type": "steps",
+      "kicker": "03 · Tadqiqot va tahlil",
+      "title": "Research *skills*",
+      "items": [
+        { "n": "→", "text": "**Deep Research** — katta ma'lumotdan aniq xulosa." },
+        { "n": "→", "text": "**Source Validation** — manba ishonchliligini tekshiradi." },
+        { "n": "→", "text": "**Competitive Intel** — raqiblarni solishtiradi (SWOT)." },
+        { "n": "→", "text": "**Knowledge Structuring** — tartibsiz ma'lumotni tuzadi." }
+      ]
+    },
+    {
+      "type": "steps",
+      "kicker": "04 · Video va media",
+      "title": "Video *skills*",
+      "items": [
+        { "n": "→", "text": "**Video Script** — ilmoq + bo'limlar + CTA." },
+        { "n": "→", "text": "**Editing Planner** — montaj, kesim, o'tishlar rejasi." },
+        { "n": "→", "text": "**Hook Generator** — e'tiborni tortadigan boshlanma." },
+        { "n": "→", "text": "**Caption Formatter** — subtitrlarni to'g'ri formatlaydi." }
+      ]
+    },
+    {
+      "type": "steps",
+      "kicker": "05 · Kod va avtomatlashtirish",
+      "title": "Coding *skills*",
+      "items": [
+        { "n": "→", "text": "**Code Review** — xato, optimallashtirish, best practice." },
+        { "n": "→", "text": "**Workflow Automation** — vazifani bosqichlarga bo'ladi." },
+        { "n": "→", "text": "**Skill Creator** — yangi skill (.md) yasaydi." },
+        { "n": "→", "text": "**DevOps Assistant** — git, deploy, avtomatlashtirish." }
+      ]
+    },
+    {
+      "type": "cta",
+      "kicker": "Barcha 20 skill",
+      "title": "Hammasini *tayyor* oling",
+      "body": "20 ta skill, .md formatda — nusxa olishga tayyor.",
+      "action": "Izohga yozing:",
+      "keyword": "«SKILLS»",
+      "url": "to'liq qo'llanmani yuboraman"
+    }
+  ]
+}

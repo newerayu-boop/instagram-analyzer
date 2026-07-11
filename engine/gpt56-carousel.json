@@ -1,0 +1,61 @@
+{
+  "handle": "@Vaybcoder_qiz",
+  "wordmark": "Vaybecoder",
+  "slides": [
+    {
+      "type": "cover", "art": "bolt",
+      "kicker": "Yangilik · OpenAI",
+      "title": "GPT-5.6 *Sol* keldi — ishning kelajagi",
+      "sub": "Sol + Codex bilan shaxsiy va biznes hayotni **avtomatlashtiring**.",
+      "swipe": "oxirigacha suring"
+    },
+    {
+      "type": "stat",
+      "kicker": "Reyting",
+      "title": "Raqamlar *gapiradi*",
+      "stats": [
+        { "big": "88.8%", "label": "Terminal-Bench 2.1" },
+        { "big": "91.9%", "label": "«ultra» rejimda" },
+        { "big": "#1", "label": "hozirgi eng zo'r kod modeli" },
+        { "big": "30", "label": "kun sinovdan o'tdi" }
+      ],
+      "note": "Claude **Opus 4.8**, **Fable 5** va **Mythos 5**'dan ustun chiqdi."
+    },
+    {
+      "type": "steps",
+      "kicker": "Nima mumkin",
+      "title": "5 ta *imkoniyat*",
+      "items": [
+        { "n": "01", "text": "Pochtangiz har tong **kartochka**ga aylanadi — javob ovozingizda tayyor." },
+        { "n": "02", "text": "Slack, uchrashuv, yangilik → bitta **kunlik lenta** + keyingi qadam." },
+        { "n": "03", "text": "Agentga **o'z email**ini berasiz — u ishlarni o'zi hal qiladi." },
+        { "n": "04", "text": "Bir marta ishni ko'rsatasiz — u **skill** qilib takrorlaydi." },
+        { "n": "05", "text": "Uzoq maqsad qo'yasiz — **20 soat** o'zi ishlaydi." }
+      ]
+    },
+    {
+      "type": "story",
+      "kicker": "Qanday boshlash",
+      "title": "Atigi 3 *qadam*",
+      "paragraphs": [
+        "**Codex**ni oching va kompyuteringizga ruxsat bering.",
+        "U sizning ish uslubingizga qarab **nima qila olishini o'zi taklif qiladi**."
+      ],
+      "punch": "Bitta zerikarli ishdan boshlang."
+    },
+    {
+      "type": "callout",
+      "kicker": "Eng muhimi",
+      "text": "Sizsiz ishlaydigan **raqamli xodim** — bu endi *haqiqat*, injener bo'lish shart emas."
+    },
+    {
+      "type": "cta",
+      "kicker": "To'liq masterklass",
+      "title": "49 daqiqalik *masterklass*",
+      "body": "Sol + Codex bilan ishni sozlash — bepul video + qadamlar.",
+      "action": "Izohga yozing:",
+      "keyword": "«SOL»",
+      "url": "havolani yuboraman"
+    }
+  ]
+}

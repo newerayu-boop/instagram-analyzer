@@ -1,0 +1,104 @@
+<title>Claude Projects'ni to'g'ri sozlash | Vaybecoder</title>
+<style>
+  :root{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B; --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; --maxw:720px; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-line:#2A261F; } }
+  *{box-sizing:border-box;} body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;} a{color:var(--accent);}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;height:60px;} .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;} .brand .spark{color:var(--accent);} .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:60px 0 28px;border-bottom:1px solid var(--line);} .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(31px,6vw,48px);line-height:1.08;margin:16px 0 12px;text-wrap:balance;} h1 em{color:var(--accent);font-style:italic;} .lede{font-size:20px;color:var(--muted);margin:0;} .src{margin-top:20px;font-size:15px;color:var(--muted);}
+  section{padding:32px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(23px,4vw,30px);line-height:1.14;margin:0 0 4px;} h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  p{margin:12px 0;} strong{font-weight:700;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  ul.clean{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:12px;} ul.clean li{padding-left:28px;position:relative;} ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:4px;background:var(--accent);}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid var(--code-line);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:var(--code-bg);padding:10px 14px;border-bottom:1px solid var(--code-line);} .cmd .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
+  .cmd .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;} .cmd .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:14px;overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.55;white-space:pre-wrap;}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;} footer .spark{color:var(--accent);}
+  @media (max-width:560px){ body{font-size:17px;} }
+</style>
+<header class="top"><div class="wrap"><div class="brand"><span class="spark">✳</span> Vaybecoder <span class="hnd">· @Vaybcoder_qiz</span></div></div></header>
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">Claude · Projects · To'liq qo'llanma</div>
+  <h1>Claude <em>Projects</em>ni to'g'ri sozlash</h1>
+  <p class="lede">Ko'pchilik bilmaydigan usul. Har bir loyihani «AI xodim»ga aylantiruvchi 6 qismli shablon.</p>
+  <p class="src">Manba: X thread · o'zbekchaga Vaybecoder tayyorladi</p>
+</div>
+<section>
+  <h2><span class="n">·</span>Nega ko'pchilikda ishlamaydi</h2>
+  <ul class="clean">
+    <li><strong>System prompt juda umumiy.</strong> «Foydali yordamchi» — bu behuda. Claude sizning ovozingiz, auditoriyangiz va sifat mezoningizni bilmaydi.</li>
+    <li><strong>Knowledge fayllar yo'q.</strong> Faylsiz loyiha — shunchaki nomli suhbat.</li>
+    <li><strong>Bitta loyiha hamma ishni qiladi.</strong> Har bir ishni alohida loyihaga ajrating.</li>
+  </ul>
+</section>
+<section>
+  <h2><span class="n">·</span>6 qismli shablon</h2>
+  <p>Har bir kuchli loyihada 6 qism bor. Bittasini o'tkazib yuborsangiz — sifat pasayadi.</p>
+  <ul class="clean">
+    <li><strong>1. Identity</strong> — Claude bu loyihada kimligi. «Sen 2 yildan beri men bilan ishlayapsan, ovozimni bilasan».</li>
+    <li><strong>2. Rules</strong> — «DOIM» va «HECH QACHON» qoidalari. Eng muhim qism. Har safar tuzatgan narsangiz — yangi qoida.</li>
+    <li><strong>3. Process</strong> — qanday fikrlashi (rejalashtir → tuzilma → yoz → qoidaga tekshir → sifat).</li>
+    <li><strong>4. Output Format</strong> — natija aniq qanday ko'rinishi (format, uzunlik, tuzilma).</li>
+    <li><strong>5. Knowledge Files</strong> — style guide, auditoriya profili, raqobat, natija ma'lumoti, shablonlar.</li>
+    <li><strong>6. Onboarding</strong> — har suhbat boshidagi brifing (bugungi vazifa + kontekst).</li>
+  </ul>
+</section>
+<section>
+  <h2><span class="n">·</span>Tayyor system prompt (nusxa oling)</h2>
+  <p>Kvadrat qavs ichini o'zingiznikiga almashtiring va loyihaga qo'ying:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">System prompt</span><button class="copy">Nusxa olish</button></div><pre>IDENTITY:
+You are my [ROLE]. You have worked with me for two years. You know my voice, my audience, and my standards.
+Your job in this project is to [PRIMARY FUNCTION] for [AUDIENCE DESCRIPTION].
+You are [COMMUNICATION STYLE]. You never [ANTI-PATTERNS].
+
+RULES:
+ALWAYS:
+- [Rule 1]
+- [Rule 2]
+- [Rule 3]
+NEVER:
+- [Anti-rule 1]
+- [Anti-rule 2]
+
+PROCESS:
+1. [Think / Plan]
+2. [Outline / Structure]
+3. [Execute]
+4. [Review against rules]
+5. [Quality check]
+
+OUTPUT FORMAT:
+- Format: [EXACT FORMAT]
+- Length: [WORD COUNT]
+- Structure: [SECTION ORDER]
+- Style: [STYLE MARKERS]</pre></div>
+</section>
+<section>
+  <h2><span class="n">·</span>5 ta muhim Knowledge fayl</h2>
+  <ul class="clean">
+    <li><strong>Style guide</strong> (shart) — 3+ eng zo'r ishingiz; Claude ovozingizni shundan o'rganadi.</li>
+    <li><strong>Auditoriya profili</strong> (shart) — kim o'qiydi, nima biladi, nima kerak (1 sahifa).</li>
+    <li><strong>Raqobat tahlili</strong> — nimadan farq qilish; qaysi mavzular charchagan.</li>
+    <li><strong>Natija ma'lumoti</strong> — qaysi postlar eng yaxshi ishlagan (metrikalar).</li>
+    <li><strong>Shablonlar</strong> — eng zo'r formatlaringiz qayta ishlatiladigan shablon sifatida.</li>
+  </ul>
+</section>
+<section>
+  <h2><span class="n">·</span>Hammaga kerak 5 ta loyiha</h2>
+  <ul class="clean">
+    <li><strong>Kontent</strong> — yozuv ovozi, auditoriya, standartlar.</li>
+    <li><strong>Tadqiqot va tahlil</strong> — metodologiya, ishonchli manbalar, chuqurlik.</li>
+    <li><strong>Muloqot</strong> — email/xabar uslubi, professional ohang.</li>
+    <li><strong>Strategiya</strong> — biznes konteksti, maqsad, cheklovlar.</li>
+    <li><strong>Kod va texnik ish</strong> — tech stack, konventsiyalar, sifat standartlari.</li>
+  </ul>
+  <div class="callout">Natija: har vazifada <strong>90% kam tahrir</strong>. Yiliga 250+ soat — 6 ish haftasi qaytadi. Bir martalik sozlash ~45 daqiqa.</div>
+</section>
+<footer><p><span class="spark">✳</span> <strong>Vaybecoder</strong> · @Vaybcoder_qiz</p><p>Bugun birinchi loyihangizni sozlang 🚀</p></footer>
+</div>
+<script>document.querySelectorAll('.cmd').forEach(b=>{const c=b.querySelector('.copy'),p=b.querySelector('pre');c.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(p.innerText);const t=c.textContent;c.textContent='✓ Nusxa olindi';setTimeout(()=>c.textContent=t,1500);}catch(e){}});});</script>

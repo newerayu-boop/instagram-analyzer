@@ -1,0 +1,89 @@
+{
+  "handle": "@Vaybcoder_qiz",
+  "wordmark": "Vaybecoder",
+  "slides": [
+    {
+      "type": "cover", "image": "engine/assets/projects-cover.jpg",
+      "kicker": "Claude · Projects",
+      "title": "Claude *Projects*ni to'g'ri sozlang",
+      "sub": "Ko'pchilik bilmaydigan usul. **6 qismli** shablon.",
+      "swipe": "oxirigacha suring"
+    },
+    {
+      "type": "story",
+      "kicker": "Ko'pchilikning xatosi",
+      "title": "Bu — *loyiha emas*",
+      "paragraphs": [
+        "Loyiha ochadi, nom beradi, bitta jumla yozadi. Bu — **oddiy chat oynasi**.",
+        "Zo'r natija olayotganlar esa **maxsus AI xodim** quradi — u sizning ovozingiz, auditoriyangiz va standartingizni biladi."
+      ],
+      "punch": "Farqi katta."
+    },
+    {
+      "type": "steps",
+      "kicker": "Nega ishlamaydi",
+      "title": "3 ta *sabab*",
+      "items": [
+        { "n": "01", "text": "System prompt juda **umumiy** — «foydali yordamchi» hech nima demak." },
+        { "n": "02", "text": "**Knowledge fayllar** yo'q — Claude'da doimiy ma'lumot yo'q." },
+        { "n": "03", "text": "Bitta loyiha **hamma ishni** qiladi — natija o'rtacha." }
+      ]
+    },
+    {
+      "type": "steps",
+      "kicker": "6 qismli shablon",
+      "title": "Har loyihada *6 qism*",
+      "items": [
+        { "n": "01", "text": "**Identity** — Claude kim va roli nima." },
+        { "n": "02", "text": "**Rules** — «doim» va «hech qachon» qoidalari." },
+        { "n": "03", "text": "**Process** — qanday fikrlashi." },
+        { "n": "04", "text": "**Output** — natija formati." },
+        { "n": "05", "text": "**Knowledge** — style guide, auditoriya, ma'lumot." },
+        { "n": "06", "text": "**Onboarding** — har suhbat boshidagi brifing." }
+      ]
+    },
+    {
+      "type": "steps",
+      "kicker": "Knowledge fayllar",
+      "title": "*5 ta* muhim fayl",
+      "items": [
+        { "n": "→", "text": "**Style guide** — 3+ eng zo'r ishingiz (ovozingiz)." },
+        { "n": "→", "text": "**Auditoriya** profili — kim o'qiydi, nima kerak." },
+        { "n": "→", "text": "**Raqobat** tahlili — nimadan farq qilish." },
+        { "n": "→", "text": "**Natija** ma'lumoti — qaysi post ishlagan." }
+      ]
+    },
+    {
+      "type": "steps",
+      "kicker": "Hammaga kerak",
+      "title": "*5 ta* loyiha",
+      "items": [
+        { "n": "→", "text": "**Kontent** ishlab chiqarish." },
+        { "n": "→", "text": "**Tadqiqot** va tahlil." },
+        { "n": "→", "text": "**Muloqot** — xat, xabar." },
+        { "n": "→", "text": "**Strategiya** · **Kod** va texnik ish." }
+      ]
+    },
+    {
+      "type": "stat",
+      "kicker": "Natija",
+      "title": "*45 daqiqa* → butun yil",
+      "stats": [
+        { "big": "90%", "label": "kamroq tahrir vaqti" },
+        { "big": "250+", "label": "soat/yil tejaladi" },
+        { "big": "6", "label": "ish haftasi qaytadi" },
+        { "big": "45 daq", "label": "bir martalik sozlash" }
+      ],
+      "note": "Ikki jumlalik topshiriq — **tayyor natija**."
+    },
+    {
+      "type": "cta",
+      "kicker": "To'liq shablon",
+      "title": "To'liq *shablon* + misollar",
+      "body": "Barcha 6 qism + tayyor system prompt namunasi.",
+      "action": "Izohga yozing:",
+      "keyword": "«PROJECT»",
+      "url": "to'liq qo'llanmani yuboraman"
+    }
+  ]
+}
