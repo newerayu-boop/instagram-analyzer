@@ -20,7 +20,7 @@ const inline = (t = '') => esc(t)
   .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   .replace(/\*(.+?)\*/g, '<em class="acc">$1</em>');
 
-const TOTAL = 5;
+const TOTAL = 9;
 const page = (i) => `${String(i + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}`;
 
 const dots = (i) => `<div class="dots">${
@@ -108,6 +108,32 @@ function featureSlide(i, kick, titleHTML, body, cardHTML) {
   </section>`;
 }
 
+function tagsSlide(i, kick, titleHTML, tags, more, punchHTML) {
+  const chips = tags.map(t => `<span class="tag">${esc(t)}</span>`).join('') +
+    `<span class="tag more">${esc(more)}</span>`;
+  return `<section class="slide light">
+    <div class="top">${kicker(kick)}<span class="page">${page(i)}</span></div>
+    <div class="grow center">
+      <h2 class="h">${titleHTML}</h2>
+      <div class="tags">${chips}</div>
+      <div class="tagpunch">${punchHTML}</div>
+    </div>
+    ${footer(i)}
+  </section>`;
+}
+
+function ctaSlide(i, kick, titleHTML, body, btn) {
+  return `<section class="slide light">
+    <div class="top">${kicker(kick)}<span class="page">${page(i)}</span></div>
+    <div class="grow center">
+      <h2 class="h">${titleHTML}</h2>
+      <p class="body">${body}</p>
+      <div class="cta-btn">${esc(btn)}</div>
+    </div>
+    ${footer(i)}
+  </section>`;
+}
+
 const slides = [
   cover(0),
   listSlide(1),
@@ -120,6 +146,23 @@ const slides = [
     `Claude <span class="acc">sizni taniydi</span>`,
     `Kimligingiz, biznesingiz va yozish uslubingiz — hammasi yodida.`,
     `Endi «men falonchiman, biznesim bunday...» deb tushuntirish shart emas.`),
+  featureSlide(5, 'FUNKSIYA 03 · SCHEDULED TASKS',
+    `Siz uxlaysiz —<br><span class="acc">Claude ishlaydi</span>`,
+    `Har kuni ertalab soat 7:00 da bozor tahlili, kontent g'oyalari va hisobotlar tayyor bo'ladi.`,
+    `Bu — haqiqiy xodim.`),
+  featureSlide(6, 'FUNKSIYA 04 · CODE + DESIGN',
+    `<span class="acc">Kod yozmasdan</span><br>sayt va ilova`,
+    `Kod bilishingiz shart emas. Nima kerakligini oddiy so'z bilan aytasiz —`,
+    `Claude o'zi yaratib beradi.`),
+  tagsSlide(7, 'YANA NIMALAR BOR?',
+    `Bular — 17 tadan<br><span class="acc">atigi 4 tasi edi</span>`,
+    ['Skills', 'Artifacts', 'Cowork', "Chrome'da Claude", 'CLAUDE.md', 'Adaptive Thinking'],
+    'va yana 7 tasi...',
+    `Har biri — bitta <span class="acc">xodimning ishini</span> bajaradi.`),
+  ctaSlide(8, "TO'LIQ QO'LLANMA",
+    `Barcha funksiyalar —<br>bitta hujjatda`,
+    `Direktga «+» yozing — barcha ma'lumotlar bilan <strong>to'liq hujjatni bepul</strong> yuboraman.`,
+    'Direktga «+» yozing'),
 ];
 
 function html() {
@@ -192,6 +235,23 @@ function html() {
   .hcard .hbar{position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--accent);}
   .hcard .hdot{width:22px;height:22px;border-radius:50%;background:var(--accent);flex:0 0 auto;margin-left:8px;}
   .hcard .htext{font-family:${SERIF};font-weight:800;font-size:44px;line-height:1.24;color:var(--ink);}
+
+  /* tags grid */
+  .tags{margin-top:40px;display:flex;flex-wrap:wrap;gap:22px;max-width:900px;}
+  .tag{font-family:${SERIF};font-weight:700;font-size:40px;color:var(--ink);
+    background:var(--card);border-radius:22px;padding:22px 34px;
+    box-shadow:0 16px 36px -26px rgba(35,33,28,.45);}
+  .tag.more{font-style:italic;color:var(--accent);font-weight:700;
+    background:color-mix(in srgb,var(--accent) 12%, var(--bg));
+    box-shadow:none;border:2px solid color-mix(in srgb,var(--accent) 34%, transparent);}
+  .tagpunch{margin-top:42px;font-family:${SERIF};font-weight:800;font-size:60px;
+    line-height:1.14;color:var(--ink);}
+  .tagpunch .acc{color:var(--accent);font-style:normal;}
+
+  /* cta button */
+  .cta-btn{margin-top:44px;align-self:flex-start;background:var(--accent);color:#FBF7F1;
+    font-weight:800;font-size:48px;padding:34px 62px;border-radius:60px;
+    box-shadow:0 26px 60px -22px color-mix(in srgb,var(--accent) 80%, transparent);}
 
   /* footer */
   .rule{margin-top:auto;height:1px;background:var(--line);opacity:.8;}
