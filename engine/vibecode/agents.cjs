@@ -123,7 +123,80 @@ function s5() {
   </section>`;
 }
 
-const slides = [s1(), s2(), s3(), s4(), s5()];
+function s6() {
+  return `<section class="slide dark">
+    ${topbar('HAQIQIY MISOL', 5)}
+    <h2 class="h">Bir xil ish —<br><span class="acc">ikki xil narx</span></h2>
+    <p class="body small">Misol: 10 ta bog' haqida 20 ta faktni tekshirish</p>
+    <div class="stats">
+      <div class="scard a"><div class="lab">Yolg'iz model</div><div class="big">$4</div><div class="sub">608 soniya</div></div>
+      <div class="scard b"><div class="lab">Jamoa</div><div class="big">$1,6</div><div class="sub">194 soniya</div></div>
+    </div>
+    <div class="hcard center"><span class="htext">Sifat bir xil. <span class="acc">2,5x arzon, 3x tez.</span></span></div>
+    ${footer(5)}
+  </section>`;
+}
+
+function listRows(items, marker) {
+  return items.map(([a, b, c]) => {
+    const mk = marker === 'num'
+      ? `<span class="lnum">${a}</span>`
+      : `<span class="lx">&times;</span>`;
+    return `<div class="lrow">${mk}<div><b>${esc(b)}</b><span class="lsub">${esc(c)}</span></div></div>`;
+  }).join('');
+}
+
+function s7() {
+  const items = [
+    ['01', `Ma'lumot yig'uvchi`, `Sahifa va fayllarni o'qib, eng muhimini qisqa qaytaradi.`],
+    ['02', `Kod yozuvchi`, `Kod yozish va o'zgartirish ishlarini bajaradi.`],
+    ['03', `Boshliqqa qoidalar`, `Yordamchilardan qachon foydalanishni o'rgatadi.`],
+    ['04', `Sinab ko'rish`, `Jamoani real vazifada tekshiradi.`],
+    ['05', `«Maslahatchi» usuli`, `Arzon model yozadi, qiyin joyda kuchlidan maslahat so'raydi.`],
+  ];
+  return `<section class="slide light">
+    ${topbar('TAYYOR TIZIM', 6)}
+    ${robot('r-corner')}
+    <h2 class="h">Atigi 5 ta<br><span class="acc">tayyor buyruq</span></h2>
+    <div class="lrows tight">${listRows(items, 'num')}</div>
+    ${footer(6)}
+  </section>`;
+}
+
+function s8() {
+  const items = [
+    [``, `Ko'p bosqichli qilish`, `Yordamchi boshqa yordamchini chaqirmasin. 1 boshliq yetarli.`],
+    [``, `Mayda ishga jamoa`, `Kichik ish (1–2 manba) yolg'iz arzonroq bajariladi.`],
+    [``, `Uzun matn olish`, `Yordamchi qisqa hisobot bersin — aks holda tejamaysiz.`],
+  ];
+  return `<section class="slide dark">
+    ${topbar(`EHTIYOT BO'LING`, 7)}
+    ${robot('r-corner')}
+    <h2 class="h">3 ta oddiy<br><span class="acc">xato</span></h2>
+    <div class="lrows">${listRows(items, 'x')}</div>
+    ${hcard(`Sodda, tekis jamoa — eng yaxshisi.`)}
+    ${footer(7)}
+  </section>`;
+}
+
+function s9() {
+  return `<section class="slide light">
+    ${topbar(`BEPUL QO'LLANMA`, 8)}
+    ${robot('r-cta')}
+    <div class="grow center">
+      <h2 class="h">5 ta buyruqni<br><span class="acc">hoziroq oling</span></h2>
+      <p class="body">To'liq qo'llanma + 5 ta tayyor buyruq. Nusxa olib, bugundan ishlatasiz.</p>
+      <div class="ctacard">
+        <div class="cta-l">Directga yozing:</div>
+        <div class="cta-k">«JAMOA»</div>
+        <div class="cta-u">&rarr; men to'liq faylni yuboraman</div>
+      </div>
+    </div>
+    ${footer(8)}
+  </section>`;
+}
+
+const slides = [s1(), s2(), s3(), s4(), s5(), s6(), s7(), s8(), s9()];
 
 function html() {
   return `<!doctype html><html lang="uz"><head><meta charset="utf-8"><style>
@@ -192,6 +265,41 @@ function html() {
   .role .rdot{width:20px;height:20px;border-radius:50%;background:var(--accent);flex:0 0 auto;margin-top:12px;}
   .role b{display:block;font-family:${SERIF};font-weight:800;font-size:44px;color:var(--ink);line-height:1.1;}
   .role span{display:block;margin-top:6px;font-size:31px;color:var(--muted);line-height:1.3;}
+
+  .body.small{font-size:32px;margin-top:14px;}
+
+  /* stat cards (slide 6) */
+  .stats{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  .scard{border-radius:26px;padding:34px 30px 40px;text-align:center;}
+  .scard.a{background:#37312A;}
+  .scard.b{background:#F5F2EC;}
+  .scard .lab{font-weight:700;font-size:31px;padding-bottom:18px;margin-bottom:22px;border-bottom:1px solid;}
+  .scard.a .lab{color:#9a927f;border-color:#4a4238;}
+  .scard.b .lab{color:#23211C;border-color:#D7D2C6;}
+  .scard .big{font-family:${SERIF};font-weight:800;font-size:104px;line-height:.95;}
+  .scard.a .big{color:#8f877b;} .scard.b .big{color:var(--accent);}
+  .scard .sub{margin-top:16px;font-size:34px;}
+  .scard.a .sub{color:#8f877b;} .scard.b .sub{color:#4a453d;}
+  .hcard.center{justify-content:center;text-align:center;margin-top:30px;}
+  .hcard.center .htext{font-size:42px;}
+
+  /* list rows (slides 7-8) */
+  .lrows{margin-top:14px;display:flex;flex-direction:column;}
+  .lrow{display:flex;gap:22px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--line);}
+  .lrows.tight .lrow{padding:16px 0;}
+  .lrow:last-child{border-bottom:none;}
+  .lnum{flex:0 0 auto;width:58px;font-family:${SERIF};font-weight:800;font-size:40px;color:var(--accent);padding-top:6px;}
+  .lx{flex:0 0 auto;width:40px;height:40px;border:2.6px solid var(--accent);border-radius:50%;color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-size:26px;margin-top:8px;}
+  .lrow b{display:block;font-family:${SERIF};font-weight:800;font-size:43px;color:var(--ink);line-height:1.08;}
+  .lrow .lsub{display:block;margin-top:6px;font-size:30px;color:var(--muted);line-height:1.3;}
+
+  /* cta card (slide 9) */
+  .ctacard{margin-top:38px;background:var(--card);border-radius:28px;padding:40px 46px;box-shadow:0 22px 48px -30px rgba(20,16,12,.5);}
+  .cta-l{font-size:34px;color:var(--muted);}
+  .cta-k{font-family:${SERIF};font-weight:800;font-size:88px;color:var(--accent);margin:6px 0 8px;line-height:1;}
+  .cta-u{font-weight:800;font-size:34px;color:var(--ink);}
+  .r-cta{right:-40px;top:400px;width:440px;height:506px;opacity:.5;}
 
   /* footer */
   .rule{margin-top:auto;height:1px;background:var(--line);}
