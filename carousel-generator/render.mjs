@@ -38,6 +38,7 @@ for (const car of data.carousels) {
       tag: car.tag || '',
       index: i + 1,
       total,
+      theme: data.theme || 'dark',
     };
     const html = renderSlide(car.slides[i], ctx);
     const htmlPath = path.join(buildDir, `${car.id}-${i + 1}.html`);
