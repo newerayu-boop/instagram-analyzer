@@ -1,0 +1,198 @@
+<title>Claude Fable 5 — to'liq qo'llanma · AI Strateg</title>
+<style>
+  :root{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; --ok:#3E7C5A; --warn:#C25A3A; --maxw:720px; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488;
+    --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; --ok:#5FA37B; --warn:#E0794C; } }
+  :root[data-theme="light"]{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; --ok:#3E7C5A; --warn:#C25A3A; }
+  :root[data-theme="dark"]{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C;
+    --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; --ok:#5FA37B; --warn:#E0794C; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);}
+  .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:60px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(32px,6vw,50px);line-height:1.08;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  section{padding:36px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(25px,4vw,32px);line-height:1.12;margin:0 0 6px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:22px 0 4px;}
+  p{margin:12px 0;} strong{font-weight:700;} code{background:var(--panel);padding:2px 7px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86em;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  ul.clean{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:12px;}
+  ul.clean li{padding-left:28px;position:relative;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:4px;background:var(--accent);}
+  ul.clean li b{color:var(--ink);}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;}
+  .two .box{background:var(--panel);border-radius:14px;padding:18px 20px;}
+  .two .box h3{margin:0 0 10px;font-size:16px;letter-spacing:.04em;text-transform:uppercase;font-family:inherit;font-weight:800;}
+  .two .box.ok h3{color:var(--ok);} .two .box.no h3{color:var(--warn);}
+  .two .box ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;}
+  .two .box li{padding-left:22px;position:relative;font-size:16px;}
+  .two .box.ok li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:800;}
+  .two .box.no li::before{content:"✕";position:absolute;left:0;color:var(--warn);font-weight:800;}
+  ol.steps{padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:16px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;background:var(--ink);
+    color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:Georgia,serif;}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid var(--code-line);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:var(--code-bg);padding:10px 14px;border-bottom:1px solid var(--code-line);}
+  .cmd .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
+  .cmd .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .cmd .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:14px;overflow-x:auto;
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;line-height:1.5;white-space:pre-wrap;}
+  .warnbox{background:color-mix(in srgb,var(--warn) 12%,var(--panel));border-left:4px solid var(--warn);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  .warnbox b{color:var(--warn);}
+  .pricebar{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0;}
+  .pricebar .pill{background:var(--panel);border-radius:12px;padding:12px 18px;font-size:16px;}
+  .pricebar .pill b{color:var(--accent);font-size:20px;}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (max-width:560px){ body{font-size:17px;} .two{grid-template-columns:1fr;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">Claude Fable 5 · To'liq qo'llanma</div>
+  <h1>Claude <em>Fable 5</em> bilan hamma narsani quring</h1>
+  <p class="lede">Anthropic'ning eng kuchli modeli. Nima ekani, qanday yoqiladi, qachon ishlatiladi va hech kim aytmaydigan sirlar — hammasi oddiy tilda.</p>
+</div>
+
+<section>
+  <h2><span class="n">·</span>Fable 5 nima</h2>
+  <p>Fable 5 — Anthropic chiqargan eng kuchli model. Bu shunchaki aqlliroq suhbatdosh emas. U <strong>katta, uzoq davom etadigan ishlar</strong> uchun qurilgan — ilgari butun jamoa va bir necha hafta kerak bo'ladigan loyihalar uchun.</p>
+  <p>Unga yetarlicha katta maqsad bering — u <strong>o'zi rejalashtiradi, quradi, o'zini tekshiradi</strong> va tugaguncha soatlab, hatto kunlab ishlaydi.</p>
+  <div class="callout"><strong>Haqiqiy misol:</strong> Stripe unga 50 million qator koddan iborat ishni berdi. Qo'lda bu ish taxminan 2 oy deb baholangan edi. Fable 5 uni <strong>bir kunda</strong> tugatdi.</div>
+  <p>U Opus'dan ham baland — yangi darajadagi birinchi model. Xuddi shu kuch, lekin mustahkamroq himoya bilan. Uni ba'zi xavfli so'rovlarni rad etadigan qilib sozlashgan.</p>
+  <ul class="clean">
+    <li><b>1 million so'z xotira</b> — butun loyihani bir vaqtda ko'radi.</li>
+    <li><b>Bir javobda 128 minggacha</b> — uzun natija chiqara oladi.</li>
+    <li><b>Dasturlash testida 95%</b> — eng yuqori natijalardan biri.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Qanday yoqiladi</h2>
+  <p>Qayerda ishlashingizga qarab, 3 xil yo'l bor:</p>
+  <ol class="steps">
+    <li><strong>Claude saytida:</strong> model ro'yxatidan <code>Fable 5</code>ni tanlang.</li>
+    <li><strong>Claude Code'da:</strong> <code>/model</code> deb yozing va <code>Fable 5</code>ga almashtiring.</li>
+    <li><strong>Dasturchilar uchun:</strong> model nomini <code>claude-fable-5</code> deb bering.</li>
+  </ol>
+  <p>U yirik bulut xizmatlarida ham ishlaydi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Qachon ishlatish — va qachon yo'q</h2>
+  <p>Fable 5 <strong>Opus'dan 2 barobar qimmat</strong>. Shuning uchun uni hamma ishga ishlatish — pulni tez sarflashning yo'li. Uni faqat eng og'ir ish uchun saqlang.</p>
+  <div class="two">
+    <div class="box ok"><h3>Qachon ishlating</h3>
+      <ul>
+        <li>Katta ko'chirish ishi</li>
+        <li>Ko'p bosqichli, uzoq loyiha</li>
+        <li>Ulkan kodni qayta tuzish</li>
+        <li>Yuzlab hujjatni chuqur o'rganish</li>
+        <li>Boshqa modellar uddasidan chiqmaganda</li>
+      </ul>
+    </div>
+    <div class="box no"><h3>Qachon kerak emas</h3>
+      <ul>
+        <li>Kichik yoki tez ish</li>
+        <li>Oddiy tahrir, kundalik suhbat</li>
+        <li>Tezlik kerak bo'lganda (u sekinroq o'ylaydi)</li>
+        <li>Xavfsizlikka oid nozik ishlar</li>
+        <li>Arzon modellar uddalaydigan ishlar</li>
+      </ul>
+    </div>
+  </div>
+  <p class="callout"><strong>Oddiy qoida:</strong> Fable — eng qiyin va eng uzoq ishlar uchun mutaxassis. Kundalik ishga arzon modellarni ishlating.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Uni ishga solishning to'g'ri tartibi</h2>
+  <p>Fable'dan eng ko'p foyda oladigan 4 qadam:</p>
+
+  <h3>1-qadam. Rejani arzon model bilan tuzing</h3>
+  <p>Fable'ga xom fikrni bermang — rejalashtirish qimmatga tushadi. Avval Opus yoki Sonnet bilan aniq reja yozdiring:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Arzon modelga</span><button class="copy">Nusxa olish</button></div><pre>Bu vazifani o'rgan va boshqa AI uchun batafsil reja yoz: [vazifang].
+Ichida bo'lsin: maqsad, cheklovlar, ishlatiladigan vositalar,
+fayllar tuzilishi, nozik holatlar va "tugadi" degani nima.
+Shunchalik aniq yozki, AI hech narsani taxmin qilmasin.</pre></div>
+
+  <h3>2-qadam. Rejani Fable 5'ga bering</h3>
+  <p>Modelni Fable 5'ga almashtiring va <strong>hammasini birdan</strong> bering: reja, kod, hujjatlar. 1 million so'z xotira shuning uchun — u hamma narsani bir vaqtda ko'rganda eng yaxshi ishlaydi.</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Fable 5'ga</span><button class="copy">Nusxa olish</button></div><pre>Mana to'liq reja va butun loyiha. Boshidan oxirigacha bajar:
+bosqichlarni o'zing rejalashtir, kerak joyda yordamchilarga bo'l,
+har bosqichga tekshiruv yoz va "tugadi" sharti bajarilmaguncha to'xtama.
+Noaniq narsani taxmin qilma — menga ayt.</pre></div>
+
+  <h3>3-qadam. Aniq maqsad qo'ying</h3>
+  <p>Uzoq ishlar uchun <strong>aniq, tekshiriladigan shart</strong> qo'ying — «bo'ldi shekilli» emas. Bunda alohida model shartni tekshiradi, ishni yozgan model o'zini o'zi baholamaydi.</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Maqsad</span><button class="copy">Nusxa olish</button></div><pre>/goal barcha tekshiruvlar o'tsin, kod toza bo'lsin
+va ilova xatosiz ishga tushsin</pre></div>
+
+  <h3>4-qadam. Jarayonni emas — natijani tekshiring</h3>
+  <p>Tayyor ishga qayting: tekshiruv natijalarini o'qing, o'zgarishlarni ko'ring, maqsadga mosligini solishtiring. Agar har qadamni o'zingiz boshqarayotgan bo'lsangiz — demak ish Fable uchun juda kichik yoki reja juda noaniq edi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Xarajatni kamaytirish — 3 sozlama</h2>
+  <p>Fable qimmat, shuning uchun to'g'ri sozlash muhim. Uch narsa katta farq qiladi:</p>
+  <ul class="clean">
+    <li><b>Ma'lumotni saqlab qo'ying.</b> O'zgarmaydigan katta qismlarni (asosiy ko'rsatma, kod, hujjatlar) takror yubormang. Bu xarajatni <strong>90% gacha</strong> kamaytiradi. Barqaror qism boshida, o'zgaradigani oxirida tursin.</li>
+    <li><b>«O'ylash»ni kerak joyga sarflang.</b> Eng qiyin qismlarga chuqur o'ylashni qo'ying, oddiy ishlarga (nom o'zgartirish, formatlash) past darajani bering. Siz o'ylashga pul to'laysiz — uni faqat kerak joyga sarflang.</li>
+    <li><b>Rad etishga zaxira qo'ying.</b> Fable ba'zan ko'proq so'rovlarni rad etadi. Rad etilgan so'rov xato emas — oddiy javob sifatida keladi va qaysi filtr ishga tushganini aytadi. Shu holatda ishingiz avtomatik Opus'ga o'tsin qilib qo'ying — rad etilgan so'rov Fable narxida hisoblanmaydi.</li>
+  </ul>
+  <div class="callout">Loyihangiz qoidalarini alohida faylga yozib qo'ying — shunda Fable har safar ularni qaytadan o'rganmaydi. Takrorlamagan har bir ko'rsatma — tejalgan pul.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Halol ogohlantirishlar</h2>
+  <ul class="clean">
+    <li><b>U ko'proq rad etadi.</b> Himoya kuchaytirilgani uchun ba'zi begunoh so'rovlarni ham (xato qidirish, xavfsizlik tadqiqoti) rad etishi yoki jimgina Opus'ga o'tkazishi mumkin. Zaxira qo'ysangiz, bu ishingizni to'xtatmaydi.</li>
+    <li><b>Bepul muddat qisqa.</b> Ko'p ishlatadiganlar bepul chegarani tez tugatib qo'yishi mumkin. Keyin u pullik bo'ladi.</li>
+    <li><b>Ma'lumot 30 kun saqlanadi.</b> Qattiq maxfiylik qoidalari bo'lgan jamoalar uchun bu muhim — nol-saqlash rejimi bu modelda yo'q.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Xulosa</h2>
+  <p>Fable 5 — yaxshiroq suhbatdosh emas. U ilgari <strong>jamoa va oylar</strong> kerak bo'lgan ish uchun mutaxassis: ulkan ko'chirishlar, ko'p kunlik qurishlar, chuqur tadqiqot. Stripe u bilan 2 oylik ishni bir kunga aylantirdi.</p>
+  <p>Lekin bu kundalik vosita emas. U qimmat, sekinroq, va himoyasi ba'zi ishlarga xalaqit beradi. <strong>Eng qiyin ishlaringiz uchun ishlating, qolganiga arzon modellarni qo'ying</strong> — shunda u qo'lingizdagi eng kuchli qurollardan biriga aylanadi.</p>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>AI, Claude va real ishlaydigan tizimlar haqida — obuna bo'ling 🚀</p>
+</footer>
+</div>
+
+<script>
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+  });
+  document.querySelectorAll('.cmd').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(pre.innerText);
+      const t=btn.textContent; btn.textContent='✓ Nusxa olindi'; setTimeout(()=>btn.textContent=t,1500);}catch(e){} });
+  });
+</script>

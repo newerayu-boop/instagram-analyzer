@@ -1,13 +1,9 @@
 node_modules/
 engine/out/
-engine/vibecode/out/
+*-out/
+scratch_*
 .env
 .env.local
 *.log
 data/
 scratchpad/
-engine/vibecode/gold-out/
-engine/vibecode/agents-out/
-engine/aistrateg/out/
-scratch_fv/
-scratch_docx/
