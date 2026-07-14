@@ -16,7 +16,7 @@ const HANDLE = '@vibecoder_qiz';
 const TOTAL = 10;
 
 const pg = (i) => `${String(i + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}`;
-const spark = (c = 'var(--accent)') => `<svg class="spk" viewBox="0 0 24 24"><path d="M12 1l2.2 7.4L21.5 6l-5.1 5.6 6.6 3.4-7.6.5 2.3 7.4L12 17l-5.7 5.9 2.3-7.4L1 15l6.6-3.4L2.5 6l7.3 2.4z" fill="${c}"/></svg>`;
+const spark = (c = 'var(--accent)') => `<svg class="spk" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="${c}"/></svg>`;
 const deco = () => `<div class="paper"></div>`;
 const topbar = (kick, i) => `<div class="top"><div class="kick">${spark()}${kick}</div><span class="page">${pg(i)}</span></div>`;
 const footer = () => `<div class="rule"></div><div class="footer"><span class="fbrand">${spark()}VIBE CODING</span><span class="fhandle">${HANDLE}</span></div>`;
@@ -201,15 +201,15 @@ function html() {
   @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@400;500;600;700;800;900&display=swap');
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:#000;}
-  .slide{--bg:#F4EFE2; --ink:#2A2620; --muted:#75705F; --accent:#7A5AF0; --line:#DED7C6; --card:#FBF8EF; --cardln:#E6DECB;
+  .slide{--bg:#F4EFE2; --ink:#2A2620; --muted:#75705F; --accent:#C4623B; --line:#DED7C6; --card:#FBF8EF; --cardln:#E6DECB;
     --g:#5E9E63; --p:#8A6FC6; --b:#4E86C4; --o:#D08A3E; --r:#D0574B;
     width:${W}px;height:${H}px;position:relative;overflow:hidden;background:var(--bg);color:var(--ink);
     font-family:${SANS};padding:150px 66px 178px;display:flex;flex-direction:column;justify-content:center;}
   .paper{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(0,0,0,.028) 1px, transparent 1px);background-size:100% 46px;opacity:.7;}
-  .paper::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 78% 12%, rgba(122,90,240,.12), transparent 46%);}
+  .paper::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 78% 12%, rgba(196,98,59,.10), transparent 46%);}
   .slide>*{position:relative;z-index:1;}
   .u{position:relative;color:var(--accent);white-space:nowrap;}
-  .u::after{content:'';position:absolute;left:-2px;right:-2px;bottom:6px;height:14px;background:rgba(122,90,240,.26);border-radius:8px;z-index:-1;transform:rotate(-1deg);}
+  .u::after{content:'';position:absolute;left:-2px;right:-2px;bottom:6px;height:14px;background:rgba(196,98,59,.24);border-radius:8px;z-index:-1;transform:rotate(-1deg);}
   b,strong{font-weight:800;color:var(--ink);}
   .grow{flex:1;display:flex;flex-direction:column;} .grow.center{justify-content:center;align-items:flex-start;gap:2px;}
   .mid{position:absolute;top:49%;left:66px;right:66px;transform:translateY(-50%);display:flex;flex-direction:column;gap:22px;}

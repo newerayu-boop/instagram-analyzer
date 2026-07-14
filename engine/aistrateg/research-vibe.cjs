@@ -16,7 +16,7 @@ const HANDLE = '@vibecoder_qiz';
 const TOTAL = 10;
 
 const pg = (i) => `${String(i + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}`;
-const spark = (c = 'var(--accent)') => `<svg class="spk" viewBox="0 0 24 24"><path d="M12 1l2.2 7.4L21.5 6l-5.1 5.6 6.6 3.4-7.6.5 2.3 7.4L12 17l-5.7 5.9 2.3-7.4L1 15l6.6-3.4L2.5 6l7.3 2.4z" fill="${c}"/></svg>`;
+const spark = (c = 'var(--accent)') => `<svg class="spk" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="${c}"/></svg>`;
 const deco = (cls = '') => `<div class="bg-grid"></div><div class="glow ${cls}"></div>`;
 const topbar = (kick, i) => `<div class="top"><div class="kick">${spark()}${kick}</div><span class="page">${pg(i)}</span></div>`;
 const footer = () => `<div class="rule"></div><div class="footer"><span class="fbrand">${spark()}VIBE CODING</span><span class="fhandle">${HANDLE}</span></div>`;
@@ -190,8 +190,8 @@ function s8() {
     <p class="body">Har bir fayl Obsidian'da qoladi. Claude ularni o'qiydi va sizni — qanday fikrlashingizni — o'rganadi.</p>
     <div class="chart">
       <svg viewBox="0 0 520 340" preserveAspectRatio="none" class="chart-svg">
-        <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B7DFF" stop-opacity=".5"/><stop offset="1" stop-color="#9B7DFF" stop-opacity="0"/></linearGradient></defs>
-        <path d="${area}" fill="url(#g)"/><path d="${line}" fill="none" stroke="#9B7DFF" stroke-width="5" stroke-linecap="round"/>
+        <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D0703F" stop-opacity=".5"/><stop offset="1" stop-color="#D0703F" stop-opacity="0"/></linearGradient></defs>
+        <path d="${area}" fill="url(#g)"/><path d="${line}" fill="none" stroke="#D0703F" stroke-width="5" stroke-linecap="round"/>
       </svg>
       <div class="chart-x"><span>1-kun</span><span>1-hafta</span><span>1-oy</span><span>1-yil</span></div>
     </div>
@@ -238,10 +238,10 @@ function html() {
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700;800;900&display=swap');
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:#000;}
-  .slide{--bg:#ECE7DE; --ink:#1F1B16; --muted:#6E6A60; --accent:#7A5AF0; --line:#D8D2C6; --card:#F6F2EA;
+  .slide{--bg:#ECE7DE; --ink:#1F1B16; --muted:#6E6A60; --accent:#C4623B; --line:#D8D2C6; --card:#F6F2EA;
     width:${W}px;height:${H}px;position:relative;overflow:hidden;background:var(--bg);color:var(--ink);
     font-family:${SANS};padding:150px 66px 178px;display:flex;flex-direction:column;justify-content:center;}
-  .slide.dark{--bg:#100E0B; --ink:#F3EFE8; --muted:#8F887B; --accent:#9B7DFF; --line:#2C271F; --card:#1C1813; background:#100E0B;}
+  .slide.dark{--bg:#100E0B; --ink:#F3EFE8; --muted:#8F887B; --accent:#D0703F; --line:#2C271F; --card:#1C1813; background:#100E0B;}
   .bg-grid,.glow{position:absolute;z-index:0;}
   .bg-grid{inset:0;background-image:radial-gradient(circle, rgba(0,0,0,.05) 1.6px, transparent 1.6px);background-size:36px 36px;opacity:.5;}
   .slide.dark .bg-grid{background-image:radial-gradient(circle, rgba(255,255,255,.05) 1.6px, transparent 1.6px);}
@@ -305,7 +305,7 @@ function html() {
   .way{display:flex;align-items:flex-start;gap:22px;background:var(--card);border-radius:18px;padding:24px 28px;}
   .way-n{flex:0 0 auto;width:56px;height:56px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;}
   .way div b{font-size:33px;color:var(--ink);} .way div span{display:block;font-size:26px;color:var(--muted);margin-top:4px;line-height:1.3;}
-  .way code{font-family:${MONO};background:rgba(122,90,240,.16);color:var(--accent);padding:1px 8px;border-radius:6px;font-size:23px;}
+  .way code{font-family:${MONO};background:rgba(196,98,59,.14);color:var(--accent);padding:1px 8px;border-radius:6px;font-size:23px;}
 
   /* terminal */
   .term{margin-top:auto;background:#0c0a08;border:1px solid #2a251d;border-radius:18px;overflow:hidden;}
@@ -321,7 +321,7 @@ function html() {
   .chart{margin-top:4px;background:var(--card);border-radius:20px;padding:26px 30px 18px;}
   .chart-svg{width:100%;height:300px;display:block;}
   .chart-x{display:flex;justify-content:space-between;margin-top:8px;font-size:24px;color:var(--muted);font-weight:600;}
-  .mini{margin-top:auto;font-size:27px;color:var(--muted);line-height:1.4;} .mini code{font-family:${MONO};background:rgba(155,125,255,.18);color:var(--accent);padding:2px 9px;border-radius:6px;font-size:24px;}
+  .mini{margin-top:auto;font-size:27px;color:var(--muted);line-height:1.4;} .mini code{font-family:${MONO};background:rgba(208,112,63,.16);color:var(--accent);padding:2px 9px;border-radius:6px;font-size:24px;}
 
   /* s9 chips */
   .chips{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:8px 0;}

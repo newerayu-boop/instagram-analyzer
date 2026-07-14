@@ -16,7 +16,7 @@ const HANDLE = '@vibecoder_qiz';
 const TOTAL = 9;
 
 const pg = (i) => `${String(i + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}`;
-const spark = (c = 'var(--accent)') => `<svg class="spk" viewBox="0 0 24 24"><path d="M12 1l2.2 7.4L21.5 6l-5.1 5.6 6.6 3.4-7.6.5 2.3 7.4L12 17l-5.7 5.9 2.3-7.4L1 15l6.6-3.4L2.5 6l7.3 2.4z" fill="${c}"/></svg>`;
+const spark = (c = 'var(--accent)') => `<svg class="spk" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="${c}"/></svg>`;
 const deco = (cls = '') => `<div class="bg-grid"></div><div class="glow ${cls}"></div>`;
 const topbar = (kick, i) => `<div class="top"><div class="kick">${spark()}${kick}</div><span class="page">${pg(i)}</span></div>`;
 const footer = () => `<div class="rule"></div><div class="footer"><span class="fbrand">${spark()}VIBE CODING</span><span class="fhandle">${HANDLE}</span></div>`;
@@ -191,10 +191,10 @@ function html() {
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@400;500;600;700;800;900&display=swap');
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:#000;}
-  .slide{--bg:#F1ECE2; --ink:#211E18; --muted:#6E6A5F; --accent:#7A5AF0; --line:#DBD4C7; --card:#FBF8F1; --cardln:#E6DFD1;
+  .slide{--bg:#F1ECE2; --ink:#211E18; --muted:#6E6A5F; --accent:#C4623B; --line:#DBD4C7; --card:#FBF8F1; --cardln:#E6DFD1;
     width:${W}px;height:${H}px;position:relative;overflow:hidden;background:var(--bg);color:var(--ink);
     font-family:${SANS};padding:150px 66px 178px;display:flex;flex-direction:column;justify-content:center;}
-  .slide.dark{--bg:#16130E; --ink:#F3EFE6; --muted:#8F887B; --accent:#9B7DFF; --line:#2C271F; --card:#211C15; --cardln:#332C22; background:#16130E;}
+  .slide.dark{--bg:#16130E; --ink:#F3EFE6; --muted:#8F887B; --accent:#DA7A45; --line:#2C271F; --card:#211C15; --cardln:#332C22; background:#16130E;}
   .bg-grid,.glow{position:absolute;z-index:0;}
   .bg-grid{inset:0;background-image:radial-gradient(circle, rgba(0,0,0,.05) 1.6px, transparent 1.6px);background-size:36px 36px;opacity:.45;}
   .slide.dark .bg-grid{background-image:radial-gradient(circle, rgba(255,255,255,.05) 1.6px, transparent 1.6px);}
@@ -217,7 +217,7 @@ function html() {
   /* line-art chain */
   .chain{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:6px 0;}
   .cnode{background:transparent;border:2.5px solid var(--accent);border-radius:16px;padding:20px 26px;text-align:center;min-width:150px;}
-  .slide.dark .cnode{background:rgba(122,90,240,.10);}
+  .slide.dark .cnode{background:rgba(218,122,69,.08);}
   .cnode b{display:block;font-size:30px;color:var(--ink);} .cnode span{font-size:22px;color:var(--muted);}
   .carr{color:var(--accent);font-size:38px;font-weight:300;}
 
