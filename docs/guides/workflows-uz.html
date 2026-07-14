@@ -1,0 +1,173 @@
+<title>Sizsiz ishlaydigan Claude tizimlari — To'liq qo'llanma · AI Strateg</title>
+<style>
+  :root{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; --ok:#3E8E5C; --maxw:720px; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488;
+    --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; --ok:#5FA37B; } }
+  :root[data-theme="light"]{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B; --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; --ok:#3E8E5C; }
+  :root[data-theme="dark"]{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; --ok:#5FA37B; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);} .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:56px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(30px,6vw,48px);line-height:1.08;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  section{padding:34px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(24px,4vw,31px);line-height:1.12;margin:0 0 6px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:22px 0 4px;}
+  p{margin:12px 0;} strong{font-weight:700;} code{background:var(--panel);padding:2px 7px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85em;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  .parts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;}
+  .part{background:var(--panel);border-radius:12px;padding:16px 18px;}
+  .part b{display:block;font-size:16px;color:var(--accent);letter-spacing:.04em;} .part span{font-size:15px;color:var(--muted);}
+  ul.clean{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:12px;}
+  ul.clean li{padding-left:28px;position:relative;} ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:4px;background:var(--accent);}
+  ul.clean li b{color:var(--ink);}
+  .role{display:flex;align-items:center;gap:14px;background:var(--panel);border-radius:12px;padding:14px 18px;margin:10px 0;}
+  .role .e{font-size:26px;} .role .tx{flex:1;} .role .tx b{display:block;} .role .tx span{font-size:15px;color:var(--muted);}
+  .role .tm{background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);font-weight:700;font-size:13px;padding:6px 12px;border-radius:20px;white-space:nowrap;}
+  .flow{display:flex;align-items:center;gap:8px;margin:20px 0;overflow-x:auto;padding-bottom:6px;}
+  .fnode{flex:1;min-width:120px;background:transparent;border:2px solid var(--accent);border-radius:12px;padding:14px 10px;text-align:center;}
+  .fnode b{display:block;font-size:16px;} .fnode span{font-size:13px;color:var(--muted);}
+  .farr{color:var(--accent);font-size:22px;flex:0 0 auto;}
+  ol.steps{padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:16px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;background:var(--ink);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:Georgia,serif;}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid var(--code-line);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:var(--code-bg);padding:10px 14px;border-bottom:1px solid var(--code-line);}
+  .cmd .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
+  .cmd .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .cmd .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:14px;overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.55;white-space:pre-wrap;}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;} footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (max-width:560px){ body{font-size:17px;} .parts{grid-template-columns:1fr;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">Sizsiz ishlaydigan tizimlar · To'liq qo'llanma</div>
+  <h1>Claude'ni <em>sizsiz ishlaydigan</em> tizimga aylantiring</h1>
+  <p class="lede">Hozir siz mashina qila oladigan ishni qo'lda qilyapsiz. Bir marta sozlang — u siz uxlab yotganda ham ishlaydi. Birinchi tizim — 30 daqiqada.</p>
+</div>
+
+<section>
+  <h2><span class="n">·</span>Tizim chatdan nimasi bilan farq qiladi</h2>
+  <p>Oddiy chat — suhbat: siz yozasiz, u javob beradi, ishni bajarish esa yana sizda qoladi. Tizimda chatda yo'q to'rt narsa bor:</p>
+  <div class="parts">
+    <div class="part"><b>ROL</b><span>doimiy vazifa — u har safar bir xil ishlaydi</span></div>
+    <div class="part"><b>VOSITALAR</b><span>fayl, email, kalendar, veb</span></div>
+    <div class="part"><b>TRIGGER</b><span>uni siz so'ramasdan ishga tushiradigan vaqt yoki hodisa</span></div>
+    <div class="part"><b>NATIJA</b><span>u beradigan aniq mahsulot: hisobot, xat, tartiblangan jild</span></div>
+  </div>
+  <div class="callout">Bularni birlashtiring — siz ishni bajaruvchi emas, <strong>tasdiqlovchi</strong> bo'lasiz. Butun o'zgarish shu.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Rol bo'yicha nima qurish mumkin</h2>
+  <div class="role"><span class="e">✍️</span><div class="tx"><b>Kontent yaratuvchi</b><span>Har ertalab sizga qadrli manbalarni skanlab, 5-7 post g'oyasini ilmog'i bilan yuboradi.</span></div><span class="tm">~5 soat/hafta</span></div>
+  <div class="role"><span class="e">💼</span><div class="tx"><b>Frilanser</b><span>Har kirim xabarni o'qib, «qo'ng'iroq qilishga arziydimi yoki yo'q»ligini aytadi.</span></div><span class="tm">behuda suhbatsiz</span></div>
+  <div class="role"><span class="e">🔍</span><div class="tx"><b>Tadqiqotchi</b><span>Har kuni sohangizda o'zgargan hamma narsani faqat muhimigacha filtrlab, bitta xabar qiladi.</span></div><span class="tm">~2 soat/kun</span></div>
+  <div class="role"><span class="e">👥</span><div class="tx"><b>Hamma uchun</b><span>Ertalabki brifing: kalendar, javob kutayotgan xatlar va sohangizdagi bitta trend.</span></div><span class="tm">30 daqiqa/kun</span></div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Misol: ertalabki brifing qanday ishlaydi</h2>
+  <div class="flow">
+    <div class="fnode"><b>⏰ 7:00</b><span>trigger</span></div>
+    <div class="farr">→</div>
+    <div class="fnode"><b>🗓 Yig'adi</b><span>kalendar + email + veb</span></div>
+    <div class="farr">→</div>
+    <div class="fnode"><b>✉️ Xabar</b><span>bitta, tayyor</span></div>
+  </div>
+  <p>Har ertalab 7:00 da u uch manbani birlashtirib, bitta qisqa xabar yuboradi: bugungi uchrashuvlar, javob kutayotgan xatlar va sohangizdagi bitta yangilik.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Qanday quriladi — 5 qadam</h2>
+  <ol class="steps">
+    <li><strong>Rol yozing.</strong> Bu — eng muhim qism. Siz xodim yollayapsiz, shuning uchun vazifasini aniq yozing: «Sen kripto va AI auditoriyasi uchun noodatiy burchak topadigan kontent-strategimsan» — «kontentga yordam ber»dan yaxshiroq.</li>
+    <li><strong>Vositalarni ulang.</strong> Ish nimaga tegishini hal qiling: fayl, email, kalendar, veb, rejalashtiruvchi. Faqat kerakligini bering.</li>
+    <li><strong>Trigger qo'ying.</strong> Qachon ishga tushsin: har kuni 7:00 (jadval), yoki «yangi xat kelganda» (hodisa). Birinchisi uchun jadval eng oddiy.</li>
+    <li><strong>Natijani belgilang.</strong> Chiqishi qayerga borishini ayting: xabar yuborsin, faylga saqlasin, yoki xatni yozsin-u <em>yubormasin</em> — tasdiqlash sizda qolsin.</li>
+    <li><strong>Sinang va sozlang.</strong> Jadvalga qo'yishdan oldin bir marta qo'lda ishga tushiring, natijani ko'ring, keyin rolni tuzating. 3-4 marta shunday qilsangiz, tizim aynan siz xohlaganday ishlaydi.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Vositalarni ulash</h2>
+  <p>Ertalabki brifing uchun uch narsa kerak: email, kalendar va veb. Bitta Google hisobiga kirish email va kalendarni birga qamrab oladi.</p>
+  <ul class="clean">
+    <li><b>Gmail</b> — chat qatoridagi ulagichlar menyusidan ulang, Google hisobingiz bilan kiring.</li>
+    <li><b>Kalendar</b> — odatda o'sha Google kirishida birga yoqiladi.</li>
+    <li><b>Veb qidiruv</b> — alohida hisob kerak emas, shunchaki yoqib qo'ying.</li>
+  </ul>
+  <p>Ishlayotganini tekshirish: «oxirgi 3 o'qilmagan xatimni qisqacha ayt» deb yozing — haqiqiy xatlar chiqsa, ulanish tayyor.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Rejalashtirilgan vazifa qilib qo'ying</h2>
+  <p>Ulagichlar tizimga qo'l beradi, rejalashtirilgan vazifa esa soat beradi — sizsiz ishlaydigan qismi shu.</p>
+  <ol class="steps">
+    <li>Rejalashtirilgan vazifalarni oching va yangisini yarating.</li>
+    <li>Pastdagi ertalabki brifing rolini joylang.</li>
+    <li>Har kuni 7:00 ga qo'ying.</li>
+    <li>Ishonishdan oldin bir marta qo'lda ishga tushiring, natijani o'qing, tuzating.</li>
+    <li>To'g'ri bo'lsa — jadvalni yoqing. Endi u har ertalab o'zi ishlaydi.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Birinchi tizim — ertalabki brifing</h2>
+  <p>Murakkabini emas, eng oddiyini quring. U eng foydali vositalarga tegadi va qadrini ertasi ertalabdayoq his qilasiz. Mana tayyor rol — nusxa oling va o'zingizga moslang:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Rol · Ertalabki brifing</span><button class="copy">Nusxa olish</button></div><pre>Sen mening ertalabki brifing tizimimsan.
+
+Har kuni 7:00 da menga bitta xabar yubor, uch qismdan:
+1. BUGUN — kalendarim, tayyorgarlik kerak uchrashuvni belgila
+2. XATLAR — faqat bugun javob kutayotganlari, reklama va shovqinni tashla
+3. SIGNAL — sohamda oxirgi 24 soatda bo'lgan 1 muhim yangilik, 2 qator
+
+Qoidalar:
+- bitta xabar, kirish so'zi va xayrlashuvsiz
+- qism bo'sh bo'lsa, bir qatorda ayt va o't
+- ortiqcha gap yo'q — eng qisqa, lekin to'liq versiya</pre></div>
+  <p>Endi to'rt qadam: rolni joylang, kalendar/email/veb'ni ulang, 7:00 ga qo'ying, natijani xabar qilib yuborsin. Bugun kechqurun bir marta qo'lda sinang, ertaga o'zi ishlaydi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Birinchisidan keyin nima o'zgaradi</h2>
+  <p>Birinchi tizim eng muhimi emas — brifing sizga 30 daqiqa tejaydi, gap unda emas. Gap — uni ishlayotganini ko'rganingizdan keyin miyangizda bo'ladigan o'zgarishda.</p>
+  <p>Siz haftangizni vazifalar ro'yxati emas, <strong>topshirib yuborsa bo'ladigan ishlar</strong> ro'yxati sifatida ko'ra boshlaysiz. Keyin repost tizimi, hisobot tizimi, mijoz-baholash tizimi — o'z-o'zidan ravshan bo'ladi.</p>
+  <div class="callout">To'siq hech qachon texnologiya emas edi — o'zingizni «ishni qilishi shart bo'lgan odam» deb o'ylashingiz edi. Bugun kechqurun brifing tizimini quring. Boshlanish shu yerdan.</div>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>AI, Claude va real ishlaydigan tizimlar haqida — obuna bo'ling 🚀</p>
+</footer>
+</div>
+
+<script>
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+  });
+  document.querySelectorAll('.cmd').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(pre.innerText);
+      const t=btn.textContent; btn.textContent='✓ Nusxa olindi'; setTimeout(()=>btn.textContent=t,1500);}catch(e){} });
+  });
+</script>
