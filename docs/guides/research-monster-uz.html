@@ -1,0 +1,220 @@
+<title>Tadqiqot mashinasi — Claude Code + NotebookLM + Obsidian · AI Strateg</title>
+<style>
+  :root{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c;
+    --red:#D8402F; --teal:#1F9E8F; --purple:#6C4DE0; --maxw:720px; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488;
+    --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F;
+    --red:#E8584A; --teal:#3BC0AF; --purple:#8B72FF; } }
+  :root[data-theme="light"]{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; --red:#D8402F; --teal:#1F9E8F; --purple:#6C4DE0; }
+  :root[data-theme="dark"]{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C;
+    --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; --red:#E8584A; --teal:#3BC0AF; --purple:#8B72FF; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);}
+  .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:56px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(30px,6vw,48px);line-height:1.08;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  section{padding:34px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(24px,4vw,31px);line-height:1.12;margin:0 0 6px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:22px 0 4px;}
+  p{margin:12px 0;} strong{font-weight:700;} code{background:var(--panel);padding:2px 7px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85em;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  ul.clean{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:12px;}
+  ul.clean li{padding-left:28px;position:relative;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:4px;background:var(--accent);}
+  ul.clean li b{color:var(--ink);}
+  /* tool cards */
+  .tools{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;}
+  .tcard{background:var(--panel);border-radius:14px;padding:18px 20px;border-top:3px solid var(--tc,var(--accent));}
+  .tcard b{display:block;font-size:17px;} .tcard .role{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--tc,var(--accent));}
+  .tcard p{margin:8px 0 0;font-size:15px;color:var(--muted);}
+  /* flow diagram */
+  .flow{display:flex;align-items:stretch;gap:8px;margin:22px 0;overflow-x:auto;padding-bottom:6px;}
+  .fnode{flex:1;min-width:120px;background:var(--panel);border-radius:12px;padding:16px 10px;text-align:center;border-bottom:3px solid var(--fc,var(--accent));}
+  .fnode b{display:block;font-size:16px;} .fnode span{font-size:13px;color:var(--muted);}
+  .farr{align-self:center;color:var(--accent);font-size:24px;flex:0 0 auto;}
+  ol.steps{padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:16px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;background:var(--ink);
+    color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:Georgia,serif;}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid var(--code-line);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:var(--code-bg);padding:10px 14px;border-bottom:1px solid var(--code-line);}
+  .cmd .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
+  .cmd .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .cmd .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:14px;overflow-x:auto;
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.55;white-space:pre-wrap;}
+  .chart{background:var(--panel);border-radius:14px;padding:20px;margin:18px 0;}
+  .chart svg{width:100%;height:auto;display:block;}
+  .chart .cx{display:flex;justify-content:space-between;margin-top:6px;font-size:13px;color:var(--muted);font-weight:600;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;}
+  .chip{background:var(--panel);border-radius:30px;padding:10px 18px;font-size:15px;font-weight:600;}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (max-width:560px){ body{font-size:17px;} .tools{grid-template-columns:1fr;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">Tadqiqot mashinasi · To'liq qo'llanma</div>
+  <h1>Har safar <em>aqlliroq</em> bo'ladigan tadqiqot tizimi</h1>
+  <p class="lede">Claude Code + NotebookLM + Obsidian. Istalgan mavzuni o'rganadi va siz ishlatgan sari kuchayadi. Sozlash — 30 daqiqadan kam.</p>
+</div>
+
+<section>
+  <h2><span class="n">·</span>Muammo</h2>
+  <p>Ko'pchilik tadqiqotni qo'lda qiladi: 10 ta oyna ochadi, video ko'radi, maqola o'qiydi, qayerdadir yozib qo'yadi. Bir soatdan keyin — nima qilishni bilmaydigan ma'lumot uyumi qoladi.</p>
+  <p>Yaxshiroq yo'l bor. To'rtta vosita birlashib, bitta buyruq bilan istalgan mavzuni o'rganadigan tizim tuzamiz — va u <strong>har safar aniqroq</strong> ishlaydi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>To'rt vosita — to'rt vazifa</h2>
+  <div class="tools">
+    <div class="tcard" style="--tc:var(--accent)"><span class="role">Bajaruvchi</span><b>Claude Code</b><p>Buyruqlarni bajaradi, ko'nikmalarni chaqiradi, fayllarni boshqaradi. Siz oddiy til bilan gapirasiz — u ishni qiladi.</p></div>
+    <div class="tcard" style="--tc:var(--teal)"><span class="role">Tahlilchi</span><b>NotebookLM</b><p>Manbalarni o'qiydi va chuqur tahlil, xulosa, infografika chiqaradi. Google hisobida ishlaydi — sizning tokeningizni yemaydi.</p></div>
+    <div class="tcard" style="--tc:var(--purple)"><span class="role">Xotira</span><b>Obsidian</b><p>Tizim chiqargan hamma narsani saqlaydi. Vaqt o'tib, Claude bu fayllarni o'qib, sizni o'rganadi.</p></div>
+    <div class="tcard" style="--tc:var(--red)"><span class="role">Moslashtirish</span><b>Skill Creator</b><p>Yangi ko'nikmani oddiy til bilan yaratasiz. Tasvirlaysiz — u kodini yozib, o'rnatadi. Dasturlash shart emas.</p></div>
+  </div>
+  <div class="callout">Birlashsa: buyruq bilan ishlaydigan, katta hajmda tahlil qiladigan va ishlatgan sari yaxshilanadigan tadqiqot tizimi.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Zanjir qanday ishlaydi</h2>
+  <p>Siz alohida qadamlarni bajarmaysiz. Tizim hammasini ketma-ket o'zi qiladi:</p>
+  <div class="flow">
+    <div class="fnode" style="--fc:var(--accent)"><b>Buyruq</b><span>nimani izlashni aytasiz</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--red)"><b>10 video</b><span>YouTube'dan topadi</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--teal)"><b>Tahlil</b><span>NotebookLM ishlaydi</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--purple)"><b>Fayl</b><span>Obsidian'ga saqlanadi</span></div>
+  </div>
+  <p>Butun jarayon taxminan <strong>6 daqiqa</strong>. Vaqtning ko'pi — Google serverida ketadi, sizning hisobingizdan emas.</p>
+</section>
+
+<section>
+  <h2><span class="n">1</span>Skill Creator'ni o'rnating</h2>
+  <p>Claude Code'ni oching. <strong>Obsidian jildingiz ichida</strong> turganingizga ishonch hosil qiling — shunda Obsidian yaratilgan fayllarni ko'radi.</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Claude Code</span><button class="copy">Nusxa olish</button></div><pre>/plugin</pre></div>
+  <p>«skill-creator»ni toping, o'rnating, Claude Code'ni qayta ishga tushiring. Endi istalgan ko'nikmani oddiy til bilan yaratasiz.</p>
+</section>
+
+<section>
+  <h2><span class="n">2</span>YouTube qidiruv ko'nikmasi</h2>
+  <p>Bu ko'nikma Claude Code'ga YouTube'dan tuzilgan video ma'lumotlarini (sarlavha, kanal, ko'rishlar soni, sana, havola) yig'ishga imkon beradi.</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Claude Code</span><button class="copy">Nusxa olish</button></div><pre>/skill-creator YouTube'dan video izlaydigan ko'nikma yarat.
+Har bir video uchun ma'lumot qaytar: sarlavha, kanal nomi,
+obunachilar soni, ko'rishlar soni, davomiyligi, chiqarilgan
+sanasi va havola. Standart holatda oxirgi 6 oyni ko'rsatsin.
+Natijani chiroyli, o'qiladigan ko'rinishda chiqar.</pre></div>
+  <p>Tizim ko'nikmani yaratadi va o'rnatadi — endi <code>/yt-search</code> buyrug'i tayyor.</p>
+  <div class="callout">Eslatma: kompyuteringizda <code>yt-dlp</code> vositasi o'rnatilgan bo'lishi kerak.</div>
+</section>
+
+<section>
+  <h2><span class="n">3</span>NotebookLM'ni ulang</h2>
+  <p>NotebookLM'da ochiq API yo'q. Uni ulash uchun ochiq kodli <code>notebooklm-py</code> vositasidan foydalanamiz. Buni Claude Code ichida emas, <strong>alohida terminal</strong> oynasida bajaring:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal</span><button class="copy">Nusxa olish</button></div><pre>pip install notebooklm-py
+notebooklm login</pre></div>
+  <p>Brauzer oynasi ochiladi. Google hisobingiz bilan kiring — ulanish tayyor.</p>
+</section>
+
+<section>
+  <h2><span class="n">4</span>NotebookLM ko'nikmasini yarating</h2>
+  <p>Endi Claude Code'ga <code>notebooklm-py</code>dan foydalanishni o'rgatasiz:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Claude Code</span><button class="copy">Nusxa olish</button></div><pre>/skill-creator notebooklm-py vositasi bilan ishlaydigan
+ko'nikma yarat. U shularni qila olsin: yangi daftar ochish,
+manba qo'shish (YouTube havola, matn, fayl), manbalarni tahlil
+qilish va natija chiqarish — audio, aqliy xarita, kartochka,
+infografika.</pre></div>
+</section>
+
+<section>
+  <h2><span class="n">5</span>Hammasini bitta zanjirga birlashtiring</h2>
+  <p>Mana shu yerda tizim haqiqiy kuchga kiradi. Alohida qadamlarni qo'lda emas — <strong>bitta buyruq</strong> bilan ketma-ket ishga tushirasiz:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Claude Code</span><button class="copy">Nusxa olish</button></div><pre>/skill-creator YouTube va NotebookLM ko'nikmalarini
+birlashtiruvchi «zanjir» ko'nikmasi yarat. Men mavzu
+berganimda: YouTube'dan 10 ta mos video topsin, yangi
+NotebookLM daftari ochsin, videolarni qo'shsin, tahlil
+qilsin. Xohlasam — infografika chiqarsin. Natijani markdown
+fayl qilib Obsidian'ga saqlasin va menga ham ko'rsatsin.</pre></div>
+  <h3>Zanjirni ishga solish</h3>
+  <div class="cmd"><div class="ph"><span class="lbl">Claude Code</span><button class="copy">Nusxa olish</button></div><pre>/zanjir 2026-yilda dasturchilar qaysi AI agent tizimlarini
+ishlatyapti? 10 manba top, yangi daftarga qo'sh, to'liq
+tahlil qil va manzarani ko'rsatadigan infografika chiqar.</pre></div>
+  <p>Taxminan 6 daqiqada tizim: to'liq tahlil, infografika va Obsidian'ga saqlangan markdown fayl qaytaradi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Obsidian — tizimni butunlay boshqacha qiladi</h2>
+  <p>Yuqoridagi hamma narsa bir martalik ish bo'lib ishlaydi. Obsidian esa uni <strong>to'planadigan</strong> tizimga aylantiradi.</p>
+  <div class="chart">
+    <svg viewBox="0 0 520 200" preserveAspectRatio="none">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".45"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+      <path d="M0 180 L110 160 L220 130 L330 90 L440 45 L520 15 L520 200 L0 200 Z" fill="url(#g)"/>
+      <path d="M0 180 L110 160 L220 130 L330 90 L440 45 L520 15" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div class="cx"><span>1-kun</span><span>1-hafta</span><span>1-oy</span><span>1-yil</span></div>
+  </div>
+  <p>Har bir fayl vaultda qoladi. Claude ularni o'qiydi, qanday mavzularga qaytishingizni, qaysi tahlil foydali bo'lganini ko'radi. Vault ichidagi <code>claude.md</code> fayli esa Claude'ga siz bilan qanday ishlashni aytadi.</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Claude Code</span><button class="copy">Nusxa olish</button></div><pre>claude.md faylini yangilaylik — oxirgi suhbatlarimizga qarab
+ish uslubim va natija ko'rinishimni yaxshiroq aks ettirsin.</pre></div>
+  <p>Buni haftada bir marta qiling. Bir oydan keyin tizim sizni yetarlicha tanib, ortiqcha tushuntirishsiz kerakli natijani beradi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Hech kim aytmaydigan sir</h2>
+  <p>Asosiysi — YouTube emas, balki <strong>zanjir tuzilishi</strong>. Manbani Claude Code kira oladigan istalganiga almashtiring:</p>
+  <div class="chips"><span class="chip">📄 PDF hujjatlar</span><span class="chip">🌐 Veb-sahifalar</span><span class="chip">🗃 O'z fayllaringiz</span><span class="chip">☁️ Google Drive</span></div>
+  <p>Kripto-loyihani hujjatlar bo'yicha o'rganing. Yangi texnologiyani konferensiya videolari bo'yicha tahlil qiling. Bozorni ochiq hisobotlar bo'yicha kuzating. <strong>Manbani almashtiring — tuzilma o'sha-o'sha qoladi.</strong></p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Natijada nima bo'ladi</h2>
+  <ul class="clean">
+    <li>Bitta buyruq bilan to'liq tadqiqot zanjirini ishga tushiradigan tizim</li>
+    <li>Og'ir tahlilni Google serveriga o'tkazadi — hisobingiz tejaladi</li>
+    <li>Infografika, xarita, audio, kartochka — avtomatik chiqadi</li>
+    <li>Har natija mahalliy bilim bazasiga saqlanadi</li>
+    <li>Vaqt o'tib sizni o'rganadi va natijasi yaxshilanadi</li>
+  </ul>
+  <p><strong>30 daqiqalik sozlash birinchi ishlatishdayoq o'zini oqlaydi.</strong></p>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>AI, Claude va real ishlaydigan tizimlar haqida — obuna bo'ling 🚀</p>
+</footer>
+</div>
+
+<script>
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+  });
+  document.querySelectorAll('.cmd').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(pre.innerText);
+      const t=btn.textContent; btn.textContent='✓ Nusxa olindi'; setTimeout(()=>btn.textContent=t,1500);}catch(e){} });
+  });
+</script>
