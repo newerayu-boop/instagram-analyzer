@@ -28,13 +28,13 @@ function cover() {
   return `<section class="slide light cover">
     ${deco('tr')}
     <div class="top"><div class="kick">${spark()}AI STRATEG</div><span class="page">${pg(0)}</span></div>
-    <div class="cov-art">
-      ${chain([{t:'⏰ 7:00'},{t:'🌐 Skan'},{t:'✅ Natija'}])}
-      <div class="cov-branch">
-        <div class="minibox">✍️ Kontent</div><div class="minibox">💼 Frilanser</div><div class="minibox">🔍 Tadqiqot</div>
-      </div>
-    </div>
     <div class="cov-mid">
+      <div class="cov-art">
+        ${chain([{t:'⏰ 7:00'},{t:'🌐 Skan'},{t:'✅ Natija'}])}
+        <div class="cov-branch">
+          <div class="minibox">✍️ Kontent</div><div class="minibox">💼 Frilanser</div><div class="minibox">🔍 Tadqiqot</div>
+        </div>
+      </div>
       <div class="badge">AVTOMATLASHTIRISH · SIZSIZ ISHLAYDI</div>
       <h1 class="cov-title">Sizsiz ishlaydigan <span class="acc">tizim</span></h1>
       <p class="cov-sub">Claude'ni bir marta sozlang — u siz uxlab yotganda ham ishlab, tayyor natija beradi.</p>
@@ -49,6 +49,7 @@ function s2() {
   return `<section class="slide dark">
     ${deco('bl')}
     ${topbar('ASOSIY FARQ', 1)}
+    <div class="mid">
     <h2 class="h">Chat <span class="acc">javob beradi</span>,<br>tizim <span class="acc">ish qiladi</span></h2>
     <p class="body">Ko'pchilik Claude'ni aqlli qidiruv kabi ishlatadi: savol beradi, javob oladi, ko'chiradi. Tizim boshqacha — u so'ramasdan o'zi ishga tushadi.</p>
     <div class="parts">
@@ -56,6 +57,7 @@ function s2() {
       <div class="part"><span class="part-i">🧰</span><b>VOSITALAR</b><span>fayl, email, veb</span></div>
       <div class="part"><span class="part-i">⏱</span><b>TRIGGER</b><span>vaqt yoki hodisa</span></div>
       <div class="part"><span class="part-i">📦</span><b>NATIJA</b><span>tayyor mahsulot</span></div>
+    </div>
     </div>
     ${footer()}
   </section>`;
@@ -65,12 +67,14 @@ function s3() {
   return `<section class="slide light">
     ${deco('tr')}
     ${topbar('ASOSIY O\'ZGARISH', 2)}
+    <div class="mid">
     <h2 class="h">Siz endi <span class="acc">tasdiqlovchi</span>siz</h2>
     <div class="ba">
       <div class="ba-box old"><div class="ba-lab old">❌ AVVAL</div><p>Har kuni o'zingiz: manba tekshirasiz, postni qayta yozasiz, hisobotga raqam kiritasiz, xat yuborasiz.</p><div class="ba-tag">Siz — sekin «trigger»siz</div></div>
       <div class="ba-box new"><div class="ba-lab new">✅ ENDI</div><p>Tizim o'zi qiladi, siz faqat ko'rib chiqib tasdiqlaysiz. Ishni bajaruvchi emas — <b>boshqaruvchisiz</b>.</p><div class="ba-tag new">Siz — tasdiqlovchi</div></div>
     </div>
     <div class="stripe">Bu — butun o'zgarish. Endi haftangiz vazifalar emas, <b>topshiriqlar</b> ro'yxati.</div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -85,8 +89,10 @@ function s4() {
   return `<section class="slide light">
     ${deco('bl')}
     ${topbar('NIMA QURISH MUMKIN', 3)}
+    <div class="mid">
     <h2 class="h">Rol bo'yicha <span class="acc">tizimlar</span></h2>
     <div class="roles">${roles}</div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -95,6 +101,7 @@ function s5() {
   return `<section class="slide dark">
     ${deco('tr')}
     ${topbar('MISOL · ERTALABKI BRIFING', 4)}
+    <div class="mid">
     <h2 class="h">Bitta xabar — <span class="acc">butun kun</span></h2>
     <p class="body">Har ertalab soat 7:00 da tizim uch manbani yig'ib, sizga bitta qisqa xabar yuboradi:</p>
     ${chain([{t:'⏰ 7:00',s:'trigger'},{t:'🗓 Kalendar',s:'+ email + veb'},{t:'✉️ Bitta xabar',s:'tayyor'}])}
@@ -104,6 +111,7 @@ function s5() {
       <div class="brief-l"><b>XATLAR:</b> 3 ta javob kutmoqda</div>
       <div class="brief-l"><b>SIGNAL:</b> sohangizda 1 muhim yangilik</div>
     </div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -112,6 +120,7 @@ function s6() {
   return `<section class="slide light">
     ${deco('bl')}
     ${topbar('QANDAY QURILADI · 5 QADAM', 5)}
+    <div class="mid">
     <h2 class="h">Besh <span class="acc">oddiy</span> qadam</h2>
     <div class="steps5">
       <div class="st"><span class="st-n">1</span><div><b>Rol yozing</b><span>«Sen mening kontent-strategimsan» — aniq vazifa bering</span></div></div>
@@ -119,6 +128,7 @@ function s6() {
       <div class="st"><span class="st-n">3</span><div><b>Trigger qo'ying</b><span>har kuni 7:00, yoki «yangi xat kelganda»</span></div></div>
       <div class="st"><span class="st-n">4</span><div><b>Natijani belgilang</b><span>xabar yuborsin yoki fayl saqlasin</span></div></div>
       <div class="st"><span class="st-n">5</span><div><b>Sinang va sozlang</b><span>bir marta qo'lda ishga tushiring, keyin tuzating</span></div></div>
+    </div>
     </div>
     ${footer()}
   </section>`;
@@ -133,9 +143,11 @@ function s7() {
   return `<section class="slide dark">
     ${deco('tr')}
     ${topbar('VOSITALARNI ULASH', 6)}
+    <div class="mid">
     <h2 class="h">Tizimga <span class="acc">qo'l</span> bering</h2>
     <p class="body">Ertalabki brifing uchun uch narsani ulaysiz. Bitta Google hisobi email va kalendarni birga qamrab oladi.</p>
     <div class="conns">${conn}</div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -144,6 +156,7 @@ function s8() {
   return `<section class="slide light">
     ${deco('bl')}
     ${topbar('SOATNI QO\'YING', 7)}
+    <div class="mid">
     <h2 class="h">Bir marta yozing — <span class="acc">o'zi ishlaydi</span></h2>
     <p class="body">Rejalashtirilgan vazifaga rolni joylang, soatni qo'ying. Instagramga emas — avval o'zingizga yuborsin.</p>
     <div class="promptbox">
@@ -151,6 +164,7 @@ function s8() {
       <div class="pb-b">Sen mening ertalabki brifing tizimimsan. Har kuni 7:00 da bitta xabar yubor: BUGUN (kalendar), XATLAR (faqat javob kutayotgani), SIGNAL (sohamdagi 1 yangilik). Qisqa yoz — ortiqcha gap yo'q.</div>
     </div>
     <div class="stripe">Qo'lda bir marta sinang → to'g'ri bo'lsa → <b>soatni yoqing</b> ✅</div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -179,7 +193,7 @@ function html() {
   body{background:#000;}
   .slide{--bg:#F1ECE2; --ink:#211E18; --muted:#6E6A5F; --accent:#C4623B; --line:#DBD4C7; --card:#FBF8F1; --cardln:#E6DFD1;
     width:${W}px;height:${H}px;position:relative;overflow:hidden;background:var(--bg);color:var(--ink);
-    font-family:${SANS};padding:64px 66px 76px;display:flex;flex-direction:column;}
+    font-family:${SANS};padding:150px 66px 178px;display:flex;flex-direction:column;justify-content:center;}
   .slide.dark{--bg:#16130E; --ink:#F3EFE6; --muted:#8F887B; --accent:#DA7A45; --line:#2C271F; --card:#211C15; --cardln:#332C22; background:#16130E;}
   .bg-grid,.glow{position:absolute;z-index:0;}
   .bg-grid{inset:0;background-image:radial-gradient(circle, rgba(0,0,0,.05) 1.6px, transparent 1.6px);background-size:36px 36px;opacity:.45;}
@@ -190,7 +204,7 @@ function html() {
   .acc{color:var(--accent);} b,strong{font-weight:800;color:var(--ink);}
   .grow{flex:1;display:flex;flex-direction:column;} .grow.center{justify-content:center;align-items:flex-start;gap:2px;}
 
-  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;}
+  .top{position:absolute;top:60px;left:66px;right:66px;display:flex;justify-content:space-between;align-items:center;}
   .kick{display:flex;align-items:center;gap:12px;font-weight:800;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
   .kick .spk,.fbrand .spk{width:26px;height:26px;}
   .page{font-weight:700;font-size:25px;letter-spacing:.1em;color:var(--muted);}
@@ -209,10 +223,10 @@ function html() {
 
   /* cover */
   .cover{padding-top:52px;}
-  .cov-art{margin-top:14px;}
+  .cov-art{margin-bottom:26px;}
   .cov-branch{display:flex;gap:14px;justify-content:center;margin-top:18px;}
   .minibox{border:2px solid color-mix(in srgb,var(--accent) 55%,transparent);border-radius:14px;padding:14px 22px;font-size:24px;font-weight:700;color:var(--ink);background:var(--card);}
-  .cov-mid{margin-top:auto;}
+  .cov-mid{position:absolute;top:49%;left:66px;right:66px;transform:translateY(-50%);display:flex;flex-direction:column;}
   .badge{display:inline-block;background:color-mix(in srgb,var(--accent) 14%, transparent);border:1px solid color-mix(in srgb,var(--accent) 45%, transparent);color:var(--accent);font-weight:800;font-size:22px;letter-spacing:.06em;padding:10px 22px;border-radius:30px;margin-bottom:20px;}
   .cov-title{font-family:${SERIF};font-weight:900;font-size:84px;line-height:1.0;color:var(--ink);}
   .cov-title .acc{color:var(--accent);}
@@ -271,8 +285,10 @@ function html() {
   .pb-u{font-weight:700;font-size:31px;color:var(--ink);} .pb-u strong{color:var(--accent);}
   .follow{margin-top:22px;font-size:27px;color:var(--muted);}
 
-  .rule{margin-top:auto;height:1px;background:var(--line);}
-  .footer{margin-top:22px;display:flex;align-items:center;justify-content:space-between;}
+  .rule{position:absolute;left:66px;right:66px;bottom:140px;height:1px;background:var(--line);}
+  .footer{position:absolute;left:66px;right:66px;bottom:78px;display:flex;align-items:center;justify-content:space-between;}
+  .mid{position:absolute;top:49%;left:66px;right:66px;transform:translateY(-50%);display:flex;flex-direction:column;gap:22px;}
+  .mid>*{margin-top:0!important;margin-bottom:0!important;}
   .fbrand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:28px;letter-spacing:.1em;color:var(--accent);}
   .fhandle{font-weight:600;font-size:28px;color:var(--muted);}
   </style></head><body>

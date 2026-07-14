@@ -72,6 +72,7 @@ function s2() {
   return `<section class="slide dark">
     ${deco('bl')}
     ${topbar('MUAMMO', 1)}
+    <div class="mid">
     <h2 class="h">Ko'pchilik tadqiqotni <span class="acc">qo'lda</span> qiladi</h2>
     <div class="ba">
       <div class="ba-box old">
@@ -84,6 +85,7 @@ function s2() {
       </div>
     </div>
     <div class="stripe">Sozlash vaqti: <b>30 daqiqadan kam</b></div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -98,8 +100,10 @@ function s3() {
   return `<section class="slide light">
     ${deco('tr')}
     ${topbar('TIZIM', 2)}
+    <div class="mid">
     <h2 class="h">To'rt vosita — <span class="acc">to'rt vazifa</span></h2>
     <div class="tools">${tools}</div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -114,10 +118,12 @@ function s4() {
   return `<section class="slide dark">
     ${deco('tr')}
     ${topbar('QANDAY ISHLAYDI', 3)}
+    <div class="mid">
     <h2 class="h">Bitta buyruq — <span class="acc">to'liq zanjir</span></h2>
     <p class="body">Siz alohida qadamlarni bajarmaysiz. Tizim hammasini ketma-ket o'zi qiladi.</p>
     <div class="flow">${steps}</div>
     <div class="pill-row"><span class="pill">⏱ ~6 daqiqa</span><span class="pill">🧠 Google serverida</span><span class="pill">💾 avtomatik saqlanadi</span></div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -126,11 +132,13 @@ function s5() {
   return `<section class="slide light">
     ${deco('bl')}
     ${topbar('SOZLASH · 1-3', 4)}
+    <div class="mid">
     <h2 class="h">Uch <span class="acc">oddiy</span> qadam</h2>
     <div class="ways">
       <div class="way"><span class="way-n">1</span><div><b>Skill Creator'ni o'rnating</b><span>Claude Code ichida <code>/plugin</code> yozing, «skill-creator»ni toping va o'rnating.</span></div></div>
       <div class="way"><span class="way-n">2</span><div><b>YouTube qidiruv ko'nikmasi</b><span>Oddiy til bilan tasvirlaysiz — tizim video ma'lumotlarini yig'adigan ko'nikma yaratadi.</span></div></div>
       <div class="way"><span class="way-n">3</span><div><b>NotebookLM'ni ulang</b><span>Terminalda o'rnatib, Google hisobingiz bilan kirasiz. Ulanish tayyor.</span></div></div>
+    </div>
     </div>
     ${footer()}
   </section>`;
@@ -140,12 +148,14 @@ function s6() {
   return `<section class="slide dark">
     ${deco('tr')}
     ${topbar('SOZLASH · 4-5', 5)}
+    <div class="mid">
     <h2 class="h">Hammasini <span class="acc">bitta buyruqqa</span></h2>
     <div class="ways dk">
       <div class="way"><span class="way-n">4</span><div><b>NotebookLM ko'nikmasi</b><span>Claude'ga NotebookLM'dan foydalanishni o'rgatasiz: manba qo'shish, tahlil, infografika.</span></div></div>
       <div class="way"><span class="way-n">5</span><div><b>Hammasini birlashtiring</b><span>YouTube + NotebookLM'ni bitta «zanjir» ko'nikmasiga yig'asiz.</span></div></div>
     </div>
     <div class="term"><div class="term-bar"><span class="md r"></span><span class="md y"></span><span class="md g"></span></div><div class="term-b"><span class="tg">/zanjir</span> 2026-yilgi AI agent tizimlarini o'rgan — 10 manba top, tahlil qil, infografika chiqar</div></div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -154,6 +164,7 @@ function s7() {
   return `<section class="slide light">
     ${deco('bl')}
     ${topbar('NATIJA', 6)}
+    <div class="mid">
     <h2 class="h">Bitta buyruq — <span class="acc">3 natija</span></h2>
     <div class="res-grid">
       <div class="res"><span class="res-e">📊</span><div class="res-tx"><b>To'liq tahlil</b><span>qaysi narsa ko'tarilyapti, qayerda kelishmovchilik bor</span></div></div>
@@ -161,6 +172,7 @@ function s7() {
       <div class="res"><span class="res-e">🗂</span><div class="res-tx"><b>Markdown fayl</b><span>to'g'ridan-to'g'ri Obsidian'ga saqlanadi</span></div></div>
     </div>
     <div class="stripe light">Vaqtning ko'pi — <b>Google serverida</b>, sizning tokeningiz emas ⚡</div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -173,6 +185,7 @@ function s8() {
   return `<section class="slide dark">
     ${deco('tr')}
     ${topbar('ENG MUHIMI', 7)}
+    <div class="mid">
     <h2 class="h">Har safar <span class="acc">aqlliroq</span> bo'ladi</h2>
     <p class="body">Har bir fayl Obsidian'da qoladi. Claude ularni o'qiydi va sizni — qanday fikrlashingizni — o'rganadi.</p>
     <div class="chart">
@@ -183,6 +196,7 @@ function s8() {
       <div class="chart-x"><span>1-kun</span><span>1-hafta</span><span>1-oy</span><span>1-yil</span></div>
     </div>
     <div class="mini">Haftada bir marta <code>claude.md</code> faylini yangilang — u ish uslubingizni yodda saqlaydi.</div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -192,10 +206,12 @@ function s9() {
   return `<section class="slide light">
     ${deco('bl')}
     ${topbar('SIR', 8)}
+    <div class="mid">
     <h2 class="h">YouTube — <span class="acc">shart emas</span></h2>
     <p class="body">Asosiysi — video emas, balki <b>zanjir tuzilishi</b>. Manbani istalganiga almashtiring:</p>
     <div class="chips">${chips}</div>
     <div class="stripe light">Manbani almashtiring — <b>tuzilma o'sha-o'sha qoladi</b> 🔁</div>
+    </div>
     ${footer()}
   </section>`;
 }
@@ -224,7 +240,7 @@ function html() {
   body{background:#000;}
   .slide{--bg:#ECE7DE; --ink:#1F1B16; --muted:#6E6A60; --accent:#C4623B; --line:#D8D2C6; --card:#F6F2EA;
     width:${W}px;height:${H}px;position:relative;overflow:hidden;background:var(--bg);color:var(--ink);
-    font-family:${SANS};padding:64px 66px 76px;display:flex;flex-direction:column;}
+    font-family:${SANS};padding:150px 66px 178px;display:flex;flex-direction:column;justify-content:center;}
   .slide.dark{--bg:#100E0B; --ink:#F3EFE8; --muted:#8F887B; --accent:#D0703F; --line:#2C271F; --card:#1C1813; background:#100E0B;}
   .bg-grid,.glow{position:absolute;z-index:0;}
   .bg-grid{inset:0;background-image:radial-gradient(circle, rgba(0,0,0,.05) 1.6px, transparent 1.6px);background-size:36px 36px;opacity:.5;}
@@ -235,7 +251,7 @@ function html() {
   .acc{color:var(--accent);} b,strong{font-weight:800;color:var(--ink);}
   .grow{flex:1;display:flex;flex-direction:column;} .grow.center{justify-content:center;align-items:flex-start;gap:2px;}
 
-  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;}
+  .top{position:absolute;top:60px;left:66px;right:66px;display:flex;justify-content:space-between;align-items:center;}
   .kick{display:flex;align-items:center;gap:12px;font-weight:800;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
   .kick .spk,.fbrand .spk{width:26px;height:26px;}
   .page{font-weight:700;font-size:25px;letter-spacing:.1em;color:var(--muted);}
@@ -249,7 +265,7 @@ function html() {
   .cover{padding-top:52px;}
   .cov-art{position:absolute;right:-40px;top:70px;width:560px;height:560px;opacity:.96;z-index:1;}
   .clus{width:100%;height:100%;}
-  .cov-mid{margin-top:auto;}
+  .cov-mid{position:absolute;top:49%;left:66px;right:66px;transform:translateY(-50%);display:flex;flex-direction:column;}
   .badge{display:inline-block;background:color-mix(in srgb,var(--accent) 16%, transparent);border:1px solid color-mix(in srgb,var(--accent) 50%, transparent);color:#EDD9C8;font-weight:800;font-size:22px;letter-spacing:.08em;padding:10px 22px;border-radius:30px;margin-bottom:20px;}
   .cov-title{font-weight:900;font-size:98px;line-height:.98;letter-spacing:-.01em;color:#F5F1EA;text-transform:uppercase;}
   .cov-title .acc{color:var(--accent);}
@@ -318,8 +334,10 @@ function html() {
   .pb-u{font-weight:700;font-size:31px;color:var(--ink);} .pb-u strong{color:var(--accent);}
   .follow{margin-top:22px;font-size:27px;color:var(--muted);}
 
-  .rule{margin-top:auto;height:1px;background:var(--line);}
-  .footer{margin-top:22px;display:flex;align-items:center;justify-content:space-between;}
+  .rule{position:absolute;left:66px;right:66px;bottom:140px;height:1px;background:var(--line);}
+  .footer{position:absolute;left:66px;right:66px;bottom:78px;display:flex;align-items:center;justify-content:space-between;}
+  .mid{position:absolute;top:49%;left:66px;right:66px;transform:translateY(-50%);display:flex;flex-direction:column;gap:22px;}
+  .mid>*{margin-top:0!important;margin-bottom:0!important;}
   .fbrand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:28px;letter-spacing:.1em;color:var(--accent);}
   .fhandle{font-weight:600;font-size:28px;color:var(--muted);}
   </style></head><body>
