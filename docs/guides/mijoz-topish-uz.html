@@ -1,0 +1,173 @@
+<title>AI bilan mijoz topish — To'liq qo'llanma · AI Strateg</title>
+<style>
+  :root{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B; --grn:#3E8E5C;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; --maxw:720px; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488;
+    --accent:#E0794C; --grn:#5FA37B; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; } }
+  :root[data-theme="light"]{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B; --grn:#3E8E5C; --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; }
+  :root[data-theme="dark"]{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C; --grn:#5FA37B; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);} .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:56px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-weight:900;font-size:clamp(32px,6vw,50px);line-height:1.05;margin:16px 0 12px;letter-spacing:-.02em;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:normal;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  section{padding:34px 0;border-bottom:1px solid var(--line);}
+  h2{font-weight:900;font-size:clamp(24px,4vw,32px);line-height:1.1;margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance;}
+  h2 .n{color:var(--accent);margin-right:10px;}
+  h3{font-weight:800;font-size:20px;margin:22px 0 4px;}
+  p{margin:12px 0;} strong{font-weight:700;} code{background:var(--panel);padding:2px 7px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85em;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  ul.clean{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:12px;}
+  ul.clean li{padding-left:28px;position:relative;} ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:4px;background:var(--accent);}
+  ul.clean li b{color:var(--ink);}
+  /* funnel */
+  .funnel{display:flex;flex-direction:column;align-items:center;gap:12px;margin:20px 0;}
+  .fn{color:#fff;font-weight:800;border-radius:12px;padding:16px;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px;}
+  .fn small{font-weight:500;opacity:.85;}
+  .fn.a{width:100%;background:linear-gradient(90deg,#D98A5F,#C4623B);} .fn.b{width:80%;background:linear-gradient(90deg,#CE7449,#B85832);} .fn.c{width:60%;background:linear-gradient(90deg,#C4623B,#a94f2c);} .fn.d{width:42%;background:linear-gradient(90deg,var(--grn),#2f6f47);}
+  /* two cols */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;}
+  .two .box{background:var(--panel);border-radius:14px;padding:18px 20px;}
+  .two .box h4{margin:0 0 10px;font-size:15px;letter-spacing:.05em;text-transform:uppercase;}
+  .two .box.ok h4{color:var(--grn);} .two .box.no h4{color:#c9503f;}
+  .two .box ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
+  .two .box li{padding-left:20px;position:relative;font-size:15.5px;}
+  .two .box.ok li::before{content:"✓";position:absolute;left:0;color:var(--grn);font-weight:800;}
+  .two .box.no li::before{content:"✕";position:absolute;left:0;color:#c9503f;font-weight:800;}
+  ol.steps{padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:16px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;background:var(--accent);color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid var(--code-line);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:var(--code-bg);padding:10px 14px;border-bottom:1px solid var(--code-line);}
+  .cmd .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
+  .cmd .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .cmd .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:14px;overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6;white-space:pre-wrap;}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;} footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (max-width:560px){ body{font-size:17px;} .two{grid-template-columns:1fr;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">AI + Mijoz topish · To'liq qo'llanma</div>
+  <h1>Mijozlarni <em>AI bilan</em> toping</h1>
+  <p class="lede">Har kuni 1 soat — barqaror mijozlar oqimi. Omadga kutmang, tizim tuzing. Bu qo'llanma butun tizimni bosqichma-bosqich ko'rsatadi.</p>
+</div>
+
+<section>
+  <h2><span class="n">·</span>Nega tizim kerak</h2>
+  <p>Ko'pchilik mijozni kutadi: reklama beradi, «o'zi topilar» deb o'ylaydi. Natijada mijoz tasodifan keladi — bir oy bor, bir oy yo'q.</p>
+  <p>Farqi iste'dodda emas, <strong>tizimda</strong>. Har kuni bir nechta to'g'ri odamga yozadigan oddiy tartib — bir necha haftada barqaror oqim beradi. AI esa eng og'ir qismini — qidirish va yozishni — sizning o'rningizga qiladi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Mijoz 4 bosqichdan o'tadi</h2>
+  <p>Har bir mijoz shu yo'ldan yuradi. Har bosqichda unga yordam bering:</p>
+  <div class="funnel">
+    <div class="fn a">Toping <small>· kim sizga mijoz</small></div>
+    <div class="fn b">Yozing <small>· shaxsiy xabar</small></div>
+    <div class="fn c">Ishonch <small>· foyda ko'rsating</small></div>
+    <div class="fn d">Bitim <small>· kelishuv</small></div>
+  </div>
+  <p>Har bosqichda bir qism odam «tushib qoladi» — bu normal. Shuning uchun yuqorida ko'proq odam bo'lishi kerak.</p>
+</section>
+
+<section>
+  <h2><span class="n">1</span>Ideal mijozni aniqlang</h2>
+  <p>Kimga sotayotganingizni aniq bilmasangiz, xabaringiz hammaga ham, hech kimga ham mos kelmaydi. Bir jumlada yozing:</p>
+  <div class="callout"><strong>Mening mijozim — [kim], uning muammosi — [muammo], men uni [qanday] hal qilaman.</strong></div>
+  <p>Masalan: «Mening mijozim — kichik do'kon egasi, uning muammosi — Instagram'da sotuv yo'q, men unga kontent va reklama sozlab beraman.»</p>
+</section>
+
+<section>
+  <h2><span class="n">2</span>Qayerda topasiz</h2>
+  <p>Mijozingiz vaqt o'tkazadigan joyga boring. Bir nechta manba:</p>
+  <ul class="clean">
+    <li><b>Instagram</b> — o'xshash sohadagi hashtag va sharhlar, raqobatchining obunachilari.</li>
+    <li><b>Telegram guruhlar</b> — sohangizga oid faol guruhlar.</li>
+    <li><b>LinkedIn</b> — biznes va B2B mijozlar uchun.</li>
+    <li><b>Tavsiya</b> — tanish-bilish, oldingi mijozlardan so'rang.</li>
+  </ul>
+  <p>Bitta manbani tanlang va shu yerda har kuni 10 ta mos odamni ro'yxatga oling.</p>
+</section>
+
+<section>
+  <h2><span class="n">3</span>AI bilan shaxsiy xabar yozing</h2>
+  <p>Bir xil spam ishlamaydi. AI har bir odamga moslangan xabarni 10 daqiqada 20 ta yozib beradi. Mana tayyor buyruq — nusxa oling, qavslarni to'ldiring:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Sotuv yordamchisi</span><button class="copy">Nusxa olish</button></div><pre>Sen mening sotuv yordamchimsan. Men [xizmat] taklif qilaman.
+Mana mijoz haqida ma'lumot: [ma'lumot — kasbi, muammosi, posti].
+
+Unga qisqa, samimiy va shaxsiy xabar yoz:
+- ismini ishlat
+- uning foydasi haqida gapir (o'zim haqimda emas)
+- oxirida bitta oddiy savol ber
+- reklama va bosim yo'q</pre></div>
+  <p>AI bergan xabarni bir ko'rib chiqing, kerak bo'lsa tuzating — va yuboring.</p>
+</section>
+
+<section>
+  <h2><span class="n">4</span>Kunlik ro'yxat va kuzatuv</h2>
+  <p>Sir — bir kunlik zarba emas, har kungi kichik qadam. Kunlik oddiy tartib:</p>
+  <ol class="steps">
+    <li><strong>10 yangi odam</strong> — ro'yxatga oling va shaxsiy xabar yuboring.</li>
+    <li><strong>5 eski aloqa</strong> — javob bermaganlarga muloyim eslatma yozing.</li>
+    <li><strong>Belgilab boring</strong> — kim javob berdi, kim qiziqdi, kim bilan gaplashish kerak.</li>
+  </ol>
+  <div class="callout">Javob bermaslik — «yo'q» degani emas. Odamlar band. Bir hafta o'tib muloyim eslatma ko'p bitimni ochadi.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>AI aynan qaysi ishni oladi</h2>
+  <ul class="clean">
+    <li><b>Qidiradi</b> — mos odamlarni topib, ro'yxat tuzadi.</li>
+    <li><b>Yozadi</b> — har biriga shaxsiy xabar tayyorlaydi.</li>
+    <li><b>Kuzatadi</b> — kim javob berdi, kimga qayta yozish kerakligini eslatadi.</li>
+  </ul>
+  <p>Siz faqat suhbatlashasiz va bitim tuzasiz — takroriy, zerikarli ishni AI qiladi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Xabarni to'g'ri yozing</h2>
+  <div class="two">
+    <div class="box ok"><h4>To'g'ri</h4><ul><li>Shaxsiy, ismini yozing</li><li>Uning foydasi haqida</li><li>Bitta oddiy savol</li><li>Javob bermasa — eslating</li></ul></div>
+    <div class="box no"><h4>Xato</h4><ul><li>Bir xil spam hammaga</li><li>Faqat o'zingiz haqida</li><li>Darhol narx yuborish</li><li>Bir marta yozib, tashlab ketish</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Natijada nima bo'ladi</h2>
+  <p>Avval mijoz tasodifan kelardi. Endi sizda tizim bor: har kuni to'g'ri odamlarni topasiz, AI shaxsiy xabar yozadi, siz kuzatib borasiz va bitim tuzasiz.</p>
+  <p><strong>Kuniga 1 soat, har hafta yangi mijozlar.</strong> Iste'dod emas — doimiylik. Va bu tartibni deyarli hech kim izchil qilmaydi.</p>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>AI, biznes va real ishlaydigan tizimlar haqida — obuna bo'ling 🚀</p>
+</footer>
+</div>
+
+<script>
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+  });
+  document.querySelectorAll('.cmd').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(pre.innerText);
+      const t=btn.textContent; btn.textContent='✓ Nusxa olindi'; setTimeout(()=>btn.textContent=t,1500);}catch(e){} });
+  });
+</script>
