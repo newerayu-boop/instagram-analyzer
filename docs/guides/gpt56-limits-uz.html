@@ -1,0 +1,188 @@
+<title>GPT-5.6 ni limitga urilmasdan 24 soat ishlatish — To'liq qo'llanma · AI Strateg</title>
+<style>
+  :root{ --bg:#EFE9DB; --panel:#FBF8EF; --ink:#2A2620; --muted:#6F6A5C; --accent:#C4623B; --line:#DDD5C4;
+    --code-bg:#20242A; --code-ink:#EEF2EE; --g:#4E8E56; --p:#7C63BE; --b:#3F79BD; --o:#C07E33; --r:#C7534A; --maxw:720px; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#15130E; --panel:#1F1C16; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C;
+    --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --g:#6BB472; --p:#9B84D8; --b:#5E97D6; --o:#D89A4B; --r:#E1685C; } }
+  :root[data-theme="light"]{ --bg:#EFE9DB; --panel:#FBF8EF; --ink:#2A2620; --muted:#6F6A5C; --accent:#C4623B; --line:#DDD5C4; --code-bg:#20242A; --code-ink:#EEF2EE; --g:#4E8E56; --p:#7C63BE; --b:#3F79BD; --o:#C07E33; --r:#C7534A; }
+  :root[data-theme="dark"]{ --bg:#15130E; --panel:#1F1C16; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --g:#6BB472; --p:#9B84D8; --b:#5E97D6; --o:#D89A4B; --r:#E1685C; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);} .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:56px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(30px,6vw,46px);line-height:1.08;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  section{padding:34px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(24px,4vw,31px);line-height:1.12;margin:0 0 6px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:22px 0 4px;}
+  p{margin:12px 0;} strong{font-weight:700;} code{background:var(--panel);padding:2px 7px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85em;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  .warnbox{background:color-mix(in srgb,var(--r) 10%,var(--panel));border-left:4px solid var(--r);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;} .warnbox b{color:var(--r);}
+  ul.clean{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:12px;}
+  ul.clean li{padding-left:28px;position:relative;} ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:4px;background:var(--accent);}
+  ul.clean li b{color:var(--ink);}
+  /* role cards */
+  .role{display:flex;align-items:center;gap:14px;background:var(--panel);border-radius:12px;padding:16px 18px;margin:10px 0;border-left:6px solid var(--rc,var(--accent));}
+  .role.g{--rc:var(--g);} .role.p{--rc:var(--p);} .role.b{--rc:var(--b);}
+  .role .e{font-size:26px;} .role .tx b{display:block;} .role .tx .m{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;color:var(--rc);font-weight:700;} .role .tx span.d{font-size:15px;color:var(--muted);}
+  /* flow */
+  .flow{display:flex;align-items:center;gap:8px;margin:20px 0;overflow-x:auto;padding-bottom:6px;}
+  .fnode{flex:1;min-width:110px;background:transparent;border:2px solid var(--nc,var(--accent));border-radius:12px;padding:14px 10px;text-align:center;}
+  .fnode.g{--nc:var(--g);} .fnode.b{--nc:var(--b);}
+  .fnode b{display:block;font-size:16px;} .fnode span{font-size:13px;color:var(--muted);}
+  .farr{color:var(--accent);font-size:22px;flex:0 0 auto;}
+  /* cheat table */
+  .cheat{display:flex;align-items:center;gap:12px;background:var(--panel);border-radius:10px;padding:14px 18px;margin:8px 0;border-left:6px solid var(--cc,var(--accent));}
+  .cheat.g{--cc:var(--g);} .cheat.b{--cc:var(--b);} .cheat.p{--cc:var(--p);} .cheat.o{--cc:var(--o);} .cheat.r{--cc:var(--r);}
+  .cheat .t{flex:1;font-weight:700;} .cheat .a{color:var(--muted);} .cheat .m{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:700;color:var(--cc);}
+  .cheat.r .t{color:var(--r);}
+  .cmp{display:flex;align-items:center;gap:16px;margin:18px 0;}
+  .cmp .box{flex:1;background:var(--panel);border-radius:12px;padding:18px;text-align:center;} .cmp .box.hi{outline:2px solid var(--g);}
+  .cmp .box .n{font-size:34px;font-weight:800;} .cmp .box.hi .n{color:var(--g);} .cmp .box .s{font-size:13px;color:var(--muted);}
+  .cmp .vs{font-weight:800;color:var(--r);text-align:center;font-size:14px;}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,.15);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:#2b3038;padding:10px 14px;}
+  .cmd .ph .lbl{color:#E6A96B;font-size:12px;letter-spacing:.1em;font-weight:700;font-family:ui-monospace,monospace;}
+  .cmd .copy{background:transparent;border:1px solid #4a525b;color:#cfd8d0;font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .cmd .copy:hover{border-color:#E6A96B;color:#E6A96B;}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:16px;overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6;white-space:pre-wrap;}
+  .cmd pre .k{color:#E6A96B;} .cmd pre .v{color:#8FD3F4;} .cmd pre .c{color:#7f8c82;}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;} footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (max-width:560px){ body{font-size:17px;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">GPT-5.6 · Codex · Tejamkor sozlash</div>
+  <h1>GPT-5.6 ni <em>limitga urilmasdan</em> 24 soat ishlating</h1>
+  <p class="lede">$200 to'lab, limitga 4 soatda urildingizmi? Ko'p yonish — oldini olsa bo'ladigan narsa. Mana to'liq tejamkor sozlash.</p>
+</div>
+
+<section>
+  <h2><span class="n">·</span>Nega limit tez tugaydi</h2>
+  <p>Codex yordamchi (subagent) ochsa, u asosiy modelni <strong>aynan nusxalaydi</strong>. Sol'ni «Ultra»ga qo'ysangiz — har bir yordamchi ham Ultra bo'ladi. Bitta ishga 3 ta yordamchi = <strong>3 ta Ultra birga yonadi</strong>.</p>
+  <p>Ana shuning uchun 5 soatlik oynangiz 90 daqiqada tugaydi.</p>
+  <div class="callout">Bu — sizning aybingiz emas. Bu tizimning yo'naltirish xatosi. Lekin endi bilasiz — va yechimi bor.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>«Ultra»ga tegmang</h2>
+  <p>Ultra — daraja emas, <strong>ko'paytiruvchi</strong>. Bitta chaqiruv ichida 4 ta parallel yordamchi ochadi, ular yana ochadi — rekursiv, boshqarib bo'lmaydigan, nihoyatda qimmat.</p>
+  <div class="cmp">
+    <div class="box"><div class="n">91.9%</div><div class="s">Ultra · dasturlashda</div></div>
+    <div class="vs">farqi<br>3.1 ball</div>
+    <div class="box hi"><div class="n">88.8%</div><div class="s">Extra High · dasturlashda</div></div>
+  </div>
+  <div class="warnbox"><b>Atigi 3.1 ball uchun — 3 barobar narx.</b> OpenAI hatto Ultra natijasini asosiy testlar uchun e'lon ham qilmadi. Ultradan butunlay voz keching.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Hammasini hal qiladigan 3-model tizimi</h2>
+  <p>Bitta model hamma ishni maksimal kuchda emas. Uch yordamchi, uch xil ish:</p>
+  <div class="role g"><span class="e">🧠</span><div class="tx"><b>Orkestrator</b> <span class="m">Sol Extra High</span><span class="d">Rejalashtiradi, arxitektura tuzadi, qaror qabul qiladi. Asosiy miya.</span></div></div>
+  <div class="role p"><span class="e">⚙️</span><div class="tx"><b>Bajaruvchi</b> <span class="m">Sol Medium</span><span class="d">Kod yozadi, xato tuzatadi, sinovlarni bajaradi. Arxitektura qaror qilmaydi — ko'rsatmaga amal qiladi.</span></div></div>
+  <div class="role b"><span class="e">🔍</span><div class="tx"><b>Skaner</b> <span class="m">Luna Extra High</span><span class="d">Fayl qidiradi, kodni ko'radi, dalil yig'adi. Faqat o'qish — hech narsa o'zgartirmaydi.</span></div></div>
+  <div class="callout">Kundalik ish uchun <strong>Sol Medium</strong> — arzon, tez va yetarli. Faqat eng qiyin ishga Extra High.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Asosiy usul: 48 soat, 0 limit</h2>
+  <div class="flow">
+    <div class="fnode g"><b>Sol</b><span>rejani yozadi</span></div>
+    <div class="farr">→</div>
+    <div class="fnode b"><b>Luna</b><span>bajaradi</span></div>
+    <div class="farr">→</div>
+    <div class="fnode g"><b>Sol</b><span>tekshiradi</span></div>
+  </div>
+  <p>Bitta halqa. Rekursiv ochilish yo'q. Luna og'ir bajarish ishini <strong>2.5x arzon</strong> qiladi — umumiy yonish keskin tushadi. Shuni sinagan odam 48 soat to'xtovsiz ishlab, 5 soatlik limitga bir marta ham urilmagan.</p>
+  <p>AGENTS.md fayliga bitta qator qo'shing — Sol har ishga o'zicha yordamchi ochmasin:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">AGENTS.md</span><button class="copy">Nusxa olish</button></div><pre>Faqat men aytganda yordamchi och.
+Avtomatik ochma.</pre></div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>config.toml — bitta qator rekursiyani to'xtatadi</h2>
+  <p>Codex ishga tushganda shu faylni o'qiydi. Ikki sozlama hamma narsani hal qiladi:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">~/.codex/config.toml</span><button class="copy">Nusxa olish</button></div><pre><span class="k">[agents]</span>
+max_threads = <span class="v">6</span>
+max_depth = <span class="v">1</span>   <span class="c"># eng muhimi</span></pre></div>
+  <ul class="clean">
+    <li><b>max_depth = 1</b> — yordamchi o'z yordamchisini ocholmaydi. Bitta daraja, rekursiya yo'q.</li>
+    <li><b>max_threads = 6</b> — bir vaqtda 6 tadan ko'p yordamchi emas.</li>
+  </ul>
+  <p>Xohlasangiz, Codex'ning o'ziga aytib, uchta yordamchi faylini (tez skan, oddiy ishchi, chuqur ishchi) avtomatik yaratdirsangiz ham bo'ladi — har biriga to'g'ri model va daraja beriladi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Limitni yemaydigan prompt yozish</h2>
+  <p>Model to'xtamasdan davom etaveradi — kerak bo'lmagan narsani qayta yozadi, oynangizni yeydi. Unga aniq ayting, qachon to'xtasin. Har promptga to'xtash nuqtasi qo'ying:</p>
+  <ul class="clean">
+    <li><b>Rejalashtirishda:</b> «Avval faqat reja yoz. Tugagach to'xta, fikrimni so'ra. Kod yozma.»</li>
+    <li><b>Bajarishda:</b> «Qur, sinovlar o'tguncha davom et, PR ochib to'xta — qolganini o'zim ko'raman.»</li>
+    <li><b>Xato tuzatishda:</b> «Avval faylni o'qi, tashxis yoz, o'zgartirishdan oldin menga ko'rsat.»</li>
+  </ul>
+  <p>Naqsh oddiy: aniq nazorat nuqtalari qo'ying, «o'zing hal qil» demang.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Qaysi ishga qaysi model — shpargalka</h2>
+  <div class="cheat g"><span class="t">Oddiy tuzatish</span><span class="a">→</span><span class="m">Sol Low / Medium</span></div>
+  <div class="cheat b"><span class="t">Yangi imkoniyat</span><span class="a">→</span><span class="m">Sol High</span></div>
+  <div class="cheat p"><span class="t">Qiyin masala</span><span class="a">→</span><span class="m">Sol Extra High</span></div>
+  <div class="cheat o"><span class="t">Tez qidiruv</span><span class="a">→</span><span class="m">Luna Extra High</span></div>
+  <div class="cheat r"><span class="t">Hech qachon</span><span class="a">→</span><span class="m">Ultra</span></div>
+  <div class="callout">Naqsh: bir daraja pastga tushiring — sifat deyarli o'sha, narx ancha arzon. Ko'pchilik hamma ishga bir-ikki daraja balandda ishlaydi — limit shuning uchun tez tugaydi.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Avval / keyin</h2>
+  <div class="cmp" style="align-items:stretch">
+    <div class="box" style="text-align:left"><b style="color:var(--r)">❌ AVVAL</b><ul class="clean" style="margin:8px 0 0"><li>Ultra hammasida</li><li>Yordamchilar nusxalanadi</li><li>3× Ultra birga yonadi</li><li>Oyna 90 daqiqada tugaydi</li></ul></div>
+    <div class="box" style="text-align:left;outline:2px solid var(--g)"><b style="color:var(--g)">✅ KEYIN</b><ul class="clean" style="margin:8px 0 0"><li>Sol High — asosiy</li><li>Luna skan, Medium kod</li><li>max_depth = 1</li><li>48 soat, 0 limit</li></ul></div>
+  </div>
+  <p><strong>Bir xil $200 reja — butunlay boshqa tajriba.</strong> Kichik sozlamalar katta farq qiladi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>To'liq nazorat ro'yxati</h2>
+  <ul class="clean">
+    <li>AGENTS.md ga «faqat men aytganda yordamchi och» qo'shing</li>
+    <li>config.toml da <code>max_depth = 1</code> va <code>max_threads = 6</code></li>
+    <li>Standart darajani Sol High qiling — Ultra emas, hammaga Extra High emas</li>
+    <li>Har uzoq promptga to'xtash nuqtasi qo'ying</li>
+    <li>Skan va o'qish ishini Luna'ga bering</li>
+  </ul>
+  <p>10 daqiqa vaqt — har hafta soatlab yonishdan saqlaydi. Kichik sozlama, katta natija.</p>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>AI, Claude va real ishlaydigan tizimlar haqida — obuna bo'ling 🚀</p>
+</footer>
+</div>
+
+<script>
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+  });
+  document.querySelectorAll('.cmd').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(pre.innerText);
+      const t=btn.textContent; btn.textContent='✓ Nusxa olindi'; setTimeout(()=>btn.textContent=t,1500);}catch(e){} });
+  });
+</script>
