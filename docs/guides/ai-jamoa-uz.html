@@ -1,0 +1,197 @@
+<title>Birinchi AI jamoangizni quring — To'liq qo'llanma · AI Strateg</title>
+<style>
+  :root{ --bg:#EFE9DB; --panel:#FBF8EF; --ink:#2A2620; --muted:#6F6A5C; --accent:#C4623B;
+    --line:#DDD5C4; --code-bg:#20242A; --code-ink:#EEF2EE; --g:#4E8E56; --p:#7C63BE; --b:#3F79BD; --o:#C07E33; --r:#C7534A; --maxw:720px; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#15130E; --panel:#1F1C16; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C;
+    --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --g:#6BB472; --p:#9B84D8; --b:#5E97D6; --o:#D89A4B; --r:#E1685C; } }
+  :root[data-theme="light"]{ --bg:#EFE9DB; --panel:#FBF8EF; --ink:#2A2620; --muted:#6F6A5C; --accent:#C4623B; --line:#DDD5C4; --code-bg:#20242A; --code-ink:#EEF2EE; --g:#4E8E56; --p:#7C63BE; --b:#3F79BD; --o:#C07E33; --r:#C7534A; }
+  :root[data-theme="dark"]{ --bg:#15130E; --panel:#1F1C16; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --g:#6BB472; --p:#9B84D8; --b:#5E97D6; --o:#D89A4B; --r:#E1685C; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);} .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:56px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(30px,6vw,46px);line-height:1.08;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  section{padding:34px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(24px,4vw,31px);line-height:1.12;margin:0 0 6px;text-wrap:balance;}
+  h2 .n{color:var(--accent);margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:22px 0 4px;}
+  p{margin:12px 0;} strong{font-weight:700;} code{background:var(--panel);padding:2px 7px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85em;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  ul.clean{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:12px;}
+  ul.clean li{padding-left:28px;position:relative;} ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:4px;background:var(--accent);}
+  ul.clean li b{color:var(--ink);}
+  .role{display:flex;align-items:flex-start;gap:14px;background:var(--panel);border-radius:12px;padding:16px 18px;margin:10px 0;border-left:6px solid var(--rc,var(--accent));}
+  .role.g{--rc:var(--g);} .role.p{--rc:var(--p);} .role.o{--rc:var(--o);} .role.b{--rc:var(--b);}
+  .role .e{font-size:24px;} .role .tx b{display:block;} .role .tx span{font-size:15px;color:var(--muted);}
+  .flow{display:flex;align-items:center;gap:8px;margin:20px 0;overflow-x:auto;padding-bottom:6px;}
+  .fnode{flex:1;min-width:110px;background:transparent;border:2px solid var(--nc,var(--accent));border-radius:12px;padding:14px 10px;text-align:center;}
+  .fnode.g{--nc:var(--g);} .fnode.p{--nc:var(--p);} .fnode.o{--nc:var(--o);} .fnode.b{--nc:var(--b);}
+  .fnode b{display:block;font-size:16px;} .fnode span{font-size:13px;color:var(--muted);}
+  .farr{color:var(--accent);font-size:22px;flex:0 0 auto;}
+  .cheat{display:flex;align-items:center;gap:12px;background:var(--panel);border-radius:10px;padding:14px 18px;margin:8px 0;border-left:6px solid var(--cc,var(--accent));}
+  .cheat.g{--cc:var(--g);} .cheat.b{--cc:var(--b);} .cheat.p{--cc:var(--p);} .cheat.o{--cc:var(--o);}
+  .cheat .t{flex:1;font-weight:700;} .cheat .a{color:var(--muted);} .cheat .m{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:700;color:var(--cc);}
+  ol.steps{padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:16px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;background:var(--accent);color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,.15);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:#2b3038;padding:10px 14px;}
+  .cmd .ph .lbl{color:#E6A96B;font-size:12px;letter-spacing:.1em;font-weight:700;font-family:ui-monospace,monospace;}
+  .cmd .copy{background:transparent;border:1px solid #4a525b;color:#cfd8d0;font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .cmd .copy:hover{border-color:#E6A96B;color:#E6A96B;}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:16px;overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6;white-space:pre-wrap;}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;} footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (max-width:560px){ body{font-size:17px;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">AI jamoa · To'liq qo'llanma</div>
+  <h1>Birinchi <em>AI jamoangizni</em> quring</h1>
+  <p class="lede">Bitta AI emas — bir nechta agent birga ishlaydi va bir-birini tekshiradi. Muhandislik diplomi shart emas, faqat tizim kerak. Bu qo'llanma butun tizimni oddiy tilda ko'rsatadi.</p>
+</div>
+
+<section>
+  <h2><span class="n">·</span>AI jamoa nima</h2>
+  <p>Ko'pchilik AI'ni kalkulyator kabi ishlatadi: bitta savol, bitta javob, tamom. AI jamoa boshqacha — bu bitta topshiriq ustida birga ishlaydigan bir nechta ixtisoslashgan agent.</p>
+  <p>Biri qidiradi. Biri yozadi. Biri tekshirib, e'tiroz bildiradi. Biri sayqallaydi. Natijada — bitta agent bermaydigan <strong>tekshirilgan</strong> javob chiqadi.</p>
+  <div class="callout">Asosiy fikr: <strong>1 agent — javob beradi. Ko'p agent — tekshirilgan javob beradi.</strong> Biri yozib, ikkinchisi tanqid qilganda, omon qolgan natija ikkalasidan ham kuchliroq.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Har jamoaga kerak 4 rol</h2>
+  <p>Qurishdan oldin rollarni tushuning. Har qanday samarali jamoa — nima qilishidan qat'i nazar — shu to'rt narsaga tayanadi:</p>
+  <div class="role g"><span class="e">🔎</span><div class="tx"><b>Tadqiqotchi</b><span>Faktlarni topadi, kontekst yig'adi. Hech qachon o'zi yozmaydi — faqat ma'lumot beradi.</span></div></div>
+  <div class="role p"><span class="e">✍️</span><div class="tx"><b>Yozuvchi</b><span>Tadqiqotni olib, birinchi versiyani yaratadi. Mukammal bo'lishi shart emas — mavjud bo'lishi kerak.</span></div></div>
+  <div class="role o"><span class="e">🔥</span><div class="tx"><b>Tanqidchi</b><span>Eng ko'p tashlab ketiladigan rol. Faqat kamchilik, zaif va yetishmayotgan joyni topadi. Yechim taklif qilmaydi.</span></div></div>
+  <div class="role b"><span class="e">✨</span><div class="tx"><b>Sayqallovchi</b><span>Qoralama va tanqidni olib, yakuniy toza versiyani chiqaradi. Bejiz qayta yozmaydi — borini kuchaytiradi.</span></div></div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Nega tanqidchi eng muhim</h2>
+  <p>Ko'pchilik tanqidchini tashlab ketadi: o'zi yozadi, o'zi tekshiradi, o'zi joylaydi. Lekin miyangiz endigina o'zi yaratgan narsadagi xatoni ko'rmaydi.</p>
+  <div class="callout">Doim boshqa agent natijani tekshirsin — iloji bo'lsa, <strong>boshqa model</strong>. Bir model yozib, ikkinchisi tekshirganda, yashirin xatolar aynan shu yerda topiladi.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Ish tartibi: bitta topshiriq, to'liq zanjir</h2>
+  <div class="flow">
+    <div class="fnode g"><b>Tadqiqot</b><span>faktlar</span></div>
+    <div class="farr">→</div>
+    <div class="fnode p"><b>Qoralama</b><span>1-versiya</span></div>
+    <div class="farr">→</div>
+    <div class="fnode o"><b>Tanqid</b><span>xatolar</span></div>
+    <div class="farr">→</div>
+    <div class="fnode b"><b>Sayqal</b><span>yakuniy</span></div>
+  </div>
+  <p>Har agent oldingisining ishini ko'radi — kontekst umumiy bo'lgani muhim. Oxirida <strong>siz bir marta</strong> ko'rib tasdiqlaysiz, tayyor natija olasiz. Nusxa-joylash yo'q, kontekst uzilmaydi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Qaysi ishga qaysi model</h2>
+  <p>Har modelning kuchli tomoni bor. Ishni to'g'ri modelga bering:</p>
+  <div class="cheat g"><span class="t">Faktlar, tadqiqot, mantiq</span><span class="a">→</span><span class="m">Claude</span></div>
+  <div class="cheat p"><span class="t">Ijodiy matn, hikoya</span><span class="a">→</span><span class="m">Boshqa model</span></div>
+  <div class="cheat b"><span class="t">Kod yozish</span><span class="a">→</span><span class="m">Claude Code</span></div>
+  <div class="cheat o"><span class="t">Tanqid qilish</span><span class="a">→</span><span class="m">Qarama-qarshi model</span></div>
+  <div class="callout">Bitta modelni hamma ishga ishlatish — bitta odamni hamma vazifaga qo'yishdek. Tanqidni esa <strong>qoralama yozgandan boshqa</strong> modelga bering — shunda tekshiruv haqiqiy bo'ladi.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Tayyor buyruqlar — bugun boshlang</h2>
+  <p>Nusxa oling, kvadrat qavsni to'ldiring va ishlating.</p>
+
+  <h3>Tadqiqotchi</h3>
+  <div class="cmd"><div class="ph"><span class="lbl">Tadqiqotchi</span><button class="copy">Nusxa olish</button></div><pre>Sen tadqiqot bo'yicha mutaxassissan. Qoidalaring:
+1. Faqat tekshira oladigan narsangni ayt
+2. Har faktga manba yoz yoki «tasdiqlanmagan» deb belgila
+3. O'z fikringni qo'shma, tavsiya berma
+4. Ko'rinish: [Fakt] -> [Manba] -> [Ishonch: Yuqori/O'rta/Past]
+
+Vazifa: [BU YERGA VAZIFA]</pre></div>
+
+  <h3>Tanqidchi</h3>
+  <div class="cmd"><div class="ph"><span class="lbl">Tanqidchi</span><button class="copy">Nusxa olish</button></div><pre>Sen professional tanqidchisan. Qoidalaring:
+1. Har zaif da'vo, yetishmayotgan manba va mantiq bo'shlig'ini top
+2. Yechim taklif qilma — faqat muammoni ko'rsat
+3. Har muammoga daraja ber: [Jiddiy / O'rta / Kichik]
+4. Aniq bo'l: «bu da'voga manba kerak», «yaxshilash kerak» emas
+
+Tekshir: [BU YERGA QORALAMA]</pre></div>
+
+  <h3>Sayqallovchi</h3>
+  <div class="cmd"><div class="ph"><span class="lbl">Sayqallovchi</span><button class="copy">Nusxa olish</button></div><pre>Sen tajribali muharrirsan. Senda: qoralama va tanqid ro'yxati bor.
+Qoidalaring:
+1. Har «Jiddiy» va «O'rta» muammoni tuzat
+2. Ishlagan joyni saqla — bejiz qayta yozma
+3. Asl ohang va tuzilmani saqla
+4. Yakuniy versiyani ber, har katta tuzatishga bir qator izoh yoz
+
+Qoralama: [QORALAMA]  Muammolar: [TANQID NATIJASI]</pre></div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Yangi boshlovchi xatolari</h2>
+  <ul class="clean">
+    <li><b>Hammaga bitta model.</b> Har model o'z ishida kuchli — birini hamma vazifaga qo'ymang.</li>
+    <li><b>Tanqidchi yo'q.</b> O'zingiz yozib, o'zingiz tekshirsangiz — miyangiz xatoni ko'rmaydi. Alohida agent, iloji bo'lsa boshqa model tekshirsin.</li>
+    <li><b>Umumiy kontekst yo'q.</b> Agar oynalar orasida nusxa-joylash qilsangiz, har agent noldan boshlaydi. Har kontekst uzilishi — zaifroq natija.</li>
+    <li><b>Qidiruv kabi ishlatish.</b> «Bu nima?» — qidiruv savoli. «Sen X mutaxassisisan, mana kontekst, mana cheklovlar, yaxshi natija shunday — endi Y ber» — jamoaga topshiriq. Topshiriq sifati natija sifatini belgilaydi.</li>
+    <li><b>Buyruqlarni saqlamaslik.</b> Eng yaxshi buyruqlaringiz — boylik. Har rolning buyrug'ini saqlang, buyruq kutubxonasi tuzing.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">·</span>AI jamoa bilan haftangiz</h2>
+  <ol class="steps">
+    <li><strong>Dushanba</strong> — Tadqiqotchi siz uxlab yotganda ma'lumot yig'adi.</li>
+    <li><strong>Seshanba</strong> — Yozuvchi tadqiqotdan 5 ta matn tayyorlaydi.</li>
+    <li><strong>Chorshanba</strong> — Tanqidchi hammasini tekshiradi, siz 20 daqiqada ko'rasiz.</li>
+    <li><strong>Payshanba</strong> — Sayqallovchi tasdiqlangan matnlarni yakunlaydi.</li>
+    <li><strong>Juma</strong> — Siz haftalik natijani joylaysiz.</li>
+  </ol>
+  <div class="callout">Sizning umumiy vaqtingiz: <strong>2-3 soat</strong> ko'rish va qaror. AI jamoa esa <strong>tinmay</strong> ishlaydi. Bu kelajak emas — bugun mavjud. Yagona to'siq — jamoani sozlash.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Qayerdan boshlash</h2>
+  <p>Sinov topshiriq bilan emas — <strong>shu hafta sizga kerak bo'lgan haqiqiy ish</strong> bilan boshlang. Shundagina farqni his qilasiz.</p>
+  <ul class="clean">
+    <li>To'rt rolni belgilang: Tadqiqotchi, Yozuvchi, Tanqidchi, Sayqallovchi.</li>
+    <li>Har biriga yuqoridagi buyruqni bering.</li>
+    <li>Tadqiqotchidan boshlang, natijani keyingisiga uzating.</li>
+    <li>Oxirida bir marta ko'rib tasdiqlang.</li>
+  </ul>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>AI, Claude va real ishlaydigan tizimlar haqida — obuna bo'ling 🚀</p>
+</footer>
+</div>
+
+<script>
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+  });
+  document.querySelectorAll('.cmd').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(pre.innerText);
+      const t=btn.textContent; btn.textContent='✓ Nusxa olindi'; setTimeout(()=>btn.textContent=t,1500);}catch(e){} });
+  });
+</script>
