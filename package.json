@@ -6,7 +6,13 @@
     "node-fetch": "^2.7.0",
     "form-data": "^4.0.0"
   },
+  "devDependencies": {
+    "playwright": "^1.56.0"
+  },
+  "scripts": {
+    "render": "node carousel/render.mjs"
+  },
   "engines": {
-    "node": "18.x"
+    "node": ">=18"
   }
 }

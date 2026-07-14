@@ -1,0 +1,4 @@
+node_modules/
+carousel/output/
+.DS_Store
+.env
