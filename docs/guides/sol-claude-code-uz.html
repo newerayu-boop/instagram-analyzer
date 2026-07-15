@@ -1,0 +1,286 @@
+<title>GPT-5.6 Sol'ni Claude Code ichida ishga tushiring · AI Strateg</title>
+<style>
+  :root{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c;
+    --red:#D8402F; --teal:#1F9E8F; --purple:#6C4DE0; --maxw:720px; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488;
+    --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F;
+    --red:#E8584A; --teal:#3BC0AF; --purple:#8B72FF; } }
+  :root[data-theme="light"]{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; --red:#D8402F; --teal:#1F9E8F; --purple:#6C4DE0; }
+  :root[data-theme="dark"]{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C;
+    --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; --red:#E8584A; --teal:#3BC0AF; --purple:#8B72FF; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);}
+  .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:56px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(30px,6vw,48px);line-height:1.08;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  section{padding:34px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(24px,4vw,31px);line-height:1.12;margin:0 0 6px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:22px 0 4px;}
+  p{margin:12px 0;} strong{font-weight:700;} code{background:var(--panel);padding:2px 7px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85em;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  ul.clean{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:12px;}
+  ul.clean li{padding-left:28px;position:relative;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:4px;background:var(--accent);}
+  ul.clean li b{color:var(--ink);}
+  /* two model cards */
+  .tools{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;}
+  .tcard{background:var(--panel);border-radius:14px;padding:18px 20px;border-top:3px solid var(--tc,var(--accent));}
+  .tcard b{display:block;font-size:17px;} .tcard .role{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--tc,var(--accent));}
+  .tcard p{margin:8px 0 0;font-size:15px;color:var(--muted);}
+  /* flow diagram */
+  .flow{display:flex;align-items:stretch;gap:8px;margin:22px 0;overflow-x:auto;padding-bottom:6px;}
+  .fnode{flex:1;min-width:118px;background:var(--panel);border-radius:12px;padding:16px 10px;text-align:center;border-bottom:3px solid var(--fc,var(--accent));}
+  .fnode b{display:block;font-size:16px;} .fnode span{font-size:13px;color:var(--muted);}
+  .farr{align-self:center;color:var(--accent);font-size:24px;flex:0 0 auto;}
+  .flowlabel{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--muted);margin:6px 0 -8px;}
+  ol.steps{padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:16px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;background:var(--ink);
+    color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:Georgia,serif;}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid var(--code-line);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:var(--code-bg);padding:10px 14px;border-bottom:1px solid var(--code-line);}
+  .cmd .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
+  .cmd .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .cmd .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:14px;overflow-x:auto;
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.55;white-space:pre-wrap;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;}
+  .chip{background:var(--panel);border-radius:30px;padding:10px 18px;font-size:15px;font-weight:600;}
+  /* effort levels */
+  .levels{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+  .lvl{flex:1;min-width:96px;background:var(--panel);border-radius:10px;padding:12px 8px;text-align:center;border-bottom:3px solid var(--lc,var(--muted));}
+  .lvl b{display:block;font-size:15px;} .lvl span{font-size:12px;color:var(--muted);}
+  /* terminal setup diagram */
+  .terms{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;}
+  .term{background:var(--code-bg);border:1px solid var(--code-line);border-radius:12px;overflow:hidden;}
+  .term .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--code-line);}
+  .term .bar i{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .term .bar .t{margin-left:8px;color:var(--code-ink);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;opacity:.8;}
+  .term .body{padding:14px;color:var(--code-ink);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.5;}
+  .term .body .c{color:var(--accent);} .term .body small{color:#9A9488;display:block;margin-top:8px;font-size:12px;}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (max-width:560px){ body{font-size:17px;} .tools{grid-template-columns:1fr;} .terms{grid-template-columns:1fr;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✦</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">Bitta terminal · Ikki model</div>
+  <h1>GPT-5.6 Sol'ni <em>Claude Code</em> ichida ishga tushiring</h1>
+  <p class="lede">Ikki eng kuchli AI modeli — bitta oynada. Claude kod yozadi, Sol tekshiradi, siz esa ishni chiqarasiz. Bir marta sozlang, keyin doim tayyor.</p>
+</div>
+
+<section>
+  <h2><span class="n">·</span>Eski usul vs Yangi usul</h2>
+  <p>Ko'pchilik ikki modelni ikki alohida oynada ishlatadi. Bir modelga savol beradi, javobini nusxalaydi, ikkinchisiga qo'yadi. Har safar suhbat mazmuni yo'qoladi va ishni yana boshdan boshlash kerak bo'ladi.</p>
+  <div class="flowlabel">Eski usul — ikki terminal</div>
+  <div class="flow">
+    <div class="fnode" style="--fc:var(--red)"><b>So'ra</b><span>bir modelga</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--red)"><b>Nusxala</b><span>javobni ol</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--red)"><b>Qo'y</b><span>boshqasiga</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--red)"><b>Yo'qot</b><span>mazmun ketadi</span></div>
+    <div class="farr">↺</div>
+    <div class="fnode" style="--fc:var(--red)"><b>Qayta</b><span>boshdan</span></div>
+  </div>
+  <div class="flowlabel">Yangi usul — bitta terminal</div>
+  <div class="flow">
+    <div class="fnode" style="--fc:var(--accent)"><b>Claude yozadi</b><span>kodni tayyorlaydi</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--teal)"><b>Sol tekshiradi</b><span>xatolarni topadi</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--purple)"><b>Siz chiqarasiz</b><span>ishga tushirasiz</span></div>
+  </div>
+  <div class="callout">Bitta oyna. Nusxa-qo'yish yo'q. Suhbat mazmuni yo'qolmaydi. Ikki model bir joyda birga ishlaydi.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Ikki model — ikki vazifa</h2>
+  <div class="tools">
+    <div class="tcard" style="--tc:var(--accent)"><span class="role">Yozuvchi</span><b>Claude</b><p>Kodni yozadi, fayllarni tahrirlaydi, buyruqlarni bajaradi. Asosiy ishni u qiladi.</p></div>
+    <div class="tcard" style="--tc:var(--teal)"><span class="role">Tekshiruvchi</span><b>GPT-5.6 Sol</b><p>Yozilgan kodni o'qiydi, kamchiliklarni topadi va yaxshilash yo'lini aytadi. Ikkinchi kuchli fikr.</p></div>
+  </div>
+  <p>Ikkisi bir terminalda ishlaydi. Siz esa faqat natijani ko'rasiz va tasdiqlaysiz.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Nima kerak</h2>
+  <ul class="clean">
+    <li><b>Claude Code</b> — kompyuteringizga o'rnatilgan bo'lishi kerak. (Quyida tekshirib olamiz.)</li>
+    <li><b>ChatGPT obunasi</b> — GPT-5.6 Sol modeliga kirish uchun. Plus yoki undan yuqori tarif kerak. <strong>Bepul tarif ishlamaydi.</strong></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Bosqichma-bosqich sozlash</h2>
+  <ol class="steps">
+    <li><strong>Claude Code borligini tekshiring.</strong> Terminalni oching va versiyani ko'ring. Agar versiya chiqsa — hammasi joyida.</li>
+  </ol>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal</span><button class="copy">Nusxa olish</button></div><pre>claude --version</pre></div>
+  <p>Agar «buyruq topilmadi» degan xato chiqsa, Claude Code o'rnatilmagan. Uni shu buyruq bilan o'rnating:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal</span><button class="copy">Nusxa olish</button></div><pre>npm install -g @anthropic-ai/claude-code</pre></div>
+
+  <ol class="steps" style="counter-reset:s 1;">
+    <li><strong>Proksini o'rnating.</strong> Proksi — bu ikki modelni ulab beradigan kichik mahalliy dastur. Homebrew bilan o'rnatamiz, keyin versiyasini tekshiramiz.</li>
+  </ol>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal · Homebrew</span><button class="copy">Nusxa olish</button></div><pre>brew install raine/claude-code-proxy/claude-code-proxy
+claude-code-proxy --version</pre></div>
+  <p>Agar Homebrew bo'lmasa, quyidagi buyruq bilan to'g'ridan-to'g'ri o'rnating:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal · Homebrewsiz</span><button class="copy">Nusxa olish</button></div><pre>curl -fsSL https://raw.githubusercontent.com/raine/claude-code-proxy/main/scripts/install.sh | bash</pre></div>
+
+  <ol class="steps" style="counter-reset:s 2;">
+    <li><strong>ChatGPT hisobingizni ulang.</strong> Bu qadamda API kaliti kerak emas — oddiy ChatGPT Plus/Pro hisobingiz bilan kirasiz.</li>
+  </ol>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal</span><button class="copy">Nusxa olish</button></div><pre>claude-code-proxy codex auth login</pre></div>
+  <p>Brauzer oynasi ochiladi. ChatGPT hisobingiz bilan kiring. Keyin ulanish holatini tekshiring:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal</span><button class="copy">Nusxa olish</button></div><pre>claude-code-proxy codex auth status</pre></div>
+
+  <ol class="steps" style="counter-reset:s 3;">
+    <li><strong>Proksini ishga tushiring (1-terminal).</strong> Bu oynani ochiq qoldiring — proksi shu yerda ishlab turadi. Yopsangiz, ulanish uziladi.</li>
+  </ol>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal 1 · ochiq qoladi</span><button class="copy">Nusxa olish</button></div><pre>claude-code-proxy serve</pre></div>
+
+  <ol class="steps" style="counter-reset:s 4;">
+    <li><strong>Sol'ni Claude Code ichida oching (2-terminal).</strong> Yangi terminal oynasi oching va quyidagi butun blokni bir martaga nusxalab qo'ying. U Claude Code'ni Sol modeli bilan ishga tushiradi.</li>
+  </ol>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal 2 · yangi oyna</span><button class="copy">Nusxa olish</button></div><pre>ANTHROPIC_BASE_URL='http://127.0.0.1:18765' \
+ANTHROPIC_AUTH_TOKEN='unused' \
+ANTHROPIC_MODEL='gpt-5.6-sol[1m]' \
+ANTHROPIC_SMALL_FAST_MODEL='gpt-5.6-luna[1m]' \
+CLAUDE_CODE_AUTO_COMPACT_WINDOW='272000' \
+CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC='1' \
+CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK='1' \
+claude</pre></div>
+  <p>Bu blok nima qilishini oddiy tilda tushuntiramiz:</p>
+  <ul class="clean">
+    <li><b>Sol</b> asosiy ishni bajaradi — kodni tahlil qiladi va tekshiradi.</li>
+    <li><b>Luna</b> fonda ketadigan kichik so'rovlarni bajaradi — u tezroq va yengilroq.</li>
+    <li>Barcha so'rovlar <b>mahalliy proksiga</b> (sizning kompyuteringizdagi manzilga) yuboriladi, tashqariga emas.</li>
+    <li>Suhbat uzayganda tizim <b>ChatGPT chegarasidan oldin</b> mazmunni avtomatik qisqartiradi — shunda ish to'xtamaydi.</li>
+    <li>«Streaming fallback» o'chirilgan — bu bitta buyruq ikki marta bajarilib qolishining oldini oladi.</li>
+  </ul>
+
+  <ol class="steps" style="counter-reset:s 5;">
+    <li><strong>Fikrlash kuchini sozlang.</strong> Claude Code ichida modelning qanchalik chuqur o'ylashini belgilaysiz. Avval kuchni tekshiring, keyin holatni ko'ring.</li>
+  </ol>
+  <div class="cmd"><div class="ph"><span class="lbl">Claude Code ichida</span><button class="copy">Nusxa olish</button></div><pre>/effort high
+/status</pre></div>
+  <div class="levels">
+    <div class="lvl" style="--lc:var(--teal)"><b>low</b><span>eng yengil</span></div>
+    <div class="lvl" style="--lc:var(--teal)"><b>medium</b><span>o'rtacha</span></div>
+    <div class="lvl" style="--lc:var(--accent)"><b>high</b><span>tavsiya</span></div>
+    <div class="lvl" style="--lc:var(--red)"><b>xhigh</b><span>qiyin ish</span></div>
+    <div class="lvl" style="--lc:var(--red)"><b>max</b><span>eng chuqur</span></div>
+  </div>
+  <p><strong>high</strong> darajasidan boshlang. Boshida <strong>max</strong>'dan foydalanmang — u limitni tez yeydi. Oddiy qoida: qiyin masalalarga <b>high</b>, qolganiga <b>medium</b>, chindan arziydigan holatda esa <b>max</b>.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Ikki terminal qanday turadi</h2>
+  <p>Sozlashdan keyin sizda ikki oyna bo'ladi. Biri proksini ushlab turadi, ikkinchisida siz ishlaysiz.</p>
+  <div class="terms">
+    <div class="term">
+      <div class="bar"><i style="background:#E8584A"></i><i style="background:#E0B94C"></i><i style="background:#5FA37B"></i><span class="t">Terminal 1</span></div>
+      <div class="body"><span class="c">$</span> claude-code-proxy serve<small>Ochiq qoladi. Proksi shu yerda ishlaydi.</small></div>
+    </div>
+    <div class="term">
+      <div class="bar"><i style="background:#E8584A"></i><i style="background:#E0B94C"></i><i style="background:#5FA37B"></i><span class="t">Terminal 2</span></div>
+      <div class="body"><span class="c">$</span> claude <small>(Sol bilan)</small><small>Siz shu yerda ishlaysiz.</small></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Bitta so'z bilan (alias)</h2>
+  <p>Har safar uzun blokni yozmaslik uchun ikkita qisqa nom yaratamiz. Quyidagi ikki qatorni <code>~/.zshrc</code> faylining oxiriga qo'shing:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">~/.zshrc</span><button class="copy">Nusxa olish</button></div><pre>alias claudex-serve='claude-code-proxy serve'
+alias claudex="ANTHROPIC_BASE_URL='http://127.0.0.1:18765' ANTHROPIC_AUTH_TOKEN='unused' ANTHROPIC_MODEL='gpt-5.6-sol[1m]' ANTHROPIC_SMALL_FAST_MODEL='gpt-5.6-luna[1m]' CLAUDE_CODE_AUTO_COMPACT_WINDOW='272000' CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC='1' CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK='1' claude"</pre></div>
+  <p>Keyin faylni qayta o'qiting:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Terminal</span><button class="copy">Nusxa olish</button></div><pre>source ~/.zshrc</pre></div>
+  <p>Endi hammasi oson:</p>
+  <ul class="clean">
+    <li><code>claudex-serve</code> — proksini ishga tushiradi (1-terminal).</li>
+    <li><code>claudex</code> — Sol bilan seansni ochadi (2-terminal).</li>
+    <li><code>claude</code> — oddiy Claude, hech narsa o'zgarmaydi. Har doim avvalgidek ishlaydi.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Halol gap</h2>
+  <div class="callout">
+    <p style="margin-top:0;"><strong>Buni ochiq aytish kerak:</strong></p>
+    <ul class="clean" style="margin-bottom:0;">
+      <li>Bunga <b>ikkita obuna</b> kerak: Anthropic (Claude) va ChatGPT. Ya'ni ikki to'lov va ikki limit.</li>
+      <li>Bu usul ChatGPT obunangizni <b>norasmiy mahalliy proksi</b> orqali o'tkazadi. Bu shaxsiy foydalanish uchun.</li>
+      <li>Kompaniya uchun bunday qilmang — kompaniyada <b>rasmiy, to'lov qilinadigan OpenAI API</b> orqali ulaning.</li>
+      <li>Agar Claude Code o'zi qurayotgan hamma narsangizni bemalol chiqarib bersa, bu qo'shimcha sizga umuman kerak bo'lmasligi mumkin.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Rasmiy plugin yo'li (bonus)</h2>
+  <p>Agar sizga Sol faqat <strong>tekshiruvchi</strong> sifatida kerak bo'lsa, uni proksisiz, rasmiy plugin orqali ham ulash mumkin. Claude Code ichida quyidagi buyruqlarni ketma-ket bajaring:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Claude Code ichida</span><button class="copy">Nusxa olish</button></div><pre>/plugin marketplace add openai/codex-plugin-cc
+/plugin install codex@openai-codex
+/reload-plugins
+/codex:setup</pre></div>
+  <p>Bu quyidagi buyruqlarni ochadi:</p>
+  <div class="chips">
+    <span class="chip">/codex:review</span>
+    <span class="chip">/codex:adversarial-review</span>
+    <span class="chip">/codex:rescue</span>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>60 soniyalik takror</h2>
+  <ul class="clean">
+    <li><b>1-terminal:</b> <code>claudex-serve</code> — proksi ishlab turadi.</li>
+    <li><b>2-terminal:</b> <code>claudex</code> — Sol bilan seans ochiladi.</li>
+    <li>Ichida <code>/effort high</code> qo'ying — qiyin masalaga high, oddiyiga medium.</li>
+    <li>Claude yozadi, Sol tekshiradi, siz chiqarasiz — hammasi bitta oynada.</li>
+    <li>Faqat tekshiruv kerak bo'lsa — rasmiy plugin yo'lini tanlang.</li>
+  </ul>
+  <p>Bu qo'llanmani saqlab qo'ying — keyingi safar sozlaganingizda qadamlar shundoq tayyor turadi. 🚀</p>
+</section>
+
+<footer>
+  <p><span class="spark">✦</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>AI, Claude va real ishlaydigan tizimlar haqida — obuna bo'ling 🚀</p>
+</footer>
+</div>
+
+<script>
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+  });
+  document.querySelectorAll('.cmd').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(pre.innerText);
+      const t=btn.textContent; btn.textContent='✓ Nusxa olindi'; setTimeout(()=>btn.textContent=t,1500);}catch(e){} });
+  });
+</script>

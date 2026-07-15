@@ -1,0 +1,340 @@
+<title>Claude Cowork bilan bir kishilik kompaniya kabi ishlang · AI Strateg</title>
+<style>
+  :root{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c;
+    --red:#D8402F; --teal:#1F9E8F; --purple:#6C4DE0; --ok:#3E8E5C; --maxw:720px; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488;
+    --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F;
+    --red:#E8584A; --teal:#3BC0AF; --purple:#8B72FF; --ok:#5FA37B; } }
+  :root[data-theme="light"]{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; --red:#D8402F; --teal:#1F9E8F; --purple:#6C4DE0; --ok:#3E8E5C; }
+  :root[data-theme="dark"]{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C;
+    --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; --red:#E8584A; --teal:#3BC0AF; --purple:#8B72FF; --ok:#5FA37B; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);}
+  .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:56px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(30px,6vw,48px);line-height:1.08;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  section{padding:34px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(24px,4vw,31px);line-height:1.12;margin:0 0 6px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:22px 0 4px;}
+  p{margin:12px 0;} strong{font-weight:700;} code{background:var(--panel);padding:2px 7px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85em;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  ul.clean{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:12px;}
+  ul.clean li{padding-left:28px;position:relative;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:4px;background:var(--accent);}
+  ul.clean li b{color:var(--ink);}
+  /* two-column split */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;}
+  .scard{background:var(--panel);border-radius:14px;padding:18px 20px;border-top:3px solid var(--sc,var(--accent));}
+  .scard .role{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--sc,var(--accent));}
+  .scard b{display:block;font-size:19px;margin:4px 0 2px;font-family:Georgia,serif;}
+  .scard p{margin:8px 0 0;font-size:15px;color:var(--muted);}
+  .scard .em{font-size:30px;line-height:1;}
+  /* tool cards */
+  .tools{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;}
+  .tcard{background:var(--panel);border-radius:14px;padding:18px 20px;border-top:3px solid var(--tc,var(--accent));}
+  .tcard b{display:block;font-size:17px;} .tcard .role{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--tc,var(--accent));}
+  .tcard p{margin:8px 0 0;font-size:15px;color:var(--muted);}
+  /* flow diagram */
+  .flow{display:flex;align-items:stretch;gap:8px;margin:22px 0;overflow-x:auto;padding-bottom:6px;}
+  .fnode{flex:1;min-width:110px;background:var(--panel);border-radius:12px;padding:16px 10px;text-align:center;border-bottom:3px solid var(--fc,var(--accent));}
+  .fnode b{display:block;font-size:15px;} .fnode span{font-size:12.5px;color:var(--muted);}
+  .farr{align-self:center;color:var(--accent);font-size:24px;flex:0 0 auto;}
+  ol.steps{padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:16px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;background:var(--ink);
+    color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:Georgia,serif;}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid var(--code-line);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:var(--code-bg);padding:10px 14px;border-bottom:1px solid var(--code-line);}
+  .cmd .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
+  .cmd .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .cmd .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:14px;overflow-x:auto;
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.55;white-space:pre-wrap;}
+  .diagram{background:var(--panel);border-radius:14px;padding:20px;margin:18px 0;}
+  .diagram svg{width:100%;height:auto;display:block;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;}
+  .chip{background:var(--panel);border-radius:30px;padding:10px 18px;font-size:15px;font-weight:600;}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (max-width:560px){ body{font-size:17px;} .tools{grid-template-columns:1fr;} .split{grid-template-columns:1fr;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✦</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">Bir kishilik kompaniya</div>
+  <h1>Claude Cowork bilan <em>bir kishilik kompaniya</em> kabi ishlang</h1>
+  <p class="lede">Ishning ko'p qismi kerakli, lekin strategik emas. U bajarilishi shart, lekin har doim sizning aqlingizni talab qilmaydi. Claude Cowork bu ishni sizning kompyuteringizda o'zi qiladi.</p>
+</div>
+
+<section>
+  <h2><span class="n">·</span>Chat va Cowork — farqi nimada</h2>
+  <p>Ikkalasi ham Claude. Lekin ular butunlay boshqa ish qiladi. Buni tushunib olsangiz, hamma narsa oson bo'ladi.</p>
+  <div class="split">
+    <div class="scard" style="--sc:var(--teal)">
+      <span class="em">💭</span>
+      <span class="role">Fikrlash</span>
+      <b>Claude Chat</b>
+      <p>Bu yerda siz o'ylaysiz. Savol berasiz — u javob beradi. Reja tuzasiz, g'oya izlaysiz, matn yozdirasiz. Lekin ishni oxirigacha yana o'zingiz qilasiz.</p>
+    </div>
+    <div class="scard" style="--sc:var(--accent)">
+      <span class="em">🛠️</span>
+      <span class="role">Ishlab chiqarish</span>
+      <b>Claude Cowork</b>
+      <p>Bu yerda siz ishni topshirasiz. U sizning kompyuteringizda haqiqiy ish qiladi: fayllarni yaratadi, tahrirlaydi, tartiblaydi va natijani kerakli joyga saqlaydi.</p>
+    </div>
+  </div>
+  <div class="diagram">
+    <svg viewBox="0 0 520 150" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Chat va Cowork farqi">
+      <rect x="8" y="20" width="230" height="110" rx="14" fill="none" stroke="var(--teal)" stroke-width="2.5"/>
+      <text x="123" y="48" text-anchor="middle" fill="var(--teal)" font-size="15" font-weight="700" font-family="Georgia,serif">Claude Chat</text>
+      <text x="123" y="76" text-anchor="middle" fill="var(--ink)" font-size="13">Siz: savol berasiz</text>
+      <text x="123" y="98" text-anchor="middle" fill="var(--ink)" font-size="13">U: javob beradi</text>
+      <text x="123" y="120" text-anchor="middle" fill="var(--muted)" font-size="12">natija — so'z</text>
+      <rect x="282" y="20" width="230" height="110" rx="14" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+      <text x="397" y="48" text-anchor="middle" fill="var(--accent)" font-size="15" font-weight="700" font-family="Georgia,serif">Claude Cowork</text>
+      <text x="397" y="76" text-anchor="middle" fill="var(--ink)" font-size="13">Siz: ishni topshirasiz</text>
+      <text x="397" y="98" text-anchor="middle" fill="var(--ink)" font-size="13">U: ishni bajaradi</text>
+      <text x="397" y="120" text-anchor="middle" fill="var(--muted)" font-size="12">natija — tayyor fayl</text>
+    </svg>
+  </div>
+  <div class="callout">Oddiy qilib aytganda: <strong>Chat</strong> — miya. <strong>Cowork</strong> — qo'l. Chat o'ylaydi, Cowork qiladi.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Cowork nima qila oladi</h2>
+  <p>Cowork shunchaki gaplashmaydi. U sizning kompyuteringizdagi fayllar bilan haqiqiy ish qiladi:</p>
+  <ul class="clean">
+    <li><b>Hujjatlarni o'qiydi</b> — papkangizdagi fayllarni ochib, ichini ko'radi.</li>
+    <li><b>Papkalar yaratadi</b> va fayllarni to'g'ri joyga qo'yadi.</li>
+    <li><b>Fayl nomlarini tartibga soladi</b> — bir xil, tushunarli qilib qayta nomlaydi.</li>
+    <li><b>Hisobotlar yozadi</b> — ma'lumotni o'qib, tayyor hujjat qiladi.</li>
+    <li><b>Jadvallar quradi</b> — raqamlarni tartiblaydi, hisoblab beradi.</li>
+    <li><b>Taqdimot loyihasini tuzadi</b> — matn va tuzilmani tayyorlaydi.</li>
+    <li><b>Tartibsiz papkani tozalaydi</b> — aralash fayllarni turkumlarga ajratadi.</li>
+    <li><b>Ko'p bosqichli ishni bosqichma-bosqich bajaradi</b>.</li>
+    <li><b>Boshlashdan oldin savol beradi</b> — noaniq joyni aniqlashtiradi.</li>
+  </ul>
+  <div class="callout">Eng muhimi: u ishni <strong>bajaradi</strong> va natijani <strong>kerakli joyga saqlaydi</strong>. Siz nusxa olib, boshqa joyga qo'yishingiz shart emas.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Fikrlash o'zgarishi</h2>
+  <p>Eng katta o'zgarish vositada emas — sizning fikrlashingizda. Eski usulda ishni baribir o'zingiz qilardingiz. Yangi usulda esa ishni topshirasiz.</p>
+
+  <h3>Eski usul — hammasini o'zingiz qilasiz</h3>
+  <div class="flow">
+    <div class="fnode" style="--fc:var(--muted)"><b>So'rayman</b><span>savol beraman</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--muted)"><b>Javob</b><span>matn olaman</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--muted)"><b>Nusxa</b><span>ko'chiraman</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--muted)"><b>Qo'yaman</b><span>joylashtira­man</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--muted)"><b>Bezayman</b><span>qo'lda</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--muted)"><b>Saqlayman</b><span>qo'lda</span></div>
+  </div>
+
+  <h3>Yangi usul — ishni topshirasiz</h3>
+  <div class="flow">
+    <div class="fnode" style="--fc:var(--accent)"><b>Natija</b><span>nima kerakligini aytaman</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--teal)"><b>Ruxsat</b><span>to'g'ri papkani ochaman</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--teal)"><b>Ko'radi</b><span>fayllarni tekshiradi</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--purple)"><b>Tasdiq</b><span>rejani ma'qullayman</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--accent)"><b>Yaratadi</b><span>tayyor natija</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--ok)"><b>Ko'rib chiqaman</b><span>tekshiraman</span></div>
+  </div>
+  <p>Farqni ko'ryapsizmi? Eski usulda oltita qadamning hammasi sizda edi. Yangi usulda og'ir ish Cowork'da, sizda esa faqat ikki narsa qoladi: <strong>nima kerakligini aytish</strong> va <strong>natijani tasdiqlash</strong>.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Kirish → jarayon → natija</h2>
+  <p>Cowork har doim bir xil oddiy quvur bo'yicha ishlaydi. Buni tushunsangiz, unga qanday topshiriq berishni ham bilasiz:</p>
+  <div class="diagram">
+    <svg viewBox="0 0 520 120" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Kirish jarayon natija quvuri">
+      <rect x="6" y="35" width="150" height="55" rx="12" fill="none" stroke="var(--teal)" stroke-width="2.5"/>
+      <text x="81" y="60" text-anchor="middle" fill="var(--teal)" font-size="14" font-weight="700">KIRISH</text>
+      <text x="81" y="79" text-anchor="middle" fill="var(--muted)" font-size="12">fayllar + topshiriq</text>
+      <path d="M162 62 L196 62" stroke="var(--accent)" stroke-width="3" fill="none" marker-end="url(#ar)"/>
+      <rect x="200" y="35" width="150" height="55" rx="12" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+      <text x="275" y="60" text-anchor="middle" fill="var(--accent)" font-size="14" font-weight="700">JARAYON</text>
+      <text x="275" y="79" text-anchor="middle" fill="var(--muted)" font-size="12">Cowork ishlaydi</text>
+      <path d="M356 62 L390 62" stroke="var(--accent)" stroke-width="3" fill="none" marker-end="url(#ar)"/>
+      <rect x="394" y="35" width="150" height="55" rx="12" fill="none" stroke="var(--ok)" stroke-width="2.5"/>
+      <text x="469" y="60" text-anchor="middle" fill="var(--ok)" font-size="14" font-weight="700">NATIJA</text>
+      <text x="469" y="79" text-anchor="middle" fill="var(--muted)" font-size="12">tayyor, saqlangan</text>
+      <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="var(--accent)"/></marker></defs>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>5 daqiqada boshlash</h2>
+  <ol class="steps">
+    <li><strong>Claude Desktop dasturini o'rnating.</strong> Uni <code>claude.com/download</code> saytidan yuklab oling. Faqat brauzer emas, <strong>ish stoli dasturi</strong> kerak — chunki aynan u sizning fayllaringiz bilan ishlaydi.</li>
+    <li><strong>Avval bitta papka yarating</strong> — butun kompyuterni emas. Cowork'ga faqat bitta ish papkasini bering. Bu xavfsiz va tartibli. Mana oddiy namuna:
+      <div class="cmd"><div class="ph"><span class="lbl">Papka tuzilmasi</span><button class="copy">Nusxa olish</button></div><pre>Claude-Cowork/
+  Inbox/
+  Outputs/
+  Templates/
+  Reference/
+  Archive/</pre></div>
+    </li>
+    <li><strong>Ma'lumot fayllarini qo'shing.</strong> Reference papkasiga o'z materiallaringizni soling: uslub qo'llanmangiz, kompaniya haqida qaydlar, andozalar, eski hisobotlar. <strong>Yaxshi ma'lumot — yaxshi natija.</strong> Cowork siz haqingizda qancha ko'p bilsa, ishni shuncha to'g'ri qiladi.</li>
+    <li><strong>Bitta oddiy ishdan boshlang.</strong> Katta ish emas, eng zerikarli ishdan. Masalan, papkani tartibga solish. Cowork'ga mana bunday topshiriq bering:
+      <div class="cmd"><div class="ph"><span class="lbl">Topshiriq · Papkani tartiblash</span><button class="copy">Nusxa olish</button></div><pre>Inbox papkasidagi fayllarni ko'rib chiq.
+Ularni aniq turkumlarga ajrat.
+Kichik papkalar yarat va har faylni to'g'ri joyga ko'chir.
+Hech narsani o'chirma.
+Ishonchsiz bo'lsang "Needs Review" papkasini yarat.
+Tugagach, o'zgarishlarni tushuntiruvchi summary.md yoz.</pre></div>
+    </li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Company OS papka tizimi</h2>
+  <p>Bir necha ishni topshirganingizdan keyin, o'zingizga to'liq «kompaniya tizimi» tuzasiz. Bu — sizning raqamli ofisingiz. Har bir papkaning aniq vazifasi bor:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Company OS · Papka tizimi</span><button class="copy">Nusxa olish</button></div><pre>Company OS/
+  01_Inbox/      02_Research/   03_Content/
+  04_Sales/      05_Clients/    06_Operations/
+  07_Finance/    08_Templates/  09_Reports/   10_Archive/</pre></div>
+  <ul class="clean">
+    <li><b>01_Inbox</b> — yangi kelgan, hali tartiblanmagan fayllar.</li>
+    <li><b>02_Research</b> — tadqiqot, izlanish materiallari.</li>
+    <li><b>03_Content</b> — postlar, matnlar, kontent loyihalari.</li>
+    <li><b>04_Sales</b> — sotuv, takliflar, mijoz bilan yozishmalar.</li>
+    <li><b>05_Clients</b> — har bir mijozning alohida papkasi.</li>
+    <li><b>06_Operations</b> — kundalik ish jarayonlari.</li>
+    <li><b>07_Finance</b> — hisob-kitob, xarajat, daromad.</li>
+    <li><b>08_Templates</b> — andozalar. <strong>Eng muhim papka.</strong> Natija har doim bir xil ko'rinishda chiqishini ta'minlaydi.</li>
+    <li><b>09_Reports</b> — tayyor hisobotlar.</li>
+    <li><b>10_Archive</b> — eski fayllar. <strong>Hech qachon o'chirmang, faqat arxivga qo'ying.</strong></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Explore → Plan → Execute usuli</h2>
+  <p>Bu — eng xavfsiz ish usuli. Cowork ishni uchta bosqichda qiladi va siz har bosqichni nazorat qilasiz. Shunda hech narsa noto'g'ri o'chib ketmaydi.</p>
+  <div class="flow">
+    <div class="fnode" style="--fc:var(--teal)"><b>1 · Explore</b><span>papkani ko'radi, hech narsani o'zgartirmaydi</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--purple)"><b>2 · Plan</b><span>rejani taklif qiladi, o'zgartirishdan oldin so'raydi</span></div>
+    <div class="farr">→</div>
+    <div class="fnode" style="--fc:var(--accent)"><b>3 · Execute</b><span>tasdiqdan keyin bajaradi, summary saqlaydi</span></div>
+  </div>
+  <ul class="clean">
+    <li><b>Explore</b> — Cowork avval papkani ochib, faqat ko'rib chiqadi. Bu bosqichda u hech narsani o'zgartirmaydi.</li>
+    <li><b>Plan</b> — keyin u nima qilmoqchiligini tushuntiradi. Fayllarga tegishdan oldin sizdan ruxsat so'raydi.</li>
+    <li><b>Execute</b> — siz tasdiqlaganingizdan keyingina ishga kirishadi. Fayllarni o'chirmaydi va har bir o'zgarishni summary faylga yozib boradi.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Birinchi ishonib topshiriladigan 6 ish</h2>
+  <p>Nimadan boshlash kerak? Mana zerikarli, lekin foydali oltita ish. Ularni bemalol topshirsangiz bo'ladi:</p>
+  <div class="tools">
+    <div class="tcard" style="--tc:var(--accent)"><span class="role">Tartib</span><b>Fayl tartibi</b><p>Aralash, tartibsiz papkani turkumlarga ajratadi va tozalaydi.</p></div>
+    <div class="tcard" style="--tc:var(--teal)"><span class="role">Yig'ilish</span><b>Uchrashuv qaydlari</b><p>Qaydlardan qaror, vazifa, mas'ul va muddatlarni ajratib beradi.</p></div>
+    <div class="tcard" style="--tc:var(--purple)"><span class="role">Hisobot</span><b>Haftalik hisobot</b><p>Hafta davomidagi ishlarni o'qib, qisqa umumiy hisobot yozadi.</p></div>
+    <div class="tcard" style="--tc:var(--red)"><span class="role">Tadqiqot</span><b>Tadqiqot brifi</b><p>Mavzu bo'yicha materiallarni o'qib, qisqa xulosa tayyorlaydi.</p></div>
+    <div class="tcard" style="--tc:var(--ok)"><span class="role">Kontent</span><b>Kontent ishlab chiqarish</b><p>G'oyani andoza asosida tayyor matn loyihasiga aylantiradi.</p></div>
+    <div class="tcard" style="--tc:var(--accent)"><span class="role">Kunlik</span><b>Kunlik brif</b><p>Bugungi 3 asosiy ish, shoshilinch javoblar va xavflarni ajratadi.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Qoidalar — fayllarga tegishdan oldin bering</h2>
+  <p>Cowork kuchli vosita. Shuning uchun unga aniq qoidalar bering. Bu qoidalarni har topshiriq boshida qo'shib qo'ying — shunda ish xavfsiz bo'ladi:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">Qoidalar · Har doim qo'shing</span><button class="copy">Nusxa olish</button></div><pre>Qoidalar:
+1. Fayllarni o'chirma.
+2. Mavjud faylni so'ramasdan ustiga yozma.
+3. Ishonchsiz bo'lsang "Needs Review" papkasini yarat.
+4. Katta o'zgarishdan oldin zaxira (backup) yarat.
+5. Har o'zgarishdan keyin summary.md yoz.
+6. Noaniq bo'lsa, avval savol ber.</pre></div>
+  <div class="callout">Bu oltita qatorni saqlab qo'ying. Har safar yangi ish topshirganingizda ularni topshiriq oldiga joylang.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Nimani ishonmaslik kerak</h2>
+  <p>Cowork ko'p ishni qila oladi. Lekin hamma ish ham unga topshiriladigan ish emas. Ba'zi ishlar sizning shaxsiy mulohazangizni talab qiladi:</p>
+  <ul class="clean">
+    <li><b>Yuridik qarorlar</b> — shartnoma, huquqiy masalalarni ko'zi yumib topshirmang.</li>
+    <li><b>Moliyaviy qarorlar</b> — pul bo'yicha oxirgi qarorni o'zingiz qiling.</li>
+    <li><b>Mijozga oxirgi tasdiq</b> — mijozga borayotgan narsani o'zingiz ko'rib chiqing.</li>
+    <li><b>Nozik kadr masalalari</b> — xodimlar bilan bog'liq maxfiy ishlar.</li>
+    <li><b>Shaxsiy mulohaza kerak ishlar</b> — his-tuyg'u va vaziyatni his qilishni talab qiladiganlar.</li>
+    <li><b>Xato tuzatish qimmatga tushadigan ishlar</b> — noto'g'ri fayl tahriri katta zarar keltirsa.</li>
+  </ul>
+  <div class="callout"><strong>Cowork — ishlab chiqarish. Siz — mulohaza.</strong> U og'ir ishni qiladi, siz muhim qarorni qabul qilasiz.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Haftalik reja</h2>
+  <p>Bir haftada o'zingizga to'liq ish tizimini qurib olasiz. Har kuni bittadan kichik qadam:</p>
+  <ol class="steps">
+    <li><strong>1-kun.</strong> Company OS papkalarini yarating — butun tuzilmani tayyorlang.</li>
+    <li><strong>2-kun.</strong> Andozalarni qo'shing — 08_Templates papkasini to'ldiring.</li>
+    <li><strong>3-kun.</strong> Bitta tartibsiz papkani tozalatib ko'ring.</li>
+    <li><strong>4-kun.</strong> Bitta haftalik hisobot yozdiring.</li>
+    <li><strong>5-kun.</strong> Uchrashuv qaydlarini vazifalar ro'yxatiga aylantiring.</li>
+    <li><strong>Dam olish kunlari.</strong> Kunlik brif tizimini quring.</li>
+  </ol>
+  <div class="callout">Hafta oxirida sizda oddiy ish tizimi bo'ladi — chatbot emas, <strong>hamkasb</strong>.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Xulosa</h2>
+  <p>Ikki jumlani eslab qoling. Ishingiz shu ikki jumla atrofida quriladi:</p>
+  <div class="chips">
+    <span class="chip">💭 Claude Chat — suhbat uchun</span>
+    <span class="chip">🛠️ Claude Cowork — ishlab chiqarish uchun</span>
+  </div>
+  <p>Chatda o'ylang, rejalashtiring, g'oya toping. Cowork'da esa ishni topshiring — u sizning kompyuteringizda haqiqiy natija yaratadi va kerakli joyga saqlaydi.</p>
+  <div class="callout">Bu qo'llanmani saqlab qo'ying. Birinchi ishni bugun topshiring — eng zerikarli papkangizdan boshlang. Bir haftadan keyin o'zingizni bir kishilik kompaniya kabi his qilasiz.</div>
+</section>
+
+<footer>
+  <p><span class="spark">✦</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>AI, Claude va real ishlaydigan tizimlar haqida — obuna bo'ling 🚀</p>
+</footer>
+</div>
+
+<script>
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+  });
+  document.querySelectorAll('.cmd').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(pre.innerText);
+      const t=btn.textContent; btn.textContent='✓ Nusxa olindi'; setTimeout(()=>btn.textContent=t,1500);}catch(e){} });
+  });
+</script>

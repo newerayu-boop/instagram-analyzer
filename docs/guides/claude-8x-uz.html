@@ -1,0 +1,283 @@
+<title>Claude'ni 8× aqlliroq qiling — Context Engineering · AI Strateg</title>
+<style>
+  :root{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c;
+    --red:#D8402F; --teal:#1F9E8F; --purple:#6C4DE0; --ok:#3E8E5C; --maxw:720px; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488;
+    --accent:#E0794C; --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F;
+    --red:#E8584A; --teal:#3BC0AF; --purple:#8B72FF; --ok:#5FA37B; } }
+  :root[data-theme="light"]{ --bg:#E7E3DA; --panel:#F3F0E9; --ink:#23211C; --muted:#6F6B61; --accent:#C8613B;
+    --line:#D7D2C6; --code-bg:#181712; --code-ink:#EDE7DD; --code-line:#3a352c; --red:#D8402F; --teal:#1F9E8F; --purple:#6C4DE0; --ok:#3E8E5C; }
+  :root[data-theme="dark"]{ --bg:#14130F; --panel:#1E1C17; --ink:#EDE9E0; --muted:#9A9488; --accent:#E0794C;
+    --line:#2E2A22; --code-bg:#0C0B08; --code-ink:#EDE7DD; --code-line:#2A261F; --red:#E8584A; --teal:#3BC0AF; --purple:#8B72FF; --ok:#5FA37B; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:18px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);}
+  .brand .hnd{color:var(--muted);font-weight:400;font-size:15px;}
+  .hero{padding:56px 0 28px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(30px,6vw,48px);line-height:1.08;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  section{padding:34px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(24px,4vw,31px);line-height:1.12;margin:0 0 6px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:22px 0 4px;}
+  p{margin:12px 0;} strong{font-weight:700;} code{background:var(--panel);padding:2px 7px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85em;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+  ul.clean{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:12px;}
+  ul.clean li{padding-left:28px;position:relative;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:4px;background:var(--accent);}
+  ul.clean li b{color:var(--ink);}
+  /* tool cards */
+  .tools{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;}
+  .tcard{background:var(--panel);border-radius:14px;padding:18px 20px;border-top:3px solid var(--tc,var(--accent));}
+  .tcard b{display:block;font-size:17px;} .tcard .role{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--tc,var(--accent));}
+  .tcard p{margin:8px 0 0;font-size:15px;color:var(--muted);}
+  /* flow diagram */
+  .flow{display:flex;align-items:stretch;gap:8px;margin:22px 0;overflow-x:auto;padding-bottom:6px;}
+  .fnode{flex:1;min-width:120px;background:var(--panel);border-radius:12px;padding:16px 10px;text-align:center;border-bottom:3px solid var(--fc,var(--accent));}
+  .fnode b{display:block;font-size:16px;} .fnode span{font-size:13px;color:var(--muted);}
+  .farr{align-self:center;color:var(--accent);font-size:24px;flex:0 0 auto;}
+  /* vertical loop */
+  .loop{display:flex;flex-direction:column;gap:0;margin:22px 0;}
+  .lstep{display:flex;align-items:center;gap:14px;background:var(--panel);border-radius:12px;padding:14px 18px;border-left:4px solid var(--lc,var(--accent));}
+  .lstep .ln{width:30px;height:30px;flex:0 0 auto;background:var(--lc,var(--accent));color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;font-family:Georgia,serif;}
+  .lstep .lt{flex:1;} .lstep .lt b{display:block;font-size:16px;} .lstep .lt span{font-size:14px;color:var(--muted);}
+  .lgap{height:16px;width:4px;margin-left:32px;background:var(--line);}
+  .lgap.back{background:linear-gradient(var(--accent),var(--accent));position:relative;}
+  ol.steps{padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:16px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;background:var(--ink);
+    color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:Georgia,serif;}
+  .cmd{margin:14px 0;border-radius:12px;overflow:hidden;border:1px solid var(--code-line);}
+  .cmd .ph{display:flex;align-items:center;justify-content:space-between;background:var(--code-bg);padding:10px 14px;border-bottom:1px solid var(--code-line);}
+  .cmd .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
+  .cmd .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .cmd .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .cmd pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:14px;overflow-x:auto;
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.55;white-space:pre-wrap;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;}
+  .chip{background:var(--panel);border-radius:30px;padding:10px 18px;font-size:15px;font-weight:600;}
+  /* converge diagram */
+  .conv{background:var(--panel);border-radius:14px;padding:20px;margin:18px 0;}
+  .conv svg{width:100%;height:auto;display:block;}
+  /* compare */
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;}
+  .cmp .col{border-radius:14px;padding:16px 18px;background:var(--panel);border-top:3px solid var(--cc,var(--accent));}
+  .cmp .col b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--cc,var(--accent));margin-bottom:8px;}
+  .cmp .col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;font-size:14.5px;}
+  .cmp .col li{color:var(--muted);}
+  footer{padding:38px 0 66px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (max-width:560px){ body{font-size:17px;} .tools{grid-template-columns:1fr;} .cmp{grid-template-columns:1fr;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✦</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+<div class="hero">
+  <div class="eyebrow">Anthropic muhandislari usuli</div>
+  <h1>Claude'ni <em>8× aqlliroq</em> qiling</h1>
+  <p class="lede">Anthropic muhandislari har kuni 8 barobar ko'proq kod yozib topshiradi. Model o'sha model, jamoa o'sha jamoa — faqat Claude ko'radigan kontekst o'zgardi. Bu — Context Engineering.</p>
+</div>
+
+<section>
+  <h2><span class="n">·</span>Nega AI yomon javob beradi</h2>
+  <p>Ko'pchilik AI xato qilganda modelni ayblaydi. Aslida model kamdan-kam aybdor bo'ladi. Asosiy sabab — <strong>yetishmayotgan kontekst</strong>.</p>
+  <p>Odamlar Claude'ga faqat bitta gap yozadi: «menga shu funksiyani yoz». Bu — buyruq (prompt), xolos. Lekin Claude yaxshi ishlashi uchun undan ko'proq narsa kerak: bilim, xotira, fayllar, qoidalar, misollar, vositalar, holat va oldingi harakatlar.</p>
+  <div class="callout">Muhim haqiqat: Claude faqat <strong>kontekst oynasidagi</strong> narsani ko'radi. Oynada nima bo'lsa — o'shani biladi. U yerda yo'q narsani u bilmaydi va taxmin qilishga majbur bo'ladi. Taxmin esa — xato demakdir.</p></div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Kontekst nima — 7 qism</h2>
+  <p>Kontekst — bu Claude ish boshlashdan oldin ko'radigan hamma narsa. U 7 qismdan iborat:</p>
+  <div class="tools">
+    <div class="tcard" style="--tc:var(--accent)"><span class="role">1-QISM</span><b>Xotira</b><p>Oldingi suhbatlardan nimani bilishi. Nima ishlagan, nima ishlamagan — hammasi eslab qolinadi.</p></div>
+    <div class="tcard" style="--tc:var(--teal)"><span class="role">2-QISM</span><b>Ko'rsatmalar</b><p>Qoidalar va kod uslubi. «Doim shunday yoz, bunday qilma» degan aniq talablar.</p></div>
+    <div class="tcard" style="--tc:var(--purple)"><span class="role">3-QISM</span><b>Misollar</b><p>Yaxshi natija qanday ko'rinishi. Bir-ikki namuna Claude'ga «to'g'ri» nimaligini ko'rsatadi.</p></div>
+    <div class="tcard" style="--tc:var(--red)"><span class="role">4-QISM</span><b>Fayllar</b><p>Kod, hujjatlar, arxitektura. Loyihaning haqiqiy mazmuni.</p></div>
+    <div class="tcard" style="--tc:var(--ok)"><span class="role">5-QISM</span><b>Oldingi harakatlar</b><p>U allaqachon nimani sinaganini. Shunda bir xato ikki marta takrorlanmaydi.</p></div>
+    <div class="tcard" style="--tc:var(--teal)"><span class="role">6-QISM</span><b>Vosita natijalari</b><p>Qidiruv yoki funksiyalar nima qaytargani. Haqiqiy ma'lumot, taxmin emas.</p></div>
+    <div class="tcard" style="--tc:var(--purple)"><span class="role">7-QISM</span><b>Holat</b><p>Vazifa hozir qayerda turgani. Nima bajarilgan, nima qolgani.</p></div>
+  </div>
+  <div class="callout">Bu 7 qism birlashib Claude'ga «to'liq manzara» beradi. Ana o'shanda 8× farq paydo bo'ladi:</div>
+  <div class="conv">
+    <svg viewBox="0 0 520 300" role="img" aria-label="7 qism kontekst Claude'ga birlashib 8x natija beradi">
+      <g font-family="Georgia,serif" font-size="12" fill="var(--muted)">
+        <text x="8" y="28">Xotira</text>
+        <text x="8" y="70">Ko'rsatmalar</text>
+        <text x="8" y="112">Misollar</text>
+        <text x="8" y="154">Fayllar</text>
+        <text x="8" y="196">Oldingi harakatlar</text>
+        <text x="8" y="238">Vosita natijalari</text>
+        <text x="8" y="280">Holat</text>
+      </g>
+      <g stroke="var(--accent)" stroke-width="2" fill="none" opacity="0.55">
+        <path d="M120 24 C 240 24, 260 140, 340 150"/>
+        <path d="M120 66 C 240 66, 260 145, 340 150"/>
+        <path d="M120 108 C 240 108, 262 148, 340 150"/>
+        <path d="M120 150 L 340 150"/>
+        <path d="M120 192 C 240 192, 262 152, 340 150"/>
+        <path d="M120 234 C 240 234, 260 155, 340 150"/>
+        <path d="M120 276 C 240 276, 260 160, 340 150"/>
+      </g>
+      <rect x="340" y="120" width="86" height="60" rx="12" fill="var(--accent)"/>
+      <text x="383" y="156" text-anchor="middle" font-family="Georgia,serif" font-size="17" font-weight="700" fill="#fff">Claude</text>
+      <path d="M426 150 L 458 150" stroke="var(--accent)" stroke-width="3" fill="none"/>
+      <polygon points="458,144 472,150 458,156" fill="var(--accent)"/>
+      <text x="496" y="145" text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="800" fill="var(--accent)">8×</text>
+      <text x="496" y="168" text-anchor="middle" font-size="11" fill="var(--muted)">natija</text>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Agent qanday ishlaydi</h2>
+  <p>Agent — bu bir marta javob berib to'xtaydigan chat emas. U aylanma bo'yicha ishlaydi: harakat qiladi, natijani ko'radi, keyingi harakatni tanlaydi. Vazifa tugaguncha shu aylana takrorlanadi.</p>
+  <div class="loop">
+    <div class="lstep" style="--lc:var(--accent)"><span class="ln">1</span><div class="lt"><b>Foydalanuvchi so'rovi</b><span>siz vazifani berasiz</span></div></div>
+    <div class="lgap"></div>
+    <div class="lstep" style="--lc:var(--red)"><span class="ln">2</span><div class="lt"><b>Kontekst quriladi — 7 qismdan</b><span>Claude ish boshlashdan oldin hamma narsani ko'radi</span></div></div>
+    <div class="lgap"></div>
+    <div class="lstep" style="--lc:var(--teal)"><span class="ln">3</span><div class="lt"><b>Claude harakatni tanlaydi</b><span>keyingi qadam nima bo'lishini hal qiladi</span></div></div>
+    <div class="lgap"></div>
+    <div class="lstep" style="--lc:var(--purple)"><span class="ln">4</span><div class="lt"><b>Vosita ishga tushadi</b><span>qidiruv, fayl o'qish yoki funksiya bajariladi</span></div></div>
+    <div class="lgap"></div>
+    <div class="lstep" style="--lc:var(--ok)"><span class="ln">5</span><div class="lt"><b>Natija kontekstga qo'shiladi</b><span>yangi ma'lumot oynaga tushadi</span></div></div>
+    <div class="lgap"></div>
+    <div class="lstep" style="--lc:var(--accent)"><span class="ln">6</span><div class="lt"><b>Claude yangi kontekstni ko'radi</b><span>va keyingi harakatni tanlaydi — aylana takrorlanadi</span></div></div>
+  </div>
+  <div class="callout">Kuchsiz agent aynan <strong>2-qadamda</strong> sinadi. Kontekst to'liq bo'lmasa, Claude noto'g'ri taxmin qiladi — noto'g'ri taxmin esa noto'g'ri natijaga olib boradi. Aylana necha marta aylanmasin, boshi xato bo'lsa, oxiri ham xato bo'ladi.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>3 qatlamli kontekst</h2>
+  <p>Kontekstni bitta katta uyum qilib berish shart emas. Uni 3 qatlamga bo'lish kerak. Har qatlam o'z vaqtida yuklanadi:</p>
+  <ol class="steps">
+    <li><strong>Global kontekst.</strong> Doim mavjud bo'ladi. Claude kimligi, asosiy qoidalar, kod uslubi va «hech qachon tegmaslik kerak» bo'lgan joylar. Bu qatlam har ishda ishtirok etadi.</li>
+    <li><strong>Loyiha konteksti.</strong> Loyiha ochilganda yuklanadi. README fayli, AGENTS.md, jildlar tuzilishi, test qoidalari va asosiy kutubxonalar. Bu qatlam butun loyiha davomida qoladi.</li>
+    <li><strong>Vazifa konteksti.</strong> Faqat shu vazifa uchun. Hozirgi fayl, maqsad, oxirgi o'zgarishlar, test natijalari va cheklovlar. Vazifa tugagach, bu qatlam almashadi.</li>
+  </ol>
+  <div class="callout">Shunday bo'lganda Claude kerak paytda kerakli narsani ko'radi. Ortiqcha ma'lumot uni chalg'itmaydi, yetishmovchilik esa xato qildirmaydi.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>AGENTS.md — hammani o'zgartiradigan fayl</h2>
+  <p>Bu — eng muhim fayl. Claude uni <strong>har sessiya boshida</strong> o'qiydi. Ichida loyihangiz haqidagi asosiy qoidalar yoziladi. Mana soddalashtirilgan namuna:</p>
+  <div class="cmd"><div class="ph"><span class="lbl">AGENTS.md</span><button class="copy">Nusxa olish</button></div><pre># AGENTS.md
+
+## Arxitektura
+Monorepo: Next.js frontend + Express backend.
+API /api ichida. /legacy'ga tegmang.
+
+## Qoidalar
+axios ishlatmang, doim fetch.
+Har komponent: TypeScript + Tailwind.
+
+## Test
+Vitest (unit), Playwright (E2E).
+Har commitdan oldin test ishga tushiring.
+
+## Tegmaslik kerak
+src/payments/ — inson tasdig'i kerak
+.env — hech qachon o'qimang yoki o'zgartirmang</pre></div>
+  <div class="callout">Har bir qator — Claude endi takrorlamaydigan bitta xato. Bu faylni to'ldirgan sari agentingiz aqlliroq bo'ladi.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Xotira — sessiyalar orasida saqlanadi</h2>
+  <p>Odam ish jarayonida tajriba to'playdi. Agent ham xuddi shunday xotiraga muhtoj. Xotira uch xil bo'ladi:</p>
+  <div class="tools">
+    <div class="tcard" style="--tc:var(--accent)"><span class="role">Uzoq muddatli</span><b>Long-term</b><p>Hamma sessiyalar orasida saqlanadi. Bugun o'rgangani ertaga ham eslanadi.</p></div>
+    <div class="tcard" style="--tc:var(--teal)"><span class="role">Qisqa muddatli</span><b>Short-term</b><p>Faqat shu suhbat davomida. Suhbat tugasa, yo'qoladi.</p></div>
+    <div class="tcard" style="--tc:var(--purple)"><span class="role">Ishchi xotira</span><b>Working</b><p>Hozirgi kontekst oynasi. Ayni damda ko'z oldida turgan narsa.</p></div>
+  </div>
+  <p>Amalda bu oddiy ishlaydi: bitta markdown xotira fayli bo'ladi. Claude uni sessiya boshida o'qiydi, oxirida yangilaydi — nima ishlagani, nima ishlamagani va qaysi naqshlar takrorlanayotganini yozib qo'yadi. Ertasi kuni u shu bilim bilan ishni boshlaydi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>MCP — hamma tizimdan kontekst</h2>
+  <p>Kontekstning bir qismi kompyuteringizda emas, boshqa tizimlarda turadi: xatolar, xabarlar, ma'lumotlar bazasi. MCP (Model Context Protocol) shu tizimlardan kontekstni to'g'ridan-to'g'ri tortadi — har biri uchun alohida dastur yozish shart emas.</p>
+  <div class="chips">
+    <span class="chip">📁 Filesystem</span>
+    <span class="chip">🐙 GitHub</span>
+    <span class="chip">📋 Linear / Jira</span>
+    <span class="chip">💬 Slack</span>
+    <span class="chip">🐘 Postgres</span>
+    <span class="chip">☁️ Google Drive</span>
+    <span class="chip">🐞 Sentry</span>
+  </div>
+  <p>Natijada agent bitta vazifa ustida ishlarkan hamma joyni ko'radi: Linear'dagi topshiriqni, Slack'dagi qaror qabul qilingan suhbatni, Sentry'dagi xatoni va ma'lumotlar bazasidagi tuzilmani. Endi u taxmin qilmaydi — haqiqiy holatga qaraydi.</p>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Oldin vs Keyin</h2>
+  <p>Bir xil model, bir xil savol. Farq faqat kontekstda. Mana ikki agent:</p>
+  <div class="cmp">
+    <div class="col" style="--cc:var(--red)"><b>✗ Kuchsiz agent</b>
+      <ul>
+        <li>Savol → Claude → Javob</li>
+        <li>Hamma narsani taxmin qiladi</li>
+        <li>Loyiha qoidalarini bilmaydi</li>
+        <li>Oldin nima qilganini unutgan</li>
+        <li>Ko'p marta xato qiladi</li>
+      </ul>
+    </div>
+    <div class="col" style="--cc:var(--ok)"><b>✓ Kuchli agent</b>
+      <ul>
+        <li>Savol → hujjatlarni qidiradi</li>
+        <li>→ xotirani qidiradi</li>
+        <li>→ AGENTS.md'ni o'qiydi</li>
+        <li>→ fayllarni o'qiydi, holatni tekshiradi</li>
+        <li>→ Claude → to'liq ma'lumotga qurilgan javob</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><strong>Bir xil model, boshqacha kontekst.</strong> Model o'zgarmadi — faqat u ishga kirishdan oldin ko'radigan narsa o'zgardi. Butun 8× shu yerda tug'iladi.</div>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Hafta oxirida quring — 3 kun</h2>
+  <p>Buni o'qib qo'yish yetarli emas. Uch kunda o'z tizimingizni quring:</p>
+  <ol class="steps">
+    <li><strong>1-kun — poydevor.</strong> 3 qatlamli kontekstni tuzing: global qoidalar, AGENTS.md fayli va xotira fayli. Bu — tizimning suyagi.</li>
+    <li><strong>2-kun — ulang.</strong> MCP orqali tashqi tizimlarni ulang: GitHub, filesystem va Slack yoki Linear. Endi agent hamma joyni ko'radi.</li>
+    <li><strong>3-kun — solishtiring.</strong> Bitta vazifani ikki marta bajaring: avval faqat oddiy buyruq bilan, keyin to'liq kontekst bilan. Ikki natija orasidagi farq — mana o'sha 8×.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="n">·</span>Xulosa</h2>
+  <p>Prompt engineering — bitta yaxshi gap yozish edi. Context engineering esa — Claude ko'radigan butun muhitni qurish. Bu yangi usul eskisini almashtiryapti.</p>
+  <div class="callout"><strong>Kontekst — bu AI uchun operatsion tizim.</strong> Modelni almashtirmaysiz — unga to'g'ri kontekstni berasiz. Shu qo'llanmani saqlab qo'ying va uch kunlik rejani bugun boshlang.</div>
+</section>
+
+<footer>
+  <p><span class="spark">✦</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>AI, Claude va real ishlaydigan tizimlar haqida — obuna bo'ling 🚀</p>
+</footer>
+</div>
+
+<script>
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+  });
+  document.querySelectorAll('.cmd').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(pre.innerText);
+      const t=btn.textContent; btn.textContent='✓ Nusxa olindi'; setTimeout(()=>btn.textContent=t,1500);}catch(e){} });
+  });
+</script>
