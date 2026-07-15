@@ -1,7 +1,8 @@
 // engine/aistrateg/smart8x.cjs
 // «AI STRATEG» — Claude'ni 8x aqlliroq qilish (Context Engineering).
-// NEYRON/DATA-VIZ mavzu: yorug' tugunlar, ulangan chiziqlar, umurtqa-chiziq, katta xira raqamlar. Qora premium. O'zbekcha B1.
-// Footer: AI STRATEG / @kodiyusufbay. CTA: izohga «+».
+// WOW REDESIGN: har slayd ALOHIDA kompozitsiya (gigant raqam, doiraviy diagramma, full-bleed, qatlamlar).
+// Brend rangi: to'q sariq/amber oila. Fonlar almashadi (qora/krem/orange/shaftoli). O'zbekcha B1.
+// Footer brend: AI STRATEG / @kodiyusufbay. CTA: izohga «+».
 
 const fs = require('fs');
 const path = require('path');
@@ -14,187 +15,190 @@ const SANS = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace,'SF Mono',Menlo,Consolas,monospace";
 const HANDLE = '@kodiyusufbay';
 const TOTAL = 9;
+const WARM = ['#E0794C', '#E8A34B', '#E8B84B', '#D98E5A', '#C4623B', '#B4501F', '#EE9E6B'];
 
 const pg = (i) => `${String(i + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}`;
-const spark = (c = 'var(--accent)') => `<svg class="spk" viewBox="0 0 24 24"><path d="M12 1l2.2 7.4L21.5 6l-5.1 5.6 6.6 3.4-7.6.5 2.3 7.4L12 17l-5.7 5.9 2.3-7.4L1 15l6.6-3.4L2.5 6l7.3 2.4z" fill="${c}"/></svg>`;
-const deco = (cls = '') => `<div class="bg-grid"></div><div class="glow ${cls}"></div>`;
-const topbar = (kick, i) => `<div class="top"><div class="kick">${spark()}${kick}</div><span class="page">${pg(i)}</span></div>`;
-const footer = () => `<div class="rule"></div><div class="footer"><span class="fbrand">${spark()}AI STRATEG</span><span class="fhandle">${HANDLE}</span></div>`;
-// persistent neural chrome: left spine + node + big faint number
-const chrome = (big) => `<div class="spine"></div><div class="snode"></div><div class="bignum">${big}</div>`;
-
-const LAYERS = [
-  ['#E0794C', 'Xotira'], ['#5B8DEF', "Ko'rsatmalar"], ['#5FB56A', 'Misollar'],
-  ['#9A79E0', 'Fayllar'], ['#E06BA6', 'Vositalar'], ['#E8B84B', 'Holat'], ['#3BC0AF', 'Tarix'],
-];
-
-function conv() {
-  const nodeX = 792, nodeY = 175;
-  const ys = LAYERS.map((_, i) => 40 + i * 45);
-  let lines = '', bars = '';
-  LAYERS.forEach(([c], i) => {
-    const y = ys[i];
-    lines += `<path d="M250 ${y} C 430 ${y}, 560 ${nodeY}, ${nodeX - 44} ${nodeY}" stroke="${c}" stroke-width="3.2" fill="none" opacity=".6"/>`;
-    bars += `<rect x="44" y="${y - 15}" width="206" height="30" rx="9" fill="#1a1712" stroke="${c}" stroke-width="2"/><circle cx="70" cy="${y}" r="6.5" fill="${c}"/>`;
-  });
-  return `<svg viewBox="0 0 900 350" class="conv">
-    ${lines}${bars}
-    <circle cx="${nodeX}" cy="${nodeY}" r="60" fill="url(#ng)" opacity=".9"/>
-    <circle cx="${nodeX}" cy="${nodeY}" r="44" fill="#160f0a" stroke="#E0794C" stroke-width="3"/>
-    <g transform="translate(${nodeX - 21},${nodeY - 21}) scale(1.75)">${spark('#F0A362')}</g>
-    <defs><radialGradient id="ng"><stop offset="0" stop-color="#E0794C" stop-opacity=".55"/><stop offset="1" stop-color="#E0794C" stop-opacity="0"/></radialGradient></defs>
-  </svg>`;
-}
+const mark = (i, tag = 'AI STRATEG') => `<div class="mark"><span class="mb">✦ ${tag}</span><span class="mp">${pg(i)}</span></div>`;
+const foot = () => `<div class="foot">${HANDLE}</div>`;
 
 // ── slides ────────────────────────────────────────────────
+// 1. COVER — dark, convergence hero
 function cover() {
-  return `<section class="slide dark cover">
-    ${deco('tr')}
-    <div class="top"><div class="kick">${spark()}AI STRATEG</div><span class="page">${pg(0)}</span></div>
-    <div class="cov-mid">
-      <div class="cov-art">${conv()}</div>
-      <div class="badge">ANTHROPIC MUHANDISLARI USULI</div>
-      <h1 class="cov-title">CLAUDE'NI<br><span class="acc">8× AQLLIROQ</span> QILING</h1>
-      <p class="cov-sub">Model o'zgarmadi. Jamoa ham. Faqat Claude ishdan oldin <b>ko'radigan ma'lumot</b> o'zgardi.</p>
-      <div class="gift">🎁 Oxirida — bepul to'liq qo'llanma</div>
-      <div class="swipe">SURING <b>&rarr;</b></div>
+  const nodeX = 792, nodeY = 175;
+  const ys = WARM.map((_, i) => 40 + i * 45);
+  let lines = '', bars = '';
+  WARM.forEach((c, i) => {
+    const y = ys[i];
+    lines += `<path d="M250 ${y} C 430 ${y}, 560 ${nodeY}, ${nodeX - 44} ${nodeY}" stroke="${c}" stroke-width="3.4" fill="none" opacity=".7"/>`;
+    bars += `<rect x="44" y="${y - 15}" width="206" height="30" rx="9" fill="#1a1712" stroke="${c}" stroke-width="2"/><circle cx="70" cy="${y}" r="6.5" fill="${c}"/>`;
+  });
+  return `<section class="slide s-dark">
+    <div class="glowbig"></div>
+    ${mark(0)}
+    <div class="cov">
+      <svg viewBox="0 0 900 350" class="conv">${lines}${bars}
+        <circle cx="${nodeX}" cy="${nodeY}" r="60" fill="url(#ng)"/><circle cx="${nodeX}" cy="${nodeY}" r="44" fill="#160f0a" stroke="#E0794C" stroke-width="3"/>
+        <text x="${nodeX}" y="${nodeY + 14}" text-anchor="middle" font-family="${SERIF}" font-size="44" font-weight="900" fill="#F0A362">C</text>
+        <defs><radialGradient id="ng"><stop offset="0" stop-color="#E0794C" stop-opacity=".6"/><stop offset="1" stop-color="#E0794C" stop-opacity="0"/></radialGradient></defs>
+      </svg>
+      <div class="cov-badge">ANTHROPIC MUHANDISLARI USULI</div>
+      <h1 class="cov-t">CLAUDE'NI<br><span class="huge">8×</span> AQLLIROQ<br>QILING</h1>
+      <p class="cov-s">Model o'zgarmadi. Faqat u ishdan oldin <b>ko'radigan ma'lumot</b> o'zgardi.</p>
+      <div class="cov-swipe">SURING →</div>
     </div>
-    ${footer()}
+    ${foot()}
   </section>`;
 }
 
+// 2. MUAMMO — full-bleed statement on ORANGE
 function s2() {
-  return `<section class="slide dark">
-    ${deco('tr')}${chrome('01')}
-    ${topbar('MUAMMO', 1)}
-    <div class="mid">
-    <h2 class="h"><span class="hn"></span>Nega AI <span class="acc">yomon javob</span> beradi?</h2>
-    <div class="ba">
-      <div class="node"><div class="dot red"></div><div class="n-lab old">KO'PCHILIK BERADI</div><ul><li>Bitta gap</li><li>Bitta so'rov</li><li>Boshqa hech narsa</li></ul></div>
-      <div class="conn">→</div>
-      <div class="node hot"><div class="dot"></div><div class="n-lab new">CLAUDE'GA KERAK</div><ul><li>Xotira, qoidalar</li><li>Fayllar, misollar</li><li>Vositalar, holat</li></ul></div>
+  return `<section class="slide s-orange">
+    <div class="corner-num">01</div>
+    ${mark(1)}
+    <div class="stmt">
+      <div class="stmt-k">MUAMMO</div>
+      <h2 class="stmt-h">Aybdor —<br>model <span class="strike">emas.</span></h2>
+      <div class="stmt-big">KONTEKST</div>
+      <p class="stmt-s">Claude faqat kontekst oynasidagi narsani ko'radi. Tashqarisi — yo'qdek. Kamlik qilsa, u <b>taxmin qiladi</b>.</p>
     </div>
-    <div class="stripe">Claude faqat <b>kontekst oynasidagi</b> narsani ko'radi. Tashqarisi — yo'qdek.</div>
-    </div>
-    ${footer()}
+    ${foot()}
   </section>`;
 }
 
+// 3. 7 QISM — radial hub diagram on CREAM
 function s3() {
-  const items = LAYERS.map(([c, n], i) => {
-    const d = ['O\'tgan sessiyalardan bilgani', 'Qoidalar va yozuv uslubi', 'Yaxshi natija qanday ko\'rinadi', 'Kod, hujjat, arxitektura', 'Qidiruv va funksiya natijasi', 'Vazifa hozir qayerda', 'Avval nima qilgani'][i];
-    return `<div class="cx"><span class="cx-d" style="background:${c};box-shadow:0 0 20px 2px ${c}"></span><div><b>${n}</b><span>${d}</span></div></div>`;
-  }).join('');
-  return `<section class="slide dark">
-    ${deco('bl')}${chrome('7')}
-    ${topbar('KONTEKST NIMA', 2)}
-    <div class="mid">
-    <h2 class="h"><span class="hn"></span>Kontekst — <span class="acc">7 qismdan</span> iborat</h2>
-    <div class="cx-grid">${items}</div>
-    </div>
-    ${footer()}
+  const labels = ['Xotira', "Ko'rsatma", 'Misollar', 'Fayllar', 'Vositalar', 'Holat', 'Tarix'];
+  const cx = 450, cy = 205, rx = 372, ry = 150;
+  let spokes = '', nodes = '';
+  labels.forEach((t, i) => {
+    const a = (-90 + i * (360 / 7)) * Math.PI / 180;
+    const x = cx + Math.cos(a) * rx, y = cy + Math.sin(a) * ry;
+    const c = WARM[i];
+    spokes += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${c}" stroke-width="3" opacity=".5"/>`;
+    nodes += `<g><circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="34" fill="${c}"/><circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="34" fill="none" stroke="#2A2016" stroke-width="2"/></g>
+      <text x="${x.toFixed(0)}" y="${(y + 62).toFixed(0)}" text-anchor="middle" font-family="${SANS}" font-size="25" font-weight="800" fill="#2A2016">${t}</text>`;
+  });
+  return `<section class="slide s-cream">
+    ${mark(2)}
+    <div class="mid-h"><span class="tag">7 QISM</span><h2 class="h2 dark">Kontekst nimadan iborat?</h2></div>
+    <svg viewBox="0 0 900 470" class="radial">
+      ${spokes}
+      <circle cx="${cx}" cy="${cy}" r="82" fill="#2A2016"/>
+      <text x="${cx}" y="${cy - 6}" text-anchor="middle" font-family="${SERIF}" font-size="34" font-weight="900" fill="#F2ECDE">KON-</text>
+      <text x="${cx}" y="${cy + 30}" text-anchor="middle" font-family="${SERIF}" font-size="34" font-weight="900" fill="#E0794C">TEKST</text>
+      ${nodes}
+    </svg>
+    ${foot()}
   </section>`;
 }
 
+// 4. AGENT LOOP — circular flow on DARK
 function s4() {
-  const steps = [
-    ['So\'rov', 'foydalanuvchi'], ['Kontekst', '7 qism yig\'iladi'], ['Claude', 'qaror qiladi'],
-    ['Vosita', 'ishga tushadi'], ['Natija', 'kontekstga qo\'shiladi'],
-  ].map(([t, d], i) => `<div class="fnode"><span class="fdot"></span><b>${t}</b><span>${d}</span></div>${i < 4 ? '<div class="wire-h"></div>' : ''}`).join('');
-  return `<section class="slide dark">
-    ${deco('tr')}${chrome('∞')}
-    ${topbar('QANDAY ISHLAYDI', 3)}
-    <div class="mid">
-    <h2 class="h"><span class="hn"></span>Agent — bu <span class="acc">aylanma</span></h2>
-    <div class="flow">${steps}</div>
-    <div class="stripe">Zaif agent 2-qadamda buziladi: kontekst to'liq emas → Claude taxmin qiladi → xato chiqadi. <b>Aylanma qayta boshlanadi.</b></div>
-    </div>
-    ${footer()}
+  const steps = ['So\'rov', 'Kontekst', 'Claude', 'Vosita', 'Natija'];
+  const cx = 450, cy = 235, r = 175;
+  let arcs = '', nodes = '';
+  steps.forEach((t, i) => {
+    const a = (-90 + i * 72) * Math.PI / 180;
+    const x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r;
+    nodes += `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="58" fill="#1d150d" stroke="#E0794C" stroke-width="2.5"/>
+      <text x="${x.toFixed(0)}" y="${(y + 9).toFixed(0)}" text-anchor="middle" font-family="${SANS}" font-size="24" font-weight="800" fill="#F2ECDE">${t}</text>`;
+  });
+  // dashed ring with arrows
+  return `<section class="slide s-charcoal">
+    ${mark(3)}
+    <div class="mid-h"><span class="tag amber">AYLANMA</span><h2 class="h2">Agent — bu doira</h2></div>
+    <svg viewBox="0 0 900 490" class="loop">
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#E0794C" stroke-width="3" stroke-dasharray="4 16" opacity=".55"/>
+      <text x="${cx}" y="${cy - 6}" text-anchor="middle" font-family="${SERIF}" font-size="66" font-weight="900" fill="#E0794C">↻</text>
+      <text x="${cx}" y="${cy + 42}" text-anchor="middle" font-family="${SANS}" font-size="22" font-weight="700" letter-spacing="3" fill="#8b7f6e">TO'XTAMAYDI</text>
+      ${nodes}
+    </svg>
+    <p class="foot-note">Zaif agent 2-qadamda buziladi: kontekst to'liq emas → xato.</p>
+    ${foot()}
   </section>`;
 }
 
+// 5. 3 QATLAM — stacked perspective layers on PEACH, giant "3"
 function s5() {
-  const ways = [
-    ['1', 'Global kontekst', 'Har sessiyada bor: kimligi, asosiy qoidalar, uslub, nimaga tegmaslik.'],
-    ['2', 'Loyiha konteksti', 'Loyiha boshida: AGENTS.md, arxitektura, papkalar, test qoidalari.'],
-    ['3', 'Vazifa konteksti', 'Shu ish uchun: joriy fayl, maqsad, oxirgi o\'zgarish, cheklovlar.'],
-  ].map(([n, t, d]) => `<div class="way"><span class="way-n">${n}</span><div><b>${t}</b><span>${d}</span></div></div>`).join('');
-  return `<section class="slide dark">
-    ${deco('bl')}${chrome('3')}
-    ${topbar('3 QATLAM', 4)}
-    <div class="mid">
-    <h2 class="h"><span class="hn"></span>Kontekstning <span class="acc">3 qatlami</span></h2>
-    <div class="ways wire">${ways}</div>
-    </div>
-    ${footer()}
+  const L = [
+    ['GLOBAL', 'Kimligi, qoidalar, uslub — har doim bor', '#B4501F'],
+    ['LOYIHA', 'AGENTS.md, arxitektura, papkalar', '#E0794C'],
+    ['VAZIFA', 'Joriy fayl, maqsad, cheklovlar', '#E8A34B'],
+  ].map(([t, d, c], i) => `<div class="layer" style="--lc:${c};z-index:${3 - i}"><div class="layer-t">${t}</div><div class="layer-d">${d}</div></div>`).join('');
+  return `<section class="slide s-peach">
+    <div class="ghost-num">3</div>
+    ${mark(4)}
+    <div class="mid-h"><span class="tag">3 QATLAM</span><h2 class="h2 dark">Kontekst — 3 qavat</h2></div>
+    <div class="stack">${L}</div>
+    ${foot()}
   </section>`;
 }
 
+// 6. AGENTS.md — tilted code panel on DARK, big watermark
 function s6() {
-  return `<section class="slide dark">
-    ${deco('tr')}${chrome('md')}
-    ${topbar('ENG MUHIM FAYL', 5)}
-    <div class="mid">
-    <h2 class="h"><span class="hn"></span>AGENTS.md — <span class="acc">hammasini</span> o'zgartiradi</h2>
-    <p class="body">Claude uni <b>har sessiya boshida</b> o'qiydi. Bir marta yozing — qayta tushuntirmaysiz.</p>
-    <div class="term">
-      <div class="term-bar"><span class="md r"></span><span class="md y"></span><span class="md g"></span></div>
-      <div class="term-b"><span class="tg"># AGENTS.md</span><br><br><b>## Arxitektura</b><br>API — /api ichida. /legacy'ga tegmang.<br><br><b>## Qoidalar</b><br>axios yo'q, doim fetch. TypeScript + Tailwind.<br><br><b>## Tegmaslik</b><br>src/payments/ — inson tasdig'i kerak</div>
+  return `<section class="slide s-dark">
+    <div class="wm">.md</div>
+    ${mark(5)}
+    <div class="mid-h"><span class="tag amber">ENG MUHIM FAYL</span><h2 class="h2">AGENTS.md</h2></div>
+    <div class="panel tilt">
+      <div class="p-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="p-name">AGENTS.md</span></div>
+      <div class="p-body"><span class="c-cmt"># Arxitektura</span><br>API — /api ichida. /legacy — tegmang.<br><br><span class="c-cmt"># Qoidalar</span><br>axios yo'q, doim fetch.<br><br><span class="c-cmt"># Tegmaslik</span><br><span class="c-warn">src/payments/</span> — inson tasdig'i</div>
     </div>
-    <div class="stripe">Har qator — Claude <b>qaytarmaydigan bitta xato</b>.</div>
-    </div>
-    ${footer()}
+    <p class="foot-note">Har qator — Claude qaytarmaydigan bitta xato. O'qiladi har sessiya boshida.</p>
+    ${foot()}
   </section>`;
 }
 
+// 7. XOTIRA — 3 big circular icons timeline on CREAM
 function s7() {
-  const cards = [
-    ['🗄️', 'Uzoq xotira', 'Barcha o\'tgan sessiyalardan o\'rganilgan bilim'],
-    ['💬', 'Qisqa xotira', 'Shu suhbatda sodir bo\'lgan narsa'],
-    ['🧠', 'Ishchi xotira', 'Hozir kontekst oynasidagi narsa'],
-  ].map(([e, t, d]) => `<div class="res"><span class="res-e">${e}</span><div class="res-tx"><b>${t}</b><span>${d}</span></div></div>`).join('');
-  return `<section class="slide dark">
-    ${deco('bl')}${chrome('3')}
-    ${topbar('XOTIRA', 6)}
-    <div class="mid">
-    <h2 class="h"><span class="hn"></span>Xotira — <span class="acc">sessiyalar orasida</span></h2>
-    <div class="res-grid wire">${cards}</div>
-    <div class="stripe">Amalda bu — <b>xotira fayli</b>: boshida o'qiladi, oxirida yangilanadi. Agent unutmaydi.</div>
-    </div>
-    ${footer()}
+  const m = [
+    ['🗄️', 'UZOQ', 'Barcha sessiyalardan'],
+    ['💬', 'QISQA', 'Shu suhbatda'],
+    ['🧠', 'ISHCHI', 'Hozir oynada'],
+  ].map(([e, t, d], i) => `<div class="mem"><div class="mem-c">${e}</div><div class="mem-t">${t}</div><div class="mem-d">${d}</div></div>${i < 2 ? '<div class="mem-arr">→</div>' : ''}`).join('');
+  return `<section class="slide s-cream">
+    ${mark(6)}
+    <div class="mid-h"><span class="tag">XOTIRA</span><h2 class="h2 dark">Uch xil xotira</h2></div>
+    <div class="mem-row">${m}</div>
+    <div class="ribbon">Amalda bu — <b>xotira fayli</b>: boshida o'qiladi, oxirida yangilanadi.</div>
+    ${foot()}
   </section>`;
 }
 
+// 8. MCP — constellation on CHARCOAL
 function s8() {
-  const sys = ['Filesystem', 'GitHub', 'Linear', 'Slack', 'Postgres', 'Google Drive', 'Sentry', 'Jira'];
-  const chips = sys.map(s => `<div class="chip"><span class="chip-d"></span>${s}</div>`).join('');
-  return `<section class="slide dark">
-    ${deco('tr')}${chrome('MCP')}
-    ${topbar('MCP', 7)}
-    <div class="mid">
-    <h2 class="h"><span class="hn"></span>MCP — <span class="acc">hamma joydan</span> kontekst</h2>
-    <p class="body">Claude tashqi tizimlardan ham ma'lumot oladi — har biriga alohida ulanish yozmasdan.</p>
-    <div class="chips">${chips}</div>
-    <div class="stripe">U kodni emas — <b>tiket, Slack qarori, xato va bazani</b> ham ko'radi.</div>
-    </div>
-    ${footer()}
+  const sys = [['GitHub', 150, 90], ['Slack', 720, 130], ['Linear', 120, 330], ['Postgres', 760, 350], ['Sentry', 250, 430], ['Drive', 640, 60], ['Jira', 430, 470], ['Files', 620, 440]];
+  const cx = 450, cy = 250;
+  let lines = '', nodes = '';
+  sys.forEach(([t, x, y], i) => {
+    lines += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${WARM[i % WARM.length]}" stroke-width="2" opacity=".35"/>`;
+    nodes += `<g><circle cx="${x}" cy="${y}" r="9" fill="${WARM[i % WARM.length]}"/></g><text x="${x}" y="${y - 20}" text-anchor="middle" font-family="${SANS}" font-size="24" font-weight="700" fill="#E7DECF">${t}</text>`;
+  });
+  return `<section class="slide s-charcoal">
+    ${mark(7)}
+    <div class="mid-h"><span class="tag amber">MCP</span><h2 class="h2">Hamma joydan kontekst</h2></div>
+    <svg viewBox="0 0 900 520" class="constel">
+      ${lines}
+      <circle cx="${cx}" cy="${cy}" r="70" fill="url(#cg)"/><circle cx="${cx}" cy="${cy}" r="52" fill="#1d150d" stroke="#E0794C" stroke-width="3"/>
+      <text x="${cx}" y="${cy + 12}" text-anchor="middle" font-family="${SERIF}" font-size="40" font-weight="900" fill="#F0A362">C</text>
+      ${nodes}
+      <defs><radialGradient id="cg"><stop offset="0" stop-color="#E0794C" stop-opacity=".5"/><stop offset="1" stop-color="#E0794C" stop-opacity="0"/></radialGradient></defs>
+    </svg>
+    <p class="foot-note">U kodni emas — tiket, Slack qarori, xato va bazani ham ko'radi.</p>
+    ${foot()}
   </section>`;
 }
 
+// 9. CTA — giant 8x on ORANGE gradient
 function s9() {
-  return `<section class="slide dark cta">
-    ${deco('c')}${chrome('')}
-    ${topbar('NATIJA', 8)}
-    <div class="mid">
-    <div class="big8"><span class="rays"></span><span class="acc">8×</span></div>
-    <h2 class="h" style="text-align:center">Bir xil model.<br><span class="acc">Boshqa kontekst.</span></h2>
-    <div class="plusbox">
-      <div class="pb-l">To'liq qo'llanmani DM'da oling:</div>
-      <div class="pb-u">Izohga <strong>«+»</strong> yozing — 3 kunlik rejani yuboramiz.</div>
+  return `<section class="slide s-orange cta">
+    ${mark(8)}
+    <div class="cta-wrap">
+      <div class="cta-8">8<span class="x">×</span></div>
+      <div class="cta-line">ko'proq ish. Bir xil model.</div>
+      <div class="cta-box"><div class="cta-l">To'liq qo'llanmani DM'da oling</div><div class="cta-u">Izohga <b>«+»</b> yozing</div></div>
     </div>
-    <div class="follow">Saqlab qo'ying va keyin qayta o'qing.</div>
-    </div>
-    ${footer()}
+    ${foot()}
   </section>`;
 }
 
@@ -202,105 +206,87 @@ const slides = [cover(), s2(), s3(), s4(), s5(), s6(), s7(), s8(), s9()];
 
 function html() {
   return `<!doctype html><html lang="uz"><head><meta charset="utf-8"><style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,900&family=Inter:wght@400;500;600;700;800;900&display=swap');
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:#000;}
-  .slide{--bg:#0B0906; --ink:#F3EFE8; --muted:#8F887B; --accent:#E0794C; --line:#241F18; --card:#161009;
-    width:${W}px;height:${H}px;position:relative;overflow:hidden;background:#0B0906;color:var(--ink);
-    font-family:${SANS};padding:150px 66px 178px;display:flex;flex-direction:column;justify-content:center;}
-  .bg-grid,.glow{position:absolute;z-index:0;}
-  .bg-grid{inset:0;background-image:radial-gradient(circle, rgba(255,255,255,.05) 1.6px, transparent 1.6px);background-size:38px 38px;opacity:.5;}
-  .glow{width:820px;height:560px;border-radius:50%;filter:blur(12px);background:radial-gradient(closest-side, color-mix(in srgb,var(--accent) 24%, transparent), transparent 70%);opacity:.5;}
-  .glow.tr{right:-180px;top:-180px;} .glow.bl{left:-220px;bottom:-180px;} .glow.c{left:50%;top:30%;transform:translateX(-50%);opacity:.4;}
-  .slide>*{position:relative;z-index:1;}
-  .acc{color:var(--accent);} b,strong{font-weight:800;color:var(--ink);}
+  .slide{width:${W}px;height:${H}px;position:relative;overflow:hidden;font-family:${SANS};}
+  .s-dark{background:radial-gradient(120% 90% at 78% 8%, #241609, #0C0805 60%);color:#F3EADB;}
+  .s-charcoal{background:#17120C;color:#F3EADB;}
+  .s-cream{background:#F2ECDE;color:#2A2016;}
+  .s-peach{background:linear-gradient(160deg,#FAE6D0,#F4D3B4);color:#2A2016;}
+  .s-orange{background:linear-gradient(155deg,#D06F3C 0%,#B4501F 55%,#8F3D18 100%);color:#FFF3E9;}
+  .slide>*{position:relative;z-index:2;}
+  b,strong{font-weight:800;}
 
-  /* neural chrome */
-  .spine{position:absolute;left:32px;top:150px;bottom:150px;width:2px;z-index:1;background:linear-gradient(180deg,transparent,rgba(224,121,76,.0) 8%,rgba(224,121,76,.45) 50%,rgba(224,121,76,0) 92%,transparent);}
-  .snode{position:absolute;left:25px;top:50%;transform:translateY(-50%);width:16px;height:16px;border-radius:50%;background:var(--accent);box-shadow:0 0 24px 5px rgba(224,121,76,.7);z-index:2;}
-  .bignum{position:absolute;right:44px;top:120px;font-family:${SERIF};font-weight:900;font-size:290px;line-height:.8;color:rgba(224,121,76,.07);z-index:0;letter-spacing:-.03em;}
+  /* brand mark */
+  .mark{position:absolute;top:58px;left:66px;right:66px;display:flex;justify-content:space-between;align-items:center;z-index:5;opacity:.92;}
+  .mb{font-weight:900;font-size:25px;letter-spacing:.14em;} .mp{font-weight:700;font-size:24px;letter-spacing:.08em;opacity:.7;}
+  .foot{position:absolute;bottom:56px;right:66px;font-weight:700;font-size:25px;opacity:.6;z-index:5;}
+  .s-dark .mb,.s-charcoal .mb,.s-orange .mb{color:#F0A362;} .s-cream .mb,.s-peach .mb{color:#C4623B;}
 
-  .top{position:absolute;top:60px;left:66px;right:66px;display:flex;justify-content:space-between;align-items:center;}
-  .kick{display:flex;align-items:center;gap:12px;font-weight:800;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
-  .kick .spk,.fbrand .spk{width:26px;height:26px;}
-  .page{font-weight:700;font-size:25px;letter-spacing:.1em;color:var(--muted);}
+  /* shared heading block */
+  .mid-h{position:absolute;top:150px;left:66px;right:66px;z-index:3;}
+  .tag{display:inline-block;background:#E0794C;color:#160f0a;font-weight:900;font-size:22px;letter-spacing:.1em;padding:8px 18px;border-radius:8px;margin-bottom:16px;}
+  .tag.amber{background:#E8B84B;}
+  .h2{font-family:${SERIF};font-weight:900;font-size:64px;line-height:1.02;color:#F3EADB;}
+  .h2.dark{color:#2A2016;}
 
-  .h{font-family:${SERIF};font-weight:800;font-size:66px;line-height:1.05;margin:0;position:relative;}
-  .h .acc{color:var(--accent);}
-  .hn{display:inline-block;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 20px 3px rgba(224,121,76,.6);margin-right:20px;vertical-align:middle;}
-  .body{font-size:32px;line-height:1.4;color:var(--muted);margin:0;} .body b{color:var(--ink);font-weight:800;}
+  /* 1 COVER */
+  .glowbig{position:absolute;width:900px;height:640px;right:-200px;top:-160px;border-radius:50%;background:radial-gradient(closest-side,rgba(224,121,76,.28),transparent 70%);filter:blur(12px);z-index:1;}
+  .cov{position:absolute;top:50%;left:66px;right:66px;transform:translateY(-50%);}
+  .conv{width:100%;height:auto;display:block;margin-bottom:20px;}
+  .cov-badge{display:inline-block;background:rgba(224,121,76,.18);border:1px solid rgba(224,121,76,.5);color:#EDD3BE;font-weight:800;font-size:21px;letter-spacing:.08em;padding:9px 20px;border-radius:30px;margin-bottom:20px;}
+  .cov-t{font-weight:900;font-size:82px;line-height:.98;text-transform:uppercase;color:#F7EFE2;}
+  .cov-t .huge{font-family:${SERIF};color:#E0794C;font-size:110px;}
+  .cov-s{margin-top:22px;font-size:31px;line-height:1.34;color:#C3B6A3;max-width:840px;} .cov-s b{color:#F3EADB;}
+  .cov-swipe{margin-top:26px;font-weight:900;font-size:30px;letter-spacing:.1em;color:#E0794C;}
 
-  /* cover */
-  .cover{padding-top:52px;}
-  .cov-mid{position:absolute;top:50%;left:66px;right:66px;transform:translateY(-50%);display:flex;flex-direction:column;}
-  .cov-art{width:100%;margin-bottom:14px;} .conv{width:100%;height:auto;display:block;}
-  .badge{align-self:flex-start;background:color-mix(in srgb,var(--accent) 16%, transparent);border:1px solid color-mix(in srgb,var(--accent) 50%, transparent);color:#EDD9C8;font-weight:800;font-size:22px;letter-spacing:.08em;padding:10px 22px;border-radius:30px;margin-bottom:20px;}
-  .cov-title{font-weight:900;font-size:86px;line-height:.98;letter-spacing:-.01em;color:#F5F1EA;text-transform:uppercase;}
-  .cov-title .acc{color:var(--accent);}
-  .cov-sub{margin-top:22px;font-size:33px;line-height:1.32;color:#B7B0A2;max-width:840px;} .cov-sub b{color:#F3EFE8;}
-  .gift{margin-top:22px;align-self:flex-start;background:color-mix(in srgb,var(--accent) 16%, transparent);border:1px solid color-mix(in srgb,var(--accent) 50%, transparent);color:#EDD9C8;font-weight:700;font-size:27px;padding:13px 24px;border-radius:40px;}
-  .swipe{margin-top:24px;font-weight:800;font-size:30px;letter-spacing:.12em;color:var(--accent);}
+  /* 2 STATEMENT (orange) */
+  .corner-num{position:absolute;top:120px;right:56px;font-family:${SERIF};font-weight:900;font-size:150px;color:rgba(255,255,255,.13);z-index:1;}
+  .stmt{position:absolute;top:50%;left:66px;right:66px;transform:translateY(-50%);}
+  .stmt-k{font-weight:900;font-size:24px;letter-spacing:.16em;color:#FFD9BE;margin-bottom:20px;}
+  .stmt-h{font-family:${SERIF};font-weight:900;font-size:92px;line-height:.98;color:#FFF3E9;}
+  .stmt-h .strike{position:relative;} .stmt-h .strike::after{content:"";position:absolute;left:-4px;right:-4px;top:52%;height:7px;background:#160f0a;transform:rotate(-3deg);}
+  .stmt-big{font-family:${SERIF};font-weight:900;font-size:132px;line-height:1;color:#160f0a;letter-spacing:-.02em;margin:8px 0 22px;text-shadow:3px 3px 0 rgba(255,255,255,.25);}
+  .stmt-s{font-size:32px;line-height:1.36;color:#FBE6D6;max-width:900px;} .stmt-s b{color:#fff;}
 
-  /* nodes (before/after) */
-  .ba{display:flex;align-items:stretch;gap:16px;}
-  .node{position:relative;flex:1;background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(224,121,76,.22);border-radius:20px;padding:30px 30px 26px;box-shadow:inset 0 0 40px rgba(224,121,76,.04);}
-  .node.hot{border-color:rgba(224,121,76,.5);box-shadow:inset 0 0 50px rgba(224,121,76,.08),0 0 34px rgba(224,121,76,.12);}
-  .node .dot{position:absolute;top:-8px;left:26px;width:16px;height:16px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px 3px rgba(224,121,76,.6);} .node .dot.red{background:#E8584A;box-shadow:0 0 18px 3px rgba(232,88,74,.5);}
-  .n-lab{font-weight:800;font-size:24px;letter-spacing:.04em;margin-bottom:14px;} .n-lab.old{color:#E8584A;} .n-lab.new{color:#5FB56A;}
-  .node ul{list-style:none;display:flex;flex-direction:column;gap:12px;} .node li{font-size:28px;color:var(--ink);line-height:1.26;}
-  .conn{align-self:center;color:var(--accent);font-size:40px;filter:drop-shadow(0 0 10px rgba(224,121,76,.5));}
-  .stripe{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:24px 30px;font-size:29px;color:var(--muted);text-align:center;line-height:1.35;} .stripe b{color:var(--accent);}
+  /* 3 RADIAL (cream) */
+  .radial{position:absolute;top:330px;left:40px;right:40px;width:auto;height:auto;z-index:2;}
 
-  /* 7-part node grid */
-  .cx-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .cx:nth-child(7){grid-column:1 / -1;}
-  .cx{display:flex;align-items:center;gap:18px;background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:22px 24px;}
-  .cx-d{flex:0 0 auto;width:18px;height:18px;border-radius:50%;}
-  .cx b{font-size:30px;display:block;} .cx span{font-size:22px;color:var(--muted);line-height:1.24;}
+  /* 4 LOOP (charcoal) */
+  .loop{position:absolute;top:320px;left:60px;right:60px;z-index:2;}
+  .foot-note{position:absolute;bottom:140px;left:66px;right:66px;font-size:28px;line-height:1.34;color:#b3a793;text-align:center;z-index:3;}
+  .s-cream .foot-note,.s-peach .foot-note{color:#6b6252;}
 
-  /* flow with wired nodes */
-  .flow{display:flex;align-items:stretch;justify-content:space-between;gap:0;}
-  .fnode{flex:1;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.01));border:1px solid rgba(224,121,76,.2);border-radius:16px;padding:26px 6px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;}
-  .fdot{width:16px;height:16px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px 2px rgba(224,121,76,.6);margin-bottom:4px;}
-  .fnode b{font-size:27px;} .fnode span{font-size:19px;color:var(--muted);line-height:1.2;}
-  .wire-h{flex:0 0 26px;align-self:center;height:2px;background:linear-gradient(90deg,rgba(224,121,76,.15),rgba(224,121,76,.7),rgba(224,121,76,.15));}
+  /* 5 STACK (peach) */
+  .ghost-num{position:absolute;top:120px;right:20px;font-family:${SERIF};font-weight:900;font-size:400px;line-height:.7;color:rgba(180,80,31,.12);z-index:1;}
+  .stack{position:absolute;top:360px;left:76px;right:76px;display:flex;flex-direction:column;gap:26px;z-index:2;}
+  .layer{background:var(--lc);border-radius:20px;padding:30px 34px;box-shadow:0 16px 30px rgba(120,50,20,.22);color:#fff;transform:perspective(900px) rotateX(6deg);}
+  .layer:nth-child(1){margin-right:70px;} .layer:nth-child(2){margin-left:40px;margin-right:20px;} .layer:nth-child(3){margin-left:80px;}
+  .layer-t{font-family:${SERIF};font-weight:900;font-size:42px;letter-spacing:.02em;} .layer-d{font-size:26px;margin-top:6px;opacity:.95;}
 
-  /* ways wired vertically */
-  .ways{display:flex;flex-direction:column;gap:18px;position:relative;}
-  .ways.wire .way:not(:first-child)::before{content:"";position:absolute;left:28px;top:-18px;height:18px;width:2px;background:linear-gradient(180deg,rgba(224,121,76,.1),rgba(224,121,76,.6));}
-  .way{position:relative;display:flex;align-items:flex-start;gap:22px;background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(224,121,76,.2);border-radius:18px;padding:26px 28px;}
-  .way-n{flex:0 0 auto;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#F0A362,#C4623B);color:#fff;font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 22px 3px rgba(224,121,76,.4);}
-  .way div b{font-size:32px;color:var(--ink);} .way div span{display:block;font-size:25px;color:var(--muted);margin-top:4px;line-height:1.3;}
+  /* 6 PANEL (dark) */
+  .wm{position:absolute;bottom:60px;right:40px;font-family:${SERIF};font-weight:900;font-size:280px;line-height:.7;color:rgba(224,121,76,.08);z-index:1;}
+  .panel{position:absolute;top:330px;left:66px;right:66px;background:#0d0a07;border:1px solid #2a2018;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.4);z-index:2;}
+  .panel.tilt{transform:rotate(-1.6deg);}
+  .p-bar{display:flex;align-items:center;gap:10px;padding:18px 22px;background:#171009;} .d{width:15px;height:15px;border-radius:50%;} .d.r{background:#ED6A5E;}.d.y{background:#F5BF4F;}.d.g{background:#61C554;} .p-name{margin-left:12px;font-family:${MONO};font-size:23px;color:#8b7f6e;}
+  .p-body{padding:28px 30px;font-family:${MONO};font-size:29px;line-height:1.5;color:#E7DECF;} .c-cmt{color:#9bb37f;} .c-warn{color:#F0A362;font-weight:700;}
 
-  /* terminal */
-  .term{background:#08060455;border:1px solid rgba(224,121,76,.2);border-radius:18px;overflow:hidden;box-shadow:inset 0 0 50px rgba(224,121,76,.05);}
-  .term-bar{display:flex;gap:10px;padding:16px 20px;background:rgba(255,255,255,.03);} .md{width:16px;height:16px;border-radius:50%;} .md.r{background:#ED6A5E;} .md.y{background:#F5BF4F;} .md.g{background:#61C554;}
-  .term-b{padding:24px 26px;font-family:${MONO};font-size:27px;line-height:1.5;color:#ECE7DB;} .term-b .tg{color:#E29B6B;font-weight:700;} .term-b b{color:#F0A362;font-weight:700;}
+  /* 7 MEMORY (cream) */
+  .mem-row{position:absolute;top:400px;left:66px;right:66px;display:flex;align-items:flex-start;justify-content:space-between;z-index:2;}
+  .mem{flex:1;text-align:center;} .mem-c{width:130px;height:130px;margin:0 auto;border-radius:50%;background:#fff;border:3px solid #E0794C;display:flex;align-items:center;justify-content:center;font-size:60px;box-shadow:0 12px 26px rgba(196,98,59,.2);}
+  .mem-t{font-family:${SERIF};font-weight:900;font-size:34px;margin-top:16px;color:#2A2016;} .mem-d{font-size:24px;color:#6b6252;margin-top:4px;}
+  .mem-arr{align-self:center;margin-top:44px;color:#E0794C;font-size:44px;font-weight:800;padding:0 4px;}
+  .ribbon{position:absolute;bottom:150px;left:66px;right:66px;background:#2A2016;color:#F2ECDE;border-radius:14px;padding:22px 28px;font-size:27px;text-align:center;z-index:3;} .ribbon b{color:#E8A34B;}
 
-  /* memory nodes wired */
-  .res-grid{display:flex;flex-direction:column;gap:16px;position:relative;}
-  .res-grid.wire .res:not(:first-child)::before{content:"";position:absolute;left:44px;top:-16px;height:16px;width:2px;background:linear-gradient(180deg,rgba(224,121,76,.1),rgba(224,121,76,.6));}
-  .res{position:relative;display:flex;align-items:center;gap:22px;background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(224,121,76,.2);border-radius:18px;padding:24px 28px;}
-  .res-e{font-size:44px;flex:0 0 auto;filter:drop-shadow(0 0 12px rgba(224,121,76,.35));} .res-tx b{font-size:31px;} .res-tx span{display:block;font-size:24px;color:var(--muted);margin-top:2px;line-height:1.28;}
+  /* 8 CONSTELLATION */
+  .constel{position:absolute;top:300px;left:40px;right:40px;z-index:2;}
 
-  /* MCP constellation chips */
-  .chips{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .chip{display:flex;align-items:center;gap:14px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.01));border:1px solid rgba(224,121,76,.22);border-radius:14px;padding:22px 24px;font-size:30px;font-weight:700;color:var(--ink);}
-  .chip-d{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px 2px rgba(224,121,76,.6);flex:0 0 auto;}
-
-  /* cta */
-  .big8{position:relative;font-family:${SERIF};font-weight:900;font-size:210px;line-height:1;text-align:center;margin-bottom:6px;filter:drop-shadow(0 0 40px rgba(224,121,76,.35));}
-  .big8 .rays{position:absolute;left:50%;top:50%;width:520px;height:520px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(224,121,76,.22),transparent 68%);z-index:-1;}
-  .plusbox{margin-top:28px;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.01));border:1px solid rgba(224,121,76,.3);border-radius:26px;padding:34px 40px;width:100%;text-align:center;}
-  .pb-l{font-size:30px;color:var(--muted);} .pb-u{margin-top:10px;font-weight:700;font-size:33px;color:var(--ink);} .pb-u strong{color:var(--accent);font-size:40px;}
-  .follow{margin-top:22px;font-size:27px;color:var(--muted);text-align:center;}
-
-  .rule{position:absolute;left:66px;right:66px;bottom:140px;height:1px;background:var(--line);}
-  .footer{position:absolute;left:66px;right:66px;bottom:78px;display:flex;align-items:center;justify-content:space-between;}
-  .mid{position:absolute;top:50%;left:66px;right:66px;transform:translateY(-50%);display:flex;flex-direction:column;gap:22px;}
-  .mid>*{margin-top:0!important;margin-bottom:0!important;}
-  .fbrand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:28px;letter-spacing:.1em;color:var(--accent);}
-  .fhandle{font-weight:600;font-size:28px;color:var(--muted);}
+  /* 9 CTA (orange) */
+  .cta-wrap{position:absolute;top:50%;left:66px;right:66px;transform:translateY(-50%);text-align:center;}
+  .cta-8{font-family:${SERIF};font-weight:900;font-size:340px;line-height:.82;color:#160f0a;text-shadow:5px 5px 0 rgba(255,255,255,.22);} .cta-8 .x{color:#FFF3E9;}
+  .cta-line{font-family:${SERIF};font-weight:900;font-size:52px;color:#FFF3E9;margin-top:6px;}
+  .cta-box{margin-top:34px;background:rgba(22,15,10,.28);border:2px solid rgba(255,243,233,.4);border-radius:22px;padding:30px;} .cta-l{font-size:28px;color:#FBE6D6;} .cta-u{margin-top:8px;font-weight:800;font-size:38px;color:#fff;} .cta-u b{color:#FFD9BE;}
   </style></head><body>
   ${slides.join('\n')}
   </body></html>`;
