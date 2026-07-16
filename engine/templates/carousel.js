@@ -115,6 +115,14 @@ function slide(s, i, total, c) {
           </div>
           ${f}</section>`;
       }
+      if (s.hero) {
+        return `<section class="${cls} cover hero"${st}>
+          <div class="top">${kicker(s.kicker)}<span class="page">${pageStr(i, total)}</span></div>
+          <h1 class="hero-title">${inline(s.title).replace(/\n/g, '<br>')}</h1>
+          ${s.sub ? `<p class="cover-sub">${inline(s.sub)}</p>` : ''}
+          ${s.swipe ? `<div class="swipe">${esc(s.swipe)} <span>→</span></div>` : ''}
+          ${f}</section>`;
+      }
       return `<section class="${cls} cover"${st}>
         <div class="top">${kicker(s.kicker)}<span class="page">${pageStr(i, total)}</span></div>
         <div class="cover-art">${art(s.art || 'robot')}</div>
@@ -165,7 +173,7 @@ function buildHTML(carousel) {
   const total = slides.length;
   const body = slides.map((s, i) => slide(s, i, total, c)).join('\n');
   return `<!doctype html><html lang="uz"><head><meta charset="utf-8"><style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700;1,800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700;1,800&family=Inter:wght@400;500;600;700;800;900&family=Anton&display=swap');
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:#000;}
   .slide{
@@ -217,6 +225,15 @@ function buildHTML(carousel) {
   .cover-sub{margin-top:26px;font-size:40px;line-height:1.34;color:var(--muted);max-width:780px;}
   .cover-sub strong{color:var(--ink);}
   .swipe{margin-top:34px;align-self:flex-start;font-weight:700;font-size:26px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+
+  /* hero cover — большой конденсед-заголовок капсом (стиль SHOSHILINCH XABAR) */
+  .cover.hero{justify-content:flex-start;}
+  .hero-title{margin-top:auto;font-family:'Anton',${c.sans};font-weight:400;
+    font-size:172px;line-height:0.94;letter-spacing:0.005em;text-transform:uppercase;
+    color:var(--ink);max-width:960px;}
+  .hero-title .acc{color:var(--accent);font-style:normal;}
+  .hero-title strong{color:var(--accent);font-weight:400;}
+  .cover.hero .cover-sub{margin-top:36px;font-size:42px;}
 
   .h{font-family:${c.serif};font-weight:800;font-size:78px;line-height:1.04;margin:0 0 8px;}
   .h .acc{color:var(--accent);font-style:italic;}

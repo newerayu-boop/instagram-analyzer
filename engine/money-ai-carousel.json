@@ -1,0 +1,81 @@
+{
+  "handle": "@kodiyusufbay",
+  "wordmark": "AI Strateg",
+  "gold": true,
+  "slides": [
+    {
+      "type": "cover",
+      "hero": true,
+      "kicker": "Maxsus tadqiqot · 2026",
+      "title": "AI'DA\nPUL\n*QAYERDA?*",
+      "sub": "Men **40+ AI-integrator** bilan gaplashdim. Mana, natijasi.",
+      "swipe": "suring, hammasini aytaman"
+    },
+    {
+      "type": "story",
+      "kicker": "Nega bu kerak",
+      "title": "Men buni *bitta maqsadda* yozdim",
+      "paragraphs": [
+        "Har bir tadbirkor AI'ni biznesga qo'shganda **natija olishi** uchun.",
+        "Ko'pchilik AI'ni «hamma qilyapti» deb qo'shadi — keyin pul ketadi, natija yo'q."
+      ],
+      "punch": "Men buni o'zgartirmoqchiman."
+    },
+    {
+      "type": "stat",
+      "kicker": "Qanday qildim",
+      "title": "Bu *quruq nazariya* emas",
+      "stats": [
+        { "big": "40+", "label": "integrator bilan suhbat" },
+        { "big": "2–3 soat", "label": "ba'zilari bilan jonli zoom" }
+      ],
+      "note": "Har biriga **haqiqiy vazifa** bilan bordim. Yondashuv, tajriba va narxni o'z ko'zim bilan ko'rdim."
+    },
+    {
+      "type": "stat",
+      "kicker": "Eng qiziq tajriba",
+      "title": "Bitta vazifa — *40 ta narx*",
+      "stats": [
+        { "big": "$200", "label": "eng arzon taklif" },
+        { "big": "$25 000", "label": "eng qimmat taklif" }
+      ],
+      "note": "Farqi — **125 barobar**. Bir xil ish uchun. Ortiqcha to'lamaslikni ko'rsataman."
+    },
+    {
+      "type": "steps",
+      "kicker": "Ichida nima bor",
+      "title": "Tadqiqotning *4 qismi*",
+      "items": [
+        { "n": "01", "text": "**Ikki yo'l**: xavf minimal, natija 2–7 kunda ko'rinadi." },
+        { "n": "02", "text": "**Tajriba**: bitta vazifa, $200 dan $25 000 gacha 40 ta taklif." },
+        { "n": "03", "text": "**Ikki soha**, biznes hozir eng oson pul topadigan." },
+        { "n": "04", "text": "**14 kunlik yo'l xaritasi**: muammodan birinchi daromadgacha." }
+      ]
+    },
+    {
+      "type": "callout",
+      "kicker": "Sizga nima beradi",
+      "title": "Natija — *pulda*",
+      "text": "Endi AI'ni «shunchaki» qo'shmaysiz. **Xavf kam, natija o'lchanadigan** nuqtadan boshlaysiz."
+    },
+    {
+      "type": "story",
+      "kicker": "Yana bir foyda",
+      "title": "Pudratchida *adashmaysiz*",
+      "paragraphs": [
+        "Kim bilan ishlashni tanlashda **minglab dollar tejaysiz**.",
+        "Bu xulosalar uchun men allaqachon o'z vaqtim va o'nlab suhbatlarim bilan «to'laganman»."
+      ],
+      "punch": "Sizga tayyor holda beraman."
+    },
+    {
+      "type": "cta",
+      "kicker": "Batafsil",
+      "title": "To'liq tadqiqot *kerakmi?*",
+      "body": "«AI'da pul qayerda» — to'liq versiyasi, misollar va narxlar bilan.",
+      "action": "Izohga yozing:",
+      "keyword": "«PUL»",
+      "url": "to'liq tadqiqotni yuboraman"
+    }
+  ]
+}
