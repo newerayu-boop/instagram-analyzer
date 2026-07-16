@@ -99,7 +99,7 @@ function diagram(d) {
 function slide(s, i, total, c) {
   const f = footer(c, i, total);
   const k = topbar(s.kicker, i, total);
-  const cls = `slide${c.gold ? ' gold' : (s.dark ? ' dark' : '')}`;
+  const cls = `slide${c.gold ? ' gold' : (s.dark ? ' dark' : '')}${c.center ? ' centered' : ''}`;
   const sv = `${c.palVars || ''}${s.accent ? `;--accent:${s.accent}` : ''}`.replace(/^;/, '');
   const st = sv ? ` style="${sv}"` : '';
   switch (s.type) {
@@ -163,6 +163,7 @@ function slide(s, i, total, c) {
 function buildHTML(carousel) {
   const c = { ...BASE };
   c.gold = !!carousel.gold; // чёрно-золотая тема (стиль AI Strateg premium)
+  c.center = !!carousel.center; // контент по центру (симметричная, аккуратная компоновка)
   // палитра всей карусели (перекрывает переменные): {bg,ink,muted,accent,panel,line,card,glow}
   c.palVars = carousel.palette
     ? Object.entries(carousel.palette).map(([k, v]) => `--${k}:${v}`).join(';')
@@ -199,6 +200,19 @@ function buildHTML(carousel) {
     font-family:${c.serif};font-weight:800;font-size:460px;line-height:1;color:var(--ink);opacity:.045;}
   .content{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;}
   .mid{justify-content:center;}
+
+  /* centered — симметричная аккуратная компоновка: контент по центру слайда */
+  .slide.centered .content{align-items:center;text-align:center;gap:0;}
+  .slide.centered .h{max-width:920px;}
+  .slide.centered .body{max-width:840px;margin-left:auto;margin-right:auto;}
+  .slide.centered .paras{align-items:center;}
+  .slide.centered .punch{margin-top:36px;text-align:center;align-self:center;max-width:900px;}
+  .slide.centered .callout{margin-top:34px;align-self:center;max-width:880px;text-align:left;}
+  .slide.centered .callout.big{text-align:center;}
+  .slide.centered .callout.big .bar{display:none;}
+  .slide.centered .scards{width:100%;max-width:900px;margin-left:auto;margin-right:auto;}
+  .slide.centered .steps{width:100%;max-width:900px;}
+  .slide.centered .ctacard{align-self:center;max-width:840px;width:100%;text-align:center;}
   .acc{color:var(--accent);font-style:normal;}
   strong{font-weight:800;color:var(--ink);}
 

@@ -2,34 +2,35 @@
   "handle": "@kodiyusufbay",
   "wordmark": "AI Strateg",
   "gold": true,
+  "center": true,
   "slides": [
     {
       "type": "cover",
       "hero": true,
       "kicker": "Maxsus tadqiqot · 2026",
       "title": "AI'DA\nPUL\n*QAYERDA?*",
-      "sub": "Men **40+ AI-integrator** bilan gaplashdim. Mana, natijasi.",
-      "swipe": "suring, hammasini aytaman"
+      "sub": "Men **40 dan ortiq** AI-mutaxassis bilan gaplashib, katta tadqiqot yozdim. Mana, eng muhimi.",
+      "swipe": "suring — hammasini tushuntiraman"
     },
     {
       "type": "story",
-      "kicker": "Nega bu kerak",
-      "title": "Men buni *bitta maqsadda* yozdim",
+      "kicker": "Nima uchun",
+      "title": "Maqsad *bitta*",
       "paragraphs": [
-        "Har bir tadbirkor AI'ni biznesga qo'shganda **natija olishi** uchun.",
-        "Ko'pchilik AI'ni «hamma qilyapti» deb qo'shadi — keyin pul ketadi, natija yo'q."
+        "Men bu tadqiqotni bitta maqsad bilan yozdim: har bir tadbirkor AI'ni biznesga qo'shganda **haqiqiy natija** olsin.",
+        "Ko'pchilik AI'ni «hamma qo'shyapti» deb qo'shadi. Oqibatda pul ketadi, foyda esa ko'rinmaydi."
       ],
-      "punch": "Men buni o'zgartirmoqchiman."
+      "punch": "Men buni o'zgartiraman."
     },
     {
       "type": "stat",
-      "kicker": "Qanday qildim",
-      "title": "Bu *quruq nazariya* emas",
+      "kicker": "Qanday tekshirdim",
+      "title": "Bu *quruq nazariya emas*",
       "stats": [
-        { "big": "40+", "label": "integrator bilan suhbat" },
+        { "big": "40+", "label": "AI-mutaxassis bilan suhbat" },
         { "big": "2–3 soat", "label": "ba'zilari bilan jonli zoom" }
       ],
-      "note": "Har biriga **haqiqiy vazifa** bilan bordim. Yondashuv, tajriba va narxni o'z ko'zim bilan ko'rdim."
+      "note": "Har biriga **haqiqiy vazifa** bilan bordim. Ularning yondashuvi, tajribasi va **narxini** o'z ko'zim bilan solishtirdim."
     },
     {
       "type": "stat",
@@ -39,32 +40,32 @@
         { "big": "$200", "label": "eng arzon taklif" },
         { "big": "$25 000", "label": "eng qimmat taklif" }
       ],
-      "note": "Farqi — **125 barobar**. Bir xil ish uchun. Ortiqcha to'lamaslikni ko'rsataman."
+      "note": "Bir xil ish uchun narx **125 barobar** farq qildi. Ortiqcha to'lamaslik yo'lini ko'rsataman."
     },
     {
       "type": "steps",
-      "kicker": "Ichida nima bor",
-      "title": "Tadqiqotning *4 qismi*",
+      "kicker": "Tadqiqot ichida",
+      "title": "Sizni *4 narsa* kutadi",
       "items": [
-        { "n": "01", "text": "**Ikki yo'l**: xavf minimal, natija 2–7 kunda ko'rinadi." },
-        { "n": "02", "text": "**Tajriba**: bitta vazifa, $200 dan $25 000 gacha 40 ta taklif." },
-        { "n": "03", "text": "**Ikki soha**, biznes hozir eng oson pul topadigan." },
-        { "n": "04", "text": "**14 kunlik yo'l xaritasi**: muammodan birinchi daromadgacha." }
+        { "n": "01", "text": "**Ikki joriy etish yo'li** — xavf minimal, natija atigi **2–7 kunda** ko'rinadi." },
+        { "n": "02", "text": "**Tajriba** — bitta vazifaga $200 dan $25 000 gacha 40 ta taklif." },
+        { "n": "03", "text": "**Ikki soha** — biznes hozir eng oson pul topadigan joylar." },
+        { "n": "04", "text": "**14 kunlik reja** — muammoni topishdan birinchi daromadgacha." }
       ]
     },
     {
       "type": "callout",
-      "kicker": "Sizga nima beradi",
-      "title": "Natija — *pulda*",
-      "text": "Endi AI'ni «shunchaki» qo'shmaysiz. **Xavf kam, natija o'lchanadigan** nuqtadan boshlaysiz."
+      "kicker": "Bu sizga nima beradi",
+      "title": "Natija — *so'mgacha aniq*",
+      "text": "Endi AI'ni «shunchaki» qo'shmaysiz. **Xavfi kam, natijasi o'lchanadigan** nuqtadan boshlaysiz."
     },
     {
       "type": "story",
       "kicker": "Yana bir foyda",
-      "title": "Pudratchida *adashmaysiz*",
+      "title": "Mutaxassis tanlashda *adashmaysiz*",
       "paragraphs": [
-        "Kim bilan ishlashni tanlashda **minglab dollar tejaysiz**.",
-        "Bu xulosalar uchun men allaqachon o'z vaqtim va o'nlab suhbatlarim bilan «to'laganman»."
+        "To'g'ri odamni tanlab, **minglab dollar tejaysiz**.",
+        "Bu xulosalar uchun men allaqachon o'z **vaqtim va o'nlab suhbatlarim** bilan to'laganman."
       ],
       "punch": "Sizga tayyor holda beraman."
     },
@@ -72,10 +73,10 @@
       "type": "cta",
       "kicker": "Batafsil",
       "title": "To'liq tadqiqot *kerakmi?*",
-      "body": "«AI'da pul qayerda» — to'liq versiyasi, misollar va narxlar bilan.",
+      "body": "«AI'da pul qayerda» — to'liq versiyasi: yo'llar, tajriba, narxlar va 14 kunlik reja.",
       "action": "Izohga yozing:",
       "keyword": "«PUL»",
-      "url": "to'liq tadqiqotni yuboraman"
+      "url": "to'liq tadqiqotni bepul yuboraman"
     }
   ]
 }
