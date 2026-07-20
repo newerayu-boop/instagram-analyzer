@@ -4,14 +4,14 @@
   "center": true,
   "decor": true,
   "palette": {
-    "bg": "#0E0A09", "ink": "#F2E9E6", "muted": "#9A8C88", "accent": "#E22633",
-    "panel": "#1A1210", "line": "#2E211E", "card": "#1A1210", "glow": "#E2263333",
-    "badge-bg": "#E22633", "badge-ink": "#0E0A09"
+    "bg": "#F5EFE9", "ink": "#1E1A18", "muted": "#7C716B", "accent": "#D8202E",
+    "panel": "#FDF8F5", "line": "#E9DDD6", "card": "#FFFFFF", "glow": "#D8202E18",
+    "badge-bg": "#D8202E", "badge-ink": "#FFFFFF"
   },
   "altPalette": {
-    "bg": "#F3EEEA", "ink": "#1C1917", "muted": "#6B625E", "accent": "#D01E2B",
-    "panel": "#FBF6F3", "line": "#E5D9D4", "card": "#FBF6F3", "glow": "#D01E2B1e",
-    "badge-bg": "#1C1917", "badge-ink": "#FBF6F3"
+    "bg": "#FBECEA", "ink": "#1E1A18", "muted": "#86736E", "accent": "#D8202E",
+    "panel": "#FFFFFF", "line": "#F1DAD6", "card": "#FFFFFF", "glow": "#D8202E22",
+    "badge-bg": "#D8202E", "badge-ink": "#FFFFFF"
   },
   "slides": [
     {
@@ -81,15 +81,17 @@
       ]
     },
     {
-      "type": "steps",
+      "type": "diagram",
       "alt": true,
       "kicker": "Bitta g'oya",
-      "title": "*3 formatga* aylanadi",
-      "items": [
-        { "n": "01", "text": "**Post** — 5 ta qisqa g'oya, 10 daqiqada." },
-        { "n": "02", "text": "**Thread** — 6 qadamli reja." },
-        { "n": "03", "text": "**Qisqa video** — hook + ekran + xulosa." }
-      ]
+      "title": "*3 formatga* bo'linadi",
+      "top": { "title": "1 G'OYA", "sub": "filtrdan o'tgan" },
+      "nodes": [
+        { "n": "✎", "label": "Post" },
+        { "n": "☰", "label": "Thread" },
+        { "n": "►", "label": "Video" }
+      ],
+      "caption": "Bitta mavzu — **uch xil** kontent."
     },
     {
       "type": "callout",
