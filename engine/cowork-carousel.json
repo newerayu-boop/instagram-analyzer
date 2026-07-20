@@ -1,0 +1,138 @@
+{
+  "handle": "@kodiyusufbay",
+  "wordmark": "AI Strateg",
+  "center": true,
+  "decor": true,
+  "palette": {
+    "bg": "#F4EFE4", "ink": "#262230", "muted": "#766F7E", "accent": "#6B4FBB", "accent2": "#E8722C",
+    "panel": "#FBF7F0", "line": "#E5DCCC", "card": "#FBF7F0", "glow": "#6B4FBB1e",
+    "badge-bg": "#262230", "badge-ink": "#F4EFE4"
+  },
+  "altPalette": {
+    "bg": "#F0EAF6", "ink": "#241F2E", "muted": "#7A7186", "accent": "#6B4FBB", "accent2": "#E8722C",
+    "panel": "#FBF8FE", "line": "#E3D9F0", "card": "#FBF8FE", "glow": "#6B4FBB22",
+    "badge-bg": "#6B4FBB", "badge-ink": "#F0EAF6"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "wheel": true,
+      "center": "Cowork",
+      "kicker": "Claude Cowork · Qo'llanma",
+      "title": "*24/7 AI tizim*\n~bir kishilik kompaniya~",
+      "nodes": [
+        { "label": "Brifing" },
+        { "label": "Tadqiqot" },
+        { "label": "Kontent" },
+        { "label": "Loyihalar" },
+        { "label": "Xabar" },
+        { "label": "Jadval" },
+        { "label": "Tekshiruv" }
+      ],
+      "swipe": "suring"
+    },
+    {
+      "type": "story",
+      "kicker": "Nima bu",
+      "title": "Bitta agent *emas*",
+      "paragraphs": [
+        "24/7 AI tizim — hamma ishni qiladigan bitta agent emas.",
+        "Bu — **bir-biriga ulangan workflowlar** guruhi. Har biri bitta aniq ishni bajaradi."
+      ],
+      "punch": "Har bo'lakning aniq roli bor."
+    },
+    {
+      "type": "grid",
+      "kicker": "Tizim qismlari",
+      "title": "6 ta *workflow*",
+      "cells": [
+        { "icon": "brief", "label": "Kunlik brifing" },
+        { "icon": "search", "label": "Tadqiqot" },
+        { "icon": "link", "label": "Yo'naltirish" },
+        { "icon": "code", "label": "Kontent" },
+        { "icon": "robot", "label": "Mijozga xabar" },
+        { "icon": "check", "label": "Tekshiruv" }
+      ]
+    },
+    {
+      "type": "callout",
+      "kicker": "Maqsad",
+      "title": "Nazorat *sizda*",
+      "text": "Siz **strategiya va qaror**ni ushlaysiz. Tizim esa **bajarish, takror va muvofiqlashtirish**ni oladi."
+    },
+    {
+      "type": "steps",
+      "alt": true,
+      "kicker": "1–2 kun · Poydevor",
+      "title": "*Ruxsat* va rol",
+      "items": [
+        { "n": "01", "text": "**Claude Desktop**ni o'rnating." },
+        { "n": "02", "text": "Kerakli **papka va xizmatlarga** ruxsat bering (Drive, Gmail, Notion...)." },
+        { "n": "03", "text": "**Rolni aniqlang** (system prompt): nima mumkin, nima muhim, qayerda tekshiruv kerak." },
+        { "n": "04", "text": "**Kam ruxsatdan** boshlang — ishonch oson, buzilish qiyin bo'ladi." }
+      ]
+    },
+    {
+      "type": "steps",
+      "kicker": "3-kun · Kunlik ish",
+      "title": "Brifing va *tekshiruv*",
+      "items": [
+        { "n": "01", "text": "**Ertalabki brifing** — bugungi ustuvorlik, eslatma, muhim yangilik." },
+        { "n": "02", "text": "**Kun oxiri tahlili** — nima bo'ldi, nima qoldi, ertaga uchun tayyorgarlik." },
+        { "n": "03", "text": "**Yo'naltirish** — har vazifa o'z joyiga: papka, eslatma yoki mijoz." }
+      ]
+    },
+    {
+      "type": "story",
+      "kicker": "4-kun · Tadqiqot → Kontent",
+      "title": "Ma'lumot *harakatlanadi*",
+      "paragraphs": [
+        "Tadqiqot workflowi ma'lumot yig'adi, qisqartiradi va to'g'ridan-to'g'ri **kontent workflowiga** uzatadi.",
+        "Kontent uni post, qoralama yoki eslatmaga aylantiradi — noldan boshlamasdan."
+      ],
+      "punch": "Tizim shu yerda «jonlanadi»."
+    },
+    {
+      "type": "grid",
+      "kicker": "5-kun · Mijoz & loyiha",
+      "title": "Aloqa *uzilmaydi*",
+      "cells": [
+        { "icon": "bars", "label": "Holat hisoboti" },
+        { "icon": "target", "label": "To'siqlarni belgilash" },
+        { "icon": "brief", "label": "Mijozga yangilanish" },
+        { "icon": "check", "label": "Doimiy aloqa" }
+      ]
+    },
+    {
+      "type": "steps",
+      "alt": true,
+      "kicker": "6-kun · Ishonchlilik",
+      "title": "Qachon *to'xtashni* bilsin",
+      "items": [
+        { "n": "01", "text": "**Rejalashtirilgan** ishga tushish (schedule)." },
+        { "n": "02", "text": "**Aniq to'xtash** sharti — vaqt va token behuda ketmasin." },
+        { "n": "03", "text": "**Tekshiruv qadami** — tizim asta «adashib» ketmasin." }
+      ],
+      "note": "Eng yaxshi tizim qachon to'xtab, ishni sizga qaytarishni biladi."
+    },
+    {
+      "type": "grid",
+      "kicker": "Nimasi ishlaydi",
+      "title": "Eng muhim *3 narsa*",
+      "cells": [
+        { "icon": "link", "label": "Aqlli yo'naltirish" },
+        { "icon": "target", "label": "Aniq «tayyor» mezoni" },
+        { "icon": "robot", "label": "Xotira uzluksizligi" }
+      ]
+    },
+    {
+      "type": "cta",
+      "kicker": "Bepul olish",
+      "title": "To'liq *7 kunlik* reja?",
+      "body": "Har kunning aniq qadamlari, rollar, system prompt va tekshiruv — bitta qo'llanmada.",
+      "action": "Izohga yozing:",
+      "keyword": "«COWORK»",
+      "url": "to'liq qo'llanmani bepul yuboraman"
+    }
+  ]
+}

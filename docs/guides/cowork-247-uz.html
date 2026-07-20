@@ -1,0 +1,247 @@
+<title>Claude Cowork bilan 24/7 AI tizim — to'liq qo'llanma | AI Strateg</title>
+<style>
+  :root{
+    --bg:#F4EFE4; --panel:#FBF7F0; --ink:#262230; --muted:#6C6576;
+    --accent:#6B4FBB; --accent2:#E8722C; --line:#E5DCCC; --code-bg:#1C1826; --code-ink:#EFEAF6;
+    --code-line:#38324a; --maxw:760px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#141119; --panel:#1E1A28; --ink:#EEE9F4; --muted:#9C93A8;
+      --accent:#9C82E8; --accent2:#F1894C; --line:#2C2640; --code-bg:#0C0A12; --code-ink:#EFEAF6; --code-line:#2A2440; }
+  }
+  :root[data-theme="light"]{ --bg:#F4EFE4; --panel:#FBF7F0; --ink:#262230; --muted:#6C6576;
+    --accent:#6B4FBB; --accent2:#E8722C; --line:#E5DCCC; --code-bg:#1C1826; --code-ink:#EFEAF6; --code-line:#38324a; }
+  :root[data-theme="dark"]{ --bg:#141119; --panel:#1E1A28; --ink:#EEE9F4; --muted:#9C93A8;
+    --accent:#9C82E8; --accent2:#F1894C; --line:#2C2640; --code-bg:#0C0A12; --code-ink:#EFEAF6; --code-line:#2A2440; }
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;font-size:18px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  a{color:var(--accent);}
+
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent2);}
+  .brand .hnd{color:var(--muted);font-family:inherit;font-weight:400;font-size:15px;}
+
+  .hero{padding:60px 0 30px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:800;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(34px,6.2vw,52px);line-height:1.07;
+    letter-spacing:-.01em;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  h1 .o{color:var(--accent2);font-style:normal;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  .badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .badge{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:14px;font-weight:700;}
+  .badge b{color:var(--accent);}
+
+  nav.toc{margin:30px 0;padding:22px 24px;background:var(--panel);border:1px solid var(--line);border-radius:16px;}
+  nav.toc b{font-family:Georgia,serif;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+  nav.toc ol{margin:12px 0 0;padding-left:20px;columns:2;column-gap:26px;}
+  nav.toc li{margin:6px 0;}
+  nav.toc a{text-decoration:none;}
+  nav.toc a:hover{text-decoration:underline;}
+
+  section{padding:36px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(26px,4.4vw,34px);line-height:1.12;
+    margin:0 0 8px;text-wrap:balance;}
+  h2 .n{color:var(--accent2);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:24px 0 4px;}
+  p{margin:12px 0;}
+  strong{font-weight:700;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;
+    padding:16px 20px;margin:20px 0;}
+  .callout.big{font-size:19px;}
+  .callout.o{border-left-color:var(--accent2);}
+  ul.clean{list-style:none;padding:0;margin:16px 0;display:flex;flex-direction:column;gap:10px;}
+  ul.clean li{padding-left:30px;position:relative;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:12px;height:12px;
+    border-radius:4px;background:var(--accent);}
+  ol.steps{padding-left:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:18px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;
+    background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:16px;font-family:Georgia,serif;}
+
+  .prompt{margin:16px 0;border-radius:14px;overflow:hidden;border:1px solid var(--code-line);}
+  .prompt .ph{display:flex;align-items:center;justify-content:space-between;
+    background:var(--code-bg);padding:12px 16px;border-bottom:1px solid var(--code-line);}
+  .prompt .ph .lbl{color:var(--accent2);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;}
+  .prompt .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);
+    font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .prompt .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .prompt pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:16px;overflow-x:auto;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:14px;line-height:1.55;white-space:pre-wrap;}
+
+  footer{padding:40px 0 70px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .spark{color:var(--accent2);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;
+    padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+  @media (max-width:560px){ nav.toc ol{columns:1;} body{font-size:17px;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg" aria-label="Mavzuni almashtirish">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="eyebrow">Claude Cowork · 24/7 tizim · To'liq qo'llanma</div>
+  <h1>Claude Cowork bilan <em>24/7 AI tizim</em> — <span class="o">bir kishilik kompaniya</span></h1>
+  <p class="lede">Ko'pchilik biznesini qo'lda yuritadi. Ish ko'payganda esa asosiy to'siq — kuch emas, muvofiqlashtirish. Bu qo'llanma kundalik ishni ishonchli workflowlarga aylantirishni ko'rsatadi — 7 kunda.</p>
+  <div class="badge-row">
+    <span class="badge"><b>1–2</b> Poydevor</span>
+    <span class="badge"><b>3</b> Kunlik ish</span>
+    <span class="badge"><b>4</b> Tadqiqot+Kontent</span>
+    <span class="badge"><b>5</b> Mijoz</span>
+    <span class="badge"><b>6</b> Ishonchlilik</span>
+    <span class="badge"><b>7</b> Optimizatsiya</span>
+  </div>
+</div>
+
+<nav class="toc">
+  <b>Ichida nima bor</b>
+  <ol>
+    <li><a href="#s0">Haqiqiy 24/7 tizim nima</a></li>
+    <li><a href="#s1">1–2 kun: poydevor va ruxsat</a></li>
+    <li><a href="#s2">3-kun: kunlik ish</a></li>
+    <li><a href="#s3">4-kun: tadqiqot va kontent</a></li>
+    <li><a href="#s4">5-kun: mijoz va loyiha</a></li>
+    <li><a href="#s5">6-kun: jadval va ishonchlilik</a></li>
+    <li><a href="#s6">7-kun: optimizatsiya</a></li>
+    <li><a href="#s7">Nimasi ishlaydi (3 narsa)</a></li>
+    <li><a href="#s8">Qayerda buziladi + maslahatlar</a></li>
+  </ol>
+</nav>
+
+<section id="s0">
+  <h2><span class="n">★</span>Haqiqiy 24/7 tizim nima</h2>
+  <p>24/7 AI tizim — hamma ishni qiladigan <strong>bitta agent emas</strong>. Bu — bir-biriga ulangan <strong>workflowlar</strong> guruhi. Har biri bitta aniq ishni bajaradi: brifing, tadqiqot, yo'naltirish, kontent, mijozga xabar va tekshiruv.</p>
+  <p>Bu farq muhim, chunki tizim faqat <strong>har bo'lakning aniq roli</strong> bo'lganda ishonchli bo'ladi. Claude Cowork tuzilmani boshqarganda eng yaxshi ishlaydi — har safar butun biznesni «o'ylab topmaganda».</p>
+  <div class="callout big">🎯 Maqsad oddiy: <strong>strategiya va qaror sizda</strong> qoladi, tizim esa <strong>bajarish, takror va muvofiqlashtirish</strong>ni oladi.</div>
+  <h3>Nega bu muhim</h3>
+  <p>Vaqt va aqliy quvvat cheklangan. Har bir qo'lda tekshiruv va takror ish sizdan kuch oladi. Agar biznes hamma narsaga o'zingiz tegishingizni talab qilsa, bir kun shiftga urilasiz. 24/7 tizimning maqsadi — takror ishni boshingizdan olib, jadval bo'yicha ishlaydigan workflowga o'tkazish.</p>
+</section>
+
+<section id="s1">
+  <h2><span class="n">01</span>1–2 kun: poydevor va ruxsat</h2>
+  <ol class="steps">
+    <li><strong>Claude Desktop'ni o'rnating.</strong></li>
+    <li><strong>Muhim papka va xizmatlarga ruxsat bering</strong> — masalan, papkalar, Drive, Gmail, Notion.</li>
+    <li><strong>Assistentning rolini aniq belgilang</strong> (system prompt). Bu juda muhim: u nima qilishi mumkin, nimani ustuvor qilishi va qayerda inson tekshiruvi kerakligini aytadi.</li>
+    <li><strong>Ko'lamni hal qiling.</strong> Hammasini birdan ulamang — birinchi workflowlaringiz uchun eng kam ruxsatdan boshlang.</li>
+  </ol>
+  <div class="callout o">💡 Kam ruxsat = tizimga <strong>ishonch oson</strong>, buzilishi <strong>qiyin</strong>. Keyin asta-sekin kengaytirasiz.</div>
+  <h3>System prompt nimani aniqlaydi</h3>
+  <ul class="clean">
+    <li>Nima qilish mumkin (va mumkin emas)</li>
+    <li>Nimani ustuvor qilish kerak</li>
+    <li>Qayerda inson tekshiruvi shart</li>
+    <li>Qanday muloqot qilish va formatlash</li>
+  </ul>
+</section>
+
+<section id="s2">
+  <h2><span class="n">02</span>3-kun: kunlik ish</h2>
+  <p>Birinchi foydali workflowlar odatda <strong>kunlik brifing</strong> va <strong>kun oxiri tahlili</strong>.</p>
+  <div class="callout">
+    <strong>☀️ Ertalabki brifing:</strong> bugungi ustuvorliklar, muhim yangiliklar, eslatmalar va kerakli kontekst — kunni tiniqlik bilan boshlaysiz.<br><br>
+    <strong>🌙 Kun oxiri tahlili:</strong> nima bajarildi, qisqa xulosa, ochiq qolgan ishlar va ertangi kun uchun boshlanish nuqtasi.
+  </div>
+  <p>Shu ikki odat ham katta miqdordagi aqliy yukni olib tashlaydi. Bu yerga oddiy <strong>yo'naltirish qatlamini</strong> ham qo'shing: vazifa papkaga, eslatmaga yoki mijoz yangilanishiga tegishlimi — tizim uni qayerga borishini bilsin.</p>
+</section>
+
+<section id="s3">
+  <h2><span class="n">03</span>4-kun: tadqiqot va kontent</h2>
+  <p>Kunlik qatlam ishlagach, <strong>tadqiqotni kontentga ulang</strong>. Tizim aynan shu yerda «kuchayadi».</p>
+  <p>Tadqiqot workflowi foydali ma'lumot yig'adi, uni qisqartiradi va to'g'ridan-to'g'ri <strong>kontent workflowiga</strong> uzatadi. Kontent workflowi esa uni qoralama, post yoki eslatmaga aylantiradi — har safar noldan boshlamasdan.</p>
+  <div class="callout">Aynan shu ulanish tizimni «tirik» qiladi. Ma'lumot shunchaki saqlanmaydi — u <strong>harakatlanadi</strong>.</div>
+</section>
+
+<section id="s4">
+  <h2><span class="n">04</span>5-kun: mijoz va loyiha</h2>
+  <p>Keyingi qatlam — loyiha kuzatuvi va mijoz yangilanishlari. Yaxshi tizim:</p>
+  <ul class="clean">
+    <li>holat hisobotlarini tayyorlaydi</li>
+    <li>to'siq va xavflarni belgilaydi</li>
+    <li>mijozga yangilanish tayyorlaydi</li>
+    <li>aloqani doimiy va izchil tutadi</li>
+  </ul>
+  <div class="callout o">🏆 Bu — bir kishilik kompaniya uchun eng katta yutuqlardan biri. Mijoz va loyiha aloqasi qancha ko'p avtomatlashsa, <strong>haqiqatan e'tibor talab qiladigan ish</strong>ga shuncha ko'p vaqt qoladi.</div>
+</section>
+
+<section id="s5">
+  <h2><span class="n">05</span>6-kun: jadval va ishonchlilik</h2>
+  <p>24/7 tizim faqat <strong>ishonchli</strong> bo'lsagina ma'noga ega. Bu degani:</p>
+  <ul class="clean">
+    <li><strong>Rejalashtirilgan</strong> ishga tushishlar (schedule)</li>
+    <li><strong>Aniq to'xtash</strong> shartlari</li>
+    <li>Qandaydir <strong>tekshiruv</strong> shakli</li>
+  </ul>
+  <p>Agar workflowning chegarasi bo'lmasa, u vaqt va tokenni behuda sarflaydi. Tekshiruv qadami bo'lmasa, u asta-sekin «adashib» ketishi mumkin.</p>
+  <div class="callout">Eng yaxshi tizim — <strong>qachon to'xtash va qachon ishni sizga qaytarish</strong>ni biladigan tizim.</div>
+  <p>Bugun butun sozlamani to'liq tsikl bo'ylab sinang. Faqat «bir marta ishladimi?» emas — <strong>real sharoitda ishlashda davom etadimi?</strong> — shuni tekshiring.</p>
+</section>
+
+<section id="s6">
+  <h2><span class="n">06</span>7-kun: optimizatsiya va hujjat</h2>
+  <p>Oxirgi kun — tizimni <strong>oson boshqariladigan</strong> qilish haqida. Nima ishladi, nima muvaffaqiyatsiz bo'ldi va vaqt tejash aslida qayerdan kelganini ko'rib chiqing.</p>
+  <p>Keyin tizimni <strong>hujjatlashtiring</strong> — hammasini qaytadan o'rganmasdan keyinroq yaxshilay olishingiz uchun. Bu hujjat kelasi hafta qo'shadigan workflowingiz uchun poydevor bo'ladi.</p>
+  <div class="callout o">Yaxshi tizim shunday tushunarli bo'lishi kerakki, detallarini unutsangiz ham uni boshqara olasiz.</div>
+</section>
+
+<section id="s7">
+  <h2><span class="n">07</span>Nimasi ishlaydi (3 narsa)</h2>
+  <h3>1. Aqlli yo'naltirish</h3>
+  <p>Har vazifa eng qimmat fikrlashni talab qilmaydi. Oddiy ishlar tez va arzon bajarilsin; murakkab, muhim qaror ishi <strong>sizda</strong> qolsin. Murakkablik bo'yicha yo'naltiring — sukut bo'yicha eng qimmat variantga o'tmang.</p>
+  <h3>2. Aniq «tayyor» mezoni</h3>
+  <p>Agar workflow «tayyor» nimaligini bilmasa, u adashadi. Aniq kirish → aniq qoida → aniq natija = bashorat qilinadigan javob.</p>
+  <h3>3. Xotira uzluksizligi</h3>
+  <p>Tizim sizning bilim bazangizga (masalan, Obsidian yoki boshqa doimiy baza) murojaat qila olsa, u har ertalab noldan boshlanmaydi — <strong>haqiqiy operatsion qatlam</strong>dek ishlay boshlaydi.</p>
+</section>
+
+<section id="s8">
+  <h2><span class="n">08</span>Qayerda buziladi + maslahatlar</h2>
+  <p>Bu sehr emas. Boshlang'ich sozlash diqqat talab qiladi. Ba'zi ishlar — ayniqsa ijodiy yoki muhim muloqot — inson qarorini talab qiladi. Konnektor muammolari rejalashtirilgan ishlarni uzishi mumkin. Va tizim samarali qolishi uchun vaqti-vaqti bilan qayta ko'rib chiqishni talab qiladi.</p>
+  <div class="callout">Eng to'g'ri yondashuv «o'rnatib, unutish» emas. To'g'risi: <strong>qur, kuzat va yaxshila.</strong></div>
+  <h3>Uzoq muddat uchun eng yaxshi amaliyotlar</h3>
+  <ul class="clean">
+    <li>Kichikdan boshlang — eng ko'p vaqt tejaydigan 1–2 workflowni tanlang</li>
+    <li>Ko'rsatmalarni aniq tuting va reallik o'zgarganda yangilang</li>
+    <li>Butun tizimni har hafta ko'rib chiqing, faqat alohida vazifalarni emas</li>
+    <li>Sozlamani infratuzilma kabi ko'ring — chunki u shunday</li>
+  </ul>
+  <div class="callout big">🚀 Jamoa kerak emas. Claude Cowork va to'g'ri workflowlar bilan bir kishi ham ishonchli 24/7 operatsiya qura oladi. Ustunlik — bu tizimlarni <strong>hozir</strong> qura boshlaganlarga tegadi.</div>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>Kichikdan boshlang — bugun bitta workflow 🚀</p>
+</footer>
+
+</div>
+
+<script>
+  const tg=document.getElementById('tg');
+  tg.addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const isDark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', isDark?'light':'dark');
+  });
+  document.querySelectorAll('.prompt').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{
+      try{ await navigator.clipboard.writeText(pre.innerText);
+        const t=btn.textContent; btn.textContent='✓ Nusxa olindi';
+        setTimeout(()=>btn.textContent=t,1500);
+      }catch(e){ btn.textContent='Belgilab, qo‘lda nusxa oling'; }
+    });
+  });
+</script>

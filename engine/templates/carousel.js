@@ -35,7 +35,10 @@ function dataUri(p) {
 const WIDTH = 1080, HEIGHT = 1350;
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 function inline(t = '') {
-  return esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em class="acc">$1</em>');
+  return esc(t)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/~(.+?)~/g, '<em class="acc2">$1</em>')
+    .replace(/\*(.+?)\*/g, '<em class="acc">$1</em>');
 }
 
 const kicker = (t) => t ? `<div class="kicker"><span class="dash"></span>${esc(t)}</div>` : '';
@@ -104,6 +107,29 @@ function decorLayer() {
   </div>`;
 }
 
+// колесо: центральный узел + N узлов по кругу со спицами (стиль hub-and-spoke)
+function wheel(center, nodes) {
+  const cx = 250, cy = 210, R = 138, nodeR = 30;
+  const N = nodes.length || 1;
+  const COLORS = ['#6B4FBB', '#3E7D46', '#E8722C', '#2E4E70', '#B8862A', '#C0603A', '#4A6FA5'];
+  let spokes = '', dots = '', labels = '';
+  nodes.forEach((nd, i) => {
+    const ang = (-90 + i * 360 / N) * Math.PI / 180;
+    const x = cx + Math.cos(ang) * R, y = cy + Math.sin(ang) * R;
+    const col = nd.color || COLORS[i % COLORS.length];
+    spokes += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="var(--line)" stroke-width="2.5" stroke-dasharray="3 6" stroke-linecap="round"/>`;
+    dots += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${nodeR}" fill="${col}"/><text x="${x.toFixed(1)}" y="${(y + 9).toFixed(1)}" text-anchor="middle" font-family="Inter,sans-serif" font-size="27" font-weight="800" fill="#fff">${i + 1}</text>`;
+    const lr = R + nodeR + 12;
+    const lx = cx + Math.cos(ang) * lr, ly = cy + Math.sin(ang) * lr;
+    const anchor = Math.cos(ang) > 0.35 ? 'start' : (Math.cos(ang) < -0.35 ? 'end' : 'middle');
+    labels += `<text x="${lx.toFixed(1)}" y="${(ly + 6).toFixed(1)}" text-anchor="${anchor}" font-family="Inter,sans-serif" font-size="19" font-weight="700" fill="var(--ink)">${esc(nd.label)}</text>`;
+  });
+  const c = `<circle cx="${cx}" cy="${cy}" r="52" fill="var(--card)" stroke="var(--accent)" stroke-width="3"/>
+    <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-family="Inter,sans-serif" font-size="17" font-weight="900" fill="var(--accent)">✳ Claude</text>
+    <text x="${cx}" y="${cy + 18}" text-anchor="middle" font-family="Inter,sans-serif" font-size="17" font-weight="900" fill="var(--ink)">${esc(center || 'Cowork')}</text>`;
+  return `<svg class="wheelsvg" viewBox="0 0 500 420">${spokes}${labels}${dots}${c}</svg>`;
+}
+
 // простой горизонтальный бар-чарт
 function chart(s) {
   const rows = (s.bars || []).map(b => `
@@ -125,6 +151,14 @@ function slide(s, i, total, c) {
   const dec = (c.decor || s.decor) ? decorLayer() : '';
   switch (s.type) {
     case 'cover':
+      if (s.wheel) {
+        return `<section class="${cls} cover hub"${st}>${dec}
+          <div class="top">${kicker(s.kicker)}<span class="page">${pageStr(i, total)}</span></div>
+          <h1 class="hub-title">${inline(s.title).replace(/\n/g, '<br>')}</h1>
+          <div class="hub-wheel">${wheel(s.center, s.nodes || [])}</div>
+          ${s.swipe ? `<div class="swipe">${esc(s.swipe)} <span>→</span></div>` : ''}
+          ${f}</section>`;
+      }
       if (s.poster) {
         const badges = (s.badges || []).map(b => `<div class="pbadge" style="background:${b.color}">${esc(b.label)}</div>`).join('');
         return `<section class="${cls} cover poster"${st}>${dec}
@@ -283,6 +317,7 @@ function buildHTML(carousel) {
   .chbar{height:100%;border-radius:14px;
     background:linear-gradient(90deg, color-mix(in srgb,var(--accent) 62%, transparent), var(--accent));}
   .acc{color:var(--accent);font-style:normal;}
+  .acc2{color:var(--accent2,#E8722C);font-style:normal;}
   strong{font-weight:800;color:var(--ink);}
 
   .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;}
@@ -332,6 +367,15 @@ function buildHTML(carousel) {
   .pbadge{width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;
     color:#fff;font-family:${c.serif};font-weight:700;font-size:33px;box-shadow:0 12px 28px rgba(0,0,0,.16);}
   .poster-tags{margin-top:48px;font-size:27px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+
+  /* hub cover — заголовок + колесо воркфлоу (стиль Claude Cowork) */
+  .cover.hub{align-items:center;text-align:center;justify-content:flex-start;padding:74px 60px 100px;}
+  .cover.hub .top{width:100%;margin-bottom:6px;}
+  .hub-title{font-family:${c.serif};font-weight:800;font-size:78px;line-height:1.05;letter-spacing:-.015em;max-width:940px;margin-top:14px;}
+  .hub-title .acc{color:var(--accent);font-style:normal;}
+  .hub-title .acc2{color:var(--accent2,#E8722C);font-style:normal;}
+  .hub-wheel{margin-top:20px;width:100%;display:flex;justify-content:center;}
+  .hub-wheel .wheelsvg{width:100%;max-width:900px;height:auto;}
 
   .h{font-family:${c.serif};font-weight:800;font-size:78px;line-height:1.04;margin:0 0 8px;}
   .h .acc{color:var(--accent);font-style:italic;}
