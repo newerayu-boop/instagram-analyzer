@@ -2,19 +2,26 @@
   "handle": "@kodiyusufbay",
   "wordmark": "AI Strateg",
   "center": true,
+  "decor": true,
   "palette": {
     "bg": "#0E0A09", "ink": "#F2E9E6", "muted": "#9A8C88", "accent": "#E22633",
     "panel": "#1A1210", "line": "#2E211E", "card": "#1A1210", "glow": "#E2263333",
     "badge-bg": "#E22633", "badge-ink": "#0E0A09"
+  },
+  "altPalette": {
+    "bg": "#F3EEEA", "ink": "#1C1917", "muted": "#6B625E", "accent": "#D01E2B",
+    "panel": "#FBF6F3", "line": "#E5D9D4", "card": "#FBF6F3", "glow": "#D01E2B1e",
+    "badge-bg": "#1C1917", "badge-ink": "#FBF6F3"
   },
   "slides": [
     {
       "type": "cover",
       "hero": true,
       "art": "spark",
+      "sticker": "Skan.\nFiltr.\nYoz.",
       "kicker": "Grok · Kontent workflow",
       "title": "*X10*\nQAMROV",
-      "sub": "Grok bilan har kuni **viral mavzu** toping. Bitta tizim — bitta soat.",
+      "sub": "Grok bilan har kuni **viral mavzu** toping.",
       "swipe": "suring"
     },
     {
@@ -29,6 +36,7 @@
     },
     {
       "type": "steps",
+      "alt": true,
       "kicker": "Workflow",
       "title": "Har kuni *5 qadam*",
       "items": [
@@ -47,6 +55,18 @@
       "prompt": "Bugun X'da AI va kontent bo'yicha faol mavzularni top.\nHar biri uchun: mavzu, nima boshlagan, asosiy kelishmovchilik, kimga muhim, 1 ta kontent g'oyasi.\nOddiy AI yangiliklarini o'tkazib yubor."
     },
     {
+      "type": "chart",
+      "alt": true,
+      "kicker": "Natija",
+      "title": "Qamrov *o'sadi*",
+      "body": "Bir xil vaqt, lekin tizim bilan:",
+      "bars": [
+        { "label": "Oldin (tasodifiy)", "value": "x1", "pct": 10 },
+        { "label": "Grok tizimi bilan", "value": "x10", "pct": 100 }
+      ],
+      "note": "Har kuni **tayyor mavzu** — bo'sh lenta yo'q."
+    },
+    {
       "type": "grid",
       "kicker": "Yozishdan oldin",
       "title": "G'oya *filtri*",
@@ -62,6 +82,7 @@
     },
     {
       "type": "steps",
+      "alt": true,
       "kicker": "Bitta g'oya",
       "title": "*3 formatga* aylanadi",
       "items": [

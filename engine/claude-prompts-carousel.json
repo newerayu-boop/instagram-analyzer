@@ -2,19 +2,26 @@
   "handle": "@kodiyusufbay",
   "wordmark": "AI Strateg",
   "center": true,
+  "decor": true,
   "palette": {
     "bg": "#F4EDE4", "ink": "#1A1712", "muted": "#7C7264", "accent": "#E0651F",
     "panel": "#FBF6EF", "line": "#E4D9CB", "card": "#FBF6EF", "glow": "#E0651F22",
     "badge-bg": "#1A1712", "badge-ink": "#FBF6EF"
+  },
+  "altPalette": {
+    "bg": "#191108", "ink": "#F7EFE3", "muted": "#B3A38C", "accent": "#F5792F",
+    "panel": "#251A0F", "line": "#3A2915", "card": "#251A0F", "glow": "#F5792F30",
+    "badge-bg": "#F5792F", "badge-ink": "#191108"
   },
   "slides": [
     {
       "type": "cover",
       "hero": true,
       "art": "network",
+      "sticker": "Nusxa ol.\nJoyla.\nIshlat.",
       "kicker": "Claude · 300+ prompt",
       "title": "*300+*\nCLAUDE\n*PROMPT*",
-      "sub": "Soatlik ishni **daqiqada** bajaring. Nusxa ol → joyla → ishlat.",
+      "sub": "Soatlik ishni **daqiqada** bajaring.",
       "swipe": "suring"
     },
     {
@@ -29,6 +36,7 @@
     },
     {
       "type": "grid",
+      "alt": true,
       "kicker": "6 bo'lim",
       "title": "Har bir ish uchun *prompt*",
       "cells": [
@@ -41,7 +49,19 @@
       ]
     },
     {
+      "type": "chart",
+      "kicker": "Nega arziydi",
+      "title": "Vaqt *tejaladi*",
+      "body": "Bitta oddiy misol — kod tekshiruvi:",
+      "bars": [
+        { "label": "Qo'lda", "value": "3 soat", "pct": 100 },
+        { "label": "Prompt bilan", "value": "5 daqiqa", "pct": 7 }
+      ],
+      "note": "Bir xil ish — **36 barobar** tez."
+    },
+    {
       "type": "stat",
+      "alt": true,
       "kicker": "Nima olasiz",
       "title": "Bitta *to'plam*",
       "stats": [
@@ -59,6 +79,7 @@
     },
     {
       "type": "steps",
+      "alt": true,
       "kicker": "Qanday ishlatish",
       "title": "*3 qadam* — tamom",
       "items": [

@@ -96,12 +96,33 @@ function diagram(d) {
   </div>`;
 }
 
+// декоративный слой: точечная сетка + искры (тонко, в углах, чтобы не мешать тексту)
+function decorLayer() {
+  return `<div class="decor">
+    <span class="dotgrid dg1"></span><span class="dotgrid dg2"></span>
+    <span class="spk spk1">✦</span><span class="spk spk2">✳</span><span class="spk spk3">✦</span>
+  </div>`;
+}
+
+// простой горизонтальный бар-чарт
+function chart(s) {
+  const rows = (s.bars || []).map(b => `
+    <div class="chrow">
+      <div class="chlab"><span>${inline(b.label)}</span><span class="chn">${esc(b.value || '')}</span></div>
+      <div class="chbar-wrap"><div class="chbar" style="width:${Math.max(6, Math.min(100, b.pct || 0))}%"></div></div>
+    </div>`).join('');
+  return `<div class="chart">${rows}</div>`;
+}
+
 function slide(s, i, total, c) {
   const f = footer(c, i, total);
   const k = topbar(s.kicker, i, total);
   const cls = `slide${c.gold ? ' gold' : (s.dark ? ' dark' : '')}${c.center ? ' centered' : ''}`;
-  const sv = `${c.palVars || ''}${s.accent ? `;--accent:${s.accent}` : ''}`.replace(/^;/, '');
+  const base = (s.alt && c.altVars) ? c.altVars : (c.palVars || '');
+  const slidePal = s.pal ? Object.entries(s.pal).map(([k, v]) => `--${k}:${v}`).join(';') : '';
+  const sv = [base, slidePal, s.accent ? `--accent:${s.accent}` : ''].filter(Boolean).join(';');
   const st = sv ? ` style="${sv}"` : '';
+  const dec = (c.decor || s.decor) ? decorLayer() : '';
   switch (s.type) {
     case 'cover':
       if (s.image) {
@@ -116,9 +137,10 @@ function slide(s, i, total, c) {
           ${f}</section>`;
       }
       if (s.hero) {
-        return `<section class="${cls} cover hero"${st}>
+        return `<section class="${cls} cover hero"${st}>${dec}
           <div class="top">${kicker(s.kicker)}<span class="page">${pageStr(i, total)}</span></div>
           ${s.art ? `<div class="cover-art hero-art">${art(s.art)}</div>` : ''}
+          ${s.sticker ? `<div class="sticker">${inline(s.sticker).replace(/\n/g, '<br>')}</div>` : ''}
           <h1 class="hero-title">${inline(s.title).replace(/\n/g, '<br>')}</h1>
           ${s.sub ? `<p class="cover-sub">${inline(s.sub)}</p>` : ''}
           ${s.swipe ? `<div class="swipe">${esc(s.swipe)} <span>→</span></div>` : ''}
@@ -144,6 +166,8 @@ function slide(s, i, total, c) {
       } else if (s.type === 'grid') {
         const cells = (s.cells || []).map(c => `<div class="gcell"><span class="gcirc" style="background:${c.color || 'var(--accent)'}">${icon(c.icon)}</span><span class="glabel">${inline(c.label)}</span>${c.sub ? `<span class="gsub">${inline(c.sub)}</span>` : ''}</div>`).join('');
         inner = `${title}${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}<div class="grid">${cells}</div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
+      } else if (s.type === 'chart') {
+        inner = `${title}${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}${chart(s)}${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
       } else if (s.type === 'diagram') {
         inner = `${title}${diagram(s)}${s.callout ? `<div class="callout"><span class="bar"></span><p>${inline(s.callout)}</p></div>` : ''}`;
       } else if (s.type === 'prompt') {
@@ -156,7 +180,7 @@ function slide(s, i, total, c) {
         const paras = (s.paragraphs || []).map(p => `<p class="body">${inline(p)}</p>`).join('');
         inner = `${title}<div class="paras">${paras}</div>${s.punch ? `<div class="punch">${inline(s.punch)}</div>` : ''}`;
       }
-      return `<section class="${cls}"${st}>${bg}${k}<div class="content">${inner}</div>${f}</section>`;
+      return `<section class="${cls}"${st}>${bg}${dec}${k}<div class="content">${inner}</div>${f}</section>`;
     }
   }
 }
@@ -169,6 +193,11 @@ function buildHTML(carousel) {
   c.palVars = carousel.palette
     ? Object.entries(carousel.palette).map(([k, v]) => `--${k}:${v}`).join(';')
     : '';
+  // альтернативная палитра для комбинирования светлых/тёмных слайдов в одной карусели (slide.alt:true)
+  c.altVars = carousel.altPalette
+    ? Object.entries(carousel.altPalette).map(([k, v]) => `--${k}:${v}`).join(';')
+    : '';
+  c.decor = !!carousel.decor; // декоративные детали (точечная сетка, искры) на всех слайдах
   if (carousel.wordmark) c.wordmark = carousel.wordmark;
   if (carousel.handle) c.handle = carousel.handle;
   const slides = carousel.slides || [];
@@ -214,6 +243,34 @@ function buildHTML(carousel) {
   .slide.centered .scards{width:100%;max-width:900px;margin-left:auto;margin-right:auto;}
   .slide.centered .steps{width:100%;max-width:900px;}
   .slide.centered .ctacard{align-self:center;max-width:840px;width:100%;text-align:center;}
+  .slide.centered .chart{margin-left:auto;margin-right:auto;}
+
+  /* декоративные детали: точечная сетка + искры (в углах, тонко) */
+  .decor{position:absolute;inset:0;z-index:0;pointer-events:none;}
+  .dotgrid{position:absolute;color:var(--accent);opacity:.14;
+    background-image:radial-gradient(currentColor 2.3px, transparent 2.6px);background-size:26px 26px;}
+  .dg1{top:150px;right:44px;width:224px;height:150px;}
+  .dg2{bottom:200px;left:34px;width:180px;height:126px;}
+  .spk{position:absolute;color:var(--accent);}
+  .spk1{top:120px;left:58%;font-size:26px;opacity:.5;}
+  .spk2{bottom:270px;right:11%;font-size:34px;opacity:.32;}
+  .spk3{top:45%;left:6%;font-size:20px;opacity:.42;}
+
+  /* наклейка-стикер (стиль COPY. PASTE. EXECUTE.) */
+  .sticker{position:absolute;z-index:3;top:560px;right:72px;transform:rotate(6deg);
+    background:var(--accent);color:#fff;font-family:'Anton',${c.sans};font-weight:400;
+    font-size:34px;letter-spacing:.02em;text-transform:uppercase;line-height:1.04;
+    padding:16px 24px;border-radius:10px;box-shadow:0 14px 34px rgba(0,0,0,.28);max-width:360px;}
+  .sticker .acc{color:#fff;}
+
+  /* бар-чарт */
+  .chart{display:flex;flex-direction:column;gap:26px;width:100%;max-width:840px;margin:14px 0 0;}
+  .chrow{display:flex;flex-direction:column;gap:12px;}
+  .chlab{display:flex;justify-content:space-between;align-items:baseline;font-size:34px;font-weight:600;color:var(--ink);}
+  .chlab .chn{font-family:${c.serif};font-weight:800;font-size:40px;color:var(--accent);}
+  .chbar-wrap{height:44px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .chbar{height:100%;border-radius:14px;
+    background:linear-gradient(90deg, color-mix(in srgb,var(--accent) 62%, transparent), var(--accent));}
   .acc{color:var(--accent);font-style:normal;}
   strong{font-weight:800;color:var(--ink);}
 
