@@ -125,6 +125,17 @@ function slide(s, i, total, c) {
   const dec = (c.decor || s.decor) ? decorLayer() : '';
   switch (s.type) {
     case 'cover':
+      if (s.poster) {
+        const badges = (s.badges || []).map(b => `<div class="pbadge" style="background:${b.color}">${esc(b.label)}</div>`).join('');
+        return `<section class="${cls} cover poster"${st}>${dec}
+          <div class="top">${kicker(s.kicker)}<span class="page">${pageStr(i, total)}</span></div>
+          ${s.logo ? `<div class="poster-logo"><svg class="moon" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="42" fill="var(--accent)"/><circle cx="66" cy="40" r="34" fill="var(--bg)"/></svg><span class="lg-word">${esc(s.logo)}</span></div>` : ''}
+          <h1 class="poster-title">${inline(s.title).replace(/\n/g, '<br>')}</h1>
+          ${s.sub ? `<p class="poster-sub">${inline(s.sub)}</p>` : ''}
+          ${badges ? `<div class="pbadges">${badges}</div>` : ''}
+          ${s.tags ? `<div class="poster-tags">${esc(s.tags)}</div>` : ''}
+          ${f}</section>`;
+      }
       if (s.image) {
         return `<section class="${cls} cover cover-img"${st}>
           <div class="cbanner"><img src="${dataUri(s.image)}" alt=""></div>
@@ -307,6 +318,20 @@ function buildHTML(carousel) {
   .hero-title strong{color:var(--accent);font-weight:400;}
   .cover.hero .cover-sub{margin-top:36px;font-size:42px;}
   .hero-art{top:140px;right:-6px;width:520px;height:520px;opacity:.9;}
+
+  /* poster cover — центрированный заголовок + логотип + цветные кружки (стиль Kimi K3) */
+  .cover.poster{align-items:center;text-align:center;justify-content:center;padding:74px 70px 104px;}
+  .cover.poster .top{width:100%;margin-bottom:0;}
+  .poster-logo{display:flex;align-items:center;gap:16px;margin:0 auto 30px;}
+  .poster-logo .moon{width:66px;height:66px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.12));}
+  .poster-logo .lg-word{font-family:${c.sans};font-weight:900;font-size:44px;letter-spacing:.18em;color:var(--ink);}
+  .poster-title{font-family:${c.serif};font-weight:800;font-size:92px;line-height:1.05;letter-spacing:-.015em;max-width:960px;}
+  .poster-title .acc{color:var(--accent);font-style:normal;}
+  .poster-sub{font-family:${c.serif};font-style:italic;font-weight:600;font-size:44px;color:var(--muted);margin-top:28px;max-width:880px;}
+  .pbadges{display:flex;gap:26px;justify-content:center;margin-top:56px;flex-wrap:wrap;}
+  .pbadge{width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    color:#fff;font-family:${c.serif};font-weight:700;font-size:33px;box-shadow:0 12px 28px rgba(0,0,0,.16);}
+  .poster-tags{margin-top:48px;font-size:27px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
 
   .h{font-family:${c.serif};font-weight:800;font-size:78px;line-height:1.04;margin:0 0 8px;}
   .h .acc{color:var(--accent);font-style:italic;}

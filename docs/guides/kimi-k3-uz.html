@@ -1,0 +1,246 @@
+<title>Kimi K3 — to'liq sozlash qo'llanmasi | AI Strateg</title>
+<style>
+  :root{
+    --bg:#F2EDE3; --panel:#FBF7EF; --ink:#24211C; --muted:#6E685C;
+    --accent:#C0603A; --line:#E4DBCB; --code-bg:#1A1712; --code-ink:#F1EADD;
+    --code-line:#3a352c; --maxw:760px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#151310; --panel:#1F1C17; --ink:#EEE7DB; --muted:#9C9488;
+      --accent:#DA7A4E; --line:#2C2720; --code-bg:#0C0A08; --code-ink:#F1EADD; --code-line:#2A251F; }
+  }
+  :root[data-theme="light"]{ --bg:#F2EDE3; --panel:#FBF7EF; --ink:#24211C; --muted:#6E685C;
+    --accent:#C0603A; --line:#E4DBCB; --code-bg:#1A1712; --code-ink:#F1EADD; --code-line:#3a352c; }
+  :root[data-theme="dark"]{ --bg:#151310; --panel:#1F1C17; --ink:#EEE7DB; --muted:#9C9488;
+    --accent:#DA7A4E; --line:#2C2720; --code-bg:#0C0A08; --code-ink:#F1EADD; --code-line:#2A251F; }
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;font-size:18px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  a{color:var(--accent);}
+
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);}
+  .brand .hnd{color:var(--muted);font-family:inherit;font-weight:400;font-size:15px;}
+
+  .hero{padding:60px 0 30px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:800;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(34px,6.2vw,52px);line-height:1.07;
+    letter-spacing:-.01em;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  .badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .badge{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:14px;font-weight:700;}
+  .badge b{color:var(--accent);}
+
+  nav.toc{margin:30px 0;padding:22px 24px;background:var(--panel);border:1px solid var(--line);border-radius:16px;}
+  nav.toc b{font-family:Georgia,serif;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+  nav.toc ol{margin:12px 0 0;padding-left:20px;columns:2;column-gap:26px;}
+  nav.toc li{margin:6px 0;}
+  nav.toc a{text-decoration:none;}
+  nav.toc a:hover{text-decoration:underline;}
+
+  section{padding:36px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(26px,4.4vw,34px);line-height:1.12;
+    margin:0 0 8px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:24px 0 4px;}
+  p{margin:12px 0;}
+  strong{font-weight:700;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;
+    padding:16px 20px;margin:20px 0;}
+  .callout.big{font-size:19px;}
+  ul.clean{list-style:none;padding:0;margin:16px 0;display:flex;flex-direction:column;gap:10px;}
+  ul.clean li{padding-left:30px;position:relative;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:12px;height:12px;
+    border-radius:4px;background:var(--accent);}
+  ol.steps{padding-left:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:18px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;
+    background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:16px;font-family:Georgia,serif;}
+
+  table.tbl{width:100%;border-collapse:collapse;margin:18px 0;font-size:16px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line);padding:11px 14px;text-align:left;}
+  table.tbl th{background:var(--panel);font-weight:800;}
+  table.tbl td b{color:var(--accent);}
+
+  .prompt{margin:16px 0;border-radius:14px;overflow:hidden;border:1px solid var(--code-line);}
+  .prompt .ph{display:flex;align-items:center;justify-content:space-between;
+    background:var(--code-bg);padding:12px 16px;border-bottom:1px solid var(--code-line);}
+  .prompt .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;}
+  .prompt .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);
+    font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .prompt .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .prompt pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:16px;overflow-x:auto;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:14px;line-height:1.55;white-space:pre-wrap;}
+
+  footer{padding:40px 0 70px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;
+    padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+  @media (max-width:560px){ nav.toc ol{columns:1;} body{font-size:17px;} table.tbl{font-size:14px;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg" aria-label="Mavzuni almashtirish">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="eyebrow">Moonshot AI · Kimi K3 · To'liq qo'llanma</div>
+  <h1><em>Kimi K3</em> — maksimal sifat, minimal narx</h1>
+  <p class="lede">2.8 trillion parametr, 1M kontekst, $3 kirish. To'g'ri sozlasangiz — eng og'ir uzun-kontekst ishingiz frontier narxining uchdan biriga tushadi. Mana to'liq sozlash.</p>
+  <div class="badge-row">
+    <span class="badge"><b>·</b> Narx</span>
+    <span class="badge"><b>·</b> Yo'naltirish</span>
+    <span class="badge"><b>·</b> Kesh siri</span>
+    <span class="badge"><b>·</b> Config</span>
+    <span class="badge"><b>·</b> 15 daqiqalik reja</span>
+  </div>
+</div>
+
+<nav class="toc">
+  <b>Ichida nima bor</b>
+  <ol>
+    <li><a href="#s1">1. Nima bo'ldi (oddiy tilda)</a></li>
+    <li><a href="#s2">2. Narx hisobi</a></li>
+    <li><a href="#s3">3. Qayerda ishlatish (va yo'q)</a></li>
+    <li><a href="#s4">4. Ochilish-hafta tuzoqlari</a></li>
+    <li><a href="#s5">5. Config (nusxa oling)</a></li>
+    <li><a href="#s6">6. Kesh siri: 10x arzon</a></li>
+    <li><a href="#s7">7. Ko'p qilinadigan xatolar</a></li>
+    <li><a href="#s8">8. 15 daqiqalik reja</a></li>
+  </ol>
+</nav>
+
+<section id="s1">
+  <h2><span class="n">01</span>Nima bo'ldi (oddiy tilda)</h2>
+  <p>Moonshot AI 16-iyul kuni o'zining yangi flagman modelini chiqardi. Asosiy faktlar:</p>
+  <ul class="clean">
+    <li><strong>Model:</strong> MoE (Mixture-of-Experts) — ~2.8 trillion parametr, lekin har so'zda 896 tadan faqat <strong>16 ta ekspert</strong> ishlaydi. Dunyodagi birinchi ochiq 3T-klass model deб e'lon qilingan.</li>
+    <li><strong>Kontekst:</strong> 1M token. Narx butun oyna bo'ylab <strong>bir xil</strong> — uzun prompt uchun qo'shimcha to'lov yo'q.</li>
+    <li><strong>Kirish:</strong> matn, rasm va video — hammasini tabiiy tushunadi. Fikrlash doim yoniq.</li>
+    <li><strong>Qayerda:</strong> Kimi ilovasi (bepul tarif ham bor), Kimi Code va API (model nomi <code>kimi-k3</code>). API OpenAI'ga mos, ya'ni mavjud SDK'ingiz ishlaydi.</li>
+    <li><strong>Ochiq vazn:</strong> 27-iyulga va'da qilingan — texnik hisobot bilan birga.</li>
+  </ul>
+  <p>Ikkita variant chiqdi: <strong>K3 Max</strong> (chat va agent ishi uchun) va <strong>K3 Swarm Max</strong> (katta hajmli parallel ish uchun).</p>
+</section>
+
+<section id="s2">
+  <h2><span class="n">02</span>Narx hisobi</h2>
+  <table class="tbl">
+    <tr><th>Nima</th><th>Narx</th><th>Nega muhim</th></tr>
+    <tr><td>Kirish / chiqish</td><td><b>$3</b> / <b>$15</b> (1M token)</td><td>Ancha yuqori vazndagi model uchun juda arzon</td></tr>
+    <tr><td>Kesh-hit</td><td><b>$0.30</b> (1M token)</td><td>Takror kontekst 10x arzon — eng katta yashirin imkoniyat</td></tr>
+    <tr><td>1M oyna</td><td>Bir xil narx</td><td>800K token prompt ham 8K kabi hisoblanadi</td></tr>
+    <tr><td>Bonus</td><td>+10–30% kredit</td><td>API to'ldirish 11-avgustgacha qo'shimcha kredit beradi</td></tr>
+  </table>
+  <div class="callout">Halol taqqoslash: K3 kirishda <strong>Fable 5'dan ($10/$50) 3.3x arzon</strong> va bugun Sonnet 5'ning kelajakdagi narxiga teng — ustiga 1M oyna va tabiiy vision bilan.</div>
+</section>
+
+<section id="s3">
+  <h2><span class="n">03</span>Qayerda ishlatish (va qayerda yo'q)</h2>
+  <p>Ishonchni oshiradigan detal: Moonshot o'z blogida <strong>K3 umumiy holatda Claude Fable 5 va GPT-5.6 Sol'dan ortda</strong> ekanini ochiq aytadi. Ular uni "yangi qirol" deb ko'rsatmaydi. Bu bizga toza yo'naltirish qoidasini beradi:</p>
+  <div class="prompt"><div class="ph"><span class="lbl">Yo'naltirish qoidasi · CLAUDE.md</span><button class="copy">Nusxa olish</button></div><pre>## Model yo'naltirish
+
+- Uzun kontekst o'qish, repo tahlili, hujjat sintezi → Kimi K3
+  (1M oyna bir xil narxda, kesh-hit $0.30)
+- Frontend va UI kod → Kimi K3, keyin ko'z bilan tekshir
+- Takror kontekstli agent loop → Kimi K3 (kesh orqali)
+- Eng og'ir mantiq, xavfsizlik ishi → Fable 5 / Opus 4.8
+- Tez tahrir va kundalik ish → Sonnet 5 (arzonroq)</pre></div>
+  <div class="callout big"><strong>Naqsh:</strong> K3 — hajm mashinasi, cho'qqi-aql mashinasi emas. <strong>Prestij bo'yicha emas, token og'irligi bo'yicha</strong> yo'naltiring.</div>
+</section>
+
+<section id="s4">
+  <h2><span class="n">04</span>Ochilish-hafta tuzoqlari</h2>
+  <p>Hype postlar o'tkazib yuboradigan, lekin rasmiy hujjatda bor 4 narsa:</p>
+  <ul class="clean">
+    <li><strong>Fikrlash faqat «max»da.</strong> Past va yuqori rejimlar keyin qo'shiladi. Hozircha har so'rov to'liq fikrlaydi ($15/M) — shuning uchun kichik vazifa yashirincha qimmat. Mayda ishni boshqa modelda qiling.</li>
+    <li><strong>Benchmarklar o'zi e'lon qilgan.</strong> Mustaqil baholovlar endi chiqa boshladi. Har bir grafikani tasdiqlanmagan da'vo deb qarang.</li>
+    <li><strong>Fikrlash tarixini saqlang.</strong> K3 o'z fikrlash tarixini kontekstda saqlaydigan qilib o'qitilgan. Uni pipeline'da o'chirsangiz, sifat pasayishi mumkin.</li>
+    <li><strong>Vazn hali yuklab bo'lmaydi.</strong> 27-iyul — va'da, hozir emas. 2.8T modelni o'zingiz hostlash — ko'pchilik uchun narx yechimi emas.</li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2><span class="n">05</span>Config (nusxa oling)</h2>
+  <p>Istalgan OpenAI'ga mos klientni shunga yo'naltiring:</p>
+  <div class="prompt"><div class="ph"><span class="lbl">Python · nusxa oling</span><button class="copy">Nusxa olish</button></div><pre>from openai import OpenAI
+
+client = OpenAI(
+    api_key=MOONSHOT_API_KEY,
+    base_url="https://api.moonshot.ai/v1",
+)
+
+response = client.chat.completions.create(
+    model="kimi-k3",
+    messages=[
+        {"role": "system", "content": STABLE_PROJECT_CONTEXT},
+        {"role": "user", "content": task},
+    ],
+)</pre></div>
+</section>
+
+<section id="s6">
+  <h2><span class="n">06</span>Kesh siri: hisobingizni 10x kamaytiring</h2>
+  <p>Katta barqaror kontekstingizni (kod, loyiha hujjatlari) har so'rovda <strong>bir xil boshlanish (prefiks)</strong> qilib saqlang. Bir xil prefiks keshga tushadi va <strong>$3 o'rniga $0.30</strong> hisoblanadi.</p>
+  <div class="callout">Promptni shunday tuzing: <strong>barqaror qism — birinchi</strong> (hech o'zgarmaydi), <strong>o'zgaruvchan vazifa — oxirida</strong>. Agent ish yuklarida bu bir xil model uchun 10x farq.</div>
+</section>
+
+<section id="s7">
+  <h2><span class="n">07</span>Ko'p qilinadigan xatolar</h2>
+  <ul class="clean">
+    <li><strong>Chat savollari bilan sinash.</strong> «Menga funksiya yoz» — bu 1M oynali 2.8T modelni ko'rsatmaydi. Unga butun repo yoki katta hujjat to'plamini bering.</li>
+    <li><strong>Kesh narxini e'tiborsiz qoldirish.</strong> Oddiy prompt har safar $3/M to'laydi. Tuzilgan prefiks takrorlarda $0.30 to'laydi.</li>
+    <li><strong>Benchmarklarni fakt sifatida keltirish.</strong> Ular o'zi e'lon qilgan, va ishlab chiquvchi o'zi Fable 5'dan ortda ekanini aytadi.</li>
+    <li><strong>Hamma ishni bir kechada ko'chirish.</strong> Avval bitta ish turini (uzun-kontekst o'qish) yo'naltiring, bir hafta sifatni solishtiring, keyin kengaytiring.</li>
+    <li><strong>«max» tuzog'ini unutish.</strong> Faqat-max fikrlash arzimas ishni to'liq narxda «o'ylab» yuboradi. Bu og'ir mashina — og'ir ishda qoldiring.</li>
+  </ul>
+</section>
+
+<section id="s8">
+  <h2><span class="n">08</span>15 daqiqalik reja</h2>
+  <ol class="steps">
+    <li><strong>API kalit oling</strong> va bonus oynasida to'ldiring (3 daqiqa).</li>
+    <li><strong>Yuqoridagi configni</strong> stekingizga ulang (4 daqiqa).</li>
+    <li><strong>Bitta og'ir promptni</strong> kesh uchun qayta tuzing: barqaror prefiks, vazifa oxirida (4 daqiqa).</li>
+    <li><strong>Eng katta uzun-kontekst ishingizni</strong> K3'da va hozirgi modelingizda yuriting (3 daqiqa).</li>
+    <li><strong>Natija va narxni solishtiring</strong> — K3 arzasa, yo'naltirish qoidasini qo'shing (1 daqiqa).</li>
+  </ol>
+  <div class="callout big">🎯 Yangi flagman, halol ishlab chiquvchi, tajovuzkor narx. Uni stekingizga qayerga qo'yishni <strong>hozir</strong> aniqlang — hamma hali grafiklar haqida bahslashayotganda.</div>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>Saqlab qo'ying va sinab ko'ring 🚀</p>
+</footer>
+
+</div>
+
+<script>
+  const tg=document.getElementById('tg');
+  tg.addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const isDark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', isDark?'light':'dark');
+  });
+  document.querySelectorAll('.prompt').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{
+      try{ await navigator.clipboard.writeText(pre.innerText);
+        const t=btn.textContent; btn.textContent='✓ Nusxa olindi';
+        setTimeout(()=>btn.textContent=t,1500);
+      }catch(e){ btn.textContent='Belgilab, qo‘lda nusxa oling'; }
+    });
+  });
+</script>

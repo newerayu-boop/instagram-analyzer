@@ -1,0 +1,124 @@
+{
+  "handle": "@kodiyusufbay",
+  "wordmark": "AI Strateg",
+  "center": true,
+  "decor": true,
+  "palette": {
+    "bg": "#F2EDE3", "ink": "#24211C", "muted": "#7C7468", "accent": "#C0603A",
+    "panel": "#FBF7EF", "line": "#E4DBCB", "card": "#FBF7EF", "glow": "#C0603A1e",
+    "badge-bg": "#24211C", "badge-ink": "#F2EDE3"
+  },
+  "altPalette": {
+    "bg": "#26221C", "ink": "#F1EADD", "muted": "#A79E8E", "accent": "#D57849",
+    "panel": "#312B23", "line": "#413A2F", "card": "#312B23", "glow": "#D5784926",
+    "badge-bg": "#D57849", "badge-ink": "#26221C"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "poster": true,
+      "logo": "KIMI",
+      "kicker": "Moonshot AI · Yangi",
+      "title": "*Kimi K3* sozlash qo'llanmasi\nMaksimal sifat, minimal narx",
+      "sub": "2.8T parametr · 1M kontekst · aniq config ichida",
+      "badges": [
+        { "label": "route", "color": "#C0603A" },
+        { "label": "cache", "color": "#3E7D46" },
+        { "label": "1M", "color": "#8E52A8" },
+        { "label": "config", "color": "#2E4E70" },
+        { "label": "$3", "color": "#B8862A" }
+      ],
+      "tags": "Narx · Yo'naltirish · Claude Code · Kesh"
+    },
+    {
+      "type": "story",
+      "kicker": "Nima bo'ldi",
+      "title": "Yangi *ulkan* model",
+      "paragraphs": [
+        "Moonshot AI **Kimi K3**ni chiqardi: 2.8 trillion parametr, lekin har so'zda faqat **16 tasi** ishlaydi (MoE).",
+        "Bu — dunyodagi birinchi **ochiq 3T-klass** model. Matn, rasm va videoni tushunadi."
+      ],
+      "punch": "Fikrlash doim yoniq."
+    },
+    {
+      "type": "stat",
+      "kicker": "Kuchi",
+      "title": "Raqamlar *kotta*",
+      "stats": [
+        { "big": "2.8T", "label": "parametr (MoE)" },
+        { "big": "1M", "label": "kontekst — matn+rasm+video" }
+      ],
+      "note": "1M oynada narx **bir xil** — uzun promptga qo'shimcha to'lov yo'q."
+    },
+    {
+      "type": "stat",
+      "alt": true,
+      "kicker": "Narx",
+      "title": "Arzon, lekin *kuchli*",
+      "stats": [
+        { "big": "$3", "label": "1M kirish (input)" },
+        { "big": "$15", "label": "1M chiqish (output)" }
+      ],
+      "note": "Fable 5'dan **3.3x arzon**. Ochilish bonusi: 11-avgustgacha +10–30% kredit."
+    },
+    {
+      "type": "chart",
+      "kicker": "Eng katta sir",
+      "title": "Kesh — *10x arzon*",
+      "body": "Bir xil kontekstni qayta o'qishda:",
+      "bars": [
+        { "label": "Oddiy so'rov", "value": "$3 / 1M", "pct": 100 },
+        { "label": "Kesh-hit", "value": "$0.30 / 1M", "pct": 10 }
+      ],
+      "note": "**Barqaror qism** (kod, hujjat) oldinda, **o'zgaruvchan vazifa** oxirida — kesh ishlaydi."
+    },
+    {
+      "type": "grid",
+      "kicker": "Qayerda ishlatish",
+      "title": "K3 — *hajm* mashinasi",
+      "cells": [
+        { "icon": "brief", "label": "Uzun matn o'qish" },
+        { "icon": "search", "label": "Repo tahlili" },
+        { "icon": "robot", "label": "Agent loop (kesh)" },
+        { "icon": "code", "label": "Frontend / UI kod" }
+      ]
+    },
+    {
+      "type": "story",
+      "kicker": "Qayerda ishlatmaslik",
+      "title": "Hammasini *ko'chirmang*",
+      "paragraphs": [
+        "Eng og'ir mantiq va xavfsizlik ishi → **Fable 5 / Opus 4.8**.",
+        "Tez, kichik tahrirlar → **Sonnet 5** (arzonroq)."
+      ],
+      "punch": "Prestij emas — token og'irligi bo'yicha yo'nalt."
+    },
+    {
+      "type": "steps",
+      "alt": true,
+      "kicker": "Ochilish tuzoqlari",
+      "title": "3 ta *ehtiyot* nuqta",
+      "items": [
+        { "n": "01", "text": "**«max» fikrlash** — kichik ish qimmatga tushadi. Mayda ishni bu yerda qilmang." },
+        { "n": "02", "text": "**Benchmarklar o'zi e'lon qilgan** — mustaqil tekshiruv kutilyapti." },
+        { "n": "03", "text": "**Ochiq vazn** — 27-iyulga va'da, hali yuklab bo'lmaydi." }
+      ]
+    },
+    {
+      "type": "prompt",
+      "kicker": "Sozlash",
+      "title": "Config — *5 daqiqa*",
+      "label": "OpenAI-mos · nusxa ol",
+      "prompt": "base_url = \"https://api.moonshot.ai/v1\"\nmodel = \"kimi-k3\"\n# Barqaror kontekst — birinchi (system)\n# O'zgaruvchan vazifa — oxirida (user)\n# Mavjud OpenAI SDK'ingiz o'zgarishsiz ishlaydi"
+    },
+    {
+      "type": "cta",
+      "kicker": "Bepul olish",
+      "title": "To'liq config *kerakmi?*",
+      "body": "Aniq sozlash, yo'naltirish jadvali, kesh siri va 15 daqiqalik reja — bitta qo'llanmada.",
+      "action": "Izohga yozing:",
+      "keyword": "«KIMI»",
+      "url": "to'liq qo'llanmani bepul yuboraman"
+    }
+  ]
+}
