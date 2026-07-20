@@ -1,0 +1,295 @@
+<title>Grok kontent workflow — to'liq qo'llanma | AI Strateg</title>
+<style>
+  :root{
+    --bg:#F3EEEA; --panel:#FBF6F3; --ink:#1C1917; --muted:#6B625E;
+    --accent:#C81E2B; --line:#E5D9D4; --code-bg:#171210; --code-ink:#F3E9E6;
+    --code-line:#3a2c2a; --maxw:760px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#100C0B; --panel:#1A1413; --ink:#F0E7E4; --muted:#9C8E8A;
+      --accent:#F0414F; --line:#2C201E; --code-bg:#0A0706; --code-ink:#F3E9E6; --code-line:#2A201E; }
+  }
+  :root[data-theme="light"]{ --bg:#F3EEEA; --panel:#FBF6F3; --ink:#1C1917; --muted:#6B625E;
+    --accent:#C81E2B; --line:#E5D9D4; --code-bg:#171210; --code-ink:#F3E9E6; --code-line:#3a2c2a; }
+  :root[data-theme="dark"]{ --bg:#100C0B; --panel:#1A1413; --ink:#F0E7E4; --muted:#9C8E8A;
+    --accent:#F0414F; --line:#2C201E; --code-bg:#0A0706; --code-ink:#F3E9E6; --code-line:#2A201E; }
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;font-size:18px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  a{color:var(--accent);}
+
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);}
+  .brand .hnd{color:var(--muted);font-family:inherit;font-weight:400;font-size:15px;}
+
+  .hero{padding:60px 0 30px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:800;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(34px,6.4vw,54px);line-height:1.06;
+    letter-spacing:-.01em;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  .badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .badge{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:14px;font-weight:700;}
+  .badge b{color:var(--accent);}
+
+  nav.toc{margin:30px 0;padding:22px 24px;background:var(--panel);border:1px solid var(--line);border-radius:16px;}
+  nav.toc b{font-family:Georgia,serif;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+  nav.toc ol{margin:12px 0 0;padding-left:20px;columns:2;column-gap:26px;}
+  nav.toc li{margin:6px 0;}
+  nav.toc a{text-decoration:none;}
+  nav.toc a:hover{text-decoration:underline;}
+
+  section{padding:36px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(26px,4.4vw,34px);line-height:1.12;
+    margin:0 0 8px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:24px 0 4px;}
+  p{margin:12px 0;}
+  strong{font-weight:700;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;
+    padding:16px 20px;margin:20px 0;}
+  .callout.big{font-size:19px;}
+  ul.clean{list-style:none;padding:0;margin:16px 0;display:flex;flex-direction:column;gap:10px;}
+  ul.clean li{padding-left:30px;position:relative;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:12px;height:12px;
+    border-radius:4px;background:var(--accent);}
+  ol.steps{padding-left:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:18px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;
+    background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:16px;font-family:Georgia,serif;}
+
+  .prompt{margin:16px 0;border-radius:14px;overflow:hidden;border:1px solid var(--code-line);}
+  .prompt .ph{display:flex;align-items:center;justify-content:space-between;
+    background:var(--code-bg);padding:12px 16px;border-bottom:1px solid var(--code-line);}
+  .prompt .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;}
+  .prompt .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);
+    font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .prompt .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .prompt pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:16px;overflow-x:auto;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:14px;line-height:1.55;white-space:pre-wrap;}
+
+  footer{padding:40px 0 70px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;
+    padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+  @media (max-width:560px){ nav.toc ol{columns:1;} body{font-size:17px;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg" aria-label="Mavzuni almashtirish">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="eyebrow">Grok · Kontent · To'liq workflow</div>
+  <h1>Grok bilan har kuni <em>viral mavzu</em> toping</h1>
+  <p class="lede">Bitta kunlik skan. Bitta kontekst passi. Bitta g'oya filtri. Keyin siz yozasiz. Mana shu — butun tizim.</p>
+  <div class="badge-row">
+    <span class="badge"><b>1</b> Kunlik skan</span>
+    <span class="badge"><b>2</b> Kontekst</span>
+    <span class="badge"><b>3</b> Filtr</span>
+    <span class="badge"><b>4</b> Format</span>
+    <span class="badge"><b>5</b> Jadval</span>
+  </div>
+</div>
+
+<section>
+  <h2><span class="n">★</span>Nega Grok?</h2>
+  <p>X (Twitter) — mavzu izlash uchun eng yaxshi joylardan biri. Chunki reaksiyani jonli ko'rasiz: javoblar, sitatalar, skrinshotlar, shikoyatlar va hazillar odamlar nima haqida bahslashishga arziydi deb bilishini ko'rsatadi.</p>
+  <p>Lekin lentaning o'zi yomon «ish stoli». U sizga yarim trend, 12 ta ochiq oyna va 4 ta bir xil fikrni beradi. Shuning uchun men <strong>birinchi bosqichda Grok'dan foydalanaman</strong>. Menga kerak bo'lgan natija — qisqa tadqiqot xulosasi: nima muhokamani boshladi, kim qiziqadi, ziddiyat qayerda va qaysi g'oya bugun postga aylanishi mumkin.</p>
+  <div class="callout">Grok'da jonli X va web qidiruv bor, shuning uchun bu ish unga juda mos keladi. Lentani ochishdan <strong>oldin</strong> Grok'ni oching.</div>
+</section>
+
+<nav class="toc">
+  <b>Ichida nima bor</b>
+  <ol>
+    <li><a href="#s1">1. Kunlik skan</a></li>
+    <li><a href="#s2">2. Yaxshi javob qanday bo'ladi</a></li>
+    <li><a href="#s3">3. Kontekst passi</a></li>
+    <li><a href="#s4">4. G'oya filtri</a></li>
+    <li><a href="#s5">5. G'oyani formatga aylantirish</a></li>
+    <li><a href="#s6">6. Jadvalga qo'yish</a></li>
+    <li><a href="#s7">7. To'liq workflow</a></li>
+  </ol>
+</nav>
+
+<section id="s1">
+  <h2><span class="n">01</span>Kunlik skan</h2>
+  <p>Buni yozishdan oldin, ideal holda 20 ta oynani ochishdan oldin ishga tushiring.</p>
+  <div class="prompt"><div class="ph"><span class="lbl">Kunlik skan · prompt</span><button class="copy">Nusxa olish</button></div><pre>Bugun X'da AI, kreatorlar va kontent yaratish bo'yicha faol mavzularni top.
+Har bir mavzu uchun ber:
+- mavzu nomi
+- muhokamani nima boshlagan
+- odamlar nima deyayotganiga 2-3 ta misol
+- odamlar nega qiziqadi
+- asosiy kelishmovchilik
+- bu kimga muhim
+- mavzu hali yangimi, avjidami yoki eskirganmi
+- bugun yoza oladigan 1 ta kontent g'oyasi
+Oddiy AI yangiliklarini o'tkazib yubor.
+Faqat quyidagilardan biri bor mavzularni qo'sh:
+- haqiqiy kelishmovchilik
+- e'tibordan chetda qolgan detal
+- xatti-harakat o'zgarishi
+- amaliy foydalanish holati
+- men qo'llab-quvvatlay oladigan kuchli fikr</pre></div>
+  <p>Bu prompt ishlaydi, chunki u Grok'ni lentani <strong>«yozishga arziydimi»</strong> tamoyili bo'yicha saralashga majbur qiladi. Noaniq mavzu sizga faqat sarlavha beradi. Yaxshi mavzu esa post yozish uchun sabab beradi.</p>
+</section>
+
+<section id="s2">
+  <h2><span class="n">02</span>Yaxshi javob qanday bo'ladi</h2>
+  <p>Grok «AI-video trend bo'lyapti» desa, men chuqurroq qazishda davom etaman. Postga arziydigan g'oyada <strong>workflowga ta'sir</strong> bo'ladi.</p>
+  <p>Misol: kreatorlar AI-video vositalarini tahrirlash nazorati, personaj barqarorligi va mijozga tayyor tuzatishlar bo'yicha baholayapti. Chiroyli demo e'tibor tortadi; lekin <strong>tuzatish nazorati</strong> vosita pullik ishga yaraydimi yoki yo'qmi — shuni hal qiladi.</p>
+  <div class="callout">Bu post, thread yoki qisqa videoga aylanishi mumkin — chunki u sizga haqiqiy test beradi: demoni ko'rsat, tahrirlash muammosini ko'rsat, workflowni ko'rsat.</div>
+</section>
+
+<section id="s3">
+  <h2><span class="n">03</span>Kontekst passi</h2>
+  <p>Bitta mavzuni tanlaganimdan keyin, Grok'dan manba izini va kelishmovchilikni so'rayman.</p>
+  <div class="prompt"><div class="ph"><span class="lbl">Kontekst · prompt</span><button class="copy">Nusxa olish</button></div><pre>Bu trend uchun kontekst ber.
+Mavzu: [MAVZUNI JOYLANG]
+Shu formatda javob ber:
+1. Nima boshladi?
+2. Men tekshirishim kerak bo'lgan asosiy postlar yoki manbalar qaysi?
+3. Odamlar nega reaksiya qilyapti?
+4. Ikkita asosiy tomon qaysi?
+5. Odamlar qaysi detalni sezmayapti?
+6. Menga 5 ta aniq kontent g'oyasini ber.
+Amaliy bo'l. Oddiy, umumiy fikrlar kerak emas.</pre></div>
+  <p>Keyin men asl postlarni o'zim tekshiraman. <strong>Grok — bu xarita.</strong> Faqat xaritaga qarab post yozish — bu noto'g'ri skrinshotni ishonch bilan takrorlashga olib keladi. Agar asl post topilmasa, aynan iborani, vosita nomini yoki muallif nomini qidirib toping.</p>
+</section>
+
+<section id="s4">
+  <h2><span class="n">04</span>G'oya filtri</h2>
+  <p>Yozishdan oldin quyidagilardan <strong>bittasi</strong> to'g'ri bo'lishi shart:</p>
+  <ul class="clean">
+    <li>odamlar qiziqadigan haqiqiy kelishmovchilik</li>
+    <li>kreator workflowini o'zgartiradigan funksiya</li>
+    <li>haqiqiy muammoni ochib beradigan demo</li>
+    <li>odamlar nusxa ko'chira oladigan yangi foydalanish holati</li>
+    <li>kreatorlar qilayotgan xato</li>
+    <li>misollari bor kuchli fikr</li>
+  </ul>
+  <div class="callout">Agar bittasi ham to'g'ri bo'lmasa — mavzuni keyinga saqlayman yoki tashlab yuboraman. Bu bitta qadam meni odamlar allaqachon tugatgan suhbatlarning xulosasini yozishdan saqlaydi.</div>
+</section>
+
+<section id="s5">
+  <h2><span class="n">05</span>G'oyani formatga aylantirish</h2>
+  <p>G'oya filtrdan o'tgach, men formatlarni so'rayman. Aynan shu yerda «sezdim» degan mavzu «bugun chiqara olaman» degan narsaga aylanadi.</p>
+
+  <h3>Qisqa post uchun</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Post · prompt</span><button class="copy">Nusxa olish</button></div><pre>Bu trend asosida 5 ta qisqa post g'oyasini ber.
+Har bir g'oya quyidagilarni o'z ichiga olsin:
+- ilmoq (hook)
+- asosiy fikr
+- misol
+- auditoriyam nega qiziqishi kerak
+Umumiy iboralardan qoch.
+Har bir g'oyani men 10 daqiqada yoza oladigan darajada aniq qil.</pre></div>
+
+  <h3>Thread uchun</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Thread · prompt</span><button class="copy">Nusxa olish</button></div><pre>Bu trendni thread rejasiga aylantir.
+Shu tuzilmadan foydalan:
+1. asosiy fikr
+2. nima sodir bo'ldi
+3. odamlar nega reaksiya qildi
+4. ziddiyat
+5. kreatorlar nima o'rganishi mumkin
+6. amaliy xulosa
+Har bir bo'limni qisqa qil.</pre></div>
+
+  <h3>Qisqa video uchun</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Video · prompt</span><button class="copy">Nusxa olish</button></div><pre>Bu trend asosida 3 ta qisqa video g'oyasini ber.
+Har biri uchun:
+- ilmoq (hook)
+- ekranda nimani ko'rsataman
+- asosiy fikr
+- yakuniy jumla
+- tomoshabin nimani eslab qolishi kerak</pre></div>
+
+  <p>Men ko'pincha so'zlarni saqlamayman. Men g'oyani, misolni va o'quvchi nega qiziqishi kerakligini saqlayman. Keyin o'z ovozimda qayta yozaman.</p>
+</section>
+
+<section id="s6">
+  <h2><span class="n">06</span>Jadvalga qo'yish</h2>
+  <p>Skanlashni jadvalga qo'yish mumkin: bitta kunlik skan va bitta chuqurroq haftalik skan.</p>
+
+  <h3>Kunlik vazifa</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Kunlik vazifa · prompt</span><button class="copy">Nusxa olish</button></div><pre>Har kuni ertalab AI, kreatorlar va kontent yaratish bo'yicha 5 ta faol X muhokamasini top.
+Har bir mavzu uchun qo'sh:
+- nima boshladi
+- odamlar nega qiziqadi
+- asosiy kelishmovchilik
+- men tekshirishim kerak bo'lgan manba postlar
+- kontent g'oyasi
+- format tavsiyasi: post, thread yoki qisqa video
+- yangiligi: yangi, avjida yoki eskirgan
+Toza dramani, noaniq AI yangiliklarini va amaliy saboqsiz mavzularni o'tkazib yubor.</pre></div>
+
+  <h3>Haftalik vazifa</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Haftalik vazifa · prompt</span><button class="copy">Nusxa olish</button></div><pre>Bu haftaning eng kuchli AI-kreator trendlarini jamla.
+Ularni shunday guruhla:
+- odamlar ishlata boshlagan vositalar
+- odamlar o'zgartirayotgan workflowlar
+- takrorlanib turgan shikoyatlar
+- ikkala tomonda kuchli fikrlar bor bahslar
+- keyinga saqlashga arziydigan kontent g'oyalari</pre></div>
+
+  <div class="callout">Kunlik skan sizga bugun yozadigan narsa beradi. Haftalik skan esa lenta bo'sh bo'lganda qaytadigan zaxira (backlog) beradi.</div>
+</section>
+
+<section id="s7">
+  <h2><span class="n">07</span>To'liq workflow</h2>
+  <ol class="steps">
+    <li><strong>Grok nishani skanlaydi.</strong></li>
+    <li><strong>Men ziddiyati bor 1 ta mavzuni tanlayman.</strong></li>
+    <li><strong>Grok kontekstni tushuntiradi.</strong></li>
+    <li><strong>Men asl postlar, demolar, hujjat yoki mahsulot sahifasini ochaman.</strong></li>
+    <li><strong>Grok menga g'oyalar beradi.</strong></li>
+    <li><strong>Formatni tanlayman:</strong> post, thread, maqola yoki qisqa video.</li>
+    <li><strong>Yakuniy versiyani o'zim yozaman.</strong></li>
+    <li><strong>Natija va reaksiyani saqlayman</strong> — keyingi haftaning skani o'tkirroq bo'lsin.</li>
+  </ol>
+  <div class="callout big">🎯 Saralash ishini Grok'ga bering. Did'ni (taste) o'z qo'lingizda qoldiring. Grok suhbatni guruhlaydi, manba postlarni topadi va takroriy shikoyatlarni siz lentani aylantirishdan tezroq ko'radi. Sizning ishingiz — tahririy qaror: qaysi fikrga ishonasiz, qaysi misol uni isbotlaydi va qaysi jumla sizning ovozingizga o'xshaydi.</div>
+</section>
+
+<section>
+  <h2><span class="n">✓</span>Butun tizim shu</h2>
+  <p>Bitta kunlik skan. Bitta kontekst passi. Bitta g'oya filtri. Bitta manba tekshiruvi. Keyin siz yozasiz.</p>
+  <div class="callout big">🚀 <strong>Ertaga sinab ko'ring:</strong> bitta nisha va bitta vaqt oynasi bilan. Agar xulosa 10 daqiqada sizga aniq kelishmovchilik, manba post yoki nusxa ko'chirsa bo'ladigan foydalanish holatini bermasa — keyingi mavzuga o'ting.</div>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>Bugun bitta nishadan boshlang 🚀</p>
+</footer>
+
+</div>
+
+<script>
+  const tg=document.getElementById('tg');
+  tg.addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const isDark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', isDark?'light':'dark');
+  });
+  document.querySelectorAll('.prompt').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{
+      try{ await navigator.clipboard.writeText(pre.innerText);
+        const t=btn.textContent; btn.textContent='✓ Nusxa olindi';
+        setTimeout(()=>btn.textContent=t,1500);
+      }catch(e){ btn.textContent='Belgilab, qo‘lda nusxa oling'; }
+    });
+  });
+</script>

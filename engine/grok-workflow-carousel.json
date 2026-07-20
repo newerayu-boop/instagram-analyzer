@@ -1,0 +1,89 @@
+{
+  "handle": "@kodiyusufbay",
+  "wordmark": "AI Strateg",
+  "center": true,
+  "palette": {
+    "bg": "#0E0A09", "ink": "#F2E9E6", "muted": "#9A8C88", "accent": "#E22633",
+    "panel": "#1A1210", "line": "#2E211E", "card": "#1A1210", "glow": "#E2263333",
+    "badge-bg": "#E22633", "badge-ink": "#0E0A09"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "hero": true,
+      "art": "spark",
+      "kicker": "Grok · Kontent workflow",
+      "title": "*X10*\nQAMROV",
+      "sub": "Grok bilan har kuni **viral mavzu** toping. Bitta tizim — bitta soat.",
+      "swipe": "suring"
+    },
+    {
+      "type": "story",
+      "kicker": "Muammo",
+      "title": "Lenta — *yomon* ish stoli",
+      "paragraphs": [
+        "X'da reaksiyani jonli ko'rasiz — bu mavzu izlash uchun eng yaxshi joy.",
+        "Lekin lentaning o'zi sizga **yarim trend**, 12 ta oyna va bir xil fikrlarni beradi."
+      ],
+      "punch": "Shuning uchun Grok'dan boshlayman."
+    },
+    {
+      "type": "steps",
+      "kicker": "Workflow",
+      "title": "Har kuni *5 qadam*",
+      "items": [
+        { "n": "01", "text": "**Grok skanlaydi** — bugungi faol mavzular." },
+        { "n": "02", "text": "**Ziddiyatli** 1 ta mavzuni tanlayman." },
+        { "n": "03", "text": "Grok'dan **kontekst** so'rayman." },
+        { "n": "04", "text": "**Asl postni** o'zim tekshiraman." },
+        { "n": "05", "text": "**O'z ovozimda** yozaman." }
+      ]
+    },
+    {
+      "type": "prompt",
+      "kicker": "1-qadam",
+      "title": "Kunlik *skan*",
+      "label": "Grok'ga joyla",
+      "prompt": "Bugun X'da AI va kontent bo'yicha faol mavzularni top.\nHar biri uchun: mavzu, nima boshlagan, asosiy kelishmovchilik, kimga muhim, 1 ta kontent g'oyasi.\nOddiy AI yangiliklarini o'tkazib yubor."
+    },
+    {
+      "type": "grid",
+      "kicker": "Yozishdan oldin",
+      "title": "G'oya *filtri*",
+      "body": "Shulardan **bittasi** bo'lsa — yoz. Bo'lmasa — o'tkazib yubor.",
+      "cells": [
+        { "icon": "check", "label": "Haqiqiy kelishmovchilik" },
+        { "icon": "check", "label": "Workflowni o'zgartiradi" },
+        { "icon": "check", "label": "Muammoni ochadi" },
+        { "icon": "check", "label": "Nusxa olsa bo'ladi" },
+        { "icon": "check", "label": "Ko'p qilinadigan xato" },
+        { "icon": "check", "label": "Misolli kuchli fikr" }
+      ]
+    },
+    {
+      "type": "steps",
+      "kicker": "Bitta g'oya",
+      "title": "*3 formatga* aylanadi",
+      "items": [
+        { "n": "01", "text": "**Post** — 5 ta qisqa g'oya, 10 daqiqada." },
+        { "n": "02", "text": "**Thread** — 6 qadamli reja." },
+        { "n": "03", "text": "**Qisqa video** — hook + ekran + xulosa." }
+      ]
+    },
+    {
+      "type": "callout",
+      "kicker": "Asosiy sir",
+      "title": "Ish *taqsimoti*",
+      "text": "Saralashni **Grok'ga** bering. Did'ni (taste) **o'zingizda** qoldiring."
+    },
+    {
+      "type": "cta",
+      "kicker": "Bepul olish",
+      "title": "To'liq workflow *kerakmi?*",
+      "body": "Barcha promptlar, kunlik va haftalik jadval, g'oya filtri — bitta qo'llanmada.",
+      "action": "Izohga yozing:",
+      "keyword": "«GROK»",
+      "url": "to'liq workflowni bepul yuboraman"
+    }
+  ]
+}

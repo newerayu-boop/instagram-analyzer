@@ -1,0 +1,86 @@
+{
+  "handle": "@kodiyusufbay",
+  "wordmark": "AI Strateg",
+  "center": true,
+  "palette": {
+    "bg": "#F4EDE4", "ink": "#1A1712", "muted": "#7C7264", "accent": "#E0651F",
+    "panel": "#FBF6EF", "line": "#E4D9CB", "card": "#FBF6EF", "glow": "#E0651F22",
+    "badge-bg": "#1A1712", "badge-ink": "#FBF6EF"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "hero": true,
+      "art": "network",
+      "kicker": "Claude · 300+ prompt",
+      "title": "*300+*\nCLAUDE\n*PROMPT*",
+      "sub": "Soatlik ishni **daqiqada** bajaring. Nusxa ol → joyla → ishlat.",
+      "swipe": "suring"
+    },
+    {
+      "type": "story",
+      "kicker": "Asosiy farq",
+      "title": "AI'ni *qanday* ishlatasiz?",
+      "paragraphs": [
+        "Ko'pchilik AI'ni oddiy **suhbatdosh** deb ishlatadi. Har safar noldan yozadi.",
+        "Aqllilar esa **qayta ishlatiladigan tizim** quradi. Bir marta tayyorlab, har kuni ishlatadi."
+      ],
+      "punch": "Mana o'sha tizim."
+    },
+    {
+      "type": "grid",
+      "kicker": "6 bo'lim",
+      "title": "Har bir ish uchun *prompt*",
+      "cells": [
+        { "icon": "code", "label": "Kod & debugging" },
+        { "icon": "robot", "label": "AI workflow" },
+        { "icon": "search", "label": "Tadqiqot" },
+        { "icon": "link", "label": "Avtomatlashtirish" },
+        { "icon": "brief", "label": "Kontent" },
+        { "icon": "bars", "label": "Produktivlik" }
+      ]
+    },
+    {
+      "type": "stat",
+      "kicker": "Nima olasiz",
+      "title": "Bitta *to'plam*",
+      "stats": [
+        { "big": "300+", "label": "tayyor prompt" },
+        { "big": "6", "label": "bo'lim" }
+      ],
+      "note": "Bir marta sozla — **umr bo'yi** ishlat."
+    },
+    {
+      "type": "prompt",
+      "kicker": "Masalan",
+      "title": "Kodni *tekshirish*",
+      "label": "Nusxa ol · joyla · ishlat",
+      "prompt": "Bu kodni tajribali dasturchi sifatida tekshir. Xatolar, xavfsizlik teshiklari va tezlik muammolarini top. Har birini tushuntir va tuzatish yo'lini ko'rsat: [KODNI JOYLANG]"
+    },
+    {
+      "type": "steps",
+      "kicker": "Qanday ishlatish",
+      "title": "*3 qadam* — tamom",
+      "items": [
+        { "n": "01", "text": "Kerakli **promptni tanlang**." },
+        { "n": "02", "text": "**Nusxa oling** — bir bosishda." },
+        { "n": "03", "text": "Claude'ga **joylang** va natijani oling." }
+      ]
+    },
+    {
+      "type": "callout",
+      "kicker": "Natija",
+      "title": "Sizning *super kuchingiz*",
+      "text": "Bu — sizning shaxsiy **prompt kutubxonangiz**. Har kuni soatlab vaqt tejaydi."
+    },
+    {
+      "type": "cta",
+      "kicker": "Bepul olish",
+      "title": "300+ prompt *kerakmi?*",
+      "body": "To'liq to'plam — 6 bo'lim, tayyor shablonlar, nusxa olib ishlatiladigan.",
+      "action": "Izohga yozing:",
+      "keyword": "«PROMPT»",
+      "url": "to'liq to'plamni bepul yuboraman"
+    }
+  ]
+}

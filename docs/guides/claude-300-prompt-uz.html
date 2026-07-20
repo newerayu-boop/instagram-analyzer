@@ -1,0 +1,384 @@
+<title>300+ Claude prompt — to'liq to'plam | AI Strateg</title>
+<style>
+  :root{
+    --bg:#F4EDE4; --panel:#FBF6EF; --ink:#211D17; --muted:#6E685E;
+    --accent:#E0651F; --accent2:#111; --line:#E4D9CB; --code-bg:#1A1712; --code-ink:#F3ECE2;
+    --code-line:#3a352c; --maxw:760px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#141210; --panel:#1E1A16; --ink:#F0EAE0; --muted:#9C9487;
+      --accent:#F5792F; --accent2:#F0EAE0; --line:#2C2620; --code-bg:#0C0A08; --code-ink:#F3ECE2; --code-line:#2A251F; }
+  }
+  :root[data-theme="light"]{ --bg:#F4EDE4; --panel:#FBF6EF; --ink:#211D17; --muted:#6E685E;
+    --accent:#E0651F; --accent2:#111; --line:#E4D9CB; --code-bg:#1A1712; --code-ink:#F3ECE2; --code-line:#3a352c; }
+  :root[data-theme="dark"]{ --bg:#141210; --panel:#1E1A16; --ink:#F0EAE0; --muted:#9C9487;
+    --accent:#F5792F; --accent2:#F0EAE0; --line:#2C2620; --code-bg:#0C0A08; --code-ink:#F3ECE2; --code-line:#2A251F; }
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;font-size:18px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  a{color:var(--accent);}
+
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-weight:700;font-size:20px;}
+  .brand .spark{color:var(--accent);}
+  .brand .hnd{color:var(--muted);font-family:inherit;font-weight:400;font-size:15px;}
+
+  .hero{padding:60px 0 30px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:800;}
+  h1{font-family:Georgia,serif;font-weight:800;font-size:clamp(34px,6.4vw,54px);line-height:1.06;
+    letter-spacing:-.01em;margin:16px 0 12px;text-wrap:balance;}
+  h1 em{color:var(--accent);font-style:italic;}
+  .lede{font-size:20px;color:var(--muted);margin:0;}
+  .badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .badge{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:14px;font-weight:700;}
+  .badge b{color:var(--accent);}
+
+  nav.toc{margin:30px 0;padding:22px 24px;background:var(--panel);border:1px solid var(--line);border-radius:16px;}
+  nav.toc b{font-family:Georgia,serif;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+  nav.toc ol{margin:12px 0 0;padding-left:20px;columns:2;column-gap:26px;}
+  nav.toc li{margin:6px 0;}
+  nav.toc a{text-decoration:none;}
+  nav.toc a:hover{text-decoration:underline;}
+
+  section{padding:36px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:Georgia,serif;font-weight:800;font-size:clamp(26px,4.4vw,34px);line-height:1.12;
+    margin:0 0 8px;text-wrap:balance;}
+  h2 .n{color:var(--accent);font-size:.7em;margin-right:10px;}
+  h3{font-family:Georgia,serif;font-weight:700;font-size:20px;margin:24px 0 4px;}
+  p{margin:12px 0;}
+  strong{font-weight:700;}
+  .callout{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;
+    padding:16px 20px;margin:20px 0;}
+  .callout.big{font-size:19px;}
+  ul.clean{list-style:none;padding:0;margin:16px 0;display:flex;flex-direction:column;gap:10px;}
+  ul.clean li{padding-left:30px;position:relative;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:12px;height:12px;
+    border-radius:4px;background:var(--accent);}
+  ol.steps{padding-left:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px;margin:18px 0;}
+  ol.steps li{counter-increment:s;padding-left:52px;position:relative;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;
+    background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:16px;font-family:Georgia,serif;}
+
+  .prompt{margin:16px 0;border-radius:14px;overflow:hidden;border:1px solid var(--code-line);}
+  .prompt .ph{display:flex;align-items:center;justify-content:space-between;
+    background:var(--code-bg);padding:12px 16px;border-bottom:1px solid var(--code-line);}
+  .prompt .ph .lbl{color:var(--accent);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;}
+  .prompt .copy{background:transparent;border:1px solid var(--code-line);color:var(--code-ink);
+    font-size:13px;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .prompt .copy:hover{border-color:var(--accent);color:var(--accent);}
+  .prompt pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:16px;overflow-x:auto;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:14px;line-height:1.55;white-space:pre-wrap;}
+  .cat-note{font-size:15px;color:var(--muted);margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);}
+
+  footer{padding:40px 0 70px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .spark{color:var(--accent);}
+  .toggle{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;
+    padding:5px 10px;cursor:pointer;font-size:13px;font-family:inherit;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+  @media (max-width:560px){ nav.toc ol{columns:1;} body{font-size:17px;} }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="spark">✳</span> AI Strateg <span class="hnd">· @kodiyusufbay</span></div>
+  <button class="toggle" id="tg" aria-label="Mavzuni almashtirish">☾ / ☀</button>
+</div></header>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="eyebrow">Claude · 300+ prompt · To'liq to'plam</div>
+  <h1>300+ Claude prompt — <em>soatlik ish</em> daqiqada bo'ladi</h1>
+  <p class="lede">Ko'pchilik AI'dan oddiy suhbatdosh sifatida foydalanadi. Aqllilar esa qayta-qayta ishlatiladigan tizim quradi. Mana o'sha tizim — 6 bo'lim, tayyor promptlar.</p>
+  <div class="badge-row">
+    <span class="badge"><b>1.</b> Kod &amp; debugging</span>
+    <span class="badge"><b>2.</b> AI workflow</span>
+    <span class="badge"><b>3.</b> Tadqiqot</span>
+    <span class="badge"><b>4.</b> Avtomatlashtirish</span>
+    <span class="badge"><b>5.</b> Kontent</span>
+    <span class="badge"><b>6.</b> Produktivlik</span>
+  </div>
+</div>
+
+<nav class="toc">
+  <b>Ichida nima bor</b>
+  <ol>
+    <li><a href="#how">Qanday ishlatish kerak</a></li>
+    <li><a href="#s1">1. Kod va debugging (1–50)</a></li>
+    <li><a href="#s2">2. AI workflowlar (51–100)</a></li>
+    <li><a href="#s3">3. Tadqiqot va tahlil (101–150)</a></li>
+    <li><a href="#s4">4. Avtomatlashtirish (151–200)</a></li>
+    <li><a href="#s5">5. Kontent yaratish (201–250)</a></li>
+    <li><a href="#s6">6. Produktivlik tizimlari (251–300)</a></li>
+  </ol>
+</nav>
+
+<section id="how">
+  <h2><span class="n">★</span>Qanday ishlatish kerak</h2>
+  <p>Hammasi juda oddiy. Bu promptlar — tayyor shablonlar. Ularni bir marta o'rnatib qo'yasiz va har kuni qayta ishlatasiz.</p>
+  <ol class="steps">
+    <li><strong>Kerakli promptni tanlang.</strong> Quyida 6 ta bo'lim bor. O'zingizga kerakli ishni toping.</li>
+    <li><strong>«Nusxa olish» tugmasini bosing.</strong> Prompt buferga ko'chiriladi.</li>
+    <li><strong>Claude'ga joylang</strong> va kvadrat qavs ichidagi joyni to'ldiring. Masalan <code>[KODNI JOYLANG]</code> o'rniga o'z kodingizni qo'ying.</li>
+    <li><strong>Yuboring.</strong> Tamom — natija tayyor.</li>
+  </ol>
+  <div class="callout">💡 <strong>Maslahat:</strong> eng yaxshi ishlaydigan 10–15 ta promptni alohida joyga saqlang. Bu sizning shaxsiy «prompt kutubxonangiz» bo'ladi.</div>
+</section>
+
+<section id="s1">
+  <h2><span class="n">01</span>Kod va debugging</h2>
+  <p>Bu promptlar Claude'ni hech qachon uxlamaydigan katta dasturchiga aylantiradi.</p>
+
+  <h3>1. Kodni tekshirish (code review)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 1</span><button class="copy">Nusxa olish</button></div><pre>Bu kodni tajribali dasturchi sifatida tekshir. Xatolar, xavfsizlik teshiklari, tezlik muammolari va uslub xatolarini top. Har birini tushuntir va tuzatish yo'lini ko'rsat: [KODNI JOYLANG]</pre></div>
+
+  <h3>2. Xatoni tuzatish (debug)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 2</span><button class="copy">Nusxa olish</button></div><pre>Menda shu xato chiqyapti: [XATO MATNI]. Bog'liq kod shu yerda: [KODNI JOYLANG]. Har bir mumkin bo'lgan sababni ko'rsat va har birini qanday tuzatishni tushuntir.</pre></div>
+
+  <h3>3. Kodni tozalash (refactor)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 3</span><button class="copy">Nusxa olish</button></div><pre>Bu kodni ishlashini o'zgartirmasdan toza va o'qishga oson qilib qayta yoz. Murakkab joylarga izoh qo'sh: [KODNI JOYLANG]</pre></div>
+
+  <h3>4. Testlar yozish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 4</span><button class="copy">Nusxa olish</button></div><pre>Bu funksiya uchun to'liq test yoz. Oddiy holat, chekka holatlar, bo'sh qiymatlar va xato holatlarini qamra: [FUNKSIYANI JOYLANG]</pre></div>
+
+  <h3>5. Tezlikni oshirish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 5</span><button class="copy">Nusxa olish</button></div><pre>Bu kodni tezlik nuqtai nazaridan tekshir. Eng sekin joylarni top va ularni tezroq ishlaydigan qilib qayta yoz: [KODNI JOYLANG]</pre></div>
+
+  <h3>6. Kodni tushuntirish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 6</span><button class="copy">Nusxa olish</button></div><pre>Bu kodni menga birinchi marta ko'rayotgandek tushuntir. U nima qiladi, qanday ishlaydi va nega shunday yozilgan: [KODNI JOYLANG]</pre></div>
+
+  <h3>7. Xavfsizlik tekshiruvi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 7</span><button class="copy">Nusxa olish</button></div><pre>Bu kodni xavfsizlik uchun tekshir: SQL injection, XSS, ruxsat muammolari, ochiq qolgan parollar va boshqa xavflar: [KODNI JOYLANG]</pre></div>
+
+  <h3>8. API endpoint yozish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 8</span><button class="copy">Nusxa olish</button></div><pre>[TIL/FREYMVORK]da shu ishni bajaradigan REST API endpoint yoz: [NIMA QILISHI KERAK]. Tekshiruv, xato boshqaruvi va to'g'ri status kodlarni qo'sh.</pre></div>
+
+  <h3>9. So'rovni (SQL) tezlashtirish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 9</span><button class="copy">Nusxa olish</button></div><pre>Bu SQL so'rovi sekin ishlayapti: [SO'ROVNI JOYLANG]. Tahlil qil, nega sekinligini tushuntir va tezroq ishlaydigan qilib qayta yoz.</pre></div>
+
+  <h3>10. Hujjat (documentation) yozish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 10</span><button class="copy">Nusxa olish</button></div><pre>Bu funksiya uchun tushunarli hujjat yoz: maqsadi, parametrlari, qaytaradigan qiymati, ishlatish misollari va chekka holatlari bilan: [FUNKSIYANI JOYLANG]</pre></div>
+
+  <p class="cat-note"><strong>11–50 (qisqacha):</strong> TypeScript'ga o'girish, regex yozish, web-scraper, CLI dastur, async/await'ga o'tkazish, baza sxemasini loyihalash, cron-job, xato boshqaruvi, arxitektura tahlili, webhook, rate-limiter, middleware, kesh tizimi, migratsiya, autentifikatsiya, mock-data, paginatsiya, CI/CD, mikroservis, retry-mantiq, navbat (queue) tizimi, SDK, React optimizatsiyasi, qidiruv tizimi, bildirishnoma tizimi, log tizimi va boshqalar.</p>
+</section>
+
+<section id="s2">
+  <h2><span class="n">02</span>AI workflowlar</h2>
+  <p>Bu promptlar zamonaviy AI tizimlarini loyihalash va yaxshilashga yordam beradi.</p>
+
+  <h3>51. AI agent loyihalash</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 51</span><button class="copy">Nusxa olish</button></div><pre>Shu maqsadni bajaradigan AI agent loyihalab ber: [MAQSAD]. Qanday vositalardan foydalanishi, qaysi qarorlarni o'zi qabul qilishi, qachon ruxsat so'rashi va xatolarni qanday hal qilishini aniqla.</pre></div>
+
+  <h3>52. Prompt zanjiri qurish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 52</span><button class="copy">Nusxa olish</button></div><pre>[KIRISH]ni olib [NATIJA]ga aylantiradigan ko'p bosqichli prompt zanjirini loyihalab ber. Har bir bosqichni va bir bosqich natijasi keyingisiga qanday uzatilishini tushuntir.</pre></div>
+
+  <h3>53. System-prompt yozish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 53</span><button class="copy">Nusxa olish</button></div><pre>[VAZIFA] uchun [ROL] vazifasini bajaradigan AI-yordamchi uchun system-prompt yoz. Uning xarakteri, chegaralari va noodatiy holatlarda xatti-harakatini aniqla.</pre></div>
+
+  <h3>54. Promptni yaxshilash</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 54</span><button class="copy">Nusxa olish</button></div><pre>Bu promptni baholab, aniqroq va ishonchliroq natija beradigan qilib qayta yoz: [PROMPTNI JOYLANG]</pre></div>
+
+  <h3>55. RAG tizimini loyihalash</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 55</span><button class="copy">Nusxa olish</button></div><pre>[VAZIFA] uchun RAG (hujjatlardan javob topadigan) tizim loyihalab ber. Matnni bo'laklarga bo'lish, embedding, qidiruv va xato javoblarni kamaytirishni tushuntir.</pre></div>
+
+  <h3>56. Klassifikatsiya tizimi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 56</span><button class="copy">Nusxa olish</button></div><pre>[KIRISHLAR]ni [TOIFALAR]ga ajratadigan AI klassifikatsiya tizimini loyihalab ber.</pre></div>
+
+  <h3>57. Ma'lumot ajratish (JSON)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 57</span><button class="copy">Nusxa olish</button></div><pre>[HUJJAT TURI]dan [MA'LUMOT]ni ajratib olib, tartibli JSON ko'rinishida chiqaradigan prompt yoz.</pre></div>
+
+  <h3>58. Ko'p-agentli tizim</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 58</span><button class="copy">Nusxa olish</button></div><pre>Bir necha AI-agent birgalikda [MAQSAD]ga erishadigan ko'p-agentli tizim loyihalab ber.</pre></div>
+
+  <h3>59. AI natijasini baholash</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 59</span><button class="copy">Nusxa olish</button></div><pre>AI natijasining sifati, barqarorligi, tezligi va xato javoblarini baholaydigan tizim (framework) loyihalab ber.</pre></div>
+
+  <h3>60. Xulosa (summary) tizimi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 60</span><button class="copy">Nusxa olish</button></div><pre>[KONTENT TURI]ni qayta ishlab, asosiy fikrlar va bajariladigan ishlar bilan qisqa xulosa chiqaradigan tizim loyihalab ber.</pre></div>
+
+  <p class="cat-note"><strong>61–100 (qisqacha):</strong> kontent moderatsiyasi, sifat nazorati, AI yozuv yordamchisi, teskari aloqa (feedback) tsikllari, personalizatsiya, monitoring, inson-nazoratidagi workflow, bilim grafi, AI mijozlar xizmati, tadqiqot yordamchisi, kayfiyat tahlili, firibgarlikni aniqlash, tavsiya tizimi, anomaliyani aniqlash, ovozli AI, jadval tuzish tizimi va boshqalar.</p>
+</section>
+
+<section id="s3">
+  <h2><span class="n">03</span>Tadqiqot va tahlil</h2>
+  <p>Bu promptlar Claude'ni jahon darajasidagi tahlilchiga aylantiradi.</p>
+
+  <h3>101. Chuqur tadqiqot</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 101</span><button class="copy">Nusxa olish</button></div><pre>[MAVZU]ni to'liq o'rgan. Hozirgi holat, asosiy o'yinchilar, yangiliklar, bahslar va ekspertlar o'rtasidagi kelishmovchiliklarni qamra.</pre></div>
+
+  <h3>102. Raqobat tahlili</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 102</span><button class="copy">Nusxa olish</button></div><pre>[KOMPANIYA]ni asosiy raqiblari bilan solishtir: narx, joylashuv, kuchli va zaif tomonlari, imkoniyatlari bo'yicha.</pre></div>
+
+  <h3>103. Bozor hajmini baholash</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 103</span><button class="copy">Nusxa olish</button></div><pre>[BOZOR] hajmini baholab ber. Barcha taxminlar va hisob-kitoblarni ochiq ko'rsat.</pre></div>
+
+  <h3>104. Fikrni kuchaytirish (steel-man)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 104</span><button class="copy">Nusxa olish</button></div><pre>[FIKR] bo'yicha eng kuchli va ishonarli dalillarni keltir.</pre></div>
+
+  <h3>105. Investitsiya tahlili</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 105</span><button class="copy">Nusxa olish</button></div><pre>[KOMPANIYA/AKTIV] uchun investitsiya g'oyasini tahlil qil. Xavflar, taxminlar va o'sish omillarini tushuntir.</pre></div>
+
+  <h3>106. SWOT tahlili</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 106</span><button class="copy">Nusxa olish</button></div><pre>[KOMPANIYA/G'OYA] uchun chuqur SWOT tahlil qil: kuchli tomonlar, zaif tomonlar, imkoniyatlar va tahdidlar.</pre></div>
+
+  <h3>107. Asosiy tamoyillar tahlili</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 107</span><button class="copy">Nusxa olish</button></div><pre>[MUAMMO]ni eng asosiy tamoyillardan boshlab bo'laklarga ajrat va yashirin taxminlarni top.</pre></div>
+
+  <h3>108. Tarixiy misollardan tahlil</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 108</span><button class="copy">Nusxa olish</button></div><pre>[VAZIYAT]ga o'xshash tarixiy misollarni tahlil qil va takrorlanadigan naqshlarni top.</pre></div>
+
+  <h3>109. Ma'lumotni o'qish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 109</span><button class="copy">Nusxa olish</button></div><pre>Bu ma'lumotlar to'plamini o'qib, asosiy xulosalar, g'ayrioddiy joylar va qaysi qarorlarni qo'llab-quvvatlashini tushuntir.</pre></div>
+
+  <h3>110. Xavf tahlili</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 110</span><button class="copy">Nusxa olish</button></div><pre>[LOYIHA/QAROR] uchun to'liq xavf tahlilini o'tkaz.</pre></div>
+
+  <p class="cat-note"><strong>111–150 (qisqacha):</strong> stsenariy rejalashtirish, adabiyot sharhi, siyosat tahlili, texnologiya baholash, bozordagi ustunlik (moat), trend tahlili, mijoz tadqiqoti, ikkinchi darajali ta'sirlar, benchmarking, tarmoq effekti, narx kuchi, kanal strategiyasi, mavsumiylik tahlili va boshqalar.</p>
+</section>
+
+<section id="s4">
+  <h2><span class="n">04</span>Avtomatlashtirish</h2>
+  <p>Bu promptlar sizsiz ham ishlaydigan tizimlar qurishga yordam beradi.</p>
+
+  <h3>151. Qo'lda qilinadigan ishni xaritaga solish</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 151</span><button class="copy">Nusxa olish</button></div><pre>Bu qo'lda bajariladigan ishni bosqichma-bosqich xaritaga sol va nimalarni avtomatlashtirish kerakligini top: [JARAYONNI TASVIRLANG]</pre></div>
+
+  <h3>152. Avtomatlashtirish workflowi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 152</span><button class="copy">Nusxa olish</button></div><pre>[JARAYON]ni avtomatlashtiradigan workflow loyihalab ber. Ishga tushiruvchi (trigger), bosqichlar, shart-mantiq va xato boshqaruvini aniqla.</pre></div>
+
+  <h3>153. Email ketma-ketligi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 153</span><button class="copy">Nusxa olish</button></div><pre>[MAQSAD] uchun avtomatik email ketma-ketligini loyihalab ber. Vaqt, matn va harakatga chaqiruv (CTA) strategiyasini aniqla.</pre></div>
+
+  <h3>154. Ma'lumot quvuri (pipeline)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 154</span><button class="copy">Nusxa olish</button></div><pre>[KIRISH]ni [NATIJA]ga aylantiradigan quvur (pipeline) loyihalab ber. Monitoring va xato boshqaruvini qo'sh.</pre></div>
+
+  <h3>155. Hisobot avtomatikasi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 155</span><button class="copy">Nusxa olish</button></div><pre>[MA'LUMOT MANBALARI]dan hisobot tayyorlab, uni avtomatik yuboradigan tizim loyihalab ber.</pre></div>
+
+  <h3>156. Mijozni baholash boti</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 156</span><button class="copy">Nusxa olish</button></div><pre>Mijozlarni ballab (scoring) va to'g'ri bo'limga yo'naltiradigan avtomatik workflow loyihalab ber.</pre></div>
+
+  <h3>157. Ijtimoiy tarmoq avtomatikasi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 157</span><button class="copy">Nusxa olish</button></div><pre>Kontentni tayyorlab, barcha platformalarga avtomatik joylaydigan va rejalashtiradigan tizim loyihalab ber.</pre></div>
+
+  <h3>158. Mijozni jalb qilish (onboarding)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 158</span><button class="copy">Nusxa olish</button></div><pre>Ishga tushiruvchilar, bosqichlar va aralashuv mantig'i bilan onboarding jarayonini loyihalab ber.</pre></div>
+
+  <h3>159. Hisob-faktura avtomatikasi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 159</span><button class="copy">Nusxa olish</button></div><pre>Hisob-faktura ma'lumotini ajratib, tekshirib va tasdiqga avtomatik yo'naltiradigan tizim loyihalab ber.</pre></div>
+
+  <h3>160. Ogohlantirish tizimi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 160</span><button class="copy">Nusxa olish</button></div><pre>Anomaliyalarni aniqlab, darajasiga qarab ogohlantirish yuboradigan monitoring tizimi loyihalab ber.</pre></div>
+
+  <p class="cat-note"><strong>161–200 (qisqacha):</strong> CRM avtomatikasi, moliyaviy solishtirish, uchrashuvdan keyingi ishlar, ombor tizimi, obuna boshqaruvi, bozor tadqiqoti avtomatikasi, sifat nazorati quvurlari, reliz boshqaruvi, hamkor hisobotlari, xavfsizlik skani, sotuvchi boshqaruvi, ijtimoiy tinglash, inqiroz kommunikatsiyasi tizimlari va boshqalar.</p>
+</section>
+
+<section id="s5">
+  <h2><span class="n">05</span>Kontent yaratish</h2>
+  <p>Bu promptlar ulashiladigan va esda qoladigan kontent yaratadi.</p>
+
+  <h3>201. Viral Twitter thread</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 201</span><button class="copy">Nusxa olish</button></div><pre>[MAVZU] haqida viral Twitter thread yoz. Diqqatni tortadigan ilmoq (hook) bilan boshla va kuchli CTA bilan tugat.</pre></div>
+
+  <h3>202. Uzun maqola</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 202</span><button class="copy">Nusxa olish</button></div><pre>[MAVZU] haqida 1500 so'zli maqola yoz: misollar, sarlavhalar va esda qoladigan xulosa bilan.</pre></div>
+
+  <h3>203. Newsletter (xat)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 203</span><button class="copy">Nusxa olish</button></div><pre>Ilmoq, asosiy fikr, xulosa va yakuniy o'y bilan newsletter yoz.</pre></div>
+
+  <h3>204. YouTube ssenariysi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 204</span><button class="copy">Nusxa olish</button></div><pre>Birinchi 30 soniyada ilmoq, o'tishlar va CTA bilan YouTube ssenariysini yoz.</pre></div>
+
+  <h3>205. LinkedIn post</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 205</span><button class="copy">Nusxa olish</button></div><pre>Professional, ammo samimiy LinkedIn post yoz. Muloqotni kuchaytiradigan savol bilan tugat.</pre></div>
+
+  <h3>206. Email kampaniya (3 ta xat)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 206</span><button class="copy">Nusxa olish</button></div><pre>3 ta xatdan iborat email kampaniya yoz: 1-xat — qiziqish uyg'otadi, 2-xat — istak kuchaytiradi, 3-xat — harakatga undaydi.</pre></div>
+
+  <h3>207. Mahsulot tavsifi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 207</span><button class="copy">Nusxa olish</button></div><pre>Foyda, muammo va ijtimoiy isbotga (social proof) yo'naltirilgan mahsulot tavsifini yoz.</pre></div>
+
+  <h3>208. Keys (case study)</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 208</span><button class="copy">Nusxa olish</button></div><pre>Muammo, yechim, joriy etish va o'lchanadigan natijalarni qamragan keys (case study) yoz.</pre></div>
+
+  <h3>209. Matbuot xabari</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 209</span><button class="copy">Nusxa olish</button></div><pre>[YANGILIK]ni e'lon qiladigan rasmiy matbuot xabari yoz.</pre></div>
+
+  <h3>210. Landing page matni</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 210</span><button class="copy">Nusxa olish</button></div><pre>Sotuvga (konversiyaga) yo'naltirilgan landing page matnini yoz.</pre></div>
+
+  <p class="cat-note"><strong>211–250 (qisqacha):</strong> podkast tuzilmasi, kontent-kalendar, vebinar taqdimoti, SEO maqolalar, sovuq (cold) email, bio, taqqoslash maqolalari, onboarding xatlari, fikr-yetakchilik postlari, tushuntiruvchi kontent, pitch-deck, munozarali fikrlar, tavsiya (referral) dasturlari, yil yakuni postlari va boshqalar.</p>
+</section>
+
+<section id="s6">
+  <h2><span class="n">06</span>Produktivlik tizimlari</h2>
+  <p>Bu promptlar produktivligingizni oshiradigan tizimlar qurishga yordam beradi.</p>
+
+  <h3>251. Kunlik reja tizimi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 251</span><button class="copy">Nusxa olish</button></div><pre>Vaqtni bloklash, ustuvorlik va qayta ko'rib chiqish bilan kunlik reja tizimini loyihalab ber.</pre></div>
+
+  <h3>252. Haftalik tahlil</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 252</span><button class="copy">Nusxa olish</button></div><pre>Yutuqlar, xatolar, o'rganganlar va ustuvorliklarni qamragan haftalik tahlil tizimini yarat.</pre></div>
+
+  <h3>253. Maqsad qo'yish tizimi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 253</span><button class="copy">Nusxa olish</button></div><pre>Uzoq muddatli maqsadlarni kundalik ishga bog'laydigan maqsad qo'yish tizimini loyihalab ber.</pre></div>
+
+  <h3>254. Uchrashuv samaradorligi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 254</span><button class="copy">Nusxa olish</button></div><pre>Uchrashuv sifati, qaror kuzatuvi va keyingi ishlarni yaxshilaydigan tizim loyihalab ber.</pre></div>
+
+  <h3>255. Qaror qabul qilish tizimi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 255</span><button class="copy">Nusxa olish</button></div><pre>Doimiy ravishda sifatli qaror qabul qilish uchun tizim (framework) yarat.</pre></div>
+
+  <h3>256. Email boshqaruvi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 256</span><button class="copy">Nusxa olish</button></div><pre>Pochta qutisini boshqarish va javoblarni ustuvorlashtirish tizimini loyihalab ber.</pre></div>
+
+  <h3>257. Bilimni saqlash tizimi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 257</span><button class="copy">Nusxa olish</button></div><pre>Ma'lumotni yig'ish va topib olish uchun shaxsiy bilim boshqaruvi tizimini loyihalab ber.</pre></div>
+
+  <h3>258. Loyiha boshqaruvi shabloni</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 258</span><button class="copy">Nusxa olish</button></div><pre>Bosqichlar, xavflar va kommunikatsiya rejasi bilan qayta ishlatiladigan loyiha boshqaruvi shablonini yarat.</pre></div>
+
+  <h3>259. Odat qurish tizimi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 259</span><button class="copy">Nusxa olish</button></div><pre>Barqarorlik va uzoq muddatli davomiylik uchun odat qurish tizimini loyihalab ber.</pre></div>
+
+  <h3>260. Chuqur ish (deep work) tizimi</h3>
+  <div class="prompt"><div class="ph"><span class="lbl">Prompt · 260</span><button class="copy">Nusxa olish</button></div><pre>Chuqur ishni maksimal, xalaqit berishni minimal qiladigan tizim loyihalab ber.</pre></div>
+
+  <p class="cat-note"><strong>261–300 (qisqacha):</strong> vazifa topshirish (delegatsiya) tizimlari, o'rganish tizimlari, tanishuv (networking), yollash tizimlari, mijoz muvaffaqiyati, choraklik rejalashtirish, OKR, retrospektiva, hujjatlashtirish, xarid tizimlari, xavf boshqaruvi, brend boshqaruvi, strategik rejalashtirish va to'liq hayot-dizayn tizimlari.</p>
+</section>
+
+<section>
+  <h2><span class="n">✓</span>Xulosa</h2>
+  <p>Ko'pchilik AI'dan bir marta foydalanib, keyin unutadi. Siz esa endi tizimga egasiz — 6 bo'lim, 300+ tayyor prompt.</p>
+  <div class="callout big">🎯 <strong>Bugun bitta narsa qiling:</strong> o'zingizga eng kerakli 3 ta promptni tanlab, hoziroq Claude'da sinab ko'ring. Bir marta sozlab qo'ysangiz — umr bo'yi ishlaydi.</div>
+</section>
+
+<footer>
+  <p><span class="spark">✳</span> <strong>AI Strateg</strong> · @kodiyusufbay</p>
+  <p>Saqlab qo'ying va har kuni ishlating 🚀</p>
+</footer>
+
+</div>
+
+<script>
+  const tg=document.getElementById('tg');
+  tg.addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const isDark=cur? cur==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', isDark?'light':'dark');
+  });
+  document.querySelectorAll('.prompt').forEach(box=>{
+    const btn=box.querySelector('.copy'), pre=box.querySelector('pre');
+    btn.addEventListener('click',async()=>{
+      try{ await navigator.clipboard.writeText(pre.innerText);
+        const t=btn.textContent; btn.textContent='✓ Nusxa olindi';
+        setTimeout(()=>btn.textContent=t,1500);
+      }catch(e){ btn.textContent='Belgilab, qo‘lda nusxa oling'; }
+    });
+  });
+</script>

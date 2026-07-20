@@ -118,6 +118,7 @@ function slide(s, i, total, c) {
       if (s.hero) {
         return `<section class="${cls} cover hero"${st}>
           <div class="top">${kicker(s.kicker)}<span class="page">${pageStr(i, total)}</span></div>
+          ${s.art ? `<div class="cover-art hero-art">${art(s.art)}</div>` : ''}
           <h1 class="hero-title">${inline(s.title).replace(/\n/g, '<br>')}</h1>
           ${s.sub ? `<p class="cover-sub">${inline(s.sub)}</p>` : ''}
           ${s.swipe ? `<div class="swipe">${esc(s.swipe)} <span>→</span></div>` : ''}
@@ -248,6 +249,7 @@ function buildHTML(carousel) {
   .hero-title .acc{color:var(--accent);font-style:normal;}
   .hero-title strong{color:var(--accent);font-weight:400;}
   .cover.hero .cover-sub{margin-top:36px;font-size:42px;}
+  .hero-art{top:140px;right:-6px;width:520px;height:520px;opacity:.9;}
 
   .h{font-family:${c.serif};font-weight:800;font-size:78px;line-height:1.04;margin:0 0 8px;}
   .h .acc{color:var(--accent);font-style:italic;}
