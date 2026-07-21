@@ -124,9 +124,12 @@ function wheel(center, nodes) {
     const anchor = Math.cos(ang) > 0.35 ? 'start' : (Math.cos(ang) < -0.35 ? 'end' : 'middle');
     labels += `<text x="${lx.toFixed(1)}" y="${(ly + 6).toFixed(1)}" text-anchor="${anchor}" font-family="Inter,sans-serif" font-size="19" font-weight="700" fill="var(--ink)">${esc(nd.label)}</text>`;
   });
+  const c1 = (center && typeof center === 'object') ? (center.l1 || '') : '✳ Claude';
+  const c2 = (center && typeof center === 'object') ? (center.l2 || '') : (center || 'Cowork');
+  const big = (center && typeof center === 'object' && center.big);
   const c = `<circle cx="${cx}" cy="${cy}" r="52" fill="var(--card)" stroke="var(--accent)" stroke-width="3"/>
-    <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-family="Inter,sans-serif" font-size="17" font-weight="900" fill="var(--accent)">✳ Claude</text>
-    <text x="${cx}" y="${cy + 18}" text-anchor="middle" font-family="Inter,sans-serif" font-size="17" font-weight="900" fill="var(--ink)">${esc(center || 'Cowork')}</text>`;
+    <text x="${cx}" y="${(cy + (big ? -6 : -4)).toFixed(1)}" text-anchor="middle" font-family="Inter,sans-serif" font-size="${big ? 40 : 17}" font-weight="900" fill="var(--accent)">${esc(c1)}</text>
+    <text x="${cx}" y="${(cy + (big ? 24 : 18)).toFixed(1)}" text-anchor="middle" font-family="Inter,sans-serif" font-size="${big ? 18 : 17}" letter-spacing="${big ? '3' : '0'}" font-weight="900" fill="var(--ink)">${esc(c2)}</text>`;
   return `<svg class="wheelsvg" viewBox="0 0 500 420">${spokes}${labels}${dots}${c}</svg>`;
 }
 
@@ -213,6 +216,9 @@ function slide(s, i, total, c) {
         inner = `${title}${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}<div class="grid">${cells}</div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
       } else if (s.type === 'chart') {
         inner = `${title}${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}${chart(s)}${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
+      } else if (s.type === 'flow') {
+        const steps = (s.steps || []).map((st, idx) => `<div class="flowstep"><span class="fcirc" style="background:${st.color || 'var(--accent)'}">${st.icon ? icon(st.icon) : (idx + 1)}</span><span class="flabel">${inline(st.label)}</span></div>`).join('<span class="farrow">→</span>');
+        inner = `${title}${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}<div class="flow">${steps}</div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
       } else if (s.type === 'diagram') {
         inner = `${title}${diagram(s)}${s.callout ? `<div class="callout"><span class="bar"></span><p>${inline(s.callout)}</p></div>` : ''}`;
       } else if (s.type === 'prompt') {
@@ -314,6 +320,12 @@ function buildHTML(carousel) {
   .chlab{display:flex;justify-content:space-between;align-items:baseline;font-size:34px;font-weight:600;color:var(--ink);}
   .chlab .chn{font-family:${c.serif};font-weight:800;font-size:40px;color:var(--accent);}
   .chbar-wrap{height:44px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .flow{display:flex;align-items:flex-start;justify-content:center;gap:10px;margin-top:22px;}
+  .flowstep{display:flex;flex-direction:column;align-items:center;gap:14px;width:172px;}
+  .fcirc{width:92px;height:92px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:${c.serif};font-weight:800;font-size:36px;box-shadow:0 10px 24px rgba(0,0,0,.14);}
+  .fcirc svg{width:46px;height:46px;}
+  .flabel{font-size:27px;font-weight:700;color:var(--ink);text-align:center;line-height:1.15;}
+  .farrow{align-self:center;margin-top:32px;color:var(--muted);font-size:38px;font-weight:800;}
   .chbar{height:100%;border-radius:14px;
     background:linear-gradient(90deg, color-mix(in srgb,var(--accent) 62%, transparent), var(--accent));}
   .acc{color:var(--accent);font-style:normal;}
