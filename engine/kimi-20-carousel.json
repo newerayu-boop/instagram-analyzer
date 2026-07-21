@@ -4,14 +4,14 @@
   "center": true,
   "decor": true,
   "palette": {
-    "bg": "#F1EEE6", "ink": "#20242B", "muted": "#6E7480", "accent": "#2E6E8E", "accent2": "#E0654A",
-    "panel": "#FBF8F2", "line": "#E2DCCF", "card": "#FBF8F2", "glow": "#2E6E8E1e",
-    "badge-bg": "#20242B", "badge-ink": "#F1EEE6"
+    "bg": "#F6EEE9", "ink": "#291F27", "muted": "#807079", "accent": "#DB4C63", "accent2": "#E0904A",
+    "panel": "#FCF6F2", "line": "#EBDDD4", "card": "#FCF6F2", "glow": "#DB4C631e",
+    "badge-bg": "#291F27", "badge-ink": "#F6EEE9"
   },
   "altPalette": {
-    "bg": "#E7EEF1", "ink": "#1C232A", "muted": "#647079", "accent": "#2E6E8E", "accent2": "#E0654A",
-    "panel": "#F6FAFB", "line": "#D6E2E7", "card": "#F6FAFB", "glow": "#2E6E8E22",
-    "badge-bg": "#2E6E8E", "badge-ink": "#E7EEF1"
+    "bg": "#F6E7EA", "ink": "#291F27", "muted": "#8A6E76", "accent": "#DB4C63", "accent2": "#E0904A",
+    "panel": "#FDF4F5", "line": "#F0D9DE", "card": "#FDF4F5", "glow": "#DB4C6322",
+    "badge-bg": "#DB4C63", "badge-ink": "#F6E7EA"
   },
   "slides": [
     {
@@ -22,11 +22,11 @@
       "title": "*20 narsa* Kimi K3\nbitta promptdan quradi",
       "sub": "ko'pchilik buni hali bilmaydi",
       "badges": [
-        { "label": "ilova", "color": "#3E7D9C" },
+        { "label": "ilova", "color": "#DB4C63" },
         { "label": "o'yin", "color": "#8E52A8" },
         { "label": "sayt", "color": "#3E7D46" },
-        { "label": "dashboard", "color": "#C0603A" },
-        { "label": "3D", "color": "#B8862A" }
+        { "label": "dashboard", "color": "#E0904A" },
+        { "label": "3D", "color": "#3E7D9C" }
       ],
       "tags": "Bitta prompt · cheksiz natija"
     },
@@ -36,7 +36,7 @@
       "title": "Frontend kodda *1-o'rin*",
       "paragraphs": [
         "Kimi K3 — tarixdagi eng katta ochiq AI model. To'rt kun oldin jimgina chiqdi.",
-        "Ko'r sinovda (kim yozganini bilmay) dasturchilar **uni 1-o'rinni tanladi** — Fable 5 va Sol'dan ham oldinga."
+        "Ko'r sinovda dasturchilar **uni 1-o'rinni tanladi** — Fable 5 va Sol'dan ham oldinga."
       ],
       "punch": "Qurishda — u yutadi."
     },
@@ -64,8 +64,17 @@
       ]
     },
     {
-      "type": "prompt",
+      "type": "compare",
       "alt": true,
+      "kicker": "Tezlik farqi",
+      "title": "Eski yo'l va *K3*",
+      "left": { "value": "Kunlar", "label": "Eski yo'l", "sub": "jamoa, ko'p qadam" },
+      "mid": "→",
+      "right": { "value": "1 prompt", "label": "Kimi K3", "sub": "tayyor natija" },
+      "note": "Bitta so'rov — ishlaydigan natija. Fragment emas."
+    },
+    {
+      "type": "prompt",
       "kicker": "Misol · o'yin",
       "title": "Brauzer *o'yini*",
       "label": "Nusxa ol · sinab ko'r",
@@ -79,40 +88,20 @@
       "prompt": "Odat kuzatuvchi ilova qur. React + Node + Postgres + login. Ro'yxatdan o'tish, odat qo'shish, kunlik belgi, streak va haftalik hisobot. Avval baza, keyin API, keyin UI — hammasini ula."
     },
     {
-      "type": "story",
-      "kicker": "Eng katta kuchi",
-      "title": "Butun loyiha *ko'zida*",
-      "paragraphs": [
-        "1M oyna tufayli butun kod bazasini **bir joyga** joylaysiz.",
-        "So'ng arxitektura savollari berasiz, xatoni topasiz yoki boshqa tilga o'tkazasiz — u **butunini ko'radi**, parcha emas."
-      ],
-      "punch": "Fragment emas — tizim haqida o'ylaydi."
-    },
-    {
-      "type": "grid",
-      "kicker": "Ko'p tomonlama",
-      "title": "Rasmdan *kodgacha*",
-      "cells": [
-        { "icon": "code", "label": "Skrinshot → kod" },
-        { "icon": "bars", "label": "Grafikni o'qish" },
-        { "icon": "search", "label": "Videoni tushunish" }
-      ]
-    },
-    {
       "type": "steps",
       "alt": true,
       "kicker": "2 ta ogohlantirish",
       "title": "Buni *bilib* qo'ying",
       "items": [
-        { "n": "01", "text": "Hamma ish uchun K3'ni **default qilmang** — mayda ishni u qimmatga «o'ylaydi». Oddiy ishni arzon modelga bering." },
-        { "n": "02", "text": "**Ochiq vazn ≠ laptopda ishlaydi.** U 1 TB'dan katta — ko'pchilik uchun «ishlatish» = ilova yoki API." }
+        { "n": "01", "text": "Hamma ish uchun K3'ni **default qilmang** — mayda ishni u qimmatga «o'ylaydi»." },
+        { "n": "02", "text": "**Ochiq vazn ≠ laptopda ishlaydi.** Ko'pchilik uchun «ishlatish» = ilova yoki API." }
       ]
     },
     {
       "type": "cta",
       "kicker": "Bepul qo'llanma",
       "title": "20ta promptning *hammasi?*",
-      "body": "Barcha misollar va sinab ko'rish yo'llari — to'liq qo'llanma havolasi izohda.",
+      "body": "Barcha misollar va sinab ko'rish yo'llari — havola izohda.",
       "action": "Izohga yozing:",
       "keyword": "«BUILD»",
       "url": "to'liq qo'llanma havolasini yuboraman"

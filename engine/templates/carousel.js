@@ -219,6 +219,22 @@ function slide(s, i, total, c) {
       } else if (s.type === 'flow') {
         const steps = (s.steps || []).map((st, idx) => `<div class="flowstep"><span class="fcirc" style="background:${st.color || 'var(--accent)'}">${st.icon ? icon(st.icon) : (idx + 1)}</span><span class="flabel">${inline(st.label)}</span></div>`).join('<span class="farrow">→</span>');
         inner = `${title}${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}<div class="flow">${steps}</div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
+      } else if (s.type === 'compare') {
+        const L = s.left || {}, R = s.right || {};
+        inner = `${title}${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}<div class="cmp">
+          <div class="cmpc"><div class="cmpv">${inline(L.value || '')}</div><div class="cmpl">${inline(L.label || '')}</div>${L.sub ? `<div class="cmps">${inline(L.sub)}</div>` : ''}</div>
+          <div class="cmpm">${inline(s.mid || 'VS')}</div>
+          <div class="cmpc win"><div class="cmpv">${inline(R.value || '')}</div><div class="cmpl">${inline(R.label || '')}</div>${R.sub ? `<div class="cmps">${inline(R.sub)}</div>` : ''}</div>
+        </div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
+      } else if (s.type === 'ring') {
+        const pct = Math.max(0, Math.min(100, s.pct || 0));
+        const RA = 132, CC = 2 * Math.PI * RA, off = CC * (1 - pct / 100);
+        inner = `${title}${s.body ? `<p class="body">${inline(s.body)}</p>` : ''}<div class="ringwrap"><svg class="ringsvg" viewBox="0 0 320 320">
+          <circle cx="160" cy="160" r="${RA}" fill="none" stroke="var(--line)" stroke-width="30"/>
+          <circle cx="160" cy="160" r="${RA}" fill="none" stroke="var(--accent)" stroke-width="30" stroke-linecap="round" stroke-dasharray="${CC.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 160 160)"/>
+          <text x="160" y="150" text-anchor="middle" class="rpct">${pct}%</text>
+          <text x="160" y="206" text-anchor="middle" class="rlab">${esc(s.ringLabel || '')}</text>
+        </svg></div>${s.note ? `<div class="callout"><span class="bar"></span><p>${inline(s.note)}</p></div>` : ''}`;
       } else if (s.type === 'diagram') {
         inner = `${title}${diagram(s)}${s.callout ? `<div class="callout"><span class="bar"></span><p>${inline(s.callout)}</p></div>` : ''}`;
       } else if (s.type === 'prompt') {
@@ -320,6 +336,22 @@ function buildHTML(carousel) {
   .chlab{display:flex;justify-content:space-between;align-items:baseline;font-size:34px;font-weight:600;color:var(--ink);}
   .chlab .chn{font-family:${c.serif};font-weight:800;font-size:40px;color:var(--accent);}
   .chbar-wrap{height:44px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  /* compare (VS) */
+  .cmp{display:flex;align-items:stretch;justify-content:center;gap:0;margin-top:24px;width:100%;max-width:900px;margin-left:auto;margin-right:auto;}
+  .cmpc{flex:1;background:var(--card);border:1.5px solid var(--line);border-radius:26px;padding:44px 30px;text-align:center;display:flex;flex-direction:column;gap:8px;justify-content:center;}
+  .cmpc.win{border-color:var(--accent);box-shadow:0 20px 40px -18px var(--glow, rgba(0,0,0,.2));}
+  .cmpv{font-family:${c.serif};font-weight:800;font-size:78px;line-height:1;color:var(--ink);}
+  .cmpc.win .cmpv{color:var(--accent);}
+  .cmpl{font-size:32px;font-weight:700;color:var(--ink);}
+  .cmps{font-size:26px;color:var(--muted);}
+  .cmpm{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:0 22px;
+    font-family:${c.serif};font-weight:800;font-size:62px;color:var(--accent);}
+  /* ring / donut */
+  .ringwrap{display:flex;justify-content:center;margin-top:20px;}
+  .ringsvg{width:420px;height:420px;max-width:100%;}
+  .rpct{font-family:${c.serif};font-weight:800;font-size:96px;fill:var(--accent);}
+  .rlab{font-family:${c.sans};font-weight:600;font-size:30px;fill:var(--muted);}
+
   .flow{display:flex;align-items:flex-start;justify-content:center;gap:10px;margin-top:22px;}
   .flowstep{display:flex;flex-direction:column;align-items:center;gap:14px;width:172px;}
   .fcirc{width:92px;height:92px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:${c.serif};font-weight:800;font-size:36px;box-shadow:0 10px 24px rgba(0,0,0,.14);}

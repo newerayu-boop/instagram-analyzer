@@ -4,32 +4,23 @@
   "center": true,
   "decor": true,
   "palette": {
-    "bg": "#F3EFE3", "ink": "#232019", "muted": "#77705F", "accent": "#3F8C4E", "accent2": "#E2654A",
-    "panel": "#FBF7EE", "line": "#E3DAC7", "card": "#FBF7EE", "glow": "#3F8C4E1e",
-    "badge-bg": "#232019", "badge-ink": "#F3EFE3"
+    "bg": "#F2F1EA", "ink": "#1E2233", "muted": "#6C7086", "accent": "#3E5CD0", "accent2": "#E86A4A",
+    "panel": "#FBFAF4", "line": "#E1DFD3", "card": "#FBFAF4", "glow": "#3E5CD01e",
+    "badge-bg": "#1E2233", "badge-ink": "#F2F1EA"
   },
   "altPalette": {
-    "bg": "#EAF2E6", "ink": "#1E2417", "muted": "#6E7A63", "accent": "#3F8C4E", "accent2": "#E2654A",
-    "panel": "#F7FBF3", "line": "#DBE8D2", "card": "#F7FBF3", "glow": "#3F8C4E22",
-    "badge-bg": "#3F8C4E", "badge-ink": "#EAF2E6"
+    "bg": "#EAEDFA", "ink": "#1B2036", "muted": "#6A7091", "accent": "#3E5CD0", "accent2": "#E86A4A",
+    "panel": "#F7F8FE", "line": "#DBE0F5", "card": "#F7F8FE", "glow": "#3E5CD022",
+    "badge-bg": "#3E5CD0", "badge-ink": "#EAEDFA"
   },
   "slides": [
     {
       "type": "cover",
-      "wheel": true,
-      "center": { "l1": "K3", "l2": "KIMI", "big": true },
-      "kicker": "Claude Code · Oddiy qo'llanma",
-      "title": "*Kimi K3* Claude Code ichida\n~5x arzon~",
-      "nodes": [
-        { "label": "Yozish" },
-        { "label": "Tadqiqot" },
-        { "label": "Fayllar" },
-        { "label": "Xat" },
-        { "label": "Jadval" },
-        { "label": "Ishlar" },
-        { "label": "Avtomat" },
-        { "label": "Xotira" }
-      ],
+      "hero": true,
+      "sticker": "5×\narzon",
+      "kicker": "Kimi K3 · Claude Code",
+      "title": "*KIMI K3*\n× CLAUDE CODE",
+      "sub": "Fable darajasidagi kod — ~5x arzon~",
       "swipe": "suring"
     },
     {
@@ -38,35 +29,31 @@
       "title": "Har ish *eng qimmat* modelni so'ramaydi",
       "paragraphs": [
         "Claude Code — ajoyib muhit. Lekin **har so'rovni** eng qimmat modelga yubormang.",
-        "Kod o'qish, fayl qidirish, oddiy kod, test — bularga **eng kuchli aql shart emas**."
+        "Kod o'qish, fayl qidirish, test — bularga **eng kuchli aql shart emas**."
       ],
       "punch": "Choynak qaynatishga atom reaktori kerakmi?"
     },
     {
-      "type": "chart",
-      "alt": true,
-      "kicker": "Haqiqiy hisob",
-      "title": "Bitta sessiya *narxi*",
-      "body": "800K kod + har qadamda 50K token:",
-      "bars": [
-        { "label": "Fable 5", "value": "$8.50", "pct": 100 },
-        { "label": "Kimi K3 (kesh)", "value": "$0.39", "pct": 5 }
-      ],
-      "note": "Bir xil ish — **21 barobar** arzon."
+      "type": "compare",
+      "kicker": "Bitta sessiya narxi",
+      "title": "K3 — *21× arzon*",
+      "left": { "value": "$8.50", "label": "Fable 5", "sub": "bitta qadam" },
+      "mid": "21×",
+      "right": { "value": "$0.39", "label": "Kimi K3", "sub": "kesh bilan" },
+      "note": "800K kod + 50K token · **bir xil ish**, 21 barobar arzon."
     },
     {
-      "type": "stat",
-      "kicker": "Narx solishtiruv",
-      "title": "K3 — *arzonroq*",
-      "stats": [
-        { "big": "$3", "label": "K3 kirish (1M)" },
-        { "big": "$15", "label": "K3 chiqish (1M)" }
-      ],
-      "note": "Fable 5: **$10 / $50**. Ustiga K3'da 1M kontekst oynasi bor."
+      "type": "ring",
+      "alt": true,
+      "kicker": "Amaliy qoida",
+      "title": "Ishning *90%* — K3",
+      "pct": 90,
+      "ringLabel": "ishlar K3'da",
+      "note": "Faqat eng og'ir **10%** Fable 5 / Opus'ga ketadi."
     },
     {
       "type": "grid",
-      "kicker": "Nimani K3'ga berish",
+      "kicker": "Nimani K3'ga",
       "title": "Bularni *K3* qiladi",
       "cells": [
         { "icon": "brief", "label": "Kod o'qish" },
@@ -78,20 +65,14 @@
       ]
     },
     {
-      "type": "callout",
-      "kicker": "Muhim tushuncha",
-      "title": "Siz *muhit* uchun to'laysiz",
-      "text": "Claude Code — bu **muhit** (diff, tasdiq, ko'p fayl). Model — faqat **aql qatlami**. Uni almashtirish mumkin."
-    },
-    {
       "type": "steps",
       "alt": true,
       "kicker": "3 ta yo'l",
       "title": "K3'ni *qanday* ulash",
       "items": [
-        { "n": "01", "text": "**Kimi Code** — tayyor dastur, $19/oy. Eng oson yo'l." },
-        { "n": "02", "text": "**CC Switch** — kichik dastur (GUI). K3 kalitini qo'shasiz, tayyor." },
-        { "n": "03", "text": "**Orchestration** — har rolga alohida model (reja, dizayn, bajarish)." }
+        { "n": "01", "text": "**Kimi Code** — tayyor dastur, $19/oy. Eng oson." },
+        { "n": "02", "text": "**CC Switch** — kichik dastur (GUI), K3 kalitini qo'shasiz." },
+        { "n": "03", "text": "**Orchestration** — har rolga alohida model." }
       ]
     },
     {
@@ -99,18 +80,12 @@
       "kicker": "Oddiy qoida",
       "title": "*K3'dan* boshlang",
       "steps": [
-        { "icon": "brief", "label": "Vazifa keldi" },
-        { "icon": "robot", "label": "K3'da sinang" },
+        { "icon": "brief", "label": "Vazifa" },
+        { "icon": "robot", "label": "K3'da sina" },
         { "icon": "check", "label": "90% tayyor" },
-        { "icon": "target", "label": "10% → Fable 5" }
+        { "icon": "target", "label": "10% Fable 5" }
       ],
-      "note": "Ish 90% da K3 yetadi. Faqat eng og'irida Fable 5'ga o'ting."
-    },
-    {
-      "type": "callout",
-      "kicker": "Natija",
-      "title": "Hisob *90% kamayadi*",
-      "text": "Muhit o'sha-o'sha, tezlik o'sha-o'sha. Faqat **arzon model** og'ir bo'lmagan ishlarni qiladi."
+      "note": "Muhit o'sha-o'sha — faqat model o'zgaradi."
     },
     {
       "type": "cta",
