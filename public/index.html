@@ -14,11 +14,85 @@
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;padding:40px 20px;}
   .container{max-width:860px;margin:0 auto;}
-  header{margin-bottom:48px;border-bottom:1px solid var(--border);padding-bottom:32px;}
   .label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;}
-  h1{font-size:clamp(32px,6vw,52px);font-weight:800;line-height:1;letter-spacing:-.02em;}
-  h1 span{color:var(--accent);}
-  .subtitle{margin-top:12px;color:var(--muted);font-size:13px;font-family:'IBM Plex Mono',monospace;}
+
+  /* ===== HERO BANNER (NeoVision style) ===== */
+  .hero{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(160deg,#f3f3f1 0%,#e8e8e6 55%,#dedddb 100%);margin-bottom:28px;}
+  .hero-grid{position:absolute;inset:-60px;background-image:linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);background-size:54px 54px;animation:heroGridPan 36s linear infinite;}
+  @keyframes heroGridPan{to{transform:translate(54px,54px);}}
+  .hero-blob{position:absolute;border-radius:50%;filter:blur(70px);}
+  .hero-blob.b1{width:340px;height:340px;background:rgba(0,0,0,.14);top:-90px;left:-70px;animation:heroBlob 16s ease-in-out infinite alternate;}
+  .hero-blob.b2{width:300px;height:300px;background:rgba(255,255,255,.95);bottom:-70px;left:38%;animation:heroBlob 21s ease-in-out infinite alternate-reverse;}
+  @keyframes heroBlob{to{transform:translate(70px,40px) scale(1.18);}}
+  .hero-diag{position:absolute;inset:auto 0 0 0;height:52%;background:linear-gradient(115deg,#181818 0%,#050505 80%);clip-path:polygon(34% 100%,100% 10%,100% 100%,34% 100%);z-index:1;}
+  .hero-circuit{position:absolute;inset:0;width:100%;height:100%;}
+  .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;min-height:560px;}
+  .hero-copy{padding:46px 6px 38px 44px;display:flex;flex-direction:column;justify-content:center;}
+  .hero-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#666;text-transform:uppercase;}
+  .hero-num{display:inline-block;color:#0c0c0c;font-weight:600;margin-right:8px;border-bottom:2px solid #0c0c0c;padding-bottom:2px;}
+  .hero-title{font-size:clamp(38px,7.2vw,58px);font-weight:800;line-height:1.04;letter-spacing:-.02em;color:#0c0c0c;margin-top:14px;}
+  .hero-title .w{display:inline-block;overflow:hidden;vertical-align:top;}
+  .hero-title .w>span{display:inline-block;transform:translateY(112%);animation:heroWordUp .85s cubic-bezier(.22,.8,.24,1) forwards;}
+  @keyframes heroWordUp{to{transform:translateY(0);}}
+  .circled{position:relative;display:inline-block;}
+  .scribble{position:absolute;left:-7%;top:-12%;width:114%;height:124%;pointer-events:none;overflow:visible;}
+  .scribble path{stroke:#111;stroke-width:3;fill:none;stroke-linecap:round;opacity:.85;stroke-dasharray:880;stroke-dashoffset:880;animation:heroScrib 1.15s cubic-bezier(.6,.05,.3,1) 1.05s forwards;}
+  @keyframes heroScrib{to{stroke-dashoffset:0;}}
+  .hero-sub{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#555;margin-top:18px;letter-spacing:.02em;}
+  .hero-btns{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap;}
+  .hbtn{background:#0d0d0d;color:#fff;border:1px solid #0d0d0d;border-radius:3px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:13px 22px;cursor:pointer;letter-spacing:.04em;transition:all .2s;}
+  .hbtn:hover{background:var(--accent);border-color:var(--accent);color:#000;transform:translateY(-2px);}
+  .hbtn.ghost{background:transparent;color:#0d0d0d;border-color:rgba(0,0,0,.3);}
+  .hbtn.ghost:hover{background:#0d0d0d;border-color:#0d0d0d;color:#fff;transform:translateY(-2px);}
+  .hero-trust{display:flex;align-items:center;gap:14px;margin-top:34px;padding-top:22px;border-top:1px solid rgba(0,0,0,.12);flex-wrap:wrap;}
+  .hero-avs{display:flex;}
+  .av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;color:#fff;border:2px solid #ececea;margin-left:-9px;opacity:0;animation:heroPop .5s cubic-bezier(.34,1.56,.64,1) forwards;}
+  .av:first-child{margin-left:0;}
+  .av.a1{background:#3a3a3a;animation-delay:.9s;}
+  .av.a2{background:#565656;animation-delay:1s;}
+  .av.a3{background:#727272;animation-delay:1.1s;}
+  .av.plus{background:var(--accent);color:#000;animation-delay:1.2s;}
+  @keyframes heroPop{from{opacity:0;transform:scale(.4);}to{opacity:1;transform:scale(1);}}
+  .hero-trust-txt{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#666;text-transform:uppercase;letter-spacing:.12em;line-height:1.6;}
+  .hero-stat{margin-left:auto;display:flex;align-items:center;gap:12px;padding-right:38px;}
+  .hero-stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:30px;color:#0c0c0c;letter-spacing:-.02em;}
+  .stat-suffix{color:#888;}
+  .hero-stat-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#666;text-transform:uppercase;letter-spacing:.1em;line-height:1.7;}
+  .hero-visual{position:relative;}
+  .hero-orbit{position:absolute;width:118%;left:-10%;top:14%;z-index:1;overflow:visible;}
+  .hero-orbit ellipse{stroke:#8a8a8a;stroke-width:1.5;fill:none;opacity:.75;stroke-dasharray:7 11;animation:heroOrbit 7s linear infinite;}
+  @keyframes heroOrbit{to{stroke-dashoffset:-324;}}
+  .hero-photo{position:absolute;bottom:0;right:0;height:93%;max-width:100%;object-fit:contain;object-position:bottom right;filter:grayscale(1) contrast(1.05) brightness(1.02);z-index:3;transform:translate(calc(var(--px,0)*-8px),calc(var(--py,0)*-5px));}
+  .hero-ph{display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;gap:12px;z-index:3;}
+  .hero-visual.nophoto .hero-ph{display:flex;}
+  .hero-visual.nophoto .hero-photo{display:none;}
+  .hero-ph svg{width:130px;opacity:.85;}
+  .hero-ph-txt{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#333;background:rgba(255,255,255,.88);border:1px dashed rgba(0,0,0,.35);padding:6px 10px;border-radius:3px;letter-spacing:.06em;}
+  .chip{position:absolute;z-index:4;transform:translate(calc(var(--px,0)*18px),calc(var(--py,0)*12px));}
+  .chip.c1{top:26%;left:-16px;}
+  .chip.c2{top:56%;right:6px;}
+  .chip.c3{top:7%;right:9%;}
+  .chip-in{background:#fff;border:1px solid #ddd;border-radius:3px;padding:9px 13px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#222;letter-spacing:.06em;box-shadow:0 12px 32px rgba(0,0,0,.14);animation:heroChipFloat 5.5s ease-in-out infinite alternate;}
+  .chip.c2 .chip-in{animation-duration:6.6s;animation-delay:.8s;}
+  .chip.c3 .chip-in{animation-duration:4.8s;animation-delay:.4s;}
+  @keyframes heroChipFloat{from{transform:translateY(-6px);}to{transform:translateY(6px);}}
+  .hr{opacity:0;animation:heroRise .9s cubic-bezier(.22,.8,.24,1) forwards;}
+  @keyframes heroRise{from{opacity:0;transform:translateY(26px);filter:blur(10px);}to{opacity:1;transform:none;filter:blur(0);}}
+  @media(max-width:760px){
+    .hero-inner{grid-template-columns:1fr;min-height:0;}
+    .hero-copy{padding:30px 26px 4px;}
+    .hero-visual{height:360px;margin-top:6px;}
+    .hero-diag{height:40%;clip-path:polygon(0 82%,100% 18%,100% 100%,0 100%);}
+    .hero-title{font-size:clamp(34px,10.5vw,50px);}
+    .hero-stat{margin-left:0;padding-right:0;}
+    .chip.c1{left:2px;}
+    .chip.c2{right:2px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .hero *,.hero{animation:none!important;}
+    .hr,.av,.hero-title .w>span{opacity:1;transform:none;}
+    .scribble path{stroke-dashoffset:0;}
+  }
   .nav-tabs{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--border);border-radius:2px;overflow:hidden;}
   .nav-tab{flex:1;background:transparent;border:none;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;padding:12px 16px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;border-right:1px solid var(--border);}
   .nav-tab:last-child{border-right:none;}
@@ -111,11 +185,64 @@
 </head>
 <body>
 <div class="container">
-  <header>
-    <div class="label">// аналитический инструмент v4.0</div>
-    <h1>INSTAGRAM<br><span>ANALYZER</span></h1>
-    <div class="subtitle">→ профиль · посты · транскрипции reels · глубокий анализ · отчёт</div>
-  </header>
+  <!-- ===== HERO BANNER · фото эксперта кладётся в public/expert.png ===== -->
+  <section class="hero" id="heroBanner">
+    <div class="hero-grid"></div>
+    <div class="hero-blob b1"></div>
+    <div class="hero-blob b2"></div>
+    <div class="hero-diag">
+      <svg class="hero-circuit" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true">
+        <polyline points="0,122 150,122 195,68 400,68" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="1.5"/>
+        <circle cx="195" cy="68" r="4" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-label hr" style="animation-delay:.1s"><span class="hero-num">05</span>// futuristic · аналитический инструмент v4.0</div>
+        <h1 class="hero-title">
+          <span class="w"><span style="animation-delay:.25s">INSTAGRAM</span></span><br>
+          <span class="circled hr" style="animation-delay:.45s">ANALYZER
+            <svg class="scribble" viewBox="0 0 320 96" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M24 58 C 52 10, 268 4, 300 40 C 318 74, 96 96, 30 74"/>
+            </svg>
+          </span>
+        </h1>
+        <p class="hero-sub hr" style="animation-delay:.6s">→ профиль · посты · транскрипции reels · глубокий анализ · отчёт</p>
+        <div class="hero-btns hr" style="animation-delay:.72s">
+          <button type="button" class="hbtn" onclick="heroGo('ig')">▶ Начать анализ</button>
+          <button type="button" class="hbtn ghost" onclick="heroGo('yt')">YouTube транскрипция</button>
+        </div>
+        <div class="hero-trust hr" style="animation-delay:.86s">
+          <div class="hero-avs">
+            <div class="av a1">AK</div><div class="av a2">MD</div><div class="av a3">SR</div><div class="av plus">20+</div>
+          </div>
+          <div class="hero-trust-txt">доверяют<br>эксперты</div>
+          <div class="hero-stat">
+            <div class="hero-stat-num"><span id="heroStatNum">0</span><span class="stat-suffix">/7</span></div>
+            <div class="hero-stat-lbl">ai-анализ<br>whisper + claude</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual hr" style="animation-delay:.4s">
+        <svg class="hero-orbit" viewBox="0 0 420 420" aria-hidden="true">
+          <ellipse cx="210" cy="210" rx="195" ry="148"/>
+        </svg>
+        <img class="hero-photo" src="expert.png" alt="Эксперт" onerror="this.closest('.hero-visual').classList.add('nophoto')">
+        <div class="hero-ph">
+          <svg viewBox="0 0 120 160" aria-hidden="true">
+            <circle cx="60" cy="48" r="26" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="2" stroke-dasharray="5 5"/>
+            <path d="M14 152 C 14 108, 106 108, 106 152" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="2" stroke-dasharray="5 5"/>
+          </svg>
+          <div class="hero-ph-txt">фото эксперта → public/expert.png</div>
+        </div>
+        <div class="chip c1"><div class="hr" style="animation-delay:1.05s"><div class="chip-in">⚡ whisper · транскрипция</div></div></div>
+        <div class="chip c2"><div class="hr" style="animation-delay:1.2s"><div class="chip-in">◎ claude · ai анализ</div></div></div>
+        <div class="chip c3"><div class="hr" style="animation-delay:1.35s"><div class="chip-in">▶ 100% автоматизация</div></div></div>
+      </div>
+    </div>
+  </section>
 
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="switchTab('ig')">📸 Instagram Анализ</button>
@@ -591,6 +718,55 @@ function buildTranscriptText(data) {
 function escHtml(str) {
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
+
+// ===== HERO BANNER =====
+
+function heroGo(tab) {
+  var btns = document.querySelectorAll('.nav-tab');
+  if (tab === 'yt' && btns[1]) btns[1].click();
+  if (tab === 'ig' && btns[0]) btns[0].click();
+  var tabs = document.querySelector('.nav-tabs');
+  if (tabs) tabs.scrollIntoView({behavior:'smooth'});
+  if (tab === 'ig') {
+    setTimeout(function(){
+      var inp = document.getElementById('igUsername');
+      if (inp) inp.focus({preventScroll:true});
+    }, 600);
+  }
+}
+
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // счётчик 0 → 24/7
+  var num = document.getElementById('heroStatNum');
+  if (num) {
+    if (reduced) { num.textContent = '24'; }
+    else {
+      setTimeout(function(){
+        var cur = 0;
+        var t = setInterval(function(){
+          cur++;
+          num.textContent = cur;
+          if (cur >= 24) clearInterval(t);
+        }, 45);
+      }, 900);
+    }
+  }
+
+  // лёгкий параллакс чипов и фото
+  var hero = document.getElementById('heroBanner');
+  if (!hero || reduced) return;
+  hero.addEventListener('mousemove', function(e){
+    var r = hero.getBoundingClientRect();
+    hero.style.setProperty('--px', ((e.clientX - r.left) / r.width - .5).toFixed(3));
+    hero.style.setProperty('--py', ((e.clientY - r.top) / r.height - .5).toFixed(3));
+  });
+  hero.addEventListener('mouseleave', function(){
+    hero.style.setProperty('--px', 0);
+    hero.style.setProperty('--py', 0);
+  });
+})();
 </script>
 </body>
 </html>
