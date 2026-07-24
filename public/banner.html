@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Automation — Banner</title>
+<style>
+  @import url('https://db.onlinewebfonts.com/c/e66905e07608167a84e6ad52f638c3c6?family=Helvetica+Now+Var');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Now Var', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  html, body { background: #05070d; }
+  body { min-height: 100vh; overflow-x: hidden; }
+
+  /* ===== Fixed background video (behind everything) ===== */
+  .bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 0;
+    background: #05070d;
+  }
+  /* Legibility overlay — a separate fixed layer, NOT the section background.
+     The section itself stays fully transparent so the video shows through. */
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(3,5,10,0.82) 0%, rgba(3,5,10,0.55) 38%, rgba(3,5,10,0.10) 68%, rgba(3,5,10,0.35) 100%),
+      linear-gradient(0deg, rgba(3,5,10,0.55) 0%, rgba(3,5,10,0.0) 30%);
+  }
+
+  /* ===== Banner section (transparent, full viewport) ===== */
+  .banner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 56px;
+    height: 100vh;
+    padding: 70px 32px 32px 32px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Content block */
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 720px;
+  }
+
+  /* Heading — each word is its own span for staggered reveal */
+  .headline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25em;
+    font-size: clamp(26px, 3vw, 42px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0;
+  }
+  .headline span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s);
+  }
+  .reveal.in .headline span { opacity: 1; transform: none; }
+
+  /* Subtext */
+  .subtext {
+    margin-top: 24px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 260px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.9s,
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
+  }
+  .reveal.in .subtext { opacity: 1; transform: none; }
+
+  /* ===== Expert photo (right) — enters + subtle 3D tilt ===== */
+  .expert {
+    position: relative;
+    flex-shrink: 0;
+    width: clamp(280px, 32vw, 420px);
+    perspective: 1100px;
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+    transition:
+      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.45s,
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.45s;
+  }
+  .reveal.in .expert { opacity: 1; transform: none; }
+
+  .expert-tilt {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.25s ease-out;
+    will-change: transform;
+  }
+
+  .expert-card {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 22px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #16223c 0%, #0a0f1c 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  }
+  .expert-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Fade at the bottom so the label reads well */
+  .expert-card::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 45%;
+    background: linear-gradient(0deg, rgba(3, 5, 10, 0.85) 0%, rgba(3, 5, 10, 0) 100%);
+    pointer-events: none;
+  }
+
+  .expert-label {
+    position: absolute;
+    left: 22px;
+    bottom: 20px;
+    z-index: 2;
+  }
+  .expert-name { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+  .expert-role { margin-top: 3px; font-size: 12px; color: rgba(255, 255, 255, 0.7); }
+  .expert-badge {
+    position: absolute;
+    right: 20px;
+    bottom: 22px;
+    z-index: 2;
+    font-size: 15px;
+    font-weight: 700;
+    color: #f0a35e;
+    letter-spacing: 0.01em;
+  }
+
+  /* Placeholder shown until you drop in public/expert.jpg */
+  .expert-card.noimg { display: flex; align-items: center; justify-content: center; }
+  .expert-card.noimg::before {
+    content: "";
+    position: absolute;
+    top: 24%;
+    left: 50%;
+    width: 42%;
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 35%, rgba(255,255,255,0.16), rgba(255,255,255,0.04) 60%, transparent 70%);
+    box-shadow: 0 40px 60px -20px rgba(0,0,0,0.6);
+  }
+  .expert-ph-hint {
+    position: absolute;
+    left: 0; right: 0;
+    top: 61%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+    padding: 0 20px;
+    z-index: 2;
+  }
+  .expert-ph-hint code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: #f0a35e;
+    font-size: 11px;
+  }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 900px) {
+    .banner {
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: auto;
+      min-height: 100vh;
+      gap: 34px;
+      padding: 90px 18px 32px 18px;
+    }
+    .content { order: 2; }
+    .expert { order: 1; width: min(78vw, 320px); }
+    .subtext { max-width: 100%; }
+  }
+
+  /* Respect reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .headline span, .subtext, .expert { transition: none; opacity: 1; transform: none; }
+    .expert-tilt { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Fixed background video + legibility overlay -->
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source
+      src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260514_135830_bb6491d1-9b66-4aec-9722-13b4dfe3fb46.mp4"
+      type="video/mp4" />
+  </video>
+  <div class="bg-overlay"></div>
+
+  <!-- Banner section -->
+  <section class="banner reveal" id="banner">
+    <div class="content">
+      <h2 class="headline" aria-label="We build end-to-end AI automation systems.">
+        <span style="--d:0.15s">WE</span>
+        <span style="--d:0.23s">BUILD</span>
+        <span style="--d:0.31s">END-TO-END</span>
+        <span style="--d:0.39s">AI</span>
+        <span style="--d:0.47s">AUTOMATION</span>
+        <span style="--d:0.55s">SYSTEMS.</span>
+      </h2>
+      <p class="subtext">We provide all-in-one AI automation services in one place.</p>
+    </div>
+
+    <div class="expert">
+      <div class="expert-tilt" id="tilt">
+        <div class="expert-card" id="expertCard">
+          <!-- Drop your photo in as public/expert.jpg and it appears automatically. -->
+          <img
+            src="expert.jpg"
+            alt="Expert"
+            onerror="this.remove(); document.getElementById('expertCard').classList.add('noimg');" />
+          <div class="expert-ph-hint">
+            Вставьте фото эксперта →<br /><code>public/expert.jpg</code>
+          </div>
+          <div class="expert-label">
+            <div class="expert-name">Yusufbay Kadirov</div>
+            <div class="expert-role">AI strateg</div>
+          </div>
+          <div class="expert-badge">$2M+</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // ===== Reveal on view (mirrors Framer Motion whileInView, once:true, amount:0.2) =====
+    (function () {
+      var banner = document.getElementById('banner');
+      if (!('IntersectionObserver' in window)) { banner.classList.add('in'); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            banner.classList.add('in');
+            io.unobserve(e.target); // once
+          }
+        });
+      }, { threshold: 0.2 });
+      io.observe(banner);
+    })();
+
+    // ===== Subtle 3D tilt on the expert photo (pointer parallax) =====
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      var wrap = document.querySelector('.expert');
+      var tilt = document.getElementById('tilt');
+      if (!wrap || !tilt) return;
+
+      var MAX = 9; // degrees
+      wrap.addEventListener('pointermove', function (ev) {
+        var r = wrap.getBoundingClientRect();
+        var px = (ev.clientX - r.left) / r.width - 0.5;   // -0.5 .. 0.5
+        var py = (ev.clientY - r.top) / r.height - 0.5;
+        tilt.style.transform =
+          'rotateY(' + (px * MAX) + 'deg) rotateX(' + (-py * MAX) + 'deg)';
+      });
+      wrap.addEventListener('pointerleave', function () {
+        tilt.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      });
+    })();
+  </script>
+</body>
+</html>
