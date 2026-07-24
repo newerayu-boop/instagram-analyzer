@@ -6,8 +6,12 @@
 
 **instagram-analyzer** — статический сайт на Vercel + serverless-функции.
 - `public/index.html` — фронтенд (статика, `@vercel/static`).
+- `public/masterclass/` — **премиум-лендинг мастер-класса по ИИ** (чёрный+золото,
+  UZ/RU, анимации, доступен по `/masterclass`). Собран по AI·WEB·METHOD и design board.
 - `api/get-reels.js`, `api/transcribe-reels.js` — serverless (`@vercel/node`, Node 18).
-- `vercel.json` — роутинг: `/api/*` → функции, всё остальное → `public/`.
+- `api/lead.js` — приём заявок лендинга → Telegram (нужны env `TELEGRAM_BOT_TOKEN`,
+  `TELEGRAM_CHAT_ID` в настройках Vercel).
+- `vercel.json` — роутинг: `/api/*` → функции, `/masterclass` → лендинг, остальное → `public/`.
 - Node-зависимости: `node-fetch`, `form-data`.
 
 ## Дизайн и анимация — база ресурсов (запомнено 2026-07-24)
