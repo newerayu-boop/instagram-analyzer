@@ -23,6 +23,12 @@
 | 5 | **MotionDesign (JK Motion)** | Референс-сайт (vanilla) | Motion-портфолио без зависимостей: scroll-timecode, marquee, hover |
 | 6 | **motionsites.ai** | Галерея промптов | Бесплатные промпты анимации: copy-paste под лендинги и секции |
 
+**Визуальные референсы (design board):**
+[`animation/design-references.md`](animation/design-references.md) — разбор присланных
+референсов по 3 направлениям: **dark luxury портфолио** (Mariana Napolitani), **инфобиз
+high-ticket** (Игорь Рыбаков · X10) и **3D scroll-cinematic** (AURUM & NOIR). Палитры,
+типографика, структура экранов и приёмы движения + как воспроизвести.
+
 ---
 
 ## 1. AI · WEB · METHOD — методология Umid Ikromboev (Ultima Edition, 2026)

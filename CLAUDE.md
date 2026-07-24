@@ -31,6 +31,12 @@
 6. **motionsites.ai** — https://motionsites.ai/ — **источник бесплатных промптов анимации**
    для сайтов (разделы Sites/Apps/Sections/Backgrounds/Academy; фильтр Pricing = Copy/Free).
 
+**Визуальные референсы (design board):**
+[`docs/animation/design-references.md`](docs/animation/design-references.md) — присланные
+референсы по 3 направлениям: dark luxury портфолио (Mariana Napolitani), инфобиз
+high-ticket (Игорь Рыбаков · X10), 3D scroll-cinematic (AURUM & NOIR) — с разбором палитры,
+типографики, структуры и приёмов движения.
+
 **Готовые к вставке паттерны движения (vanilla, подходят этому проекту):**
 [`docs/animation/scroll-reveal.js`](docs/animation/scroll-reveal.js) +
 [`docs/animation/scroll-reveal.css`](docs/animation/scroll-reveal.css) — scroll-reveal,
