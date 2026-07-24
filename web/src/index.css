@@ -1,0 +1,41 @@
+@import url('https://db.onlinewebfonts.com/c/e66905e07608167a84e6ad52f638c3c6?family=Helvetica+Now+Var');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Helvetica Now Var', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+/*
+ * Full-viewport section that sits over the fixed background video.
+ * It carries no background of its own so the video shows through.
+ * Kept as a class (not inline styles) so the mobile padding override
+ * below can win — inline styles can't be overridden by a media query.
+ */
+.hero-section {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  padding: 70px 32px 32px 32px;
+}
+
+@media (max-width: 900px) {
+  .hero-section {
+    padding: 90px 18px 32px 18px;
+  }
+}
