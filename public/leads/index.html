@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Заявки — AI STRATEG</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07090D; --card:#0D1118; --line:rgba(232,226,214,.12);
+  --cream:#E8E2D6; --muted:#8C93A0; --gold:#BFA059; --gold-2:#D8BE8A;
+}
+body{
+  background:var(--bg); color:var(--cream); min-height:100vh; padding:22px;
+  font:15px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+.wrap{max-width:1180px; margin:0 auto}
+header{display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-bottom:22px}
+h1{font-size:21px; font-weight:700; letter-spacing:-.01em}
+.count{
+  font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--gold-2); background:rgba(191,160,89,.12); border:1px solid rgba(191,160,89,.3);
+  padding:6px 13px; border-radius:100px;
+}
+.sp{flex:1}
+button,a.btn{
+  font:inherit; font-size:13px; font-weight:700; cursor:pointer; text-decoration:none;
+  padding:10px 17px; border-radius:10px; border:1px solid var(--line);
+  background:rgba(232,226,214,.06); color:var(--cream); transition:.15s;
+  display:inline-flex; align-items:center; gap:7px;
+}
+button:hover,a.btn:hover{background:rgba(191,160,89,.16); border-color:rgba(191,160,89,.45)}
+button.primary{background:linear-gradient(135deg,#F5E6B8,#BFA059); color:#140F04; border-color:transparent}
+.panel{background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden}
+.scroll{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:14px; white-space:nowrap}
+th{
+  text-align:left; padding:13px 15px; font-size:11px; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--gold);
+  background:rgba(191,160,89,.07); border-bottom:1px solid var(--line);
+}
+td{padding:13px 15px; border-bottom:1px solid rgba(232,226,214,.06)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(232,226,214,.03)}
+td.phone{font-variant-numeric:tabular-nums; color:var(--gold-2); font-weight:600}
+.state{padding:52px 20px; text-align:center; color:var(--muted)}
+.err{color:#E2726E}
+.gate{max-width:400px; margin:14vh auto; text-align:center}
+.gate p{color:var(--muted); margin:10px 0 22px; font-size:14px}
+input{
+  width:100%; padding:13px 15px; border-radius:11px; font:inherit;
+  background:rgba(232,226,214,.05); border:1px solid var(--line); color:var(--cream);
+  margin-bottom:12px; text-align:center;
+}
+input:focus{outline:none; border-color:var(--gold)}
+.hint{margin-top:16px; font-size:12.5px; color:var(--muted); line-height:1.7}
+.toast{
+  position:fixed; left:50%; bottom:26px; transform:translateX(-50%);
+  background:var(--card); border:1px solid rgba(191,160,89,.45); color:var(--gold-2);
+  padding:12px 22px; border-radius:100px; font-size:13.5px; font-weight:600;
+  opacity:0; pointer-events:none; transition:opacity .25s;
+}
+.toast.on{opacity:1}
+@media(max-width:640px){
+  body{padding:14px}
+  h1{font-size:18px}
+  th,td{padding:11px 12px; font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div id="gate" class="gate" hidden>
+    <h1>Заявки</h1>
+    <p>Введите ключ доступа</p>
+    <input id="key" type="password" placeholder="Ключ" autocomplete="off">
+    <button class="primary" id="enter" style="width:100%; justify-content:center">Открыть</button>
+    <div class="hint" id="gateErr"></div>
+  </div>
+
+  <div id="app" hidden>
+    <header>
+      <h1>Заявки с сайта</h1>
+      <span class="count" id="count">—</span>
+      <span class="sp"></span>
+      <button id="copy">Скопировать для таблицы</button>
+      <a class="btn" id="csv" download>Скачать CSV</a>
+      <button id="refresh">Обновить</button>
+    </header>
+    <div class="panel">
+      <div class="scroll"><table id="tbl"></table></div>
+      <div class="state" id="state">Загружаю…</div>
+    </div>
+    <div class="hint">
+      «Скопировать для таблицы» копирует всё в буфер. Откройте вашу Google-таблицу,
+      встаньте в ячейку A1 и нажмите Ctrl+V (на Mac ⌘+V) — строки разложатся по столбцам сами.
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  'use strict';
+  var COLS = [
+    ['stamp','Дата и время'], ['name','Имя'], ['phone','Телефон'],
+    ['industry','Сфера'], ['price','Цена'], ['lang','Язык'], ['source','Источник']
+  ];
+  var KEY_STORE = 'leads-key';
+  var gate=document.getElementById('gate'), app=document.getElementById('app');
+  var tbl=document.getElementById('tbl'), state=document.getElementById('state');
+  var toastEl=document.getElementById('toast'), tsv='';
+
+  function toast(msg){
+    toastEl.textContent=msg; toastEl.classList.add('on');
+    setTimeout(function(){ toastEl.classList.remove('on'); }, 1900);
+  }
+  function key(){
+    var u=new URLSearchParams(location.search).get('key');
+    if(u) { try{ localStorage.setItem(KEY_STORE,u); }catch(e){} return u; }
+    try{ return localStorage.getItem(KEY_STORE)||''; }catch(e){ return ''; }
+  }
+  function showGate(msg){
+    gate.hidden=false; app.hidden=true;
+    document.getElementById('gateErr').innerHTML = msg ? '<span class="err">'+msg+'</span>' : '';
+  }
+  document.getElementById('enter').addEventListener('click', function(){
+    var v=document.getElementById('key').value.trim();
+    if(!v) return;
+    try{ localStorage.setItem(KEY_STORE,v); }catch(e){}
+    location.search='?key='+encodeURIComponent(v);
+  });
+  document.getElementById('key').addEventListener('keydown', function(e){
+    if(e.key==='Enter') document.getElementById('enter').click();
+  });
+
+  function render(rows){
+    document.getElementById('count').textContent = rows.length + ' ' + plural(rows.length);
+    if(!rows.length){ tbl.innerHTML=''; state.hidden=false; state.textContent='Заявок пока нет.'; return; }
+    state.hidden=true;
+    var h='<tr>'+COLS.map(function(c){return '<th>'+c[1]+'</th>'}).join('')+'</tr>';
+    var b=rows.map(function(r){
+      return '<tr>'+COLS.map(function(c){
+        var v=(r[c[0]]==null?'':String(r[c[0]]));
+        var cls=c[0]==='phone'?' class="phone"':'';
+        return '<td'+cls+'>'+v.replace(/[<>&]/g,function(m){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[m]})+'</td>';
+      }).join('')+'</tr>';
+    }).join('');
+    tbl.innerHTML=h+b;
+  }
+  function plural(n){
+    var a=n%10, b=n%100;
+    if(a===1&&b!==11) return 'заявка';
+    if(a>=2&&a<=4&&(b<10||b>=20)) return 'заявки';
+    return 'заявок';
+  }
+
+  function load(){
+    var k=key();
+    if(!k) return showGate('');
+    state.hidden=false; state.textContent='Загружаю…'; state.classList.remove('err');
+    gate.hidden=true; app.hidden=false;
+    document.getElementById('csv').href='/api/leads?format=csv&key='+encodeURIComponent(k);
+
+    fetch('/api/leads?key='+encodeURIComponent(k))
+      .then(function(r){
+        if(r.status===401){ throw new Error('Неверный ключ'); }
+        return r.json();
+      })
+      .then(function(j){
+        if(!j.ok) throw new Error(j.error||'Ошибка');
+        render(j.rows||[]);
+        return fetch('/api/leads?format=tsv&key='+encodeURIComponent(k)).then(function(r){return r.text()});
+      })
+      .then(function(t){ tsv=t||''; })
+      .catch(function(e){
+        if(String(e.message)==='Неверный ключ'){ try{localStorage.removeItem(KEY_STORE)}catch(x){} return showGate('Неверный ключ'); }
+        state.hidden=false; state.classList.add('err'); state.textContent='Не удалось загрузить: '+e.message;
+      });
+  }
+
+  document.getElementById('refresh').addEventListener('click', load);
+  document.getElementById('copy').addEventListener('click', function(){
+    if(!tsv) return toast('Нечего копировать');
+    var done=function(){ toast('Скопировано — вставьте в таблицу'); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(tsv).then(done, fallback);
+    } else fallback();
+    function fallback(){
+      var ta=document.createElement('textarea');
+      ta.value=tsv; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){ toast('Скопировать не удалось'); }
+      document.body.removeChild(ta);
+    }
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>

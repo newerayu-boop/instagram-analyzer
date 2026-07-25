@@ -49,17 +49,7 @@ module.exports = async (req, res) => {
   const sheetsUrl = process.env.SHEETS_WEBHOOK_URL;
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
-
-  // Ни один канал не настроен. Заявку всё равно принимаем: фронтенд сразу
-  // передаёт человека менеджеру в Telegram, поэтому контакт не теряется, а
-  // запись в таблицу включится в тот момент, когда появится SHEETS_WEBHOOK_URL.
-  // Отказ здесь ломал бы регистрацию целиком.
-  if (!sheetsUrl && !(token && chatId)) {
-    console.error('lead accepted but nowhere to store it — set SHEETS_WEBHOOK_URL:', {
-      name, phone, industry, lang, source,
-    });
-    return res.end(JSON.stringify({ ok: true, delivered: [], stored: false }));
-  }
+  const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
 
   // время в ташкентском часовом поясе — заявки смотрят локально
   const stamp = new Date().toLocaleString('ru-RU', {
@@ -69,6 +59,25 @@ module.exports = async (req, res) => {
   });
 
   const jobs = [];
+
+  // Собственное хранилище сайта — работает всегда и ни от кого не зависит.
+  // Заявки видны на /leads и выгружаются оттуда в таблицу.
+  if (blobToken) {
+    jobs.push(withTimeout((async () => {
+      const { put } = await import('@vercel/blob');
+      const id = Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+      await put(`leads/${id}.json`, JSON.stringify({
+        stamp, name, phone, industry, price, tariff, lang, source,
+        at: new Date().toISOString(),
+      }), {
+        access: 'public',
+        token: blobToken,
+        contentType: 'application/json',
+        addRandomSuffix: false,
+      });
+      return 'storage';
+    })(), TIMEOUT_MS));
+  }
 
   if (sheetsUrl) {
     jobs.push(withTimeout(
