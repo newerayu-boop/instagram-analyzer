@@ -11,14 +11,18 @@ const OUT = path.join(SCRATCH, 'artifact/masterclass-demo.html');
 
 let html = fs.readFileSync(SRC, 'utf8');
 
-/* ---- 1. fonts: swap the Google Fonts <link>s for the pre-inlined @font-face block ---- */
-const fontCss = fs.readFileSync(path.join(SCRATCH, 'artifact/fonts-inline.css'), 'utf8');
-const before = html.length;
-html = html.replace(
-  /<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">\s*<link rel="preconnect" href="https:\/\/fonts\.gstatic\.com" crossorigin>\s*<link href="https:\/\/fonts\.googleapis\.com\/css2\?[^"]*" rel="stylesheet">/,
-  '<style>\n' + fontCss + '\n</style>'
-);
-if (html.length === before) throw new Error('font link block not matched');
+/* ---- 1. fonts: the page self-hosts them, so turn each src url() into a data: URI
+        and drop the preload links (their hrefs would resolve to nothing here) ---- */
+html = html.replace(/\s*<link rel="preload" href="\/masterclass\/fonts\/[^"]*"[^>]*>/g, '');
+
+let fontsInlined = 0;
+html = html.replace(/url\(\/masterclass\/fonts\/([^)'"]+)\)/g, (m, file) => {
+  const abs = path.join(REPO, 'public/masterclass/fonts', file);
+  if (!fs.existsSync(abs)) throw new Error('font file missing: ' + file);
+  fontsInlined++;
+  return 'url(data:font/woff2;base64,' + fs.readFileSync(abs).toString('base64') + ')';
+});
+if (!fontsInlined) throw new Error('no @font-face src urls matched');
 
 /* ---- 2. every /masterclass/img/... reference becomes a data: URI ---- */
 const MIME = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png',
@@ -49,13 +53,7 @@ function dataUri(rel) {
 html = html.replace(/(["'\s])(\/masterclass\/img\/[^"'\s>]+)/g, (m, lead, rel) => lead + dataUri(rel));
 if (missing.length) throw new Error('missing assets: ' + [...new Set(missing)].join(', '));
 
-/* ---- 2b. Lenis is loaded from unpkg on the site; the CSP here blocks it, so inline it ---- */
-// the bundle assigns globalThis.Lenis itself; only the source-map comment needs dropping
-const lenis = fs.readFileSync(path.join(SCRATCH, 'artifact/lenis.min.js'), 'utf8')
-  .replace(/\/\/# sourceMappingURL=.*$/m, '');
-const lenisTag = /<script src="https:\/\/unpkg\.com\/lenis@[^"]*"[^>]*><\/script>/;
-if (!lenisTag.test(html)) throw new Error('lenis script tag not found');
-html = html.replace(lenisTag, '<script>\n' + lenis + '\n</script>');
+/* The page carries no third-party scripts, so there is nothing to inline here. */
 
 /* ---- 3. og:image can't be a 600 KB data URI — drop it, it means nothing here ---- */
 html = html.replace(/<meta property="og:image"[^>]*>\s*/, '');
