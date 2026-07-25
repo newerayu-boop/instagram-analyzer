@@ -104,6 +104,8 @@ section{position:relative; padding:clamp(84px,10vw,150px) 0; overflow:clip}
   box-shadow:0 10px 34px -10px rgba(191,160,89,.45);
 }
 .btn-gold:hover{box-shadow:0 16px 44px -10px rgba(191,160,89,.6)}
+/* gold buttons always keep dark text — section rules must never repaint their labels */
+.btn-gold, .btn-gold span, .btn-gold b{color:#100C02}
 .btn-gold::after{ /* shine sweep */
   content:""; position:absolute; top:0; left:-80%; width:50%; height:100%;
   background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);
@@ -132,17 +134,13 @@ section{position:relative; padding:clamp(84px,10vw,150px) 0; overflow:clip}
 .nav.scrolled{background:rgba(5,7,10,.85); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border-color:var(--line-soft)}
 .nav-in{display:flex; align-items:center; justify-content:space-between; gap:20px; padding:20px 0; transition:padding var(--dur-mod)}
 .nav.scrolled .nav-in{padding:14px 0}
-.logo{display:flex; align-items:center; gap:12px; font-weight:800}
-.logo-mark{
-  width:36px; height:36px; display:grid; place-items:center; flex:none;
-  transition:transform var(--dur-mod) var(--ease-out), filter var(--dur-mod);
-  filter:drop-shadow(0 2px 6px rgba(0,0,0,.6));
+.logo{display:flex; align-items:center; font-weight:800}
+.logo-word{
+  font-size:14px; letter-spacing:.32em; text-transform:uppercase; color:var(--cream); white-space:nowrap;
+  transition:opacity var(--dur-base);
 }
-.logo-mark picture{display:block; width:100%}
-.logo-mark img{width:100%; height:auto; display:block}
-.logo:hover .logo-mark{transform:translateY(-2px) scale(1.05); filter:drop-shadow(0 4px 14px rgba(238,241,245,.35))}
-.logo-word{font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--cream); white-space:nowrap}
 .logo-word b{color:var(--gold)}
+.logo:hover .logo-word{opacity:.82}
 .nav-links{display:flex; gap:34px; list-style:none}
 .nav-links a{
   position:relative; font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
@@ -431,7 +429,7 @@ section{position:relative; padding:clamp(84px,10vw,150px) 0; overflow:clip}
   box-shadow:0 0 70px -24px rgba(191,160,89,.35);
 }
 .road-result .big{font-family:var(--serif); font-weight:700; font-size:clamp(19px,2.3vw,30px); background:var(--grad-gold); -webkit-background-clip:text; background-clip:text; color:transparent; display:block; margin-bottom:8px}
-.road-result span:not(.big){color:var(--muted); font-size:14.5px; letter-spacing:.06em}
+.road-result > span:not(.big){color:var(--muted); font-size:14.5px; letter-spacing:.06em}
 
 /* ============ DELIVERABLES ============ */
 .bento{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:26px}
@@ -739,8 +737,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
   .rev-track img{height:72px}
   .badge-name{padding:10px 18px}
   .spk-sig{right:0}
-  .logo-word{font-size:10px; letter-spacing:.22em}
-  .logo-mark{width:31px; height:31px}
+  .logo-word{font-size:12px; letter-spacing:.24em}
   .hud.p1{top:2%; left:0}
   .hud{padding:8px 11px; font-size:8.5px}
   .hud b{font-size:11.5px}
@@ -755,9 +752,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
   .lang button{padding:7px 9px; font-size:10px; letter-spacing:.06em}
   .burger{padding:8px 0 8px 6px}
   .burger span{width:22px}
-  .logo{gap:8px}
-  .logo-word{font-size:9px; letter-spacing:.16em}
-  .logo-mark{width:27px; height:27px}
+  .logo-word{font-size:10.5px; letter-spacing:.18em}
 }
 
 /* ============ REDUCED MOTION ============ */
@@ -789,34 +784,58 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
 }
 .hero .hero-kicker{max-width:470px; margin:0 auto 20px; text-align:center}
 .hero h1{max-width:900px; margin-left:auto; margin-right:auto}
-.hero-stage{position:relative; width:min(60vw,268px); margin:10px auto 0; z-index:2; will-change:transform}
-.hero-float{position:relative; z-index:3; animation:floatY 7.5s ease-in-out infinite; will-change:transform}
+/* hero portrait card — edges feather into the page background */
+.hero-stage{
+  position:relative; width:min(84vw,368px); aspect-ratio:4/5;
+  margin:34px auto 0; z-index:2; will-change:transform;
+}
+.hero-float{position:relative; z-index:3; width:100%; height:100%; animation:floatY 7.5s ease-in-out infinite; will-change:transform}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-card{
+  position:relative; width:100%; height:100%; border-radius:30px; overflow:hidden;
+}
+.hero-card picture{display:block; width:100%; height:100%}
 .hero-cut{
-  width:100%; height:auto; display:block;
-  -webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent 97%);
-  mask-image:linear-gradient(to bottom,#000 70%,transparent 97%);
-  filter:drop-shadow(0 34px 52px rgba(0,0,0,.9)) drop-shadow(0 0 66px rgba(191,160,89,.18));
+  width:100%; height:100%; display:block; object-fit:cover; object-position:50% 8%;
+  /* soft oval feather: the photo dissolves into the site background before it reaches the frame */
+  -webkit-mask-image:radial-gradient(80% 76% at 50% 42%, #000 44%, rgba(0,0,0,.62) 72%, transparent 97%);
+  mask-image:radial-gradient(80% 76% at 50% 42%, #000 44%, rgba(0,0,0,.62) 72%, transparent 97%);
 }
-.hero-stage .orbit{position:absolute; inset:auto; top:6%; left:50%; width:126%; aspect-ratio:1; transform:translateX(-50%) rotateX(8deg); z-index:1}
-.hero-stage .hud{position:absolute; z-index:4}
-.hero-stage .hud.p1{top:12%; left:-64%}
-.hero-stage .hud.p2{top:46%; right:-68%}
+.hero-card::before{ /* barely-there frame that fades out toward the bottom */
+  content:""; position:absolute; inset:0; border-radius:inherit; z-index:3; pointer-events:none;
+  border:1px solid rgba(191,160,89,.28);
+  -webkit-mask-image:linear-gradient(to bottom, #000 0%, rgba(0,0,0,.55) 52%, transparent 88%);
+  mask-image:linear-gradient(to bottom, #000 0%, rgba(0,0,0,.55) 52%, transparent 88%);
+}
+.hero-card .corners{inset:13px; opacity:.7; z-index:4}
+.hero-card .scan{border-radius:inherit; z-index:2; overflow:hidden}
+.hero-stage .orbit{position:absolute; inset:auto; top:-13%; left:50%; width:118%; aspect-ratio:1; transform:translateX(-50%) rotateX(8deg); z-index:1}
+.hero-stage .hud{position:absolute; z-index:5}
+.hero-stage .hud.p1{top:6%; left:-7%}
+.hero-stage .hud.p2{top:47%; right:-8%}
 .hero-name{
-  position:absolute; z-index:5; left:50%; bottom:2%; transform:translateX(-50%);
-  display:flex; flex-direction:column; align-items:center; gap:3px; white-space:nowrap;
-  background:rgba(9,12,18,.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-  border:1px solid var(--line-soft); border-radius:14px; padding:11px 22px;
+  /* centred without transform — .rv.is-in resets transform and would knock it off-axis */
+  position:absolute; z-index:5; left:0; right:0; bottom:5.5%; width:max-content; margin-inline:auto;
+  display:flex; flex-direction:column; align-items:center; gap:4px; white-space:nowrap;
+  background:rgba(9,12,18,.74); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line-soft); border-radius:16px; padding:12px 26px;
 }
-.hero-name b{font-family:var(--serif); font-size:13px; font-weight:600; letter-spacing:-.01em; color:var(--gold-3)}
+.hero-name b{font-family:var(--serif); font-size:14px; font-weight:600; letter-spacing:-.01em; color:var(--gold-3)}
 .hero-name span{font-family:var(--mono); font-size:9px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold)}
 .hero .hero-cta{justify-content:center; margin:30px 0 0}
 .hero .hero-cta .btn{padding:19px 38px}
 .hero-cd{margin-top:34px; width:min(100%,620px)}
 .hero-cd .cd{justify-content:center}
 @media(max-width:640px){
-  .hero-stage{width:min(62vw,236px)}
-  .hero-stage .hud{display:none}
+  .hero-stage{width:min(90vw,330px); margin-top:26px}
+  .hero-stage .hud{padding:7px 10px; font-size:7.6px; letter-spacing:.12em}
+  .hero-stage .hud b{font-size:11px}
+  .hero-stage .hud.p1{top:5%; left:0}
+  .hero-stage .hud.p2{top:44%; right:-2%}
+  .hero-card .corners{inset:10px}
+  .hero-name{padding:10px 20px}
+  .hero-name b{font-size:12.5px}
+  .hero-name span{font-size:8px; letter-spacing:.2em}
   .hero .hero-cta .btn{width:100%}
   .hero-offline{font-size:clamp(17px,5.6vw,23px); letter-spacing:.26em}
 }
@@ -963,7 +982,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
 <header class="nav" id="nav">
   <div class="container nav-in">
     <a class="logo" href="#top" aria-label="AI Offline Master Klass">
-      <span class="logo-mark" aria-hidden="true"><picture><source srcset="/masterclass/img/logo.webp" type="image/webp"><img src="/masterclass/img/logo.png" alt="" width="256" height="256" decoding="async"></picture></span>
+      
       <span class="logo-word">AI&nbsp;<b>STRATEG</b></span>
     </a>
     <nav aria-label="Asosiy menyu">
@@ -1034,10 +1053,14 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
         <span class="dotp"></span>
       </div>
       <div class="hero-float">
-        <picture>
-          <source srcset="/masterclass/img/speaker-cutout.webp" type="image/webp">
-          <img class="hero-cut rv" src="/masterclass/img/speaker-cutout.png" alt="Yusufbay Kadirov — AI strateg" width="900" height="1356" fetchpriority="high">
-        </picture>
+        <div class="hero-card rv">
+          <picture>
+            <source srcset="/masterclass/img/speaker-hero.webp" type="image/webp">
+            <img class="hero-cut" src="/masterclass/img/speaker-hero.jpg" alt="Yusufbay Kadirov — AI strateg" width="1000" height="1250" fetchpriority="high">
+          </picture>
+          <span class="scan" aria-hidden="true"></span>
+          <span class="corners" aria-hidden="true"></span>
+        </div>
       </div>
       <div class="hud p1 rv" style="transition-delay:.5s">
         <span class="live"><span data-uz>JONLI AMALIYOT</span><span data-ru>ЖИВАЯ ПРАКТИКА</span></span>
@@ -1049,7 +1072,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
       </div>
       <div class="hero-name rv" style="transition-delay:.8s">
         <b>Yusufbay Kadirov</b>
-        <span data-uz>AI STRATEG</span><span data-ru>AI-СТРАТЕГ</span>
+        <span data-uz>AI STRATEG · SPIKER</span><span data-ru>AI-СТРАТЕГ · СПИКЕР</span>
       </div>
     </div>
 
@@ -1360,7 +1383,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
   <div class="container" style="position:relative;z-index:2">
     <div class="label rv"><span data-uz>MANZIL</span><span data-ru>МЕСТО</span></div>
     <h2 class="s-title rv"><span data-uz>Master klass <em>Hyatt Regency</em>da oʻtadi</span><span data-ru>Мастер-класс пройдёт в <em>Hyatt Regency</em></span></h2>
-    <p class="s-sub rv"><span data-uz>Toshkent markazidagi besh yulduzli mehmonxona. Regency Ballroom — teatr uslubidagi katta zal, har bir joyda rozetka.</span><span data-ru>Пятизвёздочный отель в центре Ташкента. Regency Ballroom — большой зал с театральной рассадкой и розеткой у каждого места.</span></p>
+    <p class="s-sub rv"><span data-uz>Toshkent markazidagi besh yulduzli mehmonxona. Regency Ballroom — teatr uslubidagi katta zal.</span><span data-ru>Пятизвёздочный отель в центре Ташкента. Regency Ballroom — большой зал с театральной рассадкой.</span></p>
 
     <figure class="vn-hero rv">
       <img src="/masterclass/img/venue/ballroom.jpg" alt="Regency Ballroom" width="1600" height="900" loading="lazy">
@@ -1497,7 +1520,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
   <div class="container">
     <div class="foot-grid">
       <div class="foot foot-brand">
-        <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"><picture><source srcset="/masterclass/img/logo.webp" type="image/webp"><img src="/masterclass/img/logo.png" alt="" width="256" height="256" decoding="async"></picture></span><span class="logo-word">AI&nbsp;<b>STRATEG</b></span></a>
+        <a class="logo" href="#top"><span class="logo-word">AI&nbsp;<b>STRATEG</b></span></a>
         <p><span data-uz>Sunʼiy intellekt orqali marketing va biznesni 10x tezroq boshqarishni oʻrganing.</span><span data-ru>Научитесь управлять маркетингом и бизнесом в 10 раз быстрее с помощью искусственного интеллекта.</span></p>
       </div>
       <div class="foot">
