@@ -225,6 +225,19 @@ section[id],div[id="top"]{scroll-margin-top:86px}
   transform:skewX(-20deg); transition:left .55s var(--ease-out);
 }
 .btn-gold:hover::after{left:130%}
+/* the price/date bar button breathes and catches a slow wave of light so it
+   stays noticeable without shouting */
+.btn-live{animation:liveGlow 2.8s ease-in-out infinite}
+@keyframes liveGlow{
+  0%,100%{box-shadow:0 10px 34px -10px rgba(191,160,89,.45)}
+  50%{box-shadow:0 14px 46px -8px rgba(191,160,89,.9), 0 0 0 1px rgba(245,230,184,.35)}
+}
+.btn-live::after{animation:liveSweep 3.6s ease-in-out infinite; transition:none}
+@keyframes liveSweep{0%,58%{left:-80%}100%{left:130%}}
+@media(prefers-reduced-motion:reduce){
+  .btn-live{animation:none}
+  .btn-live::after{animation:none}
+}
 .btn-ghost{
   border:1px solid var(--line); color:var(--gold-2); background:rgba(191,160,89,.04);
   backdrop-filter:blur(6px);
@@ -773,6 +786,38 @@ body.lb-open .rev-track{animation-play-state:paused}
   box-shadow:0 50px 110px -50px rgba(0,0,0,.95), 0 0 90px -34px rgba(191,160,89,.4);
 }
 .reg-head{text-align:center; margin-bottom:34px}
+
+/* ---------- registration modal ---------- */
+.modal{
+  position:fixed; inset:0; z-index:1300; display:none;
+  align-items:center; justify-content:center; padding:clamp(12px,3vw,32px);
+  background:rgba(4,6,9,.9);
+}
+.modal.open{display:flex}
+.modal-card{
+  position:relative; width:min(100%,470px); max-height:calc(100svh - 32px); overflow-y:auto;
+  border-radius:26px; padding:clamp(26px,4vw,38px); border:1px solid transparent;
+  background:linear-gradient(#0B0E14,#0B0E14) padding-box, linear-gradient(160deg, rgba(245,230,184,.7), rgba(140,109,31,.3) 55%, rgba(191,160,89,.7)) border-box;
+  box-shadow:0 50px 120px -40px rgba(0,0,0,.96), 0 0 90px -34px rgba(191,160,89,.35);
+  animation:modalIn .34s var(--ease-out);
+}
+@keyframes modalIn{from{opacity:0; transform:translateY(14px) scale(.985)}to{opacity:1; transform:none}}
+@media(prefers-reduced-motion:reduce){ .modal-card{animation:none} }
+.modal-close{
+  position:absolute; top:14px; right:14px; width:38px; height:38px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; font-size:22px; line-height:1;
+  background:rgba(255,255,255,.05); border:1px solid var(--line-soft); color:var(--muted);
+}
+.modal-close:hover{background:rgba(191,160,89,.14); color:var(--gold-2)}
+.modal .reg-head{margin-bottom:22px; text-align:left}
+.modal .reg-head h3{font-family:var(--serif); font-weight:600; font-size:clamp(21px,2.4vw,27px); letter-spacing:-.02em; color:var(--cream)}
+.modal .modal-sub{color:var(--muted); font-size:14px; margin-top:6px}
+.modal-price{
+  margin-top:16px; padding:13px 18px; border-radius:14px; text-align:center;
+  font-family:var(--mono); font-size:12.5px; font-weight:700; letter-spacing:.1em; color:var(--gold-2);
+  background:rgba(191,160,89,.1); border:1px solid rgba(191,160,89,.32);
+}
+.modal .consent{margin-top:14px}
 .reg-head .s-title{font-size:clamp(19px,2.5vw,30px); margin-bottom:12px}
 .reg-head p{color:var(--muted); font-size:15px; max-width:440px; margin:0 auto}
 .field{margin-bottom:18px}
@@ -1526,13 +1571,13 @@ body.lb-open .rev-track{animation-play-state:paused}
   <div class="amb" style="width:560px;height:560px;top:-120px;left:50%;transform:translateX(-50%);background:rgba(191,160,89,.1)" aria-hidden="true"></div>
   <div class="container" style="position:relative;z-index:2">
     <div class="reg-card rv">
-      <div id="regFormWrap">
+      <div class="reg-body">
         <div class="reg-head">
           <div class="label" style="justify-content:center"><span data-uz>ROʻYXATDAN OʻTISH</span><span data-ru>РЕГИСТРАЦИЯ</span></div>
           <h2 class="s-title"><span data-uz>Maʼlumotlaringizni qoldiring</span><span data-ru>Оставьте свои данные</span></h2>
           <p><span data-uz>Ishtirok narxi: <b style="color:var(--gold-2)">497 000 soʻm</b>. Menejer siz bilan bogʻlanib, joyingizni tasdiqlaydi.</span><span data-ru>Стоимость участия: <b style="color:var(--gold-2)">497 000 сум</b>. Менеджер свяжется с вами и подтвердит ваше место.</span></p>
         </div>
-        <form id="leadForm" novalidate>
+        <form class="lead-form" novalidate>
           <div class="field">
             <label for="fName"><span data-uz>Ismingiz</span><span data-ru>Ваше имя</span></label>
             <input id="fName" name="name" type="text" required autocomplete="name" data-ph-uz="Masalan: Aziz" data-ph-ru="Например: Азиз">
@@ -1546,12 +1591,12 @@ body.lb-open .rev-track{animation-play-state:paused}
             <input id="fIndustry" name="industry" type="text" data-ph-uz="Masalan: marketing, savdo, taʼlim" data-ph-ru="Например: маркетинг, продажи, образование">
           </div>
           <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <button class="btn btn-gold" type="submit" id="leadBtn"><span data-uz>Roʻyxatdan oʻtish</span><span data-ru>Зарегистрироваться</span></button>
-          <div class="form-msg" id="formMsg"></div>
+          <button class="btn btn-gold lead-btn" type="submit"><span data-uz>Roʻyxatdan oʻtish</span><span data-ru>Зарегистрироваться</span></button>
+          <div class="form-msg"></div>
           <p class="consent"><span data-uz>«Roʻyxatdan oʻtish» tugmasini bosish orqali siz shaxsiy maʼlumotlarni qayta ishlashga rozilik bildirasiz.</span><span data-ru>Нажимая «Зарегистрироваться», вы соглашаетесь на обработку персональных данных.</span></p>
         </form>
       </div>
-      <div class="reg-done" id="regDone">
+      <div class="reg-done">
         <div class="ok"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7L9 18l-5-5"/></svg></div>
         <h3><span data-uz>Arizangiz qabul qilindi!</span><span data-ru>Заявка принята!</span></h3>
         <p><span data-uz>Rahmat! Menejerimiz tez orada siz bilan bogʻlanib, joyingizni tasdiqlaydi.</span><span data-ru>Спасибо! Наш менеджер скоро свяжется с вами и подтвердит ваше место.</span></p>
@@ -1599,7 +1644,44 @@ body.lb-open .rev-track{animation-play-state:paused}
 <!-- ============ STICKY CTA ============ -->
 <div class="sticky-cta" id="stickyCta">
   <span class="cta-info">497 000 <span data-uz>soʻm</span><span data-ru>сум</span><span class="cta-date"> · 2-AVGUST</span></span>
-  <a class="btn btn-gold" href="#register"><span data-uz>Roʻyxatdan oʻtish</span><span data-ru>Регистрация</span></a>
+  <a class="btn btn-gold btn-live" href="#register"><span data-uz>Roʻyxatdan oʻtish</span><span data-ru>Регистрация</span></a>
+</div>
+
+<!-- ============ REGISTRATION MODAL ============ -->
+<div class="modal" id="regModal" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
+  <div class="modal-card" role="document">
+    <button class="modal-close" type="button" id="regModalClose" aria-label="Yopish">&times;</button>
+    <div class="reg-body">
+      <div class="reg-head">
+        <h3 id="regModalTitle"><span data-uz>Roʻyxatdan oʻtish</span><span data-ru>Регистрация</span></h3>
+        <p class="modal-sub"><span data-uz>Maʼlumotlaringizni qoldiring</span><span data-ru>Оставьте свои данные</span></p>
+        <div class="modal-price"><span data-uz>Ishtirok narxi: 497 000 soʻm</span><span data-ru>Стоимость участия: 497 000 сум</span></div>
+      </div>
+      <form class="lead-form" novalidate>
+        <div class="field">
+          <label for="mName"><span data-uz>Ismingiz</span><span data-ru>Ваше имя</span></label>
+          <input id="mName" name="name" type="text" required autocomplete="name" data-ph-uz="Ismingiz" data-ph-ru="Ваше имя">
+        </div>
+        <div class="field">
+          <label for="mPhone"><span data-uz>Telefon raqamingiz</span><span data-ru>Номер телефона</span></label>
+          <input id="mPhone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" data-ph-uz="+998" data-ph-ru="+998">
+        </div>
+        <div class="field">
+          <label for="mIndustry"><span data-uz>Sohangiz</span><span data-ru>Ваша сфера</span></label>
+          <input id="mIndustry" name="industry" type="text" data-ph-uz="Sohangiz" data-ph-ru="Ваша сфера">
+        </div>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-gold lead-btn" type="submit"><span data-uz>Roʻyxatdan oʻtish</span><span data-ru>Зарегистрироваться</span></button>
+        <div class="form-msg"></div>
+        <p class="consent"><span data-uz>«Roʻyxatdan oʻtish» tugmasini bosish orqali siz shaxsiy maʼlumotlarni qayta ishlashga rozilik bildirasiz.</span><span data-ru>Нажимая «Зарегистрироваться», вы соглашаетесь на обработку персональных данных.</span></p>
+      </form>
+    </div>
+    <div class="reg-done">
+      <div class="ok"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7L9 18l-5-5"/></svg></div>
+      <h3><span data-uz>Arizangiz qabul qilindi!</span><span data-ru>Заявка принята!</span></h3>
+      <p><span data-uz>Menejerimizga oʻtkazamiz…</span><span data-ru>Переводим вас к менеджеру…</span></p>
+    </div>
+  </div>
 </div>
 
 <!-- ============ LIGHTBOX ============ -->
@@ -1957,9 +2039,16 @@ if(sticky){
   function upd(){ sticky.classList.toggle('show', heroOut && !regIn); }
 }
 
-/* ---------- lead form ---------- */
-var form=document.getElementById('leadForm'), msg=document.getElementById('formMsg'), btn=document.getElementById('leadBtn');
-if(form){
+/* ---------- lead forms (inline block + modal share one handler) ---------- */
+var MANAGER_TG = 'https://t.me/Yusufbaymanager';
+
+document.querySelectorAll('.lead-form').forEach(function(form){
+  var card = form.closest('.reg-card, .modal-card');
+  var body = form.closest('.reg-body');
+  var done = card && card.querySelector('.reg-done');
+  var msg  = form.querySelector('.form-msg');
+  var btn  = form.querySelector('.lead-btn');
+
   form.addEventListener('submit', function(ev){
     ev.preventDefault();
     msg.className='form-msg'; msg.textContent='';
@@ -1981,10 +2070,11 @@ if(form){
       })
     }).then(function(r){ return r.json().catch(function(){return {ok:false}}); })
     .then(function(j){
-      if(j && j.ok){
-        document.getElementById('regFormWrap').style.display='none';
-        document.getElementById('regDone').style.display='block';
-      } else { throw new Error((j&&j.error)||'fail'); }
+      if(!(j && j.ok)) throw new Error((j&&j.error)||'fail');
+      if(body) body.style.display='none';
+      if(done) done.style.display='block';
+      /* hand the visitor straight to the manager */
+      setTimeout(function(){ location.href = MANAGER_TG; }, 1200);
     })
     .catch(function(){
       msg.className='form-msg err';
@@ -1994,7 +2084,38 @@ if(form){
     })
     .finally(function(){ btn.disabled=false; btn.style.opacity=1; });
   });
-}
+});
+
+/* ---------- every register button opens the form in place ---------- */
+(function(){
+  var modal=document.getElementById('regModal');
+  if(!modal) return;
+  var lastFocus=null;
+  function open(){
+    lastFocus=document.activeElement;
+    modal.classList.add('open');
+    document.body.style.overflow='hidden';
+    var first=modal.querySelector('input[name="name"]');
+    if(first) setTimeout(function(){ first.focus(); }, 60);
+  }
+  function close(){
+    modal.classList.remove('open');
+    document.body.style.overflow='';
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.addEventListener('click', function(e){
+    var a=e.target.closest('a[href="#register"]');
+    if(!a) return;
+    e.preventDefault();
+    if(menu && menu.classList.contains('open')) toggleMenu(false);
+    open();
+  });
+  document.getElementById('regModalClose').addEventListener('click', close);
+  modal.addEventListener('click', function(e){ if(e.target===modal) close(); });
+  addEventListener('keydown', function(e){
+    if(e.key==='Escape' && modal.classList.contains('open')) close();
+  });
+})();
 })();
 </script>
 </body>
