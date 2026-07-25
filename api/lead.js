@@ -37,6 +37,7 @@ module.exports = async (req, res) => {
   const phone = String(b.phone || '').trim().slice(0, 40);
   const industry = String(b.industry || '').trim().slice(0, 120);
   const tariff = String(b.tariff || '').trim().slice(0, 40);
+  const price = String(b.price || '').trim().slice(0, 40);
   const lang = b.lang === 'ru' ? 'RU' : 'UZ';
   const source = String(b.source || 'masterclass').trim().slice(0, 60);
 
@@ -49,9 +50,15 @@ module.exports = async (req, res) => {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
+  // Ни один канал не настроен. Заявку всё равно принимаем: фронтенд сразу
+  // передаёт человека менеджеру в Telegram, поэтому контакт не теряется, а
+  // запись в таблицу включится в тот момент, когда появится SHEETS_WEBHOOK_URL.
+  // Отказ здесь ломал бы регистрацию целиком.
   if (!sheetsUrl && !(token && chatId)) {
-    res.statusCode = 503;
-    return res.end(JSON.stringify({ ok: false, error: 'not_configured' }));
+    console.error('lead accepted but nowhere to store it — set SHEETS_WEBHOOK_URL:', {
+      name, phone, industry, lang, source,
+    });
+    return res.end(JSON.stringify({ ok: true, delivered: [], stored: false }));
   }
 
   // время в ташкентском часовом поясе — заявки смотрят локально
@@ -68,7 +75,7 @@ module.exports = async (req, res) => {
       fetch(sheetsUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ stamp, name, phone, industry, tariff, lang, source }),
+        body: JSON.stringify({ stamp, name, phone, industry, price, tariff, lang, source }),
       }).then((r) => {
         if (!r.ok) throw new Error('sheets_http_' + r.status);
         return 'sheets';
@@ -84,6 +91,7 @@ module.exports = async (req, res) => {
       `👤 Ism: <b>${esc(name)}</b>`,
       `📞 Tel: <b>${esc(phone)}</b>`,
       industry ? `💼 Soha: ${esc(industry)}` : '',
+      price ? `💰 Narx: <b>${esc(price)}</b>` : '',
       tariff ? `🎟 Tarif: <b>${esc(tariff)}</b>` : '',
       `🌐 ${lang} · ${esc(source)} · ${esc(stamp)}`,
     ].filter(Boolean).join('\n');
@@ -105,17 +113,18 @@ module.exports = async (req, res) => {
   const results = await Promise.allSettled(jobs);
   const delivered = results.filter((r) => r.status === 'fulfilled').map((r) => r.value);
 
-  if (!delivered.length) {
-    const why = results.map((r) => (r.reason && r.reason.message) || 'error').join(',');
-    console.error('lead delivery failed:', why);
-    res.statusCode = 502;
-    return res.end(JSON.stringify({ ok: false, error: 'delivery_failed' }));
-  }
-
-  // частичный отказ логируем, но заявку считаем принятой
   results.forEach((r) => {
-    if (r.status === 'rejected') console.error('lead partial failure:', r.reason && r.reason.message);
+    if (r.status === 'rejected') {
+      console.error('lead delivery failure:', (r.reason && r.reason.message) || 'error', { name, phone });
+    }
   });
 
-  return res.end(JSON.stringify({ ok: true, delivered }));
+  // Даже если оба канала отказали, отвечаем ok: фронтенд передаёт человека
+  // менеджеру в Telegram, и живой контакт сохраняется. Отказ здесь означал бы
+  // и потерянную заявку, и ушедшего посетителя. Сбой виден в логах функции.
+  if (!delivered.length) {
+    console.error('lead reached nobody — payload for manual recovery:', { name, phone, industry, lang, source, stamp });
+  }
+
+  return res.end(JSON.stringify({ ok: true, delivered, stored: delivered.length > 0 }));
 };

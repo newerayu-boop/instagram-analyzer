@@ -17,6 +17,7 @@ var HEADERS = [
   'Имя',
   'Телефон',
   'Сфера',
+  'Цена',
   'Язык',
   'Источник',
   'Статус',
@@ -40,10 +41,11 @@ function doPost(e) {
       sh.setColumnWidth(1, 150); // дата
       sh.setColumnWidth(2, 170); // имя
       sh.setColumnWidth(3, 150); // телефон
-      sh.setColumnWidth(4, 220); // сфера
-      sh.setColumnWidth(5, 70);  // язык
-      sh.setColumnWidth(6, 130); // источник
-      sh.setColumnWidth(7, 130); // статус
+      sh.setColumnWidth(4, 200); // сфера
+      sh.setColumnWidth(5, 130); // цена
+      sh.setColumnWidth(6, 70);  // язык
+      sh.setColumnWidth(7, 130); // источник
+      sh.setColumnWidth(8, 120); // статус
     }
 
     sh.appendRow([
@@ -51,6 +53,7 @@ function doPost(e) {
       data.name || '',
       "'" + (data.phone || ''), // ведущий апостроф — иначе таблица съедает + у номера
       data.industry || '',
+      data.price || '',
       data.lang || '',
       data.source || '',
       'Новая',

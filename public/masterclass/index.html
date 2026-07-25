@@ -273,45 +273,14 @@ section[id],div[id="top"]{scroll-margin-top:86px}
 }
 .logo-word b{color:var(--gold)}
 .logo:hover .logo-word{opacity:.82}
-.nav-links{display:flex; gap:34px; list-style:none}
-.nav-links a{
-  position:relative; font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
-  transition:color var(--dur-base); padding:6px 0;
-}
-.nav-links a::after{content:""; position:absolute; left:0; bottom:0; width:100%; height:1px; background:var(--gold); transform:scaleX(0); transform-origin:right; transition:transform var(--dur-mod) var(--ease-out)}
-.nav-links a:hover{color:var(--gold-2)}
-.nav-links a:hover::after{transform:scaleX(1); transform-origin:left}
 .nav-right{display:flex; align-items:center; gap:16px}
 .lang{display:flex; border:1px solid var(--line); border-radius:100px; overflow:hidden}
 .lang button{
   padding:8px 14px; font-size:11px; font-weight:800; letter-spacing:.1em; color:var(--muted);
   transition:background var(--dur-base), color var(--dur-base);
 }
-.lang button.on{background:var(--gold); color:#1A1406}
+.lang button.on{background:rgba(232,226,214,.12); color:var(--cream)}
 .nav .btn{padding:12px 24px; font-size:11px}
-.burger{display:none; flex-direction:column; gap:6px; padding:10px; z-index:1102}
-.burger span{width:26px; height:1.5px; background:var(--gold-2); transition:transform var(--dur-mod) var(--ease-out), opacity var(--dur-base)}
-.burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
-.burger.open span:nth-child(2){opacity:0}
-.burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
-
-/* fullscreen overlay menu */
-.menu{
-  position:fixed; inset:0; z-index:1100; background:rgba(5,7,10,.985);
-  display:flex; flex-direction:column; justify-content:center; padding:80px 34px 40px;
-  opacity:0; visibility:hidden; transition:opacity var(--dur-mod) var(--ease-out), visibility var(--dur-mod);
-}
-.menu.open{opacity:1; visibility:visible}
-.menu a{
-  font-family:var(--serif); font-weight:600; letter-spacing:-.02em; font-size:clamp(22px,6vw,36px); line-height:1.5; color:var(--cream);
-  opacity:0; transform:translateY(26px); transition:opacity .5s var(--ease-out), transform .5s var(--ease-out), color .3s;
-  display:flex; align-items:baseline; gap:16px;
-}
-.menu a small{font-family:var(--sans); font-size:12px; color:var(--gold); letter-spacing:.2em}
-.menu.open a{opacity:1; transform:none}
-.menu a:hover{color:var(--gold-2)}
-.menu .btn{margin-top:34px; align-self:flex-start; opacity:0; transform:translateY(20px); transition:opacity .5s var(--ease-out) .3s, transform .5s var(--ease-out) .3s}
-.menu.open .btn{opacity:1; transform:none}
 
 /* ============ HERO ============ */
 .hero{
@@ -586,7 +555,27 @@ section[id],div[id="top"]{scroll-margin-top:86px}
 /* ============ SPEAKER ============ */
 .speaker{background:radial-gradient(90% 70% at 50% 0%, #080B10 0%, var(--bg0) 70%)}
 .speaker .spot{opacity:.75; height:95%}
-.spk-grid{display:grid; grid-template-columns:.92fr 1.08fr; gap:clamp(34px,5vw,80px); align-items:center; position:relative; z-index:2}
+/* photo and credentials live inside one bordered card, so the block reads as
+   a single "here is the person" unit instead of two loose columns */
+.spk-card{
+  position:relative; z-index:2; border-radius:30px; border:1px solid transparent;
+  padding:clamp(22px,3.2vw,46px);
+  background:linear-gradient(#090C12,#090C12) padding-box,
+             linear-gradient(160deg, rgba(245,230,184,.42), rgba(140,109,31,.18) 55%, rgba(191,160,89,.42)) border-box;
+  box-shadow:0 50px 110px -50px rgba(0,0,0,.95), 0 0 90px -40px rgba(191,160,89,.3);
+}
+.spk-card .spk-tag{
+  position:absolute; top:0; left:clamp(24px,3.4vw,48px); transform:translateY(-50%);
+  display:inline-flex; align-items:center; gap:9px; padding:8px 18px; border-radius:100px;
+  font-family:var(--mono); font-size:10px; font-weight:800; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--gold-2); background:#0B0E14; border:1px solid rgba(191,160,89,.45); white-space:nowrap;
+}
+.spk-card .spk-tag::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--gold)}
+.spk-grid{display:grid; grid-template-columns:.92fr 1.08fr; gap:clamp(28px,4vw,60px); align-items:center; position:relative; z-index:2}
+@media(max-width:640px){
+  .spk-card{padding:clamp(18px,5vw,26px) clamp(16px,4.5vw,22px) clamp(24px,5vw,30px)}
+  .spk-card .spk-tag{left:50%; transform:translate(-50%,-50%); font-size:9px; letter-spacing:.16em; padding:7px 14px}
+}
 .spk-photo{position:relative; width:min(100%,440px); margin:0 auto}
 .spk-photo .arc{
   position:absolute; inset:-7% -9% auto; aspect-ratio:1; border-radius:50%;
@@ -873,9 +862,7 @@ body.lb-open .rev-track{animation-play-state:paused}
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:1100px){
-  .nav-links{display:none}
   .nav .btn{display:none}
-  .burger{display:flex}
   .hero-grid{grid-template-columns:1fr; gap:40px}
   .scene{order:-1; min-height:0}
   .scene-inner{width:min(78vw,380px)}
@@ -916,8 +903,6 @@ body.lb-open .rev-track{animation-play-state:paused}
   .nav-in{gap:10px}
   .nav-right{gap:8px}
   .lang button{padding:7px 9px; font-size:10px; letter-spacing:.06em}
-  .burger{padding:8px 0 8px 6px}
-  .burger span{width:22px}
   .logo-word{font-size:10.5px; letter-spacing:.18em}
 }
 
@@ -941,29 +926,30 @@ body.lb-open .rev-track{animation-play-state:paused}
    forces it to, and the stage is the only item allowed to give. */
 .hero{height:100svh; min-height:0; align-items:stretch; padding:clamp(74px,10vh,104px) 0 clamp(12px,1.8vh,22px)}
 .hero-center{position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; text-align:center; width:100%; perspective:1100px}
-/* the when-and-where line is the first thing that has to register, so it is
-   gold-on-gold with a slow sheen rather than a quiet outline */
+/* Gold is now spent almost entirely here. Everything else on the first screen
+   is cream or grey, so this one solid bar is what the eye lands on. */
 .hero-badges{
   position:relative; overflow:hidden;
   display:inline-flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:9px clamp(10px,1.4vw,16px);
-  font-family:var(--mono); font-size:clamp(11.5px,1.15vw,14px); font-weight:700;
-  letter-spacing:.16em; text-transform:uppercase; color:var(--gold-3);
-  border:1px solid rgba(191,160,89,.5); border-radius:100px;
-  padding:clamp(11px,1.5vh,15px) clamp(20px,2.6vw,32px);
-  background:linear-gradient(180deg, rgba(191,160,89,.16), rgba(191,160,89,.06));
-  box-shadow:0 0 0 1px rgba(191,160,89,.08), 0 14px 40px -18px rgba(191,160,89,.55);
+  font-family:var(--mono); font-size:clamp(12px,1.25vw,15px); font-weight:800;
+  letter-spacing:.16em; text-transform:uppercase; color:#140F04;
+  border:1px solid rgba(245,230,184,.5); border-radius:100px;
+  padding:clamp(12px,1.7vh,17px) clamp(22px,3vw,36px);
+  background:var(--grad-gold);
+  box-shadow:0 18px 50px -18px rgba(191,160,89,.75), 0 0 0 6px rgba(191,160,89,.07);
 }
+.hero-badges span,.hero-badges b{color:#140F04}
 .hero-badges::after{
   content:""; position:absolute; top:0; bottom:0; width:45%; left:-60%; pointer-events:none;
-  background:linear-gradient(100deg, transparent, rgba(255,240,200,.28), transparent);
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.5), transparent);
   animation:badgeSheen 4.6s ease-in-out infinite;
 }
 @keyframes badgeSheen{0%,62%{left:-60%}92%,100%{left:115%}}
-.hero-badges i{width:4px; height:4px; border-radius:50%; background:var(--gold); opacity:.9; flex:none}
+.hero-badges i{width:4px; height:4px; border-radius:50%; background:rgba(20,15,4,.55); opacity:1; flex:none}
 @media(prefers-reduced-motion:reduce){ .hero-badges::after{display:none} }
 .hero-offline{
   font-family:var(--serif); font-weight:800; font-size:clamp(19px,2.7vw,29px);
-  letter-spacing:.32em; text-indent:.32em; color:var(--gold); margin:clamp(10px,1.7vh,20px) 0 clamp(6px,1.1vh,14px);
+  letter-spacing:.32em; text-indent:.32em; color:rgba(232,226,214,.5); margin:clamp(10px,1.7vh,20px) 0 clamp(6px,1.1vh,14px);
 }
 .hero .hero-kicker{max-width:470px; margin:0 auto clamp(8px,1.4vh,18px); text-align:center}
 .hero h1{max-width:900px; margin-left:auto; margin-right:auto}
@@ -1150,7 +1136,7 @@ body.lb-open .rev-track{animation-play-state:paused}
 }
 
 /* hero kicker */
-.hero-kicker{font-family:var(--mono); font-size:11.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-2); margin-bottom:clamp(8px,1.3vh,16px); line-height:1.8}
+.hero-kicker{font-family:var(--mono); font-size:11.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:clamp(8px,1.3vh,16px); line-height:1.8}
 .offer-card{text-align:left}
 .video-play .vp-ring{position:relative}
 @media(max-width:640px){
@@ -1170,35 +1156,15 @@ body.lb-open .rev-track{animation-play-state:paused}
       
       <span class="logo-word">AI&nbsp;<b>STRATEG</b></span>
     </a>
-    <nav aria-label="Asosiy menyu">
-      <ul class="nav-links">
-        <li><a href="#dastur"><span data-uz>Dastur</span><span data-ru>Программа</span></a></li>
-        <li><a href="#bosqichlar"><span data-uz>5 bosqich</span><span data-ru>5 этапов</span></a></li>
-        <li><a href="#spiker"><span data-uz>Spiker</span><span data-ru>Спикер</span></a></li>
-        <li><a href="#keyslar"><span data-uz>Keyslar</span><span data-ru>Кейсы</span></a></li>
-        <li><a href="#hyatt"><span data-uz>Manzil</span><span data-ru>Место</span></a></li>
-      </ul>
-    </nav>
     <div class="nav-right">
       <div class="lang" role="group" aria-label="Til / Язык">
         <button type="button" data-setlang="uz" class="on">UZ</button>
         <button type="button" data-setlang="ru">RU</button>
       </div>
-      <a class="btn btn-gold" href="#register"><span data-uz>Roʻyxatdan oʻtish</span><span data-ru>Регистрация</span></a>
-      <button class="burger" id="burger" aria-label="Menyu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </div>
 </header>
 
-<div class="menu" id="menu">
-  <a href="#dastur" style="transition-delay:.05s"><small>01</small><span data-uz>Dastur</span><span data-ru>Программа</span></a>
-  <a href="#bosqichlar" style="transition-delay:.12s"><small>02</small><span data-uz>5 bosqich</span><span data-ru>5 этапов</span></a>
-  <a href="#spiker" style="transition-delay:.19s"><small>03</small><span data-uz>Spiker</span><span data-ru>Спикер</span></a>
-  <a href="#keyslar" style="transition-delay:.26s"><small>04</small><span data-uz>Keyslar</span><span data-ru>Кейсы</span></a>
-  <a class="btn btn-gold" href="#register"><span data-uz>Roʻyxatdan oʻtish</span><span data-ru>Зарегистрироваться</span></a>
-</div>
 
 <main id="top">
 
@@ -1424,7 +1390,10 @@ body.lb-open .rev-track{animation-play-state:paused}
   <div class="spot l" aria-hidden="true"></div>
   <div class="spot r" aria-hidden="true"></div>
   <span class="ghost" data-ghost style="top:auto;bottom:0;right:auto;left:-3%">YK</span>
-  <div class="container spk-grid">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="spk-card">
+      <span class="spk-tag"><span data-uz>EKSPERT HAQIDA</span><span data-ru>ОБ ЭКСПЕРТЕ</span></span>
+      <div class="spk-grid">
     <div class="spk-photo rv-clip">
       <span class="arc" aria-hidden="true"></span>
       <div class="frame">
@@ -1436,7 +1405,7 @@ body.lb-open .rev-track{animation-play-state:paused}
       </div>
     </div>
     <div>
-      <div class="spk-eyebrow rv"><span data-uz>EKSPERT HAQIDA · AI STRATEG</span><span data-ru>ОБ ЭКСПЕРТЕ · AI-СТРАТЕГ</span></div>
+      <div class="spk-eyebrow rv"><span data-uz>AI STRATEG · SPIKER</span><span data-ru>AI-СТРАТЕГ · СПИКЕР</span></div>
       <h2 class="spk-name rv">Yusufbay <span class="last">Kadirov</span></h2>
       <ul class="regalia" data-stagger>
         <li class="rv"><b>5 <span data-uz>yil</span><span data-ru>лет</span></b><span><span data-uz>zapusklar va biznesda tajriba</span><span data-ru>опыта в запусках и бизнесе</span></span></li>
@@ -1447,6 +1416,8 @@ body.lb-open .rev-track{animation-play-state:paused}
       <blockquote class="quote rv">
         <p><span data-uz>Hammasi — marketing va biznesga AI integratsiyasi orqali. Men AI ni oʻrgatmayman, ishlaydigan tizimni beraman.</span><span data-ru>Всё — через интеграцию AI в маркетинг и бизнес. Я не учу искусственному интеллекту — я отдаю работающую систему.</span></p>
       </blockquote>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -1725,17 +1696,6 @@ setLang(saved==='ru'?'ru':'uz');
 var nav=document.getElementById('nav');
 var onScrollNav=function(){ nav.classList.toggle('scrolled', scrollY>30); };
 addEventListener('scroll', onScrollNav, {passive:true}); onScrollNav();
-
-var burger=document.getElementById('burger'), menu=document.getElementById('menu');
-function toggleMenu(force){
-  var open = typeof force==='boolean' ? force : !menu.classList.contains('open');
-  menu.classList.toggle('open', open);
-  burger.classList.toggle('open', open);
-  burger.setAttribute('aria-expanded', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-}
-burger.addEventListener('click', function(){toggleMenu()});
-menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){toggleMenu(false)}); });
 
 /* ---------- word-split for display headlines ---------- */
 document.querySelectorAll('[data-split]').forEach(function(el){
@@ -2065,6 +2025,7 @@ document.querySelectorAll('.lead-form').forEach(function(form){
       body:JSON.stringify({
         name:name, phone:phone,
         industry:form.industry.value.trim(),
+        price:'497 000 soʻm',
         website:form.website.value,
         lang:lang, source:'masterclass'
       })
@@ -2107,7 +2068,6 @@ document.querySelectorAll('.lead-form').forEach(function(form){
     var a=e.target.closest('a[href="#register"]');
     if(!a) return;
     e.preventDefault();
-    if(menu && menu.classList.contains('open')) toggleMenu(false);
     open();
   });
   document.getElementById('regModalClose').addEventListener('click', close);
