@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="AI Offline Trening — Sunʼiy Intellekt orqali biznesni boshqarish">
 <meta property="og:description" content="Sunʼiy Intellekt orqali marketing va biznesni 10x tezroq boshqaring. 2-avgust, Hyatt Regency, Toshkent.">
-<meta property="og:image" content="img/speaker-studio.jpg">
+<meta property="og:image" content="/masterclass/img/speaker-dark.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -138,7 +138,8 @@ section{position:relative; padding:clamp(84px,10vw,150px) 0; overflow:clip}
   transition:transform var(--dur-mod) var(--ease-out), filter var(--dur-mod);
   filter:drop-shadow(0 2px 6px rgba(0,0,0,.6));
 }
-.logo-mark svg{width:100%; height:100%; display:block}
+.logo-mark picture{display:block; width:100%}
+.logo-mark img{width:100%; height:auto; display:block}
 .logo:hover .logo-mark{transform:translateY(-2px) scale(1.05); filter:drop-shadow(0 4px 14px rgba(238,241,245,.35))}
 .logo-word{font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--cream); white-space:nowrap}
 .logo-word b{color:var(--gold)}
@@ -748,6 +749,16 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
   .regalia b{min-width:64px}
   .regalia li{gap:12px}
 }
+@media(max-width:360px){
+  .nav-in{gap:10px}
+  .nav-right{gap:8px}
+  .lang button{padding:7px 9px; font-size:10px; letter-spacing:.06em}
+  .burger{padding:8px 0 8px 6px}
+  .burger span{width:22px}
+  .logo{gap:8px}
+  .logo-word{font-size:9px; letter-spacing:.16em}
+  .logo-mark{width:27px; height:27px}
+}
 
 /* ============ REDUCED MOTION ============ */
 @media(prefers-reduced-motion:reduce){
@@ -952,7 +963,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
 <header class="nav" id="nav">
   <div class="container nav-in">
     <a class="logo" href="#top" aria-label="AI Offline Master Klass">
-      <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="chr" x1="8%" y1="0%" x2="92%" y2="100%"><stop offset="0%" stop-color="#FAFBFC"/><stop offset="28%" stop-color="#C6CDD6"/><stop offset="50%" stop-color="#7F8792"/><stop offset="70%" stop-color="#EEF1F4"/><stop offset="100%" stop-color="#98A0AA"/></linearGradient></defs><path d="M50 10 L79 90 L66 90 L50 44 L34 90 L21 90 Z" fill="url(#chr)"/><path d="M11 78 C29 57 66 37 94 20 C71 46 40 65 18 87 Z" fill="url(#chr)" opacity=".9"/></svg></span>
+      <span class="logo-mark" aria-hidden="true"><picture><source srcset="/masterclass/img/logo.webp" type="image/webp"><img src="/masterclass/img/logo.png" alt="" width="256" height="256" decoding="async"></picture></span>
       <span class="logo-word">AI&nbsp;<b>STRATEG</b></span>
     </a>
     <nav aria-label="Asosiy menyu">
@@ -1023,7 +1034,10 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
         <span class="dotp"></span>
       </div>
       <div class="hero-float">
-        <img class="hero-cut rv" src="img/speaker-cutout.png" alt="Yusufbay Kadirov — AI strateg" width="900" height="1356" fetchpriority="high">
+        <picture>
+          <source srcset="/masterclass/img/speaker-cutout.webp" type="image/webp">
+          <img class="hero-cut rv" src="/masterclass/img/speaker-cutout.png" alt="Yusufbay Kadirov — AI strateg" width="900" height="1356" fetchpriority="high">
+        </picture>
       </div>
       <div class="hud p1 rv" style="transition-delay:.5s">
         <span class="live"><span data-uz>JONLI AMALIYOT</span><span data-ru>ЖИВАЯ ПРАКТИКА</span></span>
@@ -1233,7 +1247,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
     <div class="spk-photo rv-clip">
       <span class="arc" aria-hidden="true"></span>
       <div class="frame">
-        <img class="clip-img" src="img/speaker-dark.jpg" alt="Yusufbay Kadirov" width="1000" height="1250" loading="lazy">
+        <img class="clip-img" src="/masterclass/img/speaker-dark.jpg" alt="Yusufbay Kadirov" width="1000" height="1250" loading="lazy">
       </div>
       <span class="spk-sig" aria-hidden="true">Yusufbay</span>
     </div>
@@ -1262,7 +1276,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
     <p class="s-sub rv"><span data-uz>Uchta real keys. Ichkarida — yana koʻplari. Bittasida oʻzingizni tanib qolasiz.</span><span data-ru>Три реальных кейса. Внутри — ещё больше. В одном из них вы узнаете себя.</span></p>
     <div class="cases-grid" data-stagger>
       <article class="ccard rv">
-        <div class="ph"><img src="img/cases/nurgul.jpg" alt="Nurgul Kabulovna" loading="lazy">
+        <div class="ph"><img src="/masterclass/img/cases/nurgul.jpg" alt="Nurgul Kabulovna" loading="lazy">
           <div class="who"><b>Nurgul Kabulovna</b><span><span data-uz>Sotuv boʻlimi rahbari · 25 sotuvchi</span><span data-ru>Руководитель отдела продаж · 25 менеджеров</span></span></div>
         </div>
         <div class="body">
@@ -1272,7 +1286,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
         </div>
       </article>
       <article class="ccard rv">
-        <div class="ph"><img src="img/cases/doston.jpg" alt="Doston" loading="lazy">
+        <div class="ph"><img src="/masterclass/img/cases/doston.jpg" alt="Doston" loading="lazy">
           <div class="who"><b>Doston</b><span><span data-uz>Marketing agentligi · Lava OS</span><span data-ru>Маркетинг-агентство · Lava OS</span></span></div>
         </div>
         <div class="body">
@@ -1282,7 +1296,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
         </div>
       </article>
       <article class="ccard rv">
-        <div class="ph"><img src="img/cases/jasur.jpg" alt="Jasurbek Normuradov" loading="lazy">
+        <div class="ph"><img src="/masterclass/img/cases/jasur.jpg" alt="Jasurbek Normuradov" loading="lazy">
           <div class="who"><b>Jasurbek Normuradov</b><span><span data-uz>Menta.uz asoschisi · SaaS</span><span data-ru>Основатель Menta.uz · SaaS</span></span></div>
         </div>
         <div class="body">
@@ -1300,8 +1314,8 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
   <span class="ghost" data-ghost>06</span>
   <div class="container video-grid">
     <div class="video-card rv" id="videoCard">
-      <video id="mcVideo" playsinline preload="none" poster="img/video-poster.jpg">
-        <source src="img/masterclass.mp4" type="video/mp4">
+      <video id="mcVideo" playsinline preload="none" poster="/masterclass/img/video-poster.jpg">
+        <source src="/masterclass/img/masterclass.mp4" type="video/mp4">
       </video>
       <span class="corners" aria-hidden="true"></span>
       <button class="video-play" id="videoPlay" type="button">
@@ -1330,12 +1344,12 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
   </div>
   <div class="rev-track-wrap">
     <div class="rev-track" data-dup>
-      <img src="img/reviews/r1.png" alt="Ishtirokchi fikri 1" loading="lazy">
-      <img src="img/reviews/r2.png" alt="Ishtirokchi fikri 2" loading="lazy">
-      <img src="img/reviews/r3.png" alt="Ishtirokchi fikri 3" loading="lazy">
-      <img src="img/reviews/r4.png" alt="Ishtirokchi fikri 4" loading="lazy">
-      <img src="img/reviews/r5.png" alt="Ishtirokchi fikri 5" loading="lazy">
-      <img src="img/reviews/r6.png" alt="Ishtirokchi fikri 6" loading="lazy">
+      <img src="/masterclass/img/reviews/r1.png" alt="Ishtirokchi fikri 1" loading="lazy">
+      <img src="/masterclass/img/reviews/r2.png" alt="Ishtirokchi fikri 2" loading="lazy">
+      <img src="/masterclass/img/reviews/r3.png" alt="Ishtirokchi fikri 3" loading="lazy">
+      <img src="/masterclass/img/reviews/r4.png" alt="Ishtirokchi fikri 4" loading="lazy">
+      <img src="/masterclass/img/reviews/r5.png" alt="Ishtirokchi fikri 5" loading="lazy">
+      <img src="/masterclass/img/reviews/r6.png" alt="Ishtirokchi fikri 6" loading="lazy">
     </div>
   </div>
 </section>
@@ -1349,7 +1363,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
     <p class="s-sub rv"><span data-uz>Toshkent markazidagi besh yulduzli mehmonxona. Regency Ballroom — teatr uslubidagi katta zal, har bir joyda rozetka.</span><span data-ru>Пятизвёздочный отель в центре Ташкента. Regency Ballroom — большой зал с театральной рассадкой и розеткой у каждого места.</span></p>
 
     <figure class="vn-hero rv">
-      <img src="img/venue/ballroom.jpg" alt="Regency Ballroom" width="1600" height="900" loading="lazy">
+      <img src="/masterclass/img/venue/ballroom.jpg" alt="Regency Ballroom" width="1600" height="900" loading="lazy">
       <span class="corners" aria-hidden="true"></span>
     </figure>
 
@@ -1361,8 +1375,8 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
         <div><dt><span data-uz>Vaqt</span><span data-ru>Время</span></dt><dd>14:00 – 18:00</dd></div>
       </dl>
       <div class="vn-thumbs rv">
-        <img src="img/venue/exterior-front.jpg" alt="Hyatt Regency Toshkent" width="800" height="533" loading="lazy">
-        <img src="img/venue/exterior-wide.jpg" alt="Hyatt Regency" width="800" height="533" loading="lazy">
+        <img src="/masterclass/img/venue/exterior-front.jpg" alt="Hyatt Regency Toshkent" width="800" height="533" loading="lazy">
+        <img src="/masterclass/img/venue/exterior-wide.jpg" alt="Hyatt Regency" width="800" height="533" loading="lazy">
       </div>
     </div>
   </div>
@@ -1483,7 +1497,7 @@ footer{position:relative; border-top:1px solid var(--line-soft); padding:clamp(6
   <div class="container">
     <div class="foot-grid">
       <div class="foot foot-brand">
-        <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="chr" x1="8%" y1="0%" x2="92%" y2="100%"><stop offset="0%" stop-color="#FAFBFC"/><stop offset="28%" stop-color="#C6CDD6"/><stop offset="50%" stop-color="#7F8792"/><stop offset="70%" stop-color="#EEF1F4"/><stop offset="100%" stop-color="#98A0AA"/></linearGradient></defs><path d="M50 10 L79 90 L66 90 L50 44 L34 90 L21 90 Z" fill="url(#chr)"/><path d="M11 78 C29 57 66 37 94 20 C71 46 40 65 18 87 Z" fill="url(#chr)" opacity=".9"/></svg></span><span class="logo-word">AI&nbsp;<b>STRATEG</b></span></a>
+        <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"><picture><source srcset="/masterclass/img/logo.webp" type="image/webp"><img src="/masterclass/img/logo.png" alt="" width="256" height="256" decoding="async"></picture></span><span class="logo-word">AI&nbsp;<b>STRATEG</b></span></a>
         <p><span data-uz>Sunʼiy intellekt orqali marketing va biznesni 10x tezroq boshqarishni oʻrganing.</span><span data-ru>Научитесь управлять маркетингом и бизнесом в 10 раз быстрее с помощью искусственного интеллекта.</span></p>
       </div>
       <div class="foot">
