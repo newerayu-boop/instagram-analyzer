@@ -11,17 +11,7 @@
 - `api/get-reels.js`, `api/transcribe-reels.js` — serverless (`@vercel/node`, Node 18).
 - `api/lead.js` — приём заявок лендинга → Telegram (нужны env `TELEGRAM_BOT_TOKEN`,
   `TELEGRAM_CHAT_ID` в настройках Vercel).
-- `public/dashboard/` — **командный дашборд задач** (`/dashboard`, RU, осознанно без
-  пароля): доска-канбан, «Сегодня», инбокс идей с триажем, «Мяч» (от кого ждём
-  подтверждения), гант на 2 недели, загрузка по людям. Данные — Supabase, проект
-  `ai-strateg-klub`, таблицы `dash_*` (anon-ключ вшит константой в API).
-- `api/tasks.js` — данные дашборда (GET bootstrap + POST мутации через PostgREST);
-  `api/tasks-digest.js` — утренняя/вечерняя сводка в Telegram (кроны в `vercel.json`,
-  09:00/19:00 Ташкента; env `TASKS_BOT_TOKEN`, `TASKS_CHAT_ID`, опц. `CRON_SECRET`);
-  `api/tasks-inbox.js` — вебхук приёма идей из Telegram (опц. `IDEAS_CHAT_ID`,
-  `TG_WEBHOOK_SECRET`). Настройка бота и безопасность: `docs/dashboard-setup.md`.
-- `vercel.json` — роутинг: `/api/*` → функции, `/masterclass` → лендинг, `/dashboard` →
-  дашборд, остальное → `public/`; плюс `crons` для сводок.
+- `vercel.json` — роутинг: `/api/*` → функции, `/masterclass` → лендинг, остальное → `public/`.
 - Node-зависимости: `node-fetch`, `form-data`.
 
 ## Дизайн и анимация — база ресурсов (запомнено 2026-07-24)
