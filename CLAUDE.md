@@ -12,6 +12,9 @@
 - `api/lead.js` — приём заявок лендинга → Telegram (нужны env `TELEGRAM_BOT_TOKEN`,
   `TELEGRAM_CHAT_ID` в настройках Vercel).
 - `vercel.json` — роутинг: `/api/*` → функции, `/masterclass` → лендинг, остальное → `public/`.
+- Командный дашборд задач живёт в **отдельном репозитории `newerayu-boop/team-dashboard`**
+  (свой Vercel-проект; данные — Supabase `ai-strateg-klub`, таблицы `dash_*`) — здесь его
+  специально нет, чтобы не смешивать с сайтом мастер-класса.
 - Node-зависимости: `node-fetch`, `form-data`.
 
 ## Дизайн и анимация — база ресурсов (запомнено 2026-07-24)
