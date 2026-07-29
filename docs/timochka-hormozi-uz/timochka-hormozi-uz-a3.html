@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<title>E'tibor × Offer — Timochka va Hormozi (A3)</title>
+<style>
+/* ============================================================
+   E'TIBOR × OFFER — Timochka + Hormozi, bitta sistemada
+   A3 (297 x 420 mm), portret. Bosmaga tayyor.
+
+   Ikki mualliflik rang sistemasi (dataviz-validator: ALL PASS):
+   · TIMOCHKA = clay   #CC6644   ordinal #E0937A → #632D1C
+   · HORMOZI  = indigo #4A5FC1   ordinal #9AA3E0 → #232D6B
+   Juftlik CVD ΔE 22.6 — ajratish uchun juda ishonchli.
+   Ikkala ordinal shkala yorug'lik bo'yicha monoton →
+   oq-qora printerda ham tartib to'g'ri o'qiladi.
+   ============================================================ */
+
+@page { size: A3 portrait; margin: 0; }
+
+:root{
+  --ink:#191919; --ink-2:#40403E; --muted:#6E6D67;
+  --paper:#FAF9F5; --line:#E2DED3; --grid:#E8E4D9; --tint:#F2EFE7;
+  --off:#DCD8CC;
+
+  /* TIMOCHKA — e'tibor */
+  --t:#D97757;        /* bezak */
+  --t-tx:#A8462A;     /* matn (5.6:1) */
+  --t-pale:#F6E7DE;
+  --t1:#E0937A; --t2:#D97757; --t3:#C05C3C; --t4:#96442B; --t5:#632D1C;
+
+  /* HORMOZI — offer */
+  --h:#4A5FC1;        /* bezak + matn (5.4:1) */
+  --h-tx:#3A4796;
+  --h-pale:#E7E9F8;
+  --h1:#9AA3E0; --h2:#7A85D6; --h3:#4A5FC1; --h4:#35459A; --h5:#232D6B;
+
+  --accent:var(--t);  /* umumiy sahifalar uchun */
+  --gold:var(--t-tx);
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#8C8C8C; }
+body{ font-family:Georgia,"Times New Roman",serif; color:var(--ink);
+  -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+.page{ position:relative; width:297mm; height:420mm; padding:16mm 16mm 13mm;
+  margin:0 auto 8mm; background:var(--paper); overflow:hidden;
+  display:flex; flex-direction:column; }
+@media print{ html,body{background:#fff;}
+  .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
+  .page:last-child{ page-break-after:auto; break-after:auto; } }
+@media screen{ .page{ box-shadow:0 2mm 8mm rgba(0,0,0,.35); } }
+
+/* sahifa mavzusi */
+.page.t{ --accent:var(--t); --gold:var(--t-tx); --pale:var(--t-pale); }
+.page.h{ --accent:var(--h); --gold:var(--h-tx); --pale:var(--h-pale); }
+.page.mix{ --accent:var(--t); --gold:var(--t-tx); --pale:var(--t-pale); }
+
+.runhead{ display:flex; justify-content:space-between; align-items:baseline;
+  font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--muted); border-bottom:.6pt solid var(--line);
+  padding-bottom:3mm; margin-bottom:7mm; flex:0 0 auto; }
+.runhead b{ color:var(--gold); font-weight:700; letter-spacing:.16em; }
+.runfoot{ margin-top:auto; display:flex; justify-content:space-between; align-items:baseline;
+  font-family:Helvetica,Arial,sans-serif; font-size:8pt; letter-spacing:.1em;
+  color:var(--muted); border-top:.6pt solid var(--line); padding-top:3mm; flex:0 0 auto; }
+.runfoot .pg{ font-weight:700; color:var(--ink-2); }
+.body{ flex:1 1 auto; min-height:0; }
+
+h1,h2,h3,h4,.kicker{ font-family:Helvetica,Arial,sans-serif; }
+.kicker{ font-size:9pt; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--gold); font-weight:700; margin:0 0 4mm; }
+h1{ font-size:50pt; line-height:.98; letter-spacing:-.02em; margin:0 0 6mm; font-weight:800; }
+h2{ font-size:29pt; line-height:1.06; letter-spacing:-.01em; margin:0 0 3mm; font-weight:800; }
+h3{ font-size:15.5pt; line-height:1.15; margin:0 0 2.5mm; font-weight:700; }
+p{ margin:0 0 2.8mm; font-size:13pt; line-height:1.5; }
+.lead{ font-size:14.5pt; line-height:1.5; color:var(--ink-2); }
+.small{ font-size:11.2pt; line-height:1.45; color:var(--ink-2); }
+ul,ol{ margin:0 0 2.8mm; padding-left:5.5mm; }
+li{ font-size:13pt; line-height:1.5; margin-bottom:1.4mm; }
+b,strong{ font-weight:700; }
+em{ font-style:italic; color:var(--ink-2); }
+.rule{ height:.8pt; background:var(--line); margin:6mm 0; }
+.rule-a{ height:1.6pt; background:var(--accent); width:28mm; margin:0 0 6mm; }
+
+.sec-head{ margin-bottom:6mm; }
+.sec-head .num{ font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:9pt;
+  letter-spacing:.2em; color:var(--gold); display:block; margin-bottom:2.5mm; }
+.sec-head p{ max-width:195mm; }
+
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:6mm 10mm; align-items:start; }
+.grid2-t{ display:grid; grid-template-columns:1fr 1fr; gap:6mm 10mm; align-items:stretch; }
+.grid3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:6mm 7mm; align-items:stretch; }
+.grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:5mm 6mm; align-items:stretch; }
+.span2{ grid-column:1 / -1; }
+
+/* figura */
+.fig{ margin:0 0 5mm; break-inside:avoid; }
+.fig svg{ display:block; width:100%; height:auto; }
+.fig .cap{ font-family:Helvetica,Arial,sans-serif; font-size:8.6pt; color:var(--muted);
+  letter-spacing:.04em; margin-top:2mm; line-height:1.4; }
+.fig .cap b{ color:var(--gold); letter-spacing:.14em; text-transform:uppercase; font-size:8pt; }
+.figtitle{ font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:12.5pt;
+  margin:0 0 1mm; letter-spacing:-.01em; }
+.figsub{ font-size:10.6pt; color:var(--muted); margin:0 0 3mm; font-style:italic; }
+
+.svg-lab{ font-family:Helvetica,Arial,sans-serif; font-size:13px; fill:var(--ink); }
+.svg-lab-sm{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:var(--muted); }
+.svg-onfill{ font-family:Helvetica,Arial,sans-serif; font-size:14px; font-weight:700; fill:#fff; }
+.svg-onfill-d{ font-family:Helvetica,Arial,sans-serif; font-size:14px; font-weight:700; fill:#191919; }
+.svg-num{ font-family:Helvetica,Arial,sans-serif; font-size:11px; font-weight:800; fill:#fff; }
+.sub-d{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:#2E1508; }
+.sub-l{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:#FBEFE9; }
+.sub-hd{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:#111634; }
+.sub-hl{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:#EDEFFB; }
+
+/* bloklar */
+.card{ border:.8pt solid var(--line); border-top:2.4pt solid var(--accent);
+  padding:4.5mm 5mm; break-inside:avoid; display:flex; flex-direction:column; }
+.card h3{ margin-bottom:2.5mm; }
+.card ul{ padding-left:4.5mm; margin-bottom:3mm; }
+.card li{ font-size:12pt; }
+.card .res{ background:var(--pale); padding:2.8mm 3.6mm; font-size:11.4pt;
+  line-height:1.42; margin:0; margin-top:auto; }
+.card .res b{ color:var(--gold); }
+
+.tip{ background:var(--tint); border-left:2.4pt solid var(--accent);
+  padding:4mm 5mm; margin:0 0 5mm; break-inside:avoid; }
+.tip .lbl{ font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:800;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--gold);
+  display:block; margin-bottom:1.6mm; }
+.tip p{ margin-bottom:1.8mm; font-size:12.3pt; }
+.tip p:last-child{ margin-bottom:0; }
+
+.stat{ border:.8pt solid var(--line); border-left:2.4pt solid var(--accent);
+  padding:4mm 4.5mm; break-inside:avoid; }
+.stat .v{ font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:28pt;
+  line-height:1; color:var(--gold); letter-spacing:-.02em; display:block; margin-bottom:1.5mm; }
+.stat .k{ font-family:Helvetica,Arial,sans-serif; font-size:9pt; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+  display:block; margin-bottom:1.5mm; }
+.stat p{ font-size:11pt; margin:0; color:var(--ink-2); }
+
+.numlist{ list-style:none; margin:0 0 4mm; padding:0; counter-reset:q; }
+.numlist li{ counter-increment:q; position:relative; padding-left:10.5mm;
+  margin-bottom:3mm; font-size:12.5pt; line-height:1.4; break-inside:avoid; }
+.numlist li::before{ content:counter(q); position:absolute; left:0; top:.2mm;
+  font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:10pt; color:var(--gold);
+  width:7.6mm; height:7.6mm; line-height:7.6mm; text-align:center;
+  border:1.2pt solid var(--accent); border-radius:50%; }
+
+/* iqtibos */
+.quote{ border-left:2.4pt solid var(--accent); padding:1mm 0 1mm 5mm; margin:0 0 5mm;
+  break-inside:avoid; }
+.quote p{ font-size:15pt; line-height:1.4; font-style:italic; margin:0 0 1.5mm; }
+.quote .src{ font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
+
+/* qism ajratkichi */
+.part{ border-top:3pt solid var(--accent); border-bottom:.8pt solid var(--line);
+  padding:5mm 0 6mm; margin:0 0 7mm; display:flex; align-items:flex-start; gap:8mm; }
+.part .big{ font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:64pt;
+  line-height:.8; color:var(--accent); letter-spacing:-.04em; flex:0 0 auto; }
+.part .tx{ flex:1 1 auto; }
+.part .who{ font-family:Helvetica,Arial,sans-serif; font-size:9pt; font-weight:800;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:2mm; }
+.part h2{ margin-bottom:2.5mm; }
+.part p{ margin-bottom:0; max-width:180mm; }
+
+.badge{ display:inline-block; border:1.2pt solid var(--accent); color:var(--gold);
+  font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; padding:1.6mm 3.4mm; margin-right:2mm; }
+
+.legend{ display:flex; flex-wrap:wrap; gap:2mm 6mm; margin:0 0 3mm;
+  font-family:Helvetica,Arial,sans-serif; font-size:9.5pt; color:var(--ink-2); }
+.legend span{ display:flex; align-items:center; gap:2mm; }
+.legend i{ width:4mm; height:4mm; display:block; border-radius:.8mm; }
+
+.cover h1{ font-size:64pt; }
+.cover .sub{ font-size:18pt; line-height:1.35; color:var(--ink-2); max-width:185mm; }
+.toc{ display:grid; grid-template-columns:1fr 1fr; gap:5mm 10mm; }
+.toc-item{ border-top:1.2pt solid var(--accent); padding-top:2.6mm; }
+.toc-item.h{ border-top-color:var(--h); }
+.toc-item .n{ font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:800;
+  letter-spacing:.2em; color:var(--t-tx); display:block; margin-bottom:1.2mm; }
+.toc-item.h .n{ color:var(--h-tx); }
+.toc-item h3{ font-size:15.5pt; margin-bottom:1.2mm; }
+.toc-item p{ font-size:11pt; color:var(--ink-2); margin:0; }
+</style>
+</head>
+<body>
+
+<!-- ===== IKONKALAR ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="ic-eye" viewBox="0 0 32 32"><path d="M2 16s5-8 14-8 14 8 14 8-5 8-14 8S2 16 2 16z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-hook" viewBox="0 0 32 32"><path d="M20 4v14a6 6 0 01-12 0" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16 4h8" stroke="currentColor" stroke-width="2.4"/></symbol>
+<symbol id="ic-bulb" viewBox="0 0 32 32"><path d="M16 3a9 9 0 00-5 16.5V23h10v-3.5A9 9 0 0016 3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 26h8M13 29h6" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-cam" viewBox="0 0 32 32"><rect x="3" y="8" width="19" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M22 14l7-4v12l-7-4z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-funnel" viewBox="0 0 32 32"><path d="M3 5h26l-10 12v11l-6-3V17z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-money" viewBox="0 0 32 32"><rect x="2" y="8" width="28" height="17" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16.5" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 13v7M25 13v7" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-scale" viewBox="0 0 32 32"><path d="M16 4v24M6 28h20" stroke="currentColor" stroke-width="2"/><path d="M4 12h24M4 12l-3 7h6zM28 12l-3 7h6z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-clock" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8v9l6 3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-gift" viewBox="0 0 32 32"><rect x="4" y="12" width="24" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h28v5H2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 12v16M16 12c-3-6-9-4-6 0M16 12c3-6 9-4 6 0" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-shield" viewBox="0 0 32 32"><path d="M16 3l11 4v9c0 7-4.6 11.5-11 13-6.4-1.5-11-6-11-13V7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 16l3.5 3.5L22 12" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-tag" viewBox="0 0 32 32"><path d="M15 3H4v11l15 15 11-11z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="9" r="2.4" fill="currentColor"/></symbol>
+<symbol id="ic-lock" viewBox="0 0 32 32"><rect x="6" y="14" width="20" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 14V9a5 5 0 0110 0v5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-crowd" viewBox="0 0 32 32"><circle cx="8" cy="10" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="10" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 26c0-3.6 2.7-6.5 6-6.5M16 15c4.4 0 8 3.6 8 8v3H8v-3c0-4.4 3.6-8 8-8zM30 26c0-3.6-2.7-6.5-6-6.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-bot" viewBox="0 0 32 32"><rect x="5" y="10" width="22" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="18" r="2" fill="currentColor"/><circle cx="20" cy="18" r="2" fill="currentColor"/><path d="M16 4v6M11 30h10" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="3" r="2" fill="currentColor"/></symbol>
+</defs></svg>
+
+<!-- ================= 1 — MUQOVA ================= -->
+<section class="page t">
+  <div class="cover" style="display:flex;flex-direction:column;height:100%;">
+    <span class="kicker" style="margin-top:4mm;">Ikkita metodika · bitta sistema</span>
+    <h1>E'tibor<br>× Offer</h1>
+    <div class="rule-a" style="width:60mm;height:2.4pt;"></div>
+    <p class="sub">
+      Mixail Timochka — odamlarning <b>e'tiborini</b> qanday olish kerak.
+      Aleks Hormozi — o'sha e'tiborni <b>pulga</b> qanday aylantirish kerak.
+      Bittasi ikkinchisisiz ishlamaydi.
+    </p>
+
+    <!-- HERO: asosiy formula -->
+    <div class="fig" style="margin:8mm 0 6mm;">
+      <svg viewBox="0 0 900 260" role="img" aria-label="E'tibor karra offer teng pul formulasi">
+        <!-- chap: e'tibor -->
+        <rect x="0" y="30" width="290" height="150" rx="8" fill="var(--t-pale)" stroke="var(--t)" stroke-width="2.5"/>
+        <g color="var(--t3)"><use href="#ic-eye" x="125" y="52" width="40" height="40"/></g>
+        <text x="145" y="120" text-anchor="middle" class="svg-lab" style="font-size:22px;font-weight:800;fill:var(--t-tx);">E'TIBOR</text>
+        <text x="145" y="144" text-anchor="middle" class="svg-lab-sm" style="font-size:13px;">Reels · voronka · obunachi</text>
+        <text x="145" y="164" text-anchor="middle" class="svg-lab-sm" style="font-size:12px;">TIMOCHKA</text>
+        <text x="145" y="204" text-anchor="middle" class="svg-lab-sm" style="font-size:12.5px;">Offersiz: 1 000 000 ko'rish → 0 pul</text>
+
+        <!-- karra -->
+        <text x="330" y="118" text-anchor="middle" class="svg-lab" style="font-size:44px;font-weight:800;fill:var(--muted);">×</text>
+
+        <!-- o'ng: offer -->
+        <rect x="370" y="30" width="290" height="150" rx="8" fill="var(--h-pale)" stroke="var(--h)" stroke-width="2.5"/>
+        <g color="var(--h3)"><use href="#ic-tag" x="495" y="52" width="40" height="40"/></g>
+        <text x="515" y="120" text-anchor="middle" class="svg-lab" style="font-size:22px;font-weight:800;fill:var(--h-tx);">OFFER</text>
+        <text x="515" y="144" text-anchor="middle" class="svg-lab-sm" style="font-size:13px;">qiymat · kafolat · defitsit</text>
+        <text x="515" y="164" text-anchor="middle" class="svg-lab-sm" style="font-size:12px;">HORMOZI</text>
+        <text x="515" y="204" text-anchor="middle" class="svg-lab-sm" style="font-size:12.5px;">E'tiborsiz: zo'r offer → hech kim ko'rmaydi</text>
+
+        <!-- teng -->
+        <text x="700" y="118" text-anchor="middle" class="svg-lab" style="font-size:38px;font-weight:800;fill:var(--muted);">=</text>
+
+        <!-- natija -->
+        <rect x="740" y="30" width="160" height="150" rx="8" fill="var(--t5)"/>
+        <g color="#F6E7DE"><use href="#ic-money" x="800" y="56" width="40" height="40"/></g>
+        <text x="820" y="126" text-anchor="middle" class="svg-onfill" style="font-size:24px;">PUL</text>
+        <text x="820" y="150" class="sub-l" text-anchor="middle" style="font-size:12.5px;">sotuv</text>
+      </svg>
+      <div class="cap"><b>Asosiy fikr</b> &nbsp;Bu qo'shish emas, ko'paytirish. Bittasi nolga teng bo'lsa — natija ham nol.</div>
+    </div>
+
+    <div style="margin-bottom:6mm;">
+      <span class="badge">Oddiy til · B1</span>
+      <span class="badge">Sxema va grafiklar</span>
+      <span class="badge">A3 · 297 × 420 mm</span>
+    </div>
+
+    <div class="toc">
+      <div class="toc-item">
+        <span class="n">BOSH SXEMA · 2-bet</span>
+        <h3>Ikkalasi qanday birlashadi</h3>
+        <p>Butun sistema bitta rasmda + ikkita tipik xato.</p>
+      </div>
+      <div class="toc-item">
+        <span class="n">1-QISM · 3–6-bet</span>
+        <h3>Timochka — e'tibor</h3>
+        <p>Kontent turlari, g'oyalar, ssenariy, ishlab chiqarish, voronka.</p>
+      </div>
+      <div class="toc-item h">
+        <span class="n">2-QISM · 7–10-bet</span>
+        <h3>Hormozi — offer</h3>
+        <p>Bozor, narx, qiymat tenglamasi, 5 qadam, kuchaytirgichlar.</p>
+      </div>
+      <div class="toc-item">
+        <span class="n">3-QISM · 11–12-bet</span>
+        <h3>Miks — ikkalasi birga</h3>
+        <p>Offer rilsning qayerida yashaydi + 30 kunlik reja.</p>
+      </div>
+    </div>
+
+    <div class="grid2-t" style="margin-top:7mm;">
+      <div class="card" style="--accent:var(--t);--pale:var(--t-pale);">
+        <h3 style="color:var(--t-tx);">Mixail Timochka — e'tibor</h3>
+        <p class="small">Qisqa video (Reels · Shorts · Kliplar) orqali blogni noldan
+        o'stirish metodikasi. Uning vazifasi — odamni lentadan uzib olib, voronkaga
+        olib kirish.</p>
+        <ul style="padding-left:4.5mm;margin-bottom:3mm;">
+          <li class="small">Nol akkauntdan 7 kunda <b>2 526 obunachi</b></li>
+          <li class="small">Faol akkauntdan bir oyda <b>40 000 obunachi</b></li>
+          <li class="small">Jami <b>1 mln+</b> obunachi</li>
+        </ul>
+        <p class="res"><b>Bu qo'llanmada:</b> 3–6-betlar. Kontent turlari, g'oyalar,
+        ssenariy, ishlab chiqarish va voronka.</p>
+      </div>
+      <div class="card" style="--accent:var(--h);--pale:var(--h-pale);">
+        <h3 style="color:var(--h-tx);">Aleks Hormozi — offer</h3>
+        <p class="small">«$100M Offers» kitobi. Shunday taklif yaratish tizimi-ki,
+        odam rad etsa o'zini ahmoq his qilsin. Narxni tushirmasdan qiymatni ko'tarish
+        haqida.</p>
+        <ul style="padding-left:4.5mm;margin-bottom:3mm;">
+          <li class="small">Oyiga <b>$100 000</b> — yolg'iz o'zi</li>
+          <li class="small">18 oyda yiliga <b>$28 mln</b></li>
+          <li class="small">Raqobatchilardan <b>32 marta qimmat</b> sotgan</li>
+        </ul>
+        <p class="res"><b>Bu qo'llanmada:</b> 7–10-betlar. Bozor, narx, qiymat tenglamasi,
+        5 qadam va kuchaytirgichlar.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:auto;padding-top:5mm;border-top:.8pt solid var(--line);">
+      <p class="small" style="margin:0;color:var(--muted);">
+        Ikkala metodika alohida-alohida ma'lum. Bu qo'llanmaning maqsadi — ularni
+        <b>bitta ketma-ketlikka</b> qo'yish: qayerda birinchisi tugab, ikkinchisi
+        boshlanishini ko'rsatish (11-bet).
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2 — BOSH SXEMA ================= -->
+<section class="page">
+  <div class="runhead"><span><b>E'tibor × Offer</b> · Bosh sxema</span><span>Ikkalasi qanday birlashadi</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">BOSH SXEMA</span>
+      <h2>Ikkita metodika qanday birlashadi</h2>
+      <div class="rule-a"></div>
+      <p class="lead">
+        Timochka odamni <b>ko'chadan do'kongacha</b> olib keladi. Hormozi esa
+        <b>do'kon ichida</b> shunday taklif qiladiki, odam yo'q deya olmaydi.
+        Ikkalasi bir zanjirning ikki qismi.
+      </p>
+    </div>
+
+    <div class="fig">
+      <svg viewBox="0 0 900 300" role="img" aria-label="Timochka voronkasi va Hormozi offeri bitta zanjirda">
+        <!-- TIMOCHKA zonasi -->
+        <rect x="0" y="24" width="470" height="200" rx="8" fill="none" stroke="var(--t)" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="16" y="16" class="svg-lab" style="font-size:13px;font-weight:800;fill:var(--t-tx);">TIMOCHKA · e'tibor mashinasi</text>
+
+        <rect x="20" y="50" width="120" height="52" rx="5" fill="var(--t1)"/>
+        <text x="80" y="74" text-anchor="middle" class="svg-onfill-d" style="font-size:13px;">REELS</text>
+        <text x="80" y="92" text-anchor="middle" class="sub-d" style="font-size:11px;">e'tiborni oladi</text>
+
+        <rect x="20" y="118" width="120" height="52" rx="5" fill="var(--t2)"/>
+        <text x="80" y="142" text-anchor="middle" class="svg-onfill-d" style="font-size:13px;">KOD SO'Z</text>
+        <text x="80" y="160" text-anchor="middle" class="sub-d" style="font-size:11px;">kommentariyada</text>
+
+        <rect x="175" y="50" width="120" height="52" rx="5" fill="var(--t3)"/>
+        <text x="235" y="74" text-anchor="middle" class="svg-onfill" style="font-size:13px;">TG-BOT</text>
+        <text x="235" y="92" text-anchor="middle" class="sub-l" style="font-size:11px;">yig'adi</text>
+
+        <rect x="175" y="118" width="120" height="52" rx="5" fill="var(--t4)"/>
+        <text x="235" y="142" text-anchor="middle" class="svg-onfill" style="font-size:13px;">UZUN VIDEO</text>
+        <text x="235" y="160" text-anchor="middle" class="sub-l" style="font-size:11px;">40 daqiqa · qizdiradi</text>
+
+        <rect x="330" y="84" width="120" height="52" rx="5" fill="var(--t5)"/>
+        <text x="390" y="108" text-anchor="middle" class="svg-onfill" style="font-size:13px;">STORIS</text>
+        <text x="390" y="126" text-anchor="middle" class="sub-l" style="font-size:11px;">kundalik aloqa</text>
+
+        <path d="M142 76 h29 m-8-5 l8 5 -8 5" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M142 144 h29 m-8-5 l8 5 -8 5" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M80 104 v12" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M235 104 v12" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M297 110 h29 m-8-5 l8 5 -8 5" fill="none" stroke="var(--muted)" stroke-width="2"/>
+
+        <!-- HORMOZI zonasi -->
+        <rect x="500" y="24" width="400" height="200" rx="8" fill="none" stroke="var(--h)" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="516" y="16" class="svg-lab" style="font-size:13px;font-weight:800;fill:var(--h-tx);">HORMOZI · offer mashinasi</text>
+
+        <rect x="520" y="50" width="170" height="52" rx="5" fill="var(--h1)"/>
+        <text x="605" y="74" text-anchor="middle" class="svg-onfill-d" style="font-size:13px;">QIYMAT TENGLAMASI</text>
+        <text x="605" y="92" text-anchor="middle" class="sub-hd" style="font-size:11px;">4 ta richag</text>
+
+        <rect x="520" y="118" width="170" height="52" rx="5" fill="var(--h3)"/>
+        <text x="605" y="142" text-anchor="middle" class="svg-onfill" style="font-size:13px;">5 QADAM</text>
+        <text x="605" y="160" text-anchor="middle" class="sub-hl" style="font-size:11px;">muammo → yechim</text>
+
+        <rect x="720" y="84" width="160" height="52" rx="5" fill="var(--h5)"/>
+        <text x="800" y="108" text-anchor="middle" class="svg-onfill" style="font-size:13px;">KUCHAYTIRGICH</text>
+        <text x="800" y="126" text-anchor="middle" class="sub-hl" style="font-size:11px;">defitsit · kafolat</text>
+
+        <path d="M605 104 v12" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M692 110 h20 m-6-5 l6 5 -6 5" fill="none" stroke="var(--muted)" stroke-width="2"/>
+
+        <!-- ulash nuqtasi -->
+        <path d="M452 110 h44 m-10-6 l10 6 -10 6" fill="none" stroke="var(--ink)" stroke-width="3"/>
+        <circle cx="474" cy="110" r="4" fill="var(--ink)"/>
+
+        <!-- natija -->
+        <rect x="330" y="250" width="240" height="44" rx="5" fill="var(--ink)"/>
+        <text x="450" y="278" text-anchor="middle" class="svg-onfill" style="font-size:16px;">SOTUV</text>
+        <path d="M450 226 v20 m-6-8 l6 8 6-8" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+      </svg>
+      <div class="cap"><b>Ulanish nuqtasi</b> &nbsp;Timochkaning voronkasi odamni «issiq» holatga olib keladi. Aynan o'sha yerda Hormozining offeri ko'rsatiladi.</div>
+    </div>
+
+    <div class="rule"></div>
+
+    <h3 style="color:var(--muted);letter-spacing:.06em;margin-bottom:4mm;">Ikkita eng tipik xato</h3>
+
+    <div class="grid2-t" style="margin-bottom:5mm;">
+      <div class="card" style="--accent:var(--t);--pale:var(--t-pale);">
+        <h3>Xato 1 · E'tibor bor, offer yo'q</h3>
+        <p style="font-size:12pt;">Rilslar uchyapti, ko'rishlar millionda, obunachi ko'p.
+        Lekin sotuv yo'q. Odam nima sotib olishini tushunmaydi, hech qanday taklif ko'rmaydi.</p>
+        <p class="res"><b>Timochka o'zi aytadi:</b> «Bir million ko'rish agar voronka bo'lmasa,
+        bir tiyin ham bermasligi mumkin».</p>
+      </div>
+      <div class="card" style="--accent:var(--h);--pale:var(--h-pale);">
+        <h3>Xato 2 · Offer bor, e'tibor yo'q</h3>
+        <p style="font-size:12pt;">Produkt zo'r, narx to'g'ri, kafolat bor, bonuslar tayyor.
+        Lekin sahifaga kuniga 10 ta odam kiradi. Zo'r offerni hech kim ko'rmaydi.</p>
+        <p class="res"><b>Hormozi o'zi aytadi:</b> «Agar offerga mos bozor bo'lmasa,
+        hech qanday usul qutqarmaydi».</p>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="stat" style="--accent:var(--t);--gold:var(--t-tx);">
+        <span class="k">Timochka · konversiya</span>
+        <span class="v">~1%</span>
+        <p>Ko'rishdan obunaga. 100 000 ko'rish ≈ 1 000 obunachi.</p>
+      </div>
+      <div class="stat" style="--accent:var(--h);--gold:var(--h-tx);">
+        <span class="k">Hormozi · kafolat</span>
+        <span class="v">2–4×</span>
+        <p>Kuchli kafolat konversiyani shuncha marta oshiradi.</p>
+      </div>
+      <div class="stat" style="--accent:var(--ink);--gold:var(--ink);">
+        <span class="k">Ikkalasi birga</span>
+        <span class="v">×</span>
+        <p>Bu qo'shish emas. Bittasi nol bo'lsa — hammasi nol.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>Bosh sxema</span><span class="pg">2</span></div>
+</section>
+
+<!-- ================= 3 — 1-QISM: KONTENT ================= -->
+<section class="page t">
+  <div class="runhead"><span><b>1-qism · Timochka</b></span><span>E'tibor</span></div>
+  <div class="body">
+
+    <div class="part">
+      <span class="big">1</span>
+      <div class="tx">
+        <span class="who">Mixail Timochka · e'tibor</span>
+        <h2>Reels — bu qarmoq,<br>produkt emas</h2>
+        <p class="lead">
+          Bir daqiqalik video o'zi hech narsa sotmaydi. Uning vazifasi to'rtta:
+          e'tiborni <b>ushlash</b> → 30–60 soniya <b>ushlab turish</b> →
+          haqiqiy foyda bilan <b>mukofotlash</b> → keyingi qadamga <b>o'tkazish</b>.
+          Shu to'rttadan bittasi sinsa — sistema ishlamaydi.
+        </p>
+      </div>
+    </div>
+
+    <div class="fig">
+      <div class="figtitle">Kontent turlari — qanday nisbatda suratga olish kerak</div>
+      <p class="figsub">Har bir tur o'z vazifasini bajaradi. Nisbatni buzsangiz — yo obunachi kelmaydi, yo sotuv bo'lmaydi.</p>
+      <svg viewBox="0 0 900 210" role="img" aria-label="Kontent turlari nisbati: 60 foiz ekspert, 30 foiz shaxsiy, 10 foiz sotuvchi">
+        <!-- stacked bar -->
+        <rect x="0"   y="20" width="528" height="56" rx="4" fill="var(--t2)"/>
+        <rect x="534" y="20" width="264" height="56" rx="4" fill="var(--t4)"/>
+        <rect x="804" y="20" width="96"  height="56" rx="4" fill="var(--t5)"/>
+
+        <text x="264" y="46" text-anchor="middle" class="svg-onfill-d" style="font-size:16px;">EKSPERT · 60%</text>
+        <text x="264" y="66" text-anchor="middle" class="sub-d" style="font-size:12px;">foyda, o'rgatish, razbor</text>
+        <text x="666" y="46" text-anchor="middle" class="svg-onfill" style="font-size:16px;">SHAXSIY · 30%</text>
+        <text x="666" y="66" text-anchor="middle" class="sub-l" style="font-size:12px;">hayotingiz haqida</text>
+        <text x="852" y="46" text-anchor="middle" class="svg-onfill" style="font-size:14px;">SOTUV</text>
+        <text x="852" y="64" text-anchor="middle" class="sub-l" style="font-size:12px;">10%</text>
+
+        <!-- izohlar -->
+        <text x="0" y="106" class="svg-lab" style="font-weight:800;font-size:13px;">Eng ko'p obuna beradi</text>
+        <text x="0" y="124" class="svg-lab-sm" style="font-size:12px;">100K ko'rishdan 1 000–2 000 obunachi.</text>
+        <text x="0" y="140" class="svg-lab-sm" style="font-size:12px;">Odamlar qiymatga obuna bo'ladi.</text>
+
+        <text x="534" y="106" class="svg-lab" style="font-weight:800;font-size:13px;">Sadoqat beradi</text>
+        <text x="534" y="124" class="svg-lab-sm" style="font-size:12px;">Obuna kamroq, lekin ohvat katta.</text>
+        <text x="534" y="140" class="svg-lab-sm" style="font-size:12px;">Shaxsiy kontentsiz siz — «gapiruvchi Vikipediya».</text>
+
+        <!-- ohvatli: taqiq -->
+        <rect x="0" y="160" width="900" height="44" rx="4" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="7 5"/>
+        <text x="16" y="180" class="svg-lab" style="font-weight:800;font-size:13px;fill:var(--muted);">OHVATLI (trendlar, raqs, lipsink) — SURATGA OLMANG</text>
+        <text x="16" y="197" class="svg-lab-sm" style="font-size:12px;">Ohvat katta, lekin obunachi tasodifiy: ular hech narsa sotib olmaydi. 1 000 ta maqsadli obunachi 100 000 ta tasodifiydan ko'proq pul keltiradi.</text>
+      </svg>
+    </div>
+
+    <div class="quote">
+      <p>«Sizga baribir hamma e'tibor bermaydi, ustiga-ustak siz yana kamtarlik ham qilyapsiz.»</p>
+      <span class="src">Chornyak · Timochka metodikasidan</span>
+    </div>
+
+    <h3 style="color:var(--t-tx);letter-spacing:.06em;margin-bottom:3mm;">Format — bitta fikrni qanday ko'rsatasiz</h3>
+    <p class="small" style="margin-bottom:4mm;">
+      <b>Oddiy fikr zo'r podachada</b> — genial fikr zerikarli podachadan ko'ra ko'proq yig'adi.
+      Shuning uchun format tanlash — hal qiluvchi qadam.
+    </p>
+
+    <div class="grid4">
+      <div class="card" style="border-top-width:1.6pt;"><h3 style="font-size:13pt;">Gapiruvchi bosh</h3><p class="small" style="margin:0;">Eng oddiy. Start uchun to'g'ri keladi.</p></div>
+      <div class="card" style="border-top-width:1.6pt;"><h3 style="font-size:13pt;">Podkast</h3><p class="small" style="margin:0;">Ikki va undan ortiq odam mavzuni muhokama qiladi.</p></div>
+      <div class="card" style="border-top-width:1.6pt;"><h3 style="font-size:13pt;">Ssenka</h3><p class="small" style="margin:0;">Rollarni o'ynash, dialog.</p></div>
+      <div class="card" style="border-top-width:1.6pt;"><h3 style="font-size:13pt;">Obzor / reaksiya</h3><p class="small" style="margin:0;">Boshqaning kontentini sharhlash.</p></div>
+      <div class="card" style="border-top-width:1.6pt;"><h3 style="font-size:13pt;">Slaydshou + ovoz</h3><p class="small" style="margin:0;">Kadrga tushishni istamaganlar uchun.</p></div>
+      <div class="card" style="border-top-width:1.6pt;"><h3 style="font-size:13pt;">So'zsiz</h3><p class="small" style="margin:0;">Ilgak-rasm + tavsifdagi matn.</p></div>
+      <div class="card span2" style="border-top-width:2.4pt;background:var(--t-pale);">
+        <h3 style="font-size:13pt;color:var(--t-tx);">DINAMIK — oltin standart</h3>
+        <p class="small" style="margin:0;">Kadr ortidagi ovoz + kadrlarning tez almashishi + o'ynash.
+        Har bir gap alohida kadrda ko'rsatiladi. Aynan shu format oddiy fikrni viralkaga chiqaradi.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>1-qism · Timochka — e'tibor</span><span class="pg">3</span></div>
+</section>
+
+<!-- ================= 4 — G'OYA VA SSENARIY ================= -->
+<section class="page t">
+  <div class="runhead"><span><b>1-qism · Timochka</b></span><span>G'oyalar va ssenariy</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">1-QISM · davomi</span>
+      <h2>G'oyalar va ssenariy</h2>
+      <div class="rule-a"></div>
+      <p class="lead">
+        G'oya — muvaffaqiyatning 50%. Yaxshi g'oyasiz hatto mukammal suratga olingan rils ham
+        yiqiladi. Quyidagi 6 ta usulni <b>birga</b> ishlating, bittasini tanlamang.
+      </p>
+    </div>
+
+    <div class="grid3" style="margin-bottom:6mm;">
+      <div class="card">
+        <h3>1 · Mavzular buluti</h3>
+        <p class="small">O'z kasbingiz bo'yicha tor suratga olmang — <b>ekspertizangiz yonidagi keng mavzular</b>
+        bo'yicha oling. «Vebinarni qanday sozlash» — minglab odamga qiziq. «Qanday boy bo'lish» — millionlarga.</p>
+        <p class="res"><b>Qadam:</b> 7–10 ta keng mavzu yozing → AI'dan har biriga 20–30 ta g'oya so'rang.</p>
+      </div>
+      <div class="card">
+        <h3>2 · Mijoz yo'li</h3>
+        <p class="small">Mijoz A nuqtadan B nuqtaga borishda qanday qadamlarni bosadi? Har qadamda
+        unda qanday savol va muammo bor? <b>Mana shu savollar — g'oyalar.</b></p>
+        <p class="res"><b>Qadam:</b> A va B ni yozing → orasiga 10 ta qadam → har qadamga savollar.</p>
+      </div>
+      <div class="card">
+        <h3>3 · Og'riq va to'siq</h3>
+        <p class="small"><b>Og'riq</b> — auditoriya nimadan aziyat chekadi. <b>To'siq</b> — nega undan
+        qutula olmaydi. AI'dan 30 ta og'riq, 30 ta to'siq va «qanday» bilan boshlanadigan
+        30 ta savol so'rang.</p>
+        <p class="res"><b>Qadam:</b> produkt + auditoriya portretini bering, ro'yxatni oling.</p>
+      </div>
+      <div class="card">
+        <h3>4 · Eski ishlanmalar</h3>
+        <p class="small">Sizda allaqachon bor narsalarni ko'rib chiqing: postlar, konspektlar,
+        qaydlar, ko'nglingizga o'tirgan kontseptsiyalar. Bularning hammasi — rils materiali.</p>
+        <p class="res"><b>Qadam:</b> eski papkalarni oching, 20 ta fikrni ko'chirib yozing.</p>
+      </div>
+      <div class="card">
+        <h3>5 · Rassomdek o'g'irlang</h3>
+        <p class="small">Boshqaning uchgan rilsini ko'rsangiz — <b>nusxa ko'chirmang</b>, uning
+        <b>kontseptini</b> ajratib oling va o'zingizcha qaytadan yarating. Bugun kimdir shirin
+        paxta haqida oldi — bir oydan keyin siz kartoshka haqida olasiz.</p>
+        <p class="res"><b>Qadam:</b> «bu g'oya qaysi darajada ishlayapti?» deb so'rang.</p>
+      </div>
+      <div class="card">
+        <h3>6 · Podborkalar</h3>
+        <p class="small">«Top-5 nimadir» uslubidagi podborkalar barqaror kiradi va oson
+        suratga olinadi.</p>
+        <p class="res"><b>Qadam:</b> AI'dan nishangiz bo'yicha 30 ta podborka g'oyasini so'rang.</p>
+      </div>
+    </div>
+
+    <div class="fig">
+      <div class="figtitle">Ssenariy strukturasi — har bir uchgan rils 5 ta elementdan iborat</div>
+      <p class="figsub">Vaqt taxminiy. Asosiysi — tartib va ilgakning kuchi.</p>
+      <svg viewBox="0 0 900 230" role="img" aria-label="Rils ssenariysining besh elementi vaqt bo'yicha">
+        <!-- vaqt o'qi -->
+        <line x1="0" y1="150" x2="900" y2="150" stroke="var(--line)" stroke-width="2"/>
+
+        <rect x="0"   y="60" width="86"  height="76" rx="5" fill="var(--t5)"/>
+        <rect x="92"  y="72" width="122" height="64" rx="5" fill="var(--t4)"/>
+        <rect x="220" y="84" width="420" height="52" rx="5" fill="var(--t3)"/>
+        <rect x="646" y="76" width="150" height="60" rx="5" fill="var(--t2)"/>
+        <rect x="802" y="88" width="98"  height="48" rx="5" fill="var(--t1)"/>
+
+        <text x="43"  y="94"  text-anchor="middle" class="svg-onfill" style="font-size:13px;">ILGAK</text>
+        <text x="43"  y="114" text-anchor="middle" class="sub-l" style="font-size:11px;">1–3 son</text>
+        <text x="153" y="100" text-anchor="middle" class="svg-onfill" style="font-size:13px;">KUCHAYTIRISH</text>
+        <text x="153" y="120" text-anchor="middle" class="sub-l" style="font-size:11px;">3–7 son</text>
+        <text x="430" y="106" text-anchor="middle" class="svg-onfill" style="font-size:13px;">ASOSIY MAZMUN</text>
+        <text x="430" y="126" text-anchor="middle" class="sub-l" style="font-size:11px;">10–40 son</text>
+        <text x="721" y="100" text-anchor="middle" class="svg-onfill-d" style="font-size:13px;">XULOSA</text>
+        <text x="721" y="120" text-anchor="middle" class="sub-d" style="font-size:11px;">5–10 son</text>
+        <text x="851" y="108" text-anchor="middle" class="svg-onfill-d" style="font-size:12px;">CHAQIRIQ</text>
+        <text x="851" y="126" text-anchor="middle" class="sub-d" style="font-size:11px;">2–5 son</text>
+
+        <text x="43"  y="46" text-anchor="middle" class="svg-lab" style="font-size:12px;">to'xtating</text>
+        <text x="153" y="46" text-anchor="middle" class="svg-lab" style="font-size:12px;">nega muhim</text>
+        <text x="430" y="46" text-anchor="middle" class="svg-lab" style="font-size:12px;">qiymatning o'zi — har gap alohida kadrda</text>
+        <text x="721" y="46" text-anchor="middle" class="svg-lab" style="font-size:12px;">«shunday qiling — va…»</text>
+        <text x="851" y="46" text-anchor="middle" class="svg-lab" style="font-size:12px;">voronkaga</text>
+
+        <text x="0" y="180" class="svg-lab" style="font-size:14px;font-weight:800;fill:var(--t-tx);">ILGAK — BU HAMMASI.</text>
+        <text x="190" y="180" class="svg-lab" style="font-size:13px;">Birinchi 2 soniyada ushlamasa — oxirigacha ko'rish 5% ga tushadi.</text>
+        <text x="0" y="204" class="svg-lab-sm" style="font-size:12.5px;">Ishlaydigan ilgaklar: kutilmagan tasdiq · giperbola qilingan vizual · aqlga zid maslahat · shaxsiy og'riqni tan olish.</text>
+        <text x="0" y="224" class="svg-lab-sm" style="font-size:12.5px;">Misol: «Siz hech qachon birinchi operatsiyasini qilayotgan jarrohga bormaysiz» · qahramon noutbukni ikkinchi qavatdan uloqtiradi.</text>
+      </svg>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>1-qism · Timochka — e'tibor</span><span class="pg">4</span></div>
+</section>
+
+<!-- ================= 5 — 5 OMIL VA ISHLAB CHIQARISH ================= -->
+<section class="page t">
+  <div class="runhead"><span><b>1-qism · Timochka</b></span><span>5 omil va ishlab chiqarish</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">1-QISM · davomi</span>
+      <h2>5 ta muvaffaqiyat omili</h2>
+      <div class="rule-a"></div>
+      <p class="lead">
+        Ssenariy suratga ketishidan oldin uni mana shu 5 ta tekshiruvdan o'tkazing.
+        Bittasi qoniqarsiz bo'lsa — qayta ishlang.
+      </p>
+    </div>
+
+    <ol class="numlist" style="margin-bottom:5mm;">
+      <li><b>Ko'rgazmalilik va dinamika.</b> Har bir gap alohida kadrda ko'rsatiladi.
+      Biror narsa aytsangiz — darhol ko'rsating. «Kastdev haqida gapirib bering» emas, balki
+      ekranda pikni yig'ing va allergiyasi bor odamga banan, vegetarianga esa shashlik bering.</li>
+      <li><b>Mavzuning kengligi va soddaligi.</b> O'zingizdan so'rang:
+      «<b>bu 5 million odamga qiziq bo'lishi mumkinmi?</b>» Agar yo'q bo'lsa — qayta o'rang
+      yoki umuman olmang. Tor kasbiy mavzular ohvat bo'yicha yiqiladi.</li>
+      <li><b>Yumor, absurd, giperbola.</b> Odamlarning e'tibori tarqoq — uni <b>yo'g'on
+      obrazlar</b> bilan yulib olish kerak. Real misol emas, absurdgacha yetkazilgan yorqin misol.</li>
+      <li><b>Foyda — e'tiborni mukofotlash.</b> Ushlab turgandan keyin <b>haqiqiy qiymat bering</b>.
+      Odam oxirigacha ko'rib hech narsa olmasa — u boshqa sizning kontentingizni ochmaydi.</li>
+      <li><b>Lid-magnitga chaqiriq.</b> Odamga <b>hozirning o'zida obuna bo'lish uchun aniq sabab</b>
+      bering: gayd, video, shablon, razbor. Eng yaxshi lid-magnit — mavzuni chuqurroq ochadigan
+      10–15 daqiqalik uzun video.</li>
+    </ol>
+
+    <div class="rule"></div>
+
+    <h3 style="color:var(--t-tx);letter-spacing:.06em;margin-bottom:4mm;">Ishlab chiqarish — tayyorgarlikdan publikatsiyagacha</h3>
+
+    <div class="fig">
+      <svg viewBox="0 0 900 150" role="img" aria-label="Ishlab chiqarish bosqichlari: tayyorgarlik, surat, montaj, publikatsiya">
+        <rect x="0"   y="20" width="210" height="72" rx="5" fill="var(--t1)"/>
+        <rect x="228" y="20" width="210" height="72" rx="5" fill="var(--t2)"/>
+        <rect x="456" y="20" width="210" height="72" rx="5" fill="var(--t3)"/>
+        <rect x="684" y="20" width="216" height="72" rx="5" fill="var(--t5)"/>
+
+        <text x="105" y="46" text-anchor="middle" class="svg-onfill-d" style="font-size:14px;">TAYYORGARLIK</text>
+        <text x="105" y="66" text-anchor="middle" class="sub-d" style="font-size:11.5px;">3 kun oldin — ssenariy</text>
+        <text x="105" y="82" text-anchor="middle" class="sub-d" style="font-size:11.5px;">2 kun oldin — rekvizit</text>
+
+        <text x="333" y="46" text-anchor="middle" class="svg-onfill-d" style="font-size:14px;">SURATGA OLISH</text>
+        <text x="333" y="66" text-anchor="middle" class="sub-d" style="font-size:11.5px;">haftada 1 kun</text>
+        <text x="333" y="82" text-anchor="middle" class="sub-d" style="font-size:11.5px;">birdaniga 5–7 ta rils</text>
+
+        <text x="561" y="46" text-anchor="middle" class="svg-onfill" style="font-size:14px;">MONTAJ</text>
+        <text x="561" y="66" text-anchor="middle" class="sub-l" style="font-size:11.5px;">CapCut · 2 shrift, 2 rang</text>
+        <text x="561" y="82" text-anchor="middle" class="sub-l" style="font-size:11.5px;">effektsiz — kadr almashishi</text>
+
+        <text x="792" y="46" text-anchor="middle" class="svg-onfill" style="font-size:14px;">PUBLIKATSIYA</text>
+        <text x="792" y="66" text-anchor="middle" class="sub-l" style="font-size:11.5px;">soat 17:00</text>
+        <text x="792" y="82" text-anchor="middle" class="sub-l" style="font-size:11.5px;">birinchi soatlarda javob yozing</text>
+
+        <path d="M212 56 h14 m-5-4 l5 4 -5 4" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M440 56 h14 m-5-4 l5 4 -5 4" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M668 56 h14 m-5-4 l5 4 -5 4" fill="none" stroke="var(--muted)" stroke-width="2"/>
+
+        <text x="0" y="118" class="svg-lab-sm" style="font-size:12.5px;">Bir soatlik tayyorgarlik maydonchada uch soatni tejaydi. Startda iPhone, shtativ va tabiiy yorug'lik yetarli.</text>
+        <text x="0" y="140" class="svg-lab-sm" style="font-size:12.5px;">Storisga repost shart emas va ba'zan hatto zarar qiladi (ushlab turish yomon bo'ladi).</text>
+      </svg>
+    </div>
+
+    <div class="grid2-t">
+      <div class="card">
+        <h3>Auditoriyani ushlab qolish</h3>
+        <ul>
+          <li>Har bir rils qiymat qaytaradi</li>
+          <li>Takrorlanadigan format — hamma rils bitta tanish uslubda</li>
+          <li>Storis haftada 3–4 marta</li>
+        </ul>
+        <p class="res"><b>Nega:</b> janrlar aralashmasi — obunachi boshida ham aralashma.
+        Storissiz faqat rilslar = uzoq muddatda zaif ushlab qolish.</p>
+      </div>
+      <div class="card">
+        <h3>Yangi boshlovchilar tushadigan 6 ta tuzoq</h3>
+        <ul>
+          <li>Trend va raqs suratga olish</li>
+          <li>Juda tor kasbiy mavzular</li>
+          <li>Studiya yorug'ligidagi «chiroyli» rilslar</li>
+          <li>Zerikarli ekspert kontenti</li>
+          <li>Voronkaning yo'qligi</li>
+          <li>Birinchi rils bilan perfeksionizm</li>
+        </ul>
+        <p class="res"><b>Qoida:</b> har kuni chiqarish mukammal chiqarishdan muhimroq.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>1-qism · Timochka — e'tibor</span><span class="pg">5</span></div>
+</section>
+
+<!-- ================= 6 — VORONKA VA RAQAMLAR ================= -->
+<section class="page t">
+  <div class="runhead"><span><b>1-qism · Timochka</b></span><span>Voronka va raqamlar</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">1-QISM · yakuni</span>
+      <h2>Voronka va real raqamlar</h2>
+      <div class="rule-a"></div>
+      <p class="lead">
+        Ko'rishlarning o'zi — hech narsa. Bu yerda 1-qism tugaydi va 2-qism boshlanadi:
+        voronkaning oxirida <b>offer</b> turishi kerak.
+      </p>
+    </div>
+
+    <div class="fig">
+      <div class="figtitle">Nega rilsning o'zi sotmaydi</div>
+      <div class="grid3" style="margin-bottom:4mm;">
+        <div class="card" style="border-top-width:1.6pt;"><h3 style="font-size:13pt;">Tarqoq auditoriya</h3><p class="small" style="margin:0;">Odam yarim uyquda lentani varaqlaydi.</p></div>
+        <div class="card" style="border-top-width:1.6pt;"><h3 style="font-size:13pt;">60 soniya kam</h3><p class="small" style="margin:0;">Sotib olishga qizdirish uchun yetmaydi.</p></div>
+        <div class="card" style="border-top-width:1.6pt;"><h3 style="font-size:13pt;">Chaqiriqsiz — o'tib ketadi</h3><p class="small" style="margin:0;">Aniq keyingi qadam bo'lmasa, odam shunchaki varaqlaydi.</p></div>
+      </div>
+    </div>
+
+    <div class="fig">
+      <div class="figtitle">Pul keltiradigan voronka</div>
+      <svg viewBox="0 0 900 240" role="img" aria-label="Voronka: Reels, telegram bot, uzun video, storis, sotuv">
+        <polygon points="30,10 870,10 780,58 120,58" fill="var(--t1)"/>
+        <text x="450" y="40" text-anchor="middle" class="svg-onfill-d" style="font-size:15px;">REELS · SHORTS · KLIPLAR &nbsp;—&nbsp; e'tibor va ohvat</text>
+
+        <polygon points="122,62 778,62 706,110 194,110" fill="var(--t2)"/>
+        <text x="450" y="92" text-anchor="middle" class="svg-onfill-d" style="font-size:15px;">TELEGRAM-BOT &nbsp;—&nbsp; kod so'z bo'yicha yig'adi</text>
+
+        <polygon points="196,114 704,114 632,162 268,162" fill="var(--t3)"/>
+        <text x="450" y="144" text-anchor="middle" class="svg-onfill" style="font-size:15px;">UZUN VIDEO 40 daqiqa &nbsp;—&nbsp; chuqur qizdirish</text>
+
+        <polygon points="270,166 630,166 558,214 342,214" fill="var(--t4)"/>
+        <text x="450" y="196" text-anchor="middle" class="svg-onfill" style="font-size:15px;">STORIS &nbsp;—&nbsp; kundalik aloqa</text>
+
+        <rect x="344" y="218" width="212" height="20" rx="4" fill="var(--t5)"/>
+        <text x="450" y="233" text-anchor="middle" class="svg-onfill" style="font-size:13px;">SOTUV → 2-QISM</text>
+
+        <text x="890" y="90" text-anchor="end" class="svg-lab-sm" style="font-size:12px;">Bitta 40 daqiqalik video</text>
+        <text x="890" y="108" text-anchor="end" class="svg-lab-sm" style="font-size:12px;">20 ta rilsdan kuchliroq qizdiradi —</text>
+        <text x="890" y="126" text-anchor="end" class="svg-lab-sm" style="font-size:12px;">chunki odam ongli ravishda kiradi.</text>
+      </svg>
+      <div class="cap"><b>Kanallarning roli</b> &nbsp;Reels — trafik olib keladi. Storis va Telegram — yig'adi va qizdiradi. Uzun video — ekspertizani ochadi va sotadi.</div>
+    </div>
+
+    <div class="grid4" style="margin-bottom:5mm;">
+      <div class="stat"><span class="k">Konversiya</span><span class="v">~1%</span><p>Ko'rishdan obunaga. Yaxshi ekspert rilslar 1–2% beradi.</p></div>
+      <div class="stat"><span class="k">100K ko'rish</span><span class="v">≈1000</span><p>Shuncha obunachi. Buni oldindan hisoblab qo'ying.</p></div>
+      <div class="stat"><span class="k">Eng qiyin nuqta</span><span class="v">1000</span><p>Birinchi ming obunachi. Undan keyin barter va reklama boshlanadi.</p></div>
+      <div class="stat"><span class="k">Noldan start</span><span class="v">5–7 kun</span><p>Metodika bajarilsa, birinchi uchish real. Keys: 7 kunda 2 526 obunachi.</p></div>
+    </div>
+
+    <div class="fig" style="margin-bottom:0;">
+      <div class="figtitle">Bexabar optimizm — nima bo'lishini oldindan biling</div>
+      <p class="figsub">Egri chiziq sxematik: raqam emas, kayfiyatning o'zgarishi ko'rsatilgan.</p>
+      <svg viewBox="0 0 900 190" role="img" aria-label="Bexabar optimizm egri chizig'i: evforiya, pessimizm chuquri, o'sish">
+        <line x1="40" y1="150" x2="880" y2="150" stroke="var(--line)" stroke-width="2"/>
+        <line x1="40" y1="20" x2="40" y2="150" stroke="var(--line)" stroke-width="2"/>
+        <text x="30" y="26" text-anchor="end" class="svg-lab-sm" style="font-size:11px;">kayfiyat</text>
+
+        <path d="M40 60 C 110 34, 170 30, 220 46 S 320 120, 420 132 S 600 118, 700 78 S 830 34, 878 26"
+              fill="none" stroke="var(--t3)" stroke-width="3.5"/>
+
+        <circle cx="180" cy="34" r="6" fill="var(--t3)"/>
+        <text x="180" y="22" text-anchor="middle" class="svg-lab" style="font-size:12px;font-weight:800;">evforiya</text>
+        <circle cx="420" cy="132" r="6" fill="var(--t5)"/>
+        <text x="420" y="170" text-anchor="middle" class="svg-lab" style="font-size:12px;font-weight:800;">pessimizm chuquri</text>
+        <circle cx="860" cy="30" r="6" fill="var(--t3)"/>
+        <text x="852" y="52" text-anchor="end" class="svg-lab" style="font-size:12px;font-weight:800;">o'sish</text>
+
+        <text x="150" y="182" class="svg-lab-sm" style="font-size:12px;">1–3-kun: «hammasi oson»</text>
+        <text x="360" y="182" class="svg-lab-sm" style="font-size:12px;">4–14-kun: real muammolar ko'rinadi — KO'PCHILIK SHU YERDA TASHLAB KETADI</text>
+      </svg>
+      <div class="cap"><b>Qoida</b> &nbsp;Bu chuqurni shunchaki kutib o'tish kerak. O'nta g'oyadan bittasi haqiqatan uchadi — bu normal.</div>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>1-qism · Timochka — e'tibor</span><span class="pg">6</span></div>
+</section>
+
+<!-- ================= 7 — 2-QISM: BOZOR VA NARX ================= -->
+<section class="page h">
+  <div class="runhead"><span><b>2-qism · Hormozi</b></span><span>Bozor va narx</span></div>
+  <div class="body">
+
+    <div class="part">
+      <span class="big">2</span>
+      <div class="tx">
+        <span class="who">Aleks Hormozi · offer</span>
+        <h2>Shunday offer qilingki,<br>yo'q deyish ahmoqlik bo'lsin</h2>
+        <p class="lead">
+          Hormozining butun kitobi bitta fikr atrofida: narxni <b>tushirmang</b> — qiymatni
+          <b>ko'taring</b>. Narxni tushirish — tubga poyga. Qiymatni ko'tarish esa
+          bozordan ajralib chiqishning yagona yo'li.
+        </p>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p>«Odamlarga shunday yaxshi offer qilingki, rad etsalar o'zlarini ahmoq his qilishsin.»</p>
+      <span class="src">Aleks Hormozi · $100M Offers</span>
+    </div>
+
+    <div class="grid2-t" style="margin-bottom:6mm;">
+      <div class="card">
+        <h3>Kommoditi tuzog'i</h3>
+        <p class="small">Agar bozor sizning produktingizni «oddiy tovar» deb qabul qilsa,
+        raqobat har doim <b>narx bo'yicha</b> ketadi. Tubga poygada marja deyarli
+        yo'qoladi — biznes to'xtaydi yoki o'ladi.</p>
+        <p class="res"><b>Yechim:</b> differensiatsiya, noyob upakovka, noyob shartlar.
+        Shunda offeringiz «bir toifada yolg'iz» bo'ladi va raqobatchilar bilan
+        to'g'ridan-to'g'ri solishtirilmaydi.</p>
+      </div>
+      <div class="card">
+        <h3>Och olomon</h3>
+        <p class="small">Xot-dog sotuvchi uchun eng katta ustunlik — eng mazali xot-dog ham,
+        eng arzon narx ham emas. Eng katta ustunlik — <b>och olomon</b>.</p>
+        <p class="res"><b>Yodda tuting:</b> talabni «yaratish» shart emas — uni yo'naltirish kerak.
+        Offerga mos bozor bo'lmasa, hech qanday usul qutqarmaydi.</p>
+      </div>
+    </div>
+
+    <div class="fig">
+      <div class="figtitle">Bozorni tanlashning 4 ta omili</div>
+      <p class="figsub">To'rttasi ham bo'lishi kerak. Bittasi yo'q bo'lsa — bozorni qayta ko'rib chiqing.</p>
+      <svg viewBox="0 0 900 130" role="img" aria-label="Bozor tanlashning to'rt omili">
+        <rect x="0"   y="16" width="212" height="86" rx="6" fill="var(--h1)"/>
+        <rect x="230" y="16" width="212" height="86" rx="6" fill="var(--h2)"/>
+        <rect x="460" y="16" width="212" height="86" rx="6" fill="var(--h3)"/>
+        <rect x="690" y="16" width="210" height="86" rx="6" fill="var(--h4)"/>
+
+        <text x="106" y="52" text-anchor="middle" class="svg-onfill-d" style="font-size:15px;">KUCHLI OG'RIQ</text>
+        <text x="106" y="76" text-anchor="middle" class="sub-hd" style="font-size:12px;">muammo chindan achitadimi?</text>
+        <text x="336" y="52" text-anchor="middle" class="svg-onfill-d" style="font-size:15px;">PUL BOR</text>
+        <text x="336" y="76" text-anchor="middle" class="sub-hd" style="font-size:12px;">to'lay oladimi?</text>
+        <text x="566" y="52" text-anchor="middle" class="svg-onfill" style="font-size:15px;">TOPISH OSON</text>
+        <text x="566" y="76" text-anchor="middle" class="sub-hl" style="font-size:12px;">ularga yetib bora olasizmi?</text>
+        <text x="795" y="52" text-anchor="middle" class="svg-onfill" style="font-size:15px;">O'SISH BOR</text>
+        <text x="795" y="76" text-anchor="middle" class="sub-hl" style="font-size:12px;">bozor o'lib borayaptimi?</text>
+
+        <text x="0" y="122" class="svg-lab-sm" style="font-size:12.5px;">O'lib borayotgan bozor (masalan, qog'oz gazetalar) — yomon nisha. Bozor o'suvchi yoki hech bo'lmasa barqaror bo'lishi kerak.</text>
+      </svg>
+    </div>
+
+    <div class="grid2" style="margin-bottom:5mm;">
+      <div class="fig" style="margin-bottom:0;">
+        <div class="figtitle">Nisha qanchalik tor — narx shunchalik baland</div>
+        <svg viewBox="0 0 420 150" role="img" aria-label="Nisha torayganda narx oshadi">
+          <rect x="0"   y="112" width="128" height="30" rx="4" fill="var(--h1)"/>
+          <rect x="146" y="80"  width="128" height="62" rx="4" fill="var(--h3)"/>
+          <rect x="292" y="34"  width="128" height="108" rx="4" fill="var(--h5)"/>
+
+          <text x="64"  y="132" text-anchor="middle" class="svg-onfill-d" style="font-size:12px;">arzon</text>
+          <text x="210" y="106" text-anchor="middle" class="svg-onfill" style="font-size:12px;">o'rtacha</text>
+          <text x="356" y="66"  text-anchor="middle" class="svg-onfill" style="font-size:12px;">qimmat</text>
+
+          <text x="64"  y="104" text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">taym-menejment</text>
+          <text x="210" y="72"  text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">sotuvchilar uchun</text>
+          <text x="356" y="26"  text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">B2B elektr asbob</text>
+          <text x="356" y="12"  text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">sotuvchilari uchun</text>
+          <line x1="0" y1="146" x2="420" y2="146" stroke="var(--line)" stroke-width="1.5"/>
+        </svg>
+        <div class="cap">«Boylik nishalarda». Auditoriyani toraytirib, narxni ko'tarasiz.</div>
+      </div>
+
+      <div class="fig" style="margin-bottom:0;">
+        <div class="figtitle">Narxning halol tsikli</div>
+        <svg viewBox="0 0 420 152" role="img" aria-label="Yuqori narx yaxshi natija beradigan aylanma tsikl">
+          <!-- aylanma yo'nalish -->
+          <path d="M210 34 A 44 44 0 1 1 209 34" fill="none" stroke="var(--h)"
+                stroke-width="2" stroke-dasharray="5 5"/>
+          <path d="M203 30 l8 4 -8 5" fill="var(--h)"/>
+
+          <rect x="115" y="0"   width="190" height="28" rx="4" fill="var(--h3)"/>
+          <text x="210" y="19" text-anchor="middle" class="svg-onfill" style="font-size:12px;">1 · Qimmat sotasiz</text>
+
+          <rect x="296" y="61"  width="124" height="34" rx="4" fill="var(--h2)"/>
+          <text x="358" y="75" text-anchor="middle" class="svg-onfill-d" style="font-size:11px;">2 · Mijoz ko'proq</text>
+          <text x="358" y="89" text-anchor="middle" class="svg-onfill-d" style="font-size:11px;">jalb bo'ladi</text>
+
+          <rect x="115" y="124" width="190" height="28" rx="4" fill="var(--h4)"/>
+          <text x="210" y="143" text-anchor="middle" class="svg-onfill" style="font-size:12px;">3 · U natija oladi</text>
+
+          <rect x="0" y="61"   width="124" height="34" rx="4" fill="var(--h2)"/>
+          <text x="62" y="75" text-anchor="middle" class="svg-onfill-d" style="font-size:11px;">4 · Sifatga qayta</text>
+          <text x="62" y="89" text-anchor="middle" class="svg-onfill-d" style="font-size:11px;">investitsiya</text>
+        </svg>
+        <div class="cap">Kam olsangiz — zo'r narsa qilishga mablag' qolmaydi. Shunday biznes o'ladi.</div>
+      </div>
+    </div>
+
+    <div class="tip" style="margin-bottom:0;">
+      <span class="lbl">Hormozining o'z keysi</span>
+      <p style="margin-bottom:0;">
+        U trenajyor zali egalari uchun xizmatni raqobatchilardan <b>32 marta qimmat</b> sotgan.
+        Va odamlar baribir mamnuniyat bilan sotib olgan — chunki ular ancha ko'proq foyda olgan.
+        Yuqori narx = yuqori qabul qilinadigan qiymat = mijozning yuqori jalb bo'lishi.
+      </p>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>2-qism · Hormozi — offer</span><span class="pg">7</span></div>
+</section>
+
+<!-- ================= 8 — QIYMAT TENGLAMASI ================= -->
+<section class="page h">
+  <div class="runhead"><span><b>2-qism · Hormozi</b></span><span>Qiymat tenglamasi</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">2-QISM · asosiy qism</span>
+      <h2>Qiymat tenglamasi</h2>
+      <div class="rule-a"></div>
+      <p class="lead">
+        Butun kitobning yuragi. Mijozning ko'zidagi qiymatni 4 ta omil belgilaydi.
+        Ikkitasini <b>ko'taring</b>, ikkitasini <b>tushiring</b> — offer avtomatik kuchayadi.
+      </p>
+    </div>
+
+    <div class="fig">
+      <svg viewBox="0 0 900 320" role="img" aria-label="Qiymat tenglamasi: orzudagi natija karra ehtimol bo'lingan kutish vaqti karra kuch">
+        <!-- QIYMAT = -->
+        <text x="0" y="150" class="svg-lab" style="font-size:30px;font-weight:800;fill:var(--h-tx);">QIYMAT</text>
+        <text x="150" y="150" class="svg-lab" style="font-size:30px;font-weight:800;fill:var(--muted);">=</text>
+
+        <!-- richag yo'nalishi — chapda, bo'sh joyda -->
+        <path d="M22 96 v-46 m-8 12 l8 -12 8 12" fill="none" stroke="var(--h-tx)" stroke-width="3"/>
+        <text x="40" y="62" class="svg-lab" style="font-size:14px;font-weight:800;fill:var(--h-tx);">KO'TARING</text>
+        <text x="40" y="80" class="svg-lab-sm" style="font-size:11.5px;">bu ikkitasini</text>
+
+        <path d="M22 196 v46 m-8 -12 l8 12 8 -12" fill="none" stroke="var(--h-tx)" stroke-width="3"/>
+        <text x="40" y="222" class="svg-lab" style="font-size:14px;font-weight:800;fill:var(--h-tx);">TUSHIRING</text>
+        <text x="40" y="240" class="svg-lab-sm" style="font-size:11.5px;">bu ikkitasini</text>
+
+        <!-- surat (yuqori) -->
+        <rect x="210" y="30" width="290" height="80" rx="6" fill="var(--h3)"/>
+        <text x="355" y="64" text-anchor="middle" class="svg-onfill" style="font-size:16px;">ORZUDAGI NATIJA</text>
+        <text x="355" y="88" text-anchor="middle" class="sub-hl" style="font-size:12.5px;">odam nimani chindan xohlaydi</text>
+
+        <text x="520" y="78" text-anchor="middle" class="svg-lab" style="font-size:26px;font-weight:800;fill:var(--muted);">×</text>
+
+        <rect x="545" y="30" width="290" height="80" rx="6" fill="var(--h3)"/>
+        <text x="690" y="64" text-anchor="middle" class="svg-onfill" style="font-size:16px;">ERISHISH EHTIMOLI</text>
+        <text x="690" y="88" text-anchor="middle" class="sub-hl" style="font-size:12.5px;">ishonch: «menda ham ishlaydi»</text>
+
+        <!-- kasr chizig'i -->
+        <line x1="210" y1="145" x2="835" y2="145" stroke="var(--ink)" stroke-width="4"/>
+
+        <!-- maxraj (past) -->
+        <rect x="210" y="180" width="290" height="80" rx="6" fill="var(--h1)"/>
+        <text x="355" y="214" text-anchor="middle" class="svg-onfill-d" style="font-size:16px;">KUTISH VAQTI</text>
+        <text x="355" y="238" text-anchor="middle" class="sub-hd" style="font-size:12.5px;">natijagacha qancha kutadi</text>
+
+        <text x="520" y="228" text-anchor="middle" class="svg-lab" style="font-size:26px;font-weight:800;fill:var(--muted);">×</text>
+
+        <rect x="545" y="180" width="290" height="80" rx="6" fill="var(--h1)"/>
+        <text x="690" y="214" text-anchor="middle" class="svg-onfill-d" style="font-size:16px;">KUCH VA QURBONLIK</text>
+        <text x="690" y="238" text-anchor="middle" class="sub-hd" style="font-size:12.5px;">qancha mehnat qilishi kerak</text>
+
+        <text x="0" y="292" class="svg-lab-sm" style="font-size:12.5px;">Agar natijaga bir zumda va hech qanday kuch sarflamasdan erishish mumkin bo'lsa — qiymat cheksiz bo'lardi.</text>
+        <text x="0" y="312" class="svg-lab-sm" style="font-size:12.5px;">Shunga qanchalik yaqinlashsangiz, shuncha qimmat sota olasiz.</text>
+      </svg>
+    </div>
+
+    <div class="grid4" style="margin-bottom:5mm;">
+      <div class="card" style="border-top-width:1.6pt;">
+        <h3 style="font-size:13pt;">Natijani aniq qiling</h3>
+        <p class="small" style="margin:0;">«Bilim beramiz» emas — «30 kunda birinchi 10 ta mijoz».</p>
+      </div>
+      <div class="card" style="border-top-width:1.6pt;">
+        <h3 style="font-size:13pt;">Ishonchni oshiring</h3>
+        <p class="small" style="margin:0;">Keyslar, otzivlar, kafolat, «biz bilan qilamiz» formati.</p>
+      </div>
+      <div class="card" style="border-top-width:1.6pt;">
+        <h3 style="font-size:13pt;">Vaqtni qisqartiring</h3>
+        <p class="small" style="margin:0;">Birinchi natija 7-kunda bo'lsin, 6-oyda emas.</p>
+      </div>
+      <div class="card" style="border-top-width:1.6pt;">
+        <h3 style="font-size:13pt;">Kuchni kamaytiring</h3>
+        <p class="small" style="margin:0;">Tayyor shablon, sizning o'rningizga qilib berish, «tugmani bosing».</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p>«Odamlar ishonch uchun to'laydi. Ular aniq ishlaydigan narsani sotib olishni xohlaydi.»</p>
+      <span class="src">Aleks Hormozi · $100M Offers</span>
+    </div>
+
+    <div class="fig">
+      <div class="figtitle">Tenglama amalda — bitta produkt, ikki xil upakovka</div>
+      <p class="figsub">Produktning o'zi o'zgarmadi. Faqat 4 ta richag sozlandi — va narx ko'tarildi.</p>
+      <svg viewBox="0 0 900 250" role="img" aria-label="Offerning oldingi va keyingi varianti taqqoslanmoqda">
+        <rect x="0"   y="0" width="430" height="30" rx="4" fill="var(--off)"/>
+        <rect x="470" y="0" width="430" height="30" rx="4" fill="var(--h4)"/>
+        <text x="215" y="20" text-anchor="middle" class="svg-lab" style="font-size:13px;font-weight:800;">EDI — kuchsiz offer</text>
+        <text x="685" y="20" text-anchor="middle" class="svg-onfill" style="font-size:13px;">BO'LDI — kuchli offer</text>
+
+        <g class="svg-lab" style="font-size:12.5px;">
+          <text x="10" y="58">«SMM bo'yicha onlayn-kurs»</text>
+          <text x="10" y="98">12 ta dars, 3 oy davom etadi</text>
+          <text x="10" y="138">«Bilim va ko'nikma beramiz»</text>
+          <text x="10" y="178">Hamma narsani o'zingiz qilasiz</text>
+          <text x="10" y="218">Kafolat yo'q</text>
+        </g>
+        <g class="svg-lab" style="font-size:12.5px;">
+          <text x="480" y="58">«SMM-chilar uchun 30 kunda birinchi 10 ta mijoz»</text>
+          <text x="480" y="98">Birinchi natija 7-kunda</text>
+          <text x="480" y="138">40 ta o'quvchi keysi — «menda ham ishlaydi»</text>
+          <text x="480" y="178">Tayyor shablonlar — nolda yozish shart emas</text>
+          <text x="480" y="218">Natija bo'lmasa — pulni qaytaramiz</text>
+        </g>
+
+        <g class="svg-lab-sm" style="font-size:11px;fill:var(--h-tx);font-weight:800;">
+          <text x="447" y="52" text-anchor="middle">NATIJA</text>
+          <text x="447" y="64" text-anchor="middle">↑</text>
+          <text x="447" y="92" text-anchor="middle">VAQT</text>
+          <text x="447" y="104" text-anchor="middle">↓</text>
+          <text x="447" y="132" text-anchor="middle">EHTIMOL</text>
+          <text x="447" y="144" text-anchor="middle">↑</text>
+          <text x="447" y="172" text-anchor="middle">KUCH</text>
+          <text x="447" y="184" text-anchor="middle">↓</text>
+          <text x="447" y="212" text-anchor="middle">XAVF</text>
+          <text x="447" y="224" text-anchor="middle">↓</text>
+        </g>
+
+        <g stroke="var(--line)" stroke-width="1.2">
+          <line x1="0" y1="72" x2="900" y2="72"/><line x1="0" y1="112" x2="900" y2="112"/>
+          <line x1="0" y1="152" x2="900" y2="152"/><line x1="0" y1="192" x2="900" y2="192"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="grid2-t" style="margin-bottom:0;">
+      <div class="card">
+        <h3>Divergent fikrlash — avval ko'p, keyin tanlash</h3>
+        <p class="small">Offer yaratishda darhol «to'g'ri» yechimni izlamang. Avval
+        <b>iloji boricha ko'p g'oya</b> chiqaring — mijozning muammosini qanday hal qilish
+        mumkinligini, keyin ortiqchasini qisqartirasiz.</p>
+        <p class="res"><b>«G'isht» mashqi:</b> g'ishtni ishlatishning imkon qadar ko'p usulini
+        o'ylab toping. Xuddi shunday — mijozning barcha muammosini yozing va har birini
+        yechimga aylantiring.</p>
+      </div>
+      <div class="card">
+        <h3>Nega bu yerda «arzonlashtirish» yo'q</h3>
+        <p class="small">Tenglamada narx umuman qatnashmaydi. Chunki mijoz narxni
+        <b>o'zi bilan emas</b>, balki qiymat bilan solishtiradi. Qiymat baland bo'lsa —
+        narx arzon tuyuladi.</p>
+        <p class="res"><b>Shuning uchun:</b> «chegirma qilaymi?» degan savol o'rniga
+        «qaysi richagni hali sozlamadim?» deb so'rang.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>2-qism · Hormozi — offer</span><span class="pg">8</span></div>
+</section>
+
+<!-- ================= 9 — 5 QADAM ================= -->
+<section class="page h">
+  <div class="runhead"><span><b>2-qism · Hormozi</b></span><span>Grand Slam offer</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">2-QISM · davomi</span>
+      <h2>«Katta shlem» offeri:<br>5 qadam</h2>
+      <div class="rule-a"></div>
+      <p class="lead">
+        Offer yaratishning amaliy modeli. Har qadamni qog'ozga yozing —
+        boshda saqlab bo'lmaydi.
+      </p>
+    </div>
+
+    <div class="fig">
+      <svg viewBox="0 0 900 160" role="img" aria-label="Grand Slam offer yaratishning besh qadami">
+        <rect x="0"   y="24" width="168" height="92" rx="6" fill="var(--h1)"/>
+        <rect x="183" y="24" width="168" height="92" rx="6" fill="var(--h2)"/>
+        <rect x="366" y="24" width="168" height="92" rx="6" fill="var(--h3)"/>
+        <rect x="549" y="24" width="168" height="92" rx="6" fill="var(--h4)"/>
+        <rect x="732" y="24" width="168" height="92" rx="6" fill="var(--h5)"/>
+
+        <circle cx="20" cy="24" r="15" fill="var(--ink)"/><text x="20" y="29" text-anchor="middle" class="svg-num" style="font-size:14px;">1</text>
+        <circle cx="203" cy="24" r="15" fill="var(--ink)"/><text x="203" y="29" text-anchor="middle" class="svg-num" style="font-size:14px;">2</text>
+        <circle cx="386" cy="24" r="15" fill="var(--ink)"/><text x="386" y="29" text-anchor="middle" class="svg-num" style="font-size:14px;">3</text>
+        <circle cx="569" cy="24" r="15" fill="var(--ink)"/><text x="569" y="29" text-anchor="middle" class="svg-num" style="font-size:14px;">4</text>
+        <circle cx="752" cy="24" r="15" fill="var(--ink)"/><text x="752" y="29" text-anchor="middle" class="svg-num" style="font-size:14px;">5</text>
+
+        <text x="84"  y="66" text-anchor="middle" class="svg-onfill-d" style="font-size:13px;">ORZUDAGI</text>
+        <text x="84"  y="84" text-anchor="middle" class="svg-onfill-d" style="font-size:13px;">NATIJA</text>
+        <text x="84"  y="104" text-anchor="middle" class="sub-hd" style="font-size:11px;">mijoz nimani xohlaydi</text>
+
+        <text x="267" y="66" text-anchor="middle" class="svg-onfill-d" style="font-size:13px;">MUAMMOLAR</text>
+        <text x="267" y="84" text-anchor="middle" class="svg-onfill-d" style="font-size:13px;">RO'YXATI</text>
+        <text x="267" y="104" text-anchor="middle" class="sub-hd" style="font-size:11px;">to'siq va e'tirozlar</text>
+
+        <text x="450" y="66" text-anchor="middle" class="svg-onfill" style="font-size:13px;">HAR MUAMMO →</text>
+        <text x="450" y="84" text-anchor="middle" class="svg-onfill" style="font-size:13px;">YECHIM</text>
+        <text x="450" y="104" text-anchor="middle" class="sub-hl" style="font-size:11px;">tushunarli nom bering</text>
+
+        <text x="633" y="66" text-anchor="middle" class="svg-onfill" style="font-size:13px;">QULAY</text>
+        <text x="633" y="84" text-anchor="middle" class="svg-onfill" style="font-size:13px;">FORMATGA</text>
+        <text x="633" y="104" text-anchor="middle" class="sub-hl" style="font-size:11px;">vaqt va resurs oqilona</text>
+
+        <text x="816" y="66" text-anchor="middle" class="svg-onfill" style="font-size:13px;">BITTA</text>
+        <text x="816" y="84" text-anchor="middle" class="svg-onfill" style="font-size:13px;">PAKETGA</text>
+        <text x="816" y="104" text-anchor="middle" class="sub-hl" style="font-size:11px;">marja yuqori qoladi</text>
+
+        <text x="0" y="146" class="svg-lab-sm" style="font-size:12.5px;">Avval hammasini qo'lda qiling, keyin optimallashtiring va guruh yoki avtomatlashgan formatga o'ting — shunda past tannarxda yuqori narxga erishasiz.</text>
+      </svg>
+    </div>
+
+    <div class="fig">
+      <div class="figtitle">2 va 3-qadam amalda: muammo → yechim</div>
+      <p class="figsub">Chap ustunga mijozning har bir e'tirozini yozing. O'ng ustunga — uni yopadigan aniq narsa.</p>
+      <svg viewBox="0 0 900 210" role="img" aria-label="Muammolar va ularga mos yechimlar jadvali">
+        <rect x="0"   y="0" width="420" height="30" rx="4" fill="var(--h4)"/>
+        <rect x="480" y="0" width="420" height="30" rx="4" fill="var(--h4)"/>
+        <text x="210" y="20" text-anchor="middle" class="svg-onfill" style="font-size:13px;">MIJOZNING MUAMMOSI</text>
+        <text x="690" y="20" text-anchor="middle" class="svg-onfill" style="font-size:13px;">SIZNING YECHIMINGIZ</text>
+
+        <g class="svg-lab" style="font-size:13px;">
+          <text x="12" y="58">«Vaqtim yo'q»</text>
+          <text x="12" y="96">«Uddalay olmayman»</text>
+          <text x="12" y="134">«Ishlashiga ishonchim yo'q»</text>
+          <text x="12" y="172">«Qimmat»</text>
+        </g>
+        <g class="svg-lab" style="font-size:13px;">
+          <text x="492" y="58">Haftada 2 soat · tayyor shablonlar</text>
+          <text x="492" y="96">Kurator sizning o'rningizga tekshiradi</text>
+          <text x="492" y="134">Natija kafolati yoki pulni qaytarish</text>
+          <text x="492" y="172">Bo'lib to'lash + bonuslar narxdan qimmat</text>
+        </g>
+
+        <g stroke="var(--line)" stroke-width="1.2">
+          <line x1="0" y1="70" x2="900" y2="70"/><line x1="0" y1="108" x2="900" y2="108"/>
+          <line x1="0" y1="146" x2="900" y2="146"/><line x1="0" y1="184" x2="900" y2="184"/>
+        </g>
+        <g fill="none" stroke="var(--h)" stroke-width="2">
+          <path d="M430 52 h40 m-12-5 l12 5 -12 5"/><path d="M430 90 h40 m-12-5 l12 5 -12 5"/>
+          <path d="M430 128 h40 m-12-5 l12 5 -12 5"/><path d="M430 166 h40 m-12-5 l12 5 -12 5"/>
+        </g>
+        <text x="0" y="204" class="svg-lab-sm" style="font-size:12.5px;">Qancha ko'p muammo topsangiz — shuncha ko'p yechim taklif qila olasiz. Hamma tugunni yopsangiz, mijozda «yo'q» deyish uchun sabab qolmaydi.</text>
+      </svg>
+    </div>
+
+    <div class="tip" style="margin-bottom:0;">
+      <span class="lbl">Eng muhim fikr</span>
+      <p style="margin-bottom:0;">
+        <b>Biz «samolyot» sotmaymiz — biz «boradigan joy» sotamiz.</b> Odamga natija kerak,
+        vosita emas. Shuning uchun offerda dars soatlari, modullar va texnologiyalar emas,
+        <b>odam nimaga erishishi</b> yozilishi kerak.
+      </p>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>2-qism · Hormozi — offer</span><span class="pg">9</span></div>
+</section>
+
+<!-- ================= 10 — KUCHAYTIRGICHLAR ================= -->
+<section class="page h">
+  <div class="runhead"><span><b>2-qism · Hormozi</b></span><span>Kuchaytirgichlar</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">2-QISM · yakuni</span>
+      <h2>5 ta kuchaytirgich</h2>
+      <div class="rule-a"></div>
+      <p class="lead">
+        Asosiy offer allaqachon qimmatli bo'lsa, mana bu 5 ta asbob uni «katta shlem»ga
+        aylantiradi. Ular offerni o'rnini bosmaydi — faqat kuchaytiradi.
+      </p>
+    </div>
+
+    <div class="grid3" style="margin-bottom:5mm;">
+      <div class="card">
+        <h3>1 · Defitsit</h3>
+        <p class="small">Miqdorni cheklash. «Oyiga faqat 25 ta mijoz olamiz», «2 ta joy qoldi»,
+        kutish ro'yxati.</p>
+        <p class="res"><b>Shart:</b> defitsit <b>halol</b> bo'lsin. Odam aldanganini sezsa —
+        ishonch butunlay yo'qoladi.</p>
+      </div>
+      <div class="card">
+        <h3>2 · Shoshilinchlik</h3>
+        <p class="small">Vaqt bo'yicha cheklov. «Yangi guruh dushanbada boshlanadi, keyingisi
+        2 haftadan keyin». Dedlayn bo'lmasa — odam cheksiz cho'zadi.</p>
+        <p class="res"><b>Raqam:</b> real dedlayn bo'lganda sotuvlarning
+        <b>50–60%</b> yopilishdan oldingi oxirgi 4 soatda bo'ladi.</p>
+      </div>
+      <div class="card">
+        <h3>3 · Bonuslar</h3>
+        <p class="small">Chegirma berishdan ko'ra bonus qo'shgan yaxshi. Har bir bonus —
+        alohida to'siqning yechimi. Har biriga yorqin nom va tushunarli summa bering.</p>
+        <p class="res"><b>Fokus:</b> narxni tushirmaysiz — o'sib borayotgan bonuslar
+        ro'yxatiga nisbatan narx o'zi arzon ko'rinadi.</p>
+      </div>
+    </div>
+
+    <div class="fig">
+      <div class="figtitle">4 · Kafolat — eng kuchli richag</div>
+      <p class="figsub">Eng kuchli e'tiroz — «ishlamay qolsa-chi?» degan qo'rquv. Uni olib tashlang.</p>
+      <svg viewBox="0 0 900 150" role="img" aria-label="Kafolatning to'rt turi">
+        <rect x="0"   y="16" width="212" height="88" rx="6" fill="var(--h5)"/>
+        <rect x="230" y="16" width="212" height="88" rx="6" fill="var(--h3)"/>
+        <rect x="460" y="16" width="212" height="88" rx="6" fill="var(--h2)"/>
+        <rect x="690" y="16" width="210" height="88" rx="6" fill="var(--h1)"/>
+
+        <text x="106" y="48" text-anchor="middle" class="svg-onfill" style="font-size:14px;">SHARTSIZ</text>
+        <text x="106" y="70" text-anchor="middle" class="sub-hl" style="font-size:11.5px;">«fikringiz o'zgargan</text>
+        <text x="106" y="86" text-anchor="middle" class="sub-hl" style="font-size:11.5px;">bo'lsa ham qaytaramiz»</text>
+
+        <text x="336" y="48" text-anchor="middle" class="svg-onfill" style="font-size:14px;">SHARTLI</text>
+        <text x="336" y="70" text-anchor="middle" class="sub-hl" style="font-size:11.5px;">mijoz kelishilgan</text>
+        <text x="336" y="86" text-anchor="middle" class="sub-hl" style="font-size:11.5px;">ishlarni bajarsa</text>
+
+        <text x="566" y="48" text-anchor="middle" class="svg-onfill-d" style="font-size:14px;">ANTI-KAFOLAT</text>
+        <text x="566" y="70" text-anchor="middle" class="sub-hd" style="font-size:11.5px;">«barcha sotuvlar yakuniy» —</text>
+        <text x="566" y="86" text-anchor="middle" class="sub-hd" style="font-size:11.5px;">nusxa olish oson bo'lsa</text>
+
+        <text x="795" y="48" text-anchor="middle" class="svg-onfill-d" style="font-size:14px;">NATIJAGA</text>
+        <text x="795" y="70" text-anchor="middle" class="sub-hd" style="font-size:11.5px;">foydadan foiz —</text>
+        <text x="795" y="86" text-anchor="middle" class="sub-hd" style="font-size:11.5px;">pay-per-result</text>
+
+        <text x="0" y="128" class="svg-lab" style="font-size:13px;font-weight:800;fill:var(--h-tx);">Kuchli kafolat konversiyani 2–4 marta oshiradi</text>
+        <text x="420" y="128" class="svg-lab-sm" style="font-size:12.5px;">— hatto qaytarishlar foizi biroz oshsa ham, umumiy natija foydaliroq bo'ladi.</text>
+        <text x="0" y="146" class="svg-lab-sm" style="font-size:12.5px;">Narxni hech qachon tushirmang; buning o'rniga o'zingiz bera oladigan eng kuchli kafolat bilan mijozdan xavfni oling.</text>
+      </svg>
+    </div>
+
+    <div class="fig">
+      <div class="figtitle">5 · Nom — M-A-G-I-C formulasi</div>
+      <p class="figsub">Bir xil offer turli nom ostida sotuvda 2–3 barobar farq berishi mumkin.</p>
+      <svg viewBox="0 0 900 140" role="img" aria-label="MAGIC formulasi: magnit, avatar, maqsad, interval, konteyner">
+        <rect x="0"   y="16" width="168" height="76" rx="6" fill="var(--h3)"/>
+        <rect x="183" y="16" width="168" height="76" rx="6" fill="var(--h3)"/>
+        <rect x="366" y="16" width="168" height="76" rx="6" fill="var(--h3)"/>
+        <rect x="549" y="16" width="168" height="76" rx="6" fill="var(--h3)"/>
+        <rect x="732" y="16" width="168" height="76" rx="6" fill="var(--h3)"/>
+
+        <text x="84"  y="46" text-anchor="middle" class="svg-onfill" style="font-size:22px;">M</text>
+        <text x="267" y="46" text-anchor="middle" class="svg-onfill" style="font-size:22px;">A</text>
+        <text x="450" y="46" text-anchor="middle" class="svg-onfill" style="font-size:22px;">G</text>
+        <text x="633" y="46" text-anchor="middle" class="svg-onfill" style="font-size:22px;">I</text>
+        <text x="816" y="46" text-anchor="middle" class="svg-onfill" style="font-size:22px;">C</text>
+
+        <text x="84"  y="68" text-anchor="middle" class="sub-hl" style="font-size:12px;">Magnit</text>
+        <text x="84"  y="84" text-anchor="middle" class="sub-hl" style="font-size:11px;">nega aynan hozir</text>
+        <text x="267" y="68" text-anchor="middle" class="sub-hl" style="font-size:12px;">Avatar</text>
+        <text x="267" y="84" text-anchor="middle" class="sub-hl" style="font-size:11px;">kim uchun</text>
+        <text x="450" y="68" text-anchor="middle" class="sub-hl" style="font-size:12px;">Maqsad</text>
+        <text x="450" y="84" text-anchor="middle" class="sub-hl" style="font-size:11px;">qanday natija</text>
+        <text x="633" y="68" text-anchor="middle" class="sub-hl" style="font-size:12px;">Interval</text>
+        <text x="633" y="84" text-anchor="middle" class="sub-hl" style="font-size:11px;">qancha vaqtda</text>
+        <text x="816" y="68" text-anchor="middle" class="sub-hl" style="font-size:12px;">Konteyner</text>
+        <text x="816" y="84" text-anchor="middle" class="sub-hl" style="font-size:11px;">kurs · intensiv · chelenj</text>
+
+        <text x="0" y="116" class="svg-lab" style="font-size:13px;">Misol: «SMM-chilar uchun 30 kunda birinchi 10 ta mijoz — bahorgi intensiv»</text>
+        <text x="0" y="134" class="svg-lab-sm" style="font-size:12.5px;">Nomni almashtirib, mohiyatni saqlash mumkin. Bu marketingni yangilaydi va offerning bozorda «kuyib ketishini» oldini oladi.</text>
+      </svg>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>2-qism · Hormozi — offer</span><span class="pg">10</span></div>
+</section>
+
+<!-- ================= 11 — 3-QISM: MIKS ================= -->
+<section class="page mix">
+  <div class="runhead"><span><b>3-qism · Miks</b></span><span>Ikkalasi birga</span></div>
+  <div class="body">
+
+    <div class="part" style="border-top-color:var(--ink);">
+      <span class="big" style="color:var(--ink);">3</span>
+      <div class="tx">
+        <span class="who" style="color:var(--ink);">Timochka × Hormozi</span>
+        <h2>Offer rilsning<br>qayerida yashaydi</h2>
+        <p class="lead">
+          Eng qiziq joyi shu: Timochkaning ssenariy strukturasi va Hormozining offer
+          elementlari <b>bir-biriga aniq mos tushadi</b>. Rilsning har bir qismi
+          offerning bir bo'lagini olib yuradi.
+        </p>
+      </div>
+    </div>
+
+    <div class="fig">
+      <div class="figtitle">Moslik jadvali — rilsning elementi ↔ offerning elementi</div>
+      <div class="legend">
+        <span><i style="background:var(--t)"></i> Timochka — rils elementi</span>
+        <span><i style="background:var(--h)"></i> Hormozi — offer elementi</span>
+      </div>
+      <svg viewBox="0 0 900 260" role="img" aria-label="Rils elementlari va offer elementlarining mosligi">
+        <!-- sarlavhalar -->
+        <rect x="0"   y="0" width="380" height="28" rx="4" fill="var(--t3)"/>
+        <rect x="520" y="0" width="380" height="28" rx="4" fill="var(--h3)"/>
+        <text x="190" y="19" text-anchor="middle" class="svg-onfill" style="font-size:12.5px;">RILSDA</text>
+        <text x="710" y="19" text-anchor="middle" class="svg-onfill" style="font-size:12.5px;">OFFERDA</text>
+
+        <g class="svg-lab" style="font-size:13px;">
+          <text x="10" y="56">ILGAK — e'tiborni to'xtatadi</text>
+          <text x="10" y="100">KUCHAYTIRISH — nega muhim</text>
+          <text x="10" y="144">ASOSIY MAZMUN — foyda beradi</text>
+          <text x="10" y="188">XULOSA — «shunday qiling va…»</text>
+          <text x="10" y="232">CHAQIRIQ — kod so'z, lid-magnit</text>
+        </g>
+        <g class="svg-lab" style="font-size:13px;">
+          <text x="530" y="56">ORZUDAGI NATIJA — odam nimani xohlaydi</text>
+          <text x="530" y="100">OG'RIQ VA TO'SIQ — muammolar ro'yxati</text>
+          <text x="530" y="144">ERISHISH EHTIMOLI — «menda ham ishlaydi»</text>
+          <text x="530" y="188">KUTISH VAQTI ↓ — natija tez keladi</text>
+          <text x="530" y="232">DEFITSIT VA SHOSHILINCHLIK — hozir harakat</text>
+        </g>
+
+        <g fill="none" stroke="var(--muted)" stroke-width="2">
+          <path d="M400 51 h100 m-14-6 l14 6 -14 6"/>
+          <path d="M400 95 h100 m-14-6 l14 6 -14 6"/>
+          <path d="M400 139 h100 m-14-6 l14 6 -14 6"/>
+          <path d="M400 183 h100 m-14-6 l14 6 -14 6"/>
+          <path d="M400 227 h100 m-14-6 l14 6 -14 6"/>
+        </g>
+        <g stroke="var(--line)" stroke-width="1.2">
+          <line x1="0" y1="70" x2="900" y2="70"/><line x1="0" y1="114" x2="900" y2="114"/>
+          <line x1="0" y1="158" x2="900" y2="158"/><line x1="0" y1="202" x2="900" y2="202"/>
+        </g>
+      </svg>
+      <div class="cap"><b>Xulosa</b> &nbsp;Rils — bu qisqartirilgan offer. Unda offerning hamma elementi bor, faqat 60 soniyaga siqilgan.</div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="grid2-t" style="margin-bottom:5mm;">
+      <div class="card" style="--accent:var(--ink);--pale:var(--tint);">
+        <h3>Lid-magnit — ikkala metodika kesishgan joy</h3>
+        <p class="small">Timochka aytadi: rilsga obuna bo'lish uchun aniq sabab kerak — gayd,
+        video, shablon. Hormozi aytadi: avval qiymat bering, keyin so'rang (bu PLF va
+        tripvayerning mantiqi).</p>
+        <p class="small"><b>Ikkalasi bitta narsani aytyapti.</b> Lid-magnit — bu bir vaqtning
+        o'zida Timochkaning «chaqirig'i» va Hormozining «qiymat avans»i.</p>
+        <p class="res"><b>Amalda:</b> 5–6 ta rils → bitta kod so'z → bitta uzun video.
+        Uzun videoning oxirida — offer.</p>
+      </div>
+      <div class="card" style="--accent:var(--ink);--pale:var(--tint);">
+        <h3>Nima uchun rilsda narx aytilmaydi</h3>
+        <p class="small">Hormozining qiymat tenglamasi bo'yicha, narx <b>qiymat ko'rsatilgandan
+        keyin</b> aytilishi kerak. Rilsda qiymatni to'liq ko'rsatishga 60 soniya yetmaydi.</p>
+        <p class="small">Shuning uchun rils narx aytmaydi — u faqat <b>orzudagi natijani</b>
+        ko'rsatadi va keyingi qadamga o'tkazadi.</p>
+        <p class="res"><b>Xato:</b> rilsda darhol «kursimni 5 mln so'mga oling» deyish.
+        Odam qiymatni ko'rmagan — narx qimmat tuyuladi.</p>
+      </div>
+    </div>
+
+    <div class="tip" style="margin-bottom:0;">
+      <span class="lbl">Publikatsiyadan oldingi umumiy chek-list</span>
+      <div class="grid2" style="gap:1mm 10mm;">
+        <p style="margin-bottom:0;font-size:12pt;">
+          <b>Timochka bo'yicha:</b><br>
+          1. Bu 5 mln odamga qiziqmi?<br>
+          2. Ilgak birinchi 2 soniyada ushlaydimi?<br>
+          3. Har gap alohida kadrda ko'rsatilganmi?<br>
+          4. Odam foyda olib qoladimi?<br>
+          5. Aniq keyingi qadam bormi?
+        </p>
+        <p style="margin-bottom:0;font-size:12pt;">
+          <b>Hormozi bo'yicha:</b><br>
+          6. Orzudagi natija aniq aytilganmi?<br>
+          7. «Menda ham ishlaydi» degan ishonch bormi?<br>
+          8. Natijagacha vaqt qisqami?<br>
+          9. Odam kam kuch sarflashi ko'rinyaptimi?<br>
+          10. Hozir harakat qilish uchun sabab bormi?
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>3-qism · Miks</span><span class="pg">11</span></div>
+</section>
+
+<!-- ================= 12 — 30 KUNLIK REJA ================= -->
+<section class="page mix">
+  <div class="runhead"><span><b>3-qism · Miks</b></span><span>30 kunlik reja</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">YAKUNIY QISM</span>
+      <h2>30 kunlik reja</h2>
+      <div class="rule-a"></div>
+      <p class="lead">
+        Ikkala metodikani birga ishga tushirish tartibi. Bu betni devorga osib qo'ying.
+      </p>
+    </div>
+
+    <div class="fig">
+      <svg viewBox="0 0 900 250" role="img" aria-label="To'rt haftalik reja: offer, kontent, voronka, sotuv">
+        <rect x="0"   y="150" width="212" height="90" rx="6" fill="var(--h1)"/>
+        <rect x="230" y="112" width="212" height="128" rx="6" fill="var(--h3)"/>
+        <rect x="460" y="74"  width="212" height="166" rx="6" fill="var(--t3)"/>
+        <rect x="690" y="24"  width="210" height="216" rx="6" fill="var(--t5)"/>
+
+        <text x="106" y="178" text-anchor="middle" class="svg-onfill-d" style="font-size:15px;">1-HAFTA</text>
+        <text x="106" y="200" text-anchor="middle" class="sub-hd" style="font-size:12px;">Offerni yozing</text>
+        <text x="106" y="220" text-anchor="middle" class="sub-hd" style="font-size:11px;">5 qadam + kafolat</text>
+
+        <text x="336" y="140" text-anchor="middle" class="svg-onfill" style="font-size:15px;">2-HAFTA</text>
+        <text x="336" y="162" text-anchor="middle" class="sub-hl" style="font-size:12px;">Lid-magnit va</text>
+        <text x="336" y="178" text-anchor="middle" class="sub-hl" style="font-size:12px;">uzun video</text>
+        <text x="336" y="200" text-anchor="middle" class="sub-hl" style="font-size:11px;">bot + kod so'z</text>
+
+        <text x="566" y="102" text-anchor="middle" class="svg-onfill" style="font-size:15px;">3-HAFTA</text>
+        <text x="566" y="124" text-anchor="middle" class="sub-l" style="font-size:12px;">Kontent mashinasi</text>
+        <text x="566" y="146" text-anchor="middle" class="sub-l" style="font-size:11px;">1 kunda 5–7 rils</text>
+        <text x="566" y="164" text-anchor="middle" class="sub-l" style="font-size:11px;">60/30/10 nisbat</text>
+
+        <text x="795" y="52"  text-anchor="middle" class="svg-onfill" style="font-size:15px;">4-HAFTA</text>
+        <text x="795" y="74"  text-anchor="middle" class="sub-l" style="font-size:12px;">Sotuv oynasi</text>
+        <text x="795" y="96"  text-anchor="middle" class="sub-l" style="font-size:11px;">defitsit + shoshilinchlik</text>
+        <text x="795" y="114" text-anchor="middle" class="sub-l" style="font-size:11px;">dedlayn e'lon qiling</text>
+
+        <text x="106" y="140" text-anchor="middle" class="svg-lab" style="font-size:12px;">HORMOZI</text>
+        <text x="336" y="102" text-anchor="middle" class="svg-lab" style="font-size:12px;">HORMOZI + TIMOCHKA</text>
+        <text x="566" y="64"  text-anchor="middle" class="svg-lab" style="font-size:12px;">TIMOCHKA</text>
+        <text x="795" y="14"  text-anchor="middle" class="svg-lab" style="font-size:12px;">IKKALASI</text>
+
+        <line x1="0" y1="246" x2="900" y2="246" stroke="var(--line)" stroke-width="1.5"/>
+      </svg>
+      <div class="cap"><b>Tartib muhim</b> &nbsp;Avval offer, keyin kontent. Aksincha qilsangiz — trafik keladi, lekin uni sotadigan narsa bo'lmaydi.</div>
+    </div>
+
+    <div class="rule"></div>
+
+    <h3 style="color:var(--ink);letter-spacing:.06em;margin-bottom:4mm;">Eslab qolish kerak bo'lgan 6 ta qoida</h3>
+
+    <div class="grid3">
+      <div class="stat" style="--accent:var(--t);--gold:var(--t-tx);">
+        <span class="k">Timochka · qoida 1</span>
+        <span class="v">Kenglik</span>
+        <p>«Bu 5 mln odamga qiziqmi?» Yo'q bo'lsa — qayta o'rang yoki olmang.</p>
+      </div>
+      <div class="stat" style="--accent:var(--t);--gold:var(--t-tx);">
+        <span class="k">Timochka · qoida 2</span>
+        <span class="v">Ilgak</span>
+        <p>Birinchi 2 soniya hal qiladi. Ushlamasa — oxirigacha ko'rish 5%.</p>
+      </div>
+      <div class="stat" style="--accent:var(--t);--gold:var(--t-tx);">
+        <span class="k">Timochka · qoida 3</span>
+        <span class="v">Voronka</span>
+        <p>Chaqiriqsiz million ko'rish = nol pul. Har rilsda keyingi qadam bo'lsin.</p>
+      </div>
+      <div class="stat" style="--accent:var(--h);--gold:var(--h-tx);">
+        <span class="k">Hormozi · qoida 4</span>
+        <span class="v">Qiymat</span>
+        <p>Narxni tushirmang — qiymatni ko'taring. Tubga poyga hech kimni boyitmagan.</p>
+      </div>
+      <div class="stat" style="--accent:var(--h);--gold:var(--h-tx);">
+        <span class="k">Hormozi · qoida 5</span>
+        <span class="v">Kafolat</span>
+        <p>Xavfni mijozdan o'zingizga oling. Konversiya 2–4 marta oshadi.</p>
+      </div>
+      <div class="stat" style="--accent:var(--h);--gold:var(--h-tx);">
+        <span class="k">Hormozi · qoida 6</span>
+        <span class="v">Dedlayn</span>
+        <p>Sotuvlarning 50–60% oxirgi 4 soatda. Dedlaynsiz odam cho'zadi.</p>
+      </div>
+    </div>
+
+    <div class="tip" style="margin-top:5mm;margin-bottom:0;border-left-color:var(--ink);">
+      <span class="lbl" style="color:var(--ink);">Oxirgi gap</span>
+      <p style="margin-bottom:0;font-size:13.8pt;">
+        Timochka sizga <b>odamlarni olib keladi</b>. Hormozi o'sha odamlarga
+        <b>yo'q deb bo'lmaydigan taklif</b> qiladi. Bittasini tashlab ketsangiz —
+        ikkinchisining ham ma'nosi qolmaydi. Shuning uchun ular bitta faylda:
+        bu ikkita metodika emas, bitta sistemaning ikki yarmi.
+      </p>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>E'tibor × Offer · To'liq qo'llanma</span><span class="pg">12</span></div>
+</section>
+
+</body>
+</html>
