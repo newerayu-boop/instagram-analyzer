@@ -23,17 +23,32 @@ sxemalar, grafiklar, ikonkalar bilan to'ldirilgan.
 Bo'limlar tartibi o'zgartirilgan: avval lug'at beriladi, chunki qolgan uchta
 bo'limda o'sha so'zlar ishlatiladi.
 
-## Ranglar
+## Ranglar — Claude uslubi
 
-Palitra `dataviz` validatori bilan tekshirilgan (barcha tekshiruvlar PASS):
+Qog'oz — ivory (`#FAF9F5`), asosiy rang — Claude'ning terrakota "clay" rangi
+(`#D97757`). Palitra `dataviz` validatori bilan tekshirilgan (barcha tekshiruvlar PASS):
+
+| Rol | Qiymat |
+|---|---|
+| Qog'oz (ivory / bone) | `#FAF9F5` |
+| Matn (slate dark / medium) | `#191919` · `#40403E` |
+| Bezak akkenti — Claude clay | `#D97757` |
+| Matn akkenti — chuqur clay | `#A8462A` (kontrast 5.6:1) |
+| Och tin / ivory medium | `#F6E7DE` · `#F2EFE7` |
 
 - **Ordinal shkala** (bosqichlar, voronka, zinapoyalar):
-  `#D2A93F → #B98D24 → #96701A → #705213 → #4C380E`.
+  `#E0937A → #D97757 → #C05C3C → #96442B → #632D1C`.
   Yorug'lik bo'yicha monoton — shuning uchun **oq-qora printerda ham** bosqichlar
   tartibi to'g'ri o'qiladi.
-- **Kategorial** (faqat e'tirozlar xaritasida, 3 ta): `#BE8F1E · #00897B · #C0392B`.
-  Har biri yozuv bilan belgilangan, rang yolg'iz ma'no tashimaydi.
-- Fon oq (`#FFFEFA`) — qora fon A3 da kartrijni ko'p yeydi va qog'ozdan yomon o'qiladi.
+- **Kategorial** (faqat e'tirozlar xaritasida, 3 ta): `#CC6644 · #00897B · #6C5CE0`.
+  CVD-tekshiruvi ogohlantirish (warn) polosasida, shuning uchun har bir blok
+  **yozuv bilan belgilangan** va legenda qo'shilgan — rang hech qachon yolg'iz
+  ma'no tashimaydi.
+- Ikki xil clay ishlatilgani bejiz emas: yorqin `#D97757` matn uchun kontrastdan
+  o'tmaydi (2.99:1), shuning uchun chiziq va to'ldirishlarda turadi; matnda esa
+  chuqurroq `#A8462A` ishlatiladi.
+- Qora fon ataylab ishlatilmagan — A3 da kartrijni ko'p yeydi va qog'ozdan
+  yomon o'qiladi.
 
 ## Qanday chop etish kerak
 

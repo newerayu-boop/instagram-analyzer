@@ -8,9 +8,10 @@
    FORMULA ZAPUSKA — infografik qo'llanma
    A3 (297 x 420 mm), portret. Bosmaga tayyor.
 
-   Ranglar dataviz-validator bilan tekshirilgan:
-   · ordinal oltin shkala  #D2A93F → #4C380E  (ALL CHECKS PASS)
-   · kategorial 3 rang     #BE8F1E #00897B #C0392B (ALL CHECKS PASS)
+   Rang sxemasi — Claude uslubi (ivory qog'oz + terrakota "clay").
+   Hammasi dataviz-validator bilan tekshirilgan:
+   · ordinal clay shkala  #E0937A → #632D1C  (ALL CHECKS PASS)
+   · kategorial 3 rang    #CC6644 #00897B #6C5CE0 (ALL CHECKS PASS)
    Ordinal shkala yorug'likka qarab monoton — shuning uchun
    oq-qora printerda ham to'g'ri o'qiladi.
    ============================================================ */
@@ -18,23 +19,24 @@
 @page { size: A3 portrait; margin: 0; }
 
 :root{
-  --ink:      #14110E;
-  --ink-2:    #3E3730;
-  --muted:    #7A7168;
-  --gold:     #A8801A;
-  --gold-2:   #C9A227;
-  --gold-pale:#F6EFDC;
-  --paper:    #FFFEFA;
-  --line:     #DED5C4;
-  --grid:     #E7DFCD;
-  --tint:     #FBF7EC;
+  --ink:      #191919;   /* slate dark */
+  --ink-2:    #40403E;   /* slate medium */
+  --muted:    #6E6D67;
+  --gold:     #A8462A;   /* MATN uchun chuqur clay (kontrast 5.6:1) */
+  --accent:   #D97757;   /* Claude clay — chiziq va bezak uchun */
+  --gold-2:   #C05C3C;
+  --gold-pale:#F6E7DE;   /* och clay tini */
+  --paper:    #FAF9F5;   /* ivory / bone */
+  --line:     #E2DED3;
+  --grid:     #E8E4D9;
+  --tint:     #F2EFE7;   /* ivory medium */
 
   /* ordinal (magnitude / bosqichlar) */
-  --o1:#D2A93F; --o2:#B98D24; --o3:#96701A; --o4:#705213; --o5:#4C380E;
+  --o1:#E0937A; --o2:#D97757; --o3:#C05C3C; --o4:#96442B; --o5:#632D1C;
   /* categorical (max 3, har doim yozuv bilan) */
-  --s1:#BE8F1E; --s2:#00897B; --s3:#C0392B;
+  --s1:#CC6644; --s2:#00897B; --s3:#6C5CE0;
   /* de-emphasis */
-  --off:#D9D3C6;
+  --off:#DCD8CC;
 }
 
 *{ box-sizing: border-box; }
@@ -91,7 +93,7 @@ li{ font-size:13pt; line-height:1.5; margin-bottom:1.4mm; }
 b,strong{ font-weight:700; }
 em{ font-style:italic; color:var(--ink-2); }
 .rule{ height:.8pt; background:var(--line); margin:6mm 0; }
-.rule-gold{ height:1.6pt; background:var(--gold); width:28mm; margin:0 0 6mm; }
+.rule-gold{ height:1.6pt; background:var(--accent); width:28mm; margin:0 0 6mm; }
 
 .sec-head{ margin-bottom:6mm; }
 .sec-head .num{ font-family:Helvetica,Arial,sans-serif; font-weight:800;
@@ -125,11 +127,11 @@ em{ font-style:italic; color:var(--ink-2); }
 .svg-onfill-d{ font-family:Helvetica,Arial,sans-serif; font-size:14px; font-weight:700; fill:var(--ink); }
 .svg-num{ font-family:Helvetica,Arial,sans-serif; font-size:11px; font-weight:800; fill:#fff; }
 /* to'ldirilgan shakl ustidagi kichik izoh — kontrast uchun */
-.sub-d{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:#2A2107; }
-.sub-l{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:#F5EEDD; }
+.sub-d{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:#2E1508; }
+.sub-l{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:#FBEFE9; }
 
 /* ---------- Termin kartochkasi ---------- */
-.term{ border-top:1.2pt solid var(--gold); padding-top:3mm; break-inside:avoid; }
+.term{ border-top:1.2pt solid var(--accent); padding-top:3mm; break-inside:avoid; }
 .term .thead{ display:flex; align-items:flex-start; gap:3mm; margin-bottom:1.8mm; }
 .term .ico{ flex:0 0 auto; width:9mm; height:9mm; }
 .term .ttx{ flex:1 1 auto; min-width:0; }
@@ -138,12 +140,12 @@ em{ font-style:italic; color:var(--ink-2); }
 .term h3{ margin-bottom:0; }
 .term p{ font-size:12pt; line-height:1.46; margin-bottom:1.8mm; }
 .term .ex{ font-size:11.2pt; line-height:1.45; color:var(--ink-2);
-  border-left:1.6pt solid var(--gold-pale); padding-left:3mm; margin:0; }
+  border-left:1.6pt solid var(--accent); padding-left:3mm; margin:0; }
 .term .ex b{ color:var(--gold); font-family:Helvetica,Arial,sans-serif; font-size:8.5pt;
   letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:.8mm; }
 
 /* ---------- Tip ---------- */
-.tip{ background:var(--tint); border-left:2.4pt solid var(--gold);
+.tip{ background:var(--tint); border-left:2.4pt solid var(--accent);
   padding:4mm 5mm; margin:0 0 5mm; break-inside:avoid; }
 .tip .lbl{ font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:800;
   letter-spacing:.18em; text-transform:uppercase; color:var(--gold);
@@ -158,10 +160,10 @@ em{ font-style:italic; color:var(--ink-2); }
 .qlist li::before{ content:counter(q); position:absolute; left:0; top:.2mm;
   font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:10pt; color:var(--gold);
   width:7.6mm; height:7.6mm; line-height:7.6mm; text-align:center;
-  border:1pt solid var(--gold); border-radius:50%; }
+  border:1.2pt solid var(--accent); border-radius:50%; }
 
 /* ---------- Blok / hafta ---------- */
-.week{ border:.8pt solid var(--line); border-top:2.4pt solid var(--gold);
+.week{ border:.8pt solid var(--line); border-top:2.4pt solid var(--accent);
   padding:4.5mm 5mm; break-inside:avoid; display:flex; flex-direction:column; }
 .week h3{ color:var(--ink); margin-bottom:2.5mm; }
 .week ul{ padding-left:4.5mm; margin-bottom:3mm; }
@@ -173,7 +175,7 @@ em{ font-style:italic; color:var(--ink-2); }
 /* ---------- Tarif ---------- */
 .tariff{ border:.8pt solid var(--line); padding:5mm; break-inside:avoid;
   display:flex; flex-direction:column; }
-.tariff.hi{ border:1.6pt solid var(--gold); background:var(--tint); }
+.tariff.hi{ border:1.6pt solid var(--accent); background:var(--tint); }
 .tariff h3{ margin-bottom:1mm; }
 .tariff .price{ font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:22pt;
   color:var(--gold); margin:0 0 3mm; letter-spacing:-.01em; }
@@ -182,7 +184,7 @@ em{ font-style:italic; color:var(--ink-2); }
 .tariff li::before{ content:"—"; position:absolute; left:0; color:var(--gold); }
 
 /* ---------- Qadam / prompt ---------- */
-.step{ border-top:2.4pt solid var(--gold); padding-top:3.5mm; margin-bottom:4.5mm; break-inside:avoid; }
+.step{ border-top:2.4pt solid var(--accent); padding-top:3.5mm; margin-bottom:4.5mm; break-inside:avoid; }
 .step .st{ font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:800;
   letter-spacing:.2em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:1.5mm; }
 .step h3{ font-size:17pt; margin-bottom:2mm; }
@@ -206,12 +208,12 @@ em{ font-style:italic; color:var(--ink-2); }
 .cover h1{ font-size:70pt; }
 .cover .sub{ font-size:18pt; line-height:1.35; color:var(--ink-2); max-width:185mm; }
 .toc{ display:grid; grid-template-columns:1fr 1fr; gap:5mm 10mm; }
-.toc-item{ border-top:1.2pt solid var(--gold); padding-top:2.6mm; }
+.toc-item{ border-top:1.2pt solid var(--accent); padding-top:2.6mm; }
 .toc-item .n{ font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:800;
   letter-spacing:.2em; color:var(--gold); display:block; margin-bottom:1.2mm; }
 .toc-item h3{ font-size:15.5pt; margin-bottom:1.2mm; }
 .toc-item p{ font-size:11pt; color:var(--ink-2); margin:0; }
-.badge{ display:inline-block; border:1pt solid var(--gold); color:var(--gold);
+.badge{ display:inline-block; border:1.2pt solid var(--accent); color:var(--gold);
   font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:700;
   letter-spacing:.16em; text-transform:uppercase; padding:1.6mm 3.4mm; margin-right:2mm; }
 
@@ -222,7 +224,7 @@ em{ font-style:italic; color:var(--ink-2); }
 .legend i{ width:4mm; height:4mm; display:block; border-radius:.8mm; }
 
 /* ---------- Stat plitka ---------- */
-.stat{ border:.8pt solid var(--line); border-left:2.4pt solid var(--gold);
+.stat{ border:.8pt solid var(--line); border-left:2.4pt solid var(--accent);
   padding:4mm 4.5mm; break-inside:avoid; }
 .stat .v{ font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:30pt;
   line-height:1; color:var(--gold); letter-spacing:-.02em; display:block; margin-bottom:1.5mm; }
@@ -263,12 +265,7 @@ em{ font-style:italic; color:var(--ink-2); }
 <!-- ================= 1 — MUQOVA ================= -->
 <section class="page">
   <div class="cover">
-    <div class="runhead" style="border-bottom:1.6pt solid var(--gold);">
-      <span><b>Formula Zapuska</b></span>
-      <span>O'zbek tilida &nbsp;·&nbsp; A3 infografik qo'llanma</span>
-    </div>
-
-    <span class="kicker">To'liq qo'llanma · 4 ta hujjat bitta joyda</span>
+    <span class="kicker" style="margin-top:4mm;">To'liq qo'llanma · 4 ta hujjat bitta joyda</span>
     <h1>Formula<br>Zapuska</h1>
     <div class="rule-gold" style="width:60mm;height:2.4pt;"></div>
     <p class="sub">
@@ -281,7 +278,7 @@ em{ font-style:italic; color:var(--ink-2); }
       <svg viewBox="0 0 900 300" role="img" aria-label="Zapusk sistemasining 5 bosqichi">
         <!-- o'sish egri chizig'i -->
         <path d="M90 108 C 250 102, 370 90, 470 74 S 710 42, 850 30"
-              fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-dasharray="7 5"/>
+              fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="7 5"/>
         <text x="0" y="30" class="svg-lab-sm" style="font-size:13px;">qiziqish va ishonch o'sib boradi →</text>
         <!-- yo'l chizig'i -->
         <path d="M90 180 L850 180" stroke="var(--line)" stroke-width="2"/>
@@ -430,7 +427,7 @@ em{ font-style:italic; color:var(--ink-2); }
         <text x="480" y="266" class="svg-lab">Ular pul to'ladi</text>
 
         <!-- progrev qavsi (2–4 bosqich) -->
-        <path d="M46 70 H 30 V 226 H 46" fill="none" stroke="var(--gold)" stroke-width="2"/>
+        <path d="M46 70 H 30 V 226 H 46" fill="none" stroke="var(--accent)" stroke-width="2"/>
         <text x="24" y="152" text-anchor="middle" class="svg-lab" transform="rotate(-90 24 152)"
               style="font-weight:800;fill:var(--gold);font-size:13px;">PROGREV</text>
         <text x="360" y="318" text-anchor="middle" class="svg-lab-sm" style="font-size:13px;">
@@ -794,7 +791,7 @@ em{ font-style:italic; color:var(--ink-2); }
         <!-- strelkalar -->
         <path d="M214 55 h20 m-6-5 l6 5 -6 5" fill="none" stroke="var(--muted)" stroke-width="2"/>
         <path d="M432 55 h20 m-6-5 l6 5 -6 5" fill="none" stroke="var(--muted)" stroke-width="2"/>
-        <path d="M650 55 h20 m-6-5 l6 5 -6 5" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+        <path d="M650 55 h20 m-6-5 l6 5 -6 5" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
         <text x="450" y="120" text-anchor="middle" class="svg-lab-sm">Avval bering — keyin so'rang. Mana shu PLFning butun siri.</text>
       </svg>
     </div>
@@ -1469,10 +1466,10 @@ em{ font-style:italic; color:var(--ink-2); }
               stroke="var(--line)" stroke-width="1.5"/>
         <path d="M70 78 H 830" stroke="var(--line)" stroke-width="1.5"/>
         <!-- markaziy poya -->
-        <path d="M450 78 V 100" stroke="var(--gold)" stroke-width="2.5"/>
+        <path d="M450 78 V 100" stroke="var(--accent)" stroke-width="2.5"/>
         <!-- pastki rels -->
-        <path d="M220 100 H 680" stroke="var(--gold)" stroke-width="2.5"/>
-        <path d="M220 100 V 118 M450 100 V 118 M680 100 V 118" stroke="var(--gold)" stroke-width="2.5"/>
+        <path d="M220 100 H 680" stroke="var(--accent)" stroke-width="2.5"/>
+        <path d="M220 100 V 118 M450 100 V 118 M680 100 V 118" stroke="var(--accent)" stroke-width="2.5"/>
 
         <!-- 3 xil javob -->
         <rect x="120" y="118" width="200" height="74" rx="5" fill="var(--s1)"/>
@@ -1551,10 +1548,10 @@ em{ font-style:italic; color:var(--ink-2); }
       <p class="figsub">Odam storisga javoban kod so'zni yozadi — va zanjir o'zi ishga tushadi.</p>
       <svg viewBox="0 0 900 300" role="img" aria-label="Avtovoronka: kod so'z, keyin uch xabar 0, 24 va 48 soatda">
         <!-- start -->
-        <rect x="0" y="18" width="188" height="58" rx="6" fill="var(--gold-pale)" stroke="var(--gold)" stroke-width="2"/>
+        <rect x="0" y="18" width="188" height="58" rx="6" fill="var(--gold-pale)" stroke="var(--accent)" stroke-width="2"/>
         <text x="94" y="42" text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:13px;">KOD SO'Z</text>
         <text x="94" y="60" text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">masalan: «STIL»</text>
-        <path d="M192 47 h22 m-7-5 l7 5 -7 5" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+        <path d="M192 47 h22 m-7-5 l7 5 -7 5" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
 
         <!-- vaqt o'qi -->
         <line x1="230" y1="196" x2="890" y2="196" stroke="var(--line)" stroke-width="2"/>
@@ -1592,7 +1589,7 @@ em{ font-style:italic; color:var(--ink-2); }
         <path d="M821 178 V 190" stroke="var(--o5)" stroke-width="2"/>
 
         <!-- maqsad -->
-        <path d="M270 246 H 790" stroke="var(--gold)" stroke-width="2" stroke-dasharray="6 5"/>
+        <path d="M270 246 H 790" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 5"/>
         <text x="530" y="278" text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:15px;fill:var(--gold);">
           MAQSAD: bepul diagnostikaga yozilish</text>
       </svg>
