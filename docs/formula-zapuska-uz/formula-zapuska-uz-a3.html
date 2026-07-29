@@ -5,8 +5,14 @@
 <title>Formula Zapuska — To'liq qo'llanma (A3)</title>
 <style>
 /* ============================================================
-   FORMULA ZAPUSKA — to'liq qo'llanma
+   FORMULA ZAPUSKA — infografik qo'llanma
    A3 (297 x 420 mm), portret. Bosmaga tayyor.
+
+   Ranglar dataviz-validator bilan tekshirilgan:
+   · ordinal oltin shkala  #D2A93F → #4C380E  (ALL CHECKS PASS)
+   · kategorial 3 rang     #BE8F1E #00897B #C0392B (ALL CHECKS PASS)
+   Ordinal shkala yorug'likka qarab monoton — shuning uchun
+   oq-qora printerda ham to'g'ri o'qiladi.
    ============================================================ */
 
 @page { size: A3 portrait; margin: 0; }
@@ -20,322 +26,509 @@
   --gold-pale:#F6EFDC;
   --paper:    #FFFEFA;
   --line:     #DED5C4;
+  --grid:     #E7DFCD;
   --tint:     #FBF7EC;
+
+  /* ordinal (magnitude / bosqichlar) */
+  --o1:#D2A93F; --o2:#B98D24; --o3:#96701A; --o4:#705213; --o5:#4C380E;
+  /* categorical (max 3, har doim yozuv bilan) */
+  --s1:#BE8F1E; --s2:#00897B; --s3:#C0392B;
+  /* de-emphasis */
+  --off:#D9D3C6;
 }
 
 *{ box-sizing: border-box; }
-
 html,body{ margin:0; padding:0; background:#8C8C8C; }
-
 body{
   font-family: Georgia, "Times New Roman", serif;
   color: var(--ink);
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
 }
 
 /* ---------- Sahifa ---------- */
 .page{
-  position: relative;
-  width: 297mm;
-  height: 420mm;
-  padding: 17mm 17mm 14mm;
-  margin: 0 auto 8mm;
-  background: var(--paper);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  position: relative; width: 297mm; height: 420mm;
+  padding: 16mm 16mm 13mm; margin: 0 auto 8mm;
+  background: var(--paper); overflow: hidden;
+  display: flex; flex-direction: column;
 }
 @media print{
   html,body{ background:#fff; }
   .page{ margin:0; box-shadow:none; page-break-after: always; break-after: page; }
   .page:last-child{ page-break-after: auto; break-after: auto; }
 }
-@media screen{
-  .page{ box-shadow: 0 2mm 8mm rgba(0,0,0,.35); }
-}
+@media screen{ .page{ box-shadow: 0 2mm 8mm rgba(0,0,0,.35); } }
 
-/* ---------- Kolontitul ---------- */
 .runhead{
   display:flex; justify-content:space-between; align-items:baseline;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 8.5pt; letter-spacing:.16em; text-transform:uppercase;
-  color: var(--muted);
-  border-bottom: .6pt solid var(--line);
-  padding-bottom: 3mm; margin-bottom: 8mm;
-  flex: 0 0 auto;
+  color: var(--muted); border-bottom:.6pt solid var(--line);
+  padding-bottom: 3mm; margin-bottom: 7mm; flex:0 0 auto;
 }
 .runhead b{ color: var(--gold); font-weight:700; letter-spacing:.16em; }
-
 .runfoot{
-  margin-top: auto;
-  display:flex; justify-content:space-between; align-items:baseline;
+  margin-top:auto; display:flex; justify-content:space-between; align-items:baseline;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 8pt; letter-spacing:.1em; color: var(--muted);
-  border-top: .6pt solid var(--line);
-  padding-top: 3mm;
-  flex: 0 0 auto;
+  border-top:.6pt solid var(--line); padding-top: 3mm; flex:0 0 auto;
 }
 .runfoot .pg{ font-weight:700; color: var(--ink-2); }
-
-.body{ flex: 1 1 auto; min-height:0; }
+.body{ flex:1 1 auto; min-height:0; }
 
 /* ---------- Tipografika ---------- */
 h1,h2,h3,h4,.kicker{ font-family: Helvetica, Arial, sans-serif; }
-
-.kicker{
-  font-size: 9pt; letter-spacing:.24em; text-transform:uppercase;
-  color: var(--gold); font-weight:700; margin:0 0 4mm;
-}
-
-h1{ font-size: 50pt; line-height:.98; letter-spacing:-.02em; margin:0 0 6mm; font-weight:800; }
-h2{ font-size: 29pt; line-height:1.06; letter-spacing:-.01em; margin:0 0 3mm; font-weight:800; }
-h3{ font-size: 15.5pt; line-height:1.15; margin:0 0 2.5mm; font-weight:700; }
-
-p{ margin:0 0 2.8mm; font-size: 13pt; line-height:1.5; }
-.lead{ font-size: 14.5pt; line-height:1.5; color: var(--ink-2); }
-.small{ font-size: 11.2pt; line-height:1.45; color: var(--ink-2); }
-
-ul,ol{ margin:0 0 2.8mm; padding-left: 5.5mm; }
-li{ font-size: 13pt; line-height:1.5; margin-bottom: 1.4mm; }
-
+.kicker{ font-size:9pt; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--gold); font-weight:700; margin:0 0 4mm; }
+h1{ font-size:50pt; line-height:.98; letter-spacing:-.02em; margin:0 0 6mm; font-weight:800; }
+h2{ font-size:29pt; line-height:1.06; letter-spacing:-.01em; margin:0 0 3mm; font-weight:800; }
+h3{ font-size:15.5pt; line-height:1.15; margin:0 0 2.5mm; font-weight:700; }
+p{ margin:0 0 2.8mm; font-size:13pt; line-height:1.5; }
+.lead{ font-size:14.5pt; line-height:1.5; color:var(--ink-2); }
+.small{ font-size:11.2pt; line-height:1.45; color:var(--ink-2); }
+ul,ol{ margin:0 0 2.8mm; padding-left:5.5mm; }
+li{ font-size:13pt; line-height:1.5; margin-bottom:1.4mm; }
 b,strong{ font-weight:700; }
-em{ font-style: italic; color: var(--ink-2); }
+em{ font-style:italic; color:var(--ink-2); }
+.rule{ height:.8pt; background:var(--line); margin:6mm 0; }
+.rule-gold{ height:1.6pt; background:var(--gold); width:28mm; margin:0 0 6mm; }
 
-.rule{ height:.8pt; background: var(--line); margin: 6mm 0; }
-.rule-gold{ height:1.6pt; background: var(--gold); width: 28mm; margin: 0 0 6mm; }
+.sec-head{ margin-bottom:6mm; }
+.sec-head .num{ font-family:Helvetica,Arial,sans-serif; font-weight:800;
+  font-size:9pt; letter-spacing:.2em; color:var(--gold); display:block; margin-bottom:2.5mm; }
+.sec-head p{ max-width:195mm; }
 
-/* ---------- Bo'lim sarlavhasi ---------- */
-.sec-head{ margin-bottom: 7mm; }
-.sec-head .num{
-  font-family: Helvetica, Arial, sans-serif; font-weight:800;
-  font-size: 9pt; letter-spacing:.2em; color:var(--gold);
-  display:block; margin-bottom: 2.5mm;
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:6mm 10mm; align-items:start; }
+.grid2-t{ display:grid; grid-template-columns:1fr 1fr; gap:6mm 10mm; align-items:stretch; }
+.grid3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:6mm 7mm; align-items:stretch; }
+.span2{ grid-column:1 / -1; }
+
+/* ---------- Figura (grafik + izoh) ---------- */
+.fig{ margin:0 0 5mm; break-inside:avoid; }
+.fig svg{ display:block; width:100%; height:auto; }
+.fig .cap{
+  font-family:Helvetica,Arial,sans-serif; font-size:8.6pt; color:var(--muted);
+  letter-spacing:.04em; margin-top:2mm; line-height:1.4;
 }
-.sec-head p{ max-width: 190mm; }
+.fig .cap b{ color:var(--gold); letter-spacing:.14em; text-transform:uppercase; font-size:8pt; }
+.figtitle{
+  font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:12.5pt;
+  margin:0 0 1mm; letter-spacing:-.01em;
+}
+.figsub{ font-size:10.6pt; color:var(--muted); margin:0 0 3mm; font-style:italic; }
 
-/* ---------- Ikki ustun ---------- */
-.grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 6mm 10mm; align-items:start; }
-.grid2-t{ display:grid; grid-template-columns: 1fr 1fr; gap: 6mm 10mm; align-items:stretch; }
-.span2{ grid-column: 1 / -1; }
+/* SVG matn uslublari */
+.svg-lab{ font-family:Helvetica,Arial,sans-serif; font-size:13px; fill:var(--ink); }
+.svg-lab-sm{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:var(--muted); }
+.svg-val{ font-family:Helvetica,Arial,sans-serif; font-size:15px; font-weight:800; fill:var(--ink); }
+.svg-onfill{ font-family:Helvetica,Arial,sans-serif; font-size:14px; font-weight:700; fill:#fff; }
+.svg-onfill-d{ font-family:Helvetica,Arial,sans-serif; font-size:14px; font-weight:700; fill:var(--ink); }
+.svg-num{ font-family:Helvetica,Arial,sans-serif; font-size:11px; font-weight:800; fill:#fff; }
+/* to'ldirilgan shakl ustidagi kichik izoh — kontrast uchun */
+.sub-d{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:#2A2107; }
+.sub-l{ font-family:Helvetica,Arial,sans-serif; font-size:11px; fill:#F5EEDD; }
 
 /* ---------- Termin kartochkasi ---------- */
-.term{
-  border-top: 1.2pt solid var(--gold);
-  padding-top: 3mm;
-  break-inside: avoid;
-}
-.term .t-num{
-  font-family: Helvetica, Arial, sans-serif; font-size:8.5pt; font-weight:800;
-  color: var(--gold); letter-spacing:.1em; display:block; margin-bottom:1mm;
-}
-.term h3{ margin-bottom: 1.8mm; }
-.term p{ font-size: 12pt; line-height:1.46; margin-bottom:1.8mm; }
-.term .ex{
-  font-size: 11.2pt; line-height:1.45; color: var(--ink-2);
-  border-left: 1.6pt solid var(--gold-pale); padding-left: 3mm; margin:0;
-}
-.term .ex b{ color: var(--gold); font-family: Helvetica, Arial, sans-serif; font-size:8.5pt;
+.term{ border-top:1.2pt solid var(--gold); padding-top:3mm; break-inside:avoid; }
+.term .thead{ display:flex; align-items:flex-start; gap:3mm; margin-bottom:1.8mm; }
+.term .ico{ flex:0 0 auto; width:9mm; height:9mm; }
+.term .ttx{ flex:1 1 auto; min-width:0; }
+.term .t-num{ font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:800;
+  color:var(--gold); letter-spacing:.1em; display:block; margin-bottom:.6mm; }
+.term h3{ margin-bottom:0; }
+.term p{ font-size:12pt; line-height:1.46; margin-bottom:1.8mm; }
+.term .ex{ font-size:11.2pt; line-height:1.45; color:var(--ink-2);
+  border-left:1.6pt solid var(--gold-pale); padding-left:3mm; margin:0; }
+.term .ex b{ color:var(--gold); font-family:Helvetica,Arial,sans-serif; font-size:8.5pt;
   letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:.8mm; }
 
-/* ---------- Maslahat / eslatma bloki ---------- */
-.tip{
-  background: var(--tint);
-  border-left: 2.4pt solid var(--gold);
-  padding: 4mm 5mm;
-  margin: 0 0 5mm;
-  break-inside: avoid;
-}
-.tip .lbl{
-  font-family: Helvetica, Arial, sans-serif; font-size:8.5pt; font-weight:800;
-  letter-spacing:.18em; text-transform:uppercase; color: var(--gold);
-  display:block; margin-bottom: 1.6mm;
-}
-.tip p{ margin-bottom: 1.8mm; font-size:12.3pt; }
+/* ---------- Tip ---------- */
+.tip{ background:var(--tint); border-left:2.4pt solid var(--gold);
+  padding:4mm 5mm; margin:0 0 5mm; break-inside:avoid; }
+.tip .lbl{ font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:800;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--gold);
+  display:block; margin-bottom:1.6mm; }
+.tip p{ margin-bottom:1.8mm; font-size:12.3pt; }
 .tip p:last-child{ margin-bottom:0; }
 
-/* ---------- Savollar ro'yxati ---------- */
-.qlist{ list-style:none; margin:0 0 5mm; padding:0; counter-reset: q; }
-.qlist li{
-  counter-increment: q;
-  position: relative;
-  padding-left: 11mm;
-  margin-bottom: 3.4mm;
-  font-size: 13.5pt; line-height:1.42;
-  break-inside: avoid;
-}
-.qlist li::before{
-  content: counter(q);
-  position:absolute; left:0; top:.2mm;
-  font-family: Helvetica, Arial, sans-serif; font-weight:800; font-size:10pt;
-  color: var(--gold);
-  width: 8mm; height: 8mm; line-height: 8mm; text-align:center;
-  border: 1pt solid var(--gold); border-radius: 50%;
-}
-.qlist li .ru{ display:block; font-size:9.5pt; color: var(--muted); font-style:italic; margin-top:.8mm; }
+/* ---------- Savollar ---------- */
+.qlist{ list-style:none; margin:0 0 4mm; padding:0; counter-reset:q; }
+.qlist li{ counter-increment:q; position:relative; padding-left:10.5mm;
+  margin-bottom:3.2mm; font-size:13pt; line-height:1.4; break-inside:avoid; }
+.qlist li::before{ content:counter(q); position:absolute; left:0; top:.2mm;
+  font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:10pt; color:var(--gold);
+  width:7.6mm; height:7.6mm; line-height:7.6mm; text-align:center;
+  border:1pt solid var(--gold); border-radius:50%; }
 
-/* ---------- Dastur / hafta bloki ---------- */
-.week{
-  border: .8pt solid var(--line);
-  border-top: 2.4pt solid var(--gold);
-  padding: 4.5mm 5mm;
-  break-inside: avoid;
-}
-.week h3{ color: var(--ink); margin-bottom:2.5mm; }
+/* ---------- Blok / hafta ---------- */
+.week{ border:.8pt solid var(--line); border-top:2.4pt solid var(--gold);
+  padding:4.5mm 5mm; break-inside:avoid; display:flex; flex-direction:column; }
+.week h3{ color:var(--ink); margin-bottom:2.5mm; }
 .week ul{ padding-left:4.5mm; margin-bottom:3mm; }
 .week li{ font-size:12pt; }
-.week .res{
-  background: var(--gold-pale); padding: 2.8mm 3.6mm;
-  font-size: 11.4pt; line-height:1.42; margin:0;
-}
-.week .res b{ color: var(--gold); }
+.week .res{ background:var(--gold-pale); padding:2.8mm 3.6mm;
+  font-size:11.4pt; line-height:1.42; margin:0; margin-top:auto; }
+.week .res b{ color:var(--gold); }
 
 /* ---------- Tarif ---------- */
-.tariff{
-  border: .8pt solid var(--line); padding: 5mm; break-inside: avoid;
-  display:flex; flex-direction:column;
-}
-.tariff.hi{ border: 1.6pt solid var(--gold); background: var(--tint); }
+.tariff{ border:.8pt solid var(--line); padding:5mm; break-inside:avoid;
+  display:flex; flex-direction:column; }
+.tariff.hi{ border:1.6pt solid var(--gold); background:var(--tint); }
 .tariff h3{ margin-bottom:1mm; }
-.tariff .price{
-  font-family: Helvetica, Arial, sans-serif; font-weight:800; font-size:22pt;
-  color: var(--gold); margin: 0 0 3mm; letter-spacing:-.01em;
-}
+.tariff .price{ font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:22pt;
+  color:var(--gold); margin:0 0 3mm; letter-spacing:-.01em; }
 .tariff ul{ list-style:none; padding:0; margin:0; }
 .tariff li{ font-size:11.7pt; padding-left:5mm; position:relative; margin-bottom:1.5mm; }
 .tariff li::before{ content:"—"; position:absolute; left:0; color:var(--gold); }
 
-/* ---------- Prompt kartochkasi ---------- */
-.step{
-  border-top: 2.4pt solid var(--gold);
-  padding-top: 3.5mm; margin-bottom: 5mm;
-  break-inside: avoid;
-}
-.step .st{
-  font-family: Helvetica, Arial, sans-serif; font-size:8.5pt; font-weight:800;
-  letter-spacing:.2em; text-transform:uppercase; color:var(--gold);
-  display:block; margin-bottom:1.5mm;
-}
+/* ---------- Qadam / prompt ---------- */
+.step{ border-top:2.4pt solid var(--gold); padding-top:3.5mm; margin-bottom:4.5mm; break-inside:avoid; }
+.step .st{ font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:800;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:1.5mm; }
 .step h3{ font-size:17pt; margin-bottom:2mm; }
-.step > p{ font-size:12.3pt; color: var(--ink-2); }
+.step > p{ font-size:12.3pt; color:var(--ink-2); }
 
-.prompt{
-  background: var(--tint);
-  border: .8pt solid var(--line);
-  padding: 4.5mm 5mm;
-  margin: 0 0 4mm;
-  break-inside: avoid;
-}
-.prompt .plbl{
-  font-family: Helvetica, Arial, sans-serif; font-size:8pt; font-weight:800;
-  letter-spacing:.18em; text-transform:uppercase; color: var(--gold);
-  display:block; margin-bottom: 2.4mm;
-  border-bottom:.6pt solid var(--line); padding-bottom:1.6mm;
-}
-.prompt p, .prompt li{
-  font-family: "Courier New", Courier, monospace;
-  font-size: 10.7pt; line-height: 1.44; margin-bottom: 1.9mm;
-}
-.prompt ul{ list-style:none; padding-left:0; margin-bottom:1.8mm; }
-.prompt li{ padding-left: 4mm; position:relative; }
-.prompt li::before{ content:"—"; position:absolute; left:0; color: var(--gold); }
+.prompt{ background:var(--tint); border:.8pt solid var(--line);
+  padding:4.5mm 5mm; margin:0 0 4mm; break-inside:avoid; }
+.prompt .plbl{ font-family:Helvetica,Arial,sans-serif; font-size:8pt; font-weight:800;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--gold); display:block;
+  margin-bottom:2.4mm; border-bottom:.6pt solid var(--line); padding-bottom:1.6mm; }
+.prompt p, .prompt li{ font-family:"Courier New",Courier,monospace;
+  font-size:10.7pt; line-height:1.44; margin-bottom:1.9mm; }
+.prompt ul{ list-style:none; padding-left:0; margin-bottom:1.9mm; }
+.prompt li{ padding-left:4mm; position:relative; }
+.prompt li::before{ content:"—"; position:absolute; left:0; color:var(--gold); }
 .prompt p:last-child, .prompt ul:last-child{ margin-bottom:0; }
-.ph{ color: var(--gold); font-weight:700; }
+.ph{ color:var(--gold); font-weight:700; }
 
 /* ---------- Muqova ---------- */
 .cover{ display:flex; flex-direction:column; height:100%; }
-.cover .top{ flex:0 0 auto; }
-.cover .mid{ flex:1 1 auto; display:flex; flex-direction:column; justify-content:center; }
-.cover h1{ font-size: 68pt; }
-.cover .sub{ font-size: 18.5pt; line-height:1.35; color: var(--ink-2); max-width: 180mm; }
+.cover h1{ font-size:70pt; }
+.cover .sub{ font-size:18pt; line-height:1.35; color:var(--ink-2); max-width:185mm; }
+.toc{ display:grid; grid-template-columns:1fr 1fr; gap:5mm 10mm; }
+.toc-item{ border-top:1.2pt solid var(--gold); padding-top:2.6mm; }
+.toc-item .n{ font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:800;
+  letter-spacing:.2em; color:var(--gold); display:block; margin-bottom:1.2mm; }
+.toc-item h3{ font-size:15.5pt; margin-bottom:1.2mm; }
+.toc-item p{ font-size:11pt; color:var(--ink-2); margin:0; }
+.badge{ display:inline-block; border:1pt solid var(--gold); color:var(--gold);
+  font-family:Helvetica,Arial,sans-serif; font-size:8.5pt; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; padding:1.6mm 3.4mm; margin-right:2mm; }
 
-.toc{ display:grid; grid-template-columns: 1fr 1fr; gap: 6mm 10mm; margin-top: 10mm; }
-.toc-item{ border-top: 1.2pt solid var(--gold); padding-top: 3mm; }
-.toc-item .n{
-  font-family: Helvetica, Arial, sans-serif; font-size:8.5pt; font-weight:800;
-  letter-spacing:.2em; color: var(--gold); display:block; margin-bottom:1.5mm;
-}
-.toc-item h3{ font-size:16.5pt; margin-bottom:1.5mm; }
-.toc-item p{ font-size:11.5pt; color: var(--ink-2); margin:0; }
+/* ---------- Legend ---------- */
+.legend{ display:flex; flex-wrap:wrap; gap:2mm 6mm; margin:0 0 3mm;
+  font-family:Helvetica,Arial,sans-serif; font-size:9.5pt; color:var(--ink-2); }
+.legend span{ display:flex; align-items:center; gap:2mm; }
+.legend i{ width:4mm; height:4mm; display:block; border-radius:.8mm; }
 
-.badge{
-  display:inline-block; border:1pt solid var(--gold); color:var(--gold);
-  font-family: Helvetica, Arial, sans-serif; font-size:8.5pt; font-weight:700;
-  letter-spacing:.16em; text-transform:uppercase; padding: 1.6mm 3.4mm;
-  margin-right: 2mm;
-}
+/* ---------- Stat plitka ---------- */
+.stat{ border:.8pt solid var(--line); border-left:2.4pt solid var(--gold);
+  padding:4mm 4.5mm; break-inside:avoid; }
+.stat .v{ font-family:Helvetica,Arial,sans-serif; font-weight:800; font-size:30pt;
+  line-height:1; color:var(--gold); letter-spacing:-.02em; display:block; margin-bottom:1.5mm; }
+.stat .k{ font-family:Helvetica,Arial,sans-serif; font-size:9pt; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:1.5mm; }
+.stat p{ font-size:11pt; margin:0; color:var(--ink-2); }
 </style>
 </head>
 <body>
 
+<!-- ===== IKONKALAR SPRAYTI ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i-base"></g>
+<symbol id="ic-rocket" viewBox="0 0 32 32"><path d="M16 3c4 3.5 6 8 6 13l-3 4h-6l-3-4c0-5 2-9.5 6-13z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 20l-3 3 1 5 4-3M22 20l3 3-1 5-4-3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-partners" viewBox="0 0 32 32"><circle cx="11" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="21" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-webinar" viewBox="0 0 32 32"><rect x="3" y="6" width="26" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 11.5l6 3-6 3z" fill="currentColor"/><path d="M11 27h10" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-gift" viewBox="0 0 32 32"><rect x="4" y="12" width="24" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h28v5H2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 12v16M16 12c-3-6-9-4-6 0M16 12c3-6 9-4 6 0" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-people" viewBox="0 0 32 32"><circle cx="12" cy="11" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 27c0-4.5 3.6-8 8-8s8 3.5 8 8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="23" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M22 19.4c3.4.4 6 3.3 6 7.6" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-eye" viewBox="0 0 32 32"><path d="M2 16s5-8 14-8 14 8 14 8-5 8-14 8S2 16 2 16z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 32 32"><path d="M16 27S4 19.5 4 12.2C4 8.2 7 5.5 10.3 5.5c2.4 0 4.5 1.3 5.7 3.4 1.2-2.1 3.3-3.4 5.7-3.4C25 5.5 28 8.2 28 12.2 28 19.5 16 27 16 27z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-flame" viewBox="0 0 32 32"><path d="M16 3c1 6-5 7-5 13a5 5 0 0010 0c0-2-1-3.5-1-5 3 2 5 4.5 5 8a9 9 0 11-18 0C7 12 14 10 16 3z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-story" viewBox="0 0 32 32"><path d="M4 6h11v20H4zM17 6h11v20H17z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 12h5M7 16h5M20 12h5M20 16h5" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-clipboard" viewBox="0 0 32 32"><rect x="6" y="5" width="20" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="11" y="2" width="10" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 15l3 3 6-6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 23h10" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-funnel" viewBox="0 0 32 32"><path d="M3 5h26l-10 12v11l-6-3V17z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-magnet" viewBox="0 0 32 32"><path d="M7 5v12a9 9 0 0018 0V5h-6v12a3 3 0 01-6 0V5z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 11h6M19 11h6" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-tag" viewBox="0 0 32 32"><path d="M15 3H4v11l15 15 11-11z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="9" r="2.4" fill="currentColor"/></symbol>
+<symbol id="ic-box" viewBox="0 0 32 32"><path d="M16 3l12 6v14l-12 6-12-6V9z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 9l12 6 12-6M16 15v14" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-doc" viewBox="0 0 32 32"><path d="M7 3h13l6 6v20H7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19 3v7h7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 17h9M12 22h9" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-mentor" viewBox="0 0 32 32"><circle cx="10" cy="9" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 27c0-4.5 3.2-8 7-8s7 3.5 7 8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M21 8h9M21 14h9M21 20h6" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-window" viewBox="0 0 32 32"><rect x="4" y="5" width="24" height="22" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 11h24" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="19" r="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16v3.4l2.2 1.4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-steps" viewBox="0 0 32 32"><path d="M3 27h7v-7h7v-7h7V6h5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="20" r="1.8" fill="currentColor"/><circle cx="17" cy="13" r="1.8" fill="currentColor"/><circle cx="24" cy="6" r="1.8" fill="currentColor"/></symbol>
+<symbol id="ic-star-person" viewBox="0 0 32 32"><circle cx="16" cy="10" r="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 28c0-5.5 4.5-10 10-10s10 4.5 10 10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M25 3l1.3 2.8L29 7l-2.7 1.2L25 11l-1.3-2.8L21 7l2.7-1.2z" fill="currentColor"/></symbol>
+<symbol id="ic-chat" viewBox="0 0 32 32"><path d="M4 6h24v16H14l-7 6v-6H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 12h12M10 17h8" stroke="currentColor" stroke-width="2"/></symbol>
+<symbol id="ic-bot" viewBox="0 0 32 32"><rect x="5" y="10" width="22" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="18" r="2" fill="currentColor"/><circle cx="20" cy="18" r="2" fill="currentColor"/><path d="M16 4v6M11 30h10" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="3" r="2" fill="currentColor"/></symbol>
+<symbol id="ic-shield" viewBox="0 0 32 32"><path d="M16 3l11 4v9c0 7-4.6 11.5-11 13-6.4-1.5-11-6-11-13V7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 16l3.5 3.5L22 12" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+</defs></svg>
+
 <!-- ================= 1 — MUQOVA ================= -->
 <section class="page">
   <div class="cover">
-    <div class="top">
-      <div class="runhead" style="border-bottom:1.6pt solid var(--gold);">
-        <span><b>Formula Zapuska</b></span>
-        <span>O'zbek tilida &nbsp;·&nbsp; A3 format</span>
+    <div class="runhead" style="border-bottom:1.6pt solid var(--gold);">
+      <span><b>Formula Zapuska</b></span>
+      <span>O'zbek tilida &nbsp;·&nbsp; A3 infografik qo'llanma</span>
+    </div>
+
+    <span class="kicker">To'liq qo'llanma · 4 ta hujjat bitta joyda</span>
+    <h1>Formula<br>Zapuska</h1>
+    <div class="rule-gold" style="width:60mm;height:2.4pt;"></div>
+    <p class="sub">
+      Onlayn-kursni noldan sotishgacha olib chiqish bo'yicha ish qo'llanmasi.
+      Sxemalar, grafiklar va tayyor andozalar bilan.
+    </p>
+
+    <!-- HERO: butun sistema bir qarashda -->
+    <div class="fig" style="margin:8mm 0 7mm;">
+      <svg viewBox="0 0 900 300" role="img" aria-label="Zapusk sistemasining 5 bosqichi">
+        <!-- o'sish egri chizig'i -->
+        <path d="M90 108 C 250 102, 370 90, 470 74 S 710 42, 850 30"
+              fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-dasharray="7 5"/>
+        <text x="0" y="30" class="svg-lab-sm" style="font-size:13px;">qiziqish va ishonch o'sib boradi →</text>
+        <!-- yo'l chizig'i -->
+        <path d="M90 180 L850 180" stroke="var(--line)" stroke-width="2"/>
+        <g>
+          <circle cx="90" cy="180" r="30" fill="var(--o1)"/>
+          <text x="90" y="187" text-anchor="middle" class="svg-num" style="font-size:19px;fill:var(--ink);">1</text>
+          <text x="90" y="238" text-anchor="middle" class="svg-lab" style="font-weight:800;">Auditoriya</text>
+          <text x="90" y="258" text-anchor="middle" class="svg-lab-sm" style="font-size:11.5px;">odamlar sizni</text>
+          <text x="90" y="274" text-anchor="middle" class="svg-lab-sm" style="font-size:11.5px;">biladi</text>
+          <g color="var(--o1)"><use href="#ic-people" x="70" y="120" width="40" height="40"/></g>
+
+          <circle cx="280" cy="180" r="30" fill="var(--o2)"/>
+          <text x="280" y="187" text-anchor="middle" class="svg-num" style="font-size:19px;fill:var(--ink);">2</text>
+          <text x="280" y="238" text-anchor="middle" class="svg-lab" style="font-weight:800;">Lid-magnit</text>
+          <text x="280" y="258" text-anchor="middle" class="svg-lab-sm" style="font-size:11.5px;">bepul foyda —</text>
+          <text x="280" y="274" text-anchor="middle" class="svg-lab-sm" style="font-size:11.5px;">kontakt evaziga</text>
+          <g color="var(--o2)"><use href="#ic-magnet" x="260" y="120" width="40" height="40"/></g>
+
+          <circle cx="470" cy="180" r="30" fill="var(--o3)"/>
+          <text x="470" y="187" text-anchor="middle" class="svg-num" style="font-size:19px;">3</text>
+          <text x="470" y="238" text-anchor="middle" class="svg-lab" style="font-weight:800;">Progrev</text>
+          <text x="470" y="258" text-anchor="middle" class="svg-lab-sm" style="font-size:11.5px;">storis va postlar</text>
+          <text x="470" y="274" text-anchor="middle" class="svg-lab-sm" style="font-size:11.5px;">zanjiri</text>
+          <g color="var(--o3)"><use href="#ic-flame" x="450" y="120" width="40" height="40"/></g>
+
+          <circle cx="660" cy="180" r="30" fill="var(--o4)"/>
+          <text x="660" y="187" text-anchor="middle" class="svg-num" style="font-size:19px;">4</text>
+          <text x="660" y="238" text-anchor="middle" class="svg-lab" style="font-weight:800;">Vebinar / KEV</text>
+          <text x="660" y="258" text-anchor="middle" class="svg-lab-sm" style="font-size:11.5px;">qaror qabul</text>
+          <text x="660" y="274" text-anchor="middle" class="svg-lab-sm" style="font-size:11.5px;">qilinadigan joy</text>
+          <g color="var(--o4)"><use href="#ic-webinar" x="640" y="120" width="40" height="40"/></g>
+
+          <circle cx="850" cy="180" r="30" fill="var(--o5)"/>
+          <text x="850" y="187" text-anchor="middle" class="svg-num" style="font-size:19px;">5</text>
+          <text x="850" y="238" text-anchor="middle" class="svg-lab" style="font-weight:800;">Sotuv</text>
+          <text x="850" y="258" text-anchor="middle" class="svg-lab-sm" style="font-size:11.5px;">oyna ochiladi —</text>
+          <text x="850" y="274" text-anchor="middle" class="svg-lab-sm" style="font-size:11.5px;">va yopiladi</text>
+          <g color="var(--o5)"><use href="#ic-tag" x="830" y="120" width="40" height="40"/></g>
+        </g>
+      </svg>
+      <div class="cap"><b>Sxema</b> &nbsp;Zapusk — bu bitta harakat emas, ketma-ketlik. Har bir bosqich keyingisini tayyorlaydi. Bosqichni tashlab ketsangiz — sotuv ham bo'lmaydi.</div>
+    </div>
+
+    <div style="margin-bottom:6mm;">
+      <span class="badge">Oddiy til · B1</span>
+      <span class="badge">Sxema va grafiklar</span>
+      <span class="badge">A3 · 297 × 420 mm</span>
+    </div>
+
+    <div class="toc">
+      <div class="toc-item">
+        <span class="n">1-BO'LIM · 3–4-bet</span>
+        <h3>Zapusklar lug'ati</h3>
+        <p>19 ta asosiy so'z, har biriga ikonka. Avval shuni o'qing.</p>
+      </div>
+      <div class="toc-item">
+        <span class="n">2-BO'LIM · 5-bet</span>
+        <h3>CustDev savollari</h3>
+        <p>16 ta savol + «A nuqtadan B nuqtaga» sxemasi.</p>
+      </div>
+      <div class="toc-item">
+        <span class="n">3-BO'LIM · 6–7-bet</span>
+        <h3>Produkt kontsepti</h3>
+        <p>8 punktli andoza, 4 haftalik yo'l xaritasi, tariflar.</p>
+      </div>
+      <div class="toc-item">
+        <span class="n">4-BO'LIM · 8–10-bet</span>
+        <h3>GPT-sotuvlar</h3>
+        <p>AI uchun tayyor promptlar + e'tirozlar xaritasi.</p>
       </div>
     </div>
 
-    <div class="mid">
-      <span class="kicker">To'liq qo'llanma · 4 ta hujjat bitta joyda</span>
-      <h1>Formula<br>Zapuska</h1>
-      <div class="rule-gold" style="width:60mm;height:2.4pt;"></div>
-      <p class="sub">
-        Onlayn-kursni noldan sotishgacha olib chiqish bo'yicha ish qo'llanmasi.
-        Ichida: asosiy so'zlar lug'ati, mijozni o'rganish savollari, tayyor produkt
-        namunasi va AI (sun'iy intellekt) uchun prompt-shablonlar.
+    <div class="tip" style="margin-top:7mm;margin-bottom:0;">
+      <span class="lbl">Qanday ishlatish kerak</span>
+      <p style="margin-bottom:0;">
+        Boshidan oxirigacha o'qish shart emas. <b>Avval 2-betdagi katta sxemani</b> ko'ring —
+        u yerda butun sistema bir qarashda. Keyin <b>lug'atni</b> o'qing, <b>savollar bilan</b>
+        odamlar bilan gaplashing, <b>andoza bo'yicha</b> produktingizni yozing va oxirida
+        <b>promptlarni</b> ChatGPT'ga qo'ying. Kvadrat qavs ichidagi
+        <span class="ph">[shunaqa joylar]</span> — bu siz o'z ma'lumotingizni yozadigan bo'sh joy.
       </p>
+    </div>
 
-      <div style="margin-top:7mm;">
-        <span class="badge">Oddiy til</span>
-        <span class="badge">Bosmaga tayyor</span>
-        <span class="badge">A3 · 297 × 420 mm</span>
-      </div>
-
-      <div class="toc">
-        <div class="toc-item">
-          <span class="n">1-BO'LIM · 2–3-bet</span>
-          <h3>Zapusklar lug'ati</h3>
-          <p>19 ta asosiy so'z. Boshqa bo'limlarni tushunish uchun avval shuni o'qing.</p>
-        </div>
-        <div class="toc-item">
-          <span class="n">2-BO'LIM · 4-bet</span>
-          <h3>CustDev savollari</h3>
-          <p>Mijoz bilan suhbat. Uning maqsadi nima va nima xalaqit berayotganini bilib olamiz.</p>
-        </div>
-        <div class="toc-item">
-          <span class="n">3-BO'LIM · 5–6-bet</span>
-          <h3>Produkt kontsepti namunasi</h3>
-          <p>Tayyor misol: taklif, dastur, tariflar, kafolat. Shu andozadan nusxa oling.</p>
-        </div>
-        <div class="toc-item">
-          <span class="n">4-BO'LIM · 7–9-bet</span>
-          <h3>GPT-sotuvlar: vebinardan voronkagacha</h3>
-          <p>AI uchun tayyor prompt-shablonlar: vebinar ssenariysi, dojim, e'tirozlar, avtovoronka.</p>
-        </div>
-      </div>
-
-      <div class="tip" style="margin-top:9mm;">
-        <span class="lbl">Qanday ishlatish kerak</span>
-        <p>
-          Bu qo'llanmani boshidan oxirigacha o'qib chiqishingiz shart emas.
-          <b>Avval 1-bo'limni</b> o'qing — u yerda hamma so'z tushuntirilgan.
-          Keyin <b>2-bo'limdagi savollar bilan</b> 5–10 ta odam bilan gaplashing.
-          Shundan keyin <b>3-bo'limdagi andoza bo'yicha</b> o'z produktingizni yozing.
-          Va oxirida <b>4-bo'limdagi promptlarni</b> ChatGPT'ga qo'yib, matnlarni tayyorlang.
+    <!-- manbalar -->
+    <div style="margin-top:auto;padding-top:6mm;border-top:.8pt solid var(--line);">
+      <span class="kicker" style="margin-bottom:3mm;">Bu qo'llanma nimalardan yig'ilgan</span>
+      <div class="grid2" style="gap:2mm 10mm;">
+        <p class="small" style="margin:0;">
+          <b>1.</b> «Словарь запусков» — 19 ta termin &nbsp;→&nbsp; 1-bo'lim<br>
+          <b>2.</b> «Вопросы для CustDev-a» — 16 ta savol &nbsp;→&nbsp; 2-bo'lim
         </p>
-        <p class="small" style="margin-bottom:0;">
-          Kvadrat qavs ichidagi <span class="ph">[shunaqa joylar]</span> — bu siz o'zingizning
-          ma'lumotingizni yozadigan bo'sh joy.
+        <p class="small" style="margin:0;">
+          <b>3.</b> «Пример концепта продукта» — 8 punktli andoza &nbsp;→&nbsp; 3-bo'lim<br>
+          <b>4.</b> «GPT-продажи: от вебинара до воронки» — promptlar &nbsp;→&nbsp; 4-bo'lim
         </p>
       </div>
+      <p class="small" style="margin:3mm 0 0;color:var(--muted);">
+        Bo'limlar tartibi o'zgartirilgan: lug'at birinchi turadi, chunki uning so'zlari
+        qolgan uchta bo'limda ishlatiladi.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ================= 2 — LUG'AT (1) ================= -->
+<!-- ================= 2 — KATTA SXEMA ================= -->
+<section class="page">
+  <div class="runhead"><span><b>Formula Zapuska</b> · Bosh sxema</span><span>Zapusk qanday ishlaydi</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">BOSH SXEMA</span>
+      <h2>Zapusk qanday ishlaydi</h2>
+      <div class="rule-gold"></div>
+      <p class="lead">
+        Butun qo'llanma mana shu bitta rasmga sig'adi. Yuqorida — odamlar oqimi:
+        ko'p odam kiradi, ozi sotib oladi. Pastda — narx zinapoyasi va sotuv oynasi.
+      </p>
+    </div>
+
+    <!-- VORONKA -->
+    <div class="fig">
+      <div class="figtitle">Sotuv voronkasi — har bosqichda odam kamayadi</div>
+      <p class="figsub">Voronka shakli sxematik. Raqamli misol — o'ngda, manbadagi «doxodimost» misolidan.</p>
+      <svg viewBox="0 0 900 330" role="img" aria-label="Zapusk voronkasi 5 bosqich">
+        <!-- 1 -->
+        <polygon points="60,10 660,10 612,62 108,62" fill="var(--o1)"/>
+        <text x="360" y="43" text-anchor="middle" class="svg-onfill-d">1 · AUDITORIYA — obunachilar</text>
+        <!-- 2 -->
+        <polygon points="110,66 610,66 562,118 158,118" fill="var(--o2)"/>
+        <text x="360" y="99" text-anchor="middle" class="svg-onfill-d">2 · LID-MAGNIT / BESPLATNIK</text>
+        <!-- 3 -->
+        <polygon points="160,122 560,122 512,174 208,174" fill="var(--o3)"/>
+        <text x="360" y="155" text-anchor="middle" class="svg-onfill">3 · REGISTRATSIYA</text>
+        <!-- 4 -->
+        <polygon points="210,178 510,178 462,230 258,230" fill="var(--o4)"/>
+        <text x="360" y="211" text-anchor="middle" class="svg-onfill">4 · VEBINAR / KEV</text>
+        <!-- 5 -->
+        <polygon points="260,234 460,234 412,286 308,286" fill="var(--o5)"/>
+        <text x="360" y="267" text-anchor="middle" class="svg-onfill">5 · SOTUV</text>
+
+        <!-- o'ng izohlar -->
+        <text x="680" y="42" class="svg-lab">Ular sizni biladi</text>
+        <text x="630" y="98" class="svg-lab">Ular kontaktini beradi</text>
+        <text x="580" y="154" class="svg-lab">Ular «boraman» dedi</text>
+        <text x="530" y="210" class="svg-lab">Ular sizni eshitdi</text>
+        <text x="480" y="266" class="svg-lab">Ular pul to'ladi</text>
+
+        <!-- progrev qavsi (2–4 bosqich) -->
+        <path d="M46 70 H 30 V 226 H 46" fill="none" stroke="var(--gold)" stroke-width="2"/>
+        <text x="24" y="152" text-anchor="middle" class="svg-lab" transform="rotate(-90 24 152)"
+              style="font-weight:800;fill:var(--gold);font-size:13px;">PROGREV</text>
+        <text x="360" y="318" text-anchor="middle" class="svg-lab-sm" style="font-size:13px;">
+          Progrev 2–4-bosqichlarni bog'lab turadi: u bo'lmasa, odam registratsiya qilib qo'yadi-yu, kelmaydi.</text>
+      </svg>
+    </div>
+
+    <div class="grid2" style="margin-bottom:5mm;">
+      <!-- DOXODIMOST -->
+      <div class="fig" style="margin-bottom:0;">
+        <div class="figtitle">Doxodimost — nechta odam haqiqatan keldi</div>
+        <p class="figsub">Manbadagi misol: 1000 ta registratsiya, efirda 200 ta odam.</p>
+        <svg viewBox="0 0 420 150" role="img" aria-label="1000 registratsiyadan 200 tasi keldi, 20 foiz">
+          <text x="0" y="16" class="svg-lab-sm">Registratsiya qilgan</text>
+          <rect x="0" y="24" width="400" height="26" rx="4" fill="var(--off)"/>
+          <text x="392" y="42" text-anchor="end" class="svg-lab" style="font-weight:800;">1000</text>
+
+          <text x="0" y="80" class="svg-lab-sm">Efirga kelgan</text>
+          <rect x="0" y="88" width="80" height="26" rx="4" fill="var(--o3)"/>
+          <text x="92" y="106" class="svg-lab" style="font-weight:800;">200</text>
+
+          <text x="200" y="140" text-anchor="middle" class="svg-lab"
+                style="font-size:22px;font-weight:800;fill:var(--o4);">doxodimost = 20%</text>
+        </svg>
+        <div class="cap">Bu foizni maxsus usullar bilan oshirish kerak — eslatma, bonus, qo'ng'iroq.</div>
+      </div>
+
+      <!-- NARX ZINAPOYASI -->
+      <div class="fig" style="margin-bottom:0;">
+        <div class="figtitle">Narx zinapoyasi — arzondan qimmatga</div>
+        <p class="figsub">Odam pastdan yuqoriga ko'tariladi. Birdan qimmat produkt sotilmaydi.</p>
+        <svg viewBox="0 0 420 152" role="img" aria-label="Narx zinapoyasi: lid-magnit, tripvayer, kurs, mentorlik">
+          <rect x="0"   y="118" width="98" height="26" fill="var(--o1)"/>
+          <rect x="104" y="94"  width="98" height="50" fill="var(--o2)"/>
+          <rect x="208" y="66"  width="98" height="78" fill="var(--o3)"/>
+          <rect x="312" y="34"  width="98" height="110" fill="var(--o5)"/>
+
+          <!-- pog'ona nomi — har biri o'z ustuni tepasida -->
+          <text x="49"  y="112" text-anchor="middle" class="svg-lab" style="font-size:12.5px;font-weight:800;">Lid-magnit</text>
+          <text x="153" y="88"  text-anchor="middle" class="svg-lab" style="font-size:12.5px;font-weight:800;">Tripvayer</text>
+          <text x="257" y="60"  text-anchor="middle" class="svg-lab" style="font-size:12.5px;font-weight:800;">Kurs</text>
+          <text x="361" y="28"  text-anchor="middle" class="svg-lab" style="font-size:12.5px;font-weight:800;">Mentorlik</text>
+
+          <!-- narx darajasi — ustun ichida -->
+          <text x="49"  y="136" text-anchor="middle" class="sub-d" style="font-size:11.5px;font-weight:700;">BEPUL</text>
+          <text x="153" y="124" text-anchor="middle" class="sub-d" style="font-size:11.5px;font-weight:700;">ARZON</text>
+          <text x="257" y="110" text-anchor="middle" class="sub-l" style="font-size:11.5px;font-weight:700;">O'RTACHA</text>
+          <text x="361" y="94"  text-anchor="middle" class="sub-l" style="font-size:11.5px;font-weight:700;">QIMMAT</text>
+
+          <line x1="0" y1="146" x2="420" y2="146" stroke="var(--line)" stroke-width="1.5"/>
+        </svg>
+        <div class="cap">Odam bizdan 100 rublga olib mamnun bo'lsa — 30 000 rublga ham oladi.</div>
+      </div>
+    </div>
+
+    <!-- SOTUV OYNASI -->
+    <div class="fig" style="margin-bottom:0;">
+      <div class="figtitle">Sotuv oynasi — sotuvlar boshida va oxirida bo'ladi</div>
+      <p class="figsub">Shakl sxematik: aniq raqamlar emas, qonuniyat ko'rsatilgan. Oyna bir necha soatdan 10 kungacha ochiq turadi.</p>
+      <svg viewBox="0 0 900 200" role="img" aria-label="Sotuv oynasi davomida sotuvlar taqsimoti: boshida va oxirida yuqori">
+        <!-- grid -->
+        <line x1="60" y1="150" x2="860" y2="150" stroke="var(--line)" stroke-width="1.5"/>
+        <line x1="60" y1="30" x2="860" y2="30" stroke="var(--grid)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="60" y1="90" x2="860" y2="90" stroke="var(--grid)" stroke-width="1" stroke-dasharray="4 4"/>
+        <text x="52" y="34" text-anchor="end" class="svg-lab-sm">ko'p</text>
+        <text x="52" y="94" text-anchor="end" class="svg-lab-sm">o'rta</text>
+        <text x="52" y="154" text-anchor="end" class="svg-lab-sm">kam</text>
+
+        <!-- ustunlar: 1-kun va oxirgi kun kuchli (emphasis), o'rtasi kulrang -->
+        <rect x="80"  y="34"  width="86" height="116" rx="4" fill="var(--o4)"/>
+        <rect x="182" y="112" width="86" height="38"  rx="4" fill="var(--off)"/>
+        <rect x="284" y="124" width="86" height="26"  rx="4" fill="var(--off)"/>
+        <rect x="386" y="128" width="86" height="22"  rx="4" fill="var(--off)"/>
+        <rect x="488" y="126" width="86" height="24"  rx="4" fill="var(--off)"/>
+        <rect x="590" y="118" width="86" height="32"  rx="4" fill="var(--off)"/>
+        <rect x="692" y="96"  width="86" height="54"  rx="4" fill="var(--off)"/>
+        <rect x="794" y="22"  width="66" height="128" rx="4" fill="var(--o5)"/>
+
+        <text x="123" y="172" text-anchor="middle" class="svg-lab" style="font-weight:700;">1-kun</text>
+        <text x="225" y="172" text-anchor="middle" class="svg-lab-sm">2</text>
+        <text x="327" y="172" text-anchor="middle" class="svg-lab-sm">3</text>
+        <text x="429" y="172" text-anchor="middle" class="svg-lab-sm">4</text>
+        <text x="531" y="172" text-anchor="middle" class="svg-lab-sm">5</text>
+        <text x="633" y="172" text-anchor="middle" class="svg-lab-sm">6</text>
+        <text x="735" y="172" text-anchor="middle" class="svg-lab-sm">7</text>
+        <text x="827" y="172" text-anchor="middle" class="svg-lab" style="font-weight:700;">yopilish</text>
+
+        <text x="123" y="24" text-anchor="middle" class="svg-lab" style="font-weight:800;fill:var(--o4);">ochilish to'lqini</text>
+        <text x="827" y="12" text-anchor="middle" class="svg-lab" style="font-weight:800;fill:var(--o5);">oxirgi soatlar</text>
+      </svg>
+      <div class="cap"><b>Xulosa</b> &nbsp;Oyna yopilish vaqtini aniq ayting. Deadline bo'lmasa — odam cho'zadi va umuman sotib olmaydi.</div>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>Bosh sxema</span><span class="pg">2</span></div>
+</section>
+
+<!-- ================= 3 — LUG'AT (1) ================= -->
 <section class="page">
   <div class="runhead"><span><b>Formula Zapuska</b> · 1-bo'lim</span><span>Zapusklar lug'ati</span></div>
   <div class="body">
@@ -346,16 +539,17 @@ em{ font-style: italic; color: var(--ink-2); }
       <div class="rule-gold"></div>
       <p class="lead">
         Zapusk sohasida ko'p so'zlar rus va ingliz tilidan kelgan. Ular tarjima qilinmaydi —
-        hamma shunday gapiradi. Shuning uchun avval mana shu 19 ta so'zni yodda tuting.
-        Keyin qolgan hamma narsa tushunarli bo'ladi.
+        hamma shunday gapiradi. Avval mana shu 19 ta so'zni yodda tuting.
       </p>
     </div>
 
     <div class="grid2">
 
       <div class="term">
-        <span class="t-num">01</span>
-        <h3>Zapusk</h3>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-rocket"/></svg>
+          <div class="ttx"><span class="t-num">01</span><h3>Zapusk</h3></div>
+        </div>
         <p>Bu — sotuv sistemasi. Biz produkt yaratamiz, auditoriyani tayyorlaymiz,
         qiziqish uyg'otamiz… keyin esa BUM — sotuvni ochamiz. Mana shuning hammasi zapusk.</p>
         <p class="ex"><b>Misol uchun</b>
@@ -365,88 +559,133 @@ em{ font-style: italic; color: var(--ink-2); }
       </div>
 
       <div class="term">
-        <span class="t-num">02</span>
-        <h3>Sherikli zapusk<br><em style="font-size:11.6pt;">(partnyorskiy zapusk)</em></h3>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-partners"/></svg>
+          <div class="ttx"><span class="t-num">02</span><h3>Sherikli zapusk <em style="font-size:11.6pt;">(partnyorskiy)</em></h3></div>
+        </div>
         <p>Bu — bir necha odam birlashib, kursni sotish uchun zapusk qilishi.
         Ko'pincha bu bloger va ekspert. Bloger auditoriya beradi, ekspert esa
         produktning o'zini yaratadi.</p>
         <p class="ex"><b>Misol uchun</b>
-        Men bloger bilan kelishaman: mening saytlar haqidagi kursimni uning blogida sotamiz.
-        Mana bu — sherikli zapusk bo'ladi.</p>
+        Men bloger bilan kelishaman: mening saytlar haqidagi kursimni uning blogida sotamiz.</p>
       </div>
 
       <div class="term">
-        <span class="t-num">03</span>
-        <h3>Vebinar</h3>
-        <p>Bu — jonli efir. Siz 1,5–2 soat davomida biror narsani gapirasiz, odamlar esa
-        real vaqtda onlayn ko'rib turadi. Sizda prezentatsiya bor va odamlar uni ko'radi.
-        Yana onlayn-chat ham bor: odamlar u yerga xabar va savol yozadi. Siz uni ko'rasiz va
-        javob berasiz — shunday qilib jonli suhbat effekti chiqadi.</p>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-webinar"/></svg>
+          <div class="ttx"><span class="t-num">03</span><h3>Vebinar</h3></div>
+        </div>
+        <p>Bu — jonli efir. Siz 1,5–2 soat gapirasiz, odamlar esa real vaqtda onlayn
+        ko'rib turadi. Sizda prezentatsiya bor va odamlar uni ko'radi. Yana onlayn-chat
+        ham bor: odamlar u yerga savol yozadi, siz javob berasiz — jonli suhbat effekti chiqadi.</p>
         <p class="ex"><b>Eslatma</b>
         Vebinar o'tkazish uchun maxsus saytlar bor. Hammasi 5 daqiqada sozlanadi.</p>
       </div>
 
       <div class="term">
-        <span class="t-num">04</span>
-        <h3>Besplatnik <em style="font-size:11.6pt;">(bepul mahsulot)</em></h3>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-gift"/></svg>
+          <div class="ttx"><span class="t-num">04</span><h3>Besplatnik <em style="font-size:11.6pt;">(bepul mahsulot)</em></h3></div>
+        </div>
         <p>Shunday deb bepul vebinar yoki bepul kursni atashadi. Undan keyin pullik
         produkt sotiladi.</p>
       </div>
 
       <div class="term">
-        <span class="t-num">05</span>
-        <h3>Auditoriya</h3>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-people"/></svg>
+          <div class="ttx"><span class="t-num">05</span><h3>Auditoriya</h3></div>
+        </div>
         <p>Obunachilar.</p>
       </div>
 
       <div class="term">
-        <span class="t-num">06</span>
-        <h3>Ohvat <em style="font-size:11.6pt;">(qamrov)</em></h3>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-eye"/></svg>
+          <div class="ttx"><span class="t-num">06</span><h3>Ohvat <em style="font-size:11.6pt;">(qamrov)</em></h3></div>
+        </div>
         <p>Storislaringizni ko'rgan odamlar soni. «Postlar ohvati» ham bor — bu
         postlaringizni necha odam ko'rgani.</p>
       </div>
 
       <div class="term">
-        <span class="t-num">07</span>
-        <h3>Reaksiyalar</h3>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-heart"/></svg>
+          <div class="ttx"><span class="t-num">07</span><h3>Reaksiyalar</h3></div>
+        </div>
         <p>Odamlar sizning storisingizga javoban smaylik yuborsa — mana shu reaksiya.
-        Shu yo'l bilan odamlar storisingizga o'z munosabatini bildiradi.</p>
+        Shu yo'l bilan odamlar o'z munosabatini bildiradi.</p>
       </div>
 
       <div class="term">
-        <span class="t-num">08</span>
-        <h3>Progrev <em style="font-size:11.6pt;">(qizdirish)</em></h3>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-flame"/></svg>
+          <div class="ttx"><span class="t-num">08</span><h3>Progrev <em style="font-size:11.6pt;">(qizdirish)</em></h3></div>
+        </div>
         <p>Bu — storis va postlardagi kontent zanjiri. U tomoshabinni asta-sekin kursni
-        sotib olishga olib boradi. Sxemaga qarab 3 kundan 1 yilgacha davom etadi.</p>
+        sotib olishga olib boradi.</p>
+      </div>
+
+      <!-- PROGREV SHKALASI -->
+      <div class="fig span2" style="margin:1mm 0 2mm;">
+        <svg viewBox="0 0 900 74" role="img" aria-label="Progrev 3 kundan 1 yilgacha davom etadi">
+          <line x1="30" y1="30" x2="870" y2="30" stroke="var(--line)" stroke-width="2"/>
+          <rect x="30" y="24" width="840" height="12" rx="6" fill="var(--gold-pale)"/>
+          <rect x="30" y="24" width="120" height="12" rx="6" fill="var(--o2)"/>
+          <circle cx="30" cy="30" r="7" fill="var(--o2)"/>
+          <circle cx="450" cy="30" r="7" fill="var(--o3)"/>
+          <circle cx="870" cy="30" r="7" fill="var(--o5)"/>
+          <text x="30" y="16" class="svg-lab" style="font-weight:700;">3 kun</text>
+          <text x="450" y="16" text-anchor="middle" class="svg-lab" style="font-weight:700;">bir necha hafta</text>
+          <text x="870" y="16" text-anchor="end" class="svg-lab" style="font-weight:700;">1 yil</text>
+          <text x="30" y="60" class="svg-lab-sm">tez zapusk</text>
+          <text x="450" y="60" text-anchor="middle" class="svg-lab-sm">odatiy zapusk</text>
+          <text x="870" y="60" text-anchor="end" class="svg-lab-sm">uzoq muddatli blog progrevi</text>
+        </svg>
+        <div class="cap"><b>Progrev qancha davom etadi</b> &nbsp;Sxemaga qarab 3 kundan 1 yilgacha.</div>
       </div>
 
       <div class="term">
-        <span class="t-num">09</span>
-        <h3>Storytelling</h3>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-story"/></svg>
+          <div class="ttx"><span class="t-num">09</span><h3>Storytelling</h3></div>
+        </div>
         <p>Bu — hikoya aytish. Postlarda ham, storislarda ham uchraydi.</p>
       </div>
 
       <div class="term">
-        <span class="t-num">10</span>
-        <h3>Registratsiyalar</h3>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-clipboard"/></svg>
+          <div class="ttx"><span class="t-num">10</span><h3>Registratsiyalar</h3></div>
+        </div>
         <p>Vebinarga yoki bepul kursga yozilgan odamlar soni.</p>
       </div>
 
-      <div class="term span2">
-        <span class="t-num">11</span>
-        <h3>Dohodimost <em style="font-size:11.6pt;">(yetib kelish foizi)</em></h3>
-        <p>Bu — vebinargacha yoki bepul kursgacha haqiqatan yetib kelgan odamlar foizi.
-        Misol uchun, vebinarga 1000 ta registratsiya bo'lgan, lekin efirning o'zida atigi
-        200 ta odam qatnashgan bo'lsa — yetib kelish 20% ga teng bo'ladi.
-        Bu foizni maxsus usullar bilan oshirish kerak.</p>
+      <div class="term">
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-funnel"/></svg>
+          <div class="ttx"><span class="t-num">11</span><h3>Doxodimost <em style="font-size:11.6pt;">(yetib kelish foizi)</em></h3></div>
+        </div>
+        <p>Vebinargacha haqiqatan yetib kelgan odamlar foizi. 1000 ta registratsiya
+        bo'lib, efirda 200 ta odam bo'lsa — doxodimost 20%.</p>
+      </div>
+
+      <div class="term">
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-magnet"/></svg>
+          <div class="ttx"><span class="t-num">12</span><h3>Lid-magnit</h3></div>
+        </div>
+        <p>Foydali bepul produkt. Uni tomoshabinga kontakti yoki e'tibori evaziga beramiz.
+        Bepul gayd, vebinar yoki butun kurs bo'lishi mumkin. Maqsadi — qiziqish va
+        ishonch uyg'otish.</p>
       </div>
 
     </div>
   </div>
-  <div class="runfoot"><span>Zapusklar lug'ati</span><span class="pg">2</span></div>
+  <div class="runfoot"><span>Zapusklar lug'ati</span><span class="pg">3</span></div>
 </section>
 
-<!-- ================= 3 — LUG'AT (2) ================= -->
+<!-- ================= 4 — LUG'AT (2) ================= -->
 <section class="page">
   <div class="runhead"><span><b>Formula Zapuska</b> · 1-bo'lim</span><span>Zapusklar lug'ati</span></div>
   <div class="body">
@@ -454,97 +693,128 @@ em{ font-style: italic; color: var(--ink-2); }
     <div class="grid2">
 
       <div class="term">
-        <span class="t-num">12</span>
-        <h3>Lid-magnit</h3>
-        <p>Bu — foydali bepul produkt. Biz uni tomoshabinga uning kontakti yoki e'tibori
-        evaziga beramiz.</p>
-        <p>Lid-magnit rolida bepul gayd, vebinar yoki butun bir kurs bo'lishi mumkin.
-        Uning maqsadi — potensial mijozni biz bilan muloqotga jalb qilish, qiziqish va
-        ishonch uyg'otish.</p>
-      </div>
-
-      <div class="term">
-        <span class="t-num">13</span>
-        <h3>Tripvayer</h3>
-        <p>Bu — arzon, kichkina, lekin juda ham foydali produkt. Tripvayerning maqsadi —
-        odamda bizdan sotib olishning yoqimli tajribasini yaratish.</p>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-tag"/></svg>
+          <div class="ttx"><span class="t-num">13</span><h3>Tripvayer</h3></div>
+        </div>
+        <p>Arzon, kichkina, lekin juda ham foydali produkt. Maqsadi — odamda bizdan
+        sotib olishning yoqimli tajribasini yaratish.</p>
         <p class="ex"><b>Nimaga kerak?</b>
         Odam bizdan 100 rublga biror narsa sotib olsa va juda mamnun bo'lsa,
         keyinchalik u bizdan 30 000 rublga ham katta ehtimol bilan sotib oladi.</p>
       </div>
 
       <div class="term">
-        <span class="t-num">14</span>
-        <h3>Upakovka <em style="font-size:11.6pt;">(o'ram)</em></h3>
-        <p>Bu — produktimizning vizual qismi: sayt dizayni, prezentatsiya dizayni,
-        gayd dizayni. Ba'zan yaxshi produkt yomon upakovka qilinadi — va shuning uchun
-        u yomon bo'lib ko'rinadi.</p>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-box"/></svg>
+          <div class="ttx"><span class="t-num">14</span><h3>Upakovka <em style="font-size:11.6pt;">(o'ram)</em></h3></div>
+        </div>
+        <p>Produktimizning vizual qismi: sayt dizayni, prezentatsiya dizayni, gayd dizayni.
+        Ba'zan yaxshi produkt yomon upakovka qilinadi — va shuning uchun u yomon bo'lib
+        ko'rinadi.</p>
       </div>
 
       <div class="term">
-        <span class="t-num">15</span>
-        <h3>Gayd</h3>
-        <p>Bu — 1 betdan 100 betgacha bo'lgan elektron kitob. Ko'pincha PDF formatda
-        va ma'lum bir dizaynda bo'ladi.</p>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-doc"/></svg>
+          <div class="ttx"><span class="t-num">15</span><h3>Gayd</h3></div>
+        </div>
+        <p>1 betdan 100 betgacha bo'lgan elektron kitob. Ko'pincha PDF formatda va
+        ma'lum bir dizaynda bo'ladi.</p>
       </div>
 
       <div class="term">
-        <span class="t-num">16</span>
-        <h3>Nastavnichestvo <em style="font-size:11.6pt;">(mentorlik)</em></h3>
-        <p>Bu — o'quvchi bilan doimiy shaxsiy ish. Misol uchun, 2 oy davomida o'quvchi
-        bilan haftada 1 marta uchrashsangiz va uning savollarini ishlab chiqsangiz —
-        demak, u sizning mentorligingizdan o'tayapti.</p>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-mentor"/></svg>
+          <div class="ttx"><span class="t-num">16</span><h3>Nastavnichestvo <em style="font-size:11.6pt;">(mentorlik)</em></h3></div>
+        </div>
+        <p>O'quvchi bilan doimiy shaxsiy ish. Misol uchun, 2 oy davomida haftada 1 marta
+        uchrashsangiz va uning savollarini ishlab chiqsangiz — u sizning mentorligingizdan
+        o'tayapti.</p>
         <p class="ex"><b>Eslatma</b>
         Odatda bu format qolgan hamma formatdan qimmat turadi.</p>
       </div>
 
       <div class="term">
-        <span class="t-num">17</span>
-        <h3>Sotuv oynasi <em style="font-size:11.6pt;">(okno prodaj)</em></h3>
-        <p>Bu — bir necha soatdan 10 kungacha bo'lgan davr. Shu vaqt ichida biz havola
-        chiqaramiz va u orqali sotib olish mumkin. Qolgan vaqtda esa bu havola ishlamaydi,
-        sotib olib bo'lmaydi.</p>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-window"/></svg>
+          <div class="ttx"><span class="t-num">17</span><h3>Sotuv oynasi <em style="font-size:11.6pt;">(okno prodaj)</em></h3></div>
+        </div>
+        <p>Bir necha soatdan 10 kungacha bo'lgan davr. Shu vaqt ichida havola ishlaydi va
+        sotib olish mumkin. Qolgan vaqtda havola ishlamaydi.</p>
         <p class="ex"><b>Nimaga shunday?</b>
-        Sotuv oynasi shuning uchun kerak: potensial xaridor ishni cho'zmasin, qaror qabul
-        qilsin. Sotuvlarning ko'pchiligi oynaning birinchi va oxirgi soatlarida bo'ladi.</p>
+        Xaridor ishni cho'zmasin, qaror qabul qilsin. Sotuvlarning ko'pchiligi oynaning
+        birinchi va oxirgi soatlarida bo'ladi.</p>
+      </div>
+
+      <div class="term">
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-steps"/></svg>
+          <div class="ttx"><span class="t-num">18</span><h3>PLF <em style="font-size:11.6pt;">(Product Launch Formula)</em></h3></div>
+        </div>
+        <p>Jeff Uokerning «Zapusk» kitobida yozilgan sistema. Mohiyati: avval odamlarga
+        2–3 ta bepul, foydali va qiziqarli video yoki fayl beriladi, keyin esa sotuv
+        ochiladi. Ko'pincha bepul kurs yoki marafon orqali amalga oshiriladi.</p>
+        <p class="ex"><b>Eslatma</b>
+        Katta ehtimol bilan siz blogerlarda shunaqa narsani ko'rgansiz. Sxemasi — pastda.</p>
       </div>
 
       <div class="term span2">
-        <span class="t-num">18</span>
-        <h3>PLF — Product Launch Formula</h3>
-        <p>Bu — Jeff Uokerning «Zapusk» kitobida yozilgan sistema. Uning mohiyati shunday:
-        avval odamlarga 2–3 ta bepul, foydali va qiziqarli video yoki fayl beriladi,
-        keyin esa sotuv ochiladi. Ko'pincha bu bepul kurs yoki marafon orqali amalga oshiriladi.
-        Katta ehtimol bilan siz blogerlarda shunaqa narsani ko'rgansiz.</p>
+        <div class="thead">
+          <svg class="ico" color="var(--gold)"><use href="#ic-star-person"/></svg>
+          <div class="ttx"><span class="t-num">19</span><h3>Ekspert-bloger</h3></div>
+        </div>
+        <p>O'z ishining professionali bo'lgan va shu mavzuda blog yuritadigan odam.
+        Misol uchun, fitnes haqida blog yuritadigan fitnes-trener. Yoki target haqida
+        blog yuritadigan targetolog. <b>Bunaqa odamlarni zapusk qilish eng oson</b> —
+        chunki auditoriya ham, ekspertlik ham bitta odamda jamlangan.</p>
       </div>
 
-      <div class="term span2">
-        <span class="t-num">19</span>
-        <h3>Ekspert-bloger</h3>
-        <p>Bu — o'z ishining professionali bo'lgan va shu mavzuda blog yuritadigan odam.
-        Misol uchun, fitnes haqida blog yuritadigan zo'r fitnes-trener. Yoki target haqida
-        blog yuritadigan targetolog. Bunaqa odamlarni zapusk qilish eng oson.</p>
-      </div>
+    </div>
 
+    <div class="fig" style="margin-top:4mm;">
+      <div class="figtitle">18 · PLF qanday ishlaydi</div>
+      <svg viewBox="0 0 900 130" role="img" aria-label="PLF sxemasi: uchta bepul video, keyin sotuv ochiladi">
+        <!-- video 1 -->
+        <rect x="20"  y="20" width="190" height="70" rx="6" fill="var(--o1)"/>
+        <text x="115" y="52" text-anchor="middle" class="svg-onfill-d">1-VIDEO · bepul</text>
+        <text x="115" y="72" text-anchor="middle" class="sub-d" style="font-size:12px;">muammoni ochamiz</text>
+        <!-- video 2 -->
+        <rect x="238" y="20" width="190" height="70" rx="6" fill="var(--o2)"/>
+        <text x="333" y="52" text-anchor="middle" class="svg-onfill-d">2-VIDEO · bepul</text>
+        <text x="333" y="72" text-anchor="middle" class="sub-d" style="font-size:12px;">yechimni ko'rsatamiz</text>
+        <!-- video 3 -->
+        <rect x="456" y="20" width="190" height="70" rx="6" fill="var(--o3)"/>
+        <text x="551" y="52" text-anchor="middle" class="svg-onfill">3-VIDEO · bepul</text>
+        <text x="551" y="72" text-anchor="middle" class="sub-l" style="font-size:12px;">natijani isbotlaymiz</text>
+        <!-- sotuv -->
+        <rect x="674" y="12" width="206" height="86" rx="6" fill="var(--o5)"/>
+        <text x="777" y="48" text-anchor="middle" class="svg-onfill" style="font-size:16px;">SOTUV OCHILDI</text>
+        <text x="777" y="70" text-anchor="middle" class="sub-l" style="font-size:12px;">okno prodaj</text>
+        <!-- strelkalar -->
+        <path d="M214 55 h20 m-6-5 l6 5 -6 5" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M432 55 h20 m-6-5 l6 5 -6 5" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M650 55 h20 m-6-5 l6 5 -6 5" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+        <text x="450" y="120" text-anchor="middle" class="svg-lab-sm">Avval bering — keyin so'rang. Mana shu PLFning butun siri.</text>
+      </svg>
     </div>
 
     <div class="rule"></div>
 
-    <div class="tip">
+    <div class="tip" style="margin-bottom:0;">
       <span class="lbl">Bo'limdan asosiy xulosa</span>
-      <p>
+      <p style="margin-bottom:0;">
         Zapusk — bu «bir kunda sotdim» degani emas. Bu ketma-ketlik:
-        <b>auditoriya → bepul mahsulot (lid-magnit yoki vebinar) → progrev →
-        sotuv oynasi → sotuv</b>. Har bir bosqichning o'z nomi bor, va endi siz
-        ularning hammasini bilasiz.
+        <b>auditoriya → lid-magnit → progrev → vebinar/KEV → sotuv oynasi → sotuv</b>.
+        Har bir bosqichning o'z nomi bor, va endi siz ularning hammasini bilasiz.
       </p>
     </div>
 
   </div>
-  <div class="runfoot"><span>Zapusklar lug'ati</span><span class="pg">3</span></div>
+  <div class="runfoot"><span>Zapusklar lug'ati</span><span class="pg">4</span></div>
 </section>
 
-<!-- ================= 4 — CUSTDEV ================= -->
+<!-- ================= 5 — CUSTDEV ================= -->
 <section class="page">
   <div class="runhead"><span><b>Formula Zapuska</b> · 2-bo'lim</span><span>CustDev savollari</span></div>
   <div class="body">
@@ -554,11 +824,46 @@ em{ font-style: italic; color: var(--ink-2); }
       <h2>CustDev savollari</h2>
       <div class="rule-gold"></div>
       <p class="lead">
-        CustDev — bu potensial mijoz bilan oddiy suhbat. Siz hech narsa sotmaysiz.
-        Siz faqat so'raysiz va tinglaysiz. Maqsad bitta: odamning hozirgi holatini,
-        maqsadini va unga nima xalaqit berayotganini tushunish. Mana shu ma'lumotdan keyin
-        produkt yozish juda ham oson bo'ladi.
+        CustDev — bu potensial mijoz bilan oddiy suhbat. Siz hech narsa sotmaysiz —
+        faqat so'raysiz va tinglaysiz. Maqsad: odamning hozirgi holatini, maqsadini va
+        unga nima xalaqit berayotganini tushunish.
       </p>
+    </div>
+
+    <!-- A → B SXEMASI -->
+    <div class="fig">
+      <div class="figtitle">Siz nimani izlayapsiz: «A nuqta» → to'siqlar → «B nuqta»</div>
+      <svg viewBox="0 0 900 190" role="img" aria-label="A nuqtadan B nuqtaga yo'l va uchta to'siq">
+        <!-- yo'l -->
+        <path d="M110 100 H 790" stroke="var(--line)" stroke-width="16" stroke-linecap="round"/>
+        <path d="M110 100 H 790" stroke="var(--gold-pale)" stroke-width="10" stroke-linecap="round"/>
+
+        <!-- A -->
+        <circle cx="110" cy="100" r="46" fill="var(--o2)"/>
+        <text x="110" y="94" text-anchor="middle" class="svg-onfill-d" style="font-size:26px;">A</text>
+        <text x="110" y="114" text-anchor="middle" class="sub-d" style="font-size:11.5px;">hozir</text>
+        <text x="110" y="172" text-anchor="middle" class="svg-lab" style="font-weight:700;">Hozirgi holat</text>
+        <text x="110" y="26" text-anchor="middle" class="svg-lab-sm">1–8 savollar</text>
+
+        <!-- B -->
+        <circle cx="790" cy="100" r="46" fill="var(--o5)"/>
+        <text x="790" y="94" text-anchor="middle" class="svg-onfill" style="font-size:26px;">B</text>
+        <text x="790" y="114" text-anchor="middle" class="sub-l" style="font-size:11.5px;">maqsad</text>
+        <text x="790" y="172" text-anchor="middle" class="svg-lab" style="font-weight:700;">Xohlagan natija</text>
+        <text x="790" y="26" text-anchor="middle" class="svg-lab-sm">2-savol</text>
+
+        <!-- to'siqlar -->
+        <g>
+          <rect x="270" y="72" width="18" height="56" rx="3" fill="var(--s3)"/>
+          <text x="279" y="152" text-anchor="middle" class="svg-lab-sm" style="font-size:12px;">vaqt yo'q</text>
+          <rect x="440" y="72" width="18" height="56" rx="3" fill="var(--s3)"/>
+          <text x="449" y="152" text-anchor="middle" class="svg-lab-sm" style="font-size:12px;">pul yo'q</text>
+          <rect x="610" y="72" width="18" height="56" rx="3" fill="var(--s3)"/>
+          <text x="619" y="152" text-anchor="middle" class="svg-lab-sm" style="font-size:12px;">bilim yo'q</text>
+        </g>
+        <text x="449" y="44" text-anchor="middle" class="svg-lab" style="font-weight:700;fill:var(--s3);">TO'SIQLAR — 4, 5, 6-savollar</text>
+      </svg>
+      <div class="cap"><b>Muhim</b> &nbsp;Sizning produktingiz — bu mana shu to'siqlarni olib tashlaydigan narsa. To'siqlarni bilmasangiz, produkt ham tasodifiy chiqadi.</div>
     </div>
 
     <div class="grid2">
@@ -574,21 +879,11 @@ em{ font-style: italic; color: var(--ink-2); }
           <li>Hozir bu soha bilan munosabating qanaqa?</li>
           <li>Maqsadga yetish uchun eng ko'p nima yetishmayapti?</li>
         </ol>
-
-        <div class="tip">
-          <span class="lbl">Muhim</span>
-          <p>
-            Boshlang'ich bosqichda bizning vazifamiz — odamning
-            <b>«A NUQTASI»ni</b>, ya'ni hozirgi holatini, uning maqsadlarini va
-            ularni amalga oshirishga nima xalaqit berayotganini imkon qadar
-            batafsil o'rganish.
-          </p>
-        </div>
       </div>
 
       <div>
         <h3 style="color:var(--gold);letter-spacing:.06em;">Ikkinchi qism · Bozor va produkt</h3>
-        <ol class="qlist" start="9" style="counter-reset: q 8;">
+        <ol class="qlist" style="counter-reset:q 8;">
           <li>Bozorda kimni bilasan, kimni kuzatasan?</li>
           <li>Nimaga menga obuna bo'lgansan?</li>
           <li>Sizningcha, mening super-kuchim nimada?</li>
@@ -601,47 +896,40 @@ em{ font-style: italic; color: var(--ink-2); }
       </div>
     </div>
 
-    <div class="rule"></div>
-
-    <div class="tip">
-      <span class="lbl">Muhim: robotdek gaplashmang</span>
-      <p>
-        Bu — <b>taxminiy</b> savollar ro'yxati. Struktura shuning uchun berilgan:
-        suhbatni nimadandir boshlang va yo'ldan adashib qolmang.
-      </p>
-      <p>
-        Lekin ro'yxat bo'yicha robotdek ketmang. Odam bilan <b>odamdek</b> gaplashing.
-        Uning holatiga chin dildan kirishga harakat qiling: qanaqa muammolari bor,
-        ularning yechimini u qanaqa ko'radi va nimaga pul to'lashga tayyor.
-      </p>
+    <div class="grid3" style="margin-top:2mm;">
+      <div class="stat">
+        <span class="k">Nechta suhbat</span>
+        <span class="v">5–10</span>
+        <p>Bittasi bilan gaplashib xulosa chiqarish — xato. Takrorlanadigan javoblarni qidiring.</p>
+      </div>
+      <div class="stat">
+        <span class="k">Qoida</span>
+        <span class="v">80 / 20</span>
+        <p>Vaqtning 80% — siz tinglaysiz. 20% — siz so'raysiz. Sotmaysiz.</p>
+      </div>
+      <div class="stat">
+        <span class="k">Yozib olish</span>
+        <span class="v">so'zma-so'z</span>
+        <p>Odamning o'z so'zlarini aynan yozing. Keyin ular oferingizga tushadi.</p>
+      </div>
     </div>
 
-    <div class="grid2" style="margin-top:2mm;">
-      <div class="tip" style="margin-bottom:0;">
-        <span class="lbl">Nechta suhbat kerak?</span>
-        <p style="margin-bottom:0;">
-          Kamida <b>5–10 ta odam</b> bilan gaplashing. Bittasi bilan gaplashib
-          xulosa chiqarish — bu xato. Takrorlanadigan javoblarni qidiring:
-          agar 7 ta odamdan 5 tasi bir xil narsani aytsa, demak, mana shu
-          sizning produktingizning asosi.
-        </p>
-      </div>
-      <div class="tip" style="margin-bottom:0;">
-        <span class="lbl">Javoblarni qanday yozib olish kerak</span>
-        <p style="margin-bottom:0;">
-          Odamning <b>o'z so'zlarini</b> aynan qanday aytgan bo'lsa, shundayligicha
-          yozib oling. Keyin shu so'zlarni oferingizga, sotuv sahifangizga va
-          storislaringizga qo'yasiz. Mijoz o'z so'zini ko'rsa — «bu men haqimda»
-          deb o'ylaydi.
-        </p>
-      </div>
+    <div class="tip" style="margin-top:5mm;margin-bottom:0;">
+      <span class="lbl">Muhim: robotdek gaplashmang</span>
+      <p style="margin-bottom:0;">
+        Bu — <b>taxminiy</b> savollar ro'yxati. Struktura shuning uchun berilgan: suhbatni
+        nimadandir boshlang va yo'ldan adashib qolmang. Lekin ro'yxat bo'yicha robotdek
+        ketmang — odam bilan <b>odamdek</b> gaplashing. Uning holatiga chin dildan kirishga
+        harakat qiling: qanaqa muammolari bor, yechimini u qanaqa ko'radi va nimaga pul
+        to'lashga tayyor.
+      </p>
     </div>
 
   </div>
-  <div class="runfoot"><span>CustDev savollari</span><span class="pg">4</span></div>
+  <div class="runfoot"><span>CustDev savollari</span><span class="pg">5</span></div>
 </section>
 
-<!-- ================= 5 — PRODUKT KONTSEPTI (1) ================= -->
+<!-- ================= 6 — PRODUKT (1) ================= -->
 <section class="page">
   <div class="runhead"><span><b>Formula Zapuska</b> · 3-bo'lim</span><span>Produkt kontsepti namunasi</span></div>
   <div class="body">
@@ -651,10 +939,42 @@ em{ font-style: italic; color: var(--ink-2); }
       <h2>Produkt kontsepti namunasi</h2>
       <div class="rule-gold"></div>
       <p class="lead">
-        Bu — tayyor misol. Uni o'qing va xuddi shu tuzilma bo'yicha o'z produktingizni yozing.
-        Struktura 8 ta punktdan iborat: taklif → kimga → format → dastur → natija →
-        tariflar → nima kiradi → kafolat.
+        Bu — tayyor misol. O'qing va xuddi shu tuzilma bo'yicha o'z produktingizni yozing.
       </p>
+    </div>
+
+    <!-- 8 PUNKT SXEMASI -->
+    <div class="fig">
+      <div class="figtitle">Produkt kontsepti — 8 ta punkt</div>
+      <svg viewBox="0 0 900 96" role="img" aria-label="Produkt kontseptining sakkiz punkti ketma-ketligi">
+        <g>
+          <rect x="0"   y="20" width="104" height="46" rx="5" fill="var(--o1)"/>
+          <rect x="114" y="20" width="104" height="46" rx="5" fill="var(--o1)"/>
+          <rect x="228" y="20" width="104" height="46" rx="5" fill="var(--o2)"/>
+          <rect x="342" y="20" width="104" height="46" rx="5" fill="var(--o2)"/>
+          <rect x="456" y="20" width="104" height="46" rx="5" fill="var(--o3)"/>
+          <rect x="570" y="20" width="104" height="46" rx="5" fill="var(--o4)"/>
+          <rect x="684" y="20" width="104" height="46" rx="5" fill="var(--o4)"/>
+          <rect x="798" y="20" width="102" height="46" rx="5" fill="var(--o5)"/>
+        </g>
+        <text x="52"  y="40" text-anchor="middle" class="svg-onfill-d" style="font-size:11px;">1 · OFFER</text>
+        <text x="166" y="40" text-anchor="middle" class="svg-onfill-d" style="font-size:11px;">2 · KIMGA</text>
+        <text x="280" y="40" text-anchor="middle" class="svg-onfill-d" style="font-size:11px;">3 · FORMAT</text>
+        <text x="394" y="40" text-anchor="middle" class="svg-onfill-d" style="font-size:11px;">4 · DASTUR</text>
+        <text x="508" y="40" text-anchor="middle" class="svg-onfill" style="font-size:11px;">5 · NATIJA</text>
+        <text x="622" y="40" text-anchor="middle" class="svg-onfill" style="font-size:11px;">6 · TARIF</text>
+        <text x="736" y="40" text-anchor="middle" class="svg-onfill" style="font-size:11px;">7 · BONUS</text>
+        <text x="849" y="40" text-anchor="middle" class="svg-onfill" style="font-size:11px;">8 · KAFOLAT</text>
+        <text x="52"  y="58" text-anchor="middle" class="sub-d" style="font-size:10.5px;">nima va'da</text>
+        <text x="166" y="58" text-anchor="middle" class="sub-d" style="font-size:10.5px;">kim uchun</text>
+        <text x="280" y="58" text-anchor="middle" class="sub-d" style="font-size:10.5px;">qanday</text>
+        <text x="394" y="58" text-anchor="middle" class="sub-d" style="font-size:10.5px;">haftalar</text>
+        <text x="508" y="58" text-anchor="middle" class="sub-l" style="font-size:10.5px;">qo'lida nima</text>
+        <text x="622" y="58" text-anchor="middle" class="sub-l" style="font-size:10.5px;">qancha</text>
+        <text x="736" y="58" text-anchor="middle" class="sub-l" style="font-size:10.5px;">yana nima</text>
+        <text x="849" y="58" text-anchor="middle" class="sub-l" style="font-size:10.5px;">qo'rquvni ol</text>
+        <text x="0" y="90" class="svg-lab-sm">Chapdan o'ngga to'ldiring — har bir punkt keyingisini oson qiladi.</text>
+      </svg>
     </div>
 
     <div class="tip">
@@ -665,7 +985,7 @@ em{ font-style: italic; color: var(--ink-2); }
       </p>
     </div>
 
-    <div class="grid2-t" style="margin-bottom:6mm;">
+    <div class="grid2-t" style="margin-bottom:5mm;">
       <div class="week">
         <h3>2 · Kimga mos keladi?</h3>
         <p style="font-size:12pt;margin-bottom:2mm;">Agar siz:</p>
@@ -675,8 +995,8 @@ em{ font-style: italic; color: var(--ink-2); }
           <li>Frilanser bo'lsangiz</li>
           <li>SMM-chi bo'lsangiz</li>
         </ul>
-        <p class="res" style="margin-top:auto;"><b>Maslahat:</b> bu ro'yxat qanchalik aniq bo'lsa,
-        odam «bu men haqimda» deb shuncha tez tushunadi.</p>
+        <p class="res"><b>Maslahat:</b> bu ro'yxat qanchalik aniq bo'lsa, odam
+        «bu men haqimda» deb shuncha tez tushunadi.</p>
       </div>
 
       <div class="week">
@@ -694,61 +1014,92 @@ em{ font-style: italic; color: var(--ink-2); }
       </div>
     </div>
 
-    <h3 style="color:var(--gold);letter-spacing:.06em;margin-bottom:4mm;">4 · Kurs dasturi</h3>
+    <!-- 4 HAFTA ZINAPOYASI -->
+    <div class="fig" style="margin-bottom:0;">
+      <div class="figtitle">4 · Kurs dasturi — har hafta bitta zina</div>
+      <p class="figsub">Har haftaning oxirida o'quvchi qo'lida aniq natija bo'ladi.</p>
+      <svg viewBox="0 0 900 250" role="img" aria-label="To'rt haftalik dastur zinapoyasi va har haftaning natijasi">
+        <!-- zinalar -->
+        <rect x="10"  y="180" width="205" height="60" rx="5" fill="var(--o1)"/>
+        <rect x="235" y="140" width="205" height="100" rx="5" fill="var(--o2)"/>
+        <rect x="460" y="100" width="205" height="140" rx="5" fill="var(--o3)"/>
+        <rect x="685" y="46"  width="205" height="194" rx="5" fill="var(--o5)"/>
 
-    <div class="grid2-t">
-      <div class="week">
-        <h3>1-hafta: Strategiya va profil upakovkasi</h3>
-        <ul>
-          <li>Maqsad qo'yamiz va blog kontseptsiyasini yozamiz</li>
-          <li>6 oyga strategiya yozamiz</li>
-          <li>Birinchi kontent-rejani yozamiz</li>
-          <li>Birinchi fotosessiyani tashkil qilamiz</li>
-        </ul>
-        <p class="res"><b>Natija:</b> blogni nima haqida, kim uchun va nima uchun
-        yuritishingiz sizga tushunarli bo'ladi. Sizda kontent-reja va 12 ta chiroyli
-        foto bor.</p>
-      </div>
+        <text x="112" y="206" text-anchor="middle" class="svg-onfill-d" style="font-size:15px;">1-HAFTA</text>
+        <text x="112" y="226" text-anchor="middle" class="sub-d" style="font-size:12.5px;">Strategiya va upakovka</text>
 
-      <div class="week">
-        <h3>2-hafta: Birinchi 1000 ta obunachi</h3>
-        <ul>
-          <li>Bepul reklama usullari</li>
-          <li>Reels orqali birinchi 1000 ta obunachini qanday yig'ish kerak?</li>
-          <li>Telegram-kanalga pulsiz 1000 ta obunachini qanday yig'ish mumkin?</li>
-        </ul>
-        <p class="res"><b>Natija:</b> birinchi 200 ta obunachini yig'dingiz va
-        1000 tasini qanday qilishni tushunasiz.</p>
-      </div>
+        <text x="337" y="166" text-anchor="middle" class="svg-onfill-d" style="font-size:15px;">2-HAFTA</text>
+        <text x="337" y="186" text-anchor="middle" class="sub-d" style="font-size:12.5px;">Birinchi 1000 obunachi</text>
 
-      <div class="week">
-        <h3>3-hafta: Pullik reklama</h3>
-        <ul>
-          <li>Pullik reklama usullari</li>
-          <li>Reklama podachalari — bu qanaqa?</li>
-          <li>Reklama sotib olamiz</li>
-        </ul>
-        <p class="res"><b>Natija:</b> 10 000 ta obunachini qanday qilishni tushunasiz.</p>
-      </div>
+        <text x="562" y="126" text-anchor="middle" class="svg-onfill" style="font-size:15px;">3-HAFTA</text>
+        <text x="562" y="146" text-anchor="middle" class="sub-l" style="font-size:12.5px;">Pullik reklama</text>
 
-      <div class="week">
-        <h3>4-hafta: Sotuvlar</h3>
-        <ul>
-          <li>Oddiy progrev sxemasi</li>
-          <li>Diagnostika orqali shaxsiy sotuv sxemasi</li>
-        </ul>
-        <p class="res"><b>Natija:</b> birinchi sotuvlaringizni qildingiz.</p>
-      </div>
+        <text x="787" y="72" text-anchor="middle" class="svg-onfill" style="font-size:15px;">4-HAFTA</text>
+        <text x="787" y="92" text-anchor="middle" class="sub-l" style="font-size:12.5px;">Sotuvlar</text>
+
+        <!-- natijalar -->
+        <text x="112" y="170" text-anchor="middle" class="svg-lab" style="font-size:12px;">kontent-reja + 12 foto</text>
+        <text x="337" y="130" text-anchor="middle" class="svg-lab" style="font-size:12px;">birinchi 200 obunachi</text>
+        <text x="562" y="90"  text-anchor="middle" class="svg-lab" style="font-size:12px;">10 000 gacha yo'l aniq</text>
+        <text x="787" y="36"  text-anchor="middle" class="svg-lab" style="font-size:13px;font-weight:800;fill:var(--o5);">birinchi sotuvlar</text>
+
+        <line x1="0" y1="248" x2="900" y2="248" stroke="var(--line)" stroke-width="1.5"/>
+      </svg>
+      <div class="cap"><b>Qoida</b> &nbsp;Har hafta oxirida aniq natija yozing. «Bilim beramiz» degan gap sotmaydi — «qo'lingizda 12 ta foto bo'ladi» degan gap sotadi.</div>
     </div>
 
   </div>
-  <div class="runfoot"><span>Produkt kontsepti namunasi</span><span class="pg">5</span></div>
+  <div class="runfoot"><span>Produkt kontsepti namunasi</span><span class="pg">6</span></div>
 </section>
 
-<!-- ================= 6 — PRODUKT KONTSEPTI (2) ================= -->
+<!-- ================= 7 — PRODUKT (2) ================= -->
 <section class="page">
   <div class="runhead"><span><b>Formula Zapuska</b> · 3-bo'lim</span><span>Produkt kontsepti namunasi</span></div>
   <div class="body">
+
+    <div class="fig">
+      <div class="figtitle">4 · Dastur — ichida nima bor</div>
+      <div class="grid2-t" style="margin-top:3mm;">
+        <div class="week">
+          <h3>1-hafta: Strategiya va profil upakovkasi</h3>
+          <ul>
+            <li>Maqsad qo'yamiz va blog kontseptsiyasini yozamiz</li>
+            <li>6 oyga strategiya yozamiz</li>
+            <li>Birinchi kontent-rejani yozamiz</li>
+            <li>Birinchi fotosessiyani tashkil qilamiz</li>
+          </ul>
+          <p class="res"><b>Natija:</b> blogni nima haqida, kim uchun va nima uchun
+          yuritishingiz tushunarli bo'ladi. Kontent-reja va 12 ta chiroyli foto bor.</p>
+        </div>
+        <div class="week">
+          <h3>2-hafta: Birinchi 1000 ta obunachi</h3>
+          <ul>
+            <li>Bepul reklama usullari</li>
+            <li>Reels orqali birinchi 1000 ta obunachini qanday yig'ish kerak?</li>
+            <li>Telegram-kanalga pulsiz 1000 ta obunachini qanday yig'ish mumkin?</li>
+          </ul>
+          <p class="res"><b>Natija:</b> birinchi 200 ta obunachini yig'dingiz va
+          1000 tasini qanday qilishni tushunasiz.</p>
+        </div>
+        <div class="week">
+          <h3>3-hafta: Pullik reklama</h3>
+          <ul>
+            <li>Pullik reklama usullari</li>
+            <li>Reklama podachalari — bu qanaqa?</li>
+            <li>Reklama sotib olamiz</li>
+          </ul>
+          <p class="res"><b>Natija:</b> 10 000 ta obunachini qanday qilishni tushunasiz.</p>
+        </div>
+        <div class="week">
+          <h3>4-hafta: Sotuvlar</h3>
+          <ul>
+            <li>Oddiy progrev sxemasi</li>
+            <li>Diagnostika orqali shaxsiy sotuv sxemasi</li>
+          </ul>
+          <p class="res"><b>Natija:</b> birinchi sotuvlaringizni qildingiz.</p>
+        </div>
+      </div>
+    </div>
 
     <div class="tip">
       <span class="lbl">5 · O'qish yakunida odam nimaga erishadi</span>
@@ -760,12 +1111,17 @@ em{ font-style: italic; color: var(--ink-2); }
       </div>
     </div>
 
-    <h3 style="color:var(--gold);letter-spacing:.06em;margin:6mm 0 4mm;">6 · Tariflar va narxlar</h3>
+    <h3 style="color:var(--gold);letter-spacing:.06em;margin:5mm 0 3mm;">6 · Tariflar va narxlar</h3>
 
-    <div class="grid2-t" style="margin-bottom:6mm;">
+    <div class="grid2-t" style="margin-bottom:5mm;">
       <div class="tariff">
         <h3>«Qarab turish»</h3>
         <p class="price">9 900 rubl</p>
+        <svg viewBox="0 0 300 14" style="width:100%;height:auto;margin-bottom:3mm;">
+          <rect x="0" y="0" width="300" height="12" rx="6" fill="var(--off)"/>
+          <rect x="0" y="0" width="120" height="12" rx="6" fill="var(--o2)"/>
+        </svg>
+        <p class="small" style="margin:-1mm 0 3mm;color:var(--muted);">4 ta imkoniyat · tomoshabin</p>
         <ul>
           <li>3 haftaga kirish</li>
           <li>Chatga kirish</li>
@@ -777,6 +1133,11 @@ em{ font-style: italic; color: var(--ink-2); }
       <div class="tariff hi">
         <h3>«Optimal»</h3>
         <p class="price">19 900 rubl</p>
+        <svg viewBox="0 0 300 14" style="width:100%;height:auto;margin-bottom:3mm;">
+          <rect x="0" y="0" width="300" height="12" rx="6" fill="var(--off)"/>
+          <rect x="0" y="0" width="300" height="12" rx="6" fill="var(--o5)"/>
+        </svg>
+        <p class="small" style="margin:-1mm 0 3mm;color:var(--muted);">9 ta imkoniyat · ishtirokchi</p>
         <ul>
           <li>3 haftaga kirish</li>
           <li>Chatga kirish</li>
@@ -803,8 +1164,7 @@ em{ font-style: italic; color: var(--ink-2); }
           <li>Moskvada 1 ta jonli trening</li>
         </ul>
         <p class="res"><b>Nimaga kerak?</b> Bunaqa qo'shimchalar produktning qiymatini
-        oshiradi, lekin narxni oshirmaydi. Odam «shuncha narsa uchun shu narxmi?»
-        deb o'ylaydi.</p>
+        oshiradi, lekin narxni oshirmaydi.</p>
       </div>
 
       <div class="week">
@@ -814,32 +1174,15 @@ em{ font-style: italic; color: var(--ink-2); }
           pulingizni qaytaramiz.</li>
         </ul>
         <p class="res"><b>Nimaga kerak?</b> Kafolat xaridordan qo'rquvni oladi.
-        Odam «pulim yonib ketadi» deb o'ylamaydi — shuning uchun osonroq qaror
-        qabul qiladi.</p>
+        Odam «pulim yonib ketadi» deb o'ylamaydi — shuning uchun osonroq qaror qabul qiladi.</p>
       </div>
     </div>
 
-    <div class="rule"></div>
-
-    <div class="tip" style="margin-bottom:0;">
-      <span class="lbl">O'zingiz uchun shu andozani to'ldiring</span>
-      <p>
-        Varaq oling va shu 8 ta punktni o'z produktingiz uchun yozib chiqing:
-        <b>1)</b> asosiy taklif — <b>2)</b> kimga mos — <b>3)</b> format —
-        <b>4)</b> dastur haftalar bo'yicha — <b>5)</b> yakuniy natija —
-        <b>6)</b> tariflar va narx — <b>7)</b> yana nima kiradi — <b>8)</b> kafolat.
-      </p>
-      <p style="margin-bottom:0;">
-        Har bir hafta oxirida <b>aniq natija</b> yozing. Odam nimani qo'liga olishini
-        ko'rsa, u sotib oladi. Faqat «bilim beramiz» degan gap sotmaydi.
-      </p>
-    </div>
-
   </div>
-  <div class="runfoot"><span>Produkt kontsepti namunasi</span><span class="pg">6</span></div>
+  <div class="runfoot"><span>Produkt kontsepti namunasi</span><span class="pg">7</span></div>
 </section>
 
-<!-- ================= 7 — GPT (1) ================= -->
+<!-- ================= 8 — GPT (1) ================= -->
 <section class="page">
   <div class="runhead"><span><b>Formula Zapuska</b> · 4-bo'lim</span><span>GPT-sotuvlar</span></div>
   <div class="body">
@@ -849,14 +1192,49 @@ em{ font-style: italic; color: var(--ink-2); }
       <h2>GPT-sotuvlar:<br>vebinardan voronkagacha</h2>
       <div class="rule-gold"></div>
       <p class="lead">
-        Bu bo'limda sotuvni AI (sun'iy intellekt) yordamida avtomatlashtiramiz va
-        kuchaytiramiz. Pastdagi promptlarni ChatGPT'ga nusxalab qo'ying,
-        <span class="ph">[kvadrat qavs]</span> ichini o'z ma'lumotingiz bilan
-        to'ldiring — va tayyor matn oling.
+        Bu bo'limda sotuvni AI (sun'iy intellekt) yordamida avtomatlashtiramiz.
+        Promptlarni ChatGPT'ga nusxalab qo'ying, <span class="ph">[kvadrat qavs]</span>
+        ichini o'z ma'lumotingiz bilan to'ldiring — va tayyor matn oling.
       </p>
     </div>
 
-    <div class="grid2" style="margin-bottom:6mm;">
+    <!-- 4 QADAM SXEMASI -->
+    <div class="fig">
+      <div class="figtitle">AI bilan 4 qadam — nima yozib beradi</div>
+      <svg viewBox="0 0 900 150" role="img" aria-label="AI bilan to'rt qadam: vebinar ssenariysi, dojim, e'tirozlar, avtovoronka">
+        <g>
+          <rect x="0"   y="16" width="210" height="102" rx="6" fill="none" stroke="var(--o2)" stroke-width="2.5"/>
+          <rect x="230" y="16" width="210" height="102" rx="6" fill="none" stroke="var(--o3)" stroke-width="2.5"/>
+          <rect x="460" y="16" width="210" height="102" rx="6" fill="none" stroke="var(--o4)" stroke-width="2.5"/>
+          <rect x="690" y="16" width="210" height="102" rx="6" fill="none" stroke="var(--o5)" stroke-width="2.5"/>
+        </g>
+        <circle cx="24" cy="16" r="14" fill="var(--o2)"/><text x="24" y="21" text-anchor="middle" class="svg-num">1</text>
+        <circle cx="254" cy="16" r="14" fill="var(--o3)"/><text x="254" y="21" text-anchor="middle" class="svg-num">2</text>
+        <circle cx="484" cy="16" r="14" fill="var(--o4)"/><text x="484" y="21" text-anchor="middle" class="svg-num">3</text>
+        <circle cx="714" cy="16" r="14" fill="var(--o5)"/><text x="714" y="21" text-anchor="middle" class="svg-num">4</text>
+
+        <g color="var(--o2)"><use href="#ic-webinar" x="88" y="34" width="34" height="34"/></g>
+        <g color="var(--o3)"><use href="#ic-chat"    x="318" y="34" width="34" height="34"/></g>
+        <g color="var(--o4)"><use href="#ic-shield"  x="548" y="34" width="34" height="34"/></g>
+        <g color="var(--o5)"><use href="#ic-bot"     x="778" y="34" width="34" height="34"/></g>
+
+        <text x="105" y="88"  text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:14px;">Vebinar ssenariysi</text>
+        <text x="105" y="106" text-anchor="middle" class="svg-lab-sm" style="font-size:12px;">kontent va tarif bloklari</text>
+        <text x="335" y="88"  text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:14px;">Progrev va dojim</text>
+        <text x="335" y="106" text-anchor="middle" class="svg-lab-sm" style="font-size:12px;">segmentlarga alohida xabar</text>
+        <text x="565" y="88"  text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:14px;">E'tirozlar bazasi</text>
+        <text x="565" y="106" text-anchor="middle" class="svg-lab-sm" style="font-size:12px;">jamoa uchun tayyor javoblar</text>
+        <text x="795" y="88"  text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:14px;">Avtovoronka</text>
+        <text x="795" y="106" text-anchor="middle" class="svg-lab-sm" style="font-size:12px;">Direct'da 3 ta xabar</text>
+
+        <path d="M212 67 h16 m-5-4 l5 4 -5 4" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M442 67 h16 m-5-4 l5 4 -5 4" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M672 67 h16 m-5-4 l5 4 -5 4" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <text x="450" y="142" text-anchor="middle" class="svg-lab-sm">Tartib bilan boring — har bir qadam oldingisining matnidan foydalanadi.</text>
+      </svg>
+    </div>
+
+    <div class="grid2" style="margin-bottom:5mm;">
       <div class="tip" style="margin-bottom:0;">
         <span class="lbl">Spiker · Viktor Medvedev (@viktormedvedevii)</span>
         <p style="margin-bottom:0;font-size:11.6pt;">
@@ -867,26 +1245,16 @@ em{ font-style: italic; color: var(--ink-2); }
         </p>
       </div>
       <div class="tip" style="margin-bottom:0;">
-        <span class="lbl">Dars maqsadi</span>
-        <p style="margin-bottom:0;font-size:11.6pt;">
-          — AI yordamida sotuvchi vebinar / KEV ssenariysini yaratish<br>
-          — Kanallar va botlar uchun progrev va dojim matnlarini tayyorlash<br>
-          — Tayyor javoblari bilan e'tirozlar xaritasini qurish<br>
-          — Oddiy avtovoronka uchun matn yozish
+        <span class="lbl">Ikkita so'z — avval shuni bilib oling</span>
+        <p style="margin-bottom:1.6mm;">
+          <b>KEV</b> — «voronkaning asosiy bosqichi». Odam sotib olishga qaror qiladigan joy:
+          vebinar, bepul diagnostika yoki jonli uchrashuv.
+        </p>
+        <p style="margin-bottom:0;">
+          <b>Dojim</b> — vebinardan keyin hali sotib olmagan odamlarga yuboriladigan
+          eslatma xabarlar.
         </p>
       </div>
-    </div>
-
-    <div class="tip">
-      <span class="lbl">Ikkita so'z — avval shuni bilib oling</span>
-      <p style="margin-bottom:1.6mm;">
-        <b>KEV</b> — «voronkaning asosiy bosqichi». Bu odam sotib olishga qaror qiladigan
-        joy: vebinar, bepul diagnostika yoki jonli uchrashuv.
-      </p>
-      <p style="margin-bottom:0;">
-        <b>Dojim</b> — vebinardan keyin hali sotib olmagan odamlarga yuboriladigan
-        eslatma xabarlar.
-      </p>
     </div>
 
     <div class="step">
@@ -911,7 +1279,7 @@ em{ font-style: italic; color: var(--ink-2); }
       «<span class="ph">[Kurs nomi]</span>».</p>
     </div>
 
-    <div class="prompt">
+    <div class="prompt" style="margin-bottom:0;">
       <span class="plbl">Prompt-shablon · Vebinarning kontent bloki (2 / 2)</span>
       <p>Blok matniga quyidagilarni qo'sh:</p>
       <ul>
@@ -923,16 +1291,16 @@ em{ font-style: italic; color: var(--ink-2); }
         <span class="ph">[shu blokdagi prinsipni to'g'ri qo'lladi]</span>.</li>
         <li>Kurs bilan bog'lash: bu mavzu kursda aynan qanday chuqur ishlanishini tushuntir.</li>
         <li>Auditoriyani jalb qiluvchi savol: <span class="ph">[Blok mavzusi bo'yicha
-        tomoshabinlarga savol — ularni faollashtirish uchun]</span>.</li>
+        tomoshabinlarga savol]</span>.</li>
       </ul>
       <p>Matn jonli va ishonarli bo'lsin hamda mantiqan sotuvga olib borsin.</p>
     </div>
 
   </div>
-  <div class="runfoot"><span>GPT-sotuvlar: vebinardan voronkagacha</span><span class="pg">7</span></div>
+  <div class="runfoot"><span>GPT-sotuvlar: vebinardan voronkagacha</span><span class="pg">8</span></div>
 </section>
 
-<!-- ================= 8 — GPT (2) ================= -->
+<!-- ================= 9 — GPT (2) ================= -->
 <section class="page">
   <div class="runhead"><span><b>Formula Zapuska</b> · 4-bo'lim</span><span>GPT-sotuvlar</span></div>
   <div class="body">
@@ -942,15 +1310,15 @@ em{ font-style: italic; color: var(--ink-2); }
       <p>«<span class="ph">[Kurs nomi]</span>» kursi vebinarida «Tariflar va narxlarni
       taqdim etish» degan sotuvchi blok uchun matn yoz.</p>
       <p>Tariflar haqida ma'lumot:</p>
-      <p><b>1-tarif (Bazaviy):</b> <span class="ph">[Asosiy to'ldiruv]</span>.<br>
-      Kimga: <span class="ph">[MA segmenti 1]</span>.<br>
-      Asosiy og'riq yoki vazifa: <span class="ph">[MA 1 ning og'rig'i / vazifasi]</span>.</p>
-      <p><b>2-tarif (Optimal):</b> <span class="ph">[Asosiy to'ldiruv]</span>.<br>
-      Kimga: <span class="ph">[MA segmenti 2]</span>.<br>
-      Asosiy og'riq yoki vazifa: <span class="ph">[MA 2 ning og'rig'i / vazifasi]</span>.</p>
-      <p><b>3-tarif (VIP):</b> <span class="ph">[Asosiy to'ldiruv]</span>.<br>
-      Kimga: <span class="ph">[MA segmenti 3]</span>.<br>
-      Asosiy og'riq yoki vazifa: <span class="ph">[MA 3 ning og'rig'i / vazifasi]</span>.</p>
+      <p><b>1-tarif (Bazaviy):</b> <span class="ph">[Asosiy to'ldiruv]</span>.
+      Kimga: <span class="ph">[MA segmenti 1]</span>.
+      Asosiy og'riq: <span class="ph">[MA 1 ning og'rig'i]</span>.</p>
+      <p><b>2-tarif (Optimal):</b> <span class="ph">[Asosiy to'ldiruv]</span>.
+      Kimga: <span class="ph">[MA segmenti 2]</span>.
+      Asosiy og'riq: <span class="ph">[MA 2 ning og'rig'i]</span>.</p>
+      <p><b>3-tarif (VIP):</b> <span class="ph">[Asosiy to'ldiruv]</span>.
+      Kimga: <span class="ph">[MA segmenti 3]</span>.
+      Asosiy og'riq: <span class="ph">[MA 3 ning og'rig'i]</span>.</p>
     </div>
 
     <div class="grid2">
@@ -962,9 +1330,8 @@ em{ font-style: italic; color: var(--ink-2); }
         <ul>
           <li>Bu tarif kimga mo'ljallangan bo'lsa, aynan o'sha segmentga
           to'g'ridan-to'g'ri murojaat qil.</li>
-          <li>Bu tarif ularning asosiy og'rig'ini aynan qanday hal qilishini yoki
-          asosiy vazifasiga qanday yordam berishini ko'rsat.</li>
-          <li>Shu tarifning noyob foydasini yoki eng qimmatli fishkasini alohida ta'kidla.</li>
+          <li>Bu tarif ularning asosiy og'rig'ini aynan qanday hal qilishini ko'rsat.</li>
+          <li>Shu tarifning noyob foydasini alohida ta'kidla.</li>
         </ul>
         <p>3. Har bir tarif uchun narxni aytib o'tish.</p>
       </div>
@@ -973,9 +1340,9 @@ em{ font-style: italic; color: var(--ink-2); }
         <span class="plbl">Tariflar bloki (3 / 3)</span>
         <p>4. «Formula zapuska» triggerlaridan foydalanish:</p>
         <ul>
-          <li><b>Defitsit:</b> tariflardagi joylar sonining cheklanganini,
-          maxsus narx muddati tugashini yoki birinchi <span class="ph">[N]</span> ta
-          xaridor uchun noyob bonuslarni e'lon qil.</li>
+          <li><b>Defitsit:</b> joylar sonining cheklanganini, maxsus narx muddati
+          tugashini yoki birinchi <span class="ph">[N]</span> ta xaridor uchun noyob
+          bonuslarni e'lon qil.</li>
           <li><b>Kafolat:</b> agar bor bo'lsa, natija kafolatini yoki pulni qaytarish
           kafolatini eslatib o't.</li>
         </ul>
@@ -987,8 +1354,38 @@ em{ font-style: italic; color: var(--ink-2); }
     <div class="step">
       <span class="st">2-qadam</span>
       <h3>Progrev va dojim: AI bilan segmentatsiya</h3>
-      <p>AI bazaning turli segmentlari uchun turli xabar yozadi — bitta xabarni hammaga
-      yuborish shart emas.</p>
+      <p>Bitta xabarni hammaga yuborish shart emas — AI har bir segmentga o'z xabarini yozadi.</p>
+    </div>
+
+    <!-- SEGMENTATSIYA SXEMASI -->
+    <div class="fig">
+      <svg viewBox="0 0 900 140" role="img" aria-label="Vebinardan keyin baza ikki segmentga bo'linadi">
+        <rect x="0" y="46" width="180" height="48" rx="6" fill="var(--o3)"/>
+        <text x="90" y="70" text-anchor="middle" class="svg-onfill" style="font-size:13px;">VEBINAR TUGADI</text>
+        <text x="90" y="88" text-anchor="middle" class="sub-l" style="font-size:11.5px;">baza yig'ildi</text>
+
+        <path d="M182 70 C 220 70, 220 30, 260 30" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M182 70 C 220 70, 220 110, 260 110" fill="none" stroke="var(--muted)" stroke-width="2"/>
+
+        <rect x="262" y="8" width="290" height="44" rx="6" fill="var(--gold-pale)" stroke="var(--o2)" stroke-width="2"/>
+        <text x="278" y="28" class="svg-lab" style="font-weight:800;font-size:13px;">1-segment · hamma ishtirokchi</text>
+        <text x="278" y="44" class="svg-lab-sm" style="font-size:11px;">bonus yonib ketadi — defitsit triggeri</text>
+
+        <rect x="262" y="88" width="290" height="44" rx="6" fill="var(--gold-pale)" stroke="var(--o4)" stroke-width="2"/>
+        <text x="278" y="108" class="svg-lab" style="font-weight:800;font-size:13px;">2-segment · savol berganlar</text>
+        <text x="278" y="124" class="svg-lab-sm" style="font-size:11px;">shaxsiy javob — aynan uning e'tirozi bo'yicha</text>
+
+        <path d="M556 30 h20 m-6-5 l6 5 -6 5" fill="none" stroke="var(--muted)" stroke-width="2"/>
+        <path d="M556 110 h20 m-6-5 l6 5 -6 5" fill="none" stroke="var(--muted)" stroke-width="2"/>
+
+        <rect x="580" y="46" width="180" height="48" rx="6" fill="var(--o5)"/>
+        <text x="670" y="70" text-anchor="middle" class="svg-onfill" style="font-size:13px;">SOTUV</text>
+        <text x="670" y="88" text-anchor="middle" class="sub-l" style="font-size:11.5px;">aniq harakatga chaqiriq</text>
+
+        <text x="790" y="62" class="svg-lab-sm" style="font-size:12px;">Bitta umumiy</text>
+        <text x="790" y="78" class="svg-lab-sm" style="font-size:12px;">xabardan ko'ra</text>
+        <text x="790" y="94" class="svg-lab-sm" style="font-size:12px;font-weight:800;fill:var(--gold);">ikkita aniq xabar</text>
+      </svg>
     </div>
 
     <div class="grid2">
@@ -997,25 +1394,24 @@ em{ font-style: italic; color: var(--ink-2); }
         <p>«<span class="ph">[Kurs nomi]</span>» kursi bo'yicha sotuvchi vebinar
         o'tkazilgandan keyin Telegram-kanalga yoki rassilkaga yuborish uchun
         <b>2 ta variant</b> dojim xabari yoz.</p>
-        <p>Xabarlarning maqsadi: vebinarda bo'lgan, lekin hali sotib olmagan odamlarni
-        sotib olish haqida qaror qabul qilishga undash.</p>
+        <p>Maqsad: vebinarda bo'lgan, lekin hali sotib olmagan odamlarni qaror qabul
+        qilishga undash.</p>
         <p><b>1-segment:</b> vebinarning barcha ishtirokchilari.</p>
-        <p><b>1-variant:</b> yo'qolayotgan foydaga urg'u bergan xabar yoz. Vebinar
-        ishtirokchilari uchun maxsus taklif yoki bonuslarni eslat va ular qachon aniq
-        yonib ketishini yoz. Defitsit triggeridan foydalan.</p>
+        <p><b>1-variant:</b> yo'qolayotgan foydaga urg'u bergan xabar yoz. Maxsus taklif
+        yoki bonuslarni eslat va ular qachon aniq yonib ketishini yoz. Defitsit
+        triggeridan foydalan.</p>
         <p><b>2-segment:</b> vebinar davomida <span class="ph">[Aniq muammo yoki e'tiroz,
-        masalan: «texnik sozlashlarning murakkabligi» yoki «vaqt yetishmasligi»]</span>
-        haqida savol bergan ishtirokchilar.</p>
+        masalan: «texnik sozlashlarning murakkabligi»]</span> haqida savol bergan
+        ishtirokchilar.</p>
       </div>
 
       <div class="prompt" style="margin-bottom:0;">
         <span class="plbl">Dojim xabarlari (2 / 2)</span>
         <p><b>2-variant:</b> shu segment uchun shaxsiylashtirilgan xabar yoz.
         Ularning savoli yoki shubhasini eslatishdan boshla.</p>
-        <p>Kurs (yoki aniq bir tarif, yoki qo'llab-quvvatlash) aynan shu muammoni
-        qanday hal qilishiga urg'u ber. Masalan: «Esingizdami, siz … haqida
-        so'ragan edingiz? "Optimal" tarifida kurator shaxsan barcha sozlashlarda
-        sizga yordam beradi!».</p>
+        <p>Kurs (yoki aniq bir tarif) aynan shu muammoni qanday hal qilishiga urg'u ber.
+        Masalan: «Esingizdami, siz … haqida so'ragan edingiz? "Optimal" tarifida kurator
+        shaxsan barcha sozlashlarda sizga yordam beradi!».</p>
         <p>Agar bor bo'lsa, ularning e'tiroziga mos bonus taklif qil.</p>
         <p>Ikkala xabarda ham aniq harakatga chaqiriq bo'lishi kerak
         (kursni sotib olish / menejerga savol berish).</p>
@@ -1023,10 +1419,10 @@ em{ font-style: italic; color: var(--ink-2); }
     </div>
 
   </div>
-  <div class="runfoot"><span>GPT-sotuvlar: vebinardan voronkagacha</span><span class="pg">8</span></div>
+  <div class="runfoot"><span>GPT-sotuvlar: vebinardan voronkagacha</span><span class="pg">9</span></div>
 </section>
 
-<!-- ================= 9 — GPT (3) ================= -->
+<!-- ================= 10 — GPT (3) ================= -->
 <section class="page">
   <div class="runhead"><span><b>Formula Zapuska</b> · 4-bo'lim</span><span>GPT-sotuvlar</span></div>
   <div class="body">
@@ -1037,21 +1433,75 @@ em{ font-style: italic; color: var(--ink-2); }
       <p>AI butun jamoa uchun e'tirozlarni qayta ishlash sistemasini yaratishga yordam beradi.</p>
     </div>
 
+    <!-- E'TIROZLAR XARITASI -->
+    <div class="fig">
+      <div class="figtitle">E'tirozlar xaritasi — 6 ta tur, 3 xil javob</div>
+      <div class="legend">
+        <span><i style="background:var(--s1)"></i> Mantiqiy javob — raqam va faktlar</span>
+        <span><i style="background:var(--s2)"></i> Emotsional javob — empatiya</span>
+        <span><i style="background:var(--s3)"></i> Keys orqali — boshqa mijoz misoli</span>
+      </div>
+      <svg viewBox="0 0 900 210" role="img" aria-label="Olti e'tiroz turi va uchta javob yondashuvi">
+        <!-- 6 ta e'tiroz -->
+        <g>
+          <rect x="0"   y="10" width="140" height="52" rx="5" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+          <rect x="152" y="10" width="140" height="52" rx="5" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+          <rect x="304" y="10" width="140" height="52" rx="5" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+          <rect x="456" y="10" width="140" height="52" rx="5" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+          <rect x="608" y="10" width="140" height="52" rx="5" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+          <rect x="760" y="10" width="140" height="52" rx="5" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+        </g>
+        <text x="70"  y="32" text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:13px;">NARX</text>
+        <text x="70"  y="50" text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">«qimmat»</text>
+        <text x="222" y="32" text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:13px;">VAQT</text>
+        <text x="222" y="50" text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">«vaqtim yo'q»</text>
+        <text x="374" y="32" text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:13px;">NATIJA</text>
+        <text x="374" y="50" text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">«yordam beradimi?»</text>
+        <text x="526" y="32" text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:13px;">O'ZIGA ISHONCH</text>
+        <text x="526" y="50" text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">«men uddalayolmayman»</text>
+        <text x="678" y="32" text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:13px;">RAQOBATCHI</text>
+        <text x="678" y="50" text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">«X'da arzonroq»</text>
+        <text x="830" y="32" text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:13px;">SHUBHA</text>
+        <text x="830" y="50" text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">«o'ylab ko'raman»</text>
+
+        <!-- 6 ta e'tirozdan yuqori relsga -->
+        <path d="M70 62 V 78 M222 62 V 78 M374 62 V 78 M526 62 V 78 M678 62 V 78 M830 62 V 78"
+              stroke="var(--line)" stroke-width="1.5"/>
+        <path d="M70 78 H 830" stroke="var(--line)" stroke-width="1.5"/>
+        <!-- markaziy poya -->
+        <path d="M450 78 V 100" stroke="var(--gold)" stroke-width="2.5"/>
+        <!-- pastki rels -->
+        <path d="M220 100 H 680" stroke="var(--gold)" stroke-width="2.5"/>
+        <path d="M220 100 V 118 M450 100 V 118 M680 100 V 118" stroke="var(--gold)" stroke-width="2.5"/>
+
+        <!-- 3 xil javob -->
+        <rect x="120" y="118" width="200" height="74" rx="5" fill="var(--s1)"/>
+        <text x="220" y="150" text-anchor="middle" class="svg-onfill" style="font-size:14px;">MANTIQIY</text>
+        <text x="220" y="170" text-anchor="middle" class="sub-l" style="font-size:11.5px;">raqam · fakt · hisob-kitob</text>
+
+        <rect x="350" y="118" width="200" height="74" rx="5" fill="var(--s2)"/>
+        <text x="450" y="150" text-anchor="middle" class="svg-onfill" style="font-size:14px;">EMOTSIONAL</text>
+        <text x="450" y="170" text-anchor="middle" class="sub-l" style="font-size:11.5px;">empatiya · tushunish</text>
+
+        <rect x="580" y="118" width="200" height="74" rx="5" fill="var(--s3)"/>
+        <text x="680" y="150" text-anchor="middle" class="svg-onfill" style="font-size:14px;">KEYS ORQALI</text>
+        <text x="680" y="170" text-anchor="middle" class="sub-l" style="font-size:11.5px;">boshqa mijoz natijasi</text>
+      </svg>
+      <div class="cap"><b>Qoida</b> &nbsp;Har bir e'tirozga 2–3 xil javob tayyorlang. Bir odamga raqam ta'sir qiladi, boshqasiga — boshqa mijozning hikoyasi.</div>
+    </div>
+
     <div class="grid2">
       <div class="prompt">
         <span class="plbl">Prompt-shablon (1 / 3)</span>
-        <p>«<span class="ph">[Kurs yoki xizmat nomi]</span>» produkti bo'yicha mijozlar va
-        o'quvchilarning e'tirozlarini qayta ishlash uchun tuzilgan xarita
-        (bilimlar bazasi) yarat.</p>
-        <p>Tez-tez uchraydigan e'tirozlar:
-        <span class="ph">[MA'LUM E'TIROZLAR RO'YXATINI QO'YING]</span>, masalan:</p>
+        <p>«<span class="ph">[Kurs yoki xizmat nomi]</span>» produkti bo'yicha mijozlarning
+        e'tirozlarini qayta ishlash uchun tuzilgan xarita (bilimlar bazasi) yarat.</p>
+        <p>Tez-tez uchraydigan e'tirozlar:</p>
         <ul>
           <li>«Qimmat» / «Hozir pulim yo'q»</li>
           <li>«Kursni o'tishga vaqtim yo'q»</li>
-          <li>«Bu menga yordam berishiga ishonchim yo'q» / «Qanaqa kafolat bor?»</li>
+          <li>«Bu menga yordam berishiga ishonchim yo'q»</li>
           <li>«Men ijodkor emasman / texnik odam emasman»</li>
-          <li>«Canva / <span class="ph">[sizning asbobingiz]</span> — bu jiddiy emas,
-          professional emas»</li>
+          <li>«Canva / <span class="ph">[asbobingiz]</span> — bu jiddiy emas»</li>
           <li>«Raqobatchi X'da arzonroq / yaxshiroq»</li>
           <li>«O'ylab ko'raman»</li>
         </ul>
@@ -1060,18 +1510,15 @@ em{ font-style: italic; color: var(--ink-2); }
       <div class="prompt">
         <span class="plbl">Prompt-shablon (2 / 3)</span>
         <p>Vazifa:</p>
-        <p>1. Bu e'tirozlarni (va boshqa tipik e'tirozlarni) asosiy turlarga ajrat.
-        Masalan: narx, vaqt, qiymat yoki natija, o'ziga ishonchsizlik,
-        raqobatchilar bilan solishtirish, «tushunarsiz / o'ylash kerak».</p>
-        <p>2. Har bir e'tiroz uchun sotuv menejeri, kurator yoki direktdagi javoblar uchun
-        <b>2–3 ta javob varianti (skript)</b> taklif qil. Javob variantlari turli
-        yondashuvlardan foydalansin:</p>
+        <p>1. Bu e'tirozlarni asosiy turlarga ajrat: narx, vaqt, qiymat yoki natija,
+        o'ziga ishonchsizlik, raqobatchilar bilan solishtirish, «o'ylash kerak».</p>
+        <p>2. Har bir e'tiroz uchun <b>2–3 ta javob varianti (skript)</b> taklif qil.
+        Variantlar turli yondashuvlardan foydalansin:</p>
         <ul>
           <li><b>Mantiqiy:</b> dalillar, faktlar, raqamlar, foydani hisoblab berish.</li>
-          <li><b>Emotsional:</b> empatiya, tushunish, mijozning his-tuyg'ulariga
-          qo'shilish, transformatsiyaga urg'u.</li>
-          <li><b>Keys yoki ijtimoiy isbot orqali:</b> shunga o'xshash e'tirozi bo'lgan,
-          lekin natija olgan boshqa mijoz misoli.</li>
+          <li><b>Emotsional:</b> empatiya, tushunish, transformatsiyaga urg'u.</li>
+          <li><b>Keys orqali:</b> shunga o'xshash e'tirozi bo'lgan, lekin natija olgan
+          boshqa mijoz misoli.</li>
         </ul>
       </div>
     </div>
@@ -1079,19 +1526,80 @@ em{ font-style: italic; color: var(--ink-2); }
     <div class="prompt">
       <span class="plbl">Prompt-shablon (3 / 3)</span>
       <p>3. Javoblar konstruktiv bo'lsin, agressiv bo'lmasin va keyingi qadamga olib borsin
-      (masalan, sotib olishga, qo'shimcha savolga, demo-kirish taklifiga).
-      Natijani jamoa qulay ishlatishi uchun <b>jadval yoki tuzilgan ro'yxat</b>
-      ko'rinishida ber.</p>
+      (sotib olishga, qo'shimcha savolga, demo-kirish taklifiga). Natijani jamoa qulay
+      ishlatishi uchun <b>jadval yoki tuzilgan ro'yxat</b> ko'rinishida ber.</p>
     </div>
 
-    <div class="step">
+    <div class="step" style="margin-bottom:0;">
       <span class="st">4-qadam</span>
       <h3>Avtovoronkalar: start uchun oddiy bog'lamalar</h3>
       <p>AI oddiy voronkaning har bir qadami uchun ishonarli matn yozadi.</p>
     </div>
 
+  </div>
+  <div class="runfoot"><span>GPT-sotuvlar: vebinardan voronkagacha</span><span class="pg">10</span></div>
+</section>
+
+<!-- ================= 11 — AVTOVORONKA ================= -->
+<section class="page">
+  <div class="runhead"><span><b>Formula Zapuska</b> · 4-bo'lim</span><span>Avtovoronka</span></div>
+  <div class="body">
+
+    <!-- AVTOVORONKA TIMELINE -->
+    <div class="fig">
+      <div class="figtitle">Avtovoronka — Instagram Direct'da 3 ta xabar</div>
+      <p class="figsub">Odam storisga javoban kod so'zni yozadi — va zanjir o'zi ishga tushadi.</p>
+      <svg viewBox="0 0 900 300" role="img" aria-label="Avtovoronka: kod so'z, keyin uch xabar 0, 24 va 48 soatda">
+        <!-- start -->
+        <rect x="0" y="18" width="188" height="58" rx="6" fill="var(--gold-pale)" stroke="var(--gold)" stroke-width="2"/>
+        <text x="94" y="42" text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:13px;">KOD SO'Z</text>
+        <text x="94" y="60" text-anchor="middle" class="svg-lab-sm" style="font-size:11px;">masalan: «STIL»</text>
+        <path d="M192 47 h22 m-7-5 l7 5 -7 5" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+
+        <!-- vaqt o'qi -->
+        <line x1="230" y1="196" x2="890" y2="196" stroke="var(--line)" stroke-width="2"/>
+        <circle cx="270" cy="196" r="8" fill="var(--o2)"/>
+        <circle cx="530" cy="196" r="8" fill="var(--o3)"/>
+        <circle cx="790" cy="196" r="8" fill="var(--o5)"/>
+        <text x="270" y="222" text-anchor="middle" class="svg-lab" style="font-weight:800;">0 soat</text>
+        <text x="530" y="222" text-anchor="middle" class="svg-lab" style="font-weight:800;">24 soat</text>
+        <text x="790" y="222" text-anchor="middle" class="svg-lab" style="font-weight:800;">48 soat</text>
+
+        <!-- xabarlar -->
+        <rect x="222" y="18" width="230" height="160" rx="6" fill="none" stroke="var(--o2)" stroke-width="2.5"/>
+        <text x="240" y="44" class="svg-lab" style="font-weight:800;font-size:14px;">1-XABAR</text>
+        <text x="240" y="72"  class="svg-lab-sm" style="font-size:12px;">— Salomlashish</text>
+        <text x="240" y="94"  class="svg-lab-sm" style="font-size:12px;">— Lid-magnitni berish</text>
+        <text x="240" y="116" class="svg-lab-sm" style="font-size:12px;">— Suhbatga jalb qiluvchi</text>
+        <text x="240" y="136" class="svg-lab-sm" style="font-size:12px;">&nbsp;&nbsp;&nbsp;savol berish</text>
+
+        <rect x="482" y="18" width="230" height="160" rx="6" fill="none" stroke="var(--o3)" stroke-width="2.5"/>
+        <text x="500" y="44" class="svg-lab" style="font-weight:800;font-size:14px;">2-XABAR</text>
+        <text x="500" y="72"  class="svg-lab-sm" style="font-size:12px;">— Tanishib chiqdimi?</text>
+        <text x="500" y="94"  class="svg-lab-sm" style="font-size:12px;">— Qisqa keys yoki fikr</text>
+        <text x="500" y="116" class="svg-lab-sm" style="font-size:12px;">— Bepul diagnostika</text>
+        <text x="500" y="136" class="svg-lab-sm" style="font-size:12px;">&nbsp;&nbsp;&nbsp;taklifi</text>
+
+        <rect x="742" y="18" width="158" height="160" rx="6" fill="none" stroke="var(--o5)" stroke-width="2.5"/>
+        <text x="760" y="44" class="svg-lab" style="font-weight:800;font-size:14px;">3-XABAR</text>
+        <text x="760" y="72"  class="svg-lab-sm" style="font-size:12px;">— Eslatma</text>
+        <text x="760" y="94"  class="svg-lab-sm" style="font-size:12px;">— Foydani ta'kidlash</text>
+        <text x="760" y="116" class="svg-lab-sm" style="font-size:12px;">— Anketaga havola</text>
+        <text x="760" y="136" class="svg-lab-sm" style="font-size:12px;">— Shoshilinchlik</text>
+
+        <path d="M337 178 V 190" stroke="var(--o2)" stroke-width="2"/>
+        <path d="M597 178 V 190" stroke="var(--o3)" stroke-width="2"/>
+        <path d="M821 178 V 190" stroke="var(--o5)" stroke-width="2"/>
+
+        <!-- maqsad -->
+        <path d="M270 246 H 790" stroke="var(--gold)" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="530" y="278" text-anchor="middle" class="svg-lab" style="font-weight:800;font-size:15px;fill:var(--gold);">
+          MAQSAD: bepul diagnostikaga yozilish</text>
+      </svg>
+    </div>
+
     <div class="grid2">
-      <div class="prompt" style="margin-bottom:0;">
+      <div class="prompt">
         <span class="plbl">Prompt-shablon · Avtovoronka (1 / 2)</span>
         <p>Instagram Direct uchun <b>3 ta avtomatik xabardan</b> iborat zanjir matnini yoz.
         Zanjir foydalanuvchi lid-magnit olish taklifi bilan chiqqan storis yoki postga
@@ -1099,8 +1607,8 @@ em{ font-style: italic; color: var(--ink-2); }
         yozgandan keyin ishga tushadi.</p>
         <p><b>Lid-magnit (LM):</b> <span class="ph">[LM formati va nomi, masalan:
         «Canva'da chiroyli vizualga 5 qadam» chek-listi]</span>.</p>
-        <p><b>Voronkaning maqsadi:</b> foydalanuvchini qizdirish va uni bepul
-        diagnostikaga yoki konsultatsiyaga yozilishga olib kelish.</p>
+        <p><b>Maqsad:</b> foydalanuvchini qizdirish va uni bepul diagnostikaga yoki
+        konsultatsiyaga yozilishga olib kelish.</p>
         <p><b>1-xabar (kod so'zdan keyin darhol):</b></p>
         <ul>
           <li>Salomlashish.</li>
@@ -1111,112 +1619,129 @@ em{ font-style: italic; color: var(--ink-2); }
         </ul>
       </div>
 
-      <div class="prompt" style="margin-bottom:0;">
+      <div class="prompt">
         <span class="plbl">Avtovoronka (2 / 2)</span>
-        <p><b>2-xabar (<span class="ph">[X]</span> soat yoki kundan keyin,
-        masalan 24 soat):</b></p>
+        <p><b>2-xabar (<span class="ph">[X]</span> soat keyin, masalan 24 soat):</b></p>
         <ul>
           <li>LM bilan tanishib chiqqan-chiqmaganini aniqlash;</li>
-          <li>LM'dan foyda ko'rgan yoki shunga o'xshash muammoni hal qilgan
-          foydalanuvchining qisqa keysi yoki fikri;</li>
-          <li>Bepul diagnostika yoki konsultatsiya taklifi —
-          <span class="ph">[foydalanuvchi uchun foydani yozing, masalan: «vaziyatingizni
-          tahlil qilib, [mavzu] bo'yicha bosqichma-bosqich reja tuzish»]</span>.</li>
+          <li>LM'dan foyda ko'rgan foydalanuvchining qisqa keysi yoki fikri;</li>
+          <li>Bepul diagnostika taklifi — <span class="ph">[foydani yozing, masalan:
+          «vaziyatingizni tahlil qilib, [mavzu] bo'yicha reja tuzish»]</span>.</li>
         </ul>
-        <p><b>3-xabar (2-xabardan <span class="ph">[Y]</span> soat yoki kun keyin,
-        masalan 48 soat):</b></p>
+        <p><b>3-xabar (<span class="ph">[Y]</span> soat keyin, masalan 48 soat):</b></p>
         <ul>
           <li>Diagnostika taklifini eslatish.</li>
-          <li>Diagnostikaning foydasini ta'kidlash (foydalanuvchi aniq nima olishini).</li>
+          <li>Diagnostikaning foydasini ta'kidlash.</li>
           <li>Oldindan yozilish anketasiga yoki kalendarga havola.</li>
-          <li>Shoshilinchlik yoki joylar cheklanganligi triggeri. Masalan:
-          «Bu haftaga bor-yo'g'i 3 ta joy qoldi».</li>
+          <li>Shoshilinchlik triggeri: «Bu haftaga bor-yo'g'i 3 ta joy qoldi».</li>
         </ul>
-        <p>Xabarlar matni do'stona, foydali bo'lsin va odamni bezovta qilmasdan
-        maqsadli harakatga olib borsin.</p>
+        <p>Matn do'stona, foydali bo'lsin va odamni bezovta qilmasdan maqsadli harakatga
+        olib borsin.</p>
       </div>
     </div>
 
+    <div class="tip" style="margin-bottom:0;">
+      <span class="lbl">Amaliyot · bugunning o'zida qiling</span>
+      <p style="margin-bottom:0;">
+        <b>1.</b> Vebinarning kontent bloki matnini yozing — ichiga keys va produkt bilan
+        bog'lamani qo'shing. &nbsp;<b>2.</b> Shubhalanayotgan odamlar uchun bitta dojim
+        xabarini generatsiya qiling. &nbsp;<b>Maslahat:</b> AI yozgan matnni ko'r-ko'rona
+        nusxalamang — o'qing va o'z so'zlaringiz bilan qayta yozing.
+      </p>
+    </div>
+
   </div>
-  <div class="runfoot"><span>GPT-sotuvlar: vebinardan voronkagacha</span><span class="pg">9</span></div>
+  <div class="runfoot"><span>GPT-sotuvlar: vebinardan voronkagacha</span><span class="pg">11</span></div>
 </section>
 
-<!-- ================= 10 — AMALIYOT / YAKUN ================= -->
+<!-- ================= 12 — YAKUN ================= -->
 <section class="page">
-  <div class="runhead"><span><b>Formula Zapuska</b> · Yakun</span><span>Amaliyot va natija</span></div>
+  <div class="runhead"><span><b>Formula Zapuska</b> · Yakun</span><span>Butun qo'llanma bitta betda</span></div>
   <div class="body">
 
     <div class="sec-head">
       <span class="num">YAKUNIY QISM</span>
-      <h2>Amaliyot va natija</h2>
+      <h2>Butun qo'llanma<br>bitta betda</h2>
       <div class="rule-gold"></div>
       <p class="lead">
-        O'qish — bu yarim ish. Endi qo'lni ishga soling. Pastdagi topshiriqlarni
-        bugunning o'zida bajaring.
+        Bu betni devorga osib qo'ying. Adashib qolsangiz — shu yerga qarang.
       </p>
     </div>
 
-    <div class="grid2-t" style="margin-bottom:6mm;">
-      <div class="week">
-        <h3>Amaliyot · Sotuvchi elementlarni yig'amiz</h3>
-        <ul>
-          <li>Vebinarning kontent bloki matnini yozing. Ichiga <b>keys</b> va
-          <b>produkt bilan bog'lamani</b> qo'shing.</li>
-          <li>Shubhalanayotgan odamlar uchun <b>bitta dojim xabarini</b>
-          generatsiya qiling.</li>
-        </ul>
-        <p class="res"><b>Maslahat:</b> tayyor matnni ko'r-ko'rona nusxalamang.
-        AI yozgan matnni o'qing va o'z so'zlaringiz bilan qayta yozing —
-        shunda u sizning ovozingizda yangraydi.</p>
-      </div>
+    <!-- KATTA YO'L XARITASI -->
+    <div class="fig">
+      <svg viewBox="0 0 900 330" role="img" aria-label="To'rt qadamli yo'l xaritasi: so'zlar, suhbat, produkt, matn">
+        <!-- vertikal yo'l -->
+        <path d="M60 40 V 300" stroke="var(--line)" stroke-width="4"/>
 
-      <div class="week">
-        <h3>Dars natijasi · Endi siz nimani bilasiz</h3>
-        <ul>
-          <li>AI yordamida vebinar va KEV uchun ssenariy generatsiya qila olasiz.</li>
-          <li>Segmentlangan dojim xabarlarini yarata olasiz.</li>
-          <li>E'tirozlar bilan ishlash uchun bilimlar bazasini qurdingiz.</li>
-          <li>Birinchi avtovoronkangiz uchun matn yozdingiz.</li>
-        </ul>
-        <p class="res"><b>Keyin nima bo'ladi?</b> Endi Reels uchun kontent yaratishni
-        tezlashtiramiz. Keyingi darsda — AI yordamida <b>30 daqiqada 5 ta Reels
-        ssenariysi</b>.</p>
-      </div>
+        <!-- 1 -->
+        <circle cx="60" cy="52" r="26" fill="var(--o1)"/>
+        <text x="60" y="59" text-anchor="middle" class="svg-num" style="font-size:18px;fill:var(--ink);">1</text>
+        <text x="110" y="46" class="svg-lab" style="font-weight:800;font-size:17px;">So'zlarni o'rganing</text>
+        <text x="110" y="70" class="svg-lab-sm" style="font-size:13px;">Lug'atdagi 19 ta so'z — bu sizning ish tilingiz. Ularsiz kurs ham, jamoa ham tushunarsiz.</text>
+        <text x="800" y="52" text-anchor="end" class="svg-lab-sm" style="font-size:12px;">3–4-bet</text>
+
+        <!-- 2 -->
+        <circle cx="60" cy="134" r="26" fill="var(--o2)"/>
+        <text x="60" y="141" text-anchor="middle" class="svg-num" style="font-size:18px;fill:var(--ink);">2</text>
+        <text x="110" y="128" class="svg-lab" style="font-weight:800;font-size:17px;">Odamlar bilan gaplashing</text>
+        <text x="110" y="152" class="svg-lab-sm" style="font-size:13px;">5–10 ta CustDev suhbati. Javoblarni odamning o'z so'zlari bilan yozib oling.</text>
+        <text x="800" y="134" text-anchor="end" class="svg-lab-sm" style="font-size:12px;">5-bet</text>
+
+        <!-- 3 -->
+        <circle cx="60" cy="216" r="26" fill="var(--o3)"/>
+        <text x="60" y="223" text-anchor="middle" class="svg-num" style="font-size:18px;">3</text>
+        <text x="110" y="210" class="svg-lab" style="font-weight:800;font-size:17px;">Produktni yig'ing</text>
+        <text x="110" y="234" class="svg-lab-sm" style="font-size:13px;">8 punktli andoza: offer → kimga → format → dastur → natija → tarif → bonus → kafolat.</text>
+        <text x="800" y="216" text-anchor="end" class="svg-lab-sm" style="font-size:12px;">6–7-bet</text>
+
+        <!-- 4 -->
+        <circle cx="60" cy="298" r="26" fill="var(--o5)"/>
+        <text x="60" y="305" text-anchor="middle" class="svg-num" style="font-size:18px;">4</text>
+        <text x="110" y="292" class="svg-lab" style="font-weight:800;font-size:17px;">Matnlarni AI bilan yozing</text>
+        <text x="110" y="316" class="svg-lab-sm" style="font-size:13px;">Vebinar ssenariysi → dojim → e'tirozlar bazasi → avtovoronka.</text>
+        <text x="800" y="298" text-anchor="end" class="svg-lab-sm" style="font-size:12px;">8–11-bet</text>
+      </svg>
     </div>
 
     <div class="rule"></div>
 
-    <h3 style="color:var(--gold);letter-spacing:.06em;margin-bottom:4mm;">
-      Butun qo'llanma — bitta sahifada</h3>
+    <h3 style="color:var(--gold);letter-spacing:.06em;margin-bottom:3mm;">Eslab qolish kerak bo'lgan 6 ta qoida</h3>
 
-    <div class="grid2">
-      <div class="term">
-        <span class="t-num">1-QADAM</span>
-        <h3>So'zlarni o'rganing</h3>
-        <p>Lug'atdagi 19 ta so'z — bu sizning ish tilingiz. Ularsiz kurs ham,
-        jamoa ham tushunarsiz bo'ladi.</p>
+    <div class="grid3">
+      <div class="stat">
+        <span class="k">Qoida 1</span>
+        <span class="v">A → B</span>
+        <p>Produkt — bu odamni A nuqtadan B nuqtaga olib chiqadigan narsa. To'siqlarni bilmasangiz, produkt tasodifiy chiqadi.</p>
       </div>
-      <div class="term">
-        <span class="t-num">2-QADAM</span>
-        <h3>Odamlar bilan gaplashing</h3>
-        <p>CustDev savollari bilan 5–10 ta suhbat o'tkazing. Javoblarni odamning
-        o'z so'zlari bilan yozib oling.</p>
+      <div class="stat">
+        <span class="k">Qoida 2</span>
+        <span class="v">Avval ber</span>
+        <p>Lid-magnit, bepul vebinar, foydali kontent. Odam avval qiymat oladi — keyin pul to'laydi.</p>
       </div>
-      <div class="term">
-        <span class="t-num">3-QADAM</span>
-        <h3>Produktni yig'ing</h3>
-        <p>8 ta punktli andoza bo'yicha o'z kursingizni yozing: offer, dastur,
-        tariflar, kafolat.</p>
+      <div class="stat">
+        <span class="k">Qoida 3</span>
+        <span class="v">Deadline</span>
+        <p>Sotuv oynasi yopilish vaqtini aniq ayting. Deadline bo'lmasa — odam cho'zadi va olmaydi.</p>
       </div>
-      <div class="term">
-        <span class="t-num">4-QADAM</span>
-        <h3>Matnlarni AI bilan yozing</h3>
-        <p>Promptlarni ChatGPT'ga qo'ying: vebinar ssenariysi, dojim, e'tirozlar,
-        avtovoronka.</p>
+      <div class="stat">
+        <span class="k">Qoida 4</span>
+        <span class="v">Natija</span>
+        <p>Har bir hafta oxirida o'quvchi qo'lida nima bo'lishini yozing. «Bilim beramiz» sotmaydi.</p>
+      </div>
+      <div class="stat">
+        <span class="k">Qoida 5</span>
+        <span class="v">Segment</span>
+        <p>Hammaga bitta xabar yubormang. Har bir segmentga o'z so'zini ayting.</p>
+      </div>
+      <div class="stat">
+        <span class="k">Qoida 6</span>
+        <span class="v">Kafolat</span>
+        <p>Kafolat xaridordan qo'rquvni oladi. Qo'rquv ketsa — qaror qabul qilish osonlashadi.</p>
       </div>
     </div>
 
-    <div class="tip" style="margin-top:6mm;margin-bottom:0;">
+    <div class="tip" style="margin-top:5mm;margin-bottom:0;">
       <span class="lbl">Oxirgi gap</span>
       <p style="margin-bottom:0;font-size:13.8pt;">
         Zapusk — bu omad emas, bu <b>sistema</b>. Sistemani esa har kim qura oladi.
@@ -1227,7 +1752,7 @@ em{ font-style: italic; color: var(--ink-2); }
     </div>
 
   </div>
-  <div class="runfoot"><span>Formula Zapuska · To'liq qo'llanma</span><span class="pg">10</span></div>
+  <div class="runfoot"><span>Formula Zapuska · To'liq qo'llanma</span><span class="pg">12</span></div>
 </section>
 
 </body>
