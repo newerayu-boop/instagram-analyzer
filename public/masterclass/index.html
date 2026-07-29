@@ -1886,13 +1886,13 @@ if(canvas && !REDUCE){
   }
   resize(); addEventListener('resize', resize, {passive:true});
 
-  var N = innerWidth<640 ? 16 : 26;   /* было 30/62 */
-  var LINK = innerWidth<640 ? 120 : 160;
+  var N = innerWidth<640 ? 22 : 36;
+  var LINK = innerWidth<640 ? 135 : 180;
   var ns=[];
   for(var i=0;i<N;i++){
     ns.push({ x:Math.random()*1600, y:Math.random()*900,
-      vx:(Math.random()-.5)*.20, vy:(Math.random()-.5)*.20,
-      r:Math.random()*1.1+.6 });
+      vx:(Math.random()-.5)*.44, vy:(Math.random()-.5)*.44,
+      r:Math.random()*1.4+.8 });
   }
   function tick(){
     if(running){
@@ -1907,12 +1907,12 @@ if(canvas && !REDUCE){
       for(i=0;i<N;i++){ for(j=i+1;j<N;j++){
         a=ns[i]; b=ns[j]; dx=a.x-b.x; dy=a.y-b.y; d=dx*dx+dy*dy;
         if(d<LINK*LINK){
-          var al=(1-Math.sqrt(d)/LINK)*.15;
+          var al=(1-Math.sqrt(d)/LINK)*.26;
           ctx.strokeStyle='rgba(191,160,89,'+al.toFixed(3)+')';
           ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
         }
       }}
-      ctx.fillStyle='rgba(214,190,138,.42)';
+      ctx.fillStyle='rgba(214,190,138,.66)';
       for(i=0;i<N;i++){
         a=ns[i]; ctx.beginPath(); ctx.arc(a.x,a.y,a.r,0,6.283); ctx.fill();
       }
