@@ -140,7 +140,7 @@
   --serif:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono:'JetBrains Mono', 'Courier New', monospace;
-  --dur-fast:140ms; --dur-base:220ms; --dur-mod:340ms; --dur-slow:700ms;
+  --dur-fast:140ms; --dur-base:220ms; --dur-mod:340ms; --dur-slow:420ms;
   --ease-out:cubic-bezier(.16,1,.3,1); --ease-expo:cubic-bezier(.87,0,.13,1);
   --grad-gold:linear-gradient(105deg,#E8DBBA 0%,#D9B54A 45%,#B08624 80%,#D9B54A 100%);
 }
@@ -191,7 +191,7 @@ section[id],div[id="top"]{scroll-margin-top:86px}
 }
 
 /* reveal system */
-.rv{opacity:0; transform:translateY(26px); transition:opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); will-change:opacity,transform}
+.rv{opacity:0; transform:translateY(12px); transition:opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); will-change:opacity,transform}
 .rv.is-in{opacity:1; transform:none}
 /* media reveal: container is observed (full geometry), the image slides inside it */
 .rv-clip .clip-img{transform:translateY(103%); transition:transform 1.05s var(--ease-expo)}
@@ -199,8 +199,8 @@ section[id],div[id="top"]{scroll-margin-top:86px}
 .rv-clip .arc{opacity:0; transition:opacity .9s var(--ease-out) .55s}
 .rv-clip.is-in .arc{opacity:1}
 .w{display:inline-block; overflow:hidden; vertical-align:bottom}
-.w>i{display:inline-block; font-style:inherit; transform:translateY(110%); transition:transform .8s var(--ease-expo)}
-.is-in .w>i{transform:none}
+.w>i{display:inline-block; font-style:inherit}
+
 
 /* buttons */
 .btn{
@@ -299,12 +299,11 @@ section[id],div[id="top"]{scroll-margin-top:86px}
   transform-origin:50% 100%;
   -webkit-mask-image:radial-gradient(70% 85% at 50% 100%, #000 25%, transparent 78%);
   mask-image:radial-gradient(70% 85% at 50% 100%, #000 25%, transparent 78%);
-  animation:gridMove 15s linear infinite;
 }
 @keyframes gridMove{to{background-position:0 46px, 0 46px}}
 .hero .amb.a1{width:640px;height:640px; top:-160px; right:-80px; background:rgba(191,160,89,.14)}
 .hero .amb.a2{width:480px;height:480px; bottom:-180px; left:-140px; background:rgba(140,109,31,.1)}
-.spot{position:absolute; top:-5%; width:46%; height:80%; z-index:0; pointer-events:none; opacity:.5; animation:breath 7s ease-in-out infinite}
+.spot{position:absolute; top:-5%; width:46%; height:80%; z-index:0; pointer-events:none; opacity:.5; animation:none}
 .spot.l{left:-6%; background:conic-gradient(from 118deg at 50% 0%, transparent 42%, rgba(233,206,140,.09) 50%, transparent 58%)}
 .spot.r{right:-6%; background:conic-gradient(from 242deg at 50% 0%, transparent 42%, rgba(233,206,140,.08) 50%, transparent 58%); animation-delay:-3.5s}
 @keyframes breath{0%,100%{opacity:.32}50%{opacity:.6}}
@@ -318,7 +317,7 @@ section[id],div[id="top"]{scroll-margin-top:86px}
   border:1px solid var(--line-soft); border-radius:100px; padding:10px 20px; margin-bottom:30px;
   background:rgba(9,12,18,.5); backdrop-filter:blur(8px);
 }
-.eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); animation:pulse 2s ease-in-out infinite; flex:none}
+.eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); animation:none; flex:none}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(191,160,89,.55)}55%{box-shadow:0 0 0 9px rgba(191,160,89,0)}}
 .hero h1{
   font-family:var(--serif); font-weight:600; letter-spacing:-.026em;
@@ -362,12 +361,11 @@ section[id],div[id="top"]{scroll-margin-top:86px}
   background:conic-gradient(from 0deg, transparent 0 78%, rgba(245,230,184,.9) 89%, transparent 100%);
   -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
   mask:radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
-  animation:spin 9s linear infinite;
 }
 .ring.r2{inset:7%; border-color:rgba(191,160,89,.14); box-shadow:none}
 .ring.r2::before{animation-duration:14s; animation-direction:reverse; opacity:.5}
 @keyframes spin{to{transform:rotate(360deg)}}
-.dotp{position:absolute; inset:0; animation:spin 11s linear infinite}
+.dotp{position:absolute; inset:0; animation:none}
 .dotp::before{
   content:""; position:absolute; top:-3.5px; left:50%; width:7px; height:7px; border-radius:50%;
   background:var(--gold-3); box-shadow:0 0 14px var(--gold), 0 0 4px var(--gold-3);
@@ -375,13 +373,12 @@ section[id],div[id="top"]{scroll-margin-top:86px}
 .halo{
   position:absolute; top:50%; left:50%; width:88%; aspect-ratio:1; border-radius:50%;
   transform:translate(-50%,-54%); background:radial-gradient(circle, rgba(191,160,89,.22) 0%, transparent 62%);
-  animation:halo 6s ease-in-out infinite;
+  animation:none;
 }
 @keyframes halo{0%,100%{opacity:.6; transform:translate(-50%,-54%) scale(1)}50%{opacity:1; transform:translate(-50%,-54%) scale(1.06)}}
 .portrait{
   position:relative; z-index:2; width:100%; height:100%; border-radius:300px 300px 26px 26px;
   overflow:hidden; transform:translateZ(46px);
-  animation:float 7s ease-in-out infinite;
   box-shadow:0 40px 90px -30px rgba(0,0,0,.85), 0 0 0 1px rgba(191,160,89,.2), 0 0 80px -20px rgba(191,160,89,.28);
 }
 @keyframes float{0%,100%{transform:translateZ(46px) translateY(0)}50%{transform:translateZ(46px) translateY(-11px)}}
@@ -399,7 +396,7 @@ section[id],div[id="top"]{scroll-margin-top:86px}
 .scan{
   position:absolute; left:0; right:0; top:-16%; height:15%; z-index:2; pointer-events:none;
   background:linear-gradient(to bottom, transparent, rgba(191,160,89,.22) 45%, rgba(232,219,186,.34) 50%, rgba(191,160,89,.22) 55%, transparent);
-  animation:scanMove 4.6s ease-in-out infinite;
+  animation:none;
 }
 @keyframes scanMove{0%{top:-16%}55%,60%{top:101%}100%{top:101%}}
 /* HUD corner brackets */
@@ -431,12 +428,12 @@ section[id],div[id="top"]{scroll-margin-top:86px}
   font-family:var(--mono); font-size:9.5px; letter-spacing:.3em; text-transform:uppercase; color:var(--faint);
 }
 .scroll-hint i{width:1px; height:44px; background:linear-gradient(var(--gold), transparent); display:block; overflow:hidden; position:relative}
-.scroll-hint i::after{content:""; position:absolute; top:-40%; left:0; width:100%; height:40%; background:var(--gold-3); animation:drip 1.8s var(--ease-expo) infinite}
+.scroll-hint i::after{content:""; position:absolute; top:-40%; left:0; width:100%; height:40%; background:var(--gold-3); animation:none}
 @keyframes drip{to{top:110%}}
 
 /* ============ MARQUEE ============ */
 .tape{border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); padding:20px 0; overflow:hidden; background:rgba(191,160,89,.025)}
-.tape-track{display:inline-flex; white-space:nowrap; will-change:transform; animation:tape 36s linear infinite}
+.tape-track{display:inline-flex; white-space:nowrap; will-change:transform; animation:tape 60s linear infinite}
 .tape:hover .tape-track{animation-play-state:paused}
 @keyframes tape{to{transform:translateX(-50%)}}
 .tape span{
@@ -472,6 +469,13 @@ section[id],div[id="top"]{scroll-margin-top:86px}
 .pcard ul{list-style:none; display:grid; gap:14px}
 .pcard li{display:flex; gap:14px; color:var(--muted); font-size:15.5px}
 .pcard li::before{content:"✦"; color:var(--gold); font-size:12px; margin-top:4px; flex:none}
+/* the payback line — set apart from the bullets so it lands as a conclusion */
+.pcard li.gain{
+  margin-top:14px; padding:13px 16px; border-radius:13px; color:var(--gold-3);
+  background:rgba(191,160,89,.08); border:1px solid rgba(191,160,89,.28); font-size:14.5px; line-height:1.55;
+}
+.pcard li.gain::before{content:"💰"; font-size:14px; margin-top:1px}
+.pcard li.gain b{color:var(--gold-2)}
 
 /* ============ ROADMAP ============ */
 .road{position:relative; margin-top:30px}
@@ -580,7 +584,7 @@ section[id],div[id="top"]{scroll-margin-top:86px}
 .spk-photo .arc{
   position:absolute; inset:-7% -9% auto; aspect-ratio:1; border-radius:50%;
   border:1px solid rgba(191,160,89,.28); border-bottom-color:transparent; border-left-color:transparent;
-  transform:rotate(-38deg); animation:spin 26s linear infinite; z-index:1;
+  transform:rotate(-38deg); animation:none; z-index:1;
 }
 /* a real gold frame plus a name plate, so the block reads as "this is the
    person running it" without having to read the copy beside it */
@@ -942,7 +946,7 @@ body.lb-open .rev-track{animation-play-state:paused}
 .hero-badges::after{
   content:""; position:absolute; top:0; bottom:0; width:45%; left:-60%; pointer-events:none;
   background:linear-gradient(100deg, transparent, rgba(255,255,255,.5), transparent);
-  animation:badgeSheen 4.6s ease-in-out infinite;
+  animation:none;
 }
 @keyframes badgeSheen{0%,62%{left:-60%}92%,100%{left:115%}}
 .hero-badges i{width:4px; height:4px; border-radius:50%; background:rgba(20,15,4,.55); opacity:1; flex:none}
@@ -965,7 +969,7 @@ body.lb-open .rev-track{animation-play-state:paused}
 }
 .hero-float{
   position:relative; z-index:3; height:100%; aspect-ratio:4/5; max-width:min(86vw,368px);
-  animation:floatY 7.5s ease-in-out infinite; will-change:transform;
+  animation:none; will-change:transform;
 }
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 .hero-card{
@@ -1062,7 +1066,6 @@ body.lb-open .rev-track{animation-play-state:paused}
 .nocode .nc-ico{
   width:64px; height:64px; border-radius:50%; display:grid; place-items:center; flex:none;
   border:1px solid var(--line-gold); color:var(--gold); background:rgba(191,160,89,.07);
-  animation:hudFloat 6s ease-in-out infinite;
 }
 .nocode h3{font-family:var(--serif); font-size:clamp(15px,1.6vw,21px); font-weight:600; margin-bottom:12px}
 .nocode p{color:var(--muted); font-size:15.5px}
@@ -1098,7 +1101,7 @@ body.lb-open .rev-track{animation-play-state:paused}
 }
 .video-play .vp-ring::after{
   content:""; position:absolute; width:74px; height:74px; border-radius:50%; border:1px solid var(--gold);
-  animation:vpPulse 2.6s ease-out infinite; pointer-events:none;
+  animation:none; pointer-events:none;
 }
 @keyframes vpPulse{0%{transform:scale(1); opacity:.75}100%{transform:scale(1.5); opacity:0}}
 .video-play:hover .vp-ring{transform:scale(1.07); background:rgba(191,160,89,.16)}
@@ -1170,7 +1173,6 @@ body.lb-open .rev-track{animation-play-state:paused}
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
-  <canvas id="dust" aria-hidden="true"></canvas>
   <div class="cyber-grid" aria-hidden="true"></div>
   <div class="spot l" aria-hidden="true"></div>
   <div class="spot r" aria-hidden="true"></div>
@@ -1261,6 +1263,7 @@ body.lb-open .rev-track{animation-play-state:paused}
         <ul>
           <li><span data-uz>Oʻz ishingizga 3 ta AI-agent joriy qilasiz</span><span data-ru>Внедрите 3 AI-агента в свою работу</span></li>
           <li><span data-uz>Yana qanday AI-xodimlarni joriy qilish mumkin — oʻquvchilarim joriy qilgan xodimlar misolida</span><span data-ru>Каких ещё AI-сотрудников можно внедрить — на примере моих учеников</span></li>
+          <li class="gain"><span data-uz>Master klassdan chiqqaningizda — bu 3 ta agent oyiga <b>$500+</b> ish vaqtini qaytaradi. Yaʼni ishtirok narxi birinchi oyda qoplanadi.</span><span data-ru>К концу мастер-класса эти 3 агента возвращают <b>от $500</b> рабочего времени в месяц — участие окупается в первый же месяц.</span></li>
         </ul>
       </article>
     </div>
@@ -1786,78 +1789,7 @@ var cio=new IntersectionObserver(function(entries){
 document.querySelectorAll('[data-count]').forEach(function(el){ cio.observe(el); });
 
 /* ---------- cybernetic node network (hero) ---------- */
-var canvas=document.getElementById('dust');
-if(canvas && !REDUCE){
-  var ctx=canvas.getContext('2d'), running=true, W=0, H=0, DPR=Math.min(devicePixelRatio||1,2);
-  var hero=document.getElementById('hero');
-  var mx=-1e4, my=-1e4;
-  function resize(){
-    W=hero.offsetWidth; H=hero.offsetHeight;
-    canvas.width=W*DPR; canvas.height=H*DPR;
-    canvas.style.width=W+'px'; canvas.style.height=H+'px';
-    ctx.setTransform(DPR,0,0,DPR,0,0);
-  }
-  resize(); addEventListener('resize', resize);
-  hero.addEventListener('mousemove', function(e){
-    var r=canvas.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top;
-  });
-  hero.addEventListener('mouseleave', function(){ mx=-1e4; my=-1e4; });
-  var N=innerWidth<640?30:62, LINK=innerWidth<640?105:135;
-  var ns=[];
-  for(var i=0;i<N;i++){
-    ns.push({ x:Math.random()*1600, y:Math.random()*900,
-      vx:(Math.random()-.5)*.34, vy:(Math.random()-.5)*.34,
-      r:Math.random()*1.6+.7, tw:Math.random()*6.28 });
-  }
-  function tick(){
-    if(running){
-      ctx.clearRect(0,0,W,H);
-      var i,j,a,b,dx,dy,d;
-      for(i=0;i<N;i++){
-        a=ns[i]; a.x+=a.vx; a.y+=a.vy; a.tw+=.02;
-        dx=a.x-mx; dy=a.y-my; d=dx*dx+dy*dy;
-        if(d<19600){ var dist=Math.sqrt(d)+.1, f=1-dist/140; a.x+=dx/dist*f*1.4; a.y+=dy/dist*f*1.4; }
-        if(a.x<-20)a.x=W+20; if(a.x>W+20)a.x=-20;
-        if(a.y<-20)a.y=H+20; if(a.y>H+20)a.y=-20;
-      }
-      ctx.lineWidth=1;
-      for(i=0;i<N;i++){ for(j=i+1;j<N;j++){
-        a=ns[i]; b=ns[j]; dx=a.x-b.x; dy=a.y-b.y; d=dx*dx+dy*dy;
-        if(d<LINK*LINK){
-          var al=(1-Math.sqrt(d)/LINK)*.26;
-          ctx.strokeStyle='rgba(191,160,89,'+al.toFixed(3)+')';
-          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
-        }
-      }}
-      for(i=0;i<N;i++){
-        a=ns[i]; var g=.45+.4*Math.abs(Math.sin(a.tw));
-        ctx.beginPath(); ctx.arc(a.x,a.y,a.r,0,6.283);
-        ctx.fillStyle='rgba(214,190,138,'+g.toFixed(2)+')'; ctx.fill();
-      }
-    }
-    requestAnimationFrame(tick);
-  }
-  new IntersectionObserver(function(en){ running=en[0].isIntersecting; },{threshold:0}).observe(hero);
-  document.addEventListener('visibilitychange', function(){ running=!document.hidden; });
-  requestAnimationFrame(tick);
-}
-
-/* ---------- hero 3D tilt ---------- */
-var sceneWrap=document.getElementById('heroStage'), sceneInner=sceneWrap;
-if(sceneWrap && FINE && !REDUCE){
-  var rx=0, ry=0, tx=0, ty=0;
-  sceneWrap.addEventListener('mousemove', function(e){
-    var r=sceneWrap.getBoundingClientRect();
-    tx=((e.clientX-r.left)/r.width-.5);
-    ty=((e.clientY-r.top)/r.height-.5);
-  });
-  sceneWrap.addEventListener('mouseleave', function(){ tx=0; ty=0; });
-  (function tiltLoop(){
-    rx+=(ty*-6-rx)*.06; ry+=(tx*7-ry)*.06;
-    sceneInner.style.transform='rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg)';
-    requestAnimationFrame(tiltLoop);
-  })();
-}
+/* Particle field removed — constant motion behind the offer. */
 
 /* ---------- ghost numbers parallax + roadmap line + venue parallax ---------- */
 var ghosts=[].slice.call(document.querySelectorAll('[data-ghost]'));
@@ -1866,29 +1798,14 @@ var venueImg=document.querySelector('[data-parallax]');
 /* Measure everything first, then write — interleaving getBoundingClientRect
    with style writes forces a reflow per element, which is what made
    scrolling stutter. One rAF per frame regardless of scroll event rate. */
+/* Parallax removed: the numerals and the venue photo drifted while the page
+   was being read, which made the text hard to follow. Only the roadmap
+   progress line still tracks the scroll. */
 function applyFx(){
-  var vh=innerHeight, i, writes=[];
-
-  if(!REDUCE){
-    for(i=0;i<ghosts.length;i++){
-      var r=ghosts[i].getBoundingClientRect();
-      if(r.bottom<0||r.top>vh) continue;
-      writes.push([ghosts[i], 'translateY('+(((vh-r.top)/(vh+r.height)-.5)*70).toFixed(1)+'px)']);
-    }
-    if(venueImg){
-      var vr=venueImg.parentElement.getBoundingClientRect();
-      if(vr.bottom>0 && vr.top<vh){
-        writes.push([venueImg, 'scale(1.12) translateY('+(((vh-vr.top)/(vh+vr.height)-.5)*44).toFixed(1)+'px)']);
-      }
-    }
-  }
-  if(road && roadFill){
-    var rr=road.getBoundingClientRect();
-    var prog=Math.max(0, Math.min(1, (vh*.72-rr.top)/rr.height));
-    writes.push([roadFill, 'scaleY('+prog.toFixed(3)+')']);
-  }
-
-  for(i=0;i<writes.length;i++) writes[i][0].style.transform=writes[i][1];
+  if(!road || !roadFill) return;
+  var rr=road.getBoundingClientRect();
+  var prog=Math.max(0, Math.min(1, (innerHeight*.72-rr.top)/rr.height));
+  roadFill.style.transform='scaleY('+prog.toFixed(3)+')';
 }
 
 var fxQueued=false;

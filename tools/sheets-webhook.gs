@@ -10,17 +10,17 @@
  * и дописывает строку в лист «Заявки», создавая его с шапкой при первом вызове.
  */
 
-var SHEET_NAME = 'Заявки';
+var SHEET_NAME = 'Arizalar';
 
 var HEADERS = [
-  'Дата и время',
-  'Имя',
-  'Телефон',
-  'Сфера',
-  'Цена',
-  'Язык',
-  'Источник',
-  'Статус',
+  'Sana va vaqt',
+  'Ism',
+  'Telefon',
+  'Soha',
+  'Narx',
+  'Til',
+  'Manba',
+  'Holat',
 ];
 
 function doPost(e) {
@@ -56,7 +56,7 @@ function doPost(e) {
       data.price || '',
       data.lang || '',
       data.source || '',
-      'Новая',
+      'Yangi',
     ]);
 
     return json({ ok: true });
