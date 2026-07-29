@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stratsessiya — to'liq qo'llanma</title>
-<meta name="description" content="Stratsessiyaga tayyorgarlik, o'tkazish va yakunlash bo'yicha to'liq qo'llanma. O'zbek tilida, chop etish uchun.">
+<meta name="description" content="Stratsessiyaga tayyorgarlik, o'tkazish va yakunlash bo'yicha to'liq qo'llanma. O'zbek tilida, sxema va grafiklar bilan, chop etish uchun.">
 <style>
 /* ==========================================================================
    FONTS — Inter (latin), fayl ichiga joylashtirilgan (base64)
@@ -18,6 +18,10 @@
 
 /* ==========================================================================
    TOKENS
+   --------------------------------------------------------------------------
+   Grafiklar uchun ranglar — bitta yashil "ordinal" shkala (och → to'q).
+   Bitta rang shkalasi bo'lgani uchun: (1) rangni ajrata olmaydigan odamlar ham
+   o'qiy oladi, (2) oq-qora printerda ham och→to'q tartib saqlanib qoladi.
    ========================================================================== */
 :root{
   --ink:#000;
@@ -25,15 +29,42 @@
   --ink-50:#6b6b6b;
   --ink-30:#9a9a9a;
   --line:#e2e2e2;
-  --line-strong:#000;
   --paper:#fff;
   --wash:#f4f4f4;
-  --green:#00c281;
-  --green-ink:#00a86e;
+
+  /* yashil ordinal shkala — validator: ALL CHECKS PASS (light, oq fon) */
+  --g1:#4DC9A4;
+  --g2:#17AE86;
+  --g3:#008A6B;
+  --g4:#00674F;
+  --g5:#004334;
+  --g-track:#D9F3EA;
+  --g-wash:#EEFAF5;
+
+  /* grafik "chrome" */
+  --grid:#E1E0D9;
+  --axis:#C3C2B7;
+  --muted:#898781;
+
   --dark:#1c1c1c;
   --dark-card:#262626;
 
   --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
+}
+
+/* Qora varaqlarda — o'sha shkala qorong'i fon uchun qayta bosqichlangan
+   (validator: ALL CHECKS PASS, dark, #1c1c1c) */
+.sheet.dark{
+  --g1:#C4F5E3;
+  --g2:#8FE7C8;
+  --g3:#4DC9A4;
+  --g4:#17AE86;
+  --g5:#008A6B;
+  --g-track:#2f3d38;
+  --g-wash:#232f2b;
+  --grid:#2C2C2A;
+  --axis:#3d3d3a;
+  --muted:#8f8f8f;
 }
 
 *{box-sizing:border-box;}
@@ -76,17 +107,16 @@ em{font-style:normal;color:var(--ink-50);}
 .h-display{font-size:44pt;line-height:.98;letter-spacing:-.035em;}
 .h-sec{font-size:22pt;line-height:1.05;letter-spacing:-.03em;}
 .h-sub{font-size:14pt;line-height:1.15;letter-spacing:-.02em;font-weight:800;}
-.h-card{font-size:11.5pt;font-weight:600;letter-spacing:-.01em;}
 
 .lead{font-size:11.5pt;color:var(--ink-70);line-height:1.5;}
 .small{font-size:9pt;color:var(--ink-50);line-height:1.45;}
-.mono-num{font-variant-numeric:tabular-nums;}
 
-/* Bo'lim sarlavhasi */
+/* Bo'lim sarlavhasi — katta raqam bilan */
 .sec-head{
   border-top:2px solid var(--ink);
   padding-top:7mm;
   margin-bottom:8mm;
+  position:relative;
 }
 .sec-kicker{
   display:flex;justify-content:space-between;align-items:baseline;
@@ -94,8 +124,15 @@ em{font-style:normal;color:var(--ink-50);}
   color:var(--ink-50);margin-bottom:5mm;
 }
 .sec-head .h-sec{margin-bottom:3mm;}
+.sec-head .bignum{
+  position:absolute;right:0;top:13mm;
+  font-size:34pt;font-weight:800;letter-spacing:-.05em;line-height:1;
+  color:var(--g1);
+}
+/* katta raqam sarlavha bilan urishmasligi uchun joy qoldiramiz */
+.sec-head.has-num .h-sec{padding-right:20mm;}
+.sheet.dark .sec-kicker{color:var(--g3);}
 
-/* Kichik sarlavha */
 .sub-head{
   margin:9mm 0 4mm;
   padding-bottom:2.5mm;
@@ -109,16 +146,13 @@ em{font-style:normal;color:var(--ink-50);}
 }
 
 /* ==========================================================================
-   TITUL SAHIFASI
+   TITUL
    ========================================================================== */
-.cover{
-  display:flex;flex-direction:column;justify-content:space-between;
-  min-height:265mm;
-}
+.cover{display:flex;flex-direction:column;justify-content:space-between;min-height:262mm;}
 .cover-top{font-size:9pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-50);}
 .cover-mid .h-display{margin-bottom:6mm;}
-.cover-rule{height:2px;background:var(--ink);margin:8mm 0 6mm;}
-.cover-meta{display:grid;grid-template-columns:1fr 1fr;gap:4mm 8mm;font-size:9.5pt;}
+.cover-rule{height:2px;background:var(--ink);margin:7mm 0 5mm;}
+.cover-meta{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm 8mm;font-size:9.5pt;}
 .cover-meta div span{display:block;color:var(--ink-50);font-size:8pt;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1mm;}
 
 /* ==========================================================================
@@ -130,33 +164,30 @@ em{font-style:normal;color:var(--ink-50);}
   padding:2.2mm 0;border-bottom:1px solid var(--line);
   font-size:10.5pt;font-weight:600;
 }
-.toc > li .n{color:var(--ink-30);font-size:9pt;width:9mm;flex:none;font-variant-numeric:tabular-nums;}
+.toc > li .n{color:var(--g3);font-size:9pt;width:9mm;flex:none;font-variant-numeric:tabular-nums;font-weight:800;}
 .toc > li .t{flex:1;}
-.toc > li .d{color:var(--ink-50);font-weight:400;font-size:9pt;}
-.toc .sub{list-style:none;margin:2mm 0 0;padding:0;font-weight:400;font-size:9.5pt;color:var(--ink-50);}
-.toc .sub li{padding:.6mm 0;}
+.toc .sub{list-style:none;margin:1.5mm 0 0;padding:0;font-weight:400;font-size:9pt;color:var(--ink-50);}
+.toc .sub li{padding:.5mm 0;}
 
 /* ==========================================================================
    RO'YXATLAR
    ========================================================================== */
 ul.bullets,ol.nums{margin:0 0 4mm;padding:0;list-style:none;}
-ul.bullets li{
-  position:relative;padding-left:6mm;margin-bottom:2.2mm;line-height:1.5;
-}
+ul.bullets li{position:relative;padding-left:6mm;margin-bottom:2.2mm;line-height:1.5;}
 ul.bullets li::before{
   content:'';position:absolute;left:0;top:.62em;
-  width:2.4mm;height:2.4mm;border-radius:50%;background:var(--ink);
+  width:2.4mm;height:2.4mm;border-radius:50%;background:var(--g3);
 }
-ul.bullets.hollow li::before{background:none;border:1px solid var(--ink);}
 ol.nums{counter-reset:n;}
-ol.nums li{
-  position:relative;padding-left:8mm;margin-bottom:2.6mm;line-height:1.5;counter-increment:n;
-}
+ol.nums li{position:relative;padding-left:8mm;margin-bottom:2.6mm;line-height:1.5;counter-increment:n;}
 ol.nums li::before{
-  content:counter(n) '.';position:absolute;left:0;top:0;
-  font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;
+  content:counter(n);position:absolute;left:0;top:.08em;
+  width:5mm;height:5mm;border-radius:50%;
+  background:var(--g-wash);color:var(--g5);
+  font-size:7.5pt;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
 }
-li > strong{font-weight:600;}
+.sheet.dark ol.nums li::before{background:var(--g-wash);color:var(--g1);}
 
 /* ==========================================================================
    KARTOCHKALAR
@@ -172,10 +203,11 @@ li > strong{font-weight:600;}
   padding:1.4mm 3.5mm;border-radius:2mm;margin-bottom:3.5mm;
 }
 .card-tag.ghost{background:none;color:var(--ink);border:1px solid var(--ink);}
+.card-tag.green{background:var(--g4);}
 .card p{font-size:10pt;}
 .card ul.bullets li{font-size:10pt;}
 
-/* «Razbor sikli» — 1-hujjat uslubi: tag ramkaning ustida turadi */
+/* «Razbor sikli» — 1-hujjat uslubi */
 .step{
   position:relative;border:1px solid var(--ink);border-radius:3mm;
   margin:0 0 5mm;padding:8mm 5mm 4.5mm;
@@ -184,20 +216,18 @@ li > strong{font-weight:600;}
 .step > .tag{
   position:absolute;top:-3.2mm;left:5mm;
   background:var(--ink);color:#fff;
-  font-size:9.5pt;font-weight:600;letter-spacing:.01em;
-  padding:1.2mm 3.5mm;border-radius:1.6mm;white-space:nowrap;
+  font-size:9.5pt;font-weight:600;padding:1.2mm 3.5mm;border-radius:1.6mm;white-space:nowrap;
 }
 .step > .time{
   position:absolute;top:-3.2mm;right:5mm;
-  background:var(--paper);border:1px solid var(--ink);
+  background:var(--g-wash);border:1px solid var(--g3);color:var(--g5);
   font-size:8pt;font-weight:600;padding:1mm 3mm;border-radius:1.6mm;white-space:nowrap;
 }
 .step p{font-size:10pt;}
 .step ul.bullets li{font-size:10pt;}
 
-/* Sitata / muhim blok */
 .note{
-  background:var(--wash);border-left:2.5mm solid var(--ink);
+  background:var(--wash);border-left:2.5mm solid var(--g3);
   padding:4mm 5mm;margin:0 0 5mm;
   page-break-inside:avoid;break-inside:avoid;
 }
@@ -206,6 +236,9 @@ li > strong{font-weight:600;}
   color:var(--ink-50);margin-bottom:1.5mm;
 }
 .note p{font-size:10.5pt;}
+.sheet.dark .note{background:var(--dark-card);}
+.sheet.dark .note .label{color:var(--g3);}
+.sheet.dark .note p{color:#d8d8d8;}
 
 .callout{
   border:2px solid var(--ink);padding:5mm;margin:0 0 5mm;
@@ -213,10 +246,70 @@ li > strong{font-weight:600;}
   page-break-inside:avoid;break-inside:avoid;
 }
 
-/* Ikki ustun */
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:5mm;}
 .cols2 > *{min-width:0;}
 @media screen and (max-width:760px){.cols2{grid-template-columns:1fr;}}
+
+/* ==========================================================================
+   GRAFIKLAR VA SXEMALAR
+   ========================================================================== */
+.fig{
+  margin:0 0 6mm;
+  page-break-inside:avoid;break-inside:avoid;
+}
+.fig svg{display:block;width:100%;height:auto;overflow:visible;}
+.fig-title{
+  font-size:8pt;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:3mm;
+}
+.fig-cap{font-size:8.5pt;color:var(--ink-50);line-height:1.4;margin-top:3mm;}
+.sheet.dark .fig-cap{color:#9a9a9a;}
+
+/* SVG matn uslublari */
+.fig text{font-family:var(--font);}
+.t-lbl{font-size:19px;fill:var(--ink-70);}
+.t-mut{font-size:17px;fill:var(--muted);}
+.t-val{font-size:19px;font-weight:600;fill:var(--ink);}
+.t-big{font-size:26px;font-weight:800;fill:var(--ink);letter-spacing:-.5px;}
+.t-in {font-size:19px;font-weight:600;fill:#fff;}
+.sheet.dark .t-lbl{fill:#c8c8c8;}
+.sheet.dark .t-val,.sheet.dark .t-big{fill:#fff;}
+.sheet.dark .t-in{fill:#08240f;}
+
+/* Legenda — ikkitadan ko'p seriya bo'lganda doim bor */
+.legend{
+  display:flex;flex-wrap:wrap;gap:2mm 6mm;margin-top:3.5mm;
+  font-size:8.5pt;color:var(--ink-70);
+}
+.legend .li{display:flex;align-items:center;gap:2mm;}
+.legend .sw{width:3.4mm;height:3.4mm;border-radius:.7mm;flex:none;}
+.legend b{font-weight:600;color:var(--ink);}
+.sheet.dark .legend{color:#b8b8b8;}
+.sheet.dark .legend b{color:#fff;}
+
+/* Raqamli plitkalar (stat tiles) */
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin:0 0 6mm;}
+.statrow.four{grid-template-columns:repeat(4,1fr);}
+.stat{
+  border:1px solid var(--line);border-radius:3mm;padding:4mm;
+  page-break-inside:avoid;break-inside:avoid;
+}
+.stat .k{font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2mm;}
+.stat .v{font-size:19pt;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--ink);}
+.stat .v em{font-size:11pt;font-weight:600;color:var(--ink-50);font-style:normal;}
+.stat .s{font-size:8.5pt;color:var(--ink-50);line-height:1.35;margin-top:2mm;}
+.sheet.dark .stat{border-color:#3a3a3a;}
+.sheet.dark .stat .v{color:#fff;}
+.sheet.dark .stat .s{color:#a8a8a8;}
+
+/* Hero raqam */
+.hero{display:flex;align-items:center;gap:6mm;margin:0 0 5mm;}
+.hero .n{font-size:44pt;font-weight:800;letter-spacing:-.045em;line-height:.88;color:var(--g4);}
+.hero .x{flex:1;}
+.hero .x .t{font-size:12pt;font-weight:800;letter-spacing:-.02em;margin-bottom:1.5mm;}
+.hero .x .d{font-size:9.5pt;color:var(--ink-50);line-height:1.4;}
+.sheet.dark .hero .n{color:var(--g3);}
+.sheet.dark .hero .x .d{color:#a8a8a8;}
 
 /* ==========================================================================
    JADVALLAR
@@ -234,9 +327,17 @@ tr.q-row td{background:var(--wash);font-weight:600;}
 tr.total-row td{background:#dcdcdc;font-weight:600;}
 .tbl-cap{font-size:9pt;font-weight:600;margin:0 0 2mm;}
 
-/* To'ldirish uchun chiziqlar */
-.write-lines{margin:0 0 5mm;}
-.write-lines .ln{border-bottom:1px solid var(--line);height:9mm;}
+/* Ixcham "jadval-egizak" — grafikning aniq raqamlari */
+table.mini{font-size:8.5pt;margin-bottom:0;}
+table.mini th,table.mini td{border:0;border-bottom:1px solid var(--line);padding:1.6mm 2mm;}
+table.mini thead th{background:none;color:var(--muted);font-size:7.5pt;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--axis);}
+table.mini td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
+table.mini tr:last-child td{border-bottom:0;}
+.sheet.dark table.mini th,.sheet.dark table.mini td{border-bottom-color:#333;color:#c4c4c4;}
+.sheet.dark table.mini thead th{color:var(--muted);}
+
+/* To'ldirish uchun */
 .write-box{
   border:1px solid var(--ink);border-radius:3mm;
   padding:4mm;margin:0 0 5mm;
@@ -244,48 +345,28 @@ tr.total-row td{background:#dcdcdc;font-weight:600;}
 }
 .write-box .q{font-weight:600;font-size:10.5pt;margin-bottom:3mm;}
 .write-box .ln{border-bottom:1px solid var(--line);height:8.5mm;}
-.write-box .ln:last-child{border-bottom:1px solid var(--line);}
 
-/* Chek-list kvadratchalari */
 ul.checks{list-style:none;margin:0 0 4mm;padding:0;}
-ul.checks li{
-  position:relative;padding-left:7.5mm;margin-bottom:3mm;line-height:1.45;
-}
+ul.checks li{position:relative;padding-left:7.5mm;margin-bottom:3mm;line-height:1.45;}
 ul.checks li::before{
   content:'';position:absolute;left:0;top:.28em;
   width:4mm;height:4mm;border:1px solid var(--ink);border-radius:.8mm;
 }
 
-/* Rollar */
 .role{border-top:1px solid var(--ink);padding-top:3mm;margin-bottom:5mm;}
 .role h4{font-size:12pt;margin-bottom:2.5mm;}
 .role ul.bullets li{font-size:9.5pt;}
 
-/* Tayming diagrammasi */
-.timing{border:1px solid var(--ink);border-radius:3mm;overflow:hidden;margin-bottom:5mm;
-  page-break-inside:avoid;break-inside:avoid;}
-.timing .row{display:flex;align-items:center;gap:3mm;padding:2.8mm 4mm;border-bottom:1px solid var(--line);font-size:10pt;}
-.timing .row:last-child{border-bottom:0;}
-.timing .row .i{width:5mm;font-weight:800;color:var(--ink-30);flex:none;font-variant-numeric:tabular-nums;}
-.timing .row .t{flex:1;font-weight:600;}
-.timing .row .v{color:var(--ink-50);font-size:9pt;white-space:nowrap;}
-.timing .row.sum{background:var(--ink);color:#fff;font-weight:800;}
-.timing .row.sum .v,.timing .row.sum .i{color:#fff;}
-
 /* ==========================================================================
-   6-BO'LIM — TRANSFORMATSIYALAR PROTOKOLI (qora + yashil)
-   Ekranda — original dizayn. Chop etishda — oq qog'ozga moslashadi.
+   6-BO'LIM — qora varaqlar
    ========================================================================== */
 .sheet.dark{background:var(--dark);color:#fff;}
 .sheet.dark .sec-head{border-top-color:#555;}
-.sheet.dark .sec-kicker{color:var(--green);}
 .sheet.dark .lead{color:#b9b9b9;}
 .sheet.dark .small{color:#8f8f8f;}
 .sheet.dark .sub-head{border-bottom-color:#3a3a3a;}
 .sheet.dark .sub-head .n{color:#6a6a6a;}
-.sheet.dark ul.bullets li::before{background:var(--green);}
-.sheet.dark table th,.sheet.dark table td{border-color:#3f3f3f;}
-.sheet.dark thead th{background:var(--green);color:#08240f;}
+.sheet.dark .sec-head .bignum{color:var(--g4);}
 
 .pstep{
   display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-bottom:4mm;
@@ -293,7 +374,7 @@ ul.checks li::before{
 }
 .pstep .body{background:var(--dark-card);border-radius:4mm;padding:5mm;}
 .pstep .body .num{
-  width:7mm;height:7mm;border-radius:50%;background:var(--green);color:#08240f;
+  width:7mm;height:7mm;border-radius:50%;background:var(--g3);color:#08240f;
   display:flex;align-items:center;justify-content:center;
   font-size:9pt;font-weight:800;margin-bottom:3.5mm;
 }
@@ -301,34 +382,14 @@ ul.checks li::before{
 .pstep .body p{font-size:8.6pt;color:#a8a8a8;line-height:1.45;}
 .pstep .body .keystep{
   font-size:7.5pt;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--green);margin-bottom:2.5mm;
+  color:var(--g3);margin-bottom:2.5mm;
 }
 .pstep .example{padding:5mm 0 0;}
-.pstep .example .lbl{
-  font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7d7d7d;margin-bottom:2.5mm;
-}
-.pstep .example p{font-size:10pt;color:var(--green);line-height:1.4;font-weight:600;}
+.pstep .example .lbl{font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#7d7d7d;margin-bottom:2.5mm;}
+.pstep .example p{font-size:10pt;color:var(--g3);line-height:1.4;font-weight:600;}
 
-.pdivider{
-  display:flex;align-items:center;gap:3mm;margin:6mm 0;
-  font-size:8.5pt;color:#9a9a9a;
-}
+.pdivider{display:flex;align-items:center;gap:3mm;margin:6mm 0;font-size:8.5pt;color:#9a9a9a;}
 .pdivider::before,.pdivider::after{content:'';flex:1;height:1px;background:#3f3f3f;}
-
-.hours-hero{
-  border:1px solid #3f3f3f;border-radius:4mm;padding:6mm;margin-bottom:5mm;
-  text-align:center;page-break-inside:avoid;break-inside:avoid;
-}
-.hours-hero .big{font-size:40pt;font-weight:800;color:var(--green);line-height:1;letter-spacing:-.04em;}
-.hours-hero .cap{font-size:9pt;color:#a8a8a8;margin-top:2mm;}
-
-.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-bottom:5mm;}
-.hours-grid .h-item{
-  background:var(--dark-card);border-radius:3mm;padding:4mm;
-  page-break-inside:avoid;break-inside:avoid;
-}
-.hours-grid .h-item .v{font-size:13pt;font-weight:800;color:var(--green);line-height:1;margin-bottom:2mm;}
-.hours-grid .h-item .k{font-size:8.6pt;color:#c4c4c4;line-height:1.35;}
 
 .layer{
   display:flex;gap:4mm;align-items:flex-start;
@@ -336,39 +397,33 @@ ul.checks li::before{
   page-break-inside:avoid;break-inside:avoid;
 }
 .layer .n{
-  width:8mm;height:8mm;flex:none;border-radius:2mm;background:var(--green);color:#08240f;
+  width:8mm;height:8mm;flex:none;border-radius:2mm;background:var(--g3);color:#08240f;
   display:flex;align-items:center;justify-content:center;font-size:11pt;font-weight:800;
 }
 .layer h4{font-size:10.5pt;color:#fff;margin-bottom:1.5mm;}
 .layer p{font-size:8.8pt;color:#a8a8a8;line-height:1.45;}
 
 .markers{display:grid;grid-template-columns:1fr 1fr;gap:3mm;}
-.markers .m{
-  background:var(--dark-card);border-radius:3mm;padding:4mm;
-  page-break-inside:avoid;break-inside:avoid;
-}
+.markers .m{background:var(--dark-card);border-radius:3mm;padding:4mm;
+  page-break-inside:avoid;break-inside:avoid;}
 .markers .m .k{
-  font-size:9.5pt;font-weight:800;color:var(--green);margin-bottom:1.8mm;
+  font-size:9.5pt;font-weight:800;color:var(--g3);margin-bottom:1.8mm;
   display:flex;align-items:center;gap:2.2mm;
 }
-.markers .m .k::before{content:'';width:3mm;height:3mm;border-radius:.6mm;background:var(--green);flex:none;}
+.markers .m .k::before{content:'';width:3mm;height:3mm;border-radius:.6mm;background:var(--g3);flex:none;}
 .markers .m p{font-size:8.6pt;color:#b4b4b4;line-height:1.4;}
 
 .week{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5mm;}
-.week .day{
-  background:var(--dark-card);border-radius:3mm;padding:3.5mm;
-  page-break-inside:avoid;break-inside:avoid;
-}
-.week .day .d{
-  font-size:8pt;font-weight:800;color:var(--green);margin-bottom:2.5mm;
-  letter-spacing:.08em;text-transform:uppercase;
-}
+.week .day{background:var(--dark-card);border-radius:3mm;padding:3.5mm;
+  page-break-inside:avoid;break-inside:avoid;}
+.week .day .d{font-size:8pt;font-weight:800;color:var(--g3);margin-bottom:2.5mm;
+  letter-spacing:.08em;text-transform:uppercase;}
 .week .day ul{list-style:none;margin:0;padding:0;}
 .week .day li{font-size:7.6pt;color:#c0c0c0;line-height:1.35;margin-bottom:2mm;}
-.week .day li b{display:block;color:var(--green);font-weight:600;font-size:7.4pt;}
+.week .day li b{display:block;color:var(--g3);font-weight:600;font-size:7.4pt;}
 
 /* ==========================================================================
-   FOOTER (НЕЧТО uslubi)
+   FOOTER
    ========================================================================== */
 .foot{
   position:absolute;left:15mm;right:15mm;bottom:8mm;
@@ -389,28 +444,24 @@ ul.checks li::before{
   padding:3mm 6mm;display:flex;gap:5mm;align-items:center;justify-content:space-between;
   font-size:12px;
 }
-.printbar .t{font-weight:600;letter-spacing:.02em;}
+.printbar .t{font-weight:600;}
 .printbar .hint{color:#a0a0a0;font-size:11px;}
 .printbar button{
   font-family:inherit;font-size:12px;font-weight:600;
-  background:#fff;color:#000;border:0;border-radius:4px;
+  background:var(--g1);color:#00281b;border:0;border-radius:4px;
   padding:7px 16px;cursor:pointer;
 }
-.printbar button:hover{background:#d8d8d8;}
+.printbar button:hover{background:#7fe0bf;}
 
 /* ==========================================================================
    CHOP ETISH
    ========================================================================== */
-@page{
-  size:A4 portrait;
-  margin:14mm 14mm 15mm;
-}
+@page{size:A4 portrait;margin:14mm 14mm 15mm;}
 @media print{
   html,body{background:#fff;}
   body{font-size:10pt;}
   .printbar{display:none !important;}
-  /* Har bir bo'lim yangi varaqdan boshlanadi. Sig'masa — tabiiy davom etadi,
-     shuning uchun faqat footer qolgan bo'sh sahifalar chiqmaydi. */
+
   .sheet{
     width:auto;min-height:0;margin:0;padding:0;
     box-shadow:none;background:#fff;
@@ -420,45 +471,64 @@ ul.checks li::before{
   .sheet:first-of-type{page-break-before:avoid;break-before:avoid;}
   .cover{min-height:auto;}
 
-  /* Chop etishda qora bo'lim oq qog'ozga o'tadi — siyoh tejaladi, matn aniq bo'ladi */
-  .sheet.dark{background:#fff !important;color:var(--ink) !important;}
+  /* Qora bo'lim qog'ozda oq bo'ladi: siyoh tejaladi, matn aniqroq.
+     Yashil shkala oq fon uchun qayta bosqichlanadi. */
+  .sheet.dark{
+    background:#fff !important;color:var(--ink) !important;
+    --g1:#4DC9A4; --g2:#17AE86; --g3:#008A6B; --g4:#00674F; --g5:#004334;
+    --g-track:#D9F3EA; --g-wash:#EEFAF5;
+    --grid:#E1E0D9; --axis:#C3C2B7; --muted:#898781;
+  }
   .sheet.dark .sec-head{border-top-color:var(--ink) !important;}
-  .sheet.dark .sec-kicker{color:var(--green-ink) !important;}
+  .sheet.dark .sec-kicker{color:var(--g4) !important;}
   .sheet.dark .lead{color:var(--ink-70) !important;}
   .sheet.dark .small{color:var(--ink-50) !important;}
   .sheet.dark .sub-head{border-bottom-color:var(--line) !important;}
   .sheet.dark .sub-head .n{color:var(--ink-30) !important;}
-  .sheet.dark table th,.sheet.dark table td{border-color:var(--ink) !important;}
-  .sheet.dark thead th{background:var(--ink) !important;color:#fff !important;}
+  .sheet.dark .t-lbl{fill:var(--ink-70) !important;}
+  .sheet.dark .t-val,.sheet.dark .t-big{fill:var(--ink) !important;}
+  .sheet.dark .t-in{fill:#fff !important;}
+  .sheet.dark .legend{color:var(--ink-70) !important;}
+  .sheet.dark .legend b{color:var(--ink) !important;}
+  .sheet.dark .fig-cap{color:var(--ink-50) !important;}
+  .sheet.dark .stat{border-color:var(--line) !important;}
+  .sheet.dark .stat .v{color:var(--ink) !important;}
+  .sheet.dark .stat .s{color:var(--ink-50) !important;}
+  .sheet.dark .hero .x .d{color:var(--ink-50) !important;}
+  .sheet.dark table.mini th,.sheet.dark table.mini td{
+    border-bottom-color:var(--line) !important;color:var(--ink-70) !important;}
+  .sheet.dark .note{background:var(--wash) !important;}
+  .sheet.dark .note .label{color:var(--ink-50) !important;}
+  .sheet.dark .note p{color:var(--ink) !important;}
+  .sheet.dark ol.nums li::before{background:var(--g-wash) !important;color:var(--g5) !important;}
 
-  .pstep .body,.hours-grid .h-item,.layer,.markers .m,.week .day{
+  .pstep .body,.layer,.markers .m,.week .day{
     background:#fff !important;border:1px solid var(--ink) !important;
   }
   .pstep .body h4,.layer h4{color:var(--ink) !important;}
-  .pstep .body p,.hours-grid .h-item .k,.layer p,.markers .m p{color:var(--ink-70) !important;}
+  .pstep .body p,.layer p,.markers .m p{color:var(--ink-70) !important;}
   .pstep .body .num,.layer .n{
-    background:#fff !important;color:var(--ink) !important;border:1.5px solid var(--ink) !important;
+    background:var(--g-wash) !important;color:var(--g5) !important;
+    border:1px solid var(--g3) !important;
   }
-  .pstep .body .keystep,.pstep .example p,.hours-grid .h-item .v,
-  .markers .m .k,.week .day .d,.week .day li b,.hours-hero .big{color:var(--green-ink) !important;}
-  .markers .m .k::before{background:var(--green-ink) !important;}
+  .pstep .body .keystep,.pstep .example p,.markers .m .k,.week .day .d,
+  .week .day li b{color:var(--g4) !important;}
+  .markers .m .k::before{background:var(--g3) !important;}
   .pstep .example .lbl{color:var(--ink-50) !important;}
   .pdivider{color:var(--ink-50) !important;}
   .pdivider::before,.pdivider::after{background:var(--line) !important;}
-  .hours-hero{border-color:var(--ink) !important;}
-  .hours-hero .cap{color:var(--ink-50) !important;}
   .week .day li{color:var(--ink-70) !important;}
-  .sheet.dark ul.bullets li::before{background:var(--green-ink) !important;}
+  .sheet.dark ul.bullets li::before{background:var(--g3) !important;}
   .sheet.dark .foot{border-top-color:var(--line) !important;color:var(--ink-50) !important;}
   .sheet.dark .foot .brand{color:var(--ink) !important;}
 
   .foot{position:static;left:auto;right:auto;bottom:auto;margin-top:8mm;}
 
-  .card,.step,.note,.callout,table,.write-box,.timing,
-  .pstep,.layer,.markers .m,.week .day,.hours-grid .h-item,.role{
+  .card,.step,.note,.callout,table,.write-box,.fig,.stat,.statrow,.hero,
+  .pstep,.layer,.markers .m,.week .day,.role{
     page-break-inside:avoid;break-inside:avoid;
   }
-  h1,h2,h3,h4,.sub-head{page-break-after:avoid;break-after:avoid;}
+  h1,h2,h3,h4,.sub-head,.fig-title{page-break-after:avoid;break-after:avoid;}
 
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 }
@@ -480,10 +550,25 @@ ul.checks li::before{
     <div class="cover-mid">
       <h1 class="h-display">Stratsessiya:<br>qanday tayyorlanish<br>va o'tkazish</h1>
       <div class="cover-rule"></div>
-      <p class="lead" style="max-width:135mm;">
+      <p class="lead" style="max-width:135mm;margin-bottom:8mm;">
         O'nlik uchun to'liq qo'llanma. Tayyorgarlikdan tortib deklaratsiyagacha —
-        barcha bosqichlar, tayminglar, rollar va to'ldirish uchun shablonlar.
+        barcha bosqichlar, tayminglar, rollar, sxemalar va to'ldirish uchun shablonlar.
       </p>
+
+      <div class="fig" style="margin-bottom:0;">
+        <svg viewBox="0 0 1000 118" role="img" aria-label="Stratsessiyaning uchta bosqichi: tayyorgarlik, o'tkazish, yakunlash">
+          <line x1="70" y1="34" x2="930" y2="34" stroke="var(--g-track)" stroke-width="5"/>
+          <circle cx="70"  cy="34" r="15" fill="var(--g1)"/>
+          <circle cx="500" cy="34" r="15" fill="var(--g3)"/>
+          <circle cx="930" cy="34" r="15" fill="var(--g5)"/>
+          <text class="t-val" x="70"  y="76" text-anchor="start">Tayyorgarlik</text>
+          <text class="t-val" x="500" y="76" text-anchor="middle">O'tkazish</text>
+          <text class="t-val" x="930" y="76" text-anchor="end">Yakunlash</text>
+          <text class="t-mut" x="70"  y="102" text-anchor="start">70% muvaffaqiyat</text>
+          <text class="t-mut" x="500" y="102" text-anchor="middle">2–3 kun</text>
+          <text class="t-mut" x="930" y="102" text-anchor="end">Deklaratsiya</text>
+        </svg>
+      </div>
     </div>
 
     <div>
@@ -491,14 +576,14 @@ ul.checks li::before{
         <div><span>Til</span>O'zbek tili · B1 daraja</div>
         <div><span>Format</span>A4, chop etish uchun</div>
         <div><span>Manba</span>4 ta hujjat — bitta faylda</div>
-        <div><span>Bo'limlar</span>6 ta bo'lim + shablonlar</div>
+        <div><span>Ichida</span>6 bo'lim · sxemalar · shablonlar</div>
       </div>
-      <div class="note" style="margin-top:6mm;margin-bottom:0;">
+      <div class="note" style="margin-top:5mm;margin-bottom:0;">
         <div class="label">Chop etish haqida</div>
         <p>Brauzerda oching va <strong>Ctrl+P</strong> (Mac'da <strong>Cmd+P</strong>) bosing.
         Sozlamalarda <strong>A4</strong>, <strong>portret</strong> va
         <strong>«Background graphics»</strong> (fon rasmlari) yoqilganini tekshiring —
-        shunda jadvallar va ramkalar to'g'ri chiqadi.</p>
+        shunda grafiklar va jadvallar to'g'ri chiqadi.</p>
       </div>
     </div>
   </div>
@@ -512,7 +597,7 @@ ul.checks li::before{
     <h2 class="h-sec">Bu qo'llanmada nima bor</h2>
   </div>
 
-  <p class="lead" style="margin-bottom:5mm;">
+  <p class="lead" style="margin-bottom:6mm;">
     Qo'llanma to'rtta manba hujjatdan yig'ilgan. Har bir bo'lim alohida ham ishlaydi.
     5-bo'lim — to'ldirish uchun ishchi shablonlar.
   </p>
@@ -528,14 +613,14 @@ ul.checks li::before{
         <li>2.3 Tashkiliy shartlar va qoidalar</li>
         <li>2.4 Ishtirokchilar rollari</li>
         <li>2.5 Videovizitka</li>
-        <li>2.6 Jadval tuzish</li>
+        <li>2.6 Jadval tuzish · 3 kunlik sxema</li>
       </ul></span></li>
 
     <li><span class="n">3</span><span class="t">O'tkazish
       <ul class="sub">
         <li>3.1 Makonni ochish</li>
-        <li>3.2 Razborning 5 bosqichi va taymingi</li>
-        <li>3.3 Har bir razbordan keyin</li>
+        <li>3.2 Razborning 5 bosqichi</li>
+        <li>3.3 Razbor vaqti — grafikda</li>
         <li>3.4 A va B nuqtalarni yozib qo'yish</li>
       </ul></span></li>
 
@@ -549,7 +634,7 @@ ul.checks li::before{
     <li><span class="n">5</span><span class="t">Ishchi shablonlar (to'ldirish uchun)
       <ul class="sub">
         <li>Shaxsiy ma'lumot · biznes-model · metrikalar</li>
-        <li>Reja/fakt jadvallari · ko'rinish · so'rov</li>
+        <li>Reja/fakt jadvallari · o'sish grafigi · so'rov</li>
       </ul></span></li>
 
     <li><span class="n">6</span><span class="t">Transformatsiyalar protokoli
@@ -563,7 +648,8 @@ ul.checks li::before{
 
 <!-- ================= 1-BO'LIM ================= -->
 <section class="sheet">
-  <div class="sec-head">
+  <div class="sec-head has-num">
+    <span class="bignum">1</span>
     <div class="sec-kicker"><span>1-bo'lim</span><span>Asoslar</span></div>
     <h2 class="h-sec">Stratsessiya nima</h2>
   </div>
@@ -579,29 +665,56 @@ ul.checks li::before{
     Bu — <span style="text-decoration:underline;">aniqlikka qilingan investitsiya</span>.
   </div>
 
-  <div class="sub-head"><span class="n">1.1</span><h3 class="h-sub">Bu qo'llanmada nimani ko'rib chiqamiz</h3></div>
+  <div class="sub-head"><span class="n">1.1</span><h3 class="h-sub">Stratsessiya uchta bosqichdan iborat</h3></div>
+
+  <div class="fig">
+    <svg viewBox="0 0 1000 196" role="img" aria-label="Uch bosqich: tayyorgarlik, o'tkazish, yakunlash">
+      <!-- 1 -->
+      <rect x="0" y="0" width="300" height="150" rx="10" fill="var(--g-wash)"/>
+      <rect x="0" y="0" width="300" height="7"  rx="3.5" fill="var(--g1)"/>
+      <circle cx="34" cy="42" r="16" fill="var(--g1)"/>
+      <text x="34" y="49" text-anchor="middle" style="font-size:19px;font-weight:800;fill:#00281b;">1</text>
+      <text class="t-val" x="64" y="49">Tayyorgarlik</text>
+      <text class="t-lbl" x="22" y="86">Sana, joy, davomiylik</text>
+      <text class="t-lbl" x="22" y="110">Videovizitka</text>
+      <text class="t-lbl" x="22" y="134">Raqamlar va jadval</text>
+
+      <!-- 2 -->
+      <rect x="350" y="0" width="300" height="150" rx="10" fill="var(--g-wash)"/>
+      <rect x="350" y="0" width="300" height="7"  rx="3.5" fill="var(--g3)"/>
+      <circle cx="384" cy="42" r="16" fill="var(--g3)"/>
+      <text x="384" y="49" text-anchor="middle" style="font-size:19px;font-weight:800;fill:#fff;">2</text>
+      <text class="t-val" x="414" y="49">O'tkazish</text>
+      <text class="t-lbl" x="372" y="86">Makonni ochish</text>
+      <text class="t-lbl" x="372" y="110">Razborlar (5 bosqich)</text>
+      <text class="t-lbl" x="372" y="134">A va B nuqtalar</text>
+
+      <!-- 3 -->
+      <rect x="700" y="0" width="300" height="150" rx="10" fill="var(--g-wash)"/>
+      <rect x="700" y="0" width="300" height="7"  rx="3.5" fill="var(--g5)"/>
+      <circle cx="734" cy="42" r="16" fill="var(--g5)"/>
+      <text x="734" y="49" text-anchor="middle" style="font-size:19px;font-weight:800;fill:#fff;">3</text>
+      <text class="t-val" x="764" y="49">Yakunlash</text>
+      <text class="t-lbl" x="722" y="86">«Sham» refleksiyasi</text>
+      <text class="t-lbl" x="722" y="110">Madaniy dastur</text>
+      <text class="t-lbl" x="722" y="134">Deklaratsiya</text>
+
+      <!-- strelkalar -->
+      <path d="M312,75 H338 M330,68 L338,75 L330,82" fill="none" stroke="var(--axis)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M662,75 H688 M680,68 L688,75 L680,82" fill="none" stroke="var(--axis)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <text class="t-mut" x="0"    y="186">Stratsessiyadan oldin</text>
+      <text class="t-mut" x="500"  y="186" text-anchor="middle">2–3 kun</text>
+      <text class="t-mut" x="1000" y="186" text-anchor="end">Keyin 4–5 kun ichida</text>
+    </svg>
+  </div>
+
+  <div class="sub-head"><span class="n">1.2</span><h3 class="h-sub">Bu qo'llanmada nimani ko'rib chiqamiz</h3></div>
   <ul class="bullets">
     <li>stratsessiyani qanday tashkil qilish va unga qanday tayyorlanish;</li>
     <li>razborlar natija berishi uchun nimalarga e'tibor berish kerak;</li>
     <li>stratsessiyadan keyin deklaratsiyani qanday yozish.</li>
   </ul>
-
-  <div class="sub-head"><span class="n">1.2</span><h3 class="h-sub">Stratsessiya uchta bosqichdan iborat</h3></div>
-  <div class="cols2" style="margin-bottom:4mm;">
-    <div class="card">
-      <span class="card-tag">1. Tayyorgarlik</span>
-      <p>Sana, joy va davomiylikni tanlash. Videovizitka tayyorlash. Raqamlarni yig'ish. Jadval tuzish.</p>
-    </div>
-    <div class="card">
-      <span class="card-tag">2. O'tkazish</span>
-      <p>Makonni ochish: qoidalar, jadval, NDA, taymkiper. Keyin — har bir ishtirokchining razbori.</p>
-    </div>
-  </div>
-  <div class="card">
-    <span class="card-tag">3. Yakunlash</span>
-    <p>«Sham» refleksiyasi, umumiy foto, madaniy dastur. Keyin har bir ishtirokchi o'z razborini
-    qayta ko'radi va deklaratsiya yozadi.</p>
-  </div>
 
   <div class="note">
     <div class="label">Asosiy tamoyil</div>
@@ -614,12 +727,25 @@ ul.checks li::before{
 
 <!-- ================= 2.1 ================= -->
 <section class="sheet">
-  <div class="sec-head">
+  <div class="sec-head has-num">
+    <span class="bignum">2</span>
     <div class="sec-kicker"><span>2-bo'lim · Tayyorgarlik</span><span>2.1</span></div>
     <h2 class="h-sec">Tayyorgarlik = muvaffaqiyatning 70%</h2>
   </div>
 
-  <div class="sub-head"><h3 class="h-sub">Oldindan yig'ish juda muhim: majburiy minimum</h3></div>
+  <div class="fig">
+    <div class="fig-title">Natijaga nima qanchalik ta'sir qiladi</div>
+    <svg viewBox="0 0 1000 96" role="img" aria-label="Tayyorgarlik natijaning 70 foizini beradi, sessiyaning o'zi 30 foizini">
+      <rect x="0" y="26" width="1000" height="30" rx="7" fill="var(--g-track)"/>
+      <path d="M0,26 H693 A7,7 0 0 1 700,33 V49 A7,7 0 0 1 693,56 H0 Z" fill="var(--g3)"/>
+      <text class="t-in"  x="20"  y="47">70% — tayyorgarlik</text>
+      <text class="t-lbl" x="980" y="47" text-anchor="end">30% — sessiyaning o'zi</text>
+      <line x1="700" y1="18" x2="700" y2="64" stroke="var(--ink)" stroke-width="2"/>
+      <text class="t-mut" x="700" y="86" text-anchor="middle">bu chiziqqacha ish sessiyadan oldin bajariladi</text>
+    </svg>
+  </div>
+
+  <div class="sub-head"><h3 class="h-sub">Majburiy minimum: nimani oldindan yig'ish kerak</h3></div>
 
   <ul class="bullets">
     <li><strong>Raqamlar:</strong> oxirgi 6–12 oydagi tushum, foyda va xarajatlar.</li>
@@ -629,10 +755,10 @@ ul.checks li::before{
     <li><strong>Orgstruktura:</strong> kompaniyada kim nimaga javob beradi (hatto 2 kishi bo'lsa ham).</li>
     <li><strong>Produkt va xizmatlar tavsifi:</strong> nimani va kimga sotasiz.</li>
     <li><strong>Mijoz portreti (maqsadli auditoriya):</strong> sizning ideal xaridoringiz kim.</li>
-    <li>Hozirgi holatni (<strong>A nuqta</strong>) tasvirlashga yordam beradigan boshqa har qanday ma'lumot.</li>
+    <li>Hozirgi holatni (<strong>A nuqta</strong>) tasvirlashga yordam beradigan boshqa ma'lumotlar.</li>
   </ul>
 
-  <div class="cols2" style="margin-top:5mm;">
+  <div class="cols2" style="margin-top:4mm;">
     <div class="card">
       <span class="card-tag ghost">Qo'shimcha foydali</span>
       <ul class="bullets">
@@ -652,10 +778,10 @@ ul.checks li::before{
     </div>
   </div>
 
-  <div class="note" style="margin-top:5mm;">
+  <div class="note" style="margin-top:4mm;">
     <div class="label">Muhim</div>
     <p>Shablonlarni to'ldirayotganda <strong>faktlarga</strong> tayaning, his-tuyg'uga emas.
-    Sizdan albatta so'rashadi: «Bu raqam qayerdan olindi? Bu fikr nimaga asoslangan?»</p>
+    Sizdan albatta so'rashadi: «Bu raqam qayerdan olindi?»</p>
   </div>
 
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
@@ -668,23 +794,22 @@ ul.checks li::before{
     <h2 class="h-sec">Sana, joy va davomiylik</h2>
   </div>
 
-  <div class="step">
-    <span class="tag">Sana</span>
-    <p>Ishtirokchilarning kelishuvi bo'yicha belgilanadi.</p>
-  </div>
-
-  <div class="step">
-    <span class="tag">Davomiylik</span>
-    <p>Stratsessiyaga <strong>2–3 kun</strong> ajratishni tavsiya qilamiz.</p>
-    <p class="small" style="margin-top:2mm;">Boshqa manbada: eng yaxshisi — <strong>ketma-ket 2 kun</strong>
-    (kamida 1,5 kun), har bir odamga <strong>1,5–2,5 soat</strong>.</p>
-  </div>
-
-  <div class="step">
-    <span class="tag">Joy</span>
-    <p>Uy, apartament yoki mehmonxona tanlashni tavsiya qilamiz.</p>
-    <p class="small" style="margin-top:2mm;">Joy tanlash va bron qilishni ishtirokchilardan birining
-    assistentiga topshirish mumkin.</p>
+  <div class="statrow">
+    <div class="stat">
+      <div class="k">Sana</div>
+      <div class="v" style="font-size:13pt;">Kelishuv<br>bo'yicha</div>
+      <div class="s">Ishtirokchilar birgalikda belgilaydi</div>
+    </div>
+    <div class="stat">
+      <div class="k">Davomiylik</div>
+      <div class="v">2–3 <em>kun</em></div>
+      <div class="s">Kamida 1,5 kun. Har bir odamga 1,5–2,5 soat</div>
+    </div>
+    <div class="stat">
+      <div class="k">Joy</div>
+      <div class="v" style="font-size:13pt;">Uy · apart<br>· mehmonxona</div>
+      <div class="s">Bron qilishni assistentga topshirish mumkin</div>
+    </div>
   </div>
 
   <div class="sub-head"><h3 class="h-sub">Joyning majburiy shartlari</h3></div>
@@ -700,42 +825,21 @@ ul.checks li::before{
     Masalan, hammomga borish yoki ekskursiyaga chiqishni tashkil qilishingiz mumkin.</p>
   </div>
 
-  <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
-</section>
-
-<!-- ================= 2.2b CHEK-LIST + SHARTLAR ================= -->
-<section class="sheet">
-  <div class="sec-head">
-    <div class="sec-kicker"><span>2-bo'lim · Tayyorgarlik</span><span>2.2 · chek-list</span></div>
-    <h2 class="h-sec">Joy tanlash chek-listi</h2>
+  <div class="sub-head"><h3 class="h-sub">Joy tanlash chek-listi</h3></div>
+  <div class="cols2">
+    <ul class="checks" style="margin-bottom:0;">
+      <li>Televizor yoki proyektor bor, kompyuterga ulanadi</li>
+      <li>Flipchart va markerlar bor</li>
+      <li>10 kishi uchun joy yetarli, stol-stullar qulay</li>
+      <li>Internet barqaror ishlaydi</li>
+    </ul>
+    <ul class="checks" style="margin-bottom:0;">
+      <li>Ovqat va ichimlik masalasi hal qilingan</li>
+      <li>Joy ajratilgan va tinch — chalg'ituvchi narsa yo'q</li>
+      <li>Madaniy dastur uchun imkoniyat bor</li>
+      <li>Bron qilingan va to'lov tasdiqlangan</li>
+    </ul>
   </div>
-
-  <ul class="checks">
-    <li>Televizor yoki proyektor bor, kompyuterga ulanadi</li>
-    <li>Flipchart va markerlar bor</li>
-    <li>10 kishi uchun joy yetarli, stol-stullar qulay</li>
-    <li>Ovqat va ichimlik masalasi hal qilingan</li>
-    <li>Joy ajratilgan va tinch — chalg'ituvchi narsa yo'q</li>
-    <li>Internet barqaror ishlaydi</li>
-    <li>Madaniy dastur uchun imkoniyat bor (hammom, ekskursiya va h.k.)</li>
-    <li>Bron qilingan va to'lov tasdiqlangan</li>
-  </ul>
-
-  <div class="sub-head"><span class="n">2.3</span><h3 class="h-sub">Tashkiliy shartlar</h3></div>
-  <ul class="bullets">
-    <li>Komanda bilan kelishib oling: <strong>ish bo'yicha chalg'itish yo'q</strong>.</li>
-    <li>Telefonlarni oling, bildirishnomalarni o'chiring.</li>
-    <li>Ovqat va ichimlik masalasini oldindan hal qiling.</li>
-    <li>To'liq diqqat uchun <strong>ajratilgan joy</strong> tanlang.</li>
-    <li>Fikrlarni <strong>real vaqtda yozib boring</strong>. Barcha insayt va qarorlarni qayd etamiz.</li>
-  </ul>
-
-  <div class="sub-head"><h3 class="h-sub">Texnik talablar</h3></div>
-  <ul class="bullets">
-    <li>Yozuvni yoqing (Zoom yoki Google Meet).</li>
-    <li>Diktofonni ham yoqing — bu zaxira nusxa.</li>
-    <li>Keraksiz barcha oynalarni yoping.</li>
-  </ul>
 
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
 </section>
@@ -744,20 +848,36 @@ ul.checks li::before{
 <section class="sheet">
   <div class="sec-head">
     <div class="sec-kicker"><span>2-bo'lim · Tayyorgarlik</span><span>2.3</span></div>
-    <h2 class="h-sec">Vaqt ramkalari va muloqot qoidalari</h2>
+    <h2 class="h-sec">Tashkiliy shartlar va qoidalar</h2>
   </div>
 
   <div class="sub-head"><h3 class="h-sub">Vaqt ramkalari</h3></div>
   <ul class="bullets">
     <li>Eng yaxshisi — <strong>ketma-ket 2 kun</strong> (kamida 1,5 kun).</li>
     <li>Har bir odamga <strong>1,5 dan 2,5 soatgacha</strong>.</li>
-    <li>Bloklar uchun <strong>2–4 soat toza vaqt</strong> ajrating, chalg'imasdan. Keyin — qisqa tanaffus.</li>
+    <li>Bloklar uchun <strong>2–4 soat toza vaqt</strong> ajrating, chalg'imasdan.</li>
     <li>Har <strong>90 daqiqada — 15 daqiqa</strong> tanaffus.</li>
   </ul>
 
+  <div class="sub-head"><h3 class="h-sub">Tashkiliy shartlar va texnika</h3></div>
+  <div class="cols2">
+    <ul class="bullets">
+      <li>Komanda bilan kelishing: <strong>ish bo'yicha chalg'itish yo'q</strong>.</li>
+      <li>Telefonlarni oling, bildirishnomalarni o'chiring.</li>
+      <li>Ovqat masalasini oldindan hal qiling.</li>
+      <li>To'liq diqqat uchun <strong>ajratilgan joy</strong> tanlang.</li>
+    </ul>
+    <ul class="bullets">
+      <li>Fikrlarni <strong>real vaqtda yozib boring</strong>.</li>
+      <li>Yozuvni yoqing (Zoom yoki Google Meet).</li>
+      <li>Diktofonni ham yoqing — bu zaxira nusxa.</li>
+      <li>Keraksiz barcha oynalarni yoping.</li>
+    </ul>
+  </div>
+
   <div class="sub-head"><h3 class="h-sub">Muloqot qoidalari</h3></div>
   <ul class="bullets">
-    <li><strong>Ochiqlik darajasi</strong> haqida kelishib oling: bu yerda har qanday fikrni aytish xavfsiz.</li>
+    <li><strong>Ochiqlik darajasi</strong> haqida kelishing: bu yerda har qanday fikrni aytish xavfsiz.</li>
     <li>Diqqat — <strong>faktlar, raqamlar va biznes-mantiqda</strong>, shaxslarda emas.</li>
     <li>Psixolog o'ynamang.</li>
     <li>Fikr-mulohaza faqat <strong>ehtiyotkorlik bilan</strong>: «men sening o'rningda…» emas, balki
@@ -780,6 +900,35 @@ ul.checks li::before{
     <h2 class="h-sec">Ishtirokchilar rollari</h2>
   </div>
 
+  <div class="fig">
+    <div class="fig-title">Kim nima qiladi</div>
+    <svg viewBox="0 0 1000 132" role="img" aria-label="To'rtta rol: lider, taymkiper, kotib, ishtirokchilar">
+      <rect x="0"   y="0" width="235" height="112" rx="9" fill="var(--g-wash)"/>
+      <rect x="255" y="0" width="235" height="112" rx="9" fill="var(--g-wash)"/>
+      <rect x="510" y="0" width="235" height="112" rx="9" fill="var(--g-wash)"/>
+      <rect x="765" y="0" width="235" height="112" rx="9" fill="var(--g-wash)"/>
+
+      <rect x="0"   y="0" width="235" height="6" rx="3" fill="var(--g5)"/>
+      <rect x="255" y="0" width="235" height="6" rx="3" fill="var(--g4)"/>
+      <rect x="510" y="0" width="235" height="6" rx="3" fill="var(--g3)"/>
+      <rect x="765" y="0" width="235" height="6" rx="3" fill="var(--g1)"/>
+
+      <text class="t-val" x="20"  y="44">Lider</text>
+      <text class="t-val" x="275" y="44">Taymkiper</text>
+      <text class="t-val" x="530" y="44">Kotib</text>
+      <text class="t-val" x="785" y="44">Ishtirokchilar</text>
+
+      <text class="t-mut" x="20"  y="72">Boshqaradi,</text>
+      <text class="t-mut" x="20"  y="94">qaror qabul qiladi</text>
+      <text class="t-mut" x="275" y="72">Vaqtni kuzatadi,</text>
+      <text class="t-mut" x="275" y="94">tanaffus eslatadi</text>
+      <text class="t-mut" x="530" y="72">Qaror va vazifalarni</text>
+      <text class="t-mut" x="530" y="94">yozib boradi</text>
+      <text class="t-mut" x="785" y="72">Hissa qo'shadilar,</text>
+      <text class="t-mut" x="785" y="94">chetda qolmaydilar</text>
+    </svg>
+  </div>
+
   <div class="role">
     <h4>Lider</h4>
     <ul class="bullets">
@@ -794,7 +943,7 @@ ul.checks li::before{
     <ul class="bullets">
       <li>Bloklar bo'yicha vaqtni nazorat qiladi — qat'iy, lekin xushmuomala</li>
       <li>Keyingi bosqichga o'tish vaqtini eslatadi</li>
-      <li>Tanaffuslarni kuzatadi: har 90 daqiqada — 15 daqiqa tanaffus</li>
+      <li>Tanaffuslarni kuzatadi: har 90 daqiqada — 15 daqiqa</li>
     </ul>
   </div>
 
@@ -804,13 +953,6 @@ ul.checks li::before{
       <li>Asosiy qarorlar va xulosalarni real vaqtda yozib boradi</li>
       <li>Aniq vazifalar (action items) bilan protokol yuritadi</li>
       <li>Vazifalarni mas'ul shaxs va muddat bilan qayd etadi</li>
-    </ul>
-  </div>
-
-  <div class="role">
-    <h4>Ishtirokchilar</h4>
-    <ul class="bullets">
-      <li>Hissa qo'shadilar, chetda qolib ketmaydilar</li>
     </ul>
   </div>
 
@@ -830,13 +972,42 @@ ul.checks li::before{
     <h2 class="h-sec">Videovizitka</h2>
   </div>
 
-  <p class="lead" style="margin-bottom:6mm;">
+  <p class="lead" style="margin-bottom:5mm;">
     Razborga tayyorgarlik uchun har bir ishtirokchi o'zi haqidagi faktlarni prezentatsiya shaklida
     yig'adi va shu bo'yicha <strong>2–3 daqiqalik video</strong> oladi. Bu videoni ishtirokchi
     o'z razboridan oldin yoqadi.
   </p>
 
-  <div class="sub-head"><h3 class="h-sub">Videovizitkaga nima kiradi</h3></div>
+  <div class="fig">
+    <div class="fig-title">Videovizitkaning 6 qismi</div>
+    <svg viewBox="0 0 1000 108" role="img" aria-label="Videovizitkaning olti qismi ketma-ketligi">
+      <line x1="42" y1="34" x2="958" y2="34" stroke="var(--g-track)" stroke-width="4"/>
+      <circle cx="42"  cy="34" r="20" fill="var(--g3)"/>
+      <circle cx="225" cy="34" r="20" fill="var(--g3)"/>
+      <circle cx="408" cy="34" r="20" fill="var(--g3)"/>
+      <circle cx="591" cy="34" r="20" fill="var(--g3)"/>
+      <circle cx="774" cy="34" r="20" fill="var(--g3)"/>
+      <circle cx="958" cy="34" r="20" fill="var(--g3)"/>
+      <text x="42"  y="41" text-anchor="middle" class="t-in">1</text>
+      <text x="225" y="41" text-anchor="middle" class="t-in">2</text>
+      <text x="408" y="41" text-anchor="middle" class="t-in">3</text>
+      <text x="591" y="41" text-anchor="middle" class="t-in">4</text>
+      <text x="774" y="41" text-anchor="middle" class="t-in">5</text>
+      <text x="958" y="41" text-anchor="middle" class="t-in">6</text>
+      <text class="t-lbl" x="42"  y="78" text-anchor="middle">Shaxsiy</text>
+      <text class="t-lbl" x="225" y="78" text-anchor="middle">Biznes</text>
+      <text class="t-lbl" x="408" y="78" text-anchor="middle">Metrikalar</text>
+      <text class="t-lbl" x="591" y="78" text-anchor="middle">Hodisalar</text>
+      <text class="t-lbl" x="774" y="78" text-anchor="middle">Ko'rinish</text>
+      <text class="t-lbl" x="958" y="78" text-anchor="middle">So'rov</text>
+      <text class="t-mut" x="42"  y="100" text-anchor="middle">ma'lumot</text>
+      <text class="t-mut" x="225" y="100" text-anchor="middle">model</text>
+      <text class="t-mut" x="408" y="100" text-anchor="middle">A va B</text>
+      <text class="t-mut" x="591" y="100" text-anchor="middle">qatlami</text>
+      <text class="t-mut" x="774" y="100" text-anchor="middle">o'zimdan</text>
+      <text class="t-mut" x="958" y="100" text-anchor="middle">guruhga</text>
+    </svg>
+  </div>
 
   <div class="card">
     <span class="card-tag">1. Shaxsiy ma'lumot</span>
@@ -855,9 +1026,9 @@ ul.checks li::before{
         <p style="font-weight:600;margin-bottom:2mm;">A nuqtani aniqlash</p>
         <ul class="bullets">
           <li>2023 va 2024 yil tushumi</li>
-          <li>2023 va 2024 yildagi o'rtacha oylik sof foyda</li>
+          <li>O'rtacha oylik sof foyda</li>
           <li>Komandada necha kishi bor</li>
-          <li>Chorak va oy bo'yicha reja/fakt qanday</li>
+          <li>Chorak va oy bo'yicha reja/fakt</li>
         </ul>
       </div>
       <div>
@@ -869,12 +1040,6 @@ ul.checks li::before{
     </div>
   </div>
 
-  <div class="card">
-    <span class="card-tag">4. Hodisalar qatlami</span>
-    <p>Hayotimda va biznesimda nima bo'ldi yoki nima bo'lyapti — menga va biznesga ta'sir qiladigan
-    muhim faktlar.</p>
-  </div>
-
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
 </section>
 
@@ -882,7 +1047,13 @@ ul.checks li::before{
 <section class="sheet">
   <div class="sec-head">
     <div class="sec-kicker"><span>2-bo'lim · Tayyorgarlik</span><span>2.5 · davomi</span></div>
-    <h2 class="h-sec">Videovizitka: ko'rinish va so'rov</h2>
+    <h2 class="h-sec">Videovizitka: hodisalar, ko'rinish, so'rov</h2>
+  </div>
+
+  <div class="card">
+    <span class="card-tag">4. Hodisalar qatlami</span>
+    <p>Hayotimda va biznesimda nima bo'ldi yoki nima bo'lyapti — menga va biznesga ta'sir qiladigan
+    muhim faktlar.</p>
   </div>
 
   <div class="card">
@@ -922,51 +1093,135 @@ ul.checks li::before{
     <h2 class="h-sec">Jadval tuzish</h2>
   </div>
 
-  <div class="sub-head"><h3 class="h-sub">Jadvalni o'nlik lideri oldindan tuzadi</h3></div>
+  <p style="margin-bottom:5mm;">Jadvalni o'nlik lideri oldindan tuzadi. Unda quyidagilar bo'lishi kerak:
+  razborlar, ular orasidagi tanaffuslar, razborlardan keyingi «sham» refleksiyasi,
+  nonushta-tushlik-kechki ovqat va madaniy dastur.</p>
 
-  <p style="margin-bottom:4mm;">Jadvalda quyidagilarni hisobga olish kerak:</p>
-  <ul class="bullets">
-    <li>razborlar;</li>
-    <li>razborlar orasidagi tanaffuslar;</li>
-    <li>razborlardan keyingi «sham» refleksiyasi;</li>
-    <li>nonushta, tushlik, kechki ovqat;</li>
-    <li>madaniy dastur.</li>
-  </ul>
-
-  <div class="sub-head"><h3 class="h-sub">3 kunlik stratsessiya namunasi</h3></div>
-
-  <table>
-    <thead><tr><th style="width:26mm;">Kun</th><th>Dastur</th></tr></thead>
-    <tbody>
-      <tr><td><strong>1-kun</strong></td><td>4 ta razbor</td></tr>
-      <tr><td><strong>2-kun</strong></td><td>4 ta razbor</td></tr>
-      <tr><td><strong>3-kun</strong></td><td>2 ta razbor + «sham» refleksiyasi</td></tr>
-      <tr><td><strong>Yakun</strong></td><td>Madaniy dastur</td></tr>
-    </tbody>
-  </table>
-
-  <div class="note">
-    <div class="label">Hisob-kitob</div>
-    <p>Bitta razbor uchun tavsiya etilgan vaqt — <strong>2 soat 30 daqiqa</strong>.
-    Har bir razbordan keyin ishtirokchilarning refleksiyasi uchun yana <strong>5 daqiqagacha</strong>
-    qo'shiladi. Bu vaqt razbor taymingiga kirmaydi.</p>
+  <div class="statrow">
+    <div class="stat">
+      <div class="k">Stratsessiya</div>
+      <div class="v">2–3 <em>kun</em></div>
+      <div class="s">Tavsiya etilgan davomiylik. Kamida 1,5 kun</div>
+    </div>
+    <div class="stat">
+      <div class="k">Bitta razbor</div>
+      <div class="v">2:30 <em>soat</em></div>
+      <div class="s">5 bosqich. Refleksiya bu vaqtga kirmaydi</div>
+    </div>
+    <div class="stat">
+      <div class="k">Ish / tanaffus</div>
+      <div class="v">90 / 15 <em>daq</em></div>
+      <div class="s">Har 90 daqiqadan keyin 15 daqiqa tanaffus</div>
+    </div>
   </div>
 
-  <p class="small">O'z jadvalingizni yozish uchun shablon — 5-bo'limda.</p>
+  <div class="fig">
+    <div class="fig-title">3 kunlik stratsessiya — namuna (o'z vaqtingizga moslang)</div>
+    <svg viewBox="0 0 1000 228" role="img" aria-label="Uch kunlik stratsessiya jadvali: har kuni razborlar, tanaffuslar va ovqat">
+      <!-- vaqt o'qi -->
+      <text class="t-mut" x="130"  y="14">09:00</text>
+      <text class="t-mut" x="365"  y="14" text-anchor="middle">12:30</text>
+      <text class="t-mut" x="632"  y="14" text-anchor="middle">16:30</text>
+      <text class="t-mut" x="1000" y="14" text-anchor="end">22:00</text>
+      <line x1="130" y1="22" x2="1000" y2="22" stroke="var(--grid)" stroke-width="1.5"/>
+
+      <!-- 1-kun -->
+      <text class="t-val" x="0" y="52">1-kun</text>
+      <text class="t-mut" x="0" y="72">4 razbor</text>
+      <rect x="130"   y="34" width="163.3" height="30" rx="4" fill="var(--g3)"/>
+      <rect x="297.3" y="34" width="29.5"  height="30" rx="4" fill="var(--wash)"/>
+      <rect x="330.8" y="34" width="163.3" height="30" rx="4" fill="var(--g3)"/>
+      <rect x="498.1" y="34" width="62.9"  height="30" rx="4" fill="var(--wash)"/>
+      <rect x="565"   y="34" width="163.3" height="30" rx="4" fill="var(--g3)"/>
+      <rect x="732.3" y="34" width="29.5"  height="30" rx="4" fill="var(--wash)"/>
+      <rect x="765.8" y="34" width="163.3" height="30" rx="4" fill="var(--g3)"/>
+      <rect x="933.1" y="34" width="62.9"  height="30" rx="4" fill="var(--wash)"/>
+      <text class="t-in" x="211" y="54" text-anchor="middle">Razbor 1</text>
+      <text class="t-in" x="412" y="54" text-anchor="middle">Razbor 2</text>
+      <text class="t-in" x="646" y="54" text-anchor="middle">Razbor 3</text>
+      <text class="t-in" x="847" y="54" text-anchor="middle">Razbor 4</text>
+
+      <!-- 2-kun -->
+      <text class="t-val" x="0" y="112">2-kun</text>
+      <text class="t-mut" x="0" y="132">4 razbor</text>
+      <rect x="130"   y="94" width="163.3" height="30" rx="4" fill="var(--g3)"/>
+      <rect x="297.3" y="94" width="29.5"  height="30" rx="4" fill="var(--wash)"/>
+      <rect x="330.8" y="94" width="163.3" height="30" rx="4" fill="var(--g3)"/>
+      <rect x="498.1" y="94" width="62.9"  height="30" rx="4" fill="var(--wash)"/>
+      <rect x="565"   y="94" width="163.3" height="30" rx="4" fill="var(--g3)"/>
+      <rect x="732.3" y="94" width="29.5"  height="30" rx="4" fill="var(--wash)"/>
+      <rect x="765.8" y="94" width="163.3" height="30" rx="4" fill="var(--g3)"/>
+      <rect x="933.1" y="94" width="62.9"  height="30" rx="4" fill="var(--wash)"/>
+      <text class="t-in" x="211" y="114" text-anchor="middle">Razbor 5</text>
+      <text class="t-in" x="412" y="114" text-anchor="middle">Razbor 6</text>
+      <text class="t-in" x="646" y="114" text-anchor="middle">Razbor 7</text>
+      <text class="t-in" x="847" y="114" text-anchor="middle">Razbor 8</text>
+
+      <!-- 3-kun -->
+      <text class="t-val" x="0" y="172">3-kun</text>
+      <text class="t-mut" x="0" y="192">2 razbor</text>
+      <rect x="130"   y="154" width="163.3" height="30" rx="4" fill="var(--g3)"/>
+      <rect x="297.3" y="154" width="29.5"  height="30" rx="4" fill="var(--wash)"/>
+      <rect x="330.8" y="154" width="163.3" height="30" rx="4" fill="var(--g3)"/>
+      <rect x="498.1" y="154" width="62.9"  height="30" rx="4" fill="var(--wash)"/>
+      <rect x="565"   y="154" width="163.3" height="30" rx="4" fill="var(--g1)"/>
+      <rect x="732.3" y="154" width="263.7" height="30" rx="4" fill="var(--wash)"/>
+      <text class="t-in"  x="211" y="174" text-anchor="middle">Razbor 9</text>
+      <text class="t-in"  x="412" y="174" text-anchor="middle">Razbor 10</text>
+      <text x="646" y="174" text-anchor="middle" style="font-size:19px;font-weight:600;fill:#00281b;">«Sham»</text>
+      <text class="t-lbl" x="864" y="174" text-anchor="middle">Madaniy dastur</text>
+    </svg>
+    <div class="legend">
+      <span class="li"><span class="sw" style="background:var(--g3)"></span><b>Razbor</b> — 2 soat 30 daqiqa</span>
+      <span class="li"><span class="sw" style="background:var(--g1)"></span><b>«Sham» refleksiyasi</b></span>
+      <span class="li"><span class="sw" style="background:var(--wash);border:1px solid var(--line)"></span>Tanaffus · ovqat · madaniy dastur</span>
+    </div>
+    <p class="fig-cap">Namuna 09:00 dan 22:00 gacha tuzilgan. Aniq soatlarni o'zingiz belgilaysiz —
+    muhimi, har bir razborga 2 soat 30 daqiqa qolsin va tanaffuslar tushib qolmasin.</p>
+  </div>
+
+  <p class="small">O'z jadvalingizni yozish uchun bo'sh shablon — 5-bo'limda.</p>
 
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
 </section>
 
 <!-- ================= 3.1 MAKONNI OCHISH ================= -->
 <section class="sheet">
-  <div class="sec-head">
+  <div class="sec-head has-num">
+    <span class="bignum">3</span>
     <div class="sec-kicker"><span>3-bo'lim · O'tkazish</span><span>3.1</span></div>
     <h2 class="h-sec">Makonni ochish</h2>
   </div>
 
-  <p class="lead" style="margin-bottom:6mm;">
-    O'tkazish bosqichi <strong>makonni ochish</strong>dan boshlanadi. Bu to'rtta ishdan iborat.
+  <p class="lead" style="margin-bottom:5mm;">
+    O'tkazish bosqichi <strong>makonni ochish</strong>dan boshlanadi. Bu to'rtta ishdan iborat —
+    razborlar boshlanishidan oldin hammasi hal qilinadi.
   </p>
+
+  <div class="fig">
+    <svg viewBox="0 0 1000 78" role="img" aria-label="Makonni ochishning to'rt qadami">
+      <rect x="0"   y="0" width="235" height="60" rx="8" fill="var(--g-wash)"/>
+      <rect x="255" y="0" width="235" height="60" rx="8" fill="var(--g-wash)"/>
+      <rect x="510" y="0" width="235" height="60" rx="8" fill="var(--g-wash)"/>
+      <rect x="765" y="0" width="235" height="60" rx="8" fill="var(--g-wash)"/>
+      <circle cx="30"  cy="30" r="14" fill="var(--g3)"/>
+      <circle cx="285" cy="30" r="14" fill="var(--g3)"/>
+      <circle cx="540" cy="30" r="14" fill="var(--g3)"/>
+      <circle cx="795" cy="30" r="14" fill="var(--g3)"/>
+      <text class="t-in" x="30"  y="37" text-anchor="middle">1</text>
+      <text class="t-in" x="285" y="37" text-anchor="middle">2</text>
+      <text class="t-in" x="540" y="37" text-anchor="middle">3</text>
+      <text class="t-in" x="795" y="37" text-anchor="middle">4</text>
+      <text class="t-val" x="56"  y="37">Qoidalar</text>
+      <text class="t-val" x="311" y="37">Jadval</text>
+      <text class="t-val" x="566" y="37">NDA</text>
+      <text class="t-val" x="821" y="37">Taymkiper</text>
+      <text class="t-mut" x="0"   y="74">jarimalar bilan</text>
+      <text class="t-mut" x="255" y="74">lider e'lon qiladi</text>
+      <text class="t-mut" x="510" y="74">maxfiylik</text>
+      <text class="t-mut" x="765" y="74">vaqt ekranda</text>
+    </svg>
+  </div>
 
   <div class="sub-head"><h3 class="h-sub">1. Qoidalarni qabul qilish va reglamentni tasdiqlash</h3></div>
   <p style="margin-bottom:3mm;">Qoidalar namunasi:</p>
@@ -976,19 +1231,14 @@ ul.checks li::before{
     <li>razbor vaqtida telefondan foydalanmaslik.</li>
   </ul>
   <p style="margin-bottom:3mm;">Qoidalar qat'iy bajarilishi uchun <strong>jarima tizimini</strong> kiritish
-  mumkin. Masalan, razborga 1 daqiqa kechikish — 5 000 rubl jarima.</p>
-  <p style="margin-bottom:3mm;">Agar jarima tizimi kiritilsa, quyidagilarni aniqlash kerak:</p>
+  mumkin. Masalan, razborga 1 daqiqa kechikish — 5 000 rubl jarima. Agar jarima tizimi kiritilsa,
+  aniqlash kerak: jarimalarni kim saqlaydi, ular qayerga sarflanadi va bu qanday kafolatlanadi.</p>
+
+  <div class="sub-head"><h3 class="h-sub">2–3. Jadvalni e'lon qilish va NDA</h3></div>
   <ul class="bullets">
-    <li>jarimalarni kim saqlaydi;</li>
-    <li>ular qayerga sarflanadi;</li>
-    <li>bu qanday kafolatlanadi.</li>
+    <li>Lider o'nlikning barcha ishtirokchilariga oldindan tayyorlangan jadvalni e'lon qiladi.</li>
+    <li>Ishtirokchilar maxfiylik to'g'risidagi kelishuvni (NDA) imzolaydilar.</li>
   </ul>
-
-  <div class="sub-head"><h3 class="h-sub">2. Jadvalni e'lon qilish</h3></div>
-  <p>Lider o'nlikning barcha ishtirokchilariga oldindan tayyorlangan jadvalni e'lon qiladi.</p>
-
-  <div class="sub-head"><h3 class="h-sub">3. NDA imzolash</h3></div>
-  <p>Ishtirokchilar maxfiylik to'g'risidagi kelishuvni (NDA) imzolaydilar.</p>
 
   <div class="sub-head"><h3 class="h-sub">4. Taymkiperni tayinlash</h3></div>
   <ol class="nums">
@@ -1057,43 +1307,71 @@ ul.checks li::before{
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
 </section>
 
-<!-- ================= 3.3 TAYMING ================= -->
+<!-- ================= 3.3 TAYMING GRAFIGI ================= -->
 <section class="sheet">
   <div class="sec-head">
     <div class="sec-kicker"><span>3-bo'lim · O'tkazish</span><span>3.3</span></div>
-    <h2 class="h-sec">Tayming va razbordan keyingi odatlar</h2>
+    <h2 class="h-sec">Razbor vaqti qanday taqsimlanadi</h2>
   </div>
 
-  <p class="lead" style="margin-bottom:5mm;">
-    Bitta razbor uchun umumiy tavsiya etilgan vaqt — <strong>2 soat 30 daqiqa</strong>.
+  <p class="lead" style="margin-bottom:6mm;">
+    Bitta razbor — <strong>2 soat 30 daqiqa</strong>. Vaqtning katta qismi
+    <strong>yo'nalishlarga</strong> ketadi: aynan o'sha yerda asosiy ish bo'ladi.
+    Birinchi uchta bosqich — bu faqat tayyorgarlik.
   </p>
 
-  <div class="timing">
-    <div class="row"><span class="i">1</span><span class="t">Videovizitka</span><span class="v">5 daqiqagacha</span></div>
-    <div class="row"><span class="i">2</span><span class="t">Faktlarni yig'ish</span><span class="v">10 daqiqagacha</span></div>
-    <div class="row"><span class="i">3</span><span class="t">Aniqlashtiruvchi savollar</span><span class="v">15 daqiqagacha</span></div>
-    <div class="row"><span class="i">4</span><span class="t">Yo'nalishlar («vetka»lar)</span><span class="v">1 soat 55 daqiqagacha</span></div>
-    <div class="row"><span class="i">5</span><span class="t">Refleksiya va «tugun» bog'lash</span><span class="v">5 daqiqagacha</span></div>
-    <div class="row sum"><span class="i">Σ</span><span class="t">Jami</span><span class="v">2 soat 30 daqiqa</span></div>
+  <div class="fig">
+    <div class="fig-title">150 daqiqa — 5 bosqich bo'yicha</div>
+    <svg viewBox="0 0 1000 120" role="img" aria-label="Razbor vaqtining taqsimoti: videovizitka 5, faktlar 10, savollar 15, yo'nalishlar 115, refleksiya 5 daqiqa">
+      <text class="t-mut" x="583" y="22" text-anchor="middle">vaqtning 77 foizi — shu yerda</text>
+
+      <rect x="0"      y="40" width="31.83"  height="30" fill="var(--g1)"/>
+      <rect x="34.83"  y="40" width="63.67"  height="30" fill="var(--g2)"/>
+      <rect x="101.5"  y="40" width="97"     height="30" fill="var(--g3)"/>
+      <rect x="201.5"  y="40" width="763.67" height="30" fill="var(--g4)"/>
+      <path d="M968.17,40 H995 A5,5 0 0 1 1000,45 V65 A5,5 0 0 1 995,70 H968.17 Z" fill="var(--g5)"/>
+
+      <text class="t-in" x="583" y="60" text-anchor="middle">4. Yo'nalishlar — 1 soat 55 daqiqa</text>
+
+      <line x1="0" y1="82" x2="1000" y2="82" stroke="var(--axis)" stroke-width="1.5"/>
+      <line x1="0"    y1="82" x2="0"    y2="89" stroke="var(--axis)" stroke-width="1.5"/>
+      <line x1="200"  y1="82" x2="200"  y2="89" stroke="var(--axis)" stroke-width="1.5"/>
+      <line x1="400"  y1="82" x2="400"  y2="89" stroke="var(--axis)" stroke-width="1.5"/>
+      <line x1="600"  y1="82" x2="600"  y2="89" stroke="var(--axis)" stroke-width="1.5"/>
+      <line x1="800"  y1="82" x2="800"  y2="89" stroke="var(--axis)" stroke-width="1.5"/>
+      <line x1="1000" y1="82" x2="1000" y2="89" stroke="var(--axis)" stroke-width="1.5"/>
+      <text class="t-mut" x="0"    y="108">0</text>
+      <text class="t-mut" x="200"  y="108" text-anchor="middle">30</text>
+      <text class="t-mut" x="400"  y="108" text-anchor="middle">60</text>
+      <text class="t-mut" x="600"  y="108" text-anchor="middle">90</text>
+      <text class="t-mut" x="800"  y="108" text-anchor="middle">120</text>
+      <text class="t-mut" x="1000" y="108" text-anchor="end">150 daqiqa</text>
+    </svg>
   </div>
 
-  <div class="sub-head"><h3 class="h-sub">Har bir razbordan keyin ishtirokchilar</h3></div>
+  <table class="mini">
+    <thead>
+      <tr><th style="width:9mm;"></th><th>Bosqich</th><th style="width:32mm;">Vaqt</th><th style="width:18mm;">Ulush</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span style="display:inline-block;width:3.4mm;height:3.4mm;border-radius:.7mm;background:var(--g1)"></span></td>
+          <td>1. Videovizitka</td><td>5 daqiqagacha</td><td class="num">3%</td></tr>
+      <tr><td><span style="display:inline-block;width:3.4mm;height:3.4mm;border-radius:.7mm;background:var(--g2)"></span></td>
+          <td>2. Faktlarni yig'ish</td><td>10 daqiqagacha</td><td class="num">7%</td></tr>
+      <tr><td><span style="display:inline-block;width:3.4mm;height:3.4mm;border-radius:.7mm;background:var(--g3)"></span></td>
+          <td>3. Aniqlashtiruvchi savollar</td><td>15 daqiqagacha</td><td class="num">10%</td></tr>
+      <tr><td><span style="display:inline-block;width:3.4mm;height:3.4mm;border-radius:.7mm;background:var(--g4)"></span></td>
+          <td>4. Yo'nalishlar («vetka»lar)</td><td>1 soat 55 daqiqagacha</td><td class="num">77%</td></tr>
+      <tr><td><span style="display:inline-block;width:3.4mm;height:3.4mm;border-radius:.7mm;background:var(--g5)"></span></td>
+          <td>5. Refleksiya va «tugun» bog'lash</td><td>5 daqiqagacha</td><td class="num">3%</td></tr>
+      <tr><td></td><td><strong>Jami</strong></td><td><strong>2 soat 30 daqiqa</strong></td><td class="num"><strong>100%</strong></td></tr>
+    </tbody>
+  </table>
 
-  <div class="card">
-    <span class="card-tag">1. O'z refleksiyasini baham ko'radilar</span>
-    <p>O'nlik ishtirokchilari xohishiga ko'ra bu razbor ular uchun nima bo'lganini aytadilar.</p>
-    <p class="small">Bu vaqt razbor taymingiga kirmaydi. Tavsiya etilgan vaqt — <strong>5 daqiqagacha</strong>.</p>
-  </div>
-
-  <div class="card">
-    <span class="card-tag">2. Razbor qahramoniga qarsak chaladilar</span>
-    <p>Razbor qahramoniga va o'z refleksiyasini aytgan har bir kishiga qarsak chalishni tavsiya qilamiz.
-    Shunday qilib, iliq va do'stona muhit yaratiladi.</p>
-  </div>
-
-  <div class="card">
-    <span class="card-tag">3. Quchoqlashadilar</span>
-    <p>Bu razborni yopadigan oddiy, lekin muhim odat.</p>
+  <div class="note" style="margin-top:6mm;">
+    <div class="label">Razbordan keyin — yana 5 daqiqa</div>
+    <p>Ishtirokchilar o'z refleksiyasini baham ko'radilar. <strong>Bu vaqt razbor taymingiga kirmaydi.</strong>
+    Keyin razbor qahramoniga qarsak chalinadi va hamma quchoqlashadi — shunday qilib iliq muhit yaratiladi.</p>
   </div>
 
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
@@ -1103,7 +1381,27 @@ ul.checks li::before{
 <section class="sheet">
   <div class="sec-head">
     <div class="sec-kicker"><span>3-bo'lim · O'tkazish</span><span>3.4 · majburiy qadam</span></div>
-    <h2 class="h-sec">A nuqtani yozib qo'yish</h2>
+    <h2 class="h-sec">A nuqtadan B nuqtaga</h2>
+  </div>
+
+  <div class="fig">
+    <svg viewBox="0 0 1000 148" role="img" aria-label="A nuqtadan B nuqtaga uch oylik yo'l">
+      <line x1="118" y1="60" x2="866" y2="60" stroke="var(--g-track)" stroke-width="7"/>
+      <path d="M858,50 L880,60 L858,70 Z" fill="var(--g-track)"/>
+      <circle cx="330" cy="60" r="9" fill="var(--g2)"/>
+      <circle cx="500" cy="60" r="9" fill="var(--g2)"/>
+      <circle cx="670" cy="60" r="9" fill="var(--g2)"/>
+
+      <circle cx="62"  cy="60" r="46" fill="#fff" stroke="var(--ink)" stroke-width="2.5"/>
+      <text x="62" y="74" text-anchor="middle" style="font-size:38px;font-weight:800;fill:var(--ink);">A</text>
+      <circle cx="938" cy="60" r="46" fill="var(--g3)"/>
+      <text x="938" y="74" text-anchor="middle" style="font-size:38px;font-weight:800;fill:#fff;">B</text>
+
+      <text class="t-val" x="62"  y="128" text-anchor="middle">Bugun</text>
+      <text class="t-val" x="938" y="128" text-anchor="middle">3 oydan keyin</text>
+      <text class="t-mut" x="500" y="34"  text-anchor="middle">3 oy · har oyda bitta natija</text>
+      <text class="t-mut" x="500" y="128" text-anchor="middle">hozir aslida nima bo'lyapti → nima bo'lishini xohlayman</text>
+    </svg>
   </div>
 
   <div class="note">
@@ -1113,7 +1411,7 @@ ul.checks li::before{
     2-video — men xohlagan B nuqta.</p>
   </div>
 
-  <div class="sub-head"><h3 class="h-sub">A nuqta: biznesimda va hayotimda hozir aslida nima bo'lyapti</h3></div>
+  <div class="sub-head"><h3 class="h-sub">A nuqta: hozir aslida nima bo'lyapti</h3></div>
 
   <div class="cols2">
     <div class="card">
@@ -1149,14 +1447,12 @@ ul.checks li::before{
 <section class="sheet">
   <div class="sec-head">
     <div class="sec-kicker"><span>3-bo'lim · O'tkazish</span><span>3.4 · davomi</span></div>
-    <h2 class="h-sec">B nuqtani yozib qo'yish</h2>
+    <h2 class="h-sec">B nuqta: 3 oydan keyin</h2>
   </div>
-
-  <div class="sub-head"><h3 class="h-sub">B nuqta: 3 oydan keyin biznesim va hayotim qanday bo'ladi</h3></div>
 
   <div class="cols2">
     <div class="card">
-      <span class="card-tag ghost">Biznesda — namuna</span>
+      <span class="card-tag green">Biznesda — namuna</span>
       <ul class="bullets">
         <li>lidlar oqimi bilan ishlaydigan tizimli marketing qurdim va shu hisobga sof foydani
             2 barobar oshirdim;</li>
@@ -1167,7 +1463,7 @@ ul.checks li::before{
       </ul>
     </div>
     <div class="card">
-      <span class="card-tag ghost">Shaxsiy hayotda — namuna</span>
+      <span class="card-tag green">Shaxsiy hayotda — namuna</span>
       <ul class="bullets">
         <li>haftada 3 kun ishlayman va o'zimga vaqt paydo bo'ldi;</li>
         <li>sport zaliga abonement oldim, haftada 3–4 kun trener bilan tizimli shug'ullanaman;</li>
@@ -1191,9 +1487,25 @@ ul.checks li::before{
 
 <!-- ================= 4.1 YAKUNLASH ================= -->
 <section class="sheet">
-  <div class="sec-head">
+  <div class="sec-head has-num">
+    <span class="bignum">4</span>
     <div class="sec-kicker"><span>4-bo'lim · Yakunlash</span><span>4.1 – 4.2</span></div>
     <h2 class="h-sec">Yakunlash</h2>
+  </div>
+
+  <div class="fig">
+    <svg viewBox="0 0 1000 82" role="img" aria-label="Yakunlash ketma-ketligi: sham refleksiyasi, foto, madaniy dastur, deklaratsiya">
+      <line x1="60" y1="30" x2="940" y2="30" stroke="var(--g-track)" stroke-width="4"/>
+      <circle cx="60"  cy="30" r="17" fill="var(--g1)"/>
+      <circle cx="353" cy="30" r="17" fill="var(--g2)"/>
+      <circle cx="647" cy="30" r="17" fill="var(--g3)"/>
+      <circle cx="940" cy="30" r="17" fill="var(--g5)"/>
+      <text class="t-lbl" x="60"  y="64" text-anchor="middle">«Sham»</text>
+      <text class="t-lbl" x="353" y="64" text-anchor="middle">Umumiy foto</text>
+      <text class="t-lbl" x="647" y="64" text-anchor="middle">Madaniy dastur</text>
+      <text class="t-lbl" x="940" y="64" text-anchor="middle">Deklaratsiya</text>
+      <text class="t-mut" x="940" y="82" text-anchor="middle">4–5 kun ichida</text>
+    </svg>
   </div>
 
   <div class="sub-head"><h3 class="h-sub">«Sham» refleksiyasi</h3></div>
@@ -1202,12 +1514,7 @@ ul.checks li::before{
   <ul class="bullets">
     <li>O'nlikning barcha ishtirokchilari <strong>doira bo'lib o'tiradilar</strong> va shamni qo'lga oladilar.</li>
     <li>Har bir ishtirokchi <strong>vaqt cheklovisiz</strong> bu 2–3 kun u uchun nima bo'lganini aytadi.</li>
-  </ul>
-
-  <div class="sub-head"><h3 class="h-sub">Umumiy foto va madaniy dastur</h3></div>
-  <ul class="bullets">
-    <li>«Sham» refleksiyasidan keyin o'nlik <strong>birgalikda foto</strong> oladi.</li>
-    <li>Stratsessiya rejalashtirilgan <strong>madaniy-dam olish tadbiri</strong> bilan yakunlanadi.</li>
+    <li>Keyin o'nlik <strong>birgalikda foto</strong> oladi va madaniy dasturga boradi.</li>
   </ul>
 
   <div class="sub-head"><h3 class="h-sub">Deklaratsiya</h3></div>
@@ -1246,45 +1553,49 @@ ul.checks li::before{
     <li>Sezon uchun <strong>tadbirlar rejalashtirilgan</strong> (ekvator, shaxsiy uchrashuvlar, tusovkalar).</li>
     <li><strong>Rollar va rollar bo'yicha yordamchilar</strong> aniqlangan.</li>
     <li>Har bir ishtirokchi uchun 3 oyga <strong>strategiya/taktika «qalamda»</strong> shakllantirilgan.</li>
-    <li>Sezon uchun rejalar va vazifalarni to'g'rilash <strong>muddatlari</strong> aniqlangan —
-        stratsessiyadan keyin chiqqan raqamlar va vazifalar bo'yicha dekompozitsiya bilan.</li>
+    <li>Sezon uchun rejalar va vazifalarni to'g'rilash <strong>muddatlari</strong> aniqlangan.</li>
   </ul>
 
-  <div class="sub-head"><h3 class="h-sub">Sessiya natijasida nima bo'lishi kerak</h3></div>
-  <ol class="nums">
-    <li>Barcha insaytlar va qarorlar yozilgan <strong>protokol</strong>.</li>
-    <li>Yaqin sikl uchun <strong>Asosiy Richag (KFU)</strong> shakllantirilgan.</li>
-    <li>Olib tashlash kerak bo'lgan <strong>Asosiy Cheklovchi</strong> qayd etilgan.</li>
-    <li>Bitta, lekin aniq <strong>keyingi qadam</strong> — muddati <strong>72 soat</strong>.</li>
-  </ol>
+  <div class="sub-head"><h3 class="h-sub">Sessiya natijasida qo'lda nima qoladi</h3></div>
 
-  <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
-</section>
-
-<!-- ================= 4.4 CHUQURROQ ================= -->
-<section class="sheet">
-  <div class="sec-head">
-    <div class="sec-kicker"><span>4-bo'lim · Yakunlash</span><span>4.4</span></div>
-    <h2 class="h-sec">Qayerga chuqurroq «sho'ng'ish» mumkin</h2>
+  <div class="statrow four">
+    <div class="stat">
+      <div class="k">1</div>
+      <div class="v" style="font-size:12pt;">Protokol</div>
+      <div class="s">Barcha insayt va qarorlar yozilgan</div>
+    </div>
+    <div class="stat">
+      <div class="k">2</div>
+      <div class="v" style="font-size:12pt;">Asosiy Richag</div>
+      <div class="s">KFU — yaqin sikl uchun</div>
+    </div>
+    <div class="stat">
+      <div class="k">3</div>
+      <div class="v" style="font-size:12pt;">Cheklovchi</div>
+      <div class="s">Olib tashlash kerak bo'lgan asosiy to'siq</div>
+    </div>
+    <div class="stat">
+      <div class="k">4</div>
+      <div class="v">72 <em>soat</em></div>
+      <div class="s">Bitta aniq keyingi qadamning muddati</div>
+    </div>
   </div>
 
-  <p class="lead" style="margin-bottom:6mm;">
-    So'rovingiz va kontekstingizga qarab quyidagi yo'nalishlarni batafsilroq ishlab chiqishingiz mumkin.
-  </p>
-
-  <ol class="nums" style="font-size:11pt;">
-    <li><strong>Produkt:</strong> UTP (noyob taklif), gipotezalar, voronkalar.</li>
-    <li><strong>Marketing:</strong> jalb qilish kanallari, CAC, LTV.</li>
-    <li><strong>Sotuv:</strong> skriptlar, voronka bosqichlari, konversiyalar.</li>
-    <li><strong>Operatsiyalar:</strong> biznes-jarayonlar xaritasi, avtomatlashtirish.</li>
-    <li><strong>Komanda:</strong> mas'uliyat zonalari, hodim yollash, motivatsiya.</li>
-    <li><strong>Moliya:</strong> unit-iqtisodiyot modeli, rejalashtirish.</li>
-    <li><strong>HR:</strong> yollash rejasi, yollash voronkasi, yollash tezligi.</li>
-  </ol>
-
-  <div class="write-box" style="margin-top:6mm;">
-    <div class="q">Biz qaysi yo'nalishga chuqurroq kiramiz va nima uchun:</div>
-    <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+  <div class="sub-head"><h3 class="h-sub">Qayerga chuqurroq «sho'ng'ish» mumkin</h3></div>
+  <p class="small" style="margin-bottom:3mm;">So'rovingiz va kontekstingizga qarab quyidagi yo'nalishlarni
+  batafsilroq ishlab chiqishingiz mumkin:</p>
+  <div class="cols2">
+    <ol class="nums" style="margin-bottom:0;">
+      <li><strong>Produkt:</strong> UTP, gipotezalar, voronkalar.</li>
+      <li><strong>Marketing:</strong> jalb qilish kanallari, CAC, LTV.</li>
+      <li><strong>Sotuv:</strong> skriptlar, voronka bosqichlari, konversiyalar.</li>
+      <li><strong>Operatsiyalar:</strong> jarayonlar xaritasi, avtomatlashtirish.</li>
+    </ol>
+    <ol class="nums" start="5" style="margin-bottom:0;counter-reset:n 4;">
+      <li><strong>Komanda:</strong> mas'uliyat zonalari, yollash, motivatsiya.</li>
+      <li><strong>Moliya:</strong> unit-iqtisodiyot modeli, rejalashtirish.</li>
+      <li><strong>HR:</strong> yollash rejasi, voronkasi va tezligi.</li>
+    </ol>
   </div>
 
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
@@ -1292,7 +1603,8 @@ ul.checks li::before{
 
 <!-- ================= 5.1 SHABLONLAR ================= -->
 <section class="sheet">
-  <div class="sec-head">
+  <div class="sec-head has-num">
+    <span class="bignum">5</span>
     <div class="sec-kicker"><span>5-bo'lim · Shablonlar</span><span>To'ldirish uchun</span></div>
     <h2 class="h-sec">Ishchi shablonlar</h2>
   </div>
@@ -1405,7 +1717,86 @@ ul.checks li::before{
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
 </section>
 
-<!-- ================= 5.4 REJA/FAKT 2024 ================= -->
+<!-- ================= 5.4 O'SISH GRAFIGI ================= -->
+<section class="sheet">
+  <div class="sec-head">
+    <div class="sec-kicker"><span>5-bo'lim · Shablonlar</span><span>O'z grafigingiz</span></div>
+    <h2 class="h-sec">Tushum grafigi — o'zingiz chizing</h2>
+  </div>
+
+  <p class="lead" style="margin-bottom:5mm;">
+    Chap tomonga o'z shkalangizni yozing (masalan: 2, 4, 6, 8, 10 mln). Keyin har bir oy uchun
+    nuqta qo'ying va ularni chiziq bilan bog'lang. Reja va faktni ikki xil chiziq bilan chizing —
+    farq darrov ko'rinadi.
+  </p>
+
+  <div class="fig">
+    <svg viewBox="0 0 1000 452" role="img" aria-label="Oylik tushum uchun bo'sh grafik to'ri">
+      <!-- gorizontal to'r + shkala uchun chiziqchalar -->
+      <line x1="8" y1="34"  x2="72" y2="34"  stroke="var(--line)" stroke-width="1.5"/>
+      <line x1="8" y1="102" x2="72" y2="102" stroke="var(--line)" stroke-width="1.5"/>
+      <line x1="8" y1="170" x2="72" y2="170" stroke="var(--line)" stroke-width="1.5"/>
+      <line x1="8" y1="238" x2="72" y2="238" stroke="var(--line)" stroke-width="1.5"/>
+      <line x1="8" y1="306" x2="72" y2="306" stroke="var(--line)" stroke-width="1.5"/>
+      <line x1="82" y1="34"  x2="90" y2="34"  stroke="var(--axis)" stroke-width="1.5"/>
+      <line x1="82" y1="102" x2="90" y2="102" stroke="var(--axis)" stroke-width="1.5"/>
+      <line x1="82" y1="170" x2="90" y2="170" stroke="var(--axis)" stroke-width="1.5"/>
+      <line x1="82" y1="238" x2="90" y2="238" stroke="var(--axis)" stroke-width="1.5"/>
+      <line x1="82" y1="306" x2="90" y2="306" stroke="var(--axis)" stroke-width="1.5"/>
+
+      <line x1="90" y1="34"  x2="1000" y2="34"  stroke="var(--grid)" stroke-width="1.5"/>
+      <line x1="90" y1="102" x2="1000" y2="102" stroke="var(--grid)" stroke-width="1.5"/>
+      <line x1="90" y1="170" x2="1000" y2="170" stroke="var(--grid)" stroke-width="1.5"/>
+      <line x1="90" y1="238" x2="1000" y2="238" stroke="var(--grid)" stroke-width="1.5"/>
+      <line x1="90" y1="306" x2="1000" y2="306" stroke="var(--grid)" stroke-width="1.5"/>
+
+      <!-- vertikal to'r -->
+      <line x1="165.8" y1="34" x2="165.8" y2="374" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="241.7" y1="34" x2="241.7" y2="374" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="317.5" y1="34" x2="317.5" y2="374" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="393.3" y1="34" x2="393.3" y2="374" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="469.2" y1="34" x2="469.2" y2="374" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="545"   y1="34" x2="545"   y2="374" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="620.8" y1="34" x2="620.8" y2="374" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="696.7" y1="34" x2="696.7" y2="374" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="772.5" y1="34" x2="772.5" y2="374" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="848.3" y1="34" x2="848.3" y2="374" stroke="var(--grid)" stroke-width="1"/>
+      <line x1="924.2" y1="34" x2="924.2" y2="374" stroke="var(--grid)" stroke-width="1"/>
+
+      <!-- o'qlar -->
+      <line x1="90" y1="374" x2="1000" y2="374" stroke="var(--axis)" stroke-width="2"/>
+      <line x1="90" y1="20"  x2="90"   y2="374" stroke="var(--axis)" stroke-width="2"/>
+
+      <text class="t-mut" x="127.9" y="398" text-anchor="middle">Yan</text>
+      <text class="t-mut" x="203.8" y="398" text-anchor="middle">Fev</text>
+      <text class="t-mut" x="279.6" y="398" text-anchor="middle">Mar</text>
+      <text class="t-mut" x="355.4" y="398" text-anchor="middle">Apr</text>
+      <text class="t-mut" x="431.3" y="398" text-anchor="middle">May</text>
+      <text class="t-mut" x="507.1" y="398" text-anchor="middle">Iyn</text>
+      <text class="t-mut" x="582.9" y="398" text-anchor="middle">Iyl</text>
+      <text class="t-mut" x="658.8" y="398" text-anchor="middle">Avg</text>
+      <text class="t-mut" x="734.6" y="398" text-anchor="middle">Sen</text>
+      <text class="t-mut" x="810.4" y="398" text-anchor="middle">Okt</text>
+      <text class="t-mut" x="886.3" y="398" text-anchor="middle">Noy</text>
+      <text class="t-mut" x="962.1" y="398" text-anchor="middle">Dek</text>
+
+      <text class="t-mut" x="0" y="16">shkala</text>
+      <text class="t-mut" x="1000" y="430" text-anchor="end">yil: ____________</text>
+    </svg>
+    <p class="fig-cap">Chap ustundagi bo'sh chiziqchalarga shkalangizni yozing.
+    <strong>Rejani</strong> to'liq chiziq bilan, <strong>faktni</strong> punktir chiziq bilan chizing —
+    shunda ikkalasi bir grafikda ko'rinadi.</p>
+  </div>
+
+  <div class="write-box">
+    <div class="q">Grafikdan nima ko'rinyapti? Qaysi oyda va nima uchun tushib ketgan?</div>
+    <div class="ln"></div><div class="ln"></div>
+  </div>
+
+  <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
+</section>
+
+<!-- ================= 5.5 REJA/FAKT 2024 ================= -->
 <section class="sheet">
   <div class="sec-head">
     <div class="sec-kicker"><span>5-bo'lim · Shablonlar</span><span>Raqamlar</span></div>
@@ -1454,7 +1845,7 @@ ul.checks li::before{
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
 </section>
 
-<!-- ================= 5.5 REJA/FAKT 2025 ================= -->
+<!-- ================= 5.6 REJA/FAKT 2025 ================= -->
 <section class="sheet">
   <div class="sec-head">
     <div class="sec-kicker"><span>5-bo'lim · Shablonlar</span><span>Raqamlar</span></div>
@@ -1493,7 +1884,7 @@ ul.checks li::before{
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
 </section>
 
-<!-- ================= 5.6 KO'RINISH 1 ================= -->
+<!-- ================= 5.7 KO'RINISH ================= -->
 <section class="sheet">
   <div class="sec-head">
     <div class="sec-kicker"><span>5-bo'lim · Shablonlar</span><span>O'zim haqimda</span></div>
@@ -1520,11 +1911,11 @@ ul.checks li::before{
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
 </section>
 
-<!-- ================= 5.7 SO'ROV ================= -->
+<!-- ================= 5.8 SO'ROV ================= -->
 <section class="sheet">
   <div class="sec-head">
-    <div class="sec-kicker"><span>5-bo'lim · Shablonlar</span><span>So'rov va «tugun»</span></div>
-    <h2 class="h-sec">So'rov va «tugun»</h2>
+    <div class="sec-kicker"><span>5-bo'lim · Shablonlar</span><span>So'rov</span></div>
+    <h2 class="h-sec">Mening so'rovim</h2>
   </div>
 
   <div class="write-box">
@@ -1532,7 +1923,7 @@ ul.checks li::before{
     <div class="ln"></div><div class="ln"></div><div class="ln"></div>
   </div>
 
-  <div class="sub-head"><h3 class="h-sub">Mening so'rovim</h3></div>
+  <div class="sub-head"><h3 class="h-sub">Guruhga so'rovim</h3></div>
   <p class="small" style="margin-bottom:3mm;">O'zingizga mos variantni belgilang:</p>
   <ul class="checks">
     <li>B nuqtani bilmayman.</li>
@@ -1548,7 +1939,7 @@ ul.checks li::before{
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
 </section>
 
-<!-- ================= 5.8 «TUGUN» ================= -->
+<!-- ================= 5.9 «TUGUN» ================= -->
 <section class="sheet">
   <div class="sec-head">
     <div class="sec-kicker"><span>5-bo'lim · Shablonlar</span><span>Razbordan keyin</span></div>
@@ -1570,7 +1961,7 @@ ul.checks li::before{
     <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
   </div>
 
-  <div class="write-box">
+  <div class="write-box" style="border-width:2px;">
     <div class="q">Bitta aniq keyingi qadam — muddat 72 soat:</div>
     <div class="ln"></div><div class="ln"></div>
   </div>
@@ -1578,9 +1969,10 @@ ul.checks li::before{
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
 </section>
 
-<!-- ================= 6.1 PROTOKOL 0–2 ================= -->
+<!-- ================= 6.1 PROTOKOL — UMUMIY SXEMA ================= -->
 <section class="sheet dark">
-  <div class="sec-head">
+  <div class="sec-head has-num">
+    <span class="bignum">6</span>
     <div class="sec-kicker"><span>6-bo'lim</span><span>Chuqur ish</span></div>
     <h2 class="h-sec">Transformatsiyalar protokoli</h2>
   </div>
@@ -1591,14 +1983,49 @@ ul.checks li::before{
     ya'ni delegatsiya muammosi. O'ng ustunda — shu namunaning javoblari.
   </p>
 
+  <div class="fig">
+    <div class="fig-title">Protokolning 8 qadami</div>
+    <svg viewBox="0 0 1000 118" role="img" aria-label="Protokolning sakkiz qadami: kuzatish, sezish, obraz, tajriba, tan olish, 100 soat, qatlamlar, markerlar">
+      <line x1="45" y1="40" x2="945" y2="40" stroke="var(--g-track)" stroke-width="4"/>
+      <circle cx="45"    cy="40" r="21" fill="var(--g3)"/>
+      <circle cx="173.6" cy="40" r="21" fill="var(--g3)"/>
+      <circle cx="302.1" cy="40" r="21" fill="var(--g3)"/>
+      <circle cx="430.7" cy="40" r="21" fill="var(--g3)"/>
+      <circle cx="559.3" cy="40" r="21" fill="var(--g3)"/>
+      <circle cx="687.9" cy="40" r="21" fill="var(--g3)"/>
+      <circle cx="816.4" cy="40" r="21" fill="var(--g3)"/>
+      <circle cx="945"   cy="40" r="21" fill="var(--g3)"/>
+      <text class="t-in" x="40"    y="47" text-anchor="middle">0</text>
+      <text class="t-in" x="173.6" y="47" text-anchor="middle">1</text>
+      <text class="t-in" x="302.1" y="47" text-anchor="middle">2</text>
+      <text class="t-in" x="430.7" y="47" text-anchor="middle">3</text>
+      <text class="t-in" x="559.3" y="47" text-anchor="middle">4</text>
+      <text class="t-in" x="687.9" y="47" text-anchor="middle">5</text>
+      <text class="t-in" x="816.4" y="47" text-anchor="middle">6</text>
+      <text class="t-in" x="960"   y="47" text-anchor="middle">7</text>
+
+      <line x1="495" y1="10" x2="495" y2="70" stroke="var(--axis)" stroke-width="1.5"/>
+
+      <text class="t-lbl" x="40"    y="86" text-anchor="middle">Kuzatish</text>
+      <text class="t-lbl" x="173.6" y="86" text-anchor="middle">Sezish</text>
+      <text class="t-lbl" x="302.1" y="86" text-anchor="middle">Obraz</text>
+      <text class="t-lbl" x="430.7" y="86" text-anchor="middle">Tajriba</text>
+      <text class="t-lbl" x="559.3" y="86" text-anchor="middle">Tan olish</text>
+      <text class="t-lbl" x="687.9" y="86" text-anchor="middle">100 soat</text>
+      <text class="t-lbl" x="816.4" y="86" text-anchor="middle">Qatlamlar</text>
+      <text class="t-lbl" x="960"   y="86" text-anchor="middle">Markerlar</text>
+
+      <text class="t-mut" x="500" y="112" text-anchor="middle">bu chiziqdan keyingi qadamlarga faqat oldingilari natija bermasa o'ting</text>
+    </svg>
+  </div>
+
   <div class="pstep">
     <div class="body">
       <div class="num">0</div>
       <h4>Kuzatish va to'plash</h4>
       <p>Ichki reaksiyalaringizni va tashqi dunyodagi vaziyatlarni kuzatishni boshlang.
       Bu bosqich hozirgi holatdan keladigan og'riq yangi harakatlardan keladigan og'riqdan
-      kattaroq bo'lguncha davom etadi. Ya'ni hozirgi holatdan olinadigan zavq kelajakdan
-      olinadigan zavqdan kichikroq bo'lishi kerak.</p>
+      kattaroq bo'lguncha davom etadi.</p>
     </div>
     <div class="example">
       <div class="lbl">Namuna</div>
@@ -1619,6 +2046,16 @@ ul.checks li::before{
     </div>
   </div>
 
+  <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
+</section>
+
+<!-- ================= 6.2 PROTOKOL 2–4 ================= -->
+<section class="sheet dark">
+  <div class="sec-head">
+    <div class="sec-kicker"><span>6-bo'lim · davomi</span><span>2–4-qadamlar</span></div>
+    <h2 class="h-sec">Obraz, kalit tajriba va tan olish</h2>
+  </div>
+
   <div class="pstep">
     <div class="body">
       <div class="num">2</div>
@@ -1633,21 +2070,11 @@ ul.checks li::before{
     </div>
   </div>
 
-  <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
-</section>
-
-<!-- ================= 6.2 PROTOKOL 3–4 ================= -->
-<section class="sheet dark">
-  <div class="sec-head">
-    <div class="sec-kicker"><span>6-bo'lim · davomi</span><span>3–4-qadamlar</span></div>
-    <h2 class="h-sec">Kalit qadam va tan olish</h2>
-  </div>
-
   <div class="pstep">
     <div class="body">
       <div class="keystep">O'zgarishdagi kalit qadam</div>
       <div class="num">3</div>
-      <h4>Transformatsiya qiluvchi tajribani aniqlash va shakllantirish</h4>
+      <h4>Transformatsiya qiluvchi tajribani aniqlash</h4>
       <p>Qanday tajribani yashab ko'rish kerakligini tushunib oling — shunday tajriba bo'lsinki,
       undan keyin ortga qaytish imkonsiz bo'lsin.</p>
     </div>
@@ -1681,29 +2108,58 @@ ul.checks li::before{
 <section class="sheet dark">
   <div class="sec-head">
     <div class="sec-kicker"><span>6-bo'lim · 5-qadam</span><span>Investitsiya</span></div>
-    <h2 class="h-sec">Disgarmoniyani ishlab chiqishga<br>100 soat investitsiya qilish</h2>
+    <h2 class="h-sec">100 soat — nimaga sarflanadi</h2>
   </div>
 
-  <p class="lead" style="margin-bottom:6mm;">
-    Topilgan disgarmoniyani transformatsiya qiling: vaqt, pul va energiya sarflang, buning uchun
-    jadvalingizda alohida vaqt ajrating. Vaqtning <strong>20%</strong>ini boshqalarning tajribasini
-    ko'rishga va natija obrazini shakllantirishga bag'ishlang.
-  </p>
-
-  <div class="hours-hero">
-    <div class="big">100</div>
-    <div class="cap">soat ishlash</div>
+  <div class="hero">
+    <div class="n">100</div>
+    <div class="x">
+      <div class="t">soat ishlash</div>
+      <div class="d">Topilgan disgarmoniyani transformatsiya qiling: vaqt, pul va energiya sarflang.
+      Buning uchun jadvalingizda alohida vaqt ajrating. Vaqtning <strong>20%</strong>ini
+      boshqalarning tajribasini ko'rishga bag'ishlang.</div>
+    </div>
   </div>
 
-  <div class="hours-grid">
-    <div class="h-item"><div class="v">20 soat</div><div class="k">Psixolog bilan ishlash</div></div>
-    <div class="h-item"><div class="v">20 soat</div><div class="k">DPDG (EMDR) sessiyalari</div></div>
-    <div class="h-item"><div class="v">20 soat</div><div class="k">Tana amaliyotlari: massaj, nafas bilan ishlash</div></div>
-    <div class="h-item"><div class="v">16 soat</div><div class="k">«Komanda» mavzusidagi trening</div></div>
-    <div class="h-item"><div class="v">12 soat</div><div class="k">Meditatsiya</div></div>
-    <div class="h-item"><div class="v">6 soat</div><div class="k">Tizim qurilgan kompaniyalarga ekskursiya</div></div>
-    <div class="h-item"><div class="v">4 soat</div><div class="k">Mentor bilan uchrashuvlar</div></div>
-    <div class="h-item"><div class="v">2 soat</div><div class="k">Komanda bilan planyorka — ular yechimni o'zlari topadilar</div></div>
+  <div class="fig">
+    <div class="fig-title">100 soat — yo'nalishlar bo'yicha</div>
+    <svg viewBox="0 0 1000 328" role="img" aria-label="100 soatning taqsimoti: psixolog 20, DPDG 20, tana amaliyotlari 20, trening 16, meditatsiya 12, ekskursiya 6, mentor 4, planyorka 2 soat">
+      <line x1="330" y1="6" x2="330" y2="316" stroke="var(--axis)" stroke-width="1.5"/>
+
+      <text class="t-lbl" x="308" y="26" text-anchor="end">Psixolog bilan ishlash</text>
+      <path d="M330,14 H895 A5,5 0 0 1 900,19 V25 A5,5 0 0 1 895,30 H330 Z" fill="var(--g3)"/>
+      <text class="t-val" x="914" y="26">20 soat</text>
+
+      <text class="t-lbl" x="308" y="66" text-anchor="end">DPDG (EMDR) sessiyalari</text>
+      <path d="M330,54 H895 A5,5 0 0 1 900,59 V65 A5,5 0 0 1 895,70 H330 Z" fill="var(--g3)"/>
+      <text class="t-val" x="914" y="66">20 soat</text>
+
+      <text class="t-lbl" x="308" y="106" text-anchor="end">Tana amaliyotlari</text>
+      <path d="M330,94 H895 A5,5 0 0 1 900,99 V105 A5,5 0 0 1 895,110 H330 Z" fill="var(--g3)"/>
+      <text class="t-val" x="914" y="106">20 soat</text>
+
+      <text class="t-lbl" x="308" y="146" text-anchor="end">«Komanda» treningi</text>
+      <path d="M330,134 H781 A5,5 0 0 1 786,139 V145 A5,5 0 0 1 781,150 H330 Z" fill="var(--g3)"/>
+      <text class="t-val" x="800" y="146">16 soat</text>
+
+      <text class="t-lbl" x="308" y="186" text-anchor="end">Meditatsiya</text>
+      <path d="M330,174 H667 A5,5 0 0 1 672,179 V185 A5,5 0 0 1 667,190 H330 Z" fill="var(--g3)"/>
+      <text class="t-val" x="686" y="186">12 soat</text>
+
+      <text class="t-lbl" x="308" y="226" text-anchor="end">Kompaniyalarga ekskursiya</text>
+      <path d="M330,214 H496 A5,5 0 0 1 501,219 V225 A5,5 0 0 1 496,230 H330 Z" fill="var(--g3)"/>
+      <text class="t-val" x="515" y="226">6 soat</text>
+
+      <text class="t-lbl" x="308" y="266" text-anchor="end">Mentor bilan uchrashuv</text>
+      <path d="M330,254 H439 A5,5 0 0 1 444,259 V265 A5,5 0 0 1 439,270 H330 Z" fill="var(--g3)"/>
+      <text class="t-val" x="458" y="266">4 soat</text>
+
+      <text class="t-lbl" x="308" y="306" text-anchor="end">Komanda bilan planyorka</text>
+      <path d="M330,294 H382 A5,5 0 0 1 387,299 V305 A5,5 0 0 1 382,310 H330 Z" fill="var(--g3)"/>
+      <text class="t-val" x="401" y="306">2 soat</text>
+    </svg>
+    <p class="fig-cap">Tana amaliyotlari — massaj va nafas bilan ishlash.
+    Planyorkada komanda yechimni mustaqil ishlab chiqadi. Ekskursiya — tizim qurilgan kompaniyalarga.</p>
   </div>
 
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
@@ -1806,8 +2262,26 @@ ul.checks li::before{
   </div>
 
   <p class="lead" style="margin-bottom:6mm;">
-    Haqiqatan transformatsiya bo'lishi uchun disgarmoniyani <strong>5 ta yo'nalishda</strong> ishlab chiqing.
+    Haqiqatan transformatsiya bo'lishi uchun disgarmoniyani <strong>5 ta yo'nalishda</strong> ishlab
+    chiqing. Faqat bitta qatlamda ishlash yetarli emas.
   </p>
+
+  <div class="fig">
+    <svg viewBox="0 0 1000 106" role="img" aria-label="Besh qatlam: energiya, tana, psixologiya, kompetensiya, harakat">
+      <rect x="0"   y="0" width="192" height="46" rx="7" fill="var(--g1)"/>
+      <rect x="202" y="0" width="192" height="46" rx="7" fill="var(--g2)"/>
+      <rect x="404" y="0" width="192" height="46" rx="7" fill="var(--g3)"/>
+      <rect x="606" y="0" width="192" height="46" rx="7" fill="var(--g4)"/>
+      <rect x="808" y="0" width="192" height="46" rx="7" fill="var(--g5)"/>
+      <text class="t-lbl" x="96"  y="72" text-anchor="middle">1 · Energiya</text>
+      <text class="t-lbl" x="298" y="72" text-anchor="middle">2 · Tana</text>
+      <text class="t-lbl" x="500" y="72" text-anchor="middle">3 · Psixologiya</text>
+      <text class="t-lbl" x="702" y="72" text-anchor="middle">4 · Kompetensiya</text>
+      <text class="t-lbl" x="904" y="72" text-anchor="middle">5 · Harakat</text>
+      <text class="t-mut" x="0"    y="98">yuqoridan</text>
+      <text class="t-mut" x="1000" y="98" text-anchor="end">amaliyotgacha</text>
+    </svg>
+  </div>
 
   <div class="layer">
     <div class="n">1</div>
@@ -1850,7 +2324,7 @@ ul.checks li::before{
     <div>
       <h4>Harakat qatlami</h4>
       <p>Vazifa qo'yish va nazorat qilishning yangi tajribasini o'zingiz yashab ko'ring.
-      Jadvalingizda bevosita delegatsiya uchun vaqt ajrating — yangi tajribani yashash uchun.</p>
+      Jadvalingizda bevosita delegatsiya uchun vaqt ajrating.</p>
     </div>
   </div>
 
@@ -1866,7 +2340,7 @@ ul.checks li::before{
 
   <p class="lead" style="margin-bottom:6mm;">
     Markerlar — bu transformatsiyaning har qanday ko'rinishi: his-tuyg'udan tortib hayotning turli
-    yo'nalishlaridagi natijalargacha.
+    yo'nalishlaridagi natijalargacha. Ular paydo bo'la boshlagan bo'lsa — demak, ish yurishyapti.
   </p>
 
   <div class="markers">
@@ -1887,11 +2361,10 @@ ul.checks li::before{
       tomonidan ishlab topilgan pul o'smoqda.</p></div>
   </div>
 
-  <div class="note" style="background:#262626;border-left-color:var(--green);margin-top:6mm;">
-    <div class="label" style="color:var(--green);">Xulosa</div>
-    <p style="color:#d8d8d8;">Protokol ketma-ket ishlaydi: <strong style="color:#fff;">0 → 7</strong>.
-    Keyingi qadamga faqat oldingi qadamlar natija bermagan bo'lsa o'ting. Markerlar paydo bo'la
-    boshlagan bo'lsa — demak, transformatsiya ketmoqda.</p>
+  <div class="note" style="margin-top:6mm;">
+    <div class="label">Xulosa</div>
+    <p>Protokol ketma-ket ishlaydi: <strong>0 → 7</strong>. Keyingi qadamga faqat oldingi qadamlar
+    natija bermagan bo'lsa o'ting.</p>
   </div>
 
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
@@ -1902,6 +2375,30 @@ ul.checks li::before{
   <div class="sec-head">
     <div class="sec-kicker"><span>Yakun</span><span>Qisqacha eslatma</span></div>
     <h2 class="h-sec">Bir sahifada — butun stratsessiya</h2>
+  </div>
+
+  <div class="fig">
+    <svg viewBox="0 0 1000 128" role="img" aria-label="Umumiy yo'l: A nuqta, tayyorgarlik, o'tkazish, yakunlash, B nuqta">
+      <line x1="46" y1="44" x2="954" y2="44" stroke="var(--g-track)" stroke-width="6"/>
+      <circle cx="46"  cy="44" r="26" fill="#fff" stroke="var(--ink)" stroke-width="2.5"/>
+      <text x="46" y="53" text-anchor="middle" style="font-size:24px;font-weight:800;fill:var(--ink);">A</text>
+      <circle cx="954" cy="44" r="26" fill="var(--g4)"/>
+      <text x="954" y="53" text-anchor="middle" style="font-size:24px;font-weight:800;fill:#fff;">B</text>
+
+      <rect x="150" y="26" width="200" height="36" rx="7" fill="var(--g1)"/>
+      <rect x="400" y="26" width="200" height="36" rx="7" fill="var(--g3)"/>
+      <rect x="650" y="26" width="200" height="36" rx="7" fill="var(--g5)"/>
+      <text x="250" y="50" text-anchor="middle" style="font-size:18px;font-weight:600;fill:#00281b;">Tayyorgarlik</text>
+      <text x="500" y="50" text-anchor="middle" style="font-size:18px;font-weight:600;fill:#fff;">O'tkazish</text>
+      <text x="750" y="50" text-anchor="middle" style="font-size:18px;font-weight:600;fill:#fff;">Yakunlash</text>
+
+      <text class="t-mut" x="250" y="88" text-anchor="middle">raqamlar · joy · videovizitka</text>
+      <text class="t-mut" x="500" y="88" text-anchor="middle">razborlar · 2:30 har biriga</text>
+      <text class="t-mut" x="750" y="88" text-anchor="middle">«sham» · deklaratsiya</text>
+      <text class="t-mut" x="46"  y="88" text-anchor="middle">bugun</text>
+      <text class="t-mut" x="954" y="88" text-anchor="middle">3 oy</text>
+      <text class="t-mut" x="500" y="120" text-anchor="middle">natija: protokol · Asosiy Richag · Cheklovchi · 72 soatlik qadam</text>
+    </svg>
   </div>
 
   <table>
@@ -1938,10 +2435,6 @@ ul.checks li::before{
     <li><strong>Bitta aniq keyingi qadam, muddati 72 soat.</strong> Uzun ro'yxatdan ko'ra bitta
         bajarilgan qadam foydaliroq.</li>
   </ol>
-
-  <div class="callout" style="margin-top:8mm;">
-    A nuqtadan → B nuqtaga
-  </div>
 
   <div class="foot"><span class="brand">NECHTO</span><span>ta'lim hamjamiyati &nbsp;·&nbsp; nechto1.ru</span></div>
 </section>
