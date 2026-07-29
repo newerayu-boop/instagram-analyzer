@@ -3,11 +3,11 @@
  *
  * Куда вставлять и как включить — см. docs/leads-setup.md
  *
- * Таблица: 18j77YXx27qrxyux1jWagdDbXXf7yEfp6Rn5VW0Ou1Cc
+ * Таблица «Hyatt Regancy 2»: 1lcWSTy4Xsp609YUohGBJcYf0-CJSn--k1ZLSUPrW3e4
  *
  * Скрипт публикуется как веб-приложение и принимает POST с JSON вида:
- *   { stamp, name, phone, industry, tariff, lang, source }
- * и дописывает строку в лист «Заявки», создавая его с шапкой при первом вызове.
+ *   { stamp, name, phone, industry, price, tariff, lang, source }
+ * и дописывает строку в лист «Arizalar», создавая его с шапкой при первом вызове.
  */
 
 var SHEET_NAME = 'Arizalar';

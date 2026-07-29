@@ -629,6 +629,19 @@ section[id],div[id="top"]{scroll-margin-top:86px}
 
 /* ============ CASES ============ */
 .cases-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:26px}
+/* Monogram stands in until the students' photographs arrive — a flat grey
+   placeholder would read as a broken image. */
+.ccard .ph.mono{
+  display:flex; align-items:flex-end; aspect-ratio:4/3.4;
+  background:radial-gradient(120% 100% at 50% 0%, rgba(191,160,89,.16), rgba(9,12,18,0) 62%), #0B0E14;
+}
+.ccard .ph.mono::before{
+  content:attr(data-ini); position:absolute; top:50%; left:50%; transform:translate(-50%,-58%);
+  font-family:var(--serif); font-weight:600; font-size:clamp(44px,5vw,64px); letter-spacing:.04em;
+  background:var(--grad-gold); -webkit-background-clip:text; background-clip:text; color:transparent;
+  opacity:.85; pointer-events:none;
+}
+.ccard .ph.mono::after{background:linear-gradient(to top, rgba(5,7,10,.94) 10%, transparent 58%)}
 .ccard{
   border:1px solid var(--line-soft); border-radius:24px; overflow:hidden; background:var(--card);
   transition:transform var(--dur-mod) var(--ease-out), border-color var(--dur-mod), box-shadow var(--dur-mod);
@@ -1173,6 +1186,7 @@ body.lb-open .rev-track{animation-play-state:paused}
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
+  <canvas id="dust" aria-hidden="true"></canvas>
   <div class="cyber-grid" aria-hidden="true"></div>
   <div class="spot l" aria-hidden="true"></div>
   <div class="spot r" aria-hidden="true"></div>
@@ -1263,7 +1277,7 @@ body.lb-open .rev-track{animation-play-state:paused}
         <ul>
           <li><span data-uz>Oʻz ishingizga 3 ta AI-agent joriy qilasiz</span><span data-ru>Внедрите 3 AI-агента в свою работу</span></li>
           <li><span data-uz>Yana qanday AI-xodimlarni joriy qilish mumkin — oʻquvchilarim joriy qilgan xodimlar misolida</span><span data-ru>Каких ещё AI-сотрудников можно внедрить — на примере моих учеников</span></li>
-          <li class="gain"><span data-uz>Master klassdan chiqqaningizda — bu 3 ta agent oyiga <b>$500+</b> ish vaqtini qaytaradi. Yaʼni ishtirok narxi birinchi oyda qoplanadi.</span><span data-ru>К концу мастер-класса эти 3 агента возвращают <b>от $500</b> рабочего времени в месяц — участие окупается в первый же месяц.</span></li>
+          <li class="gain"><span data-uz>Bu 3 ta agent oyiga <b>6–12 mln soʻm</b> ish vaqtini qaytaradi. Ishtirok narxi — 497 000 soʻm. Yaʼni birinchi oydayoq <b>uje foydadasiz</b>.</span><span data-ru>Эти 3 агента возвращают <b>6–12 млн сум</b> рабочего времени в месяц. Участие стоит 497 000 сум — вы <b>в плюсе уже в первый месяц</b>.</span></li>
         </ul>
       </article>
     </div>
@@ -1431,36 +1445,56 @@ body.lb-open .rev-track{animation-play-state:paused}
   <div class="container" style="position:relative;z-index:2">
     <div class="label rv"><span data-uz>OʻQUVCHILAR NATIJASI</span><span data-ru>РЕЗУЛЬТАТЫ УЧЕНИКОВ</span></div>
     <h2 class="s-title rv"><span data-uz>Ular qildi — <em>siz ham qilasiz</em></span><span data-ru>Они сделали — <em>сделаете и вы</em></span></h2>
-    <p class="s-sub rv"><span data-uz>Uchta real keys. Ichkarida — yana koʻplari. Bittasida oʻzingizni tanib qolasiz.</span><span data-ru>Три реальных кейса. Внутри — ещё больше. В одном из них вы узнаете себя.</span></p>
+    <p class="s-sub rv"><span data-uz>Beshta real keys. Har biri — boshqa soha. Bittasida oʻzingizni tanib qolasiz.</span><span data-ru>Пять реальных кейсов. Каждый — своя сфера. В одном из них вы узнаете себя.</span></p>
     <div class="cases-grid" data-stagger>
       <article class="ccard rv">
-        <div class="ph"><img decoding="async" src="/masterclass/img/cases/nurgul.jpg" width="640" height="640" alt="Nurgul Kabulovna" loading="lazy">
-          <div class="who"><b>Nurgul Kabulovna</b><span><span data-uz>Sotuv boʻlimi rahbari · 25 sotuvchi</span><span data-ru>Руководитель отдела продаж · 25 менеджеров</span></span></div>
+        <div class="ph mono" data-ini="AB">
+          <div class="who"><b>Anvar Baxtiyorov</b><span><span data-uz>Prodyuser · infobiznes</span><span data-ru>Продюсер · инфобизнес</span></span></div>
         </div>
         <div class="body">
-          <span class="metric">99 <span style="font-size:.45em"><span data-uz>soat/oy</span><span data-ru>ч/мес</span></span></span>
-          <span class="mlabel"><span data-uz>tejaladi</span><span data-ru>экономии</span></span>
-          <p><span data-uz>Kuniga 5–6 soatlik nazoratdan — 30 daqiqaga. 5 ta AI-tizim va shaxsiy «2-Nurgul» Jarvis qurdi.</span><span data-ru>Ежедневный контроль с 5–6 часов — до 30 минут. Построила 5 AI-систем и личного «Нургуль-2» Jarvis.</span></p>
+          <span class="metric">$800<span style="font-size:.45em"><span data-uz>/oy</span><span data-ru>/мес</span></span></span>
+          <span class="mlabel"><span data-uz>tejaldi</span><span data-ru>экономии</span></span>
+          <p><span data-uz>«Gʻoya keladi — ijrochini kutaman, qiziqish soʻnadi.» Endi slaydlar bir kunda tayyor, $100 lik avatar — ikkita promptda, reklamani agent oʻzi yoqadi.</span><span data-ru>«Идея есть — жду исполнителя, интерес гаснет.» Теперь слайды готовы за день, аватар за $100 — в два промпта, рекламу запускает сам агент.</span></p>
         </div>
       </article>
       <article class="ccard rv">
-        <div class="ph"><img decoding="async" src="/masterclass/img/cases/doston.jpg" width="640" height="640" alt="Doston" loading="lazy">
-          <div class="who"><b>Doston</b><span><span data-uz>Marketing agentligi · Lava OS</span><span data-ru>Маркетинг-агентство · Lava OS</span></span></div>
+        <div class="ph mono" data-ini="AN">
+          <div class="who"><b>Abdullo Nasullaev</b><span><span data-uz>Media · YouTube</span><span data-ru>Медиа · YouTube</span></span></div>
         </div>
         <div class="body">
-          <span class="metric">$1000+<span style="font-size:.45em">/<span data-uz>oy</span><span data-ru>мес</span></span></span>
-          <span class="mlabel"><span data-uz>tejamkorlik</span><span data-ru>экономии</span></span>
-          <p><span data-uz>«Men agentlik yuritmayman — men tizim quraman.» Kontent, trend qidirish, nazorat — hammasi AI-agentlarda. Xodim yollamay ×2–3 oʻsishga tayyor.</span><span data-ru>«Я не веду агентство — я строю систему.» Контент, поиск трендов, контроль — всё на AI-агентах. Готов к росту ×2–3 без найма.</span></p>
+          <span class="metric">$1000<span style="font-size:.45em"><span data-uz></span><span data-ru></span></span></span>
+          <span class="mlabel"><span data-uz>tejaldi</span><span data-ru>сэкономил</span></span>
+          <p><span data-uz>Dizaynga oyiga 2–3 mln soʻm ketardi, matn esa oʻz ovozida chiqmasdi. Endi oblozhkani oʻzi chiqaradi, kopirayter uning tone of voice’ida yozadi.</span><span data-ru>На дизайн уходило 2–3 млн сум в месяц, а текст выходил чужим голосом. Теперь обложки делает сам, копирайтер пишет его тоном.</span></p>
         </div>
       </article>
       <article class="ccard rv">
-        <div class="ph"><img decoding="async" src="/masterclass/img/cases/jasur.jpg" width="640" height="640" alt="Jasurbek Normuradov" loading="lazy">
-          <div class="who"><b>Jasurbek Normuradov</b><span><span data-uz>Menta.uz asoschisi · SaaS</span><span data-ru>Основатель Menta.uz · SaaS</span></span></div>
+        <div class="ph mono" data-ini="BR">
+          <div class="who"><b>Bobir Roʻzimatov</b><span><span data-uz>Qurilish · 2018-yildan</span><span data-ru>Строительство · с 2018</span></span></div>
         </div>
         <div class="body">
-          <span class="metric">70%+</span>
-          <span class="mlabel"><span data-uz>support avtomatik</span><span data-ru>поддержки — автоматом</span></span>
-          <p><span data-uz>Onboarding, support va kontent — hammasi AI-agentlarda. Oʻsha jamoa bilan ×2,5 koʻproq mijoz va haftasiga 10+ soat qaytdi.</span><span data-ru>Онбординг, поддержка и контент — всё на AI-агентах. С той же командой ×2,5 клиентов и +10 часов в неделю.</span></p>
+          <span class="metric">4→1<span style="font-size:.45em"><span data-uz> soat</span><span data-ru> часа</span></span></span>
+          <span class="mlabel"><span data-uz>kunlik ish</span><span data-ru>рабочий день</span></span>
+          <p><span data-uz>Kursga kelganda noutbuk ishlatmasdi. Uch oyda «Bino» platformasini, olti blokli deshbordni va olti mas’ulga bot qurdi.</span><span data-ru>Пришёл на курс, не работая с ноутбуком. За три месяца построил платформу «Bino», дашборд из шести блоков и ботов для шести ответственных.</span></p>
+        </div>
+      </article>
+      <article class="ccard rv">
+        <div class="ph mono" data-ini="MR">
+          <div class="who"><b>Munira Rahimova</b><span><span data-uz>Carbonado · kelin koʻylaklari</span><span data-ru>Carbonado · свадебные платья</span></span></div>
+        </div>
+        <div class="body">
+          <span class="metric">334k<span style="font-size:.45em"><span data-uz> koʻrish</span><span data-ru> просмотров</span></span></span>
+          <span class="mlabel"><span data-uz>bir sutkada</span><span data-ru>за сутки</span></span>
+          <p><span data-uz>10 yil kontent ogʻriq edi: $20–30 minglik komandalar natija bermadi. Ikki soatda AI bilan yozilgan reels bir kunda 334 ming koʻrish oldi. Oyiga $3500 tejaldi.</span><span data-ru>10 лет контент был болью: команды за $20–30 тысяч не давали результата. Reels, собранный с AI за два часа, набрал 334 тысячи просмотров за сутки. Экономия $3500 в месяц.</span></p>
+        </div>
+      </article>
+      <article class="ccard rv">
+        <div class="ph mono" data-ini="MA">
+          <div class="who"><b>Maxmut Abdulaziziv</b><span><span data-uz>Onlayn taʼlim · zapusklar</span><span data-ru>Онлайн-образование · запуски</span></span></div>
+        </div>
+        <div class="body">
+          <span class="metric">+40%<span style="font-size:.45em"><span data-uz></span><span data-ru></span></span></span>
+          <span class="mlabel"><span data-uz>zapusk quvvati</span><span data-ru>мощность запуска</span></span>
+          <p><span data-uz>Har potokda 320–350 mijoz, tor tomoq — sotuv boʻlimi. AI-radar qoʻngʻiroqlarni oʻzi tahlil qiladi. Xodim qoʻshmasdan yiliga $351 000 qoʻshimcha.</span><span data-ru>320–350 клиентов на поток, узкое горлышко — отдел продаж. AI-радар сам разбирает звонки. Плюс $351 000 в год без найма.</span></p>
         </div>
       </article>
     </div>
@@ -1789,7 +1823,59 @@ var cio=new IntersectionObserver(function(entries){
 document.querySelectorAll('[data-count]').forEach(function(el){ cio.observe(el); });
 
 /* ---------- cybernetic node network (hero) ---------- */
-/* Particle field removed — constant motion behind the offer. */
+/* Neural field behind the offer. Deliberately slow and faint: the point is
+   that it is only just perceptibly alive, not that it draws the eye away
+   from the headline. No cursor interaction — that was the restless part. */
+var canvas=document.getElementById('dust');
+if(canvas && !REDUCE){
+  var ctx=canvas.getContext('2d'), running=true, W=0, H=0;
+  var DPR=Math.min(devicePixelRatio||1, 2);
+  var hero=document.getElementById('hero');
+  function resize(){
+    W=hero.offsetWidth; H=hero.offsetHeight;
+    canvas.width=W*DPR; canvas.height=H*DPR;
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  resize(); addEventListener('resize', resize, {passive:true});
+
+  var N = innerWidth<640 ? 16 : 26;   /* было 30/62 */
+  var LINK = innerWidth<640 ? 120 : 160;
+  var ns=[];
+  for(var i=0;i<N;i++){
+    ns.push({ x:Math.random()*1600, y:Math.random()*900,
+      vx:(Math.random()-.5)*.09, vy:(Math.random()-.5)*.09,   /* было .34 */
+      r:Math.random()*1.1+.6 });
+  }
+  function tick(){
+    if(running){
+      ctx.clearRect(0,0,W,H);
+      var i,j,a,b,dx,dy,d;
+      for(i=0;i<N;i++){
+        a=ns[i]; a.x+=a.vx; a.y+=a.vy;
+        if(a.x<-20)a.x=W+20; if(a.x>W+20)a.x=-20;
+        if(a.y<-20)a.y=H+20; if(a.y>H+20)a.y=-20;
+      }
+      ctx.lineWidth=1;
+      for(i=0;i<N;i++){ for(j=i+1;j<N;j++){
+        a=ns[i]; b=ns[j]; dx=a.x-b.x; dy=a.y-b.y; d=dx*dx+dy*dy;
+        if(d<LINK*LINK){
+          var al=(1-Math.sqrt(d)/LINK)*.11;   /* было .26 */
+          ctx.strokeStyle='rgba(191,160,89,'+al.toFixed(3)+')';
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }}
+      ctx.fillStyle='rgba(214,190,138,.34)';
+      for(i=0;i<N;i++){
+        a=ns[i]; ctx.beginPath(); ctx.arc(a.x,a.y,a.r,0,6.283); ctx.fill();
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  new IntersectionObserver(function(en){ running=en[0].isIntersecting; },{threshold:0}).observe(hero);
+  document.addEventListener('visibilitychange', function(){ running=!document.hidden; });
+  requestAnimationFrame(tick);
+}
 
 /* ---------- ghost numbers parallax + roadmap line + venue parallax ---------- */
 var ghosts=[].slice.call(document.querySelectorAll('[data-ghost]'));
