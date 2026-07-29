@@ -8,6 +8,11 @@
 - `public/index.html` — фронтенд (статика, `@vercel/static`).
 - `public/masterclass/` — **премиум-лендинг мастер-класса по ИИ** (чёрный+золото,
   UZ/RU, анимации, доступен по `/masterclass`). Собран по AI·WEB·METHOD и design board.
+- `public/stratsessiya/` — **печатный справочник «Стратсессия» на узбекском (B1)**: 4 исходных
+  PDF собраны в один самодостаточный HTML (шрифты вшиты base64, внешних зависимостей нет),
+  свёрстан под A4, 34 страницы, доступен по `/stratsessiya`. Рядом — готовый `stratsessiya-uz.pdf`.
+  Тёмный блок «Протокол трансформаций» на экране остаётся тёмным, а в `@media print`
+  переводится на белый фон с зелёными акцентами (экономия чернил, читаемость).
 - `api/get-reels.js`, `api/transcribe-reels.js` — serverless (`@vercel/node`, Node 18).
 - `api/lead.js` — приём заявок лендинга → Telegram (нужны env `TELEGRAM_BOT_TOKEN`,
   `TELEGRAM_CHAT_ID` в настройках Vercel).
