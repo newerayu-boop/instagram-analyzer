@@ -860,6 +860,12 @@ body.lb-open .rev-track{animation-play-state:paused}
 .field input:focus,.field select:focus{outline:none; border-color:var(--gold); background:rgba(191,160,89,.08); box-shadow:0 0 0 4px rgba(191,160,89,.12)}
 .hp{position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden}
 .reg-card .btn{width:100%; margin-top:8px; padding:19px 34px}
+/* the modal form had an auto-width button sitting against the left edge */
+.modal .lead-form .btn{width:100%; margin:10px auto 0; padding:18px 28px}
+/* these two portraits have the head high in frame — the card trims 7.5%
+   off the top by default, which clipped it */
+.ccard .ph img[src*="abdullo"],
+.ccard .ph img[src*="maxmut"]{object-position:50% 0%}
 .consent{margin-top:16px; text-align:center; font-size:11.5px; color:#6E6558; line-height:1.6}
 .form-msg{display:none; margin-top:16px; text-align:center; font-size:14px; border-radius:12px; padding:13px 18px}
 .form-msg.err{display:block; color:#E9A2A2; background:rgba(180,60,60,.12); border:1px solid rgba(180,60,60,.3)}
@@ -1464,6 +1470,25 @@ body.lb-open .rev-track{animation-play-state:paused}
     <p class="s-sub rv"><span data-uz>Beshta real keys. Har biri — boshqa soha. Bittasida oʻzingizni tanib qolasiz.</span><span data-ru>Пять реальных кейсов. Каждый — своя сфера. В одном из них вы узнаете себя.</span></p>
     <div class="cases-grid" data-stagger>
       <article class="ccard rv">
+        <div class="ph"><img decoding="async" src="/masterclass/img/cases/bobir.jpg" width="640" height="640" alt="Bobir Roʻzimatov" loading="lazy">
+          <div class="who"><b>Bobir Roʻzimatov</b><span><span data-uz>Qurilish · 2018-yildan</span><span data-ru>Строительство · с 2018</span></span></div>
+        </div>
+        <div class="body">
+          <div class="cstep cstep-pain">
+            <span class="cstep-lab"><span data-uz>Muammo</span><span data-ru>Проблема</span></span>
+            <p><span data-uz>Podryadchik avansni olib yoʻqolardi. Obʼektda nima boʻlayotgani koʻrinmasdi.</span><span data-ru>Подрядчик брал аванс и пропадал. Что творится на объекте — не видно.</span></p>
+          </div>
+          <div class="cstep cstep-win">
+            <span class="cstep-lab"><span data-uz>Kursdan keyin</span><span data-ru>После курса</span></span>
+            <p><span data-uz>«Bino» platformasi, olti blokli deshbord, oltita bot. Kunlik ish 4 soatdan 1 soatga.</span><span data-ru>Платформа «Bino», дашборд из шести блоков, шесть ботов. Рабочий день с 4 часов до одного.</span></p>
+          </div>
+          <div class="cres">
+            <span class="metric">4→1<span style="font-size:.45em"><span data-uz> soat</span><span data-ru> часа</span></span></span>
+            <span class="mlabel"><span data-uz>kunlik ish</span><span data-ru>рабочий день</span></span>
+          </div>
+        </div>
+      </article>
+      <article class="ccard rv">
         <div class="ph"><img decoding="async" src="/masterclass/img/cases/anvar.jpg" width="640" height="640" alt="Anvar Baxtiyorov" loading="lazy">
           <div class="who"><b>Anvar Baxtiyorov</b><span><span data-uz>Prodyuser · infobiznes</span><span data-ru>Продюсер · инфобизнес</span></span></div>
         </div>
@@ -1483,40 +1508,21 @@ body.lb-open .rev-track{animation-play-state:paused}
         </div>
       </article>
       <article class="ccard rv">
-        <div class="ph"><img decoding="async" src="/masterclass/img/cases/abdullo.jpg" width="640" height="640" alt="Abdullo Nasullaev" loading="lazy">
-          <div class="who"><b>Abdullo Nasullaev</b><span><span data-uz>Media · YouTube</span><span data-ru>Медиа · YouTube</span></span></div>
+        <div class="ph"><img decoding="async" src="/masterclass/img/cases/maxmut.jpg" width="640" height="640" alt="Maxmut Abdulazizov" loading="lazy">
+          <div class="who"><b>Maxmut Abdulazizov</b><span><span data-uz>Onlayn taʼlim · zapusklar</span><span data-ru>Онлайн-образование · запуски</span></span></div>
         </div>
         <div class="body">
           <div class="cstep cstep-pain">
             <span class="cstep-lab"><span data-uz>Muammo</span><span data-ru>Проблема</span></span>
-            <p><span data-uz>Dizaynga oyiga 2–3 mln soʻm. Matn hech qachon oʻz ovozida chiqmasdi.</span><span data-ru>На дизайн 2–3 млн сум в месяц. Текст никогда не звучал его голосом.</span></p>
+            <p><span data-uz>Har potokda 320–350 mijoz, lekin sotuv boʻlimi ulgurmasdi. Nazorat yoʻq edi.</span><span data-ru>320–350 клиентов на поток, но отдел продаж не справлялся. Контроля не было.</span></p>
           </div>
           <div class="cstep cstep-win">
             <span class="cstep-lab"><span data-uz>Kursdan keyin</span><span data-ru>После курса</span></span>
-            <p><span data-uz>Oblozhkalarni oʻzi chiqaradi. Kopirayter uning tone of voice’ida yozadi.</span><span data-ru>Обложки делает сам. Копирайтер пишет его тоном.</span></p>
+            <p><span data-uz>AI-radar qoʻngʻiroqlarni oʻzi tahlil qiladi. Xodim qoʻshmasdan yiliga $351 000 qoʻshimcha.</span><span data-ru>AI-радар сам разбирает звонки. Плюс $351 000 в год без найма.</span></p>
           </div>
           <div class="cres">
-            <span class="metric">$1000<span style="font-size:.45em"><span data-uz></span><span data-ru></span></span></span>
-            <span class="mlabel"><span data-uz>tejaldi</span><span data-ru>сэкономил</span></span>
-          </div>
-        </div>
-      </article>
-      <article class="ccard rv">
-        <div class="ph"><img decoding="async" src="/masterclass/img/cases/bobir.jpg" width="640" height="640" alt="Bobir Roʻzimatov" loading="lazy">
-          <div class="who"><b>Bobir Roʻzimatov</b><span><span data-uz>Qurilish · 2018-yildan</span><span data-ru>Строительство · с 2018</span></span></div>
-        </div>
-        <div class="body">
-          <div class="cstep cstep-pain">
-            <span class="cstep-lab"><span data-uz>Muammo</span><span data-ru>Проблема</span></span>
-            <p><span data-uz>Podryadchik avansni olib yoʻqolardi. Obʼektda nima boʻlayotgani koʻrinmasdi.</span><span data-ru>Подрядчик брал аванс и пропадал. Что творится на объекте — не видно.</span></p>
-          </div>
-          <div class="cstep cstep-win">
-            <span class="cstep-lab"><span data-uz>Kursdan keyin</span><span data-ru>После курса</span></span>
-            <p><span data-uz>«Bino» platformasi, olti blokli deshbord, oltita bot. Kunlik ish 4 soatdan 1 soatga.</span><span data-ru>Платформа «Bino», дашборд из шести блоков, шесть ботов. Рабочий день с 4 часов до одного.</span></p>
-          </div>
-          <div class="cres">
-            <span class="metric">4→1<span style="font-size:.45em"><span data-uz> soat</span><span data-ru> часа</span></span></span>
-            <span class="mlabel"><span data-uz>kunlik ish</span><span data-ru>рабочий день</span></span>
+            <span class="metric">+40%<span style="font-size:.45em"><span data-uz></span><span data-ru></span></span></span>
+            <span class="mlabel"><span data-uz>zapusk quvvati</span><span data-ru>мощность запуска</span></span>
           </div>
         </div>
       </article>
@@ -1540,21 +1546,21 @@ body.lb-open .rev-track{animation-play-state:paused}
         </div>
       </article>
       <article class="ccard rv">
-        <div class="ph"><img decoding="async" src="/masterclass/img/cases/maxmut.jpg" width="640" height="640" alt="Maxmut Abdulaziziv" loading="lazy">
-          <div class="who"><b>Maxmut Abdulaziziv</b><span><span data-uz>Onlayn taʼlim · zapusklar</span><span data-ru>Онлайн-образование · запуски</span></span></div>
+        <div class="ph"><img decoding="async" src="/masterclass/img/cases/abdullo.jpg" width="640" height="640" alt="Abdullo Nasullaev" loading="lazy">
+          <div class="who"><b>Abdullo Nasullaev</b><span><span data-uz>Media · YouTube</span><span data-ru>Медиа · YouTube</span></span></div>
         </div>
         <div class="body">
           <div class="cstep cstep-pain">
             <span class="cstep-lab"><span data-uz>Muammo</span><span data-ru>Проблема</span></span>
-            <p><span data-uz>Har potokda 320–350 mijoz, lekin sotuv boʻlimi ulgurmasdi. Nazorat yoʻq edi.</span><span data-ru>320–350 клиентов на поток, но отдел продаж не справлялся. Контроля не было.</span></p>
+            <p><span data-uz>Dizaynga oyiga 2–3 mln soʻm. Matn hech qachon oʻz ovozida chiqmasdi.</span><span data-ru>На дизайн 2–3 млн сум в месяц. Текст никогда не звучал его голосом.</span></p>
           </div>
           <div class="cstep cstep-win">
             <span class="cstep-lab"><span data-uz>Kursdan keyin</span><span data-ru>После курса</span></span>
-            <p><span data-uz>AI-radar qoʻngʻiroqlarni oʻzi tahlil qiladi. Xodim qoʻshmasdan yiliga $351 000 qoʻshimcha.</span><span data-ru>AI-радар сам разбирает звонки. Плюс $351 000 в год без найма.</span></p>
+            <p><span data-uz>Oblozhkalarni oʻzi chiqaradi. Kopirayter uning tone of voice’ida yozadi.</span><span data-ru>Обложки делает сам. Копирайтер пишет его тоном.</span></p>
           </div>
           <div class="cres">
-            <span class="metric">+40%<span style="font-size:.45em"><span data-uz></span><span data-ru></span></span></span>
-            <span class="mlabel"><span data-uz>zapusk quvvati</span><span data-ru>мощность запуска</span></span>
+            <span class="metric">$1000<span style="font-size:.45em"><span data-uz></span><span data-ru></span></span></span>
+            <span class="mlabel"><span data-uz>tejaldi</span><span data-ru>сэкономил</span></span>
           </div>
         </div>
       </article>
