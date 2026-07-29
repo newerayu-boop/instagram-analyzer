@@ -631,19 +631,6 @@ section[id],div[id="top"]{scroll-margin-top:86px}
 
 /* ============ CASES ============ */
 .cases-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:26px}
-/* Monogram stands in until the students' photographs arrive — a flat grey
-   placeholder would read as a broken image. */
-.ccard .ph.mono{
-  display:flex; align-items:flex-end; aspect-ratio:4/3.4;
-  background:radial-gradient(120% 100% at 50% 0%, rgba(191,160,89,.16), rgba(9,12,18,0) 62%), #0B0E14;
-}
-.ccard .ph.mono::before{
-  content:attr(data-ini); position:absolute; top:50%; left:50%; transform:translate(-50%,-58%);
-  font-family:var(--serif); font-weight:600; font-size:clamp(44px,5vw,64px); letter-spacing:.04em;
-  background:var(--grad-gold); -webkit-background-clip:text; background-clip:text; color:transparent;
-  opacity:.85; pointer-events:none;
-}
-.ccard .ph.mono::after{background:linear-gradient(to top, rgba(5,7,10,.94) 10%, transparent 58%)}
 .ccard{
   border:1px solid var(--line-soft); border-radius:24px; overflow:hidden; background:var(--card);
   transition:transform var(--dur-mod) var(--ease-out), border-color var(--dur-mod), box-shadow var(--dur-mod);
@@ -1463,7 +1450,7 @@ body.lb-open .rev-track{animation-play-state:paused}
     <p class="s-sub rv"><span data-uz>Beshta real keys. Har biri — boshqa soha. Bittasida oʻzingizni tanib qolasiz.</span><span data-ru>Пять реальных кейсов. Каждый — своя сфера. В одном из них вы узнаете себя.</span></p>
     <div class="cases-grid" data-stagger>
       <article class="ccard rv">
-        <div class="ph mono" data-ini="AB">
+        <div class="ph"><img decoding="async" src="/masterclass/img/cases/anvar.jpg" width="640" height="640" alt="Anvar Baxtiyorov" loading="lazy">
           <div class="who"><b>Anvar Baxtiyorov</b><span><span data-uz>Prodyuser · infobiznes</span><span data-ru>Продюсер · инфобизнес</span></span></div>
         </div>
         <div class="body">
@@ -1482,7 +1469,7 @@ body.lb-open .rev-track{animation-play-state:paused}
         </div>
       </article>
       <article class="ccard rv">
-        <div class="ph mono" data-ini="AN">
+        <div class="ph"><img decoding="async" src="/masterclass/img/cases/abdullo.jpg" width="640" height="640" alt="Abdullo Nasullaev" loading="lazy">
           <div class="who"><b>Abdullo Nasullaev</b><span><span data-uz>Media · YouTube</span><span data-ru>Медиа · YouTube</span></span></div>
         </div>
         <div class="body">
@@ -1501,7 +1488,7 @@ body.lb-open .rev-track{animation-play-state:paused}
         </div>
       </article>
       <article class="ccard rv">
-        <div class="ph mono" data-ini="BR">
+        <div class="ph"><img decoding="async" src="/masterclass/img/cases/bobir.jpg" width="640" height="640" alt="Bobir Roʻzimatov" loading="lazy">
           <div class="who"><b>Bobir Roʻzimatov</b><span><span data-uz>Qurilish · 2018-yildan</span><span data-ru>Строительство · с 2018</span></span></div>
         </div>
         <div class="body">
@@ -1520,7 +1507,7 @@ body.lb-open .rev-track{animation-play-state:paused}
         </div>
       </article>
       <article class="ccard rv">
-        <div class="ph mono" data-ini="MR">
+        <div class="ph"><img decoding="async" src="/masterclass/img/cases/munira.jpg" width="640" height="640" alt="Munira Rahimova" loading="lazy">
           <div class="who"><b>Munira Rahimova</b><span><span data-uz>Carbonado · kelin koʻylaklari</span><span data-ru>Carbonado · свадебные платья</span></span></div>
         </div>
         <div class="body">
@@ -1539,7 +1526,7 @@ body.lb-open .rev-track{animation-play-state:paused}
         </div>
       </article>
       <article class="ccard rv">
-        <div class="ph mono" data-ini="MA">
+        <div class="ph"><img decoding="async" src="/masterclass/img/cases/maxmut.jpg" width="640" height="640" alt="Maxmut Abdulaziziv" loading="lazy">
           <div class="who"><b>Maxmut Abdulaziziv</b><span><span data-uz>Onlayn taʼlim · zapusklar</span><span data-ru>Онлайн-образование · запуски</span></span></div>
         </div>
         <div class="body">
