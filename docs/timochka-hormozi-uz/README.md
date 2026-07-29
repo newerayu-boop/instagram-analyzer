@@ -1,6 +1,16 @@
-# E'tibor × Offer — Timochka + Hormozi (o'zbek tilida, A3)
+# Marketolog AI-agent — yo'riqnoma (o'zbek tilida, A3)
 
-Ikkita metodika bitta hujjatga yig'ilgan va o'zbek tiliga (B1 daraja) o'girilgan.
+Bu hujjat ikki vazifani bajaradi:
+
+1. **Sun'iy intellekt agenti uchun yo'riqnoma.** Matnni AI'ga (ChatGPT, Claude va
+   boshqalar) bering va yozing: «Sen shu yo'riqnoma bo'yicha ishlaydigan marketolog
+   agentsan». Shundan keyin u kontent reja tuzadi, rils ssenariylarini yozadi,
+   offer yig'adi va sotuv matnlarini tayyorlaydi — faqat shu ikki metodika doirasida.
+2. **Odam uchun bosma qo'llanma.** A3 da chop etib, stol ustida yoki devorda
+   saqlash mumkin.
+
+Ichida ikkita metodika bitta sistemaga yig'ilgan va o'zbek tiliga (B1 daraja)
+o'girilgan.
 
 | Fayl | Nima |
 |---|---|
@@ -25,7 +35,7 @@ Bu **qo'shish emas, ko'paytirish**. Bittasi nolga teng bo'lsa — natija ham nol
 
 | Bet | Qism | Nima haqida |
 |---|---|---|
-| 1 | Muqova | Asosiy formula, mundarija, ikkala muallif haqida |
+| 1 | **Muqova / agent kartochkasi** | Bu nima ekani, agent nima qila oladi (4 blok), uni qanday ishga tushirish, asosiy formula |
 | 2 | **Bosh sxema** | Ikkala metodika qanday ulanadi + 2 ta tipik xato |
 | 3–6 | **1-QISM · Timochka** | Kontent turlari (60/30/10), 6 usul g'oya topish, ssenariy strukturasi, 5 omil, ishlab chiqarish, voronka, raqamlar |
 | 7–10 | **2-QISM · Hormozi** | Bozor va narx, qiymat tenglamasi, «katta shlem» offerining 5 qadami, 5 ta kuchaytirgich |
