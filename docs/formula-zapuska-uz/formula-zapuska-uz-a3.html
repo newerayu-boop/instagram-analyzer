@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<title>Formula Zapuska — To'liq qo'llanma (A3)</title>
+<style>
+/* ============================================================
+   FORMULA ZAPUSKA — to'liq qo'llanma
+   A3 (297 x 420 mm), portret. Bosmaga tayyor.
+   ============================================================ */
+
+@page { size: A3 portrait; margin: 0; }
+
+:root{
+  --ink:      #14110E;
+  --ink-2:    #3E3730;
+  --muted:    #7A7168;
+  --gold:     #A8801A;
+  --gold-2:   #C9A227;
+  --gold-pale:#F6EFDC;
+  --paper:    #FFFEFA;
+  --line:     #DED5C4;
+  --tint:     #FBF7EC;
+}
+
+*{ box-sizing: border-box; }
+
+html,body{ margin:0; padding:0; background:#8C8C8C; }
+
+body{
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ---------- Sahifa ---------- */
+.page{
+  position: relative;
+  width: 297mm;
+  height: 420mm;
+  padding: 17mm 17mm 14mm;
+  margin: 0 auto 8mm;
+  background: var(--paper);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+@media print{
+  html,body{ background:#fff; }
+  .page{ margin:0; box-shadow:none; page-break-after: always; break-after: page; }
+  .page:last-child{ page-break-after: auto; break-after: auto; }
+}
+@media screen{
+  .page{ box-shadow: 0 2mm 8mm rgba(0,0,0,.35); }
+}
+
+/* ---------- Kolontitul ---------- */
+.runhead{
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 8.5pt; letter-spacing:.16em; text-transform:uppercase;
+  color: var(--muted);
+  border-bottom: .6pt solid var(--line);
+  padding-bottom: 3mm; margin-bottom: 8mm;
+  flex: 0 0 auto;
+}
+.runhead b{ color: var(--gold); font-weight:700; letter-spacing:.16em; }
+
+.runfoot{
+  margin-top: auto;
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 8pt; letter-spacing:.1em; color: var(--muted);
+  border-top: .6pt solid var(--line);
+  padding-top: 3mm;
+  flex: 0 0 auto;
+}
+.runfoot .pg{ font-weight:700; color: var(--ink-2); }
+
+.body{ flex: 1 1 auto; min-height:0; }
+
+/* ---------- Tipografika ---------- */
+h1,h2,h3,h4,.kicker{ font-family: Helvetica, Arial, sans-serif; }
+
+.kicker{
+  font-size: 9pt; letter-spacing:.24em; text-transform:uppercase;
+  color: var(--gold); font-weight:700; margin:0 0 4mm;
+}
+
+h1{ font-size: 50pt; line-height:.98; letter-spacing:-.02em; margin:0 0 6mm; font-weight:800; }
+h2{ font-size: 29pt; line-height:1.06; letter-spacing:-.01em; margin:0 0 3mm; font-weight:800; }
+h3{ font-size: 15.5pt; line-height:1.15; margin:0 0 2.5mm; font-weight:700; }
+
+p{ margin:0 0 2.8mm; font-size: 13pt; line-height:1.5; }
+.lead{ font-size: 14.5pt; line-height:1.5; color: var(--ink-2); }
+.small{ font-size: 11.2pt; line-height:1.45; color: var(--ink-2); }
+
+ul,ol{ margin:0 0 2.8mm; padding-left: 5.5mm; }
+li{ font-size: 13pt; line-height:1.5; margin-bottom: 1.4mm; }
+
+b,strong{ font-weight:700; }
+em{ font-style: italic; color: var(--ink-2); }
+
+.rule{ height:.8pt; background: var(--line); margin: 6mm 0; }
+.rule-gold{ height:1.6pt; background: var(--gold); width: 28mm; margin: 0 0 6mm; }
+
+/* ---------- Bo'lim sarlavhasi ---------- */
+.sec-head{ margin-bottom: 7mm; }
+.sec-head .num{
+  font-family: Helvetica, Arial, sans-serif; font-weight:800;
+  font-size: 9pt; letter-spacing:.2em; color:var(--gold);
+  display:block; margin-bottom: 2.5mm;
+}
+.sec-head p{ max-width: 190mm; }
+
+/* ---------- Ikki ustun ---------- */
+.grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 6mm 10mm; align-items:start; }
+.grid2-t{ display:grid; grid-template-columns: 1fr 1fr; gap: 6mm 10mm; align-items:stretch; }
+.span2{ grid-column: 1 / -1; }
+
+/* ---------- Termin kartochkasi ---------- */
+.term{
+  border-top: 1.2pt solid var(--gold);
+  padding-top: 3mm;
+  break-inside: avoid;
+}
+.term .t-num{
+  font-family: Helvetica, Arial, sans-serif; font-size:8.5pt; font-weight:800;
+  color: var(--gold); letter-spacing:.1em; display:block; margin-bottom:1mm;
+}
+.term h3{ margin-bottom: 1.8mm; }
+.term p{ font-size: 12pt; line-height:1.46; margin-bottom:1.8mm; }
+.term .ex{
+  font-size: 11.2pt; line-height:1.45; color: var(--ink-2);
+  border-left: 1.6pt solid var(--gold-pale); padding-left: 3mm; margin:0;
+}
+.term .ex b{ color: var(--gold); font-family: Helvetica, Arial, sans-serif; font-size:8.5pt;
+  letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:.8mm; }
+
+/* ---------- Maslahat / eslatma bloki ---------- */
+.tip{
+  background: var(--tint);
+  border-left: 2.4pt solid var(--gold);
+  padding: 4mm 5mm;
+  margin: 0 0 5mm;
+  break-inside: avoid;
+}
+.tip .lbl{
+  font-family: Helvetica, Arial, sans-serif; font-size:8.5pt; font-weight:800;
+  letter-spacing:.18em; text-transform:uppercase; color: var(--gold);
+  display:block; margin-bottom: 1.6mm;
+}
+.tip p{ margin-bottom: 1.8mm; font-size:12.3pt; }
+.tip p:last-child{ margin-bottom:0; }
+
+/* ---------- Savollar ro'yxati ---------- */
+.qlist{ list-style:none; margin:0 0 5mm; padding:0; counter-reset: q; }
+.qlist li{
+  counter-increment: q;
+  position: relative;
+  padding-left: 11mm;
+  margin-bottom: 3.4mm;
+  font-size: 13.5pt; line-height:1.42;
+  break-inside: avoid;
+}
+.qlist li::before{
+  content: counter(q);
+  position:absolute; left:0; top:.2mm;
+  font-family: Helvetica, Arial, sans-serif; font-weight:800; font-size:10pt;
+  color: var(--gold);
+  width: 8mm; height: 8mm; line-height: 8mm; text-align:center;
+  border: 1pt solid var(--gold); border-radius: 50%;
+}
+.qlist li .ru{ display:block; font-size:9.5pt; color: var(--muted); font-style:italic; margin-top:.8mm; }
+
+/* ---------- Dastur / hafta bloki ---------- */
+.week{
+  border: .8pt solid var(--line);
+  border-top: 2.4pt solid var(--gold);
+  padding: 4.5mm 5mm;
+  break-inside: avoid;
+}
+.week h3{ color: var(--ink); margin-bottom:2.5mm; }
+.week ul{ padding-left:4.5mm; margin-bottom:3mm; }
+.week li{ font-size:12pt; }
+.week .res{
+  background: var(--gold-pale); padding: 2.8mm 3.6mm;
+  font-size: 11.4pt; line-height:1.42; margin:0;
+}
+.week .res b{ color: var(--gold); }
+
+/* ---------- Tarif ---------- */
+.tariff{
+  border: .8pt solid var(--line); padding: 5mm; break-inside: avoid;
+  display:flex; flex-direction:column;
+}
+.tariff.hi{ border: 1.6pt solid var(--gold); background: var(--tint); }
+.tariff h3{ margin-bottom:1mm; }
+.tariff .price{
+  font-family: Helvetica, Arial, sans-serif; font-weight:800; font-size:22pt;
+  color: var(--gold); margin: 0 0 3mm; letter-spacing:-.01em;
+}
+.tariff ul{ list-style:none; padding:0; margin:0; }
+.tariff li{ font-size:11.7pt; padding-left:5mm; position:relative; margin-bottom:1.5mm; }
+.tariff li::before{ content:"—"; position:absolute; left:0; color:var(--gold); }
+
+/* ---------- Prompt kartochkasi ---------- */
+.step{
+  border-top: 2.4pt solid var(--gold);
+  padding-top: 3.5mm; margin-bottom: 5mm;
+  break-inside: avoid;
+}
+.step .st{
+  font-family: Helvetica, Arial, sans-serif; font-size:8.5pt; font-weight:800;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--gold);
+  display:block; margin-bottom:1.5mm;
+}
+.step h3{ font-size:17pt; margin-bottom:2mm; }
+.step > p{ font-size:12.3pt; color: var(--ink-2); }
+
+.prompt{
+  background: var(--tint);
+  border: .8pt solid var(--line);
+  padding: 4.5mm 5mm;
+  margin: 0 0 4mm;
+  break-inside: avoid;
+}
+.prompt .plbl{
+  font-family: Helvetica, Arial, sans-serif; font-size:8pt; font-weight:800;
+  letter-spacing:.18em; text-transform:uppercase; color: var(--gold);
+  display:block; margin-bottom: 2.4mm;
+  border-bottom:.6pt solid var(--line); padding-bottom:1.6mm;
+}
+.prompt p, .prompt li{
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10.7pt; line-height: 1.44; margin-bottom: 1.9mm;
+}
+.prompt ul{ list-style:none; padding-left:0; margin-bottom:1.8mm; }
+.prompt li{ padding-left: 4mm; position:relative; }
+.prompt li::before{ content:"—"; position:absolute; left:0; color: var(--gold); }
+.prompt p:last-child, .prompt ul:last-child{ margin-bottom:0; }
+.ph{ color: var(--gold); font-weight:700; }
+
+/* ---------- Muqova ---------- */
+.cover{ display:flex; flex-direction:column; height:100%; }
+.cover .top{ flex:0 0 auto; }
+.cover .mid{ flex:1 1 auto; display:flex; flex-direction:column; justify-content:center; }
+.cover h1{ font-size: 68pt; }
+.cover .sub{ font-size: 18.5pt; line-height:1.35; color: var(--ink-2); max-width: 180mm; }
+
+.toc{ display:grid; grid-template-columns: 1fr 1fr; gap: 6mm 10mm; margin-top: 10mm; }
+.toc-item{ border-top: 1.2pt solid var(--gold); padding-top: 3mm; }
+.toc-item .n{
+  font-family: Helvetica, Arial, sans-serif; font-size:8.5pt; font-weight:800;
+  letter-spacing:.2em; color: var(--gold); display:block; margin-bottom:1.5mm;
+}
+.toc-item h3{ font-size:16.5pt; margin-bottom:1.5mm; }
+.toc-item p{ font-size:11.5pt; color: var(--ink-2); margin:0; }
+
+.badge{
+  display:inline-block; border:1pt solid var(--gold); color:var(--gold);
+  font-family: Helvetica, Arial, sans-serif; font-size:8.5pt; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; padding: 1.6mm 3.4mm;
+  margin-right: 2mm;
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 1 — MUQOVA ================= -->
+<section class="page">
+  <div class="cover">
+    <div class="top">
+      <div class="runhead" style="border-bottom:1.6pt solid var(--gold);">
+        <span><b>Formula Zapuska</b></span>
+        <span>O'zbek tilida &nbsp;·&nbsp; A3 format</span>
+      </div>
+    </div>
+
+    <div class="mid">
+      <span class="kicker">To'liq qo'llanma · 4 ta hujjat bitta joyda</span>
+      <h1>Formula<br>Zapuska</h1>
+      <div class="rule-gold" style="width:60mm;height:2.4pt;"></div>
+      <p class="sub">
+        Onlayn-kursni noldan sotishgacha olib chiqish bo'yicha ish qo'llanmasi.
+        Ichida: asosiy so'zlar lug'ati, mijozni o'rganish savollari, tayyor produkt
+        namunasi va AI (sun'iy intellekt) uchun prompt-shablonlar.
+      </p>
+
+      <div style="margin-top:7mm;">
+        <span class="badge">Oddiy til</span>
+        <span class="badge">Bosmaga tayyor</span>
+        <span class="badge">A3 · 297 × 420 mm</span>
+      </div>
+
+      <div class="toc">
+        <div class="toc-item">
+          <span class="n">1-BO'LIM · 2–3-bet</span>
+          <h3>Zapusklar lug'ati</h3>
+          <p>19 ta asosiy so'z. Boshqa bo'limlarni tushunish uchun avval shuni o'qing.</p>
+        </div>
+        <div class="toc-item">
+          <span class="n">2-BO'LIM · 4-bet</span>
+          <h3>CustDev savollari</h3>
+          <p>Mijoz bilan suhbat. Uning maqsadi nima va nima xalaqit berayotganini bilib olamiz.</p>
+        </div>
+        <div class="toc-item">
+          <span class="n">3-BO'LIM · 5–6-bet</span>
+          <h3>Produkt kontsepti namunasi</h3>
+          <p>Tayyor misol: taklif, dastur, tariflar, kafolat. Shu andozadan nusxa oling.</p>
+        </div>
+        <div class="toc-item">
+          <span class="n">4-BO'LIM · 7–9-bet</span>
+          <h3>GPT-sotuvlar: vebinardan voronkagacha</h3>
+          <p>AI uchun tayyor prompt-shablonlar: vebinar ssenariysi, dojim, e'tirozlar, avtovoronka.</p>
+        </div>
+      </div>
+
+      <div class="tip" style="margin-top:9mm;">
+        <span class="lbl">Qanday ishlatish kerak</span>
+        <p>
+          Bu qo'llanmani boshidan oxirigacha o'qib chiqishingiz shart emas.
+          <b>Avval 1-bo'limni</b> o'qing — u yerda hamma so'z tushuntirilgan.
+          Keyin <b>2-bo'limdagi savollar bilan</b> 5–10 ta odam bilan gaplashing.
+          Shundan keyin <b>3-bo'limdagi andoza bo'yicha</b> o'z produktingizni yozing.
+          Va oxirida <b>4-bo'limdagi promptlarni</b> ChatGPT'ga qo'yib, matnlarni tayyorlang.
+        </p>
+        <p class="small" style="margin-bottom:0;">
+          Kvadrat qavs ichidagi <span class="ph">[shunaqa joylar]</span> — bu siz o'zingizning
+          ma'lumotingizni yozadigan bo'sh joy.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2 — LUG'AT (1) ================= -->
+<section class="page">
+  <div class="runhead"><span><b>Formula Zapuska</b> · 1-bo'lim</span><span>Zapusklar lug'ati</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">1-BO'LIM</span>
+      <h2>Zapusklar lug'ati</h2>
+      <div class="rule-gold"></div>
+      <p class="lead">
+        Zapusk sohasida ko'p so'zlar rus va ingliz tilidan kelgan. Ular tarjima qilinmaydi —
+        hamma shunday gapiradi. Shuning uchun avval mana shu 19 ta so'zni yodda tuting.
+        Keyin qolgan hamma narsa tushunarli bo'ladi.
+      </p>
+    </div>
+
+    <div class="grid2">
+
+      <div class="term">
+        <span class="t-num">01</span>
+        <h3>Zapusk</h3>
+        <p>Bu — sotuv sistemasi. Biz produkt yaratamiz, auditoriyani tayyorlaymiz,
+        qiziqish uyg'otamiz… keyin esa BUM — sotuvni ochamiz. Mana shuning hammasi zapusk.</p>
+        <p class="ex"><b>Misol uchun</b>
+        Har bir yangi iPhone xuddi shu sistema bilan sotiladi. Avval intriga qiladi,
+        keyin prezentatsiya qiladi, keyin ajiotaj yaratadi. Odamlar navbatga turadi.
+        Keyin BUM — sotuv ochiladi.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">02</span>
+        <h3>Sherikli zapusk<br><em style="font-size:11.6pt;">(partnyorskiy zapusk)</em></h3>
+        <p>Bu — bir necha odam birlashib, kursni sotish uchun zapusk qilishi.
+        Ko'pincha bu bloger va ekspert. Bloger auditoriya beradi, ekspert esa
+        produktning o'zini yaratadi.</p>
+        <p class="ex"><b>Misol uchun</b>
+        Men bloger bilan kelishaman: mening saytlar haqidagi kursimni uning blogida sotamiz.
+        Mana bu — sherikli zapusk bo'ladi.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">03</span>
+        <h3>Vebinar</h3>
+        <p>Bu — jonli efir. Siz 1,5–2 soat davomida biror narsani gapirasiz, odamlar esa
+        real vaqtda onlayn ko'rib turadi. Sizda prezentatsiya bor va odamlar uni ko'radi.
+        Yana onlayn-chat ham bor: odamlar u yerga xabar va savol yozadi. Siz uni ko'rasiz va
+        javob berasiz — shunday qilib jonli suhbat effekti chiqadi.</p>
+        <p class="ex"><b>Eslatma</b>
+        Vebinar o'tkazish uchun maxsus saytlar bor. Hammasi 5 daqiqada sozlanadi.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">04</span>
+        <h3>Besplatnik <em style="font-size:11.6pt;">(bepul mahsulot)</em></h3>
+        <p>Shunday deb bepul vebinar yoki bepul kursni atashadi. Undan keyin pullik
+        produkt sotiladi.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">05</span>
+        <h3>Auditoriya</h3>
+        <p>Obunachilar.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">06</span>
+        <h3>Ohvat <em style="font-size:11.6pt;">(qamrov)</em></h3>
+        <p>Storislaringizni ko'rgan odamlar soni. «Postlar ohvati» ham bor — bu
+        postlaringizni necha odam ko'rgani.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">07</span>
+        <h3>Reaksiyalar</h3>
+        <p>Odamlar sizning storisingizga javoban smaylik yuborsa — mana shu reaksiya.
+        Shu yo'l bilan odamlar storisingizga o'z munosabatini bildiradi.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">08</span>
+        <h3>Progrev <em style="font-size:11.6pt;">(qizdirish)</em></h3>
+        <p>Bu — storis va postlardagi kontent zanjiri. U tomoshabinni asta-sekin kursni
+        sotib olishga olib boradi. Sxemaga qarab 3 kundan 1 yilgacha davom etadi.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">09</span>
+        <h3>Storytelling</h3>
+        <p>Bu — hikoya aytish. Postlarda ham, storislarda ham uchraydi.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">10</span>
+        <h3>Registratsiyalar</h3>
+        <p>Vebinarga yoki bepul kursga yozilgan odamlar soni.</p>
+      </div>
+
+      <div class="term span2">
+        <span class="t-num">11</span>
+        <h3>Dohodimost <em style="font-size:11.6pt;">(yetib kelish foizi)</em></h3>
+        <p>Bu — vebinargacha yoki bepul kursgacha haqiqatan yetib kelgan odamlar foizi.
+        Misol uchun, vebinarga 1000 ta registratsiya bo'lgan, lekin efirning o'zida atigi
+        200 ta odam qatnashgan bo'lsa — yetib kelish 20% ga teng bo'ladi.
+        Bu foizni maxsus usullar bilan oshirish kerak.</p>
+      </div>
+
+    </div>
+  </div>
+  <div class="runfoot"><span>Zapusklar lug'ati</span><span class="pg">2</span></div>
+</section>
+
+<!-- ================= 3 — LUG'AT (2) ================= -->
+<section class="page">
+  <div class="runhead"><span><b>Formula Zapuska</b> · 1-bo'lim</span><span>Zapusklar lug'ati</span></div>
+  <div class="body">
+
+    <div class="grid2">
+
+      <div class="term">
+        <span class="t-num">12</span>
+        <h3>Lid-magnit</h3>
+        <p>Bu — foydali bepul produkt. Biz uni tomoshabinga uning kontakti yoki e'tibori
+        evaziga beramiz.</p>
+        <p>Lid-magnit rolida bepul gayd, vebinar yoki butun bir kurs bo'lishi mumkin.
+        Uning maqsadi — potensial mijozni biz bilan muloqotga jalb qilish, qiziqish va
+        ishonch uyg'otish.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">13</span>
+        <h3>Tripvayer</h3>
+        <p>Bu — arzon, kichkina, lekin juda ham foydali produkt. Tripvayerning maqsadi —
+        odamda bizdan sotib olishning yoqimli tajribasini yaratish.</p>
+        <p class="ex"><b>Nimaga kerak?</b>
+        Odam bizdan 100 rublga biror narsa sotib olsa va juda mamnun bo'lsa,
+        keyinchalik u bizdan 30 000 rublga ham katta ehtimol bilan sotib oladi.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">14</span>
+        <h3>Upakovka <em style="font-size:11.6pt;">(o'ram)</em></h3>
+        <p>Bu — produktimizning vizual qismi: sayt dizayni, prezentatsiya dizayni,
+        gayd dizayni. Ba'zan yaxshi produkt yomon upakovka qilinadi — va shuning uchun
+        u yomon bo'lib ko'rinadi.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">15</span>
+        <h3>Gayd</h3>
+        <p>Bu — 1 betdan 100 betgacha bo'lgan elektron kitob. Ko'pincha PDF formatda
+        va ma'lum bir dizaynda bo'ladi.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">16</span>
+        <h3>Nastavnichestvo <em style="font-size:11.6pt;">(mentorlik)</em></h3>
+        <p>Bu — o'quvchi bilan doimiy shaxsiy ish. Misol uchun, 2 oy davomida o'quvchi
+        bilan haftada 1 marta uchrashsangiz va uning savollarini ishlab chiqsangiz —
+        demak, u sizning mentorligingizdan o'tayapti.</p>
+        <p class="ex"><b>Eslatma</b>
+        Odatda bu format qolgan hamma formatdan qimmat turadi.</p>
+      </div>
+
+      <div class="term">
+        <span class="t-num">17</span>
+        <h3>Sotuv oynasi <em style="font-size:11.6pt;">(okno prodaj)</em></h3>
+        <p>Bu — bir necha soatdan 10 kungacha bo'lgan davr. Shu vaqt ichida biz havola
+        chiqaramiz va u orqali sotib olish mumkin. Qolgan vaqtda esa bu havola ishlamaydi,
+        sotib olib bo'lmaydi.</p>
+        <p class="ex"><b>Nimaga shunday?</b>
+        Sotuv oynasi shuning uchun kerak: potensial xaridor ishni cho'zmasin, qaror qabul
+        qilsin. Sotuvlarning ko'pchiligi oynaning birinchi va oxirgi soatlarida bo'ladi.</p>
+      </div>
+
+      <div class="term span2">
+        <span class="t-num">18</span>
+        <h3>PLF — Product Launch Formula</h3>
+        <p>Bu — Jeff Uokerning «Zapusk» kitobida yozilgan sistema. Uning mohiyati shunday:
+        avval odamlarga 2–3 ta bepul, foydali va qiziqarli video yoki fayl beriladi,
+        keyin esa sotuv ochiladi. Ko'pincha bu bepul kurs yoki marafon orqali amalga oshiriladi.
+        Katta ehtimol bilan siz blogerlarda shunaqa narsani ko'rgansiz.</p>
+      </div>
+
+      <div class="term span2">
+        <span class="t-num">19</span>
+        <h3>Ekspert-bloger</h3>
+        <p>Bu — o'z ishining professionali bo'lgan va shu mavzuda blog yuritadigan odam.
+        Misol uchun, fitnes haqida blog yuritadigan zo'r fitnes-trener. Yoki target haqida
+        blog yuritadigan targetolog. Bunaqa odamlarni zapusk qilish eng oson.</p>
+      </div>
+
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="tip">
+      <span class="lbl">Bo'limdan asosiy xulosa</span>
+      <p>
+        Zapusk — bu «bir kunda sotdim» degani emas. Bu ketma-ketlik:
+        <b>auditoriya → bepul mahsulot (lid-magnit yoki vebinar) → progrev →
+        sotuv oynasi → sotuv</b>. Har bir bosqichning o'z nomi bor, va endi siz
+        ularning hammasini bilasiz.
+      </p>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>Zapusklar lug'ati</span><span class="pg">3</span></div>
+</section>
+
+<!-- ================= 4 — CUSTDEV ================= -->
+<section class="page">
+  <div class="runhead"><span><b>Formula Zapuska</b> · 2-bo'lim</span><span>CustDev savollari</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">2-BO'LIM</span>
+      <h2>CustDev savollari</h2>
+      <div class="rule-gold"></div>
+      <p class="lead">
+        CustDev — bu potensial mijoz bilan oddiy suhbat. Siz hech narsa sotmaysiz.
+        Siz faqat so'raysiz va tinglaysiz. Maqsad bitta: odamning hozirgi holatini,
+        maqsadini va unga nima xalaqit berayotganini tushunish. Mana shu ma'lumotdan keyin
+        produkt yozish juda ham oson bo'ladi.
+      </p>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h3 style="color:var(--gold);letter-spacing:.06em;">Birinchi qism · «A nuqta»</h3>
+        <ol class="qlist">
+          <li>Yaqin yarim yilga qanaqa maqsadlaring bor? <em>(mavzu bo'yicha)</em></li>
+          <li>Ideal holatda qanaqa bo'lishini xohlarding?</li>
+          <li>Nimaga senga aynan shu kerak?</li>
+          <li>Bu masalani hal qilishga avval urinib ko'rganmisan?</li>
+          <li>Nimaga natija chiqmadi?</li>
+          <li>Maqsadga yetishga qanaqa to'siqlar xalaqit beryapti?</li>
+          <li>Hozir bu soha bilan munosabating qanaqa?</li>
+          <li>Maqsadga yetish uchun eng ko'p nima yetishmayapti?</li>
+        </ol>
+
+        <div class="tip">
+          <span class="lbl">Muhim</span>
+          <p>
+            Boshlang'ich bosqichda bizning vazifamiz — odamning
+            <b>«A NUQTASI»ni</b>, ya'ni hozirgi holatini, uning maqsadlarini va
+            ularni amalga oshirishga nima xalaqit berayotganini imkon qadar
+            batafsil o'rganish.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="color:var(--gold);letter-spacing:.06em;">Ikkinchi qism · Bozor va produkt</h3>
+        <ol class="qlist" start="9" style="counter-reset: q 8;">
+          <li>Bozorda kimni bilasan, kimni kuzatasan?</li>
+          <li>Nimaga menga obuna bo'lgansan?</li>
+          <li>Sizningcha, mening super-kuchim nimada?</li>
+          <li>Bu sohada avval produkt sotib olganmisan?</li>
+          <li>Natijalar qanaqa bo'ldi, nimasi yoqdi?</li>
+          <li>Ideal produktni qanaqa tasavvur qilasan?</li>
+          <li>Spiker va kursni tanlashda nimaga qaraysan?</li>
+          <li>Kursga yozilishing uchun men senga nimani kafolatlashim kerak?</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="tip">
+      <span class="lbl">Muhim: robotdek gaplashmang</span>
+      <p>
+        Bu — <b>taxminiy</b> savollar ro'yxati. Struktura shuning uchun berilgan:
+        suhbatni nimadandir boshlang va yo'ldan adashib qolmang.
+      </p>
+      <p>
+        Lekin ro'yxat bo'yicha robotdek ketmang. Odam bilan <b>odamdek</b> gaplashing.
+        Uning holatiga chin dildan kirishga harakat qiling: qanaqa muammolari bor,
+        ularning yechimini u qanaqa ko'radi va nimaga pul to'lashga tayyor.
+      </p>
+    </div>
+
+    <div class="grid2" style="margin-top:2mm;">
+      <div class="tip" style="margin-bottom:0;">
+        <span class="lbl">Nechta suhbat kerak?</span>
+        <p style="margin-bottom:0;">
+          Kamida <b>5–10 ta odam</b> bilan gaplashing. Bittasi bilan gaplashib
+          xulosa chiqarish — bu xato. Takrorlanadigan javoblarni qidiring:
+          agar 7 ta odamdan 5 tasi bir xil narsani aytsa, demak, mana shu
+          sizning produktingizning asosi.
+        </p>
+      </div>
+      <div class="tip" style="margin-bottom:0;">
+        <span class="lbl">Javoblarni qanday yozib olish kerak</span>
+        <p style="margin-bottom:0;">
+          Odamning <b>o'z so'zlarini</b> aynan qanday aytgan bo'lsa, shundayligicha
+          yozib oling. Keyin shu so'zlarni oferingizga, sotuv sahifangizga va
+          storislaringizga qo'yasiz. Mijoz o'z so'zini ko'rsa — «bu men haqimda»
+          deb o'ylaydi.
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>CustDev savollari</span><span class="pg">4</span></div>
+</section>
+
+<!-- ================= 5 — PRODUKT KONTSEPTI (1) ================= -->
+<section class="page">
+  <div class="runhead"><span><b>Formula Zapuska</b> · 3-bo'lim</span><span>Produkt kontsepti namunasi</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">3-BO'LIM</span>
+      <h2>Produkt kontsepti namunasi</h2>
+      <div class="rule-gold"></div>
+      <p class="lead">
+        Bu — tayyor misol. Uni o'qing va xuddi shu tuzilma bo'yicha o'z produktingizni yozing.
+        Struktura 8 ta punktdan iborat: taklif → kimga → format → dastur → natija →
+        tariflar → nima kiradi → kafolat.
+      </p>
+    </div>
+
+    <div class="tip">
+      <span class="lbl">1 · Asosiy taklif (offer)</span>
+      <p style="font-size:15.5pt;line-height:1.4;margin-bottom:0;">
+        <b>Sotuvchi blogni upakovka qil, 1000 ta obunachi yig' va
+        100 000 rubldan ko'p mijoz oqimini ol.</b>
+      </p>
+    </div>
+
+    <div class="grid2-t" style="margin-bottom:6mm;">
+      <div class="week">
+        <h3>2 · Kimga mos keladi?</h3>
+        <p style="font-size:12pt;margin-bottom:2mm;">Agar siz:</p>
+        <ul>
+          <li>Xizmat sotsangiz</li>
+          <li>Ekspert bo'lsangiz</li>
+          <li>Frilanser bo'lsangiz</li>
+          <li>SMM-chi bo'lsangiz</li>
+        </ul>
+        <p class="res" style="margin-top:auto;"><b>Maslahat:</b> bu ro'yxat qanchalik aniq bo'lsa,
+        odam «bu men haqimda» deb shuncha tez tushunadi.</p>
+      </div>
+
+      <div class="week">
+        <h3>3 · Format</h3>
+        <p style="font-size:12pt;margin-bottom:1.5mm;"><b>Onlayn-kurs:</b></p>
+        <ul>
+          <li>4 hafta</li>
+          <li>2 soatdan 4 ta master-klass</li>
+          <li>Topshiriqlari bilan 4 ta sprint</li>
+          <li>Razborlari bilan 4 ta efir</li>
+        </ul>
+        <p class="res"><b>Realiti-shou:</b> o'quvchilardan bittasini olamiz va hammaning
+        ko'z o'ngida uning blogini 1000 ta obunachigacha o'stiramiz. Butun yo'lni
+        5 ta vlogda ko'rsatamiz.</p>
+      </div>
+    </div>
+
+    <h3 style="color:var(--gold);letter-spacing:.06em;margin-bottom:4mm;">4 · Kurs dasturi</h3>
+
+    <div class="grid2-t">
+      <div class="week">
+        <h3>1-hafta: Strategiya va profil upakovkasi</h3>
+        <ul>
+          <li>Maqsad qo'yamiz va blog kontseptsiyasini yozamiz</li>
+          <li>6 oyga strategiya yozamiz</li>
+          <li>Birinchi kontent-rejani yozamiz</li>
+          <li>Birinchi fotosessiyani tashkil qilamiz</li>
+        </ul>
+        <p class="res"><b>Natija:</b> blogni nima haqida, kim uchun va nima uchun
+        yuritishingiz sizga tushunarli bo'ladi. Sizda kontent-reja va 12 ta chiroyli
+        foto bor.</p>
+      </div>
+
+      <div class="week">
+        <h3>2-hafta: Birinchi 1000 ta obunachi</h3>
+        <ul>
+          <li>Bepul reklama usullari</li>
+          <li>Reels orqali birinchi 1000 ta obunachini qanday yig'ish kerak?</li>
+          <li>Telegram-kanalga pulsiz 1000 ta obunachini qanday yig'ish mumkin?</li>
+        </ul>
+        <p class="res"><b>Natija:</b> birinchi 200 ta obunachini yig'dingiz va
+        1000 tasini qanday qilishni tushunasiz.</p>
+      </div>
+
+      <div class="week">
+        <h3>3-hafta: Pullik reklama</h3>
+        <ul>
+          <li>Pullik reklama usullari</li>
+          <li>Reklama podachalari — bu qanaqa?</li>
+          <li>Reklama sotib olamiz</li>
+        </ul>
+        <p class="res"><b>Natija:</b> 10 000 ta obunachini qanday qilishni tushunasiz.</p>
+      </div>
+
+      <div class="week">
+        <h3>4-hafta: Sotuvlar</h3>
+        <ul>
+          <li>Oddiy progrev sxemasi</li>
+          <li>Diagnostika orqali shaxsiy sotuv sxemasi</li>
+        </ul>
+        <p class="res"><b>Natija:</b> birinchi sotuvlaringizni qildingiz.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>Produkt kontsepti namunasi</span><span class="pg">5</span></div>
+</section>
+
+<!-- ================= 6 — PRODUKT KONTSEPTI (2) ================= -->
+<section class="page">
+  <div class="runhead"><span><b>Formula Zapuska</b> · 3-bo'lim</span><span>Produkt kontsepti namunasi</span></div>
+  <div class="body">
+
+    <div class="tip">
+      <span class="lbl">5 · O'qish yakunida odam nimaga erishadi</span>
+      <div class="grid2" style="gap:1mm 10mm;">
+        <p style="margin-bottom:0;">— Ekspert blogni upakovka qildi</p>
+        <p style="margin-bottom:0;">— Mijozlar topdi</p>
+        <p style="margin-bottom:0;">— 1000 ta obunachi yig'di</p>
+        <p style="margin-bottom:0;">— 100 000 rubl qildi</p>
+      </div>
+    </div>
+
+    <h3 style="color:var(--gold);letter-spacing:.06em;margin:6mm 0 4mm;">6 · Tariflar va narxlar</h3>
+
+    <div class="grid2-t" style="margin-bottom:6mm;">
+      <div class="tariff">
+        <h3>«Qarab turish»</h3>
+        <p class="price">9 900 rubl</p>
+        <ul>
+          <li>3 haftaga kirish</li>
+          <li>Chatga kirish</li>
+          <li>Kulisa ortiga kirish</li>
+          <li>Razborlarga kirish <em>(tomoshabin sifatida)</em></li>
+        </ul>
+      </div>
+
+      <div class="tariff hi">
+        <h3>«Optimal»</h3>
+        <p class="price">19 900 rubl</p>
+        <ul>
+          <li>3 haftaga kirish</li>
+          <li>Chatga kirish</li>
+          <li>Kulisa ortiga kirish</li>
+          <li>Razborlarga kirish <em>(ishtirokchi sifatida)</em></li>
+          <li>Bonus «sotuvlar» haftasiga kirish</li>
+          <li>Uy vazifasini tekshirish</li>
+          <li>Kurator bilan efirlar</li>
+          <li>Shou qahramoni bo'lish imkoniyati</li>
+          <li>Sovg'alar o'yini</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid2-t">
+      <div class="week">
+        <h3>7 · Yana nima kiradi?</h3>
+        <ul>
+          <li>Ishtirokchilar chati</li>
+          <li>Hisobotlar kanali</li>
+          <li>«Storis haftasi» chelenji</li>
+          <li>Psixolog bilan 2 ta efir</li>
+          <li>Taklif qilingan spiker bilan 2 ta efir</li>
+          <li>Moskvada 1 ta jonli trening</li>
+        </ul>
+        <p class="res"><b>Nimaga kerak?</b> Bunaqa qo'shimchalar produktning qiymatini
+        oshiradi, lekin narxni oshirmaydi. Odam «shuncha narsa uchun shu narxmi?»
+        deb o'ylaydi.</p>
+      </div>
+
+      <div class="week">
+        <h3>8 · Kafolat</h3>
+        <ul>
+          <li>Birinchi haftadan keyin «bu meniki emas» deb tushunsangiz —
+          pulingizni qaytaramiz.</li>
+        </ul>
+        <p class="res"><b>Nimaga kerak?</b> Kafolat xaridordan qo'rquvni oladi.
+        Odam «pulim yonib ketadi» deb o'ylamaydi — shuning uchun osonroq qaror
+        qabul qiladi.</p>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="tip" style="margin-bottom:0;">
+      <span class="lbl">O'zingiz uchun shu andozani to'ldiring</span>
+      <p>
+        Varaq oling va shu 8 ta punktni o'z produktingiz uchun yozib chiqing:
+        <b>1)</b> asosiy taklif — <b>2)</b> kimga mos — <b>3)</b> format —
+        <b>4)</b> dastur haftalar bo'yicha — <b>5)</b> yakuniy natija —
+        <b>6)</b> tariflar va narx — <b>7)</b> yana nima kiradi — <b>8)</b> kafolat.
+      </p>
+      <p style="margin-bottom:0;">
+        Har bir hafta oxirida <b>aniq natija</b> yozing. Odam nimani qo'liga olishini
+        ko'rsa, u sotib oladi. Faqat «bilim beramiz» degan gap sotmaydi.
+      </p>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>Produkt kontsepti namunasi</span><span class="pg">6</span></div>
+</section>
+
+<!-- ================= 7 — GPT (1) ================= -->
+<section class="page">
+  <div class="runhead"><span><b>Formula Zapuska</b> · 4-bo'lim</span><span>GPT-sotuvlar</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">4-BO'LIM</span>
+      <h2>GPT-sotuvlar:<br>vebinardan voronkagacha</h2>
+      <div class="rule-gold"></div>
+      <p class="lead">
+        Bu bo'limda sotuvni AI (sun'iy intellekt) yordamida avtomatlashtiramiz va
+        kuchaytiramiz. Pastdagi promptlarni ChatGPT'ga nusxalab qo'ying,
+        <span class="ph">[kvadrat qavs]</span> ichini o'z ma'lumotingiz bilan
+        to'ldiring — va tayyor matn oling.
+      </p>
+    </div>
+
+    <div class="grid2" style="margin-bottom:6mm;">
+      <div class="tip" style="margin-bottom:0;">
+        <span class="lbl">Spiker · Viktor Medvedev (@viktormedvedevii)</span>
+        <p style="margin-bottom:0;font-size:11.6pt;">
+          — Biznes-jarayonlarga va shaxsiy samaradorlikka AI'ni joriy qilish bo'yicha ekspert<br>
+          — «Repetitorlik imperiyasi» asoschisi — 20 000 ta bitiruvchi<br>
+          — Skolkovo rezidenti (ariza AI yordamida tayyorlangan)<br>
+          — «Rossiyaning yosh tadbirkori» tanlovi g'olibi
+        </p>
+      </div>
+      <div class="tip" style="margin-bottom:0;">
+        <span class="lbl">Dars maqsadi</span>
+        <p style="margin-bottom:0;font-size:11.6pt;">
+          — AI yordamida sotuvchi vebinar / KEV ssenariysini yaratish<br>
+          — Kanallar va botlar uchun progrev va dojim matnlarini tayyorlash<br>
+          — Tayyor javoblari bilan e'tirozlar xaritasini qurish<br>
+          — Oddiy avtovoronka uchun matn yozish
+        </p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <span class="lbl">Ikkita so'z — avval shuni bilib oling</span>
+      <p style="margin-bottom:1.6mm;">
+        <b>KEV</b> — «voronkaning asosiy bosqichi». Bu odam sotib olishga qaror qiladigan
+        joy: vebinar, bepul diagnostika yoki jonli uchrashuv.
+      </p>
+      <p style="margin-bottom:0;">
+        <b>Dojim</b> — vebinardan keyin hali sotib olmagan odamlarga yuboriladigan
+        eslatma xabarlar.
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="st">1-qadam</span>
+      <h3>KEV ssenariysi: «Formula Zapuska» strukturasi + sotuvlar</h3>
+      <p>AI vebinar bloklari uchun matn yozadi va ichiga keys hamda triggerlarni joylaydi.</p>
+    </div>
+
+    <div class="prompt">
+      <span class="plbl">Prompt-shablon · Vebinarning kontent bloki (1 / 2)</span>
+      <p>Sotuvchi spiker sifatida ish qil. Sen
+      «<span class="ph">[Vebinar mavzusi, masalan: Birinchi onlayn-kursni qanday zapusk
+      qilish kerak]</span>» mavzusida sotuvchi vebinar ssenariysini yaratyapsan.</p>
+      <p>Vebinarning kontent bloki uchun matn yoz:
+      «<span class="ph">[Qadam yoki blok nomi, masalan: 3-qadam: Rad etib bo'lmaydigan
+      offer yaratish]</span>».</p>
+      <p>Bu blokning maqsadi:</p>
+      <p>1. Auditoriyaga shu qadam bo'yicha qimmatli kontent va aniq tushuncha berish.<br>
+      2. Bu qadam zapusk muvaffaqiyati uchun qanchalik muhimligini ko'rsatish.<br>
+      3. Auditoriyani tabiiy ravishda shu fikrga olib kelish: bu qadamni o'zlashtirishning
+      eng yaxshi va eng tez yo'li — bu bizning pullik kursimiz
+      «<span class="ph">[Kurs nomi]</span>».</p>
+    </div>
+
+    <div class="prompt">
+      <span class="plbl">Prompt-shablon · Vebinarning kontent bloki (2 / 2)</span>
+      <p>Blok matniga quyidagilarni qo'sh:</p>
+      <ul>
+        <li>Asosiy g'oya yoki prinsip: <span class="ph">[Blokning asosiy fikri]</span>.</li>
+        <li>Metafora yoki o'xshatish: <span class="ph">[Yorqin metafora, masalan:
+        «Offer — bu restoraningizning peshtaxtasi kabi…»]</span>.</li>
+        <li>Ishonarli keys: o'quvchi haqida qisqa hikoya — u
+        <span class="ph">[X natijaga erishdi]</span>, chunki bizning kursimizdan keyin
+        <span class="ph">[shu blokdagi prinsipni to'g'ri qo'lladi]</span>.</li>
+        <li>Kurs bilan bog'lash: bu mavzu kursda aynan qanday chuqur ishlanishini tushuntir.</li>
+        <li>Auditoriyani jalb qiluvchi savol: <span class="ph">[Blok mavzusi bo'yicha
+        tomoshabinlarga savol — ularni faollashtirish uchun]</span>.</li>
+      </ul>
+      <p>Matn jonli va ishonarli bo'lsin hamda mantiqan sotuvga olib borsin.</p>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>GPT-sotuvlar: vebinardan voronkagacha</span><span class="pg">7</span></div>
+</section>
+
+<!-- ================= 8 — GPT (2) ================= -->
+<section class="page">
+  <div class="runhead"><span><b>Formula Zapuska</b> · 4-bo'lim</span><span>GPT-sotuvlar</span></div>
+  <div class="body">
+
+    <div class="prompt">
+      <span class="plbl">Prompt-shablon · Vebinardagi tariflar bloki (1 / 3)</span>
+      <p>«<span class="ph">[Kurs nomi]</span>» kursi vebinarida «Tariflar va narxlarni
+      taqdim etish» degan sotuvchi blok uchun matn yoz.</p>
+      <p>Tariflar haqida ma'lumot:</p>
+      <p><b>1-tarif (Bazaviy):</b> <span class="ph">[Asosiy to'ldiruv]</span>.<br>
+      Kimga: <span class="ph">[MA segmenti 1]</span>.<br>
+      Asosiy og'riq yoki vazifa: <span class="ph">[MA 1 ning og'rig'i / vazifasi]</span>.</p>
+      <p><b>2-tarif (Optimal):</b> <span class="ph">[Asosiy to'ldiruv]</span>.<br>
+      Kimga: <span class="ph">[MA segmenti 2]</span>.<br>
+      Asosiy og'riq yoki vazifa: <span class="ph">[MA 2 ning og'rig'i / vazifasi]</span>.</p>
+      <p><b>3-tarif (VIP):</b> <span class="ph">[Asosiy to'ldiruv]</span>.<br>
+      Kimga: <span class="ph">[MA segmenti 3]</span>.<br>
+      Asosiy og'riq yoki vazifa: <span class="ph">[MA 3 ning og'rig'i / vazifasi]</span>.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="prompt">
+        <span class="plbl">Tariflar bloki (2 / 3)</span>
+        <p>Vazifa: shu blok uchun ishonarli matn yoz. Unda quyidagilar bo'lsin:</p>
+        <p>1. Kontent qismidan yechimni (kursni) taqdim etishga silliq o'tish.</p>
+        <p>2. Har bir tarifni taqdim etish:</p>
+        <ul>
+          <li>Bu tarif kimga mo'ljallangan bo'lsa, aynan o'sha segmentga
+          to'g'ridan-to'g'ri murojaat qil.</li>
+          <li>Bu tarif ularning asosiy og'rig'ini aynan qanday hal qilishini yoki
+          asosiy vazifasiga qanday yordam berishini ko'rsat.</li>
+          <li>Shu tarifning noyob foydasini yoki eng qimmatli fishkasini alohida ta'kidla.</li>
+        </ul>
+        <p>3. Har bir tarif uchun narxni aytib o'tish.</p>
+      </div>
+
+      <div class="prompt">
+        <span class="plbl">Tariflar bloki (3 / 3)</span>
+        <p>4. «Formula zapuska» triggerlaridan foydalanish:</p>
+        <ul>
+          <li><b>Defitsit:</b> tariflardagi joylar sonining cheklanganini,
+          maxsus narx muddati tugashini yoki birinchi <span class="ph">[N]</span> ta
+          xaridor uchun noyob bonuslarni e'lon qil.</li>
+          <li><b>Kafolat:</b> agar bor bo'lsa, natija kafolatini yoki pulni qaytarish
+          kafolatini eslatib o't.</li>
+        </ul>
+        <p>5. Aniq harakatga chaqiriq: sotib olish uchun hozirning o'zida nima qilish kerak
+        (havolaga o'tish, tugmani bosish).</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="st">2-qadam</span>
+      <h3>Progrev va dojim: AI bilan segmentatsiya</h3>
+      <p>AI bazaning turli segmentlari uchun turli xabar yozadi — bitta xabarni hammaga
+      yuborish shart emas.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="prompt" style="margin-bottom:0;">
+        <span class="plbl">Prompt-shablon · Dojim xabarlari (1 / 2)</span>
+        <p>«<span class="ph">[Kurs nomi]</span>» kursi bo'yicha sotuvchi vebinar
+        o'tkazilgandan keyin Telegram-kanalga yoki rassilkaga yuborish uchun
+        <b>2 ta variant</b> dojim xabari yoz.</p>
+        <p>Xabarlarning maqsadi: vebinarda bo'lgan, lekin hali sotib olmagan odamlarni
+        sotib olish haqida qaror qabul qilishga undash.</p>
+        <p><b>1-segment:</b> vebinarning barcha ishtirokchilari.</p>
+        <p><b>1-variant:</b> yo'qolayotgan foydaga urg'u bergan xabar yoz. Vebinar
+        ishtirokchilari uchun maxsus taklif yoki bonuslarni eslat va ular qachon aniq
+        yonib ketishini yoz. Defitsit triggeridan foydalan.</p>
+        <p><b>2-segment:</b> vebinar davomida <span class="ph">[Aniq muammo yoki e'tiroz,
+        masalan: «texnik sozlashlarning murakkabligi» yoki «vaqt yetishmasligi»]</span>
+        haqida savol bergan ishtirokchilar.</p>
+      </div>
+
+      <div class="prompt" style="margin-bottom:0;">
+        <span class="plbl">Dojim xabarlari (2 / 2)</span>
+        <p><b>2-variant:</b> shu segment uchun shaxsiylashtirilgan xabar yoz.
+        Ularning savoli yoki shubhasini eslatishdan boshla.</p>
+        <p>Kurs (yoki aniq bir tarif, yoki qo'llab-quvvatlash) aynan shu muammoni
+        qanday hal qilishiga urg'u ber. Masalan: «Esingizdami, siz … haqida
+        so'ragan edingiz? "Optimal" tarifida kurator shaxsan barcha sozlashlarda
+        sizga yordam beradi!».</p>
+        <p>Agar bor bo'lsa, ularning e'tiroziga mos bonus taklif qil.</p>
+        <p>Ikkala xabarda ham aniq harakatga chaqiriq bo'lishi kerak
+        (kursni sotib olish / menejerga savol berish).</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>GPT-sotuvlar: vebinardan voronkagacha</span><span class="pg">8</span></div>
+</section>
+
+<!-- ================= 9 — GPT (3) ================= -->
+<section class="page">
+  <div class="runhead"><span><b>Formula Zapuska</b> · 4-bo'lim</span><span>GPT-sotuvlar</span></div>
+  <div class="body">
+
+    <div class="step">
+      <span class="st">3-qadam</span>
+      <h3>E'tirozlar bilan ishlash: bilimlar bazasi</h3>
+      <p>AI butun jamoa uchun e'tirozlarni qayta ishlash sistemasini yaratishga yordam beradi.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="prompt">
+        <span class="plbl">Prompt-shablon (1 / 3)</span>
+        <p>«<span class="ph">[Kurs yoki xizmat nomi]</span>» produkti bo'yicha mijozlar va
+        o'quvchilarning e'tirozlarini qayta ishlash uchun tuzilgan xarita
+        (bilimlar bazasi) yarat.</p>
+        <p>Tez-tez uchraydigan e'tirozlar:
+        <span class="ph">[MA'LUM E'TIROZLAR RO'YXATINI QO'YING]</span>, masalan:</p>
+        <ul>
+          <li>«Qimmat» / «Hozir pulim yo'q»</li>
+          <li>«Kursni o'tishga vaqtim yo'q»</li>
+          <li>«Bu menga yordam berishiga ishonchim yo'q» / «Qanaqa kafolat bor?»</li>
+          <li>«Men ijodkor emasman / texnik odam emasman»</li>
+          <li>«Canva / <span class="ph">[sizning asbobingiz]</span> — bu jiddiy emas,
+          professional emas»</li>
+          <li>«Raqobatchi X'da arzonroq / yaxshiroq»</li>
+          <li>«O'ylab ko'raman»</li>
+        </ul>
+      </div>
+
+      <div class="prompt">
+        <span class="plbl">Prompt-shablon (2 / 3)</span>
+        <p>Vazifa:</p>
+        <p>1. Bu e'tirozlarni (va boshqa tipik e'tirozlarni) asosiy turlarga ajrat.
+        Masalan: narx, vaqt, qiymat yoki natija, o'ziga ishonchsizlik,
+        raqobatchilar bilan solishtirish, «tushunarsiz / o'ylash kerak».</p>
+        <p>2. Har bir e'tiroz uchun sotuv menejeri, kurator yoki direktdagi javoblar uchun
+        <b>2–3 ta javob varianti (skript)</b> taklif qil. Javob variantlari turli
+        yondashuvlardan foydalansin:</p>
+        <ul>
+          <li><b>Mantiqiy:</b> dalillar, faktlar, raqamlar, foydani hisoblab berish.</li>
+          <li><b>Emotsional:</b> empatiya, tushunish, mijozning his-tuyg'ulariga
+          qo'shilish, transformatsiyaga urg'u.</li>
+          <li><b>Keys yoki ijtimoiy isbot orqali:</b> shunga o'xshash e'tirozi bo'lgan,
+          lekin natija olgan boshqa mijoz misoli.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <span class="plbl">Prompt-shablon (3 / 3)</span>
+      <p>3. Javoblar konstruktiv bo'lsin, agressiv bo'lmasin va keyingi qadamga olib borsin
+      (masalan, sotib olishga, qo'shimcha savolga, demo-kirish taklifiga).
+      Natijani jamoa qulay ishlatishi uchun <b>jadval yoki tuzilgan ro'yxat</b>
+      ko'rinishida ber.</p>
+    </div>
+
+    <div class="step">
+      <span class="st">4-qadam</span>
+      <h3>Avtovoronkalar: start uchun oddiy bog'lamalar</h3>
+      <p>AI oddiy voronkaning har bir qadami uchun ishonarli matn yozadi.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="prompt" style="margin-bottom:0;">
+        <span class="plbl">Prompt-shablon · Avtovoronka (1 / 2)</span>
+        <p>Instagram Direct uchun <b>3 ta avtomatik xabardan</b> iborat zanjir matnini yoz.
+        Zanjir foydalanuvchi lid-magnit olish taklifi bilan chiqqan storis yoki postga
+        javoban «<span class="ph">[Kod so'zingiz, masalan: STIL]</span>» degan kod so'zni
+        yozgandan keyin ishga tushadi.</p>
+        <p><b>Lid-magnit (LM):</b> <span class="ph">[LM formati va nomi, masalan:
+        «Canva'da chiroyli vizualga 5 qadam» chek-listi]</span>.</p>
+        <p><b>Voronkaning maqsadi:</b> foydalanuvchini qizdirish va uni bepul
+        diagnostikaga yoki konsultatsiyaga yozilishga olib kelish.</p>
+        <p><b>1-xabar (kod so'zdan keyin darhol):</b></p>
+        <ul>
+          <li>Salomlashish.</li>
+          <li>LM'ni berish (havola yoki fayl).</li>
+          <li>Suhbatga jalb qiluvchi savol. Masalan: «Ayting-chi, hozir
+          <span class="ph">[LM mavzusi]</span> bo'yicha sizdagi eng katta qiyinchilik
+          nima?».</li>
+        </ul>
+      </div>
+
+      <div class="prompt" style="margin-bottom:0;">
+        <span class="plbl">Avtovoronka (2 / 2)</span>
+        <p><b>2-xabar (<span class="ph">[X]</span> soat yoki kundan keyin,
+        masalan 24 soat):</b></p>
+        <ul>
+          <li>LM bilan tanishib chiqqan-chiqmaganini aniqlash;</li>
+          <li>LM'dan foyda ko'rgan yoki shunga o'xshash muammoni hal qilgan
+          foydalanuvchining qisqa keysi yoki fikri;</li>
+          <li>Bepul diagnostika yoki konsultatsiya taklifi —
+          <span class="ph">[foydalanuvchi uchun foydani yozing, masalan: «vaziyatingizni
+          tahlil qilib, [mavzu] bo'yicha bosqichma-bosqich reja tuzish»]</span>.</li>
+        </ul>
+        <p><b>3-xabar (2-xabardan <span class="ph">[Y]</span> soat yoki kun keyin,
+        masalan 48 soat):</b></p>
+        <ul>
+          <li>Diagnostika taklifini eslatish.</li>
+          <li>Diagnostikaning foydasini ta'kidlash (foydalanuvchi aniq nima olishini).</li>
+          <li>Oldindan yozilish anketasiga yoki kalendarga havola.</li>
+          <li>Shoshilinchlik yoki joylar cheklanganligi triggeri. Masalan:
+          «Bu haftaga bor-yo'g'i 3 ta joy qoldi».</li>
+        </ul>
+        <p>Xabarlar matni do'stona, foydali bo'lsin va odamni bezovta qilmasdan
+        maqsadli harakatga olib borsin.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>GPT-sotuvlar: vebinardan voronkagacha</span><span class="pg">9</span></div>
+</section>
+
+<!-- ================= 10 — AMALIYOT / YAKUN ================= -->
+<section class="page">
+  <div class="runhead"><span><b>Formula Zapuska</b> · Yakun</span><span>Amaliyot va natija</span></div>
+  <div class="body">
+
+    <div class="sec-head">
+      <span class="num">YAKUNIY QISM</span>
+      <h2>Amaliyot va natija</h2>
+      <div class="rule-gold"></div>
+      <p class="lead">
+        O'qish — bu yarim ish. Endi qo'lni ishga soling. Pastdagi topshiriqlarni
+        bugunning o'zida bajaring.
+      </p>
+    </div>
+
+    <div class="grid2-t" style="margin-bottom:6mm;">
+      <div class="week">
+        <h3>Amaliyot · Sotuvchi elementlarni yig'amiz</h3>
+        <ul>
+          <li>Vebinarning kontent bloki matnini yozing. Ichiga <b>keys</b> va
+          <b>produkt bilan bog'lamani</b> qo'shing.</li>
+          <li>Shubhalanayotgan odamlar uchun <b>bitta dojim xabarini</b>
+          generatsiya qiling.</li>
+        </ul>
+        <p class="res"><b>Maslahat:</b> tayyor matnni ko'r-ko'rona nusxalamang.
+        AI yozgan matnni o'qing va o'z so'zlaringiz bilan qayta yozing —
+        shunda u sizning ovozingizda yangraydi.</p>
+      </div>
+
+      <div class="week">
+        <h3>Dars natijasi · Endi siz nimani bilasiz</h3>
+        <ul>
+          <li>AI yordamida vebinar va KEV uchun ssenariy generatsiya qila olasiz.</li>
+          <li>Segmentlangan dojim xabarlarini yarata olasiz.</li>
+          <li>E'tirozlar bilan ishlash uchun bilimlar bazasini qurdingiz.</li>
+          <li>Birinchi avtovoronkangiz uchun matn yozdingiz.</li>
+        </ul>
+        <p class="res"><b>Keyin nima bo'ladi?</b> Endi Reels uchun kontent yaratishni
+        tezlashtiramiz. Keyingi darsda — AI yordamida <b>30 daqiqada 5 ta Reels
+        ssenariysi</b>.</p>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <h3 style="color:var(--gold);letter-spacing:.06em;margin-bottom:4mm;">
+      Butun qo'llanma — bitta sahifada</h3>
+
+    <div class="grid2">
+      <div class="term">
+        <span class="t-num">1-QADAM</span>
+        <h3>So'zlarni o'rganing</h3>
+        <p>Lug'atdagi 19 ta so'z — bu sizning ish tilingiz. Ularsiz kurs ham,
+        jamoa ham tushunarsiz bo'ladi.</p>
+      </div>
+      <div class="term">
+        <span class="t-num">2-QADAM</span>
+        <h3>Odamlar bilan gaplashing</h3>
+        <p>CustDev savollari bilan 5–10 ta suhbat o'tkazing. Javoblarni odamning
+        o'z so'zlari bilan yozib oling.</p>
+      </div>
+      <div class="term">
+        <span class="t-num">3-QADAM</span>
+        <h3>Produktni yig'ing</h3>
+        <p>8 ta punktli andoza bo'yicha o'z kursingizni yozing: offer, dastur,
+        tariflar, kafolat.</p>
+      </div>
+      <div class="term">
+        <span class="t-num">4-QADAM</span>
+        <h3>Matnlarni AI bilan yozing</h3>
+        <p>Promptlarni ChatGPT'ga qo'ying: vebinar ssenariysi, dojim, e'tirozlar,
+        avtovoronka.</p>
+      </div>
+    </div>
+
+    <div class="tip" style="margin-top:6mm;margin-bottom:0;">
+      <span class="lbl">Oxirgi gap</span>
+      <p style="margin-bottom:0;font-size:13.8pt;">
+        Zapusk — bu omad emas, bu <b>sistema</b>. Sistemani esa har kim qura oladi.
+        Bir kunda hammasini qilishga urinmang: bugun lug'atni o'qing, ertaga birinchi
+        CustDev suhbatini o'tkazing, indinga produkt andozasini to'ldiring.
+        Bosqichma-bosqich ketsangiz — natija albatta bo'ladi.
+      </p>
+    </div>
+
+  </div>
+  <div class="runfoot"><span>Formula Zapuska · To'liq qo'llanma</span><span class="pg">10</span></div>
+</section>
+
+</body>
+</html>
