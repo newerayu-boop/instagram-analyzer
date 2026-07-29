@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<title>Real Savdo Bo'limi — Amaliy qo'llanma (A3)</title>
+<style>
+/* ============ A3 PRINT SETUP ============ */
+@page { size: A3 portrait; margin: 13mm 13mm 15mm 13mm; }
+
+:root{
+  --ink:#14110e;
+  --ink2:#3d372f;
+  --muted:#6d655a;
+  --orange:#e8760f;
+  --orange-d:#c25f06;
+  --gold:#e3b23c;
+  --line:#d8d0c4;
+  --panel:#f7f3ec;
+  --panel2:#fdf4e6;
+  --green:#0f8a4d;
+  --red:#c4302b;
+  --blue:#2e7fa8;
+  --purple:#6b53a8;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:"Liberation Sans","DejaVu Sans",Arial,Helvetica,sans-serif;
+  color:var(--ink);
+  font-size:12.4pt;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ============ PAGE ============ */
+.page{
+  position:relative;
+  page-break-after:always;
+  break-after:page;
+  min-height:266mm;      /* A3 height 420mm - margins */
+  padding-bottom:8mm;
+}
+.page:last-child{page-break-after:auto;break-after:auto;}
+.page.is-cover{padding-bottom:0;min-height:0;}
+
+/* running header / footer */
+.rh{
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:2.5pt solid var(--ink);
+  padding-bottom:2.5mm;margin-bottom:5.5mm;
+  font-size:9.6pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+}
+.rh .rh-l{color:var(--orange-d);}
+.rh .rh-r{color:var(--muted);font-weight:600;letter-spacing:.02em;}
+.pf{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;justify-content:space-between;
+  border-top:.8pt solid var(--line);padding-top:2.5mm;
+  font-size:8.8pt;color:var(--muted);
+}
+
+/* ============ TYPO ============ */
+h1,h2,h3,h4{margin:0;line-height:1.16;}
+.h-sec{
+  font-size:27pt;font-weight:800;letter-spacing:-.02em;margin:0 0 2mm;
+}
+.h-sec .num{color:var(--orange);}
+h2{font-size:20pt;font-weight:800;letter-spacing:-.015em;margin:0 0 3mm;}
+h3{
+  font-size:13.4pt;font-weight:800;margin:0 0 2mm;
+  text-transform:uppercase;letter-spacing:.04em;color:var(--orange-d);
+}
+h4{font-size:12.4pt;font-weight:800;margin:0 0 1.5mm;}
+p{margin:0 0 2.5mm;}
+.lead{font-size:13.6pt;line-height:1.4;color:var(--ink2);margin-bottom:5mm;}
+.small{font-size:10.4pt;line-height:1.42;}
+.tiny{font-size:9.4pt;line-height:1.4;color:var(--muted);}
+strong,b{font-weight:800;}
+em{font-style:italic;}
+
+/* ============ LAYOUT ============ */
+.cols2{column-count:2;column-gap:11mm;}
+.cols3{column-count:3;column-gap:8mm;}
+.cols2 > *,.cols3 > *{break-inside:avoid;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:7mm;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6mm;}
+.grid-45{display:grid;grid-template-columns:1fr 1.25fr;gap:9mm;}
+.grid-54{display:grid;grid-template-columns:1.25fr 1fr;gap:9mm;}
+.stack{display:flex;flex-direction:column;gap:5mm;}
+.avoid{break-inside:avoid;}
+.mt{margin-top:5mm;}
+.mt-s{margin-top:3mm;}
+
+/* ============ BLOCKS ============ */
+.panel{
+  background:var(--panel);border:1pt solid var(--line);
+  border-radius:3mm;padding:4mm 5mm;break-inside:avoid;
+}
+.panel.warm{background:var(--panel2);border-color:#eccf9e;}
+.panel.dark{background:var(--ink);color:#fff;border:none;}
+.panel.dark h3{color:var(--gold);}
+
+.callout{
+  border-left:4.5pt solid var(--orange);
+  background:var(--panel2);
+  padding:3.2mm 5mm;border-radius:0 2.5mm 2.5mm 0;
+  break-inside:avoid;
+}
+.callout .lab{
+  font-size:9pt;font-weight:800;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--orange-d);display:block;margin-bottom:1.5mm;
+}
+.quote{
+  font-size:12.8pt;font-style:italic;font-weight:600;line-height:1.38;
+  text-align:center;color:var(--ink);
+  border-top:1.5pt solid var(--ink);border-bottom:1.5pt solid var(--ink);
+  padding:3.2mm 5mm;margin:4mm 0;break-inside:avoid;
+}
+.def{
+  background:#fff;border:1.5pt solid var(--ink);border-radius:2.5mm;
+  padding:3.2mm 4mm;break-inside:avoid;
+}
+.def .t{font-weight:800;color:var(--orange-d);}
+
+/* numbered / bulleted lists */
+ul,ol{margin:0 0 2.5mm;padding-left:6mm;}
+li{margin-bottom:1.1mm;}
+ul.clean{list-style:none;padding-left:0;}
+ul.clean li{position:relative;padding-left:6.5mm;margin-bottom:1.6mm;}
+ul.clean li::before{
+  content:"";position:absolute;left:0;top:2.2mm;
+  width:2.6mm;height:2.6mm;background:var(--orange);border-radius:50%;
+}
+ul.check li::before{
+  content:"✓";background:none;color:var(--green);font-weight:800;
+  font-size:12pt;top:-0.6mm;left:.3mm;width:auto;height:auto;
+}
+ul.cross li::before{
+  content:"✕";background:none;color:var(--red);font-weight:800;
+  font-size:11pt;top:-0.2mm;left:.3mm;width:auto;height:auto;
+}
+ol.big{list-style:none;padding-left:0;counter-reset:b;}
+ol.big li{
+  position:relative;padding-left:9mm;margin-bottom:2mm;counter-increment:b;
+}
+ol.big li::before{
+  content:counter(b);position:absolute;left:0;top:.2mm;
+  width:6.2mm;height:6.2mm;border-radius:50%;
+  background:var(--ink);color:#fff;font-size:9.6pt;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* tags */
+.tags{display:flex;flex-wrap:wrap;gap:2mm;}
+.tag{
+  border:1pt solid var(--line);background:#fff;border-radius:20mm;
+  padding:1.2mm 4mm;font-size:10pt;font-weight:600;
+}
+.tag.o{background:var(--orange);color:#fff;border-color:var(--orange);}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:11pt;}
+th,td{text-align:left;padding:2.3mm 3mm;border-bottom:.8pt solid var(--line);vertical-align:top;}
+th{
+  font-size:9.6pt;text-transform:uppercase;letter-spacing:.06em;
+  background:var(--ink);color:#fff;font-weight:800;border:none;
+}
+tbody tr:nth-child(even){background:var(--panel);}
+td.k{font-weight:800;width:26%;}
+
+/* write-in lines for the printed workbook */
+.write{margin-top:3mm;}
+.write .ln{border-bottom:.9pt dotted #b9b0a2;height:8.5mm;}
+.write.tight .ln{height:7mm;}
+
+/* score pill */
+.pill{
+  display:inline-block;border-radius:20mm;padding:.6mm 3.2mm;
+  font-size:9.6pt;font-weight:800;color:#fff;
+}
+.pill.g{background:var(--green);}
+.pill.r{background:var(--red);}
+.pill.a{background:var(--orange);}
+
+/* ============ COVER ============ */
+.cover{
+  background:var(--ink);color:#fff;
+  height:388mm;margin:0;padding:24mm 22mm 18mm;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+}
+.cover::after{
+  content:"";position:absolute;right:-70mm;top:-70mm;
+  width:230mm;height:230mm;border-radius:50%;
+  border:1.2mm solid rgba(227,178,60,.16);
+}
+.cover::before{
+  content:"";position:absolute;right:-30mm;bottom:-90mm;
+  width:190mm;height:190mm;border-radius:50%;
+  border:1.2mm solid rgba(232,118,15,.14);
+}
+.cv-brand{
+  font-size:11pt;font-weight:800;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--gold);position:relative;z-index:2;
+}
+.cv-rule{height:1.1mm;width:44mm;background:var(--orange);margin:6mm 0 auto;position:relative;z-index:2;}
+.cv-mid{position:relative;z-index:2;}
+.cv-kicker{
+  font-size:13pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);margin-bottom:6mm;
+}
+.cv-title{
+  font-size:74pt;font-weight:800;line-height:.95;letter-spacing:-.035em;margin:0;
+}
+.cv-title span{color:var(--orange);display:block;}
+.cv-sub{
+  font-size:17pt;line-height:1.4;color:rgba(255,255,255,.8);
+  margin:8mm 0 0;max-width:180mm;font-weight:500;
+}
+.cv-list{
+  position:relative;z-index:2;margin-top:auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:5mm 8mm;
+  border-top:.6mm solid rgba(255,255,255,.18);padding-top:8mm;
+}
+.cv-item{display:flex;gap:4mm;align-items:flex-start;}
+.cv-n{
+  font-size:15pt;font-weight:800;color:var(--ink);background:var(--gold);
+  width:9mm;height:9mm;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.cv-it{font-size:12.4pt;line-height:1.35;color:rgba(255,255,255,.92);font-weight:600;}
+.cv-it b{color:#fff;display:block;font-size:13.4pt;}
+.cv-foot{
+  position:relative;z-index:2;margin-top:9mm;padding-top:5mm;
+  border-top:.6mm solid rgba(255,255,255,.18);
+  display:flex;justify-content:space-between;
+  font-size:10.4pt;color:rgba(255,255,255,.55);letter-spacing:.05em;
+}
+
+/* ============ TOC ============ */
+.toc{list-style:none;padding:0;margin:0;}
+.toc li{
+  display:flex;align-items:baseline;gap:3mm;
+  padding:2.6mm 0;border-bottom:.8pt solid var(--line);
+  break-inside:avoid;
+}
+.toc .tn{
+  font-weight:800;color:var(--orange);font-size:13pt;
+  min-width:9mm;
+}
+.toc .tt{font-weight:700;flex:1;}
+.toc .td{flex:1;border-bottom:1pt dotted #c9c0b2;transform:translateY(-1mm);}
+.toc .tp{font-weight:800;font-size:12pt;}
+.toc .ts{display:block;font-weight:500;font-size:10pt;color:var(--muted);}
+
+/* ============ SVG helpers ============ */
+svg{display:block;max-width:100%;height:auto;}
+.fig{break-inside:avoid;margin:0 0 5mm;}
+.fig-cap{
+  font-size:9.6pt;color:var(--muted);text-align:center;margin-top:2mm;font-weight:600;
+}
+text{font-family:"Liberation Sans","DejaVu Sans",Arial,sans-serif;}
+.rl{font-size:11px;font-weight:700;fill:#14110e;}
+.rv{font-size:15px;font-weight:800;}
+
+/* stage bar (percentile scale) */
+.scale{display:flex;align-items:center;gap:0;height:6mm;border-radius:3mm;overflow:hidden;margin:1.5mm 0;}
+.scale i{display:block;height:100%;}
+.sc-r{background:#f2a9a6;} .sc-a{background:#f5cf8a;} .sc-g{background:#9fd9b8;}
+.marker{position:relative;height:5mm;}
+.marker span{
+  position:absolute;transform:translateX(-50%);
+  font-size:10pt;font-weight:800;top:-1mm;
+}
+.marker span::after{content:"▾";display:block;text-align:center;font-size:9pt;line-height:.8;}
+
+/* screen-only preview shell */
+@media screen{
+  body{background:#e9e5de;padding:18px 0;}
+  .page{
+    width:297mm;background:#fff;margin:0 auto 18px;
+    padding:13mm 13mm 15mm;box-shadow:0 2px 14px rgba(0,0,0,.16);
+  }
+}
+@media print{
+  body{background:#fff;}
+  .page{width:auto;box-shadow:none;margin:0;padding:0 0 8mm;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ 1. COVER ============================ -->
+<section class="page is-cover">
+  <div class="cover">
+    <div class="cv-brand">Amaliy qo'llanma · Modul 3</div>
+    <div class="cv-rule"></div>
+    <div class="cv-mid">
+      <div class="cv-kicker">Savdo bo'limini noldan qurish</div>
+      <h1 class="cv-title">REAL<br>SAVDO<span>BO'LIMI</span></h1>
+      <p class="cv-sub">
+        To'rtta alohida material — bitta qo'llanmada. Skriptlar, suhbat anketasi,
+        telefoniya va rahbar salohiyatini baholash. Hammasi sodda o'zbek tilida,
+        chizmalar va grafiklar bilan.
+      </p>
+    </div>
+
+    <div class="cv-list">
+      <div class="cv-item"><div class="cv-n">1</div><div class="cv-it"><b>Savdo texnologiyasi</b>Skriptlar, savdo bosqichlari, e'tirozlar, apseyl, trening — 13 ta mavzu</div></div>
+      <div class="cv-item"><div class="cv-n">2</div><div class="cv-it"><b>Suhbat anketasi</b>Ommaviy suhbat uchun 5 ta savol va ball qo'yish tizimi</div></div>
+      <div class="cv-item"><div class="cv-n">3</div><div class="cv-it"><b>Telefoniya tanlash</b>Sipuni va Zadarma IP — ochiq solishtiruv jadvali</div></div>
+      <div class="cv-item"><div class="cv-n">4</div><div class="cv-it"><b>Salohiyatni baholash</b>PiF testi: 9 ta ko'rsatkich, grafik va tavsiyalar</div></div>
+    </div>
+
+    <div class="cv-foot">
+      <span>A3 formatda chop etish uchun tayyor</span>
+      <span>#RealSavdoBo'limi</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 2. MUNDARIJA ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">Real Savdo Bo'limi</span><span class="rh-r">Mundarija va yo'riqnoma</span></div>
+
+  <h2>Bu qo'llanma nima va u bilan qanday ishlash kerak?</h2>
+  <p class="lead">
+    Bu — to'rtta alohida hujjatning bitta kitobga yig'ilgan ko'rinishi. Har bir bo'lim
+    mustaqil: xohlagan joyidan ochib o'qisangiz bo'ladi. Matn sodda yozilgan, chunki
+    maqsad — chiroyli gap emas, tushunarli bo'lish.
+  </p>
+
+  <div class="grid3 mt-s">
+    <div class="panel">
+      <h4>Kimga kerak?</h4>
+      <p class="small" style="margin:0">Biznes egasiga, savdo bo'limi rahbariga (ROP) va savdo menejerlariga. Yangi kelgan xodimni o'qitishda ham ishlatsa bo'ladi.</p>
+    </div>
+    <div class="panel">
+      <h4>Qanday ishlatiladi?</h4>
+      <p class="small" style="margin:0">Chop eting, jamoaga tarqating. Bo'sh chiziqlar bor — ular topshiriq uchun. Qo'lda to'ldiring, keyin birga muhokama qiling.</p>
+    </div>
+    <div class="panel">
+      <h4>Qanday chop etiladi?</h4>
+      <p class="small" style="margin:0">Fayl <b>A3, vertikal (portrait)</b> uchun tayyorlangan. Bosmaxonada "A3, rangli, ikki tomonlama" deb aytsangiz kifoya.</p>
+    </div>
+  </div>
+
+  <h2 class="mt">Mundarija</h2>
+  <div class="grid2">
+    <div>
+      <ul class="toc">
+        <li><span class="tn">1</span><span class="tt">Savdo texnologiyasi<span class="ts">Kompaniya piramidasi va skript g'ildiragi</span></span><span class="td"></span><span class="tp">3</span></li>
+        <li><span class="tn">2</span><span class="tt">Savdo asoslari<span class="ts">4 qoida, 8 bosqich, nastroy, kontakt</span></span><span class="td"></span><span class="tp">4</span></li>
+        <li><span class="tn">3</span><span class="tt">Faktlar yig'ish<span class="ts">Og'riq → Kuchaytirish → Umid → Yechim</span></span><span class="td"></span><span class="tp">5</span></li>
+        <li><span class="tn">4</span><span class="tt">Prezentatsiya<span class="ts">Narx va qiymat tarozisi, 6 ta blok</span></span><span class="td"></span><span class="tp">6</span></li>
+        <li><span class="tn">5</span><span class="tt">Oldindan yopish va yopish<span class="ts">10 ballik shkala, 0.5 → 0.9 → 1.0</span></span><span class="td"></span><span class="tp">7</span></li>
+        <li><span class="tn">6</span><span class="tt">E'tirozlar va apseyl<span class="ts">Haqiqiy va yolg'on e'tirozlar</span></span><span class="td"></span><span class="tp">8</span></li>
+        <li><span class="tn">7</span><span class="tt">Trening, o'yin, tasdiqlash<span class="ts">Skriptni jamoaga qanday singdirish</span></span><span class="td"></span><span class="tp">9</span></li>
+      </ul>
+    </div>
+    <div>
+      <ul class="toc">
+        <li><span class="tn">8</span><span class="tt">Teginish nuqtalari<span class="ts">Mijoz bilan aloqani uzmaslikning 24 usuli</span></span><span class="td"></span><span class="tp">10</span></li>
+        <li><span class="tn">9</span><span class="tt">Suhbat anketasi<span class="ts">Ishga olishda 5 savol va ballar</span></span><span class="td"></span><span class="tp">11</span></li>
+        <li><span class="tn">10</span><span class="tt">Telefoniya tanlash<span class="ts">Sipuni va Zadarma IP solishtiruvi</span></span><span class="td"></span><span class="tp">12</span></li>
+        <li><span class="tn">11</span><span class="tt">Salohiyatni baholash (PiF)<span class="ts">9 ko'rsatkich, grafik, ish strategiyasi</span></span><span class="td"></span><span class="tp">13–14</span></li>
+        <li><span class="tn">12</span><span class="tt">Lug'at<span class="ts">Qo'llanmadagi barcha atamalar</span></span><span class="td"></span><span class="tp">15–16</span></li>
+      </ul>
+
+      <div class="callout mt">
+        <span class="lab">Eslatma</span>
+        <p style="margin:0" class="small">
+          Bu yerdagi belgilar: <span class="pill g">1 ball</span> — to'g'ri javob,
+          <span class="pill r">0 ball</span> — noto'g'ri javob,
+          <span class="pill a">Topshiriq</span> — qo'lda yozib to'ldiriladigan joy.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf"><span>Real Savdo Bo'limi · Amaliy qo'llanma</span><span>2</span></div>
+</section>
+
+<!-- ============================ 3. PIRAMIDA + G'ILDIRAK ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">1-bo'lim · Savdo texnologiyasi</span><span class="rh-r">Skriptlar</span></div>
+
+  <div class="h-sec"><span class="num">1.</span> Skriptlar: qayerdan boshlanadi?</div>
+  <p class="lead">
+    Kompaniyani beshga bo'lingan piramida deb tasavvur qiling. Kompaniyadagi har qanday ish
+    shu beshtadan biriga tegishli. Shuning uchun har kuni o'zingizga bitta savol bering:
+    <b>"Men hozir qaysi darajadagi ishni qilyapman?"</b>
+  </p>
+
+  <div class="grid-45">
+    <!-- PYRAMID -->
+    <div class="fig">
+      <svg viewBox="0 0 420 380" role="img" aria-label="Kompaniya piramidasi">
+        <!-- bands -->
+        <path d="M210 10 L258 78 L162 78 Z" fill="#14110e"/>
+        <path d="M162 84 L258 84 L296 138 L124 138 Z" fill="#3d372f"/>
+        <path d="M124 144 L296 144 L334 198 L86 198 Z" fill="#c25f06"/>
+        <path d="M86 204 L334 204 L372 258 L48 258 Z" fill="#e8760f"/>
+        <path d="M48 264 L372 264 L410 320 L10 320 Z" fill="#e3b23c"/>
+        <text x="210" y="66" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">KO'RISH</text>
+        <text x="210" y="118" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">STRATEGIYA</text>
+        <text x="210" y="178" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">TAKTIKA</text>
+        <text x="210" y="238" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">MIKROMENEJMENT</text>
+        <text x="210" y="298" text-anchor="middle" fill="#14110e" font-size="14" font-weight="800">HARAKATLAR</text>
+        <!-- side arrow -->
+        <text x="210" y="352" text-anchor="middle" fill="#6d655a" font-size="12" font-weight="700">Pastdan yuqoriga — bosqichma-bosqich</text>
+      </svg>
+      <div class="fig-cap">1-chizma. Kompaniyaning 5 darajasi</div>
+    </div>
+
+    <!-- LEVELS EXPLAINED -->
+    <div>
+      <div class="stack">
+        <div class="def">
+          <span class="t">Harakatlar.</span> Mijozga qo'ng'iroq qildik, xat yubordik,
+          suhbat o'tkazdik, planyorka qildik. <b>Harakat qancha ko'p bo'lsa, kompaniyada pul shuncha ko'p.</b>
+        </div>
+        <div class="def">
+          <span class="t">Mikromenejment.</span> Vazifa qo'yish va uni tekshirish.
+          Kundalik operatsion boshqaruv shu yerda. <em>Kontrol</em> — biror ish to'g'ri
+          yoki noto'g'ri bajarilganini bilish uchun qilinadigan harakat.
+        </div>
+        <div class="def">
+          <span class="t">Taktika.</span> "Qanday?" degan savolga javob.
+          Skriptlar, savdo texnologiyalari shu darajada.
+        </div>
+        <div class="def">
+          <span class="t">Strategiya.</span> "Nima?" degan savolga javob.
+          KEV (voronkaning kalit bosqichi), voronkalar va boshqalar.
+        </div>
+        <div class="def">
+          <span class="t">Ko'rish.</span> "Qayerga?" va "Nima uchun?" degan savollarga javob.
+          Aynan shu yerda kompaniyaning ma'nosi ochiladi.
+        </div>
+      </div>
+      <div class="quote" style="margin-bottom:0">
+        Agar siz darajalar ustidan sakrab o'tmoqchi bo'lsangiz,
+        oldingizda kassa uzilishi turadi.
+      </div>
+    </div>
+  </div>
+
+  <h2 class="mt">Skript ustida ishlashning 3 doirasi</h2>
+  <p>Skript bilan ishlash uchta katta bosqichdan iborat. Ular bir-birining ustiga tushadi — bittasini tashlab ketib bo'lmaydi.</p>
+
+  <div class="grid-54">
+    <div class="fig">
+      <svg viewBox="0 0 460 320" role="img" aria-label="Skript g'ildiragi">
+        <circle cx="230" cy="150" r="145" fill="none" stroke="#d8d0c4" stroke-width="1.5"/>
+        <circle cx="175" cy="115" r="78" fill="#e8760f" fill-opacity=".2" stroke="#c25f06" stroke-width="2.5"/>
+        <circle cx="285" cy="115" r="78" fill="#c4302b" fill-opacity=".16" stroke="#c4302b" stroke-width="2.5"/>
+        <circle cx="230" cy="200" r="78" fill="#2e7fa8" fill-opacity=".16" stroke="#2e7fa8" stroke-width="2.5"/>
+        <text x="140" y="95" text-anchor="middle" font-size="14" font-weight="800" fill="#c25f06">ISHLAB</text>
+        <text x="140" y="112" text-anchor="middle" font-size="14" font-weight="800" fill="#c25f06">CHIQISH</text>
+        <text x="322" y="95" text-anchor="middle" font-size="14" font-weight="800" fill="#c4302b">JORIY</text>
+        <text x="322" y="112" text-anchor="middle" font-size="14" font-weight="800" fill="#c4302b">QILISH</text>
+        <text x="230" y="235" text-anchor="middle" font-size="14" font-weight="800" fill="#2e7fa8">SOZLASH</text>
+        <!-- outer segment labels -->
+        <text x="230" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#6d655a">matn va iboralar · o'qitish</text>
+        <text x="30" y="150" text-anchor="start" font-size="11" font-weight="700" fill="#6d655a">skript bloklari</text>
+        <text x="430" y="150" text-anchor="end" font-size="11" font-weight="700" fill="#6d655a">trening · kontrol</text>
+        <text x="30" y="230" text-anchor="start" font-size="11" font-weight="700" fill="#6d655a">keyingi qadam · offer</text>
+        <text x="430" y="230" text-anchor="end" font-size="11" font-weight="700" fill="#6d655a">e'tirozlar</text>
+        <text x="230" y="308" text-anchor="middle" font-size="11" font-weight="700" fill="#6d655a">nastroy · teginish nuqtalari</text>
+      </svg>
+      <div class="fig-cap">2-chizma. Skript g'ildiragi</div>
+    </div>
+    <div>
+      <ol class="big">
+        <li><b>Ishlab chiqish.</b> Skript bloklarini yozamiz, matn va iboralarni tanlaymiz,
+        keyingi qadam va offerni belgilaymiz.</li>
+        <li><b>Joriy qilish.</b> Menejerlarni o'qitamiz, trening qilamiz, keyin bajarilishini
+        nazorat qilamiz.</li>
+        <li><b>Sozlash (dokrutka).</b> E'tirozlarni qayta ishlaymiz, nastroyni to'g'rilaymiz,
+        teginish nuqtalarini qo'shamiz.</li>
+      </ol>
+      <div class="callout">
+        <span class="lab">Muhim</span>
+        <p style="margin:0">Uchala doira kesishgan joyda — <b>natija</b>. Faqat yozilgan,
+        lekin joriy qilinmagan skript hech qanday pul keltirmaydi.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf"><span>1-bo'lim · Skriptlar</span><span>3</span></div>
+</section>
+
+<!-- ============================ 4. SAVDO ASOSLARI ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">1-bo'lim · Savdo texnologiyasi</span><span class="rh-r">Savdo asoslari</span></div>
+
+  <div class="h-sec"><span class="num">2.</span> Savdo asoslari</div>
+
+  <div class="grid2">
+    <div class="panel dark">
+      <h3>To'rtta asosiy qoida</h3>
+      <ol class="big" style="margin-bottom:0">
+        <li style="color:#fff">Har doim, har doim, hamma narsada <b>rozi bo'ling</b>.</li>
+        <li style="color:#fff">Savdo bo'lmasligining yagona sababi — <b>ishonchsizlik</b>.</li>
+        <li style="color:#fff">Yopmoqchimisiz? Unda avval <b>ishonch yarating</b>.</li>
+        <li style="color:#fff">Ishonchsizlik — bu <b>sotuvchining muammosi</b>, mijozniki emas.</li>
+      </ol>
+    </div>
+    <div class="panel warm">
+      <h3>Suhbatni qanday olib borish kerak</h3>
+      <ul class="clean" style="margin-bottom:0">
+        <li>Suhbat sintezini doim qo'lda ushlang. Xodimlarni savolga <b>to'g'ridan-to'g'ri</b> javob berishga o'rgating.</li>
+        <li>Mijoz bilan suhbat <b>qo'ng'iroqdan oldin</b> boshlanadi — avval o'zimizni sozlaymiz.</li>
+        <li>Barcha faktlarni yig'amiz.</li>
+        <li>Yakun yasaymiz: mijoz muammosidan yechimga ko'prik quramiz.</li>
+        <li>O'z yechimimizni taqdim etamiz.</li>
+        <li>Mijoz sotib olishga tayyormi — tekshiramiz. Tayyor bo'lmasa, prezentatsiyaga qaytamiz.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="mt">Savdoning 8 bosqichi</h2>
+  <p>Quyida — suhbat davomidagi tabiiy tartib. Menejer aynan shu ketma-ketlikda harakat qiladi.</p>
+
+  <div class="fig">
+    <svg viewBox="0 0 1180 120" role="img" aria-label="Savdoning 8 bosqichi">
+      <defs>
+        <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#c25f06"/>
+        </marker>
+      </defs>
+      <g font-size="14" font-weight="700">
+        <g><rect x="2" y="30" width="132" height="56" rx="8" fill="#14110e"/><text x="68" y="55" text-anchor="middle" fill="#e3b23c" font-size="17" font-weight="800">1</text><text x="68" y="74" text-anchor="middle" fill="#fff">Nastroy</text></g>
+        <g><rect x="148" y="30" width="132" height="56" rx="8" fill="#14110e"/><text x="214" y="55" text-anchor="middle" fill="#e3b23c" font-size="17" font-weight="800">2</text><text x="214" y="74" text-anchor="middle" fill="#fff">Kontakt</text></g>
+        <g><rect x="294" y="30" width="132" height="56" rx="8" fill="#c25f06"/><text x="360" y="55" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">3</text><text x="360" y="74" text-anchor="middle" fill="#fff">Faktlar</text></g>
+        <g><rect x="440" y="30" width="132" height="56" rx="8" fill="#c25f06"/><text x="506" y="55" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">4</text><text x="506" y="74" text-anchor="middle" fill="#fff">Yechim</text></g>
+        <g><rect x="586" y="30" width="132" height="56" rx="8" fill="#e8760f"/><text x="652" y="55" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">5</text><text x="652" y="74" text-anchor="middle" fill="#fff">Prezentatsiya</text></g>
+        <g><rect x="732" y="30" width="132" height="56" rx="8" fill="#e8760f"/><text x="798" y="55" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">6</text><text x="798" y="74" text-anchor="middle" fill="#fff">Oldindan yopish</text></g>
+        <g><rect x="878" y="30" width="132" height="56" rx="8" fill="#e3b23c"/><text x="944" y="55" text-anchor="middle" fill="#14110e" font-size="17" font-weight="800">7</text><text x="944" y="74" text-anchor="middle" fill="#14110e">Yopish</text></g>
+        <g><rect x="1024" y="30" width="154" height="56" rx="8" fill="#e3b23c"/><text x="1101" y="55" text-anchor="middle" fill="#14110e" font-size="17" font-weight="800">8</text><text x="1101" y="74" text-anchor="middle" fill="#14110e">E'tirozlar</text></g>
+      </g>
+      <g stroke="#c25f06" stroke-width="2" marker-end="url(#ar)">
+        <line x1="136" y1="58" x2="144" y2="58"/><line x1="282" y1="58" x2="290" y2="58"/>
+        <line x1="428" y1="58" x2="436" y2="58"/><line x1="574" y1="58" x2="582" y2="58"/>
+        <line x1="720" y1="58" x2="728" y2="58"/><line x1="866" y1="58" x2="874" y2="58"/>
+        <line x1="1012" y1="58" x2="1020" y2="58"/>
+      </g>
+      <text x="590" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#6d655a">SUHBAT TARTIBI — vaqt bo'yicha</text>
+    </svg>
+    <div class="fig-cap">3-chizma. Savdoning 8 bosqichi (suhbatdagi tabiiy ketma-ketlik)</div>
+  </div>
+
+  <div class="grid-45 mt-s">
+    <div class="panel">
+      <h3>Pulga ta'siri bo'yicha tartib</h3>
+      <p class="small">Endi shu bosqichlarni boshqacha — <b>pulga qanchalik kuchli ta'sir qilishi</b> bo'yicha tartiblaymiz. Bu tartib ko'pchilikni hayron qoldiradi:</p>
+      <table>
+        <tbody>
+          <tr><td class="k" style="width:14%">1</td><td><b>Yopish</b></td></tr>
+          <tr><td class="k">2</td><td>Nastroy</td></tr>
+          <tr><td class="k">3</td><td>Prezentatsiya</td></tr>
+          <tr><td class="k">4</td><td>Faktlar yig'ish</td></tr>
+          <tr><td class="k">5</td><td>Oldindan yopish</td></tr>
+          <tr><td class="k">6</td><td>E'tirozlar bilan ishlash</td></tr>
+          <tr><td class="k">7</td><td>Yechim shakllantirish</td></tr>
+          <tr><td class="k">8</td><td>Kontakt o'rnatish</td></tr>
+        </tbody>
+      </table>
+      <p class="tiny mt-s" style="margin-bottom:0">
+        Xuddi shu bosqichlarni tijorat taklifi (KP) yuborishda, sayt uchun video yozishda,
+        jonli prezentatsiyada va vebinarda ham ishlatsa bo'ladi.
+        <b>Muhim:</b> KP yuborayotganda dedlayn yozing (o'qish vaqti — 2 daqiqa).
+      </p>
+    </div>
+
+    <div>
+      <h3>Nastroy qoidalari</h3>
+      <ol class="big">
+        <li>Yaxshi nastroy yaxshi mahsulotdan qimmatroq.</li>
+        <li>Mijozlar bilan xuddi ular millioner bo'lgandek gaplashing.</li>
+        <li>Ijobiy leksikani kiriting: "Zo'r", "Super", "Hammasini qilamiz", "Albatta", "Ajoyib".</li>
+        <li>Hayotdagi eng muhim savdoni qiling: mahsulotni <b>o'zingizga</b> soting va <b>o'zingizni</b> soting.</li>
+        <li>Professionaldek ko'rining.</li>
+        <li>Atrof-muhit — bu nastroy.</li>
+        <li>Odamlarga ko'proq tabassum qiling.</li>
+      </ol>
+
+      <h3 class="mt-s">Kontakt o'rnatish</h3>
+      <div class="def">
+        <span class="t">Konfrontatsiya</span> — biror narsani xotirjam qabul qilish va uni
+        nazorat qila olish qobiliyati. Bitimni yopish uchun mijozni nazorat qila olishimiz kerak.
+      </div>
+      <div class="grid2 mt-s">
+        <ul class="clean small" style="margin:0">
+          <li>Ko'z bilan kontakt</li>
+          <li>Tanada ortiqcha harakat yo'q</li>
+        </ul>
+        <ul class="clean small" style="margin:0">
+          <li>Tasdiqlash</li>
+          <li>Suhbat ipini ushlab turish</li>
+        </ul>
+      </div>
+      <div class="def mt-s">
+        <span class="t">Freyming</span> — umumiylikni sozlash: umumiy mavzular,
+        qiziqishlar va faktlarni topish.
+      </div>
+    </div>
+  </div>
+
+  <div class="pf"><span>1-bo'lim · Savdo asoslari</span><span>4</span></div>
+</section>
+
+<!-- ============================ 5. FAKTLAR YIG'ISH ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">1-bo'lim · Savdo texnologiyasi</span><span class="rh-r">Faktlar yig'ish</span></div>
+
+  <div class="h-sec"><span class="num">3.</span> Faktlar yig'ish</div>
+  <p class="lead">
+    Savollarni shaxmat partiyasi kabi bering: har bir keyingi savol oldingi savolning
+    javobiga ilashib ketsin. Buyruq mayli ishlatiladi — biz mijozni kerakli natijaga
+    <b>dasturlaymiz</b>. Tashabbusni qo'lga olganimizdan keyin mijozni kvalifikatsiya qilamiz.
+  </p>
+
+  <!-- PAIN CHAIN -->
+  <div class="fig">
+    <svg viewBox="0 0 1180 150" role="img" aria-label="Og'riq zanjiri">
+      <defs>
+        <marker id="ar2" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#14110e"/>
+        </marker>
+      </defs>
+      <g>
+        <rect x="4" y="26" width="262" height="92" rx="12" fill="#c4302b"/>
+        <text x="135" y="62" text-anchor="middle" fill="#fff" font-size="24" font-weight="800">PAIN</text>
+        <text x="135" y="86" text-anchor="middle" fill="#ffd9d7" font-size="15" font-weight="700">og'riq</text>
+        <text x="135" y="106" text-anchor="middle" fill="#ffd9d7" font-size="12">og'riqni topamiz</text>
+      </g>
+      <g>
+        <rect x="308" y="26" width="262" height="92" rx="12" fill="#e8760f"/>
+        <text x="439" y="62" text-anchor="middle" fill="#fff" font-size="24" font-weight="800">MORE PAIN</text>
+        <text x="439" y="86" text-anchor="middle" fill="#ffe8cf" font-size="15" font-weight="700">og'riqni kuchaytirish</text>
+        <text x="439" y="106" text-anchor="middle" fill="#ffe8cf" font-size="12">og'riqni chuqurlashtiramiz</text>
+      </g>
+      <g>
+        <rect x="612" y="26" width="262" height="92" rx="12" fill="#2e7fa8"/>
+        <text x="743" y="62" text-anchor="middle" fill="#fff" font-size="24" font-weight="800">HOPE</text>
+        <text x="743" y="86" text-anchor="middle" fill="#d7ecf6" font-size="15" font-weight="700">umid</text>
+        <text x="743" y="106" text-anchor="middle" fill="#d7ecf6" font-size="12">yechim borligini aytamiz</text>
+      </g>
+      <g>
+        <rect x="916" y="26" width="262" height="92" rx="12" fill="#0f8a4d"/>
+        <text x="1047" y="62" text-anchor="middle" fill="#fff" font-size="24" font-weight="800">SOLUTION</text>
+        <text x="1047" y="86" text-anchor="middle" fill="#d5efe1" font-size="15" font-weight="700">yechim</text>
+        <text x="1047" y="106" text-anchor="middle" fill="#d5efe1" font-size="12">prezentatsiya qilamiz</text>
+      </g>
+      <g stroke="#14110e" stroke-width="2.5" marker-end="url(#ar2)">
+        <line x1="270" y1="72" x2="300" y2="72"/>
+        <line x1="574" y1="72" x2="604" y2="72"/>
+        <line x1="878" y1="72" x2="908" y2="72"/>
+      </g>
+      <text x="590" y="14" text-anchor="middle" font-size="13" font-weight="800" fill="#6d655a">FAKTLAR YIG'ISHNING 4 QADAMI</text>
+    </svg>
+    <div class="fig-cap">4-chizma. Og'riqdan yechimga — savdo suhbatining o'zagi</div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <h3>1 · Pain — og'riqni topamiz</h3>
+      <p class="small">
+        <b>Nima bo'lyapti?</b> Mijozning og'riqlarini aniqlaymiz.<br>
+        <b>Qanday?</b> Har qanday ehtiyojning ortida qandaydir og'riq turadi.
+      </p>
+      <p class="small">
+        Birinchi kontaktda mijoz menejerga o'z <b>ehtiyojini</b> aytadi. Tajribasiz menejer
+        shundan keyin darrov sotishga urinadi — ehtiyoj ortidagi haqiqiy og'riqni bilmay turib.
+        Ehtiyoj faqat siz sotayotgan mahsulotga nisbatan bo'lishi mumkin.
+      </p>
+      <div class="panel">
+        <h4>Misol</h4>
+        <p class="small" style="margin:0 0 2mm"><b>Ehtiyoj:</b> avtomobilni yuvdirish.</p>
+        <p class="small" style="margin:0 0 1mm"><b>Og'riqlar:</b></p>
+        <ul class="clean small" style="margin:0">
+          <li>Mashinadan chiqqanda doim kir bo'laman</li>
+          <li>Orqa kamera iflos — bamperni tirnab oldim</li>
+          <li>Ko'rinishi chiroyli emas</li>
+        </ul>
+      </div>
+      <div class="quote">Menejerlar mijozda uchrashi mumkin bo'lgan barcha og'riqlarni bilishi shart.</div>
+
+      <h3>2 · More pain — og'riqni kuchaytiramiz</h3>
+      <p class="small" style="margin-bottom:2mm">Quyidagi savollar og'riqni chuqurlashtiradi:</p>
+      <ul class="clean small">
+        <li>Bu muammo qachondan beri bor?</li>
+        <li>Qanday hal qilmoqchi bo'lgansiz? Natija qanday bo'ldi?</li>
+        <li>Hammasini shundayligicha qoldirsangiz, nima bo'lishi mumkin?</li>
+        <li>Muammoni hal qilmasangiz, nimani yo'qotasiz?</li>
+        <li>Hammasi shunday qolsa, nimadan voz kechishga to'g'ri keladi?</li>
+        <li>Kelajakda qanday qiyinchiliklar chiqishi mumkin?</li>
+      </ul>
+      <div class="callout">
+        <span class="lab">Yakun yasash ham og'riqni kuchaytiradi</span>
+        <p class="small" style="margin:0">
+          "Mana, endi men siz haqingizda nimani tushunganimni aytaman..." — og'riqlarni sanab chiqasiz.
+          Keyin: <b>"Sizning holatingizni to'g'ri tushundimmi?"</b>
+        </p>
+      </div>
+
+      <div class="panel warm mt-s">
+        <h4><span class="pill a">Topshiriq</span> &nbsp;Mijoz og'riqlari</h4>
+        <p class="small" style="margin:0 0 2mm">Jamoangiz bilan birga siz hal qiladigan ehtiyojlarni ko'rib chiqing. Shunday ehtiyojda mijozda qanday og'riq bo'lishi mumkin? <b>Kamida 7 ta og'riq yozing.</b></p>
+        <div class="write tight">
+          <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Byudjet haqidagi savollar</h3>
+      <ul class="clean small">
+        <li>To'g'ridan-to'g'ri: "Byudjetingiz qancha?"</li>
+        <li>"Men shunchaki nima uchun so'rayapman..."</li>
+        <li>"Ayting-chi, byudjetingiz qat'iy belgilanganmi yoki men sizga qiziqroq variantlarni taklif qilsam, ko'rib chiqasizmi?"</li>
+      </ul>
+
+      <h3 class="mt-s">"Josus" savollar</h3>
+      <p class="small" style="margin-bottom:2mm">Bular byudjet haqida emas, <b>mijozning o'zi</b> haqida. Javoblardan uning imkoniyatini tushunasiz:</p>
+      <ul class="clean small">
+        <li>Kompaniyangizda nechta xodim bor?</li>
+        <li>Yillik tushumingiz qancha?</li>
+        <li>Yer uchastkangiz qayerda? Qanchalik katta?</li>
+        <li>Garaj quramisiz? Qanaqa avtomobil?</li>
+        <li>Kuniga nechta yozuv bo'ladi?</li>
+        <li>Odatda qayerda dam olasiz?</li>
+      </ul>
+
+      <div class="callout">
+        <span class="lab">Ikkita muhim gap</span>
+        <p class="small" style="margin:0 0 2mm">"Agar sizga oldindan to'lov bermayotgan bo'lsa — offeringiz kuchsiz."</p>
+        <p class="small" style="margin:0">Ehtiyojni topishning eng oddiy savoli — <b>"Umuman nima kerak o'zi?"</b></p>
+      </div>
+
+      <h3 class="mt-s">Har bir og'riq ortida yana kattaroq og'riq bor</h3>
+      <div class="panel">
+        <p class="small" style="margin:0 0 1.5mm"><b>Ehtiyoj:</b> savdo bo'limi</p>
+        <p class="small" style="margin:0 0 1.5mm"><b>Og'riq:</b> kam pul ishlayapman</p>
+        <p class="small" style="margin:0"><b>Og'riqlar og'rig'i:</b> yaxshi dam olishni, qimmat mashinani, yangi uyni o'zimga ravo ko'ra olmayman.</p>
+      </div>
+      <p class="small mt-s" style="margin-bottom:2mm"><b>Og'riq va og'riqlar og'rig'ini ochadigan savollar ketma-ketligi:</b></p>
+      <ol class="big small">
+        <li>"Tushundim, sizga [mahsulot] kerak ekan. Muammo nimada? Bu mahsulot bilan nimani hal qilmoqchisiz?" → <em>javob (1-og'riq)</em></li>
+        <li>"Tushunarli, super. Yana nima?" → <em>javob (2-og'riq)</em></li>
+        <li>"Shunday, bu tushunarli. Bu sizga umuman nimani anglatadi? Bundan nima kelib chiqadi?" → <em>javob (og'riqlar og'rig'i)</em></li>
+        <li>"Ajoyib, yana nima?" — va hokazo.</li>
+      </ol>
+
+      <div class="quote">
+        "Mijozlaringiz oson, tez va qimmatga sotib olishlari uchun —
+        ular siz bilan muloqotda charchashi kerak."
+      </div>
+      <p class="small">
+        Mijozlar savollarga javob bersin, ofisingizga kelsin, qog'ozlarni to'ldirsin,
+        katalogni varaqlasin, namunalarni ko'rsin, o'lchov qilsin. Ya'ni qandaydir
+        <b>harakat</b> qilsin.
+      </p>
+      <p class="small" style="font-style:italic;color:var(--muted)">
+        "Siz ishlaydigan pul miqdori — miyangizni mijozning kallasiga sola olish
+        qobiliyatingizga to'g'ridan-to'g'ri bog'liq."
+      </p>
+    </div>
+  </div>
+
+  <div class="pf"><span>1-bo'lim · Faktlar yig'ish</span><span>5</span></div>
+</section>
+
+<!-- ============================ 6. PREZENTATSIYA ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">1-bo'lim · Savdo texnologiyasi</span><span class="rh-r">Prezentatsiya</span></div>
+
+  <div class="h-sec"><span class="num">4.</span> Prezentatsiya</div>
+
+  <div class="grid-45">
+    <div>
+      <h3>Odamlar nima uchun sotib oladi?</h3>
+      <ol class="big">
+        <li><b>Imij</b> — o'zini qanday ko'rsatishi</li>
+        <li><b>Qulaylik</b> — hayotini osonlashtirish</li>
+        <li><b>Oqilona tejash</b> — pulni to'g'ri sarflash</li>
+        <li><b>Xavfsizlik</b> — xotirjamlik</li>
+      </ol>
+
+      <div class="fig mt-s">
+        <svg viewBox="0 0 420 250" role="img" aria-label="Narx va qiymat tarozisi">
+          <text x="95" y="26" text-anchor="middle" font-size="16" font-weight="800" fill="#14110e">NARX</text>
+          <text x="325" y="26" text-anchor="middle" font-size="16" font-weight="800" fill="#c25f06">QIYMAT</text>
+          <!-- money stack (light) -->
+          <g transform="translate(50,42)">
+            <rect x="0" y="10" width="90" height="16" rx="3" fill="#c9c0b2"/>
+            <rect x="6" y="-2" width="90" height="16" rx="3" fill="#d8d0c4"/>
+          </g>
+          <!-- value stack (heavy) -->
+          <g transform="translate(272,42)">
+            <rect x="0" y="34" width="106" height="20" rx="4" fill="#e8760f"/>
+            <rect x="6" y="12" width="106" height="20" rx="4" fill="#e8760f" fill-opacity=".85"/>
+            <rect x="12" y="-10" width="106" height="20" rx="4" fill="#e8760f" fill-opacity=".7"/>
+          </g>
+          <!-- beam tilted: value side down -->
+          <line x1="40" y1="128" x2="380" y2="168" stroke="#14110e" stroke-width="7" stroke-linecap="round"/>
+          <!-- fulcrum -->
+          <path d="M210 148 L246 214 L174 214 Z" fill="#14110e"/>
+          <rect x="150" y="214" width="120" height="8" rx="4" fill="#14110e"/>
+          <text x="210" y="242" text-anchor="middle" font-size="12" font-weight="700" fill="#6d655a">qiymat og'irroq → mijoz sotib oladi</text>
+        </svg>
+        <div class="fig-cap">5-chizma. Narx va qiymat tarozisi</div>
+      </div>
+
+      <div class="quote">"Sotib olish qiymat narxdan og'ir kelganda sodir bo'ladi."</div>
+
+      <h3>Qiymatni qanday oshiramiz?</h3>
+      <ol class="big small">
+        <li><b>Markazni surish (richag prinsipi).</b> "Og'riqlar og'rig'i" haqida ko'p gapiramiz — shunda tarozi yelkasi uzayadi.</li>
+        <li><b>Qiymat qo'shish.</b> "Foydalar foydasi"ni qo'shib boramiz.</li>
+      </ol>
+      <div class="callout">
+        <span class="lab">Qiymat yaratish prinsipi</span>
+        <p style="margin:0"><b>Agar siz biror narsani aytmagan bo'lsangiz — demak, sizda u yo'q.</b></p>
+      </div>
+    </div>
+
+    <div>
+      <h3>Prezentatsiya — 6 ta ma'no bloki</h3>
+      <p class="small">Avtomobil misolida prezentatsiyaning bloklari quyidagicha bo'ladi:</p>
+      <div class="grid2" style="gap:4mm">
+        <ul class="clean small" style="margin:0">
+          <li>Texnik xususiyatlar</li>
+          <li>Haydovchi tomonidan</li>
+          <li>Old qism ("tumshug'i")</li>
+        </ul>
+        <ul class="clean small" style="margin:0">
+          <li>Yo'lovchi tomonidan</li>
+          <li>Yuk xonasi tomonidan</li>
+          <li>Salon ichi va test-drayv</li>
+        </ul>
+      </div>
+
+      <div class="fig mt-s">
+        <svg viewBox="0 0 380 380" style="max-width:330px;margin:0 auto" role="img" aria-label="Prezentatsiyaning 6 bloki">
+          <circle cx="190" cy="190" r="150" fill="#fdf4e6" stroke="#14110e" stroke-width="3"/>
+          <g stroke="#14110e" stroke-width="2.2">
+            <line x1="190" y1="40" x2="190" y2="340"/>
+            <line x1="60" y1="115" x2="320" y2="265"/>
+            <line x1="60" y1="265" x2="320" y2="115"/>
+          </g>
+          <g font-size="15" font-weight="800" fill="#c25f06">
+            <text x="255" y="105" text-anchor="middle">1</text>
+            <text x="300" y="195" text-anchor="middle">2</text>
+            <text x="255" y="285" text-anchor="middle">3</text>
+            <text x="125" y="285" text-anchor="middle">4</text>
+            <text x="80" y="195" text-anchor="middle">5</text>
+            <text x="125" y="105" text-anchor="middle">6</text>
+          </g>
+          <circle cx="190" cy="190" r="34" fill="#14110e"/>
+          <text x="190" y="187" text-anchor="middle" fill="#e3b23c" font-size="12" font-weight="800">SIZNING</text>
+          <text x="190" y="201" text-anchor="middle" fill="#fff" font-size="12" font-weight="800">MAHSULOT</text>
+          <text x="190" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#6d655a">eng kuchli og'riqni yopishdan boshlaymiz</text>
+        </svg>
+        <div class="fig-cap">6-chizma. O'z mahsulotingizni 6 blokka bo'ling</div>
+      </div>
+
+      <div class="panel warm">
+        <h4><span class="pill a">Topshiriq</span> &nbsp;Xususiyat → Foyda → Foydaning foydasi</h4>
+        <p class="small" style="margin:0 0 2mm">
+          Har bir "siferblat" blokiga 3 ta xususiyat, ularga 3 tadan foyda va yana 3 tadan
+          "foydaning foydasi"ni yozing.
+        </p>
+        <table style="font-size:10pt">
+          <thead><tr><th>Ma'no</th><th>Xususiyat</th><th>Foyda</th></tr></thead>
+          <tbody>
+            <tr><td style="height:12mm"></td><td></td><td></td></tr>
+            <tr><td style="height:12mm"></td><td></td><td></td></tr>
+            <tr><td style="height:12mm"></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="mt">Prezentatsiyada kamtarlik kerak emas</h2>
+  <div class="grid3">
+    <div>
+      <p class="small">Foydalarni aytayotganda kamtarlik qilmang — mijozga baland va dadil va'dalar bering:</p>
+      <ul class="clean small">
+        <li>"Siz o'zingiz tasavvur qila oladigan eng qulay uyni olasiz."</li>
+        <li>"Bu avtomobil barcha qarindoshlaringizni lol qoldiradi. Uni parkovkada ko'rgan har safar quvonch yoshi keladi."</li>
+        <li>"Bizning yetkazib berish muddatimizdan aniqroq faqat shveytsariya soatlari."</li>
+        <li>"Bizning sifatimiz xalqaro mukofotga da'vo qila oladi."</li>
+        <li>"Bizning servis darajamiz Ritz va Four Seasons mehmonxonalarining tushiga ham kirmagan."</li>
+      </ul>
+      <p class="small">
+        Mijoz uchun juda muhim bloklarga urg'u bering — lekin <b>barcha</b> bloklarni aytib
+        o'ting. Chunki har xil mijoz uchun har xil xususiyat muhim.
+      </p>
+    </div>
+    <div>
+      <div class="fig">
+        <svg viewBox="0 0 560 150" role="img" aria-label="Prezentatsiyada kuchaytirish shkalasi">
+          <line x1="30" y1="70" x2="530" y2="70" stroke="#14110e" stroke-width="3"/>
+          <g stroke="#14110e" stroke-width="3">
+            <line x1="60" y1="58" x2="60" y2="82"/>
+            <line x1="220" y1="58" x2="220" y2="82"/>
+            <line x1="370" y1="58" x2="370" y2="82"/>
+            <line x1="510" y1="58" x2="510" y2="82"/>
+          </g>
+          <g font-size="12" font-weight="700" text-anchor="middle">
+            <text x="60" y="104" fill="#c4302b">bo'shashgan,</text><text x="60" y="118" fill="#c4302b">ishonchsiz</text>
+            <text x="220" y="104" fill="#6d655a">oddiy</text><text x="220" y="118" fill="#6d655a">o'rtacha</text>
+            <text x="370" y="104" fill="#c25f06">kuchli</text><text x="370" y="118" fill="#c25f06">menejer</text>
+            <text x="510" y="104" fill="#0f8a4d">SAVDO</text><text x="510" y="118" fill="#0f8a4d">QAHRAMONI</text>
+          </g>
+          <path d="M225 40 L505 40" stroke="#0f8a4d" stroke-width="3" marker-end="url(#ar3)"/>
+          <defs><marker id="ar3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#0f8a4d"/></marker></defs>
+          <text x="365" y="30" text-anchor="middle" font-size="12" font-weight="800" fill="#0f8a4d">"o'ynab yuboring" — bu tomonga</text>
+          <path d="M215 40 L65 40" stroke="#c4302b" stroke-width="3" marker-end="url(#ar4)"/>
+          <defs><marker id="ar4" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#c4302b"/></marker></defs>
+          <text x="14" y="70" font-size="12" font-weight="800" fill="#c4302b">✕</text>
+        </svg>
+        <div class="fig-cap">7-chizma. Menejerdan "o'ynab yuborishni" so'rang</div>
+      </div>
+      <p class="small" style="margin-bottom:0">
+        Menejerdan prezentatsiyani <b>"o'ynab yuborishni"</b> so'rang. U buni oddiy o'rtacha
+        menejer darajasida qiladi. Haqiqiy kuchli menejer esa bundan ancha uzoqqa ketadi.
+      </p>
+    </div>
+    <div>
+      <div class="callout">
+        <span class="lab">Prezentatsiyani qanday boshlash kerak</span>
+        <p class="small" style="margin:0">
+          "Keling, shunday qilamiz: men sizga <b>(1) urg'u</b> haqida to'liq va eng batafsil
+          ma'lumot beraman, keyin (2), (3) va (4) haqida gapiraman, oxirida esa (5), (6),
+          narx, shartnoma va to'lov shartlari (kredit/lizing) haqida aytaman. Shunday qilsak,
+          sizga qulaymi?"
+        </p>
+      </div>
+      <p class="small mt-s" style="margin-bottom:0"><b>Bloklar ketma-ketligi:</b> eng kuchli og'riqni yopishdan boshlaymiz.</p>
+    </div>
+  </div>
+
+  <div class="pf"><span>1-bo'lim · Prezentatsiya</span><span>6</span></div>
+</section>
+
+<!-- ============================ 7. OLDINDAN YOPISH + YOPISH ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">1-bo'lim · Savdo texnologiyasi</span><span class="rh-r">Oldindan yopish va yopish</span></div>
+
+  <div class="h-sec"><span class="num">5.</span> Oldindan yopish</div>
+
+  <div class="quote" style="margin-top:0">
+    "Agar mijozda e'tirozlar paydo bo'lgan bo'lsa — demak, siz og'riqlar og'rig'ini
+    topmagansiz, unga tegmagansiz va foydalarning foydasi bilan prezentatsiya qilmagansiz."
+  </div>
+
+  <div class="grid-45">
+    <div>
+      <div class="def">
+        <span class="t">Oldindan yopish</span> — bu "termometr". Biz uni mijozga tushiramiz va
+        u sotib olishga tayyormi yoki hali yo'qmi — shuni tekshiramiz.
+      </div>
+      <h3 class="mt-s">Oldindan yopish savollari</h3>
+      <ul class="clean small">
+        <li>Xo'sh, qanday ko'ryapsiz?</li>
+        <li>Menimcha, mahsulot sizga juda yoqdi, shundaymi?</li>
+        <li>Kattaroq variantni afzal ko'rasizmi yoki kichikrog'ini?</li>
+        <li>Yangi mashinangizda qayerga borgan bo'lardingiz?</li>
+        <li>Men ko'rsatgan narsalardan qaysi biri sizga eng ko'p yoqdi?</li>
+        <li>Bu xariddan o'zingiz uchun qanday eng katta foydani ko'rdingiz?</li>
+        <li>Bu mahsulotni sotib olishda shubhalanishingiz uchun sabab bormi?</li>
+        <li>Ayting-chi, bu mahsulotga qandaydir o'zgartirish yoki qo'shimcha kiritishni xohlarmidingiz?</li>
+        <li>Keling, uni hozircha chetga olib qo'yaman — hech kim olib ketmasin. Biz esa bir necha detalni muhokama qilamiz. Qiziq bo'ladi, sizga yoqadi!</li>
+      </ul>
+      <p class="small">
+        <b>Oldindan yopish savollarining maqsadi</b> — sotish emas, mijoz yopishga qanchalik
+        tayyor ekanini <b>tekshirish</b>.
+      </p>
+    </div>
+
+    <div>
+      <h3>Asosiy savol: "Bularning hammasi sizga 10 ballik shkalada qanday tushdi?"</h3>
+      <div class="fig">
+        <svg viewBox="0 0 560 210" role="img" aria-label="10 ballik shkala">
+          <g>
+            <rect x="20" y="70" width="212" height="44" rx="6" fill="#c4302b"/>
+            <rect x="236" y="70" width="160" height="44" rx="6" fill="#e8760f"/>
+            <rect x="400" y="70" width="52" height="44" rx="6" fill="#e3b23c"/>
+            <rect x="456" y="70" width="84" height="44" rx="6" fill="#0f8a4d"/>
+          </g>
+          <g font-size="17" font-weight="800" fill="#fff" text-anchor="middle">
+            <text x="126" y="99">&lt; 5</text>
+            <text x="316" y="99">5 – 8</text>
+            <text x="426" y="99" fill="#14110e">8</text>
+            <text x="498" y="99">9 – 10</text>
+          </g>
+          <g font-size="12" font-weight="700" text-anchor="middle" fill="#14110e">
+            <text x="126" y="136">Umuman tegmadingiz.</text>
+            <text x="126" y="152">Yo mijoz noto'g'ri,</text>
+            <text x="126" y="168">yo menejer texnologiyani</text>
+            <text x="126" y="184">tushunmagan.</text>
+
+            <text x="316" y="136">Prezentatsiyaga qayting.</text>
+            <text x="316" y="152">Nima tushunarsiz —</text>
+            <text x="316" y="168">aniqlang va yana oldindan</text>
+            <text x="316" y="184">yopishga o'ting.</text>
+
+            <text x="426" y="136">"10 bo'lishi</text>
+            <text x="426" y="152">uchun nima</text>
+            <text x="426" y="168">yetmadi?"</text>
+
+            <text x="498" y="136">Yopishga</text>
+            <text x="498" y="152">o'ting!</text>
+          </g>
+          <text x="280" y="42" text-anchor="middle" font-size="14" font-weight="800" fill="#6d655a">MIJOZNING BAHOSI → MENEJERNING KEYINGI QADAMI</text>
+        </svg>
+        <div class="fig-cap">8-chizma. 10 ballik shkala bo'yicha qaror</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-sec mt"><span class="num">6.</span> Yopish</div>
+
+  <div class="grid-45">
+    <div>
+      <div class="def">
+        <span class="t">Qattiq savdo</span> — bu mijozga noqulay bo'lib qolgani, siz esa buni
+        xotirjam bosib o'tayotganingiz.
+      </div>
+      <div class="panel mt-s">
+        <p class="small" style="margin:0 0 2mm">— <b>Siz menga bosim o'tkazyapsizmi?</b></p>
+        <p class="small" style="margin:0">
+          — Bilasizmi, siz buni mening qat'iyligim, ishonchim, mahsulot va kompaniya haqidagi
+          bilimim bilan adashtirdingiz. Iltimos, buni bosim bilan chalkashtirmang. Keling,
+          ishni boshlaymiz-a? Bilaman, keyin siz bizni hamma do'stlaringizga tavsiya qilasiz...
+        </p>
+      </div>
+      <h3 class="mt-s">Yopuvchi savollar</h3>
+      <div class="grid2" style="gap:4mm">
+        <ul class="clean small" style="margin:0">
+          <li>Xo'sh, ishlaymizmi?</li>
+          <li>Yozib qo'yaymi?</li>
+          <li>Bron qilaymi?</li>
+          <li>Vaqtni bron qilaymi?</li>
+          <li>Shartnoma imzolaymizmi?</li>
+        </ul>
+        <ul class="clean small" style="margin:0">
+          <li>Boshlashni taklif qilaman?</li>
+          <li>Ketdikmi? Oldinga!</li>
+          <li>Keling, buni birga qilamiz, nima deysiz?</li>
+          <li>Hisob-fakturani tayyorlab, to'lovni kutaman?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h3>Mijozning tayyorlik darajasi: 0.5 → 0.9 → 1.0</h3>
+      <div class="fig">
+        <svg viewBox="0 0 560 200" role="img" aria-label="Mijozning tayyorlik darajasi">
+          <g>
+            <rect x="10" y="96" width="170" height="70" rx="10" fill="#f2a9a6"/>
+            <text x="95" y="128" text-anchor="middle" font-size="24" font-weight="800" fill="#14110e">0.5</text>
+            <text x="95" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#14110e">"bizga qiziq"</text>
+          </g>
+          <g>
+            <rect x="195" y="60" width="170" height="106" rx="10" fill="#f5cf8a"/>
+            <text x="280" y="104" text-anchor="middle" font-size="24" font-weight="800" fill="#14110e">0.9</text>
+            <text x="280" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#14110e">"ha, ishlaymiz"</text>
+            <text x="280" y="146" text-anchor="middle" font-size="13" font-weight="700" fill="#14110e">dedi</text>
+          </g>
+          <g>
+            <rect x="380" y="24" width="170" height="142" rx="10" fill="#0f8a4d"/>
+            <text x="465" y="84" text-anchor="middle" font-size="24" font-weight="800" fill="#fff">1.0</text>
+            <text x="465" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">TO'LADI</text>
+            <text x="465" y="132" text-anchor="middle" font-size="12" fill="#d5efe1">bitim yopildi</text>
+          </g>
+          <line x1="10" y1="176" x2="550" y2="176" stroke="#14110e" stroke-width="2.5"/>
+          <text x="280" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#6d655a">faqat to'lov bitimni yopadi</text>
+        </svg>
+        <div class="fig-cap">9-chizma. Mijozning tayyorlik darajasi</div>
+      </div>
+      <div class="callout">
+        <span class="lab">0.5 dan 0.9 ga qanday o'tamiz?</span>
+        <ol class="big small" style="margin:0">
+          <li>"Siz prinsipial ravishda biz bilan ishlashga qaror qildingizmi?"</li>
+          <li>"Taxminan qachon boshlaymiz?"</li>
+          <li>"Qanday to'laysiz? Qaysi variantni tanlaysiz?"</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf"><span>1-bo'lim · Oldindan yopish va yopish</span><span>7</span></div>
+</section>
+
+<!-- ============================ 8. E'TIROZLAR + APSEYL ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">1-bo'lim · Savdo texnologiyasi</span><span class="rh-r">E'tirozlar va apseyl</span></div>
+
+  <div class="h-sec"><span class="num">7.</span> E'tirozlar bilan ishlash</div>
+
+  <div class="grid-45">
+    <div>
+      <div class="panel dark">
+        <h3>Ikkita qoida</h3>
+        <p style="margin:0 0 2mm"><b>1-qoida</b> — mijoz bilan har doim, hamma narsada rozi bo'lish.</p>
+        <p style="margin:0"><b>2-qoida</b> — mijozlarning aksariyat e'tirozlari aslida <b>shikoyat</b>.</p>
+      </div>
+      <p class="small mt-s">
+        <b>Shikoyatni qanday tanib olamiz?</b> Har qanday e'tirozni, teskarisi isbotlanmaguncha,
+        shikoyat deb qabul qilamiz.
+      </p>
+      <p class="small">
+        <b>Shikoyatni qanday qayta ishlaymiz?</b> Rozi bo'lamiz va yopishni davom ettiramiz.
+      </p>
+
+      <div class="panel warm mt-s">
+        <h4><span class="pill a">Topshiriq</span> &nbsp;24 soat</h4>
+        <p class="small" style="margin:0 0 2mm">Bir kun davomida hamma bilan rozi bo'ling. Quyidagi iboralarni ishlating:</p>
+        <div class="tags">
+          <span class="tag">Sizga qo'shilaman</span>
+          <span class="tag">Fikringiz yo'nalishini tushundim</span>
+          <span class="tag">Siz haqsiz</span>
+          <span class="tag">Aniq</span>
+          <span class="tag">Tushundim</span>
+          <span class="tag">Tushunaman</span>
+          <span class="tag">Qilaman</span>
+          <span class="tag">Ha, albatta</span>
+          <span class="tag">Ha, zo'r</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fig">
+      <svg viewBox="0 0 560 400" role="img" aria-label="E'tirozlar daraxti">
+        <rect x="200" y="8" width="160" height="42" rx="8" fill="#14110e"/>
+        <text x="280" y="35" text-anchor="middle" fill="#fff" font-size="16" font-weight="800">E'TIROZLAR</text>
+        <path d="M280 50 L280 74 M140 74 L420 74 M140 74 L140 94 M420 74 L420 94" stroke="#14110e" stroke-width="2.5" fill="none"/>
+
+        <rect x="46" y="94" width="188" height="38" rx="7" fill="#c25f06"/>
+        <text x="140" y="119" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">HAQIQIY</text>
+        <rect x="326" y="94" width="188" height="38" rx="7" fill="#6d655a"/>
+        <text x="420" y="119" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">YOLG'ON</text>
+
+        <g font-size="13" font-weight="600" fill="#14110e">
+          <rect x="46" y="142" width="188" height="34" rx="5" fill="#fdf4e6" stroke="#eccf9e" stroke-width="1.5"/><text x="140" y="164" text-anchor="middle">Qimmat</text>
+          <rect x="46" y="182" width="188" height="34" rx="5" fill="#fdf4e6" stroke="#eccf9e" stroke-width="1.5"/><text x="140" y="204" text-anchor="middle">Ularda arzonroq</text>
+          <rect x="46" y="222" width="188" height="34" rx="5" fill="#fdf4e6" stroke="#eccf9e" stroke-width="1.5"/><text x="140" y="244" text-anchor="middle">Allaqachon ishlayapmiz</text>
+          <rect x="46" y="262" width="188" height="34" rx="5" fill="#fdf4e6" stroke="#eccf9e" stroke-width="1.5"/><text x="140" y="284" text-anchor="middle">Uzoq kutish kerak</text>
+          <rect x="46" y="302" width="188" height="34" rx="5" fill="#fdf4e6" stroke="#eccf9e" stroke-width="1.5"/><text x="140" y="324" text-anchor="middle">Vaqt yo'q</text>
+          <rect x="46" y="342" width="188" height="34" rx="5" fill="#fff" stroke="#d8d0c4" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+          <rect x="326" y="142" width="188" height="34" rx="5" fill="#f7f3ec" stroke="#d8d0c4" stroke-width="1.5"/><text x="420" y="164" text-anchor="middle">O'ylab ko'raman</text>
+          <rect x="326" y="182" width="188" height="34" rx="5" fill="#f7f3ec" stroke="#d8d0c4" stroke-width="1.5"/><text x="420" y="204" text-anchor="middle">Maslahatlashishim kerak</text>
+          <rect x="326" y="222" width="188" height="34" rx="5" fill="#f7f3ec" stroke="#d8d0c4" stroke-width="1.5"/><text x="420" y="244" text-anchor="middle">Keyinroq qo'ng'iroq qiling</text>
+          <rect x="326" y="262" width="188" height="34" rx="5" fill="#f7f3ec" stroke="#d8d0c4" stroke-width="1.5"/><text x="420" y="284" text-anchor="middle">O'zim qo'ng'iroq qilaman</text>
+          <rect x="326" y="302" width="188" height="34" rx="5" fill="#fff" stroke="#d8d0c4" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <rect x="326" y="342" width="188" height="34" rx="5" fill="#fff" stroke="#d8d0c4" stroke-width="1.5" stroke-dasharray="4 3"/>
+        </g>
+        <text x="140" y="394" text-anchor="middle" font-size="11" font-weight="700" fill="#6d655a">nima yoqmagani — aniq</text>
+        <text x="420" y="394" text-anchor="middle" font-size="11" font-weight="700" fill="#6d655a">nima yoqmagani — noaniq</text>
+      </svg>
+      <div class="fig-cap">10-chizma. E'tirozlar turlari (bo'sh katakchalarni o'zingiz to'ldiring)</div>
+    </div>
+  </div>
+
+  <div class="grid2 mt-s">
+    <div class="panel">
+      <h4>Yolg'on e'tiroz</h4>
+      <p class="small" style="margin:0">Mijozga nima yoqmaganini <b>tushunib bo'lmaydi</b>. U haqiqiy sababni yashiryapti.</p>
+    </div>
+    <div class="panel">
+      <h4>Haqiqiy e'tiroz</h4>
+      <p class="small" style="margin:0">Nimadir to'g'ri kelmaganining <b>aniq sababi</b> aytilgan. U bilan ishlash mumkin.</p>
+    </div>
+  </div>
+
+  <div class="h-sec mt"><span class="num">8.</span> Apseyl</div>
+  <p class="lead" style="margin-bottom:4mm">Muhim: <b>butun pul apseyllarda.</b></p>
+
+  <div class="grid-45">
+    <div>
+      <div class="def">
+        <span class="t">Apseyl</span> (ingl. <em>upsale, upselling</em> — "savdoni oshirish") —
+        sotuvchilar qo'llaydigan texnika. Sotilayotgan mahsulot yoki xizmatga qo'shimcha
+        xususiyatlar qo'shiladi. Bu xususiyatlar unga qo'shimcha qiymat beradi va mijozni
+        aynan shu takomillashgan mahsulotni olishga moyil qiladi.
+      </div>
+      <p class="small mt-s">Oddiy qilib aytganda — bu <b>savdo summasini ko'tarish</b>.</p>
+      <p class="small">
+        Biz apseyl qilamiz, chunki bu bizga birinchi navbatda <b>lidlarni qimmatroqqa
+        sotib olish</b> imkonini beradi.
+      </p>
+    </div>
+    <div>
+      <h3>Nima muhim?</h3>
+      <ol class="big">
+        <li><b>Pulni va mijozni nazorat qilish.</b></li>
+        <li><b>Oldindan to'lov bilan ishlash.</b></li>
+        <li><b>"Oraliq qatlam"ni nazorat qilish.</b> Pudratchilarga imkon qadar kam bog'liq bo'ling.
+        Lidlarning katta qismi vositachilar orqali emas, to'g'ridan-to'g'ri sizga tushishini tashkil qiling.</li>
+      </ol>
+      <div class="callout">
+        <span class="lab">Ogohlantirish</span>
+        <p style="margin:0" class="small">
+          <b>Agentlar bilan ishlash</b> — eng yaxshi variant emas. Lidlar bilan to'g'ridan-to'g'ri
+          ishlashga chiqish kerak. Aks holda: biznesingiz — birovning qo'lida.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf"><span>1-bo'lim · E'tirozlar va apseyl</span><span>8</span></div>
+</section>
+
+<!-- ============================ 9. TRENING + JORIY QILISH + O'YIN + TASDIQLASH ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">1-bo'lim · Savdo texnologiyasi</span><span class="rh-r">Trening, o'yin, tasdiqlash</span></div>
+
+  <div class="h-sec"><span class="num">9.</span> Treninglar</div>
+  <div class="quote" style="margin-top:0">"Odamlarni har kuni qaytadan ishga olish kerak."</div>
+
+  <div class="grid3">
+    <div class="panel">
+      <h3>Trening tuzilishi</h3>
+      <ul class="clean small" style="margin:0">
+        <li><b>2 kun</b> — og'riqlar va ehtiyojlar</li>
+        <li><b>2 kun</b> — yopish va e'tirozlar</li>
+        <li><b>1 kun</b> — kontakt o'rnatish</li>
+      </ul>
+      <p class="small mt-s" style="margin:0"><b>Nimalarni mashq qilamiz:</b></p>
+      <ul class="clean small" style="margin:0">
+        <li>"Beee, eeem, mmmm..." — ortiqcha tovushlarni yo'qotish</li>
+        <li>Tabassum va nastroy</li>
+        <li>Qomat va imo-ishoralar (faol va g'olibnikidek)</li>
+      </ul>
+      <div class="callout mt-s">
+        <p class="small" style="margin:0"><b>Treninglarni ertalab</b>, ish kunidan yarim soat oldin o'tkazish kerak.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Trening turlari</h3>
+      <p class="small" style="margin:0 0 2mm"><b>Prezentatsiya treningi.</b> Juftlikka bo'lamiz, mijoz muammolarini (prezentatsiya bloklarini) belgilaymiz.</p>
+      <p class="small" style="margin:0 0 2mm"><b>Maqsad:</b> og'riqlar og'rig'i bo'yicha yopish, foydalarning foydasiga tayanish, belgilangan bloklarga urg'u berish. Har bir menejerni <b>4 xil mijoz avatari</b> bo'yicha mashq qildiring.</p>
+      <p class="small" style="margin:0 0 2mm"><b>Yopish va e'tirozlar treningi.</b> Prezentatsiya mashqidan yakuniy holatni olamiz va yopish savollarini beramiz. Masalan: "Xo'sh, ishlaymizmi?" yoki oldindan yopishdan: "Umuman 10 ballik shkalada qanday?" — e'tiroz oladi va uni sxema bo'yicha qayta ishlaydi.</p>
+      <p class="small" style="margin:0 0 2mm"><b>Kontakt o'rnatish treningi.</b> Bir-birining ro'parasiga o'tirib bajariladi ("konfrontatsiya" mavzusidagi slayd).</p>
+      <p class="small" style="margin:0"><b>"Probka" treningi</b> — diksiya mashqi.</p>
+    </div>
+
+    <div class="panel">
+      <h3>10. Skriptni qanday joriy qilamiz?</h3>
+      <ol class="big small" style="margin:0">
+        <li>Skriptni / e'tirozni <b>chop eting</b>.</li>
+        <li>Menejerga vazifa bering: har bir so'zni yod olsin (30–60 daqiqa).</li>
+        <li>Menejerlar bir-biri bilan o'ynaydi (30 daqiqa).</li>
+        <li>Menejerlar sizga imtihon topshiradi (siz — mijozsiz).</li>
+        <li>Har biriga 5 tadan lid tarqating (ism, telefon).</li>
+        <li>"Sot yoki cho'kkalab tur" o'yinini o'ynaymiz.</li>
+      </ol>
+      <p class="small mt-s" style="margin:0 0 2mm"><b>E'tirozlarni qanday mashq qilamiz?</b> Jadval tuzing: <em>e'tiroz — qayta ishlash</em>.</p>
+      <p class="small" style="margin:0"><b>Shaxsiy uchrashuvda menejerni nazorat qilish:</b></p>
+      <ul class="clean small" style="margin:0">
+        <li>diktofon</li>
+        <li>mijoz anketasi</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="h-sec mt"><span class="num">11.</span> Savdo bo'limidagi o'yinlar</div>
+
+  <div class="grid-45">
+    <div>
+      <p class="small">
+        Ohanglar shkalasida <b>"O'yin" ohangi — 22-daraja</b>da turadi. Solishtiring:
+        "Quvnoqlik" — 3.5, "Estetika" — 6.0. Ya'ni o'yin ohangi eng yuqorilaridan biri.
+      </p>
+      <p class="small">
+        Savdo bo'limida ohang juda muhim. Biz o'yin holatida bo'lganimizda natija uchun
+        kurashishga va maksimal darajada ishlashga tayyor bo'lamiz.
+        <b>O'yinlar — olovga moy quyishning ajoyib vositasi.</b>
+      </p>
+      <div class="grid2 mt-s" style="gap:5mm">
+        <div class="panel">
+          <h4>O'yin turlari</h4>
+          <ul class="clean small" style="margin:0">
+            <li>Butun kompaniya uchun</li>
+            <li>Bitta bo'lim uchun</li>
+            <li>Shaxsiy — o'zi bilan raqobat</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>O'yin bo'lishi uchun kerak</h4>
+          <ul class="clean small" style="margin:0">
+            <li>Qoidalar</li>
+            <li>Maqsad</li>
+            <li>G'olib</li>
+            <li>Sovrin</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="small" style="margin:0 0 1.5mm"><b>O'yinlar qanday bo'ladi:</b></p>
+      <ul class="clean small">
+        <li><b>Doimiy asosda</b> — har doim o'rnatilgan rekordni yangilashga intilish</li>
+        <li><b>Bir martalik</b> — bitta maqsadga erishish</li>
+      </ul>
+      <div class="grid2" style="gap:4mm">
+        <div class="callout"><span class="lab">Muhim</span><p class="small" style="margin:0">Xodimlaringizning g'alabalarini albatta e'lon qiling — kompaniya chatida, ijtimoiy tarmoqlarda, planyorkalarda.</p></div>
+        <div class="callout"><span class="lab">Kuchaytirish</span><p class="small" style="margin:0">Savdo bo'limi rahbari (ROP) olovga moy quyib turishi kerak. O'yin davomida maqtang va qo'llab-quvvatlang.</p></div>
+        <div class="callout"><span class="lab">Sovrinlar</span><p class="small" style="margin:0">Oldindan so'rang — kim nimani xohlaydi. Va aynan kerakli narsani sovg'a qiling.</p></div>
+        <div class="callout"><span class="lab">Tavsiya</span><p class="small" style="margin:0">Menejerga 100-bitim uchun kubok sovg'a qiling.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-sec mt"><span class="num">12.</span> Tasdiqlash</div>
+  <div class="grid-45">
+    <div>
+      <p class="small">
+        Xodimga maqsad va vazifa qo'yayotganda <b>siklni har doim yakunlash</b> muhim.
+        Xodimlaringizni qadrlash, maqtash kerak. O'tilishi kerak bo'lgan masofani
+        ko'rsating, keyin navbatdagi vazifani qo'ying — va shu tarzda davom eting.
+      </p>
+      <div class="def">
+        <span class="t">Tasdiqlash</span> — bu sizning tomoningizdan faoliyat siklining yakunlanishi.
+      </div>
+      <div class="callout mt-s">
+        <span class="lab">Tavsiya</span>
+        <p style="margin:0">Sizning tasdiqlashlar statistikangiz <b>har doim o'sib borishi</b> kerak.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Tasdiqlash turlari</h3>
+      <table class="small">
+        <tbody>
+          <tr><td class="k">So'zli</td><td>maqtov, kompliment, qo'llab-quvvatlash</td></tr>
+          <tr><td class="k">Tegishli</td><td>"besh" berish, qo'l berib ko'rishish</td></tr>
+          <tr><td class="k">Matnli</td><td>shaxsan chatda yoki xatda</td></tr>
+          <tr><td class="k">Sovrin</td><td>har qanday sovrin, diplom, shirinlik</td></tr>
+          <tr><td class="k">Jamoaviy</td><td>jamoa yoki kompaniya chatida</td></tr>
+          <tr><td class="k">Tashqi muhitga</td><td>ota-onasiga "O'g'lingiz uchun rahmat" deb yozish</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pf"><span>1-bo'lim · Trening, o'yin, tasdiqlash</span><span>9</span></div>
+</section>
+
+<!-- ============================ 10. TEGINISH NUQTALARI ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">1-bo'lim · Savdo texnologiyasi</span><span class="rh-r">Teginish nuqtalari</span></div>
+
+  <div class="h-sec"><span class="num">13.</span> Teginish nuqtalari</div>
+  <p class="lead">
+    Tez o'sadigan kompaniyalarning umumiy belgilari bor. Ular mijoz bilan aloqani
+    hech qachon uzmaydi.
+  </p>
+
+  <div class="grid3">
+    <div class="panel dark">
+      <h3>Tez o'sish belgilari</h3>
+      <ol class="big" style="margin:0">
+        <li style="color:#fff">O'z ko'rsatkichlarini <b>yaxshi biladi</b>.</li>
+        <li style="color:#fff">Takroriy savdoga konversiya — <b>kamida 50%</b>.</li>
+        <li style="color:#fff">Mijozga <b>5 dan 12 martagacha</b> teginish urinishi qiladi.</li>
+      </ol>
+    </div>
+    <div class="panel">
+      <h3>Qanday teginamiz?</h3>
+      <p class="small" style="margin:0 0 2mm">Turlarini <b>aralashtirib</b>, haftasiga <b>2 marta</b> qilish kerak.</p>
+      <p class="small" style="margin:0 0 2mm">Bu teginish nuqtalari — <b>sotuvchi emas</b>. Ular orqali siz mijoz bilan <b>munosabat</b> quryapsiz.</p>
+      <p class="small" style="margin:0"><b>Turlari:</b></p>
+      <ul class="clean small" style="margin:0">
+        <li>isitadigan teginish nuqtalari</li>
+        <li>sotadigan teginish nuqtalari</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Qanday joriy qilamiz?</h3>
+      <p class="small" style="margin:0">AmoCRM ichidagi <b>Sensei</b> vositasi orqali avtomatlashtirsa bo'ladi.</p>
+      <div class="callout mt-s">
+        <p class="small" style="margin:0">Har bir teginish yozilib borsin — kim, qachon, nima yubordi. Aks holda tizim emas, tasodif bo'ladi.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="mt">Doimiy mijozlar uchun 24 ta teginish nuqtasi</h2>
+  <div class="grid3" style="gap:5mm">
+    <div>
+      <table>
+        <tbody>
+          <tr><td class="k" style="width:12%">1</td><td>Foydali maqola</td></tr>
+          <tr><td class="k">2</td><td>Foydali video</td></tr>
+          <tr><td class="k">3</td><td>Foydali maslahatlar</td></tr>
+          <tr><td class="k">4</td><td>Chek-listlar</td></tr>
+          <tr><td class="k">5</td><td>O'quv fayllari</td></tr>
+          <tr><td class="k">6</td><td>Qiziqarli statistika</td></tr>
+          <tr><td class="k">7</td><td>Muvaffaqiyatli keyslar</td></tr>
+          <tr><td class="k">8</td><td>100-buyurtma bilan tabriklash</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <table>
+        <tbody>
+          <tr><td class="k" style="width:12%">9</td><td>Kasbiy bayramlar</td></tr>
+          <tr><td class="k">10</td><td>Davlat bayramlari</td></tr>
+          <tr><td class="k">11</td><td>Mijozning tug'ilgan kuni</td></tr>
+          <tr><td class="k">12</td><td>Uning kompaniyasi tug'ilgan kuni</td></tr>
+          <tr><td class="k">13</td><td>Sizning kompaniyangiz tug'ilgan kuni</td></tr>
+          <tr><td class="k">14</td><td>Qiziqarli narsalar (foto/video)</td></tr>
+          <tr><td class="k">15</td><td>Sovg'alar</td></tr>
+          <tr><td class="k">16</td><td>Aksiyalar</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <table>
+        <tbody>
+          <tr><td class="k" style="width:12%">17</td><td>Yangi mahsulotlar</td></tr>
+          <tr><td class="k">18</td><td>Taklifnomalar</td></tr>
+          <tr><td class="k">19</td><td>Vebinarlar</td></tr>
+          <tr><td class="k">20</td><td>Ko'rgazmalar va ularning e'lonlari</td></tr>
+          <tr><td class="k">21</td><td>Bozor tendensiyalari</td></tr>
+          <tr><td class="k">22</td><td>Sizning masshtab raqamlaringiz</td></tr>
+          <tr><td class="k">23</td><td>Mehmonga tashrif</td></tr>
+          <tr><td class="k">24</td><td>Kompaniya yangiliklari</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel warm mt">
+    <h4><span class="pill a">Topshiriq</span> &nbsp;Bir oylik teginish rejasi</h4>
+    <p class="small" style="margin:0 0 3mm">Yuqoridagi ro'yxatdan tanlang va haftasiga 2 tadan yozing. Kim mas'ul va qaysi kuni — ko'rsating.</p>
+    <table>
+      <thead><tr><th style="width:14%">Hafta</th><th>Teginish 1</th><th>Teginish 2</th><th style="width:18%">Mas'ul</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1-hafta</td><td style="height:13mm"></td><td></td><td></td></tr>
+        <tr><td class="k">2-hafta</td><td style="height:13mm"></td><td></td><td></td></tr>
+        <tr><td class="k">3-hafta</td><td style="height:13mm"></td><td></td><td></td></tr>
+        <tr><td class="k">4-hafta</td><td style="height:13mm"></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pf"><span>1-bo'lim · Teginish nuqtalari</span><span>10</span></div>
+</section>
+
+<!-- ============================ 11. SUHBAT ANKETASI ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">2-bo'lim</span><span class="rh-r">Ommaviy suhbat anketasi</span></div>
+
+  <div class="h-sec">Ommaviy suhbat anketasi</div>
+  <p class="lead">
+    Anketa <b>yozma</b> ravishda to'ldiriladi. Bajarish vaqti — <b>10 daqiqa</b>.
+    Har bir savolga to'g'ri javob uchun ball beriladi. Shu tariqa ko'p nomzoddan
+    kuchlilarini tez ajratib olasiz.
+  </p>
+
+  <div class="grid2">
+    <div class="stack">
+      <div class="panel">
+        <h4>1. [E'tiroz]* ... Sizning harakatlaringiz</h4>
+        <p class="tiny" style="margin:0 0 3mm">* Bu yerga o'z sohangizda tez-tez uchraydigan e'tirozni yozing</p>
+        <div class="grid2" style="gap:5mm">
+          <div>
+            <ul class="clean check small" style="margin:0"><li>E'tirozga eng oddiy va to'g'ri javob — <b>qo'shilish</b> <span class="pill g">1 ball</span></li></ul>
+          </div>
+          <div>
+            <ul class="clean cross small" style="margin:0"><li>"Chegirma beraman" <span class="pill r">0 ball</span></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>2. Eng yaxshi menejer bo'lish uchun nima qilish kerak?</h4>
+        <div class="grid2" style="gap:5mm">
+          <div>
+            <ul class="clean check small" style="margin:0"><li>Hammadan ko'p qo'ng'iroq qilish, hammadan ko'p uchrashish, arizalarga o'z vaqtida qayta qo'ng'iroq qilish, rahbarini tinglash, muvaffaqiyatli menejer tajribasini o'rganib takrorlash, kitob o'qish <span class="pill g">1 ball</span></li></ul>
+          </div>
+          <div>
+            <ul class="clean cross small" style="margin:0"><li>"Ishlash" <span class="pill r">0 ball</span></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>3. Savdoni oshirish uchun nima qilish kerak?</h4>
+        <div class="grid2" style="gap:5mm">
+          <div>
+            <ul class="clean check small" style="margin:0"><li>Savdoni ko'tarishning 4 usuli: urinishlar soni, konversiyani masshtablash, o'rtacha chekni ko'tarish, takroriy savdolar <span class="pill g">1 ball</span><br><span class="tiny">(bittasini yozsa ham — 1 ball)</span></li></ul>
+          </div>
+          <div>
+            <ul class="clean cross small" style="margin:0"><li>"Harakat qilish, o'rganish" <span class="pill r">0 ball</span></li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="panel">
+        <h4>4. Farrosh uchun qimmatli yakuniy mahsulot — toza pol, etikdo'z uchun — etik. Savdo menejeri uchun bu nima?</h4>
+        <div class="grid2" style="gap:5mm">
+          <div>
+            <ul class="clean check small" style="margin:0"><li>Pul / tushum / bitim / savdo <span class="pill g">1 ball</span></li></ul>
+          </div>
+          <div>
+            <ul class="clean cross small" style="margin:0"><li>"Mamnun mijoz", "ko'p uchrashuv" <span class="pill r">0 ball</span></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>5. Savdo bo'yicha oxirgi qanday kitoblarni o'qidingiz?</h4>
+        <div class="grid2" style="gap:5mm">
+          <div>
+            <ul class="clean check small" style="margin:0">
+              <li>Nomzod kitob nomlarini yozgan bo'lsa <span class="pill g">1 ball</span></li>
+              <li>Savdo bo'yicha trening o'tagan bo'lsa <span class="pill a">0.5 ball</span></li>
+            </ul>
+          </div>
+          <div>
+            <ul class="clean cross small" style="margin:0"><li>"Kitob o'qimayman" <span class="pill r">0 ball</span></li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel dark">
+        <h3>Umumiy ball</h3>
+        <p style="margin:0 0 3mm">Maksimal ball — <b>5</b>. Ball qancha yuqori bo'lsa, nomzod savdo texnologiyasini shuncha yaxshi tushunadi.</p>
+        <p style="margin:0" class="small">
+          Anketa nomzodni <b>to'liq</b> baholamaydi. U faqat birinchi filtr —
+          ko'p odamdan kamini tez ajratib olish uchun. Keyingi bosqichda shaxsiy
+          suhbat va amaliy sinov bo'ladi.
+        </p>
+      </div>
+
+      <div class="panel warm">
+        <h4><span class="pill a">Topshiriq</span> &nbsp;O'z sohangiz uchun e'tiroz</h4>
+        <p class="small" style="margin:0 0 2mm">1-savolga qo'yiladigan, sizning biznesingizda eng ko'p uchraydigan e'tirozni yozing:</p>
+        <div class="write tight"><div class="ln"></div><div class="ln"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf"><span>2-bo'lim · Suhbat anketasi</span><span>11</span></div>
+</section>
+
+<!-- ============================ 12. TELEFONIYA ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">3-bo'lim</span><span class="rh-r">Telefoniya tanlash</span></div>
+
+  <div class="h-sec">Telefoniyani solishtirish</div>
+  <p class="lead">
+    Savdo bo'limi telefoniyasiz ishlamaydi. Quyida ikkita mashhur provayder ochiq
+    solishtirilgan: qaysi biri sizga to'g'ri kelishini o'zingiz hal qilasiz.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th style="width:13%"></th><th style="width:43.5%">Sipuni</th><th style="width:43.5%">Zadarma IP</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="k">Tavsif</td>
+        <td>
+          <p class="small" style="margin:0 0 2mm">Sipuni SIP-provayderining asosiy xizmati — <b>arzon narxdagi IP-telefoniya</b>. Foydalanuvchilarni butun dunyo bo'ylab sifatli aloqa, hamyonbop narxlar va ko'p kanalli raqamlar kutadi.</p>
+          <p class="small" style="margin:0">Bazaviy xizmat sifatida <b>virtual ATS Sipuni</b> ham bor. Bu — CRM'ni qo'llab-quvvatlaydigan, ofislarni telefonlashtirish uchun kuchli dasturiy kompleks.</p>
+        </td>
+        <td>
+          <p class="small" style="margin:0 0 2mm">Telefoniya <b>jismoniy va yuridik shaxslarga</b> mo'ljallangan. Provayder Rossiyada <b>2006-yildan</b> beri ishlaydi va mijozlarga yuqori sifatli aloqa xizmatlarini beradi.</p>
+          <p class="small" style="margin:0">Funksiyalar soni va narxlar bo'yicha u raqobatchilarning katta qismidan ustun. Premium kanallar aloqani yanada toza va tez qiladi — kechikish deyarli yo'q.</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="k">Plyuslari</td>
+        <td>
+          <ol class="big small" style="margin:0">
+            <li>Rossiya bo'ylab, shu jumladan Moskva va Sankt-Peterburgga qo'ng'iroqlar <b>arzon</b>.</li>
+            <li>Virtual ATS uchun va savdo darajasini oshirish uchun <b>biznes-funksiyalar tanlovi juda katta</b>.</li>
+            <li><b>O'z raqamingiz bilan ulanish</b> mumkin. Bu — reklamada e'lon qilingan va mashhur internet-maydonchalarga joylashtirilgan joriy raqamidan voz kechishni istamaydigan kompaniyalar uchun ajoyib yechim.</li>
+            <li><b>Qo'llab-quvvatlash tez javob beradi</b> va telefoniya bilan bog'liq har qanday muammoni hal qiladi.</li>
+          </ol>
+        </td>
+        <td>
+          <ol class="big small" style="margin:0">
+            <li><b>O'tkazuvchanligi yuqori kanallar</b> — operatorning kalit xususiyati. Aynan shu a'lo aloqa sifatini, tez ulanishni va suhbatda kechikish yo'qligini ta'minlaydi. Premium kanallar, raqobatchilardan farqli o'laroq, <b>barcha tarif rejalarida</b> mavjud — boshqa provayderlar aloqa sifatini faqat alohida pulga oshiradi.</li>
+            <li><b>Tez ulanish.</b> Shahar telefonini o'tkazish uchun ikki hafta kutish shart emas. Oddiy ro'yxatdan o'tish jarayonidan o'ting — va sifatli telefoniya hamda muvozanatli tariflarga ega bo'ling. Ulanish bir necha daqiqadan ko'p vaqt olmaydi: ro'yxatdan o'tishni tasdiqlang, hisobni to'ldiring va butun dunyo bo'ylab qo'ng'iroq qiling.</li>
+            <li><b>Ovozli aloqa narxi haqiqatan ham past.</b></li>
+            <li><b>Kuchli texnik qo'llab-quvvatlash.</b> "Qo'llab-quvvatlash" bo'limida "Sozlash bo'yicha yo'riqnomalar" bandi bor — u yerda VoIP-uskuna va dasturiy telefonlarni sozlash bo'yicha o'nlab yo'riqnoma joylashgan. Shu yerda CRM-tizimlar bilan integratsiya va Zadarma'ning firmaviy xizmatlarini (virtual ATS, sayt uchun vidjet, virtual raqamlar) sozlash yo'riqnomalari ham bor. Bundan tashqari, qo'llab-quvvatlash bilan bog'lanishning ko'p usuli bor: onlayn-chat, tiketlar tizimi yoki kontakt telefonlar.</li>
+          </ol>
+        </td>
+      </tr>
+      <tr>
+        <td class="k">Minuslari</td>
+        <td>
+          <ol class="big small" style="margin:0">
+            <li>Bitta ish o'rnining narxi <b>biroz yuqoriroq</b> — ayniqsa kengaytirilgan funksionalga ega yuqori tarif rejalarida.</li>
+          </ol>
+        </td>
+        <td>
+          <ol class="big small" style="margin:0">
+            <li>Quyi "Ekonom" tarif rejasida <b>sekundlab tariflash yo'q</b>.</li>
+            <li>Ba'zi potensial mijozlar operatorning nomini "qo'rqitadigan" deb shikoyat qiladi. Bu ovozli aloqa sifatiga va "Virtual ATS" ishiga <b>hech qanday ta'sir qilmaydi</b>. Hozirda operator bilan dunyoning 80 mamlakatidan <b>1 mln dan ortiq mijoz</b> ishlaydi.</li>
+          </ol>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grid3 mt">
+    <div class="panel">
+      <h4>Sipuni kimga mos?</h4>
+      <p class="small" style="margin:0">Joriy raqamini saqlab qolishi shart bo'lgan va virtual ATS'ning keng biznes-funksiyalari kerak bo'lgan kompaniyalarga.</p>
+    </div>
+    <div class="panel">
+      <h4>Zadarma kimga mos?</h4>
+      <p class="small" style="margin:0">Tez ishga tushishi kerak bo'lgan, aloqa sifati va past narx birinchi o'rinda turgan jamoalarga.</p>
+    </div>
+    <div class="panel warm">
+      <h4>Qanday tanlaymiz?</h4>
+      <p class="small" style="margin:0">Ikkalasini ham sinab ko'ring: 1 hafta test qiling, qo'ng'iroq sifatini va CRM bilan integratsiyani tekshiring. Keyin qaror qiling.</p>
+    </div>
+  </div>
+
+  <div class="pf"><span>3-bo'lim · Telefoniya</span><span>12</span></div>
+</section>
+
+<!-- ============================ 13. PiF ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">4-bo'lim</span><span class="rh-r">Salohiyatni baholash · PiF</span></div>
+
+  <div class="h-sec">Salohiyatni baholash — PiF</div>
+  <p class="lead">
+    <b>PiF (Potential in Focus)</b> — liderlik salohiyatini o'lchaydigan test.
+    U hozirgi natijani emas, <b>yangi sharoitda odam qanchalik muvaffaqiyatli bo'lishini</b>
+    bashorat qiladi. Quyida bitta ishtirokchining haqiqiy natijasi misol qilib berilgan.
+  </p>
+
+  <div class="grid-45">
+    <div>
+      <div class="panel">
+        <h3>Salohiyat nima?</h3>
+        <p class="small" style="margin:0 0 2mm">
+          <b>Salohiyat</b> — odamning yangi sharoit va vaziyatlarda muvaffaqiyatini bashorat
+          qilish imkonini beradigan qobiliyat va shaxsiy sifatlar yig'indisi.
+        </p>
+        <p class="small" style="margin:0">
+          Boshqaruv salohiyati darajasi odatda uning hozirgi lavozimdagi muvaffaqiyatidan
+          farq qiladi. Ya'ni: <b>bugungi sharoitda muvaffaqiyatli bo'lib, yuqori salohiyatga
+          ega bo'lmaslik mumkin. Va aksincha</b> — bugungi natijalar oddiy bo'lsa ham,
+          salohiyat yuqori bo'lishi mumkin.
+        </p>
+      </div>
+
+      <h3 class="mt-s">O'lchov shkalasi — protsentil</h3>
+      <p class="small">
+        <b>Protsentil</b> — testdan ilgari o'tgan va siz bilan bir xil yoki undan past ball
+        to'plagan ishtirokchilar foizi. Masalan, 87 protsentil — bu sifat sizda boshqa
+        87% odamdan yuqori darajada ifodalangan degani.
+      </p>
+      <div class="grid3" style="gap:4mm">
+        <div>
+          <div class="scale"><i class="sc-r" style="width:100%"></i></div>
+          <p class="tiny" style="margin:0"><b style="color:var(--red);font-size:11pt">0–29</b><br>Me'yordan past</p>
+        </div>
+        <div>
+          <div class="scale"><i class="sc-a" style="width:100%"></i></div>
+          <p class="tiny" style="margin:0"><b style="color:var(--orange-d);font-size:11pt">30–70</b><br>Me'yoriy qiymat</p>
+        </div>
+        <div>
+          <div class="scale"><i class="sc-g" style="width:100%"></i></div>
+          <p class="tiny" style="margin:0"><b style="color:var(--green);font-size:11pt">71–100</b><br>Me'yordan yuqori</p>
+        </div>
+      </div>
+
+      <h3 class="mt-s">Salohiyat bilan ishlashning 3 strategiyasi</h3>
+      <p class="small">Salohiyat 18–25 yoshgacha eng faol rivojlanadi. Shuning uchun uning tarkibiy qismlarini keyinchalik o'zgartirish qiyin. Uchta strategiya bor:</p>
+      <ol class="big small">
+        <li><b>Kompensatsiya</b> — ishni shunday tashkil qilish kerakki, past daraja samaradorlikni pasaytirmasin. Masalan, muhim muzokaraga ijtimoiy intellekti yuqori odamni birga olib borish. <em>Past va o'rta darajada qo'llaniladi.</em></li>
+        <li><b>Rivojlantirish</b> — maqsadli ravishda o'stirish. Masalan, ijtimoiy intellekt bo'yicha trening o'tash. Kompensatsiyaga qaraganda mehnattalabroq. <em>O'rta va yuqori darajada qo'llaniladi.</em></li>
+        <li><b>Qo'llab-quvvatlash</b> — eng mos vazifalar ustida ishlash, yuqori darajani saqlab qolish uchun. <em>Yuqori darajada qo'llaniladi.</em></li>
+      </ol>
+      <div class="fig">
+        <svg viewBox="0 0 560 130" role="img" aria-label="Uch strategiya">
+          <rect x="10" y="10" width="180" height="14" rx="7" fill="#c4302b"/>
+          <rect x="196" y="10" width="180" height="14" rx="7" fill="#e8760f"/>
+          <rect x="382" y="10" width="168" height="14" rx="7" fill="#0f8a4d"/>
+          <text x="100" y="40" text-anchor="middle" font-size="13" font-weight="800" fill="#c4302b">Past daraja</text>
+          <text x="286" y="40" text-anchor="middle" font-size="13" font-weight="800" fill="#e8760f">O'rta daraja</text>
+          <text x="466" y="40" text-anchor="middle" font-size="13" font-weight="800" fill="#0f8a4d">Yuqori daraja</text>
+          <rect x="10" y="52" width="366" height="22" rx="5" fill="#f7f3ec" stroke="#d8d0c4"/>
+          <text x="193" y="68" text-anchor="middle" font-size="13" font-weight="700">Kompensatsiya</text>
+          <rect x="196" y="78" width="354" height="22" rx="5" fill="#f7f3ec" stroke="#d8d0c4"/>
+          <text x="373" y="94" text-anchor="middle" font-size="13" font-weight="700">Rivojlantirish</text>
+          <rect x="382" y="104" width="168" height="22" rx="5" fill="#f7f3ec" stroke="#d8d0c4"/>
+          <text x="466" y="120" text-anchor="middle" font-size="13" font-weight="700">Qo'llab-quvvatlash</text>
+        </svg>
+        <div class="fig-cap">11-chizma. Qaysi darajada qaysi strategiya ishlaydi</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="fig">
+        <svg viewBox="-68 -6 648 508" role="img" aria-label="PiF natijalari — atirgul diagramma">
+          <!-- quadrant guides -->
+          <line x1="250" y1="30" x2="250" y2="470" stroke="#e6e1d8" stroke-width="1.5"/>
+          <line x1="30" y1="250" x2="470" y2="250" stroke="#e6e1d8" stroke-width="1.5"/>
+          <circle cx="250" cy="250" r="170" fill="none" stroke="#d8d0c4" stroke-width="1.5"/>
+          <circle cx="250" cy="250" r="113" fill="none" stroke="#e6e1d8" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <circle cx="250" cy="250" r="57" fill="none" stroke="#e6e1d8" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+          <path d="M 250 250 L 250.2 239.8 A 10.2 10.2 0 0 1 256.4 242.1 Z" fill="#0f8a4d" fill-opacity=".85"/>
+          <path d="M 250 250 L 356.0 128.1 A 161.5 161.5 0 0 1 408.5 219.2 Z" fill="#0f8a4d" fill-opacity=".85"/>
+          <path d="M 250 250 L 382.6 229.0 A 134.3 134.3 0 0 1 367.5 315.1 Z" fill="#c4302b" fill-opacity=".85"/>
+          <path d="M 250 250 L 296.6 278.0 A 54.4 54.4 0 0 1 269.5 300.8 Z" fill="#c4302b" fill-opacity=".85"/>
+          <path d="M 250 250 L 279.9 336.8 A 91.8 91.8 0 0 1 220.1 336.8 Z" fill="#c4302b" fill-opacity=".85"/>
+          <path d="M 250 250 L 192.1 400.8 A 161.5 161.5 0 0 1 111.6 333.2 Z" fill="#2e7fa8" fill-opacity=".85"/>
+          <path d="M 250 250 L 134.0 314.3 A 132.6 132.6 0 0 1 119.0 229.3 Z" fill="#2e7fa8" fill-opacity=".85"/>
+          <path d="M 250 250 L 101.5 221.1 A 151.3 151.3 0 0 1 150.7 135.8 Z" fill="#6b53a8" fill-opacity=".85"/>
+          <path d="M 250 250 L 187.9 173.4 A 98.6 98.6 0 0 1 248.3 151.4 Z" fill="#6b53a8" fill-opacity=".85"/>
+
+          <text x="318.4" y="62.1" text-anchor="start" class="rl">O'zgarishlarga ochiqlik</text>
+          <text x="318.4" y="77.1" text-anchor="start" class="rv" fill="#0f8a4d">6</text>
+          <text x="423.2" y="150.0" text-anchor="start" class="rl">Rivojlanish motivatsiyasi</text>
+          <text x="423.2" y="165.0" text-anchor="start" class="rv" fill="#0f8a4d">95</text>
+          <text x="447.0" y="284.7" text-anchor="start" class="rl">Tashabbuskorlik</text>
+          <text x="447.0" y="299.7" text-anchor="start" class="rv" fill="#c4302b">79</text>
+          <text x="378.6" y="403.2" text-anchor="start" class="rl">Qat'iylik</text>
+          <text x="378.6" y="418.2" text-anchor="start" class="rv" fill="#c4302b">32</text>
+          <text x="250.0" y="452.0" text-anchor="middle" class="rl">Ambitsiyalilik</text>
+          <text x="250.0" y="467.0" text-anchor="middle" class="rv" fill="#c4302b">54</text>
+          <text x="121.4" y="403.2" text-anchor="end" class="rl">Liderlik motivatsiyasi</text>
+          <text x="121.4" y="418.2" text-anchor="end" class="rv" fill="#2e7fa8">95</text>
+          <text x="53.0" y="284.7" text-anchor="end" class="rl">Ijtimoiy intellekt</text>
+          <text x="53.0" y="299.7" text-anchor="end" class="rv" fill="#2e7fa8">78</text>
+          <text x="76.8" y="150.0" text-anchor="end" class="rl">Fikrlash tezligi</text>
+          <text x="76.8" y="165.0" text-anchor="end" class="rv" fill="#6b53a8">89</text>
+          <text x="181.6" y="62.1" text-anchor="end" class="rl">Tanqidiy fikrlash</text>
+          <text x="181.6" y="77.1" text-anchor="end" class="rv" fill="#6b53a8">58</text>
+
+          <text x="-56" y="16" font-size="14" font-weight="800" fill="#6b53a8">TAHLIL</text>
+          <text x="568" y="16" font-size="14" font-weight="800" fill="#0f8a4d" text-anchor="end">O'ZGARISHLAR</text>
+          <text x="-56" y="494" font-size="14" font-weight="800" fill="#2e7fa8">MULOQOT</text>
+          <text x="568" y="494" font-size="14" font-weight="800" fill="#c4302b" text-anchor="end">DRAYV</text>
+        </svg>
+        <div class="fig-cap">12-chizma. Salohiyat tarkibiy qismlari bo'yicha natijalar (protsentil)</div>
+      </div>
+
+      <div class="callout mt-s">
+        <span class="lab">Muhim eslatma</span>
+        <p style="margin:0" class="small">
+          Bunday hisobotdagi ma'lumot <b>maxfiy</b> bo'lishi kerak. Uni shaxsiy ma'lumotlarni
+          himoya qilish tamoyillariga muvofiq saqlash lozim. Hisobotning ishonchlilik muddati — <b>2 yil</b>.
+        </p>
+      </div>
+
+      <div class="callout mt-s">
+        <span class="lab">Bu natijani qanday o'qiymiz?</span>
+        <p style="margin:0" class="small">
+          Diagrammadagi har bir yaproq — bitta ko'rsatkich. Yaproq qancha uzun bo'lsa,
+          sifat shuncha kuchli. Bu misolda odam <b>o'rganishga va rahbar bo'lishga juda tayyor</b>
+          (95 va 95), lekin <b>o'zgarishlarga ochiqligi juda past</b> (6). Demak, unga yangi
+          usullarni majburlab emas, jamoaviy muhokama orqali olib kirish kerak.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf"><span>4-bo'lim · Salohiyatni baholash</span><span>13</span></div>
+</section>
+
+<!-- ============================ 13b. PiF — JADVAL ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">4-bo'lim</span><span class="rh-r">Salohiyatni baholash · PiF</span></div>
+
+  <h2>To'qqizta ko'rsatkich — natija va nima qilish kerak</h2>
+  <table>
+    <thead>
+      <tr><th style="width:19%">Ko'rsatkich</th><th style="width:8%">Ball</th><th style="width:16%">Daraja</th><th style="width:26%">Bu nimani anglatadi</th><th style="width:31%">Nima qilish kerak</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="k">Rivojlanish motivatsiyasi</td><td><b style="color:var(--green);font-size:14pt">95</b></td>
+        <td><span class="pill g">Yuqori</span></td>
+        <td class="small">Mavjud bilim va ko'nikmalarni faol takomillashtirasiz, yangilarini o'rganasiz. Yangi vazifalarni ishtiyoq bilan olasiz.</td>
+        <td class="small"><b>Qo'llab-quvvatlash.</b> O'z-o'zini rivojlantirishga vaqt ajrating: audiokitob, ko'rgazma, sohangizdagi yangiliklar. Hamkor va raqobatchilardagi yangi yechimlarni kuzating.</td>
+      </tr>
+      <tr>
+        <td class="k">Liderlik motivatsiyasi</td><td><b style="color:var(--green);font-size:14pt">95</b></td>
+        <td><span class="pill g">Yuqori</span></td>
+        <td class="small">Boshqaruv lavozimlarini egallashga va boshqa odamlar uchun yuqori mas'uliyatni olishga tayyorsiz.</td>
+        <td class="small"><b>Qo'llab-quvvatlash.</b> Liderlik modellarini o'rganing. Rahbaringizning ish mazmuni bilan qiziqing. Ustoz (nastavnik) rolida chiqing, qo'l ostidagilarni rivojlantiring.</td>
+      </tr>
+      <tr>
+        <td class="k">Fikrlash tezligi</td><td><b style="color:var(--green);font-size:14pt">89</b></td>
+        <td><span class="pill g">Yuqori</span></td>
+        <td class="small">Vaqt keskin yetishmagan vaziyatda ham samaradorlikni saqlaysiz, tipik ma'lumotni tez va diqqat bilan qayta ishlaysiz.</td>
+        <td class="small"><b>Qo'llab-quvvatlash.</b> Uzluksiz ma'lumot oqimiga yo'l qo'ymang — "raqamli deteks" davrlarini tashkil qiling. Tipik vazifalar uchun "agar..., unda..." shablonlarini yarating.</td>
+      </tr>
+      <tr>
+        <td class="k">Tashabbuskorlik</td><td><b style="color:var(--green);font-size:14pt">79</b></td>
+        <td><span class="pill g">Yuqori</span></td>
+        <td class="small">Ish vazifalarini mustaqil qo'ya olasiz va ishingizni samarali tashkil qilasiz — hatto butunlay yangi vaziyatlarda ham.</td>
+        <td class="small"><b>Qo'llab-quvvatlash.</b> Bo'limdagi jarayonlarni muntazam tahlil qiling. G'oyani rahbarga aytishdan oldin uni sxema bo'yicha tayyorlang: hozirgi muammo → taklifingiz → natija → kerakli resurs.</td>
+      </tr>
+      <tr>
+        <td class="k">Ijtimoiy intellekt</td><td><b style="color:var(--green);font-size:14pt">78</b></td>
+        <td><span class="pill g">Yuqori</span></td>
+        <td class="small">Boshqalarning yashirin motiv va ehtiyojlarini aniq belgilay olasiz. Nizolarni ma'muriy bosimsiz hal qilasiz.</td>
+        <td class="small"><b>Qo'llab-quvvatlash.</b> Suhbatdoshning shaxsiy va madaniy xususiyatlarini hisobga oling. Xatni yuborishdan oldin qayta o'qing va o'zingizni uning o'rniga qo'ying.</td>
+      </tr>
+      <tr>
+        <td class="k">Tanqidiy fikrlash</td><td><b style="color:var(--orange-d);font-size:14pt">58</b></td>
+        <td><span class="pill a">O'rta</span></td>
+        <td class="small">Murakkab ma'lumotni ancha muvaffaqiyatli tahlil qilasiz. Lekin ba'zan ma'lumotdagi ayrim qonuniyatlarni e'tibordan chetda qoldirasiz.</td>
+        <td class="small"><b>Rivojlantirish + qo'llab-quvvatlash.</b> Ma'lumot haqiqiyligini muqobil manbalar bilan tekshiring. Qaror qabul qilishda ob'ektiv mezonlarni ajrating: muddat, sifat, sarflangan resurs, kutilgan natija.</td>
+      </tr>
+      <tr>
+        <td class="k">Ambitsiyalilik</td><td><b style="color:var(--orange-d);font-size:14pt">54</b></td>
+        <td><span class="pill a">O'rta</span></td>
+        <td class="small">O'z oldingizga yetarlicha ambitsiyali maqsad qo'yasiz. Lekin stressli vaziyatda muvaffaqiyatsizlikdan qochib, ataylab oson maqsadni tanlaysiz.</td>
+        <td class="small"><b>Rivojlantirish.</b> Erishsa bo'ladigan, lekin murakkab maqsad qo'ying. Yillik reja tuzing — reja qiymatlari o'tgan davrdagi natijadan yuqori bo'lsin.</td>
+      </tr>
+      <tr>
+        <td class="k">Qat'iylik</td><td><b style="color:var(--orange-d);font-size:14pt">32</b></td>
+        <td><span class="pill a">O'rta</span></td>
+        <td class="small">Maqsad yo'lidagi to'siqda qat'iyat ko'rsatasiz. Lekin to'siq juda jiddiy tuyulsa, natijaga erishishdan voz kechishingiz mumkin.</td>
+        <td class="small"><b>Rivojlantirish.</b> Katta maqsadni vazifalar seriyasiga bo'ling. Yaqin yarim yilga 1–2 ta real maqsad tanlang. Kichik qadam qo'yganingizda o'zingizni rag'batlantiring.</td>
+      </tr>
+      <tr>
+        <td class="k">O'zgarishlarga ochiqlik</td><td><b style="color:var(--red);font-size:14pt">6</b></td>
+        <td><span class="pill r">Past</span></td>
+        <td class="small">Noaniqlik vaziyatida o'tmishda samaradorligini isbotlagan yondashuvlarga tayanasiz. O'z stereotiplaringizni yengish va yangi sharoitga moslashish sizga qiyin.</td>
+        <td class="small"><b>Kompensatsiya.</b> Bo'limda "g'oyalar banki" yarating. Qaror qabul qilishda jamoaviy usullardan foydalaning: miya hujumi, Delfi usuli, ekspert baholari. Boshqalarning g'oyasini baholaganda avval kamida 5 daqiqa kuchli tomonlarini qidiring.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pf"><span>4-bo'lim · Salohiyatni baholash</span><span>14</span></div>
+</section>
+
+<!-- ============================ 14. LUG'AT ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">Ilova</span><span class="rh-r">Lug'at</span></div>
+
+  <div class="h-sec">Lug'at</div>
+  <p class="lead">Qo'llanmada uchraydigan barcha atamalar — sodda tushuntirish bilan.</p>
+
+  <div class="cols3 small">
+    <p><b>Assessment</b> — ommaviy suhbat. Vaqtni tejash uchun nomzodlar bir necha bosqichli tanlovdan o'tadi.</p>
+    <p><b>Savdo bo'limi assistenti</b> — savdo bo'limi xodimi. U sotuvchilardan barcha rutina ishlarni oladi (shartnoma rasmiylashtirish, hisob tayyorlash va yuborish, smeta va tijorat takliflarini hisoblash) — shunda sotuvchilar unumdorroq ishlaydi.</p>
+    <p><b>ATS</b> (Avtomatik Telefon Stansiyasi) — abonentlar o'rtasida telefon aloqasini operator ishtirokisiz avtomatik ulaydigan va ushlab turadigan qurilmalar tizimi.</p>
+    <p><b>Biznes</b> — iste'molchilarga qimmatli mahsulot ishlab chiqarish va yetkazishga qaratilgan maqsadli, tashkil etilgan faoliyat. Evaziga olingan pul shu faoliyatni davom ettirish va rivojlantirishga yetarli bo'lishi kerak.</p>
+    <p><b>Lidlar birjasi</b> — tizimdagi foydalanuvchi. Unga barcha "egasiz" arizalar biriktiriladi: yangi kelganlari ham, eski baza ham.</p>
+    <p><b>Brif</b> — anketa. Unda ishtirokchi kompaniya haqidagi muhim parametr va ma'lumotlarni ko'rsatadi.</p>
+    <p><b>Savdo voronkasi</b> — potensial mijozning yo'li. U savdoning butun siklini aks ettiradi: mijozning kompaniyaga birinchi murojaatidan bitim tuzilgunga qadar. Har bir bosqichda potensial mijozlar soni kamayadi — shuning uchun u voronkaga o'xshaydi.</p>
+    <p><b>E'tiroz</b> — mijozning taklifni asosli yoki asossiz rad etishi. Ko'pincha muzokaraning yakuniy bosqichida paydo bo'ladi. Sotuvchi buni shunday tushunishi kerak: <em>"Hurmatli sotuvchi, iltimos, shu savolning mohiyatini tushuntiring — men baribir sizdan sotib olish qaroriga kelay."</em></p>
+    <p><b>Mahsulot foydasi</b> — xususiyatning mijoz uchun ochiq-oydin foyda va afzallik ko'rinishidagi tavsifi.</p>
+    <p><b>Gradient</b> — bosqichma-bosqich yondashuv. Qadamma-qadam borilganda, oxir-oqibat ancha murakkab harakatlarni bajarish va murakkab tushunchalarni tushunish nisbatan oson bo'lib qoladi.</p>
+    <p><b>Dashbord</b> (monitoring paneli) — ma'no bo'yicha guruhlangan ma'lumotlarning bitta ekrandagi vizual ko'rinishi. Ma'lumotni ko'z bilan tez qabul qilish uchun.</p>
+    <p><b>Dedlayn</b> — aniq belgilangan vaqt chegarasi. U biror ish yoki vazifaning tugash momentini bildiradi. Undan keyin bajarilishi muvaffaqiyatsiz va uzilgan hisoblanadi.</p>
+    <p><b>Delegatsiya</b> — vazifani qo'l ostidagilar qo'li bilan bajarish usuli. Buning uchun vazifa tushunarli tushuntiriladi, ideal yakuniy natija va dedlayn belgilanadi hamda bajarilish nazorat tizimi quriladi.</p>
+    <p><b>Intizomiy bonus</b> — motivatsiya tizimidagi bonus qismi. Xodimda intizom buzilishi bo'lmasa (kechikish, dress-kod, CRM to'ldirish va h.k.) hisoblanadi. Buzilish aniqlansa — jarima shu bonusdan ushlab qolinadi.</p>
+    <p><b>Lavozim</b> — "shlyapa" bilan bir xil ma'noda.</p>
+    <p><b>Vazifalar</b> — maqsadga erishish uchun bajarilishi kerak bo'lgan harakatlar.</p>
+    <p><b>IYN</b> (Ideal Yakuniy Natija) — ijrochi o'z bevosita funksional majburiyatining asosiy vazifasiga erishadigan natija. Masalan, farrosh uchun IYN — yig'ishtirilgan ofis, savdo bo'limi xodimi uchun — muvaffaqiyatli sotilgan tovar yoki xizmat.</p>
+    <p><b>Insayt</b> (ingl. <em>insight</em> — nozik tushunish, ziyraklik) — psixologiyadagi ko'p ma'noli atama. Murakkab intellektual hodisani anglatadi: qo'yilgan muammoni tushunishdagi kutilmagan, qisman intuitiv sakrash va yechimning "birdan" topilishi.</p>
+    <p><b>Integratsiya</b> — biror element yoki qismlarni bitta butunlikka birlashtirish uchun joriy qilish.</p>
+    <p><b>Tashkilotning axborot markazi</b> — ofisdagi joy. U yerda har hafta to'ldiriladigan statistika grafiklari joylashadi.</p>
+    <p><b>Kontakt kartochkasi</b> — aniq bir mijoz bo'yicha ma'lumot. Uni xodim CRM tizimida to'ldiradi va unda mijozga oid barcha kerakli ma'lumot bo'ladi.</p>
+    <p><b>Bitim kartochkasi</b> — CRM tizimidagi forma. Unda mijoz bilan ishning borishi ariza bosqichidan kelishuv bajarilishigacha ko'rinadi.</p>
+    <p><b>Buyruq liniyalari</b> — tashkilotdagi aloqa kanallari. Ular orqali rahbarlar va qo'l ostidagilar ishni yaxshilash uchun o'zaro aloqada bo'ladi. Bu kanallardan barcha topshiriq, buyruq va buyruqlar o'tadi — lekin kundalik mahsulot ishlab chiqarish bilan bog'liq "zarrachalar" emas. Buyruq liniyalari kommunikatsiya liniyalaridan ancha ingichka — shuning uchun qo'l ostidagilar mahsulot ishlab chiqarish savollari bilan yugurganda rahbar bir zumda ortiqcha yuklanadi.</p>
+    <p><b>Kommunikatsiya liniyalari</b> — tashkilotdagi aloqa kanallari. Ular orqali xodimlar, bo'limlar va departamentlar mijozlarga sifatli mahsulot berish maqsadida "zarrachalar" almashadi (buyruq liniyalari bilan chalkashtirmang).</p>
+    <p><b>KP</b> (Tijorat Taklifi) — kompaniya mahsulotini sotib olish bo'yicha yozma yoki og'zaki taklif. Unda mahsulotning afzallik va foydalari hamda yetkazib berish nuqtai nazaridan aniq taklif (narx, muddat, kafolat va h.k.) tasvirlanadi.</p>
+    <p><b>KEV</b> (Voronkaning Kalit Etapi) — savdo voronkasining bosqichlaridan biri. U mijoz bilan maksimal darajadagi "iliqlik" va ishonchga erishish imkonini beradi — keyin unga mahsulot sotiladi. KEV misollari: ofisdagi uchrashuv, diagnostika, sinov namunasi, demo-versiya, skayp-uchrashuv.</p>
+    <p><b>Kvalifikatsiya</b> — savdo bosqichi. U menejerga mijozga vaqt sarflash arziydimi yoki yo'qmi — shuni tushunish imkonini beradi. Mijozning shoshilinchligi, byudjeti va ehtiyoji aniqlanadi.</p>
+    <p><b>Lid</b> (ingl. <em>lead</em>) — tizimda ro'yxatdan o'tgan potensial mijoz. Odatda formatda: ism, telefon, e-mail. Ko'pincha kiruvchi lidlar (sayt formalari orqali qoldirilgan murojaat yoki kiruvchi telefon qo'ng'iroqlari) va sovuq lidlar (keyinchalik ishlash uchun tizimga yuklangan telefon yoki e-mail bazasi) farqlanadi.</p>
+    <p><b>Lid-menejer</b> ("lidorub") — kompaniya tijorat xizmatining xodimi. U arizalar va qo'ng'iroqlarni birlamchi qayta ishlash uchun javob beradi. Ba'zan baza bo'yicha sovuq qo'ng'iroq ham qilishi mumkin.</p>
+    <p><b>Bitim limitlari</b> — CRM tizimida bitta menejerga ochilgan faol arizalar soni.</p>
+    <p><b>QQS</b> (Qaror Qabul Qiluvchi Shaxs) — tashkilotdagi aniq odam yoki bir guruh odam. Ular haqiqatan ham qaror qabul qilish uchun javob beradi. Masalan, mahsulotni sotib olishda uni ta'minotchi baholashi, tahlil qilishi va ko'rib chiqishi mumkin. Lekin yakuniy so'zni — "Olamiz / Olmaymiz" — direktor aytadi. Bu misolda QQS — direktor, ta'minotchi emas. Hatto direktor mahsulotni bir marta ham ko'zi bilan ko'rmagan bo'lsa ham.</p>
+  </div>
+
+  <div class="pf"><span>Ilova · Lug'at</span><span>15</span></div>
+</section>
+
+<!-- ============================ 14b. LUG'AT (davomi) ============================ -->
+<section class="page">
+  <div class="rh"><span class="rh-l">Ilova</span><span class="rh-r">Lug'at · davomi</span></div>
+
+  <h2>Lug'at — davomi</h2>
+  <p class="small" style="color:var(--muted);margin-bottom:6mm">M harfidan oxirigacha.</p>
+
+  <div class="cols3 small">
+    <p><b>Marketing</b> — yangi mijozlarni jalb qilish, "isitish" va takroriy savdolarni oshirish jarayonlari yig'indisi. Yangi va takroriy savdolarning akseleratori.</p>
+    <p><b>Savdo modellari</b> — savdo bo'limini tashkil qilish variantlari. Har biri mijoz bilan ishlashdagi qaysi funksional kimning zimmasiga tushishini belgilaydi.</p>
+    <p><b>SNB</b> (Sifat Nazorati Bo'limi) — tashkilotdagi alohida bo'lim. U har bir xodimning lavozim majburiyatlari va standartlariga rioya qilishini nazorat qiladi.</p>
+    <p><b>Tashkilotning tashkiliy sxemasi</b> — tashkilotning grafik tasviri. Unda departamentlar, bo'limlar va xodimlar bo'ysunish liniyalari, familiyalar va qimmatli yakuniy mahsulotlar bilan ko'rsatiladi.</p>
+    <p><b>Offer</b> — foydalar ro'yxati. Ular reklama qilinayotgan mahsulot, xizmat yoki tovar bilan iste'molchining ehtiyojini to'liq yopadi va uning e'tirozlariga javob beradi.</p>
+    <p><b>Ofis-menejer</b> — tashkilot ofisining joriy ishini ta'minlaydigan xodim.</p>
+    <p><b>Muddati o'tgan vazifa</b> — CRM tizimida mijoz bilan ishlashda ijrochi belgilagan muddati o'tib ketgan vazifa.</p>
+    <p><b>Prezentatsiya</b> — savdo elementi. Unda tovar yoki xizmatning barcha xususiyatlari batafsil aytiladi (Solution bilan bir xil).</p>
+    <p><b>Dasturlash</b> — savdoning eng muhim bosqichi. U tashabbusni qo'lga olish imkonini beradi. Odatda buyruq maylidagi so'zlar bilan boshlanadi: "keling shunday qilamiz", "qiling", "rozi bo'ling" va h.k.</p>
+    <p><b>Savdo bo'limidagi "reanimator"</b> — vazifasi sobiq yoki potensial mijozlarni "jonlantirish" bo'lgan xodim. Ular ilgari kompaniyaga murojaat qilgan yoki u bilan hamkorlik qilgan, lekin qandaydir sababga ko'ra ishlashni to'xtatgan.</p>
+    <p><b>ROP</b> (Savdo Bo'limi Rahbari) — sotuvchilar guruhini boshqaradigan xodim. Maqsadi — ularning unumdorligini oshirish.</p>
+    <p><b>Skript</b> — savdo bo'limidagi yozib qo'yilgan nutq moduli. Bu — kompaniyada hozirgi paytda mavjud bo'lgan eng yaxshi muloqot strategiyasi. U sotuvchilarga eng yuqori natijaga erishishga va mijoz bilan muloqotda inson omilini minimumga tushirishga yordam beradi.</p>
+    <p><b>Statistikalar</b> — biror sohaning holatini aniq o'lchov oralig'ida grafik tasvirlash. Masalan, statistika grafigi savdo menejerida, butun bo'lim yoki departamentda, butun tashkilotda bo'lishi mumkin. Statistikalar rahbarlarga tashkilotni rivojlantirish uchun to'g'ri boshqaruv qarorlarini qabul qilishga yordam beradi.</p>
+    <p><b>Mahsulot xususiyatlari</b> — mahsulotning texnik tavsifi. U mijozga keyinchalik foydalanishda foyda olish imkonini beradi.</p>
+    <p><b>Telefoniya</b> — elektr va raqamli signallar yordamida ma'lumotni masofaga uzatish uchun aloqa tizimi.</p>
+    <p><b>TT</b> (Texnik Topshiriq) — buyurtmachining ob'ektga qo'yadigan talablari yozilgan hujjat.</p>
+    <p><b>Shartli rad etish</b> — CRM tizimidagi status. Unda mijozdan joriy bitim bo'yicha tasdiqlangan rad javob yo'q. Shartli rad etishga quyidagilarni kiritish mumkin: "hozir pul yo'q", "ta'tilga ketyapman", "hozir dolzarb emas" va h.k.</p>
+    <p><b>Fermer</b> — savdo bo'limi xodimi. U allaqachon sotib olgan mijozlarni ushlab turish va ular bo'yicha savdo hajmini oshirish uchun javob beradi. "Xanter-fermer" deb ataladigan ikki bosqichli savdo modelining bir qismi.</p>
+    <p><b>Fiks</b> — xodim motivatsiya tizimidagi oklad qismi. U o'zgarmas va xodimga u ishlab chiqargan mahsulot miqdoridan yoki jarimalar sonidan qat'i nazar to'lanadi.</p>
+    <p><b>Fleks</b> — bonus qismi. U xodimga qancha qimmatli yakuniy mahsulot ishlab chiqarganiga qarab to'lanadi. Masalan: savdodan foiz (tushumdan).</p>
+    <p><b>Xanter</b> (ingl. <em>hunter</em> — "ovchi") — savdo bo'limi xodimi. U faqat mijozlarni birlamchi jalb qilish uchun javob beradi, keyingi kuzatib borish uchun emas. "Xanter-fermer" modelining bir qismi.</p>
+    <p><b>Sovuq skript</b> — nutq moduli. U kotibdan o'tish va ariza qoldirmagan QQS bilan suhbatga erishish imkonini beradi.</p>
+    <p><b>Maqsadli auditoriya (MA)</b> — marketing yoki reklamada ishlatiladigan atama. Umumiy belgilar bilan yoki biror maqsad va vazifa yo'lida birlashgan odamlar guruhini bildiradi.</p>
+    <p><b>QYM</b> (Qimmatli Yakuniy Mahsulot) — boshqa odamlarga uzatib, evaziga pul yoki qimmatli narsa (e'tibor, vaqt, ovqat, sadoqat, bardosh va h.k.) olish mumkin bo'lgan narsa. Qimmatli yakuniy mahsulot qimmatli, chunki uni potensial yoki amalda biror narsaga <b>almashtirish mumkin</b>. Har bir "shlyapa"ning o'z QYM'i bor. Xodim o'z QYM'ini tushunmasa — natijalar qoniqarsiz bo'ladi.</p>
+    <p><b>Chek-list</b> — maxsus band-punktlar ro'yxati. Ular bo'yicha biror narsani standartga muvofiqligi uchun tekshirish mumkin.</p>
+    <p><b>Shlyapa</b> — aniq QYM'ga ega bo'lgan lavozimni bildiruvchi atama. Bunda bitta xodim bir vaqtning o'zida bir nechta "shlyapa" kiyishi mumkin. Masalan, xodim kompaniyada savdo uchun va ayni paytda ofis tozaligi uchun javob bersa, u 2 ta shlyapa kiygan bo'ladi: birinchisi — sotuvchi shlyapasi, ikkinchisi — farrosh shlyapasi.</p>
+    <p><b>Samarali</b> — minimal kuch va pul sarfida eng katta natija beradigan.</p>
+    <p><b>ABC</b> — tahlil. U tovarlar assortimenti yoki mijozlar bazasini muhimlik darajasi bo'yicha tartiblash usuli. Asosida Pareto prinsipi yotadi (mahsulotning 20% natijaning 80% ini beradi).</p>
+    <p><b>CRM</b> (ingl. <em>Customer Relationship Management</em>) — tashkilotlar uchun dastur. U mijozlar bilan o'zaro aloqani hisobga olib borish imkonini beradi. Har bir mijoz bo'yicha barcha eslatma va ma'lumotni mijoz kartochkalarida qayd etish, mijoz bilan bitta oynadan ishlash, marketing va savdo ishini tahlil qilish mumkin.</p>
+    <p><b>Call-markaz</b> — tashqi tashkilot yoki tashkilot ichidagi alohida bo'linma. U kiruvchi arizalarni birlamchi kvalifikatsiya qilish bilan shug'ullanadi yoki potensial lid izlash maqsadida sovuq qo'ng'iroqlar amalga oshiradi.</p>
+    <p><b>LTV</b> (ingl. <em>Life Time Value</em>) — "mijozning hayotiy sikli" deb tarjima qilinadigan ko'rsatkich. U har bir xaridor kompaniya bilan hamkorlikning butun davri mobaynida qancha pul keltirishini ko'rsatadi.</p>
+    <p><b>NPS</b> (ingl. <em>Net Promoter Score</em>) — ko'rsatkich. U iste'molchilarning tovar yoki kompaniyaga sodiqligini aniqlash imkonini beradi (tavsiya qilishga tayyorlik indeksi). Takroriy xaridlarga tayyorlikni baholash uchun ishlatiladi.</p>
+    <p><b>SIP</b> — zamonaviy aloqa turi. U kompyuter va maxsus apparatlar yordamida ovozli xabarlar yuborish imkonini beradi. Xavfsizlik va foydalanish qulayligi bo'yicha bir qator afzalliklarga ega.</p>
+    <p><b>ROI</b> (ingl. <em>Return On Investment</em>) — koeffitsiyent. U u yoki bu investitsiyaning foydaliligi yoki zararliligini ko'rsatadi. Boshqacha aytganda — qoplanish koeffitsiyenti.</p>
+    <p><b>Up-sell</b> — marketing usuli. U tovarning qimmatroq versiyasini sotish hisobiga o'rtacha chekni oshirishga qaratilgan.</p>
+  </div>
+
+  <div class="pf"><span>Ilova · Lug'at</span><span>16</span></div>
+</section>
+
+</body>
+</html>
