@@ -1,10 +1,15 @@
 // POST /api/lead — приём заявок с лендинга мастер-класса.
 //
-// Заявка уходит в два места, независимо друг от друга:
-//   SHEETS_WEBHOOK_URL  — URL веб-приложения Google Apps Script, которое
-//                         дописывает строку в таблицу (см. tools/sheets-webhook.gs)
+// Заявка ложится в хранилище сайта (BLOB_READ_WRITE_TOKEN) — это основа,
+// она работает всегда и ни от кого не зависит. Google-таблица забирает
+// заявки оттуда сама, раз в пять минут: см. tools/sheets-sync.gs.
+//
+// Необязательные каналы, каждый включается своими переменными:
+//   SHEETS_WEBHOOK_URL  — адрес того же скрипта, опубликованного как
+//                         веб-приложение: тогда строка появляется мгновенно,
+//                         а не через пять минут
 //   TELEGRAM_BOT_TOKEN  — токен бота от @BotFather          } уведомление
-//   TELEGRAM_CHAT_ID    — id чата, куда падают заявки       } (необязательно)
+//   TELEGRAM_CHAT_ID    — id чата, куда падают заявки       } в чат
 //
 // Ответ ok:true, если сработал хотя бы один канал — заявка не теряется
 // из-за того, что второй канал не настроен или временно недоступен.
@@ -58,14 +63,18 @@ module.exports = async (req, res) => {
     hour: '2-digit', minute: '2-digit',
   });
 
+  // Один id на заявку: под ним она ложится в хранилище и под ним же уходит в
+  // таблицу. Таблица по нему отличает новую заявку от уже записанной, поэтому
+  // мгновенная доставка и синхронизация раз в пять минут не плодят дубли.
+  const id = Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+
   const jobs = [];
 
   // Собственное хранилище сайта — работает всегда и ни от кого не зависит.
-  // Заявки видны на /leads и выгружаются оттуда в таблицу.
+  // Заявки видны на /leads, оттуда же их забирает таблица.
   if (blobToken) {
     jobs.push(withTimeout((async () => {
       const { put } = await import('@vercel/blob');
-      const id = Date.now() + '-' + Math.random().toString(36).slice(2, 8);
       await put(`leads/${id}.json`, JSON.stringify({
         stamp, name, phone, industry, price, tariff, lang, source,
         at: new Date().toISOString(),
@@ -84,7 +93,7 @@ module.exports = async (req, res) => {
       fetch(sheetsUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ stamp, name, phone, industry, price, tariff, lang, source }),
+        body: JSON.stringify({ id, stamp, name, phone, industry, price, tariff, lang, source }),
       }).then((r) => {
         if (!r.ok) throw new Error('sheets_http_' + r.status);
         return 'sheets';

@@ -8,10 +8,15 @@
 - `public/index.html` — фронтенд (статика, `@vercel/static`).
 - `public/masterclass/` — **премиум-лендинг мастер-класса по ИИ** (чёрный+золото,
   UZ/RU, анимации, доступен по `/masterclass`). Собран по AI·WEB·METHOD и design board.
-- `api/get-reels.js`, `api/transcribe-reels.js` — serverless (`@vercel/node`, Node 18).
-- `api/lead.js` — приём заявок лендинга → Telegram (нужны env `TELEGRAM_BOT_TOKEN`,
-  `TELEGRAM_CHAT_ID` в настройках Vercel).
+- `api/get-reels.js`, `api/transcribe-reels.js` — serverless (`@vercel/node`, Node 22).
+- `api/lead.js` — приём заявок лендинга; кладёт их в Vercel Blob (`BLOB_READ_WRITE_TOKEN`).
+  `api/leads.js` — чтение накопленного по ключу `LEADS_KEY`, страница `/leads?key=…`.
+  Google-таблица забирает заявки сама: скрипт `tools/sheets-sync.gs` внутри таблицы
+  ходит на `/api/leads` раз в 5 минут. Подробности — `docs/leads-setup.md`.
+  Наружу Apps Script не публикуется: именно на диалоге «кому доступ» связь ломалась
+  (401/403). Дубли исключены скрытой колонкой `ID`.
 - `vercel.json` — роутинг: `/api/*` → функции, `/masterclass` → лендинг, остальное → `public/`.
+  Проект на Vercel называется `suniyintellect-mk`, сайт — `suniyintellect-mk.vercel.app`.
 - Командный дашборд задач живёт в **отдельном репозитории `newerayu-boop/team-dashboard`**
   (свой Vercel-проект; данные — Supabase `ai-strateg-klub`, таблицы `dash_*`) — здесь его
   специально нет, чтобы не смешивать с сайтом мастер-класса.
