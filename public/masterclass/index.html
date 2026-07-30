@@ -873,15 +873,6 @@ body.lb-open .rev-track{animation-play-state:paused}
 .consent{margin-top:16px; text-align:center; font-size:11.5px; color:#6E6558; line-height:1.6}
 .form-msg{display:none; margin-top:16px; text-align:center; font-size:14px; border-radius:12px; padding:13px 18px}
 .form-msg.err{display:block; color:#E9A2A2; background:rgba(180,60,60,.12); border:1px solid rgba(180,60,60,.3)}
-.reg-done{display:none; text-align:center; padding:30px 0 12px}
-.reg-done .ok{
-  width:78px; height:78px; margin:0 auto 26px; border-radius:50%; border:1px solid var(--gold);
-  display:grid; place-items:center; color:var(--gold); background:rgba(191,160,89,.08);
-  animation:okpop .6s var(--ease-out);
-}
-@keyframes okpop{0%{transform:scale(.5); opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1); opacity:1}}
-.reg-done h3{font-family:var(--serif); font-size:clamp(17px,2vw,23px); font-weight:600; margin-bottom:12px; letter-spacing:-.018em}
-.reg-done p{color:var(--muted); font-size:15px; max-width:400px; margin:0 auto}
 
 /* ============ FOOTER ============ */
 
@@ -1675,11 +1666,6 @@ src="https://www.facebook.com/tr?id=841684395598362&amp;ev=PageView&amp;noscript
           <p class="consent"><span data-uz>«Roʻyxatdan oʻtish» tugmasini bosish orqali siz shaxsiy maʼlumotlarni qayta ishlashga rozilik bildirasiz.</span><span data-ru>Нажимая «Зарегистрироваться», вы соглашаетесь на обработку персональных данных.</span></p>
         </form>
       </div>
-      <div class="reg-done">
-        <div class="ok"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7L9 18l-5-5"/></svg></div>
-        <h3><span data-uz>Arizangiz qabul qilindi!</span><span data-ru>Заявка принята!</span></h3>
-        <p><span data-uz>Rahmat! Menejerimiz tez orada siz bilan bogʻlanib, joyingizni tasdiqlaydi.</span><span data-ru>Спасибо! Наш менеджер скоро свяжется с вами и подтвердит ваше место.</span></p>
-      </div>
     </div>
   </div>
 </section>
@@ -1754,11 +1740,6 @@ src="https://www.facebook.com/tr?id=841684395598362&amp;ev=PageView&amp;noscript
         <div class="form-msg"></div>
         <p class="consent"><span data-uz>«Roʻyxatdan oʻtish» tugmasini bosish orqali siz shaxsiy maʼlumotlarni qayta ishlashga rozilik bildirasiz.</span><span data-ru>Нажимая «Зарегистрироваться», вы соглашаетесь на обработку персональных данных.</span></p>
       </form>
-    </div>
-    <div class="reg-done">
-      <div class="ok"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7L9 18l-5-5"/></svg></div>
-      <h3><span data-uz>Arizangiz qabul qilindi!</span><span data-ru>Заявка принята!</span></h3>
-      <p><span data-uz>Menejerimizga oʻtkazamiz…</span><span data-ru>Переводим вас к менеджеру…</span></p>
     </div>
   </div>
 </div>
@@ -2074,14 +2055,20 @@ if(sticky){
 }
 
 /* ---------- lead forms (inline block + modal share one handler) ---------- */
-var MANAGER_TG = 'https://t.me/Yusufbaymanager';
+/* Telegram fills the message box from ?text= and stops there — sending on
+   someone's behalf is not something it allows. So the visitor lands in the
+   chat with the message written out, one tap from sending it. */
+var MANAGER_TG_MSG = [
+  'Assalomu alaykum! Men ro\'yxatdan o\'tdim.',
+  'Ishtirok narxi: 497 000 so\'m',
+  'To\'lov uchun karta raqam tashab bering'
+].join('\n');
+
+var MANAGER_TG = 'https://t.me/Yusufbaymanager?text=' + encodeURIComponent(MANAGER_TG_MSG);
 
 document.querySelectorAll('.lead-form').forEach(function(form){
-  var card = form.closest('.reg-card, .modal-card');
-  var body = form.closest('.reg-body');
-  var done = card && card.querySelector('.reg-done');
-  var msg  = form.querySelector('.form-msg');
-  var btn  = form.querySelector('.lead-btn');
+  var msg = form.querySelector('.form-msg');
+  var btn = form.querySelector('.lead-btn');
 
   form.addEventListener('submit', function(ev){
     ev.preventDefault();
@@ -2106,18 +2093,20 @@ document.querySelectorAll('.lead-form').forEach(function(form){
     }).then(function(r){ return r.json().catch(function(){return {ok:false}}); })
     .then(function(j){
       if(!(j && j.ok)) throw new Error((j&&j.error)||'fail');
-      if(body) body.style.display='none';
-      if(done) done.style.display='block';
-      /* hand the visitor straight to the manager */
-      setTimeout(function(){ location.href = MANAGER_TG; }, 1200);
+      /* straight to the manager — no confirmation screen in between. The
+         button stays disabled so the wait reads as "sending", not as a
+         dead click, and the page is leaving anyway. */
+      location.href = MANAGER_TG;
     })
     .catch(function(){
       msg.className='form-msg err';
       msg.textContent = lang==='ru'
         ? 'Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в Instagram.'
         : 'Ariza yuborilmadi. Qayta urinib koʻring yoki Instagram orqali yozing.';
-    })
-    .finally(function(){ btn.disabled=false; btn.style.opacity=1; });
+      /* only here — on success the page is on its way to Telegram and the
+         button must not blink back to life */
+      btn.disabled=false; btn.style.opacity=1;
+    });
   });
 });
 
