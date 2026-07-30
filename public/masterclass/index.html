@@ -873,6 +873,20 @@ body.lb-open .rev-track{animation-play-state:paused}
 .consent{margin-top:16px; text-align:center; font-size:11.5px; color:#6E6558; line-height:1.6}
 .form-msg{display:none; margin-top:16px; text-align:center; font-size:14px; border-radius:12px; padding:13px 18px}
 .form-msg.err{display:block; color:#E9A2A2; background:rgba(180,60,60,.12); border:1px solid rgba(180,60,60,.3)}
+/* Tashkent gate: one question before the form. Steps swap inside the card. */
+.reg-step{display:none}
+.reg-step.on{display:block}
+.reg-card .reg-ask,.reg-card .reg-no{max-width:520px; margin:0 auto}
+.ask-title{font-family:var(--serif); font-size:clamp(20px,2.4vw,26px); font-weight:600; letter-spacing:-.02em; margin-bottom:14px}
+.ask-info{color:var(--muted); font-size:15px; line-height:1.65}
+.ask-info b{color:var(--cream); font-weight:600}
+.ask-q{text-align:center; font-weight:700; font-size:clamp(18px,2.2vw,23px); letter-spacing:-.015em; margin:30px auto 22px; max-width:420px}
+.ask-yes{width:100%; padding:18px 28px}
+.ask-alt{display:block; width:100%; margin-top:12px; padding:16px 28px; border-radius:100px; background:none; border:1px solid var(--line-soft); color:var(--faint); font-family:inherit; font-size:15px; font-weight:600; cursor:pointer; transition:border-color .2s, color .2s}
+.ask-alt:hover{border-color:rgba(191,160,89,.4); color:var(--muted)}
+.reg-no{text-align:center; padding:20px 0 8px}
+.reg-no .ask-info{max-width:380px; margin:0 auto}
+.ask-back{display:block; margin:18px auto 0; background:none; border:none; color:var(--muted); font-family:inherit; font-size:14px; cursor:pointer; text-decoration:underline; text-underline-offset:4px}
 
 /* ============ FOOTER ============ */
 
@@ -1641,7 +1655,18 @@ src="https://www.facebook.com/tr?id=841684395598362&amp;ev=PageView&amp;noscript
   <div class="amb" style="width:560px;height:560px;top:-120px;left:50%;transform:translateX(-50%);background:rgba(191,160,89,.1)" aria-hidden="true"></div>
   <div class="container" style="position:relative;z-index:2">
     <div class="reg-card rv">
-      <div class="reg-body">
+      <div class="reg-ask reg-step on">
+        <h3 class="ask-title"><span data-uz>Bir savol 🙂</span><span data-ru>Один вопрос 🙂</span></h3>
+        <p class="ask-info"><span data-uz>Master klass <b>Toshkentda</b>, <b>Hyatt Regency</b>da offline oʻtadi.<br>2-avgust · 14:00 – 18:00</span><span data-ru>Мастер-класс пройдёт офлайн в <b>Ташкенте</b>, в <b>Hyatt Regency</b>.<br>2 августа · 14:00 – 18:00</span></p>
+        <p class="ask-q"><span data-uz>Toshkentga kelib, ishtirok eta olasizmi?</span><span data-ru>Сможете приехать в Ташкент и участвовать?</span></p>
+        <button type="button" class="btn btn-gold ask-yes"><span data-uz>Ha, kela olaman ✅</span><span data-ru>Да, смогу ✅</span></button>
+        <button type="button" class="ask-alt ask-no-btn"><span data-uz>Yoʻq, kela olmayman</span><span data-ru>Нет, не смогу</span></button>
+      </div>
+      <div class="reg-no reg-step">
+        <p class="ask-info"><span data-uz>Afsus! Master klass faqat offline, <b>Toshkentda</b> oʻtadi — onlayn qatnashish koʻzda tutilmagan.</span><span data-ru>Жаль! Мастер-класс проходит только офлайн, в <b>Ташкенте</b> — онлайн-участие не предусмотрено.</span></p>
+        <button type="button" class="ask-back"><span data-uz>← Orqaga</span><span data-ru>← Назад</span></button>
+      </div>
+      <div class="reg-body reg-step">
         <div class="reg-head">
           <div class="label" style="justify-content:center"><span data-uz>ROʻYXATDAN OʻTISH</span><span data-ru>РЕГИСТРАЦИЯ</span></div>
           <h2 class="s-title"><span data-uz>Maʼlumotlaringizni qoldiring</span><span data-ru>Оставьте свои данные</span></h2>
@@ -1716,7 +1741,18 @@ src="https://www.facebook.com/tr?id=841684395598362&amp;ev=PageView&amp;noscript
 <div class="modal" id="regModal" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
   <div class="modal-card" role="document">
     <button class="modal-close" type="button" id="regModalClose" aria-label="Yopish">&times;</button>
-    <div class="reg-body">
+    <div class="reg-ask reg-step on">
+      <h3 class="ask-title"><span data-uz>Bir savol 🙂</span><span data-ru>Один вопрос 🙂</span></h3>
+      <p class="ask-info"><span data-uz>Master klass <b>Toshkentda</b>, <b>Hyatt Regency</b>da offline oʻtadi.<br>2-avgust · 14:00 – 18:00</span><span data-ru>Мастер-класс пройдёт офлайн в <b>Ташкенте</b>, в <b>Hyatt Regency</b>.<br>2 августа · 14:00 – 18:00</span></p>
+      <p class="ask-q"><span data-uz>Toshkentga kelib, ishtirok eta olasizmi?</span><span data-ru>Сможете приехать в Ташкент и участвовать?</span></p>
+      <button type="button" class="btn btn-gold ask-yes"><span data-uz>Ha, kela olaman ✅</span><span data-ru>Да, смогу ✅</span></button>
+      <button type="button" class="ask-alt ask-no-btn"><span data-uz>Yoʻq, kela olmayman</span><span data-ru>Нет, не смогу</span></button>
+    </div>
+    <div class="reg-no reg-step">
+      <p class="ask-info"><span data-uz>Afsus! Master klass faqat offline, <b>Toshkentda</b> oʻtadi — onlayn qatnashish koʻzda tutilmagan.</span><span data-ru>Жаль! Мастер-класс проходит только офлайн, в <b>Ташкенте</b> — онлайн-участие не предусмотрено.</span></p>
+      <button type="button" class="ask-back"><span data-uz>← Orqaga</span><span data-ru>← Назад</span></button>
+    </div>
+    <div class="reg-body reg-step">
       <div class="reg-head">
         <h3 id="regModalTitle"><span data-uz>Roʻyxatdan oʻtish</span><span data-ru>Регистрация</span></h3>
         <p class="modal-sub"><span data-uz>Maʼlumotlaringizni qoldiring</span><span data-ru>Оставьте свои данные</span></p>
@@ -2110,6 +2146,23 @@ document.querySelectorAll('.lead-form').forEach(function(form){
   });
 });
 
+/* ---------- Tashkent gate: one question before each form ---------- */
+document.querySelectorAll('.reg-card, .modal-card').forEach(function(card){
+  var ask=card.querySelector('.reg-ask'), body=card.querySelector('.reg-body'), no=card.querySelector('.reg-no');
+  if(!ask || !body) return;
+  function show(el){
+    [ask,body,no].forEach(function(x){ if(x) x.classList.remove('on'); });
+    el.classList.add('on');
+  }
+  ask.querySelector('.ask-yes').addEventListener('click', function(){
+    show(body);
+    var inp=body.querySelector('input[name="name"]');
+    if(inp) setTimeout(function(){ inp.focus(); }, 60);
+  });
+  ask.querySelector('.ask-no-btn').addEventListener('click', function(){ if(no) show(no); });
+  if(no) no.querySelector('.ask-back').addEventListener('click', function(){ show(ask); });
+});
+
 /* ---------- every register button opens the form in place ---------- */
 (function(){
   var modal=document.getElementById('regModal');
@@ -2119,7 +2172,8 @@ document.querySelectorAll('.lead-form').forEach(function(form){
     lastFocus=document.activeElement;
     modal.classList.add('open');
     document.body.style.overflow='hidden';
-    var first=modal.querySelector('input[name="name"]');
+    /* focus the name field only once the visitor is past the question */
+    var first=modal.querySelector('.reg-body.on input[name="name"]');
     if(first) setTimeout(function(){ first.focus(); }, 60);
   }
   function close(){
