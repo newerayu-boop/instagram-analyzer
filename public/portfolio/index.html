@@ -3,142 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>AI STRATEG — Portfolio</title>
-<meta name="description" content="Sunʼiy intellekt bilan qilingan ishlar: saytlar, marketpleys kartochkalari, kataloglar, SMM-kreativlar, video. AI STRATEG portfoliosi.">
-<meta name="theme-color" content="#05070A">
+<title>Islamiya — dizayner · Portfolio</title>
+<meta name="description" content="Islamiya — dizayner. Saytlar, bannerlar, interfeyslar, SMM va AI-tizimlar. Portfolio va ish tajribasi.">
+<meta name="theme-color" content="#0A0812">
 <meta property="og:type" content="website">
-<meta property="og:title" content="AI STRATEG — Portfolio">
-<meta property="og:description" content="Sunʼiy intellekt bilan qilingan ishlar: saytlar, dizayn, kontent, video.">
-<meta property="og:image" content="/portfolio/img/web-hero.jpg">
-<link rel="preload" href="/masterclass/fonts/inter-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta property="og:title" content="Islamiya — dizayner · Portfolio">
+<meta property="og:description" content="Saytlar, bannerlar, interfeyslar, SMM va AI-tizimlar.">
+<meta property="og:image" content="/portfolio/img/islamiya.jpg">
+<link rel="preload" href="/masterclass/fonts/inter-800-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/masterclass/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* самодостаточная страница: шрифты берём те же, что у лендинга */
+/* шрифты — те же самодостаточные, что у лендинга */
 @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(/masterclass/fonts/inter-400-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(/masterclass/fonts/inter-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(/masterclass/fonts/inter-500-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(/masterclass/fonts/inter-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(/masterclass/fonts/inter-600-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(/masterclass/fonts/inter-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/inter-700-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
-@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/inter-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(/masterclass/fonts/inter-800-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(/masterclass/fonts/inter-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/jetbrains-mono-700-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/jetbrains-mono-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
 :root{
-  --bg:#05070A; --bg2:#0A0D13;
-  --cream:#E8E2D6; --muted:#9A937F; --faint:#6E6558;
-  --gold:#BFA059; --gold-2:#D6BE8A;
-  --line:rgba(191,160,89,.22); --line-soft:rgba(232,226,214,.08);
-  --grad-gold:linear-gradient(100deg,#8C7440,#D6BE8A 45%,#F4E9C8 55%,#BFA059);
+  --bg:#0A0812; --bg2:#120E1D;
+  --ink:#EFE9FF; --muted:#A79EC6; --faint:#6F6790;
+  --vio:#8B5CF6; --vio2:#C4A9FF; --pink:#FF9ED2;
+  --grad:linear-gradient(100deg,#8B5CF6,#C4A9FF 45%,#FF9ED2);
+  --line:rgba(139,92,246,.26); --line-soft:rgba(239,233,255,.09);
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --mono:'JetBrains Mono','Courier New',monospace;
-  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease:cubic-bezier(.16,1,.3,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 html[data-lang="uz"] [data-ru]{display:none!important}
 html[data-lang="ru"] [data-uz]{display:none!important}
-body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* clip, не hidden: clip убирает и сам «скрытый» горизонтальный скролл-объём,
+   поэтому вьюпорт телефона не растягивается от декора за краем */
+html,body{overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
-a{color:inherit}
 .container{width:min(1120px,92vw);margin:0 auto}
 
-/* ---------- reveal: только opacity/transform, с fallback ---------- */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease-out),transform .9s var(--ease-out)}
+/* появление */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .95s var(--ease)}
 .rv.is-in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  *{animation:none!important}
+}
 
-/* ---------- header ---------- */
-.hdr{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(5,7,10,.72);border-bottom:1px solid var(--line-soft)}
+/* ---------- шапка ---------- */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:60;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(10,8,18,.7);border-bottom:1px solid var(--line-soft)}
 .hdr-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-.logo{font-weight:800;letter-spacing:.18em;font-size:14px}
-.logo em{font-style:normal;color:var(--gold-2)}
-.hdr-r{display:flex;align-items:center;gap:14px}
+.logo{font-weight:800;letter-spacing:.22em;font-size:14px}
+.logo em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hdr-r{display:flex;align-items:center;gap:12px}
 .lang{display:flex;border:1px solid var(--line-soft);border-radius:100px;overflow:hidden}
 .lang button{background:none;border:none;color:var(--faint);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;padding:8px 14px;cursor:pointer}
-.lang button.on{background:rgba(191,160,89,.14);color:var(--gold-2)}
-.hdr-cta{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0B0903;background:var(--grad-gold);border-radius:100px;padding:10px 18px;text-decoration:none;white-space:nowrap}
+.lang button.on{background:rgba(139,92,246,.18);color:var(--vio2)}
+.hdr-cta{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#140A22;background:var(--grad);border-radius:100px;padding:10px 18px;text-decoration:none;white-space:nowrap}
 @media(max-width:560px){.hdr-cta{display:none}}
 
 /* ---------- hero ---------- */
-.hero{padding:clamp(120px,18vh,180px) 0 clamp(46px,7vh,80px);position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:min(900px,100vw);aspect-ratio:1;background:radial-gradient(circle,rgba(191,160,89,.13),transparent 62%);pointer-events:none}
-.eyebrow{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:22px}
-.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
-h1{font-size:clamp(32px,5.6vw,62px);line-height:1.06;letter-spacing:-.03em;font-weight:800;max-width:820px}
-h1 em{font-style:normal;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero-sub{margin-top:20px;max-width:560px;color:var(--muted);font-size:clamp(15px,1.6vw,18px)}
-.hero-facts{display:flex;gap:clamp(18px,4vw,48px);margin-top:34px;flex-wrap:wrap}
-.hf b{display:block;font-size:clamp(20px,2.4vw,28px);font-weight:800;letter-spacing:-.02em;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hf span{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
-
-/* ---------- works ---------- */
-section{padding:clamp(40px,6vw,72px) 0}
-.work{border-top:1px solid var(--line-soft)}
-.w-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
-.w-num{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--faint);letter-spacing:.1em}
-.w-tag{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
-.w-title{font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-.025em;margin:6px 0 10px}
-.w-desc{color:var(--muted);max-width:640px;font-size:15px}
-.w-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--gold-2);text-decoration:none;font-weight:600;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:2px}
-.w-link:hover{color:#F4E9C8}
-.w-media{display:grid;gap:14px;margin-top:26px}
-.w-media.g4{grid-template-columns:repeat(4,1fr)}
-.w-media.g2w{grid-template-columns:1fr 1fr}
-.shot{border-radius:16px;overflow:hidden;border:1px solid var(--line-soft);background:var(--bg2);cursor:zoom-in;transition:transform .35s var(--ease-out),border-color .35s}
-.shot:hover{transform:translateY(-4px);border-color:var(--line)}
-.shot img{width:100%;height:100%;object-fit:cover}
-.shot.wide{grid-column:1/-1}
-.w-media video{width:100%;border-radius:16px;border:1px solid var(--line-soft);background:#000;display:block}
-.web-frame{border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 90px -40px rgba(0,0,0,.9),0 0 70px -30px rgba(191,160,89,.25);cursor:zoom-in}
-.video-wrap{max-width:640px}
-@media(max-width:820px){
-  .w-media.g4{grid-template-columns:repeat(2,1fr)}
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:110px 0 40px;overflow:hidden}
+.aura{position:absolute;width:min(720px,90vw);aspect-ratio:1;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none}
+.aura.a1{background:radial-gradient(circle,rgba(139,92,246,.55),transparent 66%);top:-16%;right:-8%;animation:drift 16s ease-in-out infinite}
+.aura.a2{background:radial-gradient(circle,rgba(255,158,210,.32),transparent 66%);bottom:-26%;left:-14%;animation:drift 20s ease-in-out infinite reverse}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-46px,34px) scale(1.09)}}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(26px,5vw,64px);align-items:center}
+.eyebrow{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--vio2);display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--vio)}
+h1{font-size:clamp(34px,5.8vw,66px);line-height:1.04;letter-spacing:-.032em;font-weight:800}
+h1 .gw{display:inline-block;overflow:hidden;vertical-align:bottom}
+h1 .gw i{display:inline-block;font-style:normal;transform:translateY(110%);transition:transform .9s var(--ease)}
+h1.go .gw i{transform:none}
+h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(prefers-reduced-motion:reduce){h1 .gw i{transform:none}}
+.hero-sub{margin-top:20px;max-width:480px;color:var(--muted);font-size:clamp(15px,1.6vw,18px)}
+.hero-cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.btn{display:inline-block;border:none;cursor:pointer;text-decoration:none;background:var(--grad);color:#140A22;font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;border-radius:100px;padding:17px 30px;transition:transform .25s var(--ease),box-shadow .25s}
+.btn:hover{box-shadow:0 14px 40px -12px rgba(139,92,246,.55)}
+.btn.ghost{background:none;color:var(--vio2);border:1px solid var(--line)}
+.hero-chips{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-soft);border-radius:100px;padding:9px 15px}
+/* портрет */
+.pwrap{position:relative;justify-self:center;width:min(74vw,380px)}
+.pring{position:absolute;inset:-7%;border-radius:50%;background:conic-gradient(from 0deg,transparent 12%,rgba(139,92,246,.55) 26%,transparent 42%,transparent 58%,rgba(255,158,210,.4) 74%,transparent 90%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2.5px),#000 calc(100% - 1.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 2.5px),#000 calc(100% - 1.5px));animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pcard{position:relative;border-radius:46% 46% 24px 24px;overflow:hidden;border:1px solid var(--line);box-shadow:0 44px 100px -40px rgba(0,0,0,.9),0 0 90px -30px rgba(139,92,246,.4);animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.pcard img{width:100%;aspect-ratio:1/1.12;object-fit:cover;object-position:50% 18%}
+.pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,18,.5),transparent 46%)}
+.ptag{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);background:rgba(10,8,18,.72);border:1px solid var(--line);border-radius:100px;padding:9px 18px;white-space:nowrap}
+@media(max-width:860px){
+  .hero{padding-top:96px}
+  .hero-grid{grid-template-columns:1fr;text-align:left}
+  .pwrap{order:-1;width:min(62vw,270px);justify-self:start}
 }
 
-/* ---------- steps ---------- */
-.steps{border-top:1px solid var(--line-soft)}
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
-.step{border:1px solid var(--line-soft);border-radius:18px;padding:24px;background:var(--bg2)}
-.step b{display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--gold);margin-bottom:12px}
-.step h3{font-size:18px;font-weight:700;letter-spacing:-.015em;margin-bottom:8px}
-.step p{color:var(--muted);font-size:14.5px}
-@media(max-width:720px){.steps-grid{grid-template-columns:1fr}}
+/* ---------- бегущая лента под углом ---------- */
+.ribbon{position:relative;padding:34px 0;overflow:hidden}
+.ribbon-in{transform:rotate(-2deg);background:linear-gradient(90deg,rgba(139,92,246,.14),rgba(255,158,210,.1));border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);overflow:hidden}
+.tape{display:flex;width:max-content;animation:tape 26s linear infinite}
+.tape span{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--vio2);padding:16px 0;white-space:nowrap}
+.tape em{font-style:normal;color:var(--pink);padding:0 22px}
+@keyframes tape{to{transform:translateX(-50%)}}
 
-/* ---------- contact ---------- */
-.contact{border-top:1px solid var(--line-soft)}
-.c-card{border:1px solid var(--line);border-radius:24px;padding:clamp(26px,4vw,46px);background:linear-gradient(180deg,rgba(191,160,89,.07),rgba(10,13,19,.4));max-width:640px;margin:0 auto}
-.c-card h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.025em;text-align:center}
+/* ---------- секции ---------- */
+section{padding:clamp(52px,8vw,96px) 0;position:relative}
+.s-eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--vio2);display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.s-eyebrow::before{content:"";width:30px;height:1px;background:var(--vio)}
+h2{font-size:clamp(26px,3.6vw,42px);letter-spacing:-.03em;font-weight:800;line-height:1.1}
+h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.s-sub{color:var(--muted);max-width:600px;margin-top:14px;font-size:15.5px}
+
+/* ---------- опыт (таймлайн) ---------- */
+.tl{position:relative;margin-top:44px;padding-left:34px}
+.tl::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--vio),rgba(139,92,246,.06));transform-origin:top;transform:scaleY(var(--draw,0));transition:transform 1.4s var(--ease)}
+.tl.is-in{--draw:1}
+@media(prefers-reduced-motion:reduce){.tl::before{transform:none}}
+.job{position:relative;padding:0 0 38px}
+.job:last-child{padding-bottom:4px}
+.job::before{content:"";position:absolute;left:-31px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--vio);box-shadow:0 0 0 4px rgba(139,92,246,.15)}
+.job-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.jlogo{width:46px;height:46px;border-radius:13px;overflow:hidden;border:1px solid var(--line-soft);background:var(--bg2);display:grid;place-items:center;flex:none}
+.jlogo img{width:100%;height:100%;object-fit:cover}
+.jlogo b{font-size:15px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.job h3{font-size:clamp(17px,2vw,21px);font-weight:700;letter-spacing:-.015em}
+.job .role{color:var(--vio2);font-size:14px;font-weight:600}
+.job .when{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--faint);margin-left:auto;white-space:nowrap}
+.job p{color:var(--muted);font-size:14.5px;max-width:600px;margin-top:10px}
+.job .jl{display:inline-block;margin-top:8px;color:var(--vio2);font-size:13.5px;text-decoration:none;border-bottom:1px solid var(--line)}
+
+/* ---------- работы: горизонтальная галерея ---------- */
+.gal-outer{position:relative}
+.gal-sticky{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:80px 0 30px}
+.gal-track{display:flex;gap:clamp(14px,2vw,26px);padding:34px 4vw 10px;will-change:transform}
+/* высота карточкам задана явно: у картинок есть HTML-атрибуты width/height,
+   и без этого атрибутная высота растягивала весь ряд */
+.wcard{flex:none;width:clamp(240px,26vw,360px);height:clamp(320px,52vh,470px);border-radius:20px;overflow:hidden;border:1px solid var(--line-soft);background:var(--bg2);cursor:zoom-in;position:relative;transition:transform .4s var(--ease),border-color .4s}
+.wcard:hover{transform:translateY(-8px);border-color:var(--line)}
+.wcard.wide{width:clamp(320px,42vw,600px)}
+.wcard img{width:100%;height:100%;object-fit:cover}
+.wcard .cap{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(10,8,18,.78);backdrop-filter:blur(8px);border:1px solid var(--line-soft);border-radius:14px;padding:10px 14px}
+.wcard .cap b{display:block;font-size:14px;letter-spacing:-.01em}
+.wcard .cap span{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--vio2)}
+.wcard.vid::after{content:"▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(10,8,18,.7);border:1px solid var(--line);display:grid;place-items:center;font-size:20px;color:var(--pink)}
+.gal-hint{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);padding:18px 4vw 0}
+@media(max-width:860px){
+  .gal-outer{height:auto!important}
+  .gal-sticky{position:static;min-height:0;padding:0}
+  .gal-track{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;transform:none!important}
+  .wcard{scroll-snap-align:start;width:76vw;height:96vw}
+  .wcard.wide{width:86vw}
+}
+
+/* ---------- WB анализ ---------- */
+.wb{background:var(--bg2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.wb-chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.stat{border:1px solid var(--line-soft);border-radius:18px;padding:18px 22px;background:rgba(10,8,18,.5);min-width:150px}
+.stat b{display:block;font-size:clamp(22px,2.6vw,30px);font-weight:800;letter-spacing:-.02em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.tbl-wrap{margin-top:34px;border:1px solid var(--line-soft);border-radius:20px;overflow:auto;background:rgba(10,8,18,.5)}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--vio2);text-align:left;padding:15px 18px;border-bottom:1px solid var(--line);background:rgba(139,92,246,.08)}
+td{padding:13px 18px;border-bottom:1px solid var(--line-soft);font-size:14px;color:var(--muted);white-space:nowrap}
+td b{color:var(--ink);font-weight:600}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(139,92,246,.05)}
+td .star{color:var(--pink)}
+.bars{margin-top:36px;display:grid;gap:13px}
+.bar{display:grid;grid-template-columns:minmax(110px,180px) 1fr 74px;align-items:center;gap:14px}
+.bar .bn{font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .bt{height:16px;border-radius:100px;background:rgba(139,92,246,.12);overflow:hidden}
+.bar .bf{height:100%;width:0;border-radius:inherit;background:var(--grad);transition:width 1.3s var(--ease)}
+.bars.is-in .bf{width:var(--w)}
+.bar .bv{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--vio2);text-align:right}
+.wb-note{margin-top:18px;font-size:13px;color:var(--faint)}
+.wb-note a{color:var(--vio2)}
+
+/* ---------- автоматизация ---------- */
+.auto-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,4vw,56px);align-items:center;margin-top:10px}
+.flow{display:grid;gap:12px;margin-top:30px}
+.fstep{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--line-soft);border-radius:18px;padding:17px 20px;background:var(--bg2);transition:border-color .4s,box-shadow .4s}
+.fstep.on{border-color:var(--line);box-shadow:0 0 40px -18px rgba(139,92,246,.5)}
+.fstep b{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pink);letter-spacing:.1em;padding-top:3px}
+.fstep h4{font-size:15.5px;font-weight:700;letter-spacing:-.01em}
+.fstep p{color:var(--muted);font-size:13.5px;margin-top:3px}
+.phone{justify-self:center;width:min(78vw,320px);border-radius:34px;border:1px solid var(--line);padding:12px;background:var(--bg2);box-shadow:0 44px 90px -40px rgba(0,0,0,.9),0 0 80px -30px rgba(139,92,246,.35)}
+.phone img{border-radius:24px}
+@media(max-width:860px){.auto-grid{grid-template-columns:1fr}.phone{order:-1}}
+
+/* ---------- обо мне ---------- */
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(26px,4vw,56px);align-items:center}
+.about-grid img{border-radius:22px;border:1px solid var(--line-soft)}
+.about p{color:var(--muted);font-size:clamp(15px,1.7vw,18px);max-width:520px}
+.about p+p{margin-top:14px}
+.about b{color:var(--ink)}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr}.about-grid img{max-width:320px}}
+
+/* ---------- контакт ---------- */
+.c-card{border:1px solid var(--line);border-radius:26px;padding:clamp(26px,4vw,46px);background:linear-gradient(180deg,rgba(139,92,246,.1),rgba(18,14,29,.5));max-width:620px;margin:0 auto}
+.c-card h2{text-align:center}
 .c-card .c-sub{text-align:center;color:var(--muted);font-size:15px;margin:10px 0 24px}
 .field{margin-bottom:14px}
-.field label{display:block;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.field input{width:100%;background:rgba(232,226,214,.04);border:1px solid var(--line-soft);border-radius:14px;color:var(--cream);font-family:inherit;font-size:16px;padding:15px 18px;outline:none;transition:border-color .2s}
-.field input:focus{border-color:var(--gold)}
+.field label{display:block;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--vio2);margin-bottom:8px}
+.field input{width:100%;background:rgba(239,233,255,.04);border:1px solid var(--line-soft);border-radius:14px;color:var(--ink);font-family:inherit;font-size:16px;padding:15px 18px;outline:none;transition:border-color .2s}
+.field input:focus{border-color:var(--vio)}
 .hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
-.btn{display:block;width:100%;border:none;cursor:pointer;background:var(--grad-gold);color:#0B0903;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:100px;padding:18px 28px;margin-top:8px}
-.btn:hover{filter:brightness(1.06)}
+.send{width:100%}
 .form-msg{display:none;margin-top:14px;text-align:center;font-size:14px;border-radius:12px;padding:12px 16px}
-.form-msg.err{display:block;color:#E9A2A2;background:rgba(180,60,60,.12);border:1px solid rgba(180,60,60,.3)}
+.form-msg.err{display:block;color:#F0A5A5;background:rgba(190,70,90,.12);border:1px solid rgba(190,70,90,.3)}
+.form-msg.ok{display:block;color:#C9F0D6;background:rgba(70,190,120,.1);border:1px solid rgba(70,190,120,.28)}
 .c-alt{text-align:center;margin-top:16px;color:var(--faint);font-size:14px}
-.c-alt a{color:var(--gold-2);text-decoration:none;border-bottom:1px solid var(--line)}
+.c-alt a{color:var(--vio2);text-decoration:none;border-bottom:1px solid var(--line)}
 
-/* ---------- footer ---------- */
-footer{border-top:1px solid var(--line-soft);padding:26px 0 34px}
+footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
 .f-in{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--faint);font-size:13.5px}
 .f-in a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line-soft)}
-.f-in a:hover{color:var(--gold-2)}
+.f-in a:hover{color:var(--vio2)}
 
-/* ---------- lightbox ---------- */
-.lb{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(3,4,6,.9);padding:4vh 4vw}
+/* ---------- лайтбокс и видео ---------- */
+.lb{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(6,4,12,.92);padding:4vh 4vw}
 .lb.open{display:flex}
 .lb img{max-width:100%;max-height:92vh;border-radius:12px}
-.lb-x{position:fixed;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(10,13,19,.8);color:var(--cream);font-size:22px;cursor:pointer}
+.lb video{max-width:min(92vw,640px);max-height:88vh;border-radius:16px;background:#000}
+.lb-x{position:fixed;top:16px;right:16px;z-index:91;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(18,14,29,.85);color:var(--ink);font-size:22px;cursor:pointer}
 </style>
 </head>
 <body>
 
 <header class="hdr">
   <div class="container hdr-in">
-    <div class="logo">AI <em>STRATEG</em></div>
+    <div class="logo">ISLA<em>MIYA</em></div>
     <div class="hdr-r">
       <div class="lang">
         <button type="button" data-setlang="uz">UZ</button>
@@ -149,109 +248,243 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 34px}
   </div>
 </header>
 
+<!-- ============ HERO ============ -->
 <div class="hero">
-  <div class="container">
-    <div class="eyebrow rv">PORTFOLIO</div>
-    <h1 class="rv"><span data-uz>Sunʼiy intellekt bilan <em>qilingan ishlar</em></span><span data-ru>Работы, сделанные <em>с искусственным интеллектом</em></span></h1>
-    <p class="hero-sub rv"><span data-uz>Saytlar, marketpleys kartochkalari, kataloglar, SMM-kreativlar va video. Gʻoyadan tayyor natijagacha — haftalar emas, soatlar.</span><span data-ru>Сайты, карточки для маркетплейсов, каталоги, SMM-креативы и видео. От идеи до результата — часы, а не недели.</span></p>
-    <div class="hero-facts rv">
-      <div class="hf"><b>5</b><span data-uz>yoʻnalish</span><span data-ru>направлений</span></div>
-      <div class="hf"><b>UZ · RU</b><span data-uz>ikki tilda</span><span data-ru>два языка</span></div>
-      <div class="hf"><b>24–72<span style="font-size:.6em"> soat</span></b><span data-uz>tayyor boʻlish muddati</span><span data-ru>срок готовности</span></div>
+  <div class="aura a1"></div>
+  <div class="aura a2"></div>
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow rv">PORTFOLIO · <span data-uz>DIZAYNER</span><span data-ru>ДИЗАЙНЕР</span></div>
+      <h1 id="heroH1">
+        <span data-uz>Salom! Men <em>Islamiya</em> — dizayner</span>
+        <span data-ru>Привет! Я <em>Исламия</em> — дизайнер</span>
+      </h1>
+      <p class="hero-sub rv" style="transition-delay:.15s">
+        <span data-uz>Menga 20 yosh. Men saytlar, bannerlar va interfeyslar yasayman. Oʻz qoʻllarim bilan chiroyli narsalar yaratishni juda yaxshi koʻraman.</span>
+        <span data-ru>Мне 20 лет. Я делаю сайты, баннеры и интерфейсы. Больше всего люблю создавать красивое своими руками.</span>
+      </p>
+      <div class="hero-cta rv" style="transition-delay:.25s">
+        <a class="btn mag" href="#works"><span data-uz>Ishlarimni koʻrish</span><span data-ru>Смотреть работы</span></a>
+        <a class="btn ghost mag" href="#exp"><span data-uz>Tajribam</span><span data-ru>Мой опыт</span></a>
+      </div>
+      <div class="hero-chips rv" style="transition-delay:.35s">
+        <span class="chip"><span data-uz>2022-yildan dizaynda</span><span data-ru>В дизайне с 2022</span></span>
+        <span class="chip"><span data-uz>5 kompaniya tajribasi</span><span data-ru>Опыт в 5 компаниях</span></span>
+        <span class="chip"><span data-uz>AI bilan ishlayman</span><span data-ru>Работаю с ИИ</span></span>
+      </div>
+    </div>
+    <div class="pwrap rv" style="transition-delay:.2s">
+      <div class="pring" aria-hidden="true"></div>
+      <div class="pcard">
+        <img src="/portfolio/img/islamiya.jpg" width="640" height="640" alt="Islamiya" fetchpriority="high">
+      </div>
+      <span class="ptag">ISLAMIYA · 20</span>
     </div>
   </div>
 </div>
 
-<!-- 01 · sayt -->
-<section class="work">
+<!-- ============ ЛЕНТА ============ -->
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-in">
+    <div class="tape" data-dup>
+      <span>DIZAYN <em>✦</em> SAYTLAR <em>✦</em> BANNERLAR <em>✦</em> INTERFEYSLAR <em>✦</em> SMM <em>✦</em> AI <em>✦</em> ANALITIKA <em>✦</em>&nbsp;</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ОПЫТ ============ -->
+<section id="exp">
   <div class="container">
-    <div class="w-head rv"><span class="w-num">01</span><span class="w-tag"><span data-uz>SAYT</span><span data-ru>САЙТ</span></span></div>
-    <h2 class="w-title rv">AI Offline Master Klass — landing</h2>
-    <p class="w-desc rv"><span data-uz>Premium landing: UZ/RU, animatsiyalar, roʻyxatdan oʻtish formasi, arizalar avtomatik Google Sheets'ga tushadi, mijoz esa toʻgʻri menejerning Telegram'iga oʻtadi.</span><span data-ru>Премиальный лендинг: UZ/RU, анимации, форма регистрации, заявки автоматически падают в Google Sheets, а клиент сразу переходит в Telegram менеджера.</span></p>
-    <a class="w-link rv" href="/masterclass" target="_blank" rel="noopener"><span data-uz>Jonli koʻrish</span><span data-ru>Смотреть вживую</span> →</a>
-    <div class="w-media rv">
-      <div class="web-frame" data-full="/portfolio/img/web-hero.jpg"><img src="/portfolio/img/web-hero.jpg" width="1200" height="750" alt="AI Offline Master Klass — sayt" loading="lazy" decoding="async"></div>
+    <div class="s-eyebrow rv"><span data-uz>ISH TAJRIBAM</span><span data-ru>ОПЫТ РАБОТЫ</span></div>
+    <h2 class="rv"><span data-uz>Qayerlarda <em>ishladim</em></span><span data-ru>Где я <em>работала</em></span></h2>
+    <div class="tl" id="tl">
+      <div class="job rv">
+        <div class="job-top">
+          <span class="jlogo"><img src="/portfolio/img/logo-aistrateg.jpg" alt="AI STRATEG" loading="lazy"></span>
+          <div>
+            <h3>AI STRATEG</h3>
+            <div class="role"><span data-uz>Dizayner · AI-ijodkor</span><span data-ru>Дизайнер · AI-креатор</span></div>
+          </div>
+          <span class="when">2026</span>
+        </div>
+        <p><span data-uz>Master klass saytini yaratdim. Kartochkalar, katalog va video ustida ishladim. Claude bilan avtomatik tizimlar qurdim.</span><span data-ru>Создала сайт мастер-класса. Работала над карточками, каталогом и видео. Построила автоматические системы на Claude.</span></p>
+        <a class="jl" href="/masterclass" target="_blank" rel="noopener"><span data-uz>Saytni koʻrish</span><span data-ru>Посмотреть сайт</span> →</a>
+      </div>
+      <div class="job rv">
+        <div class="job-top">
+          <span class="jlogo"><img src="/portfolio/img/logo-guul.jpg" alt="GUUL" loading="lazy"></span>
+          <div>
+            <h3>GUUL by Toshkent Gullari</h3>
+            <div class="role"><span data-uz>Savdo menejeri → Katta menejer</span><span data-ru>Менеджер по продажам → Старший менеджер</span></div>
+          </div>
+        </div>
+        <p><span data-uz>Mijozlar bilan ishladim. 5 oydan keyin menga boshqa menejerlarni kuzatishni ishonib topshirishdi: ular arizalarni qanday qayta ishlashini nazorat qildim. Wildberries uchun raqobatchilar tahlilini qildim.</span><span data-ru>Работала с клиентами. Через 5 месяцев мне доверили следить за другими менеджерами: контролировала, как они обрабатывают заявки. Делала анализ конкурентов для Wildberries.</span></p>
+      </div>
+      <div class="job rv">
+        <div class="job-top">
+          <span class="jlogo"><b>AC</b></span>
+          <div>
+            <h3>Acham Collection</h3>
+            <div class="role"><span data-uz>Savdo menejeri (onlayn)</span><span data-ru>Менеджер по продажам (онлайн)</span></div>
+          </div>
+        </div>
+        <p><span data-uz>Chatlarda mijozlar bilan ishladim. Kolleksiyalarni tanlashga yordam berdim. Toʻliq onlayn ishladim.</span><span data-ru>Обрабатывала чаты с клиентами. Помогала с выбором коллекций. Работала полностью онлайн.</span></p>
+      </div>
+      <div class="job rv">
+        <div class="job-top">
+          <span class="jlogo"><b>AA</b></span>
+          <div>
+            <h3>Arrabaevna Art</h3>
+            <div class="role"><span data-uz>Prodyuser assistenti</span><span data-ru>Ассистент продюсера</span></div>
+          </div>
+          <span class="when">2023 · <span data-uz>2 oy</span><span data-ru>2 мес</span></span>
+        </div>
+        <p><span data-uz>Maktabda moliyaviy hisobni yuritdim. Administrativ ishlarda yordam berdim.</span><span data-ru>Вела финансовый учёт в школе. Помогала в административных задачах.</span></p>
+      </div>
+      <div class="job rv">
+        <div class="job-top">
+          <span class="jlogo"><b>✦</b></span>
+          <div>
+            <h3><span data-uz>Freelance dizayner</span><span data-ru>Фриланс-дизайнер</span></h3>
+            <div class="role"><span data-uz>Masofaviy</span><span data-ru>Удалённо</span></div>
+          </div>
+          <span class="when">2022 – 2023</span>
+        </div>
+        <p><span data-uz>Turli buyurtmachilar uchun saytlar, bannerlar va ilova interfeyslari dizaynini qildim.</span><span data-ru>Создавала дизайн сайтов, баннеров и интерфейсов приложений для различных заказчиков.</span></p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 02 · kartochkalar -->
-<section class="work">
+<!-- ============ РАБОТЫ ============ -->
+<div class="gal-outer" id="works">
+  <div class="gal-sticky">
+    <div class="container">
+      <div class="s-eyebrow rv"><span data-uz>ISHLARIM</span><span data-ru>МОИ РАБОТЫ</span></div>
+      <h2 class="rv"><span data-uz>Men <em>yaratgan</em> narsalar</span><span data-ru>То, что я <em>создала</em></span></h2>
+    </div>
+    <div class="gal-track" id="galTrack">
+      <div class="wcard wide" data-full="/portfolio/img/web-hero.jpg">
+        <img src="/portfolio/img/web-hero.jpg" width="1200" height="750" alt="AI Master Klass sayti" loading="lazy" decoding="async">
+        <span class="cap"><span><span data-uz>SAYT</span><span data-ru>САЙТ</span></span><b>AI Master Klass — landing</b></span>
+      </div>
+      <div class="wcard" data-full="/portfolio/img/lechuza-1.jpg">
+        <img src="/portfolio/img/lechuza-1.jpg" width="768" height="1024" alt="Lechuza kartochka" loading="lazy" decoding="async">
+        <span class="cap"><span>MARKETPLEYS</span><b>Lechuza — <span data-uz>kartochkalar</span><span data-ru>карточки</span></b></span>
+      </div>
+      <div class="wcard" data-full="/portfolio/img/lechuza-2.jpg">
+        <img src="/portfolio/img/lechuza-2.jpg" width="768" height="1024" alt="Avtopoliv infografikasi" loading="lazy" decoding="async">
+        <span class="cap"><span>INFOGRAFIKA</span><b><span data-uz>Avtopoliv sxemasi</span><span data-ru>Схема автополива</span></b></span>
+      </div>
+      <div class="wcard" data-full="/portfolio/img/guul-2.jpg">
+        <img src="/portfolio/img/guul-2.jpg" width="724" height="1024" alt="GUUL katalog" loading="lazy" decoding="async">
+        <span class="cap"><span>KATALOG</span><b>GUUL — <span data-uz>restoranlar katalogi</span><span data-ru>каталог для ресторанов</span></b></span>
+      </div>
+      <div class="wcard wide" data-full="/portfolio/img/guul-1.jpg">
+        <img src="/portfolio/img/guul-1.jpg" width="1400" height="475" alt="GUUL banner" loading="lazy" decoding="async">
+        <span class="cap"><span>BANNER</span><b><span data-uz>Gul doʻkoni bannerlari</span><span data-ru>Баннеры цветочного магазина</span></b></span>
+      </div>
+      <div class="wcard" data-full="/portfolio/img/promo-2.jpg">
+        <img src="/portfolio/img/promo-2.jpg" width="384" height="512" alt="AI STRATEG afisha" loading="lazy" decoding="async">
+        <span class="cap"><span>SMM</span><b><span data-uz>Afishalar va karusellar</span><span data-ru>Афиши и карусели</span></b></span>
+      </div>
+      <div class="wcard vid" id="vidCard">
+        <img src="/portfolio/img/video-poster.jpg" width="900" height="900" alt="maxfusion demo" loading="lazy" decoding="async">
+        <span class="cap"><span>VIDEO</span><b>maxfusion — AI demo</b></span>
+      </div>
+    </div>
+    <div class="gal-hint"><span data-uz>⟵ aylantiring — galereya harakatlanadi</span><span data-ru>⟵ листайте — галерея движется</span></div>
+  </div>
+</div>
+
+<!-- ============ WB АНАЛИЗ ============ -->
+<section class="wb">
   <div class="container">
-    <div class="w-head rv"><span class="w-num">02</span><span class="w-tag"><span data-uz>MARKETPLEYS</span><span data-ru>МАРКЕТПЛЕЙС</span></span></div>
-    <h2 class="w-title rv"><span data-uz>Lechuza — mahsulot kartochkalari</span><span data-ru>Lechuza — карточки товаров</span></h2>
-    <p class="w-desc rv"><span data-uz>CUBICO, BALCONERA va OJO liniyalari uchun toʻliq kartochka toʻplamlari: infografika, avtopoliv sxemasi, uslub — brend ostida, AI bilan yigʻilgan.</span><span data-ru>Полные наборы карточек для линеек CUBICO, BALCONERA и OJO: инфографика, схема автополива, стиль бренда — собрано с помощью ИИ.</span></p>
-    <div class="w-media g4 rv">
-      <div class="shot" data-full="/portfolio/img/lechuza-1.jpg"><img src="/portfolio/img/lechuza-1.jpg" width="768" height="1024" alt="Lechuza CUBICO" loading="lazy" decoding="async"></div>
-      <div class="shot" data-full="/portfolio/img/lechuza-2.jpg"><img src="/portfolio/img/lechuza-2.jpg" width="768" height="1024" alt="Avtopoliv sxemasi" loading="lazy" decoding="async"></div>
-      <div class="shot" data-full="/portfolio/img/lechuza-3.jpg"><img src="/portfolio/img/lechuza-3.jpg" width="768" height="1024" alt="Lechuza interyerda" loading="lazy" decoding="async"></div>
-      <div class="shot" data-full="/portfolio/img/lechuza-4.jpg"><img src="/portfolio/img/lechuza-4.jpg" width="900" height="1200" alt="Lechuza OJO" loading="lazy" decoding="async"></div>
+    <div class="s-eyebrow rv"><span data-uz>ANALITIKA</span><span data-ru>АНАЛИТИКА</span></div>
+    <h2 class="rv"><span data-uz>Wildberries: <em>raqobatchilar tahlili</em></span><span data-ru>Wildberries: <em>анализ конкурентов</em></span></h2>
+    <p class="s-sub rv"><span data-uz>Sovgʻa qutilari bozorini oʻrgandim: narxlar, reytinglar, sharhlar va assortiment. Jadvalni oʻzim yigʻdim va xulosalar chiqardim.</span><span data-ru>Изучила рынок подарочных коробок: цены, рейтинги, отзывы и ассортимент. Сама собрала таблицу и сделала выводы.</span></p>
+
+    <div class="wb-chips rv">
+      <div class="stat"><b data-count="30">0</b><span data-uz>mahsulot oʻrganildi</span><span data-ru>товаров изучено</span></div>
+      <div class="stat"><b>4,8 ★</b><span data-uz>oʻrtacha reyting</span><span data-ru>средний рейтинг</span></div>
+      <div class="stat"><b data-count="5462">0</b><span data-uz>sharh — lider natijasi</span><span data-ru>отзывов у лидера</span></div>
+    </div>
+
+    <div class="tbl-wrap rv">
+      <table>
+        <thead><tr>
+          <th>#</th>
+          <th><span data-uz>Sotuvchi</span><span data-ru>Продавец</span></th>
+          <th><span data-uz>Mahsulot</span><span data-ru>Товар</span></th>
+          <th><span data-uz>Narx</span><span data-ru>Цена</span></th>
+          <th>★</th>
+          <th><span data-uz>Sharhlar</span><span data-ru>Отзывы</span></th>
+        </tr></thead>
+        <tbody>
+          <tr><td>1</td><td><b>Finest Store</b></td><td><span data-uz>Sovgʻa qutisi</span><span data-ru>Коробка подарочная</span></td><td>42 224</td><td><span class="star">4,9</span></td><td><b>5 462</b></td></tr>
+          <tr><td>2</td><td><b>Упакуй красиво!</b></td><td><span data-uz>Toʻplam + girlyanda</span><span data-ru>Набор + гирлянда</span></td><td>65 475</td><td><span class="star">4,8</span></td><td><b>5 428</b></td></tr>
+          <tr><td>3</td><td><b>Ультрапак</b></td><td><span data-uz>Kraft qutisi</span><span data-ru>Крафтовая коробка</span></td><td>87 355</td><td><span class="star">4,8</span></td><td><b>4 143</b></td></tr>
+          <tr><td>4</td><td><b>Ультра-пак</b></td><td>25×25×10</td><td>69 919</td><td><span class="star">4,8</span></td><td><b>4 142</b></td></tr>
+          <tr><td>5</td><td><b>MiSTone</b></td><td><span data-uz>Kraft 16×16×8</span><span data-ru>Крафт 16×16×8</span></td><td>56 414</td><td><span class="star">4,9</span></td><td><b>3 305</b></td></tr>
+          <tr><td>6</td><td><b>Finest Store</b></td><td><span data-uz>Yangi yil toʻplami</span><span data-ru>Новогодний набор</span></td><td>45 644</td><td><span class="star">4,9</span></td><td><b>3 198</b></td></tr>
+          <tr><td>7</td><td><b>Сима-Ленд</b></td><td><span data-uz>Yigʻma 31×25×16</span><span data-ru>Складная 31×25×16</span></td><td>74 875</td><td><span class="star">4,4</span></td><td><b>2 704</b></td></tr>
+          <tr><td>8</td><td><b>La Don'</b></td><td>25×25×10</td><td>119 323</td><td><span class="star">4,9</span></td><td><b>2 544</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bars" id="bars">
+      <div class="bar"><span class="bn">Finest Store</span><span class="bt"><span class="bf" style="--w:100%"></span></span><span class="bv" data-count="5462">0</span></div>
+      <div class="bar"><span class="bn">Упакуй красиво!</span><span class="bt"><span class="bf" style="--w:99%"></span></span><span class="bv" data-count="5428">0</span></div>
+      <div class="bar"><span class="bn">Ультрапак</span><span class="bt"><span class="bf" style="--w:76%"></span></span><span class="bv" data-count="4143">0</span></div>
+      <div class="bar"><span class="bn">Ультра-пак</span><span class="bt"><span class="bf" style="--w:76%"></span></span><span class="bv" data-count="4142">0</span></div>
+      <div class="bar"><span class="bn">MiSTone</span><span class="bt"><span class="bf" style="--w:61%"></span></span><span class="bv" data-count="3305">0</span></div>
+      <div class="bar"><span class="bn">Сима-Ленд</span><span class="bt"><span class="bf" style="--w:50%"></span></span><span class="bv" data-count="2704">0</span></div>
+      <div class="bar"><span class="bn">La Don'</span><span class="bt"><span class="bf" style="--w:47%"></span></span><span class="bv" data-count="2544">0</span></div>
+    </div>
+    <p class="wb-note rv"><span data-uz>Diagramma: sharhlar soni boʻyicha top-7 raqobatchi.</span><span data-ru>Диаграмма: топ-7 конкурентов по количеству отзывов.</span> <a href="https://docs.google.com/spreadsheets/d/1km-v9wZokoywMbeAxLbNO6MXpG9nkFw82yY6LImqYwc/edit" target="_blank" rel="noopener"><span data-uz>Toʻliq jadval</span><span data-ru>Полная таблица</span> →</a></p>
+  </div>
+</section>
+
+<!-- ============ АВТОМАТИЗАЦИЯ ============ -->
+<section>
+  <div class="container">
+    <div class="s-eyebrow rv"><span data-uz>AI-TIZIM</span><span data-ru>AI-СИСТЕМА</span></div>
+    <h2 class="rv"><span data-uz>Instagram uchun <em>avto-karusellar</em></span><span data-ru>Авто-карусели <em>для Instagram</em></span></h2>
+    <div class="auto-grid">
+      <div>
+        <p class="s-sub rv"><span data-uz>Men Claude bilan tizim qurdim. U mening oʻrnimga kontent tayyorlaydi — men faqat havola beraman.</span><span data-ru>Я построила систему на Claude. Она готовит контент за меня — я только даю ссылку.</span></p>
+        <div class="flow" id="flow">
+          <div class="fstep"><b>01</b><div><h4><span data-uz>Havola beraman</span><span data-ru>Даю ссылку</span></h4><p><span data-uz>Foydali maqola yoki video topaman.</span><span data-ru>Нахожу полезную статью или видео.</span></p></div></div>
+          <div class="fstep"><b>02</b><div><h4><span data-uz>Claude oʻqiydi</span><span data-ru>Claude читает</span></h4><p><span data-uz>Asosiy fikrlarni oʻzi tanlaydi.</span><span data-ru>Сам выбирает главные мысли.</span></p></div></div>
+          <div class="fstep"><b>03</b><div><h4><span data-uz>Dizayn tayyor</span><span data-ru>Дизайн готов</span></h4><p><span data-uz>Karusel chiroyli shablonda yigʻiladi.</span><span data-ru>Карусель собирается в красивом шаблоне.</span></p></div></div>
+          <div class="fstep"><b>04</b><div><h4><span data-uz>Telegramga keladi</span><span data-ru>Приходит в Telegram</span></h4><p><span data-uz>Tayyor postlar menga avtomatik yuboriladi.</span><span data-ru>Готовые посты отправляются мне автоматически.</span></p></div></div>
+        </div>
+      </div>
+      <div class="phone rv"><img src="/portfolio/img/tg-automation.jpg" width="773" height="930" alt="Telegramdagi tayyor karusellar" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>
 
-<!-- 03 · katalog -->
-<section class="work">
-  <div class="container">
-    <div class="w-head rv"><span class="w-num">03</span><span class="w-tag"><span data-uz>KATALOG · BANNER</span><span data-ru>КАТАЛОГ · БАННЕРЫ</span></span></div>
-    <h2 class="w-title rv"><span data-uz>GUUL by Toshkent Gullari</span><span data-ru>GUUL by Toshkent Gullari</span></h2>
-    <p class="w-desc rv"><span data-uz>Restoranlar uchun 13 sahifalik B2B-katalog va doʻkon uchun reklama bannerlari — bitta vizual tilda.</span><span data-ru>13-страничный B2B-каталог «Цветы для ресторанов» и рекламные баннеры магазина — в одном визуальном языке.</span></p>
-    <div class="w-media g2w rv">
-      <div class="shot wide" data-full="/portfolio/img/guul-1.jpg"><img src="/portfolio/img/guul-1.jpg" width="1400" height="475" alt="GUUL banner" loading="lazy" decoding="async"></div>
-      <div class="shot" data-full="/portfolio/img/guul-2.jpg"><img src="/portfolio/img/guul-2.jpg" width="724" height="1024" alt="GUUL katalog — muqova" loading="lazy" decoding="async"></div>
-      <div class="shot" data-full="/portfolio/img/guul-3.jpg"><img src="/portfolio/img/guul-3.jpg" width="724" height="1024" alt="GUUL katalog — sahifa" loading="lazy" decoding="async"></div>
-      <div class="shot wide" data-full="/portfolio/img/guul-4.jpg"><img src="/portfolio/img/guul-4.jpg" width="1400" height="700" alt="Bayram banneri" loading="lazy" decoding="async"></div>
+<!-- ============ ОБО МНЕ ============ -->
+<section class="about" style="padding-top:0">
+  <div class="container about-grid">
+    <img class="rv" src="/portfolio/img/islamiya-2.jpg" width="640" height="640" alt="Islamiya" loading="lazy" decoding="async">
+    <div>
+      <div class="s-eyebrow rv"><span data-uz>MEN HAQIMDA</span><span data-ru>ОБО МНЕ</span></div>
+      <h2 class="rv"><span data-uz>Dizayn — <em>mening ishim</em> va sevimli mashgʻulotim</span><span data-ru>Дизайн — <em>моя работа</em> и любимое дело</span></h2>
+      <p class="rv" style="margin-top:16px"><span data-uz>Men narsalarni <b>oʻz qoʻllarim bilan</b> yaratishni yaxshi koʻraman: sayt, banner, katalog yoki video boʻlsin. Har bir ishda kichik detallar muhim deb oʻylayman.</span><span data-ru>Я люблю создавать вещи <b>своими руками</b>: сайт, баннер, каталог или видео. Считаю, что в каждой работе важны маленькие детали.</span></p>
+      <p class="rv"><span data-uz>Hozir men dizaynni <b>AI bilan</b> birlashtiryapman — shunda gʻoyadan natijagacha yoʻl ancha qisqa boʻladi.</span><span data-ru>Сейчас я соединяю дизайн с <b>ИИ</b> — так путь от идеи до результата становится намного короче.</span></p>
     </div>
   </div>
 </section>
 
-<!-- 04 · SMM -->
-<section class="work">
-  <div class="container">
-    <div class="w-head rv"><span class="w-num">04</span><span class="w-tag">SMM</span></div>
-    <h2 class="w-title rv"><span data-uz>AI STRATEG — afishalar va karusellar</span><span data-ru>AI STRATEG — афиши и карусели</span></h2>
-    <p class="w-desc rv"><span data-uz>Master klass afishalari va Instagram uchun taʼlimiy karusel-postlar: brend uslubi, editorial tipografika, UZ tilida.</span><span data-ru>Афиши мастер-класса и обучающие карусели для Instagram: стиль бренда, editorial-типографика, на узбекском.</span></p>
-    <div class="w-media g4 rv">
-      <div class="shot" data-full="/portfolio/img/promo-1.jpg"><img src="/portfolio/img/promo-1.jpg" width="228" height="512" alt="AI STRATEG afisha" loading="lazy" decoding="async"></div>
-      <div class="shot" data-full="/portfolio/img/promo-2.jpg"><img src="/portfolio/img/promo-2.jpg" width="384" height="512" alt="Master klass afishasi" loading="lazy" decoding="async"></div>
-      <div class="shot" data-full="/portfolio/img/promo-3.jpg"><img src="/portfolio/img/promo-3.jpg" width="410" height="512" alt="Karusel — VOX reklama" loading="lazy" decoding="async"></div>
-      <div class="shot" data-full="/portfolio/img/promo-4.jpg"><img src="/portfolio/img/promo-4.jpg" width="410" height="512" alt="Karusel — Claude jamoa" loading="lazy" decoding="async"></div>
-    </div>
-  </div>
-</section>
-
-<!-- 05 · video -->
-<section class="work">
-  <div class="container">
-    <div class="w-head rv"><span class="w-num">05</span><span class="w-tag">VIDEO</span></div>
-    <h2 class="w-title rv"><span data-uz>maxfusion — AI-video demo</span><span data-ru>maxfusion — демо AI-видео</span></h2>
-    <p class="w-desc rv"><span data-uz>50 soniyalik rolik: gʻoya + AI-instrumentlar qanday qilib tayyor kreativlarga aylanadi. Ovoz bilan.</span><span data-ru>50-секундный ролик: как идея и AI-инструменты превращаются в готовые креативы. Со звуком.</span></p>
-    <div class="w-media video-wrap rv">
-      <video controls preload="metadata" poster="/portfolio/img/video-poster.jpg" width="1080" height="1080">
-        <source src="/portfolio/maxfusion-demo.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section>
-
-<!-- qanday ishlaymiz -->
-<section class="steps">
-  <div class="container">
-    <div class="w-head rv"><span class="w-tag"><span data-uz>QANDAY ISHLAYMIZ</span><span data-ru>КАК МЫ РАБОТАЕМ</span></span></div>
-    <div class="steps-grid">
-      <div class="step rv"><b>01</b><h3><span data-uz>Brif — 15 daqiqa</span><span data-ru>Бриф — 15 минут</span></h3><p><span data-uz>Vazifa, auditoriya, uslub va materiallarni aniqlaymiz.</span><span data-ru>Определяем задачу, аудиторию, стиль и материалы.</span></p></div>
-      <div class="step rv"><b>02</b><h3><span data-uz>AI ishlab chiqadi</span><span data-ru>ИИ делает</span></h3><p><span data-uz>Birinchi variant 24–72 soat ichida tayyor boʻladi.</span><span data-ru>Первый вариант готов за 24–72 часа.</span></p></div>
-      <div class="step rv"><b>03</b><h3><span data-uz>Siz tasdiqlaysiz</span><span data-ru>Вы утверждаете</span></h3><p><span data-uz>Tuzatishlar kiritamiz va tayyor faylni topshiramiz.</span><span data-ru>Вносим правки и передаём готовый файл.</span></p></div>
-    </div>
-  </div>
-</section>
-
-<!-- forma -->
-<section class="contact" id="contact">
+<!-- ============ КОНТАКТ ============ -->
+<section id="contact" style="padding-top:0">
   <div class="container">
     <div class="c-card rv">
-      <h2><span data-uz>Shunday ish sizga ham kerakmi?</span><span data-ru>Нужна такая же работа?</span></h2>
-      <p class="c-sub"><span data-uz>Maʼlumotlaringizni qoldiring — menejer bogʻlanadi va loyihani muhokama qilamiz.</span><span data-ru>Оставьте данные — менеджер свяжется, и обсудим проект.</span></p>
+      <h2><span data-uz>Birga <em>ishlaymizmi?</em></span><span data-ru>Поработаем <em>вместе?</em></span></h2>
+      <p class="c-sub"><span data-uz>Maʼlumotlaringizni qoldiring — men tez orada bogʻlanaman.</span><span data-ru>Оставьте данные — я скоро свяжусь.</span></p>
       <form class="lead-form" novalidate>
         <div class="field">
           <label for="pName"><span data-uz>Ismingiz</span><span data-ru>Ваше имя</span></label>
@@ -263,31 +496,34 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 34px}
         </div>
         <div class="field">
           <label for="pWhat"><span data-uz>Nima kerak?</span><span data-ru>Что нужно?</span></label>
-          <input id="pWhat" name="industry" type="text" data-ph-uz="Sayt / kartochka / katalog / video…" data-ph-ru="Сайт / карточки / каталог / видео…">
+          <input id="pWhat" name="industry" type="text" data-ph-uz="Sayt / banner / katalog / video…" data-ph-ru="Сайт / баннер / каталог / видео…">
         </div>
         <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn lead-btn" type="submit"><span data-uz>Yuborish</span><span data-ru>Отправить</span></button>
+        <button class="btn send lead-btn" type="submit"><span data-uz>Yuborish</span><span data-ru>Отправить</span></button>
         <div class="form-msg"></div>
       </form>
-      <p class="c-alt"><span data-uz>Yoki toʻgʻridan-toʻgʻri yozing:</span><span data-ru>Или напишите напрямую:</span> <a href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener">t.me/Yusufbaymanager</a></p>
+      <p class="c-alt"><span data-uz>Yoki Telegram orqali:</span><span data-ru>Или через Telegram:</span> <a href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener">t.me/Yusufbaymanager</a></p>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="container f-in">
-    <span>© AI STRATEG</span>
-    <span><a href="/masterclass"><span data-uz>Master klass sayti</span><span data-ru>Сайт мастер-класса</span></a> · <a href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener">Telegram</a></span>
+    <span>© Islamiya · <span data-uz>dizayner</span><span data-ru>дизайнер</span></span>
+    <span><a href="/masterclass">AI Master Klass</a> · <a href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener">Telegram</a></span>
   </div>
 </footer>
 
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Katta rasm">
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Katta koʻrinish">
   <button class="lb-x" type="button" id="lbX" aria-label="Yopish">&times;</button>
   <img id="lbImg" alt="">
+  <video id="lbVid" controls preload="none" poster="/portfolio/img/video-poster.jpg" style="display:none">
+    <source data-src="/portfolio/maxfusion-demo.mp4" type="video/mp4">
+  </video>
 </div>
 
 <script>
-/* ---------- язык: как на лендинге, общий ключ в localStorage ---------- */
+/* ---------- язык (общий ключ с лендингом) ---------- */
 function setLang(l){
   document.documentElement.setAttribute('data-lang', l);
   document.documentElement.setAttribute('lang', l);
@@ -305,40 +541,152 @@ document.querySelectorAll('.lang button').forEach(function(b){
 var saved=null; try{ saved=localStorage.getItem('mk-lang'); }catch(e){}
 setLang(saved==='ru'?'ru':'uz');
 
-/* ---------- появление по скроллу ---------- */
+var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- заголовок: слова поднимаются по одному ---------- */
 (function(){
+  var h=document.getElementById('heroH1');
+  if(REDUCED){ h.classList.add('go'); return; }
+  h.querySelectorAll('span[data-uz],span[data-ru]').forEach(function(sp){
+    var frag=document.createDocumentFragment(), n=0;
+    sp.childNodes.forEach(function(node){
+      var isEm=node.nodeName==='EM';
+      String(node.textContent).split(/\s+/).filter(Boolean).forEach(function(w){
+        var gw=document.createElement('span'); gw.className='gw';
+        var i=document.createElement('i'); i.textContent=w;
+        i.style.transitionDelay=(n*90)+'ms'; n++;
+        if(isEm){ var em=document.createElement('em'); em.appendChild(i); gw.appendChild(em); }
+        else gw.appendChild(i);
+        frag.appendChild(gw); frag.append(' ');
+      });
+    });
+    sp.textContent=''; sp.appendChild(frag);
+  });
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ h.classList.add('go'); }); });
+})();
+
+/* ---------- дублирование ленты ---------- */
+document.querySelectorAll('[data-dup]').forEach(function(t){
+  t.innerHTML += t.innerHTML;
+});
+
+/* ---------- появление + запуск счётчиков/полос ---------- */
+(function(){
+  function count(el){
+    var to=parseInt(el.getAttribute('data-count'),10), t0=null;
+    function tick(ts){
+      if(!t0) t0=ts;
+      var k=Math.min((ts-t0)/1200,1); k=1-Math.pow(1-k,3);
+      el.textContent=Math.round(to*k).toLocaleString('ru-RU').replace(/,/g,' ');
+      if(k<1) requestAnimationFrame(tick);
+    }
+    if(REDUCED){ el.textContent=to.toLocaleString('ru-RU').replace(/,/g,' '); return; }
+    requestAnimationFrame(tick);
+  }
   var io=new IntersectionObserver(function(en){
-    en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
-  },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
-  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+    en.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.classList.add('is-in');
+      e.target.querySelectorAll('[data-count]').forEach(count);
+      if(e.target.hasAttribute('data-count')) count(e.target);
+      io.unobserve(e.target);
+    });
+  },{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv, .tl, .bars, .wb-chips').forEach(function(el){ io.observe(el); });
   function sweep(){
     document.querySelectorAll('.rv:not(.is-in)').forEach(function(el){
       var r=el.getBoundingClientRect();
-      if(r.top<innerHeight && r.bottom>0) el.classList.add('is-in');
+      if(r.top<innerHeight && r.bottom>0){ el.classList.add('is-in'); el.querySelectorAll('[data-count]').forEach(count); }
     });
   }
   addEventListener('load', function(){ requestAnimationFrame(function(){ sweep(); setTimeout(sweep,400); }); });
   if(document.readyState==='complete') requestAnimationFrame(sweep);
 })();
 
-/* ---------- лайтбокс ---------- */
+/* ---------- галерея: скролл двигает ленту (десктоп) ---------- */
 (function(){
-  var lb=document.getElementById('lb'), img=document.getElementById('lbImg');
+  var outer=document.querySelector('.gal-outer'), track=document.getElementById('galTrack');
+  if(!outer||!track) return;
+  var mobile=matchMedia('(max-width:860px)');
+  function size(){
+    if(mobile.matches||REDUCED){ outer.style.height='auto'; track.style.transform=''; return; }
+    var extra=track.scrollWidth-innerWidth;
+    outer.style.height=(innerHeight+Math.max(extra,0)*1.05)+'px';
+  }
+  function onScroll(){
+    if(mobile.matches||REDUCED) return;
+    var r=outer.getBoundingClientRect();
+    var total=outer.offsetHeight-innerHeight;
+    if(total<=0) return;
+    var p=Math.min(Math.max(-r.top/total,0),1);
+    var extra=track.scrollWidth-innerWidth;
+    track.style.transform='translateX('+(-p*extra)+'px)';
+  }
+  var raf=false;
+  addEventListener('scroll', function(){
+    if(raf) return; raf=true;
+    requestAnimationFrame(function(){ onScroll(); raf=false; });
+  }, {passive:true});
+  addEventListener('resize', function(){ size(); onScroll(); });
+  addEventListener('load', function(){ size(); onScroll(); });
+  size(); onScroll();
+})();
+
+/* ---------- шаги автоматизации загораются по очереди ---------- */
+(function(){
+  var steps=[].slice.call(document.querySelectorAll('#flow .fstep'));
+  if(!steps.length) return;
+  var started=false;
+  new IntersectionObserver(function(en){
+    if(!en[0].isIntersecting||started) return;
+    started=true;
+    var i=0;
+    (function next(){
+      steps.forEach(function(s,k){ s.classList.toggle('on', k===i%steps.length); });
+      i++; setTimeout(next, 1600);
+    })();
+  },{threshold:.3}).observe(document.getElementById('flow'));
+})();
+
+/* ---------- магнитные кнопки (только точный курсор) ---------- */
+if(matchMedia('(pointer:fine)').matches && !REDUCED){
+  document.querySelectorAll('.mag').forEach(function(b){
+    b.addEventListener('mousemove', function(e){
+      var r=b.getBoundingClientRect();
+      b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.14)+'px,'+((e.clientY-r.top-r.height/2)*.22)+'px)';
+    });
+    b.addEventListener('mouseleave', function(){ b.style.transform=''; });
+  });
+}
+
+/* ---------- лайтбокс: картинки и видео ---------- */
+(function(){
+  var lb=document.getElementById('lb'), img=document.getElementById('lbImg'), vid=document.getElementById('lbVid');
+  function open(){ lb.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){
+    lb.classList.remove('open'); document.body.style.overflow='';
+    img.src=''; img.style.display='';
+    vid.pause(); vid.style.display='none';
+  }
   document.querySelectorAll('[data-full]').forEach(function(el){
     el.addEventListener('click', function(){
-      img.src=el.getAttribute('data-full');
-      lb.classList.add('open'); document.body.style.overflow='hidden';
+      vid.style.display='none'; img.style.display='block';
+      img.src=el.getAttribute('data-full'); open();
     });
   });
-  function close(){ lb.classList.remove('open'); img.src=''; document.body.style.overflow=''; }
+  var vc=document.getElementById('vidCard');
+  if(vc) vc.addEventListener('click', function(){
+    img.style.display='none';
+    var s=vid.querySelector('source');
+    if(!s.src){ s.src=s.getAttribute('data-src'); vid.load(); }
+    vid.style.display='block'; open(); vid.play().catch(function(){});
+  });
   document.getElementById('lbX').addEventListener('click', close);
   lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
   addEventListener('keydown', function(e){ if(e.key==='Escape'&&lb.classList.contains('open')) close(); });
 })();
 
-/* ---------- форма: тот же /api/lead, метка portfolio ---------- */
-var MANAGER_TG='https://t.me/Yusufbaymanager?text='+encodeURIComponent(
-  'Assalomu alaykum! Portfoliongizni koʻrdim. Loyiha boʻyicha maslahatlashmoqchiman.');
+/* ---------- форма → /api/lead ---------- */
 document.querySelectorAll('.lead-form').forEach(function(form){
   var msg=form.querySelector('.form-msg'), btn=form.querySelector('.lead-btn');
   form.addEventListener('submit', function(ev){
@@ -359,20 +707,22 @@ document.querySelectorAll('.lead-form').forEach(function(form){
         industry:form.industry.value.trim(),
         price:'portfolio',
         website:form.website.value,
-        lang:lang, source:'portfolio'
+        lang:lang, source:'islamiya-portfolio'
       })
     }).then(function(r){ return r.json().catch(function(){ return {ok:false}; }); })
     .then(function(j){
       if(!(j&&j.ok)) throw new Error('fail');
-      location.href=MANAGER_TG;
+      form.reset();
+      msg.className='form-msg ok';
+      msg.textContent = lang==='ru' ? 'Спасибо! Я скоро свяжусь с вами.' : 'Rahmat! Tez orada bogʻlanaman.';
     })
     .catch(function(){
       msg.className='form-msg err';
       msg.textContent = lang==='ru'
-        ? 'Не удалось отправить. Напишите нам в Telegram: t.me/Yusufbaymanager'
+        ? 'Не удалось отправить. Напишите в Telegram: t.me/Yusufbaymanager'
         : 'Yuborilmadi. Telegram orqali yozing: t.me/Yusufbaymanager';
-      btn.disabled=false; btn.style.opacity=1;
-    });
+    })
+    .finally(function(){ btn.disabled=false; btn.style.opacity=1; });
   });
 });
 </script>

@@ -26,6 +26,18 @@
   специально нет, чтобы не смешивать с сайтом мастер-класса.
 - Node-зависимости: `node-fetch`, `form-data`.
 
+## `/portfolio` — личное портфолио Исламии (2026-08-03)
+
+Пользователь — **Исламия, 20 лет, дизайнер** (UZ на уровне B1 — тексты простыми
+фразами). `/portfolio` — её персональный сайт: фиолетово-розовый dark-стиль по её
+референсам (`docs/assets/islamiya-cv-references.pdf`), UZ/RU. Внутри: опыт
+(Freelance 2022–23 → Arrabaevna Art 2023 → Acham Collection → GUUL, через 5 мес
+старший менеджер → AI STRATEG), горизонтальная скролл-галерея работ, анализ
+конкурентов WB (таблица+график, источник —
+docs.google.com/spreadsheets/d/1km-v9wZokoywMbeAxLbNO6MXpG9nkFw82yY6LImqYwc),
+кейс «авто-карусели на Claude → Telegram», форма → `/api/lead`
+(`source: islamiya-portfolio`). Фото и логотипы — в `public/portfolio/img/`.
+
 ## Материалы клиента — `docs/assets/` (запомнено 2026-08-03)
 
 Работы для **сайта-портфолио** (страница `/portfolio`, презентуется заказчикам):
