@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="uz" data-lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AI STRATEG — Portfolio</title>
+<meta name="description" content="Sunʼiy intellekt bilan qilingan ishlar: saytlar, marketpleys kartochkalari, kataloglar, SMM-kreativlar, video. AI STRATEG portfoliosi.">
+<meta name="theme-color" content="#05070A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI STRATEG — Portfolio">
+<meta property="og:description" content="Sunʼiy intellekt bilan qilingan ishlar: saytlar, dizayn, kontent, video.">
+<meta property="og:image" content="/portfolio/img/web-hero.jpg">
+<link rel="preload" href="/masterclass/fonts/inter-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/masterclass/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* самодостаточная страница: шрифты берём те же, что у лендинга */
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(/masterclass/fonts/inter-400-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(/masterclass/fonts/inter-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(/masterclass/fonts/inter-600-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(/masterclass/fonts/inter-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/inter-700-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/inter-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/jetbrains-mono-700-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/jetbrains-mono-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+  --bg:#05070A; --bg2:#0A0D13;
+  --cream:#E8E2D6; --muted:#9A937F; --faint:#6E6558;
+  --gold:#BFA059; --gold-2:#D6BE8A;
+  --line:rgba(191,160,89,.22); --line-soft:rgba(232,226,214,.08);
+  --grad-gold:linear-gradient(100deg,#8C7440,#D6BE8A 45%,#F4E9C8 55%,#BFA059);
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono','Courier New',monospace;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html[data-lang="uz"] [data-ru]{display:none!important}
+html[data-lang="ru"] [data-uz]{display:none!important}
+body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.container{width:min(1120px,92vw);margin:0 auto}
+
+/* ---------- reveal: только opacity/transform, с fallback ---------- */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease-out),transform .9s var(--ease-out)}
+.rv.is-in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* ---------- header ---------- */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(5,7,10,.72);border-bottom:1px solid var(--line-soft)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{font-weight:800;letter-spacing:.18em;font-size:14px}
+.logo em{font-style:normal;color:var(--gold-2)}
+.hdr-r{display:flex;align-items:center;gap:14px}
+.lang{display:flex;border:1px solid var(--line-soft);border-radius:100px;overflow:hidden}
+.lang button{background:none;border:none;color:var(--faint);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;padding:8px 14px;cursor:pointer}
+.lang button.on{background:rgba(191,160,89,.14);color:var(--gold-2)}
+.hdr-cta{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0B0903;background:var(--grad-gold);border-radius:100px;padding:10px 18px;text-decoration:none;white-space:nowrap}
+@media(max-width:560px){.hdr-cta{display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(120px,18vh,180px) 0 clamp(46px,7vh,80px);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:min(900px,100vw);aspect-ratio:1;background:radial-gradient(circle,rgba(191,160,89,.13),transparent 62%);pointer-events:none}
+.eyebrow{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+h1{font-size:clamp(32px,5.6vw,62px);line-height:1.06;letter-spacing:-.03em;font-weight:800;max-width:820px}
+h1 em{font-style:normal;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{margin-top:20px;max-width:560px;color:var(--muted);font-size:clamp(15px,1.6vw,18px)}
+.hero-facts{display:flex;gap:clamp(18px,4vw,48px);margin-top:34px;flex-wrap:wrap}
+.hf b{display:block;font-size:clamp(20px,2.4vw,28px);font-weight:800;letter-spacing:-.02em;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hf span{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+/* ---------- works ---------- */
+section{padding:clamp(40px,6vw,72px) 0}
+.work{border-top:1px solid var(--line-soft)}
+.w-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+.w-num{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--faint);letter-spacing:.1em}
+.w-tag{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.w-title{font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-.025em;margin:6px 0 10px}
+.w-desc{color:var(--muted);max-width:640px;font-size:15px}
+.w-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--gold-2);text-decoration:none;font-weight:600;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:2px}
+.w-link:hover{color:#F4E9C8}
+.w-media{display:grid;gap:14px;margin-top:26px}
+.w-media.g4{grid-template-columns:repeat(4,1fr)}
+.w-media.g2w{grid-template-columns:1fr 1fr}
+.shot{border-radius:16px;overflow:hidden;border:1px solid var(--line-soft);background:var(--bg2);cursor:zoom-in;transition:transform .35s var(--ease-out),border-color .35s}
+.shot:hover{transform:translateY(-4px);border-color:var(--line)}
+.shot img{width:100%;height:100%;object-fit:cover}
+.shot.wide{grid-column:1/-1}
+.w-media video{width:100%;border-radius:16px;border:1px solid var(--line-soft);background:#000;display:block}
+.web-frame{border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 90px -40px rgba(0,0,0,.9),0 0 70px -30px rgba(191,160,89,.25);cursor:zoom-in}
+.video-wrap{max-width:640px}
+@media(max-width:820px){
+  .w-media.g4{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ---------- steps ---------- */
+.steps{border-top:1px solid var(--line-soft)}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.step{border:1px solid var(--line-soft);border-radius:18px;padding:24px;background:var(--bg2)}
+.step b{display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--gold);margin-bottom:12px}
+.step h3{font-size:18px;font-weight:700;letter-spacing:-.015em;margin-bottom:8px}
+.step p{color:var(--muted);font-size:14.5px}
+@media(max-width:720px){.steps-grid{grid-template-columns:1fr}}
+
+/* ---------- contact ---------- */
+.contact{border-top:1px solid var(--line-soft)}
+.c-card{border:1px solid var(--line);border-radius:24px;padding:clamp(26px,4vw,46px);background:linear-gradient(180deg,rgba(191,160,89,.07),rgba(10,13,19,.4));max-width:640px;margin:0 auto}
+.c-card h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.025em;text-align:center}
+.c-card .c-sub{text-align:center;color:var(--muted);font-size:15px;margin:10px 0 24px}
+.field{margin-bottom:14px}
+.field label{display:block;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.field input{width:100%;background:rgba(232,226,214,.04);border:1px solid var(--line-soft);border-radius:14px;color:var(--cream);font-family:inherit;font-size:16px;padding:15px 18px;outline:none;transition:border-color .2s}
+.field input:focus{border-color:var(--gold)}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+.btn{display:block;width:100%;border:none;cursor:pointer;background:var(--grad-gold);color:#0B0903;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:100px;padding:18px 28px;margin-top:8px}
+.btn:hover{filter:brightness(1.06)}
+.form-msg{display:none;margin-top:14px;text-align:center;font-size:14px;border-radius:12px;padding:12px 16px}
+.form-msg.err{display:block;color:#E9A2A2;background:rgba(180,60,60,.12);border:1px solid rgba(180,60,60,.3)}
+.c-alt{text-align:center;margin-top:16px;color:var(--faint);font-size:14px}
+.c-alt a{color:var(--gold-2);text-decoration:none;border-bottom:1px solid var(--line)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line-soft);padding:26px 0 34px}
+.f-in{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--faint);font-size:13.5px}
+.f-in a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line-soft)}
+.f-in a:hover{color:var(--gold-2)}
+
+/* ---------- lightbox ---------- */
+.lb{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(3,4,6,.9);padding:4vh 4vw}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:92vh;border-radius:12px}
+.lb-x{position:fixed;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(10,13,19,.8);color:var(--cream);font-size:22px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="container hdr-in">
+    <div class="logo">AI <em>STRATEG</em></div>
+    <div class="hdr-r">
+      <div class="lang">
+        <button type="button" data-setlang="uz">UZ</button>
+        <button type="button" data-setlang="ru">RU</button>
+      </div>
+      <a class="hdr-cta" href="#contact"><span data-uz>Bogʻlanish</span><span data-ru>Связаться</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <div class="eyebrow rv">PORTFOLIO</div>
+    <h1 class="rv"><span data-uz>Sunʼiy intellekt bilan <em>qilingan ishlar</em></span><span data-ru>Работы, сделанные <em>с искусственным интеллектом</em></span></h1>
+    <p class="hero-sub rv"><span data-uz>Saytlar, marketpleys kartochkalari, kataloglar, SMM-kreativlar va video. Gʻoyadan tayyor natijagacha — haftalar emas, soatlar.</span><span data-ru>Сайты, карточки для маркетплейсов, каталоги, SMM-креативы и видео. От идеи до результата — часы, а не недели.</span></p>
+    <div class="hero-facts rv">
+      <div class="hf"><b>5</b><span data-uz>yoʻnalish</span><span data-ru>направлений</span></div>
+      <div class="hf"><b>UZ · RU</b><span data-uz>ikki tilda</span><span data-ru>два языка</span></div>
+      <div class="hf"><b>24–72<span style="font-size:.6em"> soat</span></b><span data-uz>tayyor boʻlish muddati</span><span data-ru>срок готовности</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 01 · sayt -->
+<section class="work">
+  <div class="container">
+    <div class="w-head rv"><span class="w-num">01</span><span class="w-tag"><span data-uz>SAYT</span><span data-ru>САЙТ</span></span></div>
+    <h2 class="w-title rv">AI Offline Master Klass — landing</h2>
+    <p class="w-desc rv"><span data-uz>Premium landing: UZ/RU, animatsiyalar, roʻyxatdan oʻtish formasi, arizalar avtomatik Google Sheets'ga tushadi, mijoz esa toʻgʻri menejerning Telegram'iga oʻtadi.</span><span data-ru>Премиальный лендинг: UZ/RU, анимации, форма регистрации, заявки автоматически падают в Google Sheets, а клиент сразу переходит в Telegram менеджера.</span></p>
+    <a class="w-link rv" href="/masterclass" target="_blank" rel="noopener"><span data-uz>Jonli koʻrish</span><span data-ru>Смотреть вживую</span> →</a>
+    <div class="w-media rv">
+      <div class="web-frame" data-full="/portfolio/img/web-hero.jpg"><img src="/portfolio/img/web-hero.jpg" width="1200" height="750" alt="AI Offline Master Klass — sayt" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · kartochkalar -->
+<section class="work">
+  <div class="container">
+    <div class="w-head rv"><span class="w-num">02</span><span class="w-tag"><span data-uz>MARKETPLEYS</span><span data-ru>МАРКЕТПЛЕЙС</span></span></div>
+    <h2 class="w-title rv"><span data-uz>Lechuza — mahsulot kartochkalari</span><span data-ru>Lechuza — карточки товаров</span></h2>
+    <p class="w-desc rv"><span data-uz>CUBICO, BALCONERA va OJO liniyalari uchun toʻliq kartochka toʻplamlari: infografika, avtopoliv sxemasi, uslub — brend ostida, AI bilan yigʻilgan.</span><span data-ru>Полные наборы карточек для линеек CUBICO, BALCONERA и OJO: инфографика, схема автополива, стиль бренда — собрано с помощью ИИ.</span></p>
+    <div class="w-media g4 rv">
+      <div class="shot" data-full="/portfolio/img/lechuza-1.jpg"><img src="/portfolio/img/lechuza-1.jpg" width="768" height="1024" alt="Lechuza CUBICO" loading="lazy" decoding="async"></div>
+      <div class="shot" data-full="/portfolio/img/lechuza-2.jpg"><img src="/portfolio/img/lechuza-2.jpg" width="768" height="1024" alt="Avtopoliv sxemasi" loading="lazy" decoding="async"></div>
+      <div class="shot" data-full="/portfolio/img/lechuza-3.jpg"><img src="/portfolio/img/lechuza-3.jpg" width="768" height="1024" alt="Lechuza interyerda" loading="lazy" decoding="async"></div>
+      <div class="shot" data-full="/portfolio/img/lechuza-4.jpg"><img src="/portfolio/img/lechuza-4.jpg" width="900" height="1200" alt="Lechuza OJO" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · katalog -->
+<section class="work">
+  <div class="container">
+    <div class="w-head rv"><span class="w-num">03</span><span class="w-tag"><span data-uz>KATALOG · BANNER</span><span data-ru>КАТАЛОГ · БАННЕРЫ</span></span></div>
+    <h2 class="w-title rv"><span data-uz>GUUL by Toshkent Gullari</span><span data-ru>GUUL by Toshkent Gullari</span></h2>
+    <p class="w-desc rv"><span data-uz>Restoranlar uchun 13 sahifalik B2B-katalog va doʻkon uchun reklama bannerlari — bitta vizual tilda.</span><span data-ru>13-страничный B2B-каталог «Цветы для ресторанов» и рекламные баннеры магазина — в одном визуальном языке.</span></p>
+    <div class="w-media g2w rv">
+      <div class="shot wide" data-full="/portfolio/img/guul-1.jpg"><img src="/portfolio/img/guul-1.jpg" width="1400" height="475" alt="GUUL banner" loading="lazy" decoding="async"></div>
+      <div class="shot" data-full="/portfolio/img/guul-2.jpg"><img src="/portfolio/img/guul-2.jpg" width="724" height="1024" alt="GUUL katalog — muqova" loading="lazy" decoding="async"></div>
+      <div class="shot" data-full="/portfolio/img/guul-3.jpg"><img src="/portfolio/img/guul-3.jpg" width="724" height="1024" alt="GUUL katalog — sahifa" loading="lazy" decoding="async"></div>
+      <div class="shot wide" data-full="/portfolio/img/guul-4.jpg"><img src="/portfolio/img/guul-4.jpg" width="1400" height="700" alt="Bayram banneri" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · SMM -->
+<section class="work">
+  <div class="container">
+    <div class="w-head rv"><span class="w-num">04</span><span class="w-tag">SMM</span></div>
+    <h2 class="w-title rv"><span data-uz>AI STRATEG — afishalar va karusellar</span><span data-ru>AI STRATEG — афиши и карусели</span></h2>
+    <p class="w-desc rv"><span data-uz>Master klass afishalari va Instagram uchun taʼlimiy karusel-postlar: brend uslubi, editorial tipografika, UZ tilida.</span><span data-ru>Афиши мастер-класса и обучающие карусели для Instagram: стиль бренда, editorial-типографика, на узбекском.</span></p>
+    <div class="w-media g4 rv">
+      <div class="shot" data-full="/portfolio/img/promo-1.jpg"><img src="/portfolio/img/promo-1.jpg" width="228" height="512" alt="AI STRATEG afisha" loading="lazy" decoding="async"></div>
+      <div class="shot" data-full="/portfolio/img/promo-2.jpg"><img src="/portfolio/img/promo-2.jpg" width="384" height="512" alt="Master klass afishasi" loading="lazy" decoding="async"></div>
+      <div class="shot" data-full="/portfolio/img/promo-3.jpg"><img src="/portfolio/img/promo-3.jpg" width="410" height="512" alt="Karusel — VOX reklama" loading="lazy" decoding="async"></div>
+      <div class="shot" data-full="/portfolio/img/promo-4.jpg"><img src="/portfolio/img/promo-4.jpg" width="410" height="512" alt="Karusel — Claude jamoa" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · video -->
+<section class="work">
+  <div class="container">
+    <div class="w-head rv"><span class="w-num">05</span><span class="w-tag">VIDEO</span></div>
+    <h2 class="w-title rv"><span data-uz>maxfusion — AI-video demo</span><span data-ru>maxfusion — демо AI-видео</span></h2>
+    <p class="w-desc rv"><span data-uz>50 soniyalik rolik: gʻoya + AI-instrumentlar qanday qilib tayyor kreativlarga aylanadi. Ovoz bilan.</span><span data-ru>50-секундный ролик: как идея и AI-инструменты превращаются в готовые креативы. Со звуком.</span></p>
+    <div class="w-media video-wrap rv">
+      <video controls preload="metadata" poster="/portfolio/img/video-poster.jpg" width="1080" height="1080">
+        <source src="/portfolio/maxfusion-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- qanday ishlaymiz -->
+<section class="steps">
+  <div class="container">
+    <div class="w-head rv"><span class="w-tag"><span data-uz>QANDAY ISHLAYMIZ</span><span data-ru>КАК МЫ РАБОТАЕМ</span></span></div>
+    <div class="steps-grid">
+      <div class="step rv"><b>01</b><h3><span data-uz>Brif — 15 daqiqa</span><span data-ru>Бриф — 15 минут</span></h3><p><span data-uz>Vazifa, auditoriya, uslub va materiallarni aniqlaymiz.</span><span data-ru>Определяем задачу, аудиторию, стиль и материалы.</span></p></div>
+      <div class="step rv"><b>02</b><h3><span data-uz>AI ishlab chiqadi</span><span data-ru>ИИ делает</span></h3><p><span data-uz>Birinchi variant 24–72 soat ichida tayyor boʻladi.</span><span data-ru>Первый вариант готов за 24–72 часа.</span></p></div>
+      <div class="step rv"><b>03</b><h3><span data-uz>Siz tasdiqlaysiz</span><span data-ru>Вы утверждаете</span></h3><p><span data-uz>Tuzatishlar kiritamiz va tayyor faylni topshiramiz.</span><span data-ru>Вносим правки и передаём готовый файл.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- forma -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="c-card rv">
+      <h2><span data-uz>Shunday ish sizga ham kerakmi?</span><span data-ru>Нужна такая же работа?</span></h2>
+      <p class="c-sub"><span data-uz>Maʼlumotlaringizni qoldiring — menejer bogʻlanadi va loyihani muhokama qilamiz.</span><span data-ru>Оставьте данные — менеджер свяжется, и обсудим проект.</span></p>
+      <form class="lead-form" novalidate>
+        <div class="field">
+          <label for="pName"><span data-uz>Ismingiz</span><span data-ru>Ваше имя</span></label>
+          <input id="pName" name="name" type="text" required autocomplete="name" data-ph-uz="Masalan: Aziz" data-ph-ru="Например: Азиз">
+        </div>
+        <div class="field">
+          <label for="pPhone"><span data-uz>Telefon raqamingiz</span><span data-ru>Номер телефона</span></label>
+          <input id="pPhone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" data-ph-uz="+998 90 123 45 67" data-ph-ru="+998 90 123 45 67">
+        </div>
+        <div class="field">
+          <label for="pWhat"><span data-uz>Nima kerak?</span><span data-ru>Что нужно?</span></label>
+          <input id="pWhat" name="industry" type="text" data-ph-uz="Sayt / kartochka / katalog / video…" data-ph-ru="Сайт / карточки / каталог / видео…">
+        </div>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn lead-btn" type="submit"><span data-uz>Yuborish</span><span data-ru>Отправить</span></button>
+        <div class="form-msg"></div>
+      </form>
+      <p class="c-alt"><span data-uz>Yoki toʻgʻridan-toʻgʻri yozing:</span><span data-ru>Или напишите напрямую:</span> <a href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener">t.me/Yusufbaymanager</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container f-in">
+    <span>© AI STRATEG</span>
+    <span><a href="/masterclass"><span data-uz>Master klass sayti</span><span data-ru>Сайт мастер-класса</span></a> · <a href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener">Telegram</a></span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Katta rasm">
+  <button class="lb-x" type="button" id="lbX" aria-label="Yopish">&times;</button>
+  <img id="lbImg" alt="">
+</div>
+
+<script>
+/* ---------- язык: как на лендинге, общий ключ в localStorage ---------- */
+function setLang(l){
+  document.documentElement.setAttribute('data-lang', l);
+  document.documentElement.setAttribute('lang', l);
+  document.querySelectorAll('.lang button').forEach(function(b){
+    b.classList.toggle('on', b.getAttribute('data-setlang')===l);
+  });
+  document.querySelectorAll('[data-ph-uz]').forEach(function(i){
+    i.placeholder = i.getAttribute(l==='ru' ? 'data-ph-ru' : 'data-ph-uz') || '';
+  });
+  try{ localStorage.setItem('mk-lang', l); }catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(function(b){
+  b.addEventListener('click', function(){ setLang(b.getAttribute('data-setlang')); });
+});
+var saved=null; try{ saved=localStorage.getItem('mk-lang'); }catch(e){}
+setLang(saved==='ru'?'ru':'uz');
+
+/* ---------- появление по скроллу ---------- */
+(function(){
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  function sweep(){
+    document.querySelectorAll('.rv:not(.is-in)').forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top<innerHeight && r.bottom>0) el.classList.add('is-in');
+    });
+  }
+  addEventListener('load', function(){ requestAnimationFrame(function(){ sweep(); setTimeout(sweep,400); }); });
+  if(document.readyState==='complete') requestAnimationFrame(sweep);
+})();
+
+/* ---------- лайтбокс ---------- */
+(function(){
+  var lb=document.getElementById('lb'), img=document.getElementById('lbImg');
+  document.querySelectorAll('[data-full]').forEach(function(el){
+    el.addEventListener('click', function(){
+      img.src=el.getAttribute('data-full');
+      lb.classList.add('open'); document.body.style.overflow='hidden';
+    });
+  });
+  function close(){ lb.classList.remove('open'); img.src=''; document.body.style.overflow=''; }
+  document.getElementById('lbX').addEventListener('click', close);
+  lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+  addEventListener('keydown', function(e){ if(e.key==='Escape'&&lb.classList.contains('open')) close(); });
+})();
+
+/* ---------- форма: тот же /api/lead, метка portfolio ---------- */
+var MANAGER_TG='https://t.me/Yusufbaymanager?text='+encodeURIComponent(
+  'Assalomu alaykum! Portfoliongizni koʻrdim. Loyiha boʻyicha maslahatlashmoqchiman.');
+document.querySelectorAll('.lead-form').forEach(function(form){
+  var msg=form.querySelector('.form-msg'), btn=form.querySelector('.lead-btn');
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    msg.className='form-msg'; msg.textContent='';
+    var lang=document.documentElement.getAttribute('data-lang')||'uz';
+    var name=form.name.value.trim(), phone=form.phone.value.trim();
+    if(!name || phone.replace(/\D/g,'').length<7){
+      msg.className='form-msg err';
+      msg.textContent = lang==='ru' ? 'Заполните имя и корректный номер телефона.' : 'Ism va toʻgʻri telefon raqamini kiriting.';
+      return;
+    }
+    btn.disabled=true; btn.style.opacity=.7;
+    fetch('/api/lead',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name:name, phone:phone,
+        industry:form.industry.value.trim(),
+        price:'portfolio',
+        website:form.website.value,
+        lang:lang, source:'portfolio'
+      })
+    }).then(function(r){ return r.json().catch(function(){ return {ok:false}; }); })
+    .then(function(j){
+      if(!(j&&j.ok)) throw new Error('fail');
+      location.href=MANAGER_TG;
+    })
+    .catch(function(){
+      msg.className='form-msg err';
+      msg.textContent = lang==='ru'
+        ? 'Не удалось отправить. Напишите нам в Telegram: t.me/Yusufbaymanager'
+        : 'Yuborilmadi. Telegram orqali yozing: t.me/Yusufbaymanager';
+      btn.disabled=false; btn.style.opacity=1;
+    });
+  });
+});
+</script>
+</body>
+</html>
