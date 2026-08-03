@@ -88,13 +88,15 @@ h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 .btn.ghost{background:none;color:var(--vio2);border:1px solid var(--line)}
 .hero-chips{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
 .chip{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-soft);border-radius:100px;padding:9px 15px}
-/* портрет */
-.pwrap{position:relative;justify-self:center;width:min(74vw,380px)}
+/* портрет: парит обёртка, наклоняется карточка — иначе transform дерутся */
+.pwrap{position:relative;justify-self:center;width:min(74vw,380px);perspective:900px;animation:floaty 7s ease-in-out infinite}
+/* нейросеть за фотографией — «ИИ» живёт прямо в hero */
+.neuro{position:absolute;inset:-34% -44%;width:188%;height:168%;pointer-events:none;opacity:.85}
 .pring{position:absolute;inset:-7%;border-radius:50%;background:conic-gradient(from 0deg,transparent 12%,rgba(139,92,246,.55) 26%,transparent 42%,transparent 58%,rgba(255,158,210,.4) 74%,transparent 90%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2.5px),#000 calc(100% - 1.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 2.5px),#000 calc(100% - 1.5px));animation:spin 14s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.pcard{position:relative;border-radius:46% 46% 24px 24px;overflow:hidden;border:1px solid var(--line);box-shadow:0 44px 100px -40px rgba(0,0,0,.9),0 0 90px -30px rgba(139,92,246,.4);animation:floaty 7s ease-in-out infinite}
+.pcard{position:relative;border-radius:46% 46% 24px 24px;overflow:hidden;border:1px solid var(--line);box-shadow:0 44px 100px -40px rgba(0,0,0,.9),0 0 90px -30px rgba(139,92,246,.4);transition:transform .35s var(--ease);will-change:transform}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.pcard img{width:100%;aspect-ratio:1/1.12;object-fit:cover;object-position:50% 18%}
+.pcard img{width:100%;aspect-ratio:1/1.12;object-fit:cover;object-position:50% 60%}
 .pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,18,.5),transparent 46%)}
 .ptag{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);background:rgba(10,8,18,.72);border:1px solid var(--line);border-radius:100px;padding:9px 18px;white-space:nowrap}
 @media(max-width:860px){
@@ -174,13 +176,26 @@ td b{color:var(--ink);font-weight:600}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:rgba(139,92,246,.05)}
 td .star{color:var(--pink)}
-.bars{margin-top:36px;display:grid;gap:13px}
-.bar{display:grid;grid-template-columns:minmax(110px,180px) 1fr 74px;align-items:center;gap:14px}
-.bar .bn{font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bar .bt{height:16px;border-radius:100px;background:rgba(139,92,246,.12);overflow:hidden}
-.bar .bf{height:100%;width:0;border-radius:inherit;background:var(--grad);transition:width 1.3s var(--ease)}
-.bars.is-in .bf{width:var(--w)}
-.bar .bv{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--vio2);text-align:right}
+/* линейный график: линия прорисовывается, точки и цифры догоняют */
+.lchart{margin-top:36px;border:1px solid var(--line-soft);border-radius:20px;background:rgba(10,8,18,.5);padding:clamp(12px,2vw,24px);overflow-x:auto}
+.lchart svg{display:block;min-width:560px;width:100%;height:auto}
+.lchart .grid line{stroke:rgba(239,233,255,.07)}
+.lchart .grid text{fill:var(--faint);font-size:10px;text-anchor:end;font-family:var(--mono)}
+.lchart .line{stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 2s var(--ease) .2s}
+.lchart .area{opacity:0;transition:opacity 1s var(--ease) 1.1s}
+.lchart .pts circle{fill:#0A0812;stroke:url(#lg);stroke-width:2.5;transform:scale(0);transform-origin:center;transform-box:fill-box;transition:transform .5s var(--ease)}
+.lchart .vals text{fill:var(--ink);font-size:12px;font-weight:700;text-anchor:middle;opacity:0;transition:opacity .6s}
+.lchart .labs text{fill:var(--faint);font-size:10.5px;text-anchor:middle;font-family:var(--mono)}
+.lchart.is-in .line{stroke-dashoffset:0}
+.lchart.is-in .area{opacity:1}
+.lchart.is-in .pts circle{transform:scale(1)}
+.lchart.is-in .vals text{opacity:1}
+.lchart .pts circle:nth-child(1){transition-delay:.25s}.lchart .pts circle:nth-child(2){transition-delay:.45s}.lchart .pts circle:nth-child(3){transition-delay:.65s}.lchart .pts circle:nth-child(4){transition-delay:.85s}.lchart .pts circle:nth-child(5){transition-delay:1.05s}.lchart .pts circle:nth-child(6){transition-delay:1.25s}.lchart .pts circle:nth-child(7){transition-delay:1.45s}.lchart .pts circle:nth-child(8){transition-delay:1.65s}
+.lchart .vals text:nth-child(1){transition-delay:.45s}.lchart .vals text:nth-child(2){transition-delay:.65s}.lchart .vals text:nth-child(3){transition-delay:.85s}.lchart .vals text:nth-child(4){transition-delay:1.05s}.lchart .vals text:nth-child(5){transition-delay:1.25s}.lchart .vals text:nth-child(6){transition-delay:1.45s}.lchart .vals text:nth-child(7){transition-delay:1.65s}.lchart .vals text:nth-child(8){transition-delay:1.85s}
+@media(prefers-reduced-motion:reduce){
+  .lchart .line{stroke-dashoffset:0;transition:none}
+  .lchart .area{opacity:1}.lchart .pts circle{transform:scale(1)}.lchart .vals text{opacity:1}
+}
 .wb-note{margin-top:18px;font-size:13px;color:var(--faint)}
 .wb-note a{color:var(--vio2)}
 
@@ -192,8 +207,9 @@ td .star{color:var(--pink)}
 .fstep b{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pink);letter-spacing:.1em;padding-top:3px}
 .fstep h4{font-size:15.5px;font-weight:700;letter-spacing:-.01em}
 .fstep p{color:var(--muted);font-size:13.5px;margin-top:3px}
-.phone{justify-self:center;width:min(78vw,320px);border-radius:34px;border:1px solid var(--line);padding:12px;background:var(--bg2);box-shadow:0 44px 90px -40px rgba(0,0,0,.9),0 0 80px -30px rgba(139,92,246,.35)}
-.phone img{border-radius:24px}
+.phone{justify-self:center;width:min(92vw,460px);border-radius:22px;border:1px solid var(--line);padding:12px;background:var(--bg2);box-shadow:0 44px 90px -40px rgba(0,0,0,.9),0 0 80px -30px rgba(139,92,246,.35)}
+.phone img{border-radius:14px;width:100%;height:auto}
+.ph-cap{display:block;margin-top:10px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
 @media(max-width:860px){.auto-grid{grid-template-columns:1fr}.phone{order:-1}}
 
 /* ---------- обо мне ---------- */
@@ -260,8 +276,8 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
         <span data-ru>Привет! Я <em>Исламия</em> — дизайнер</span>
       </h1>
       <p class="hero-sub rv" style="transition-delay:.15s">
-        <span data-uz>Menga 20 yosh. Men saytlar, bannerlar va interfeyslar yasayman. Oʻz qoʻllarim bilan chiroyli narsalar yaratishni juda yaxshi koʻraman.</span>
-        <span data-ru>Мне 20 лет. Я делаю сайты, баннеры и интерфейсы. Больше всего люблю создавать красивое своими руками.</span>
+        <span data-uz>Menga 20 yosh. Men saytlar, karusellar, bannerlar va interfeyslar yasayman. Gʻoyani olaman — va uni tayyor dizayngacha oʻzim olib boraman. AI esa menga tezlik beradi.</span>
+        <span data-ru>Мне 20 лет. Я делаю сайты, карусели, баннеры и интерфейсы. Беру идею — и сама довожу её до готового дизайна. А ИИ даёт мне скорость.</span>
       </p>
       <div class="hero-cta rv" style="transition-delay:.25s">
         <a class="btn mag" href="#works"><span data-uz>Ishlarimni koʻrish</span><span data-ru>Смотреть работы</span></a>
@@ -274,8 +290,9 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
       </div>
     </div>
     <div class="pwrap rv" style="transition-delay:.2s">
+      <canvas class="neuro" id="neuro" aria-hidden="true"></canvas>
       <div class="pring" aria-hidden="true"></div>
-      <div class="pcard">
+      <div class="pcard" id="pcard">
         <img src="/portfolio/img/islamiya.jpg" width="640" height="640" alt="Islamiya" fetchpriority="high">
       </div>
       <span class="ptag">ISLAMIYA · 20</span>
@@ -291,6 +308,18 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
     </div>
   </div>
 </div>
+
+<!-- ============ ЦИФРЫ ============ -->
+<section style="padding-bottom:0">
+  <div class="container">
+    <div class="wb-chips rv" style="margin-top:0">
+      <div class="stat"><b data-count="29">0</b><span data-uz>karusel slaydi</span><span data-ru>слайдов каруселей</span></div>
+      <div class="stat"><b data-count="10">0</b><span data-uz>marketpleys kartochkasi</span><span data-ru>карточек для маркетплейса</span></div>
+      <div class="stat"><b data-count="6">0</b><span data-uz>banner va afisha</span><span data-ru>баннеров и афиш</span></div>
+      <div class="stat"><b>1</b><span data-uz>jonli sayt</span><span data-ru>живой сайт</span></div>
+    </div>
+  </div>
+</section>
 
 <!-- ============ ОПЫТ ============ -->
 <section id="exp">
@@ -368,13 +397,33 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
         <img src="/portfolio/img/web-hero.jpg" width="1200" height="750" alt="AI Master Klass sayti" loading="lazy" decoding="async">
         <span class="cap"><span><span data-uz>SAYT</span><span data-ru>САЙТ</span></span><b>AI Master Klass — landing</b></span>
       </div>
+      <div class="wcard" data-full="/portfolio/img/cov-1.jpg">
+        <img src="/portfolio/img/cov-1.jpg" width="760" height="950" alt="Karusel oblozhkasi — Claude jamoa" loading="lazy" decoding="async">
+        <span class="cap"><span><span data-uz>OBLOZHKA</span><span data-ru>ОБЛОЖКА</span></span><b><span data-uz>«Claude — ofis jamoasi»</span><span data-ru>«Claude — офисная команда»</span></b></span>
+      </div>
+      <div class="wcard" data-full="/portfolio/img/cov-3.jpg">
+        <img src="/portfolio/img/cov-3.jpg" width="760" height="950" alt="Karusel oblozhkasi — AI-agentlar" loading="lazy" decoding="async">
+        <span class="cap"><span><span data-uz>OBLOZHKA</span><span data-ru>ОБЛОЖКА</span></span><b>«AI-agentlar 2026»</b></span>
+      </div>
+      <div class="wcard" data-full="/portfolio/img/car-grid.jpg">
+        <img src="/portfolio/img/car-grid.jpg" width="530" height="661" alt="Instagram karusellar toʻplami" loading="lazy" decoding="async">
+        <span class="cap"><span>KARUSEL</span><b><span data-uz>Instagram toʻplami</span><span data-ru>Набор для Instagram</span></b></span>
+      </div>
+      <div class="wcard" data-full="/portfolio/img/sl-1.jpg">
+        <img src="/portfolio/img/sl-1.jpg" width="760" height="950" alt="Karusel slaydi — 9 ta rol" loading="lazy" decoding="async">
+        <span class="cap"><span>KARUSEL</span><b>«9 ta tayyor rol»</b></span>
+      </div>
+      <div class="wcard" data-full="/portfolio/img/sl-3.jpg">
+        <img src="/portfolio/img/sl-3.jpg" width="760" height="950" alt="Karusel slaydi — narx solishtiruvi" loading="lazy" decoding="async">
+        <span class="cap"><span>KARUSEL</span><b>«$4 → $1,6»</b></span>
+      </div>
+      <div class="wcard wide" data-full="/portfolio/img/ban-mk.jpg">
+        <img src="/portfolio/img/ban-mk.jpg" width="939" height="470" alt="Master klass banneri" loading="lazy" decoding="async">
+        <span class="cap"><span>BANNER</span><b><span data-uz>Master klass reklamasi</span><span data-ru>Реклама мастер-класса</span></b></span>
+      </div>
       <div class="wcard" data-full="/portfolio/img/lechuza-1.jpg">
         <img src="/portfolio/img/lechuza-1.jpg" width="768" height="1024" alt="Lechuza kartochka" loading="lazy" decoding="async">
         <span class="cap"><span>MARKETPLEYS</span><b>Lechuza — <span data-uz>kartochkalar</span><span data-ru>карточки</span></b></span>
-      </div>
-      <div class="wcard" data-full="/portfolio/img/lechuza-2.jpg">
-        <img src="/portfolio/img/lechuza-2.jpg" width="768" height="1024" alt="Avtopoliv infografikasi" loading="lazy" decoding="async">
-        <span class="cap"><span>INFOGRAFIKA</span><b><span data-uz>Avtopoliv sxemasi</span><span data-ru>Схема автополива</span></b></span>
       </div>
       <div class="wcard" data-full="/portfolio/img/guul-2.jpg">
         <img src="/portfolio/img/guul-2.jpg" width="724" height="1024" alt="GUUL katalog" loading="lazy" decoding="async">
@@ -384,16 +433,16 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
         <img src="/portfolio/img/guul-1.jpg" width="1400" height="475" alt="GUUL banner" loading="lazy" decoding="async">
         <span class="cap"><span>BANNER</span><b><span data-uz>Gul doʻkoni bannerlari</span><span data-ru>Баннеры цветочного магазина</span></b></span>
       </div>
-      <div class="wcard" data-full="/portfolio/img/promo-2.jpg">
-        <img src="/portfolio/img/promo-2.jpg" width="384" height="512" alt="AI STRATEG afisha" loading="lazy" decoding="async">
-        <span class="cap"><span>SMM</span><b><span data-uz>Afishalar va karusellar</span><span data-ru>Афиши и карусели</span></b></span>
+      <div class="wcard" data-full="/portfolio/img/ban-post.jpg">
+        <img src="/portfolio/img/ban-post.jpg" width="700" height="933" alt="Sunʼiy Intellekt afishasi" loading="lazy" decoding="async">
+        <span class="cap"><span>AFISHA</span><b>«Sunʼiy Intelekt»</b></span>
       </div>
       <div class="wcard vid" id="vidCard">
         <img src="/portfolio/img/video-poster.jpg" width="900" height="900" alt="maxfusion demo" loading="lazy" decoding="async">
         <span class="cap"><span>VIDEO</span><b>maxfusion — AI demo</b></span>
       </div>
     </div>
-    <div class="gal-hint"><span data-uz>⟵ aylantiring — galereya harakatlanadi</span><span data-ru>⟵ листайте — галерея движется</span></div>
+    <div class="gal-hint"><span data-uz>⟵ aylantiring — galereya harakatlanadi · rasm bosilsa — kattalashadi</span><span data-ru>⟵ листайте — галерея движется · клик по работе — крупно</span></div>
   </div>
 </div>
 
@@ -433,16 +482,35 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
       </table>
     </div>
 
-    <div class="bars" id="bars">
-      <div class="bar"><span class="bn">Finest Store</span><span class="bt"><span class="bf" style="--w:100%"></span></span><span class="bv" data-count="5462">0</span></div>
-      <div class="bar"><span class="bn">Упакуй красиво!</span><span class="bt"><span class="bf" style="--w:99%"></span></span><span class="bv" data-count="5428">0</span></div>
-      <div class="bar"><span class="bn">Ультрапак</span><span class="bt"><span class="bf" style="--w:76%"></span></span><span class="bv" data-count="4143">0</span></div>
-      <div class="bar"><span class="bn">Ультра-пак</span><span class="bt"><span class="bf" style="--w:76%"></span></span><span class="bv" data-count="4142">0</span></div>
-      <div class="bar"><span class="bn">MiSTone</span><span class="bt"><span class="bf" style="--w:61%"></span></span><span class="bv" data-count="3305">0</span></div>
-      <div class="bar"><span class="bn">Сима-Ленд</span><span class="bt"><span class="bf" style="--w:50%"></span></span><span class="bv" data-count="2704">0</span></div>
-      <div class="bar"><span class="bn">La Don'</span><span class="bt"><span class="bf" style="--w:47%"></span></span><span class="bv" data-count="2544">0</span></div>
+    <div class="lchart rv" id="lchart">
+      <svg viewBox="0 0 660 300" role="img" aria-label="Sharhlar boʻyicha grafik">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#8B5CF6"/><stop offset=".55" stop-color="#C4A9FF"/><stop offset="1" stop-color="#FF9ED2"/>
+          </linearGradient>
+          <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#8B5CF6" stop-opacity=".28"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g class="grid">
+          <line x1="36" y1="60" x2="624" y2="60"/><text x="30" y="64">5000</text>
+          <line x1="36" y1="132" x2="624" y2="132"/><text x="30" y="136">4000</text>
+          <line x1="36" y1="204" x2="624" y2="204"/><text x="30" y="208">3000</text>
+        </g>
+        <path class="area" fill="url(#fill)" d="M60,27 L140,29 L220,121 L300,121 L380,182 L460,189 L540,225 L620,236 L620,258 L60,258 Z"/>
+        <path class="line" fill="none" stroke="url(#lg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M60,27 L140,29 L220,121 L300,121 L380,182 L460,189 L540,225 L620,236"/>
+        <g class="pts">
+          <circle cx="60" cy="27" r="5"/><circle cx="140" cy="29" r="5"/><circle cx="220" cy="121" r="5"/><circle cx="300" cy="121" r="5"/><circle cx="380" cy="182" r="5"/><circle cx="460" cy="189" r="5"/><circle cx="540" cy="225" r="5"/><circle cx="620" cy="236" r="5"/>
+        </g>
+        <g class="vals">
+          <text x="60" y="14">5 462</text><text x="140" y="48">5 428</text><text x="220" y="108">4 143</text><text x="300" y="140">4 142</text><text x="380" y="169">3 305</text><text x="460" y="208">3 198</text><text x="540" y="212">2 704</text><text x="620" y="255">2 544</text>
+        </g>
+        <g class="labs">
+          <text x="60" y="282">Finest</text><text x="140" y="282">Упакуй</text><text x="220" y="282">Ультрапак</text><text x="300" y="282">Ультра-пак</text><text x="380" y="282">MiSTone</text><text x="460" y="282">Finest ②</text><text x="540" y="282">Сима-Ленд</text><text x="620" y="282">La Don'</text>
+        </g>
+      </svg>
     </div>
-    <p class="wb-note rv"><span data-uz>Diagramma: sharhlar soni boʻyicha top-7 raqobatchi.</span><span data-ru>Диаграмма: топ-7 конкурентов по количеству отзывов.</span> <a href="https://docs.google.com/spreadsheets/d/1km-v9wZokoywMbeAxLbNO6MXpG9nkFw82yY6LImqYwc/edit" target="_blank" rel="noopener"><span data-uz>Toʻliq jadval</span><span data-ru>Полная таблица</span> →</a></p>
+    <p class="wb-note rv"><span data-uz>Grafikda — sharhlar soni boʻyicha top-8: lider bilan oxirgi oʻrin orasida farq ikki barobardan koʻp.</span><span data-ru>На графике — топ-8 по количеству отзывов: между лидером и последним местом разница больше чем в два раза.</span> <a href="https://docs.google.com/spreadsheets/d/1km-v9wZokoywMbeAxLbNO6MXpG9nkFw82yY6LImqYwc/edit" target="_blank" rel="noopener"><span data-uz>Toʻliq jadval</span><span data-ru>Полная таблица</span> →</a></p>
   </div>
 </section>
 
@@ -461,7 +529,10 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
           <div class="fstep"><b>04</b><div><h4><span data-uz>Telegramga keladi</span><span data-ru>Приходит в Telegram</span></h4><p><span data-uz>Tayyor postlar menga avtomatik yuboriladi.</span><span data-ru>Готовые посты отправляются мне автоматически.</span></p></div></div>
         </div>
       </div>
-      <div class="phone rv"><img src="/portfolio/img/tg-automation.jpg" width="773" height="930" alt="Telegramdagi tayyor karusellar" loading="lazy" decoding="async"></div>
+      <div class="phone rv">
+        <img src="/portfolio/img/tg-automation.jpg" width="527" height="374" alt="Telegramga kelgan tayyor post" loading="lazy" decoding="async">
+        <span class="ph-cap"><span data-uz>Telegramga kelgan tayyor post — tizim yozgan</span><span data-ru>Готовый пост в Telegram — написан системой</span></span>
+      </div>
     </div>
   </div>
 </section>
@@ -647,6 +718,69 @@ document.querySelectorAll('[data-dup]').forEach(function(t){
     })();
   },{threshold:.3}).observe(document.getElementById('flow'));
 })();
+
+/* ---------- нейросеть за портретом: точки-«нейроны» и связи ---------- */
+(function(){
+  var cv=document.getElementById('neuro');
+  if(!cv||REDUCED) return;
+  var ctx=cv.getContext('2d'), W,H,pts=[],run=true;
+  var dpr=Math.min(devicePixelRatio||1,2);
+  function size(){
+    var r=cv.getBoundingClientRect();
+    W=r.width; H=r.height;
+    cv.width=W*dpr; cv.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    var n=innerWidth<640?16:26;
+    pts=[];
+    for(var i=0;i<n;i++) pts.push({
+      x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-.5)*.34, vy:(Math.random()-.5)*.34,
+      r:Math.random()*1.6+1
+    });
+  }
+  var LINK=130;
+  function tick(){
+    if(!run){ requestAnimationFrame(tick); return; }
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<pts.length;i++){
+      var p=pts[i];
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+    }
+    for(var a=0;a<pts.length;a++) for(var b=a+1;b<pts.length;b++){
+      var dx=pts[a].x-pts[b].x, dy=pts[a].y-pts[b].y, d=dx*dx+dy*dy;
+      if(d<LINK*LINK){
+        var al=(1-Math.sqrt(d)/LINK)*.34;
+        ctx.strokeStyle='rgba(164,124,255,'+al+')';
+        ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(pts[a].x,pts[a].y); ctx.lineTo(pts[b].x,pts[b].y); ctx.stroke();
+      }
+    }
+    for(var k=0;k<pts.length;k++){
+      var q=pts[k];
+      ctx.fillStyle = k%4===0 ? 'rgba(255,158,210,.9)' : 'rgba(196,169,255,.8)';
+      ctx.beginPath(); ctx.arc(q.x,q.y,q.r,0,Math.PI*2); ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  new IntersectionObserver(function(en){ run=en[0].isIntersecting; },{threshold:0}).observe(cv);
+  addEventListener('resize', size);
+  size(); tick();
+})();
+
+/* ---------- лёгкий наклон портрета за курсором ---------- */
+if(matchMedia('(pointer:fine)').matches && !REDUCED){
+  var pc=document.getElementById('pcard');
+  if(pc){
+    pc.parentElement.addEventListener('mousemove', function(e){
+      var r=pc.getBoundingClientRect();
+      var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      pc.style.transform='rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg)';
+    });
+    pc.parentElement.addEventListener('mouseleave', function(){ pc.style.transform=''; });
+  }
+}
 
 /* ---------- магнитные кнопки (только точный курсор) ---------- */
 if(matchMedia('(pointer:fine)').matches && !REDUCED){

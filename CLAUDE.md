@@ -50,6 +50,10 @@ docs.google.com/spreadsheets/d/1km-v9wZokoywMbeAxLbNO6MXpG9nkFw82yY6LImqYwc),
 - `maxfusion-demo.mp4` — демо maxfusion: «инструмент + идея → AI-креативы»,
   50 сек, 1080×1080, h264 со звуком.
 - `keys-uchastnikov.pdf` — исходник фото учеников для кейсов лендинга (было раньше).
+- `islamiya-karusellar.pdf` — карусели Исламии (20 стр.: кремовая серия @kodiyusufbay
+  + тёмная «AI-agentlar 2026»); обложки и слайды показаны в галерее `/portfolio`.
+- `islamiya-kreativy-banners.pdf` — 4 баннера (2 цветочных + 2 мастер-класса).
+- `islamiya-cv-references.pdf` — CV, референсы сайтов, фото, логотип GUUL, скрин TG.
 
 ## Дизайн и анимация — база ресурсов (запомнено 2026-07-24)
 
