@@ -1,596 +1,1342 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uz" data-lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instagram Analyzer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Yusufbay Kadirov — AI strateg. Biznesga sunʼiy intellektni joriy qilish</title>
+<meta name="description" content="Men AI ni oʻrgatmayman — ishlaydigan tizimni beraman. Biznesga sunʼiy intellekt joriy qilish: AI-xodimlar, raqamli boʻlim, boshqaruv pulti. 50+ biznes, $2 000 000 sotuv.">
+<meta name="theme-color" content="#05070A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yusufbay Kadirov — AI strateg">
+<meta property="og:description" content="Biznesga sunʼiy intellektni joriy qilish: AI-xodimlar, raqamli boʻlim, boshqaruv pulti. Operatsiyadan — strategiyaga.">
+<meta property="og:image" content="/masterclass/img/speaker-dark.jpg">
+<link rel="preload" href="/masterclass/fonts/inter-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/masterclass/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
-  :root {
-    --bg:#0a0a0a; --surface:#111; --border:#1e1e1e;
-    --accent:#e8ff47; --accent2:#ff6b35; --text:#f0f0f0;
-    --muted:#555; --success:#47ffb2; --purple:#a855f7;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;padding:40px 20px;}
-  .container{max-width:860px;margin:0 auto;}
-  header{margin-bottom:48px;border-bottom:1px solid var(--border);padding-bottom:32px;}
-  .label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;}
-  h1{font-size:clamp(32px,6vw,52px);font-weight:800;line-height:1;letter-spacing:-.02em;}
-  h1 span{color:var(--accent);}
-  .subtitle{margin-top:12px;color:var(--muted);font-size:13px;font-family:'IBM Plex Mono',monospace;}
-  .nav-tabs{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--border);border-radius:2px;overflow:hidden;}
-  .nav-tab{flex:1;background:transparent;border:none;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;padding:12px 16px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;border-right:1px solid var(--border);}
-  .nav-tab:last-child{border-right:none;}
-  .nav-tab.active{background:var(--accent);color:#000;font-weight:700;}
-  .nav-tab:hover:not(.active){color:var(--accent);}
-  .tab-content{display:none;}
-  .tab-content.active{display:block;animation:fadeIn .3s ease;}
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:28px;margin-bottom:16px;}
-  .card-title{font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px;}
-  input,select{background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:12px 16px;width:100%;transition:border-color .2s;outline:none;}
-  input:focus,select:focus{border-color:var(--accent);}
-  input::placeholder{color:#333;}
-  select option{background:#111;}
-  .input-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;}
-  .btn{display:block;background:var(--accent);color:#000;border:none;border-radius:2px;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;padding:14px 24px;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;transition:background .15s;}
-  .btn:hover{background:#d4eb00;}
-  .btn:disabled{background:#222;color:#444;cursor:not-allowed;}
-  .btn-full{width:100%;margin-top:16px;font-size:16px;padding:18px 32px;}
-  .btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;padding:10px 18px;cursor:pointer;border-radius:2px;transition:all .2s;}
-  .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
-  .count-select{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
-  .count-btn{background:var(--bg);border:1px solid var(--border);color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;padding:8px 16px;cursor:pointer;border-radius:2px;transition:all .2s;}
-  .count-btn.active{border-color:var(--accent);color:var(--accent);background:#111a00;}
-  .count-btn:hover{border-color:var(--accent);color:var(--accent);}
+/* Шрифты уже лежат в проекте — берём те же файлы, что и лендинг мастер-класса,
+   поэтому вторая страница сайта не тянет ни одного нового байта. */
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(/masterclass/fonts/inter-400-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(/masterclass/fonts/inter-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(/masterclass/fonts/inter-500-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(/masterclass/fonts/inter-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(/masterclass/fonts/inter-600-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(/masterclass/fonts/inter-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/inter-700-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/inter-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(/masterclass/fonts/inter-800-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(/masterclass/fonts/inter-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/masterclass/fonts/jetbrains-mono-500-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/masterclass/fonts/jetbrains-mono-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/jetbrains-mono-700-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url(/masterclass/fonts/jetbrains-mono-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23070A0E'/><path d='M50 16 L76 86 L64 86 L50 46 L36 86 L24 86 Z' fill='%23D8DEE5'/><path d='M16 76 C32 58 64 40 88 25 C68 48 40 65 22 84 Z' fill='%23AAB2BC'/></svg>">
+<style>
 
-  /* Status box */
-  #statusBox,#ytStatusBox{display:none;background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:24px 28px;margin-bottom:16px;}
-  #statusBox.active,#ytStatusBox.active{display:block;}
-  .step{display:flex;align-items:center;gap:10px;padding:5px 0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);}
-  .step.done{color:var(--success);}
-  .step.running{color:var(--accent);}
-  .step.err{color:var(--accent2);}
-  .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
-  .spin{width:12px;height:12px;border:1.5px solid var(--accent);border-top-color:transparent;border-radius:50%;animation:spin .6s linear infinite;flex-shrink:0;}
-  @keyframes spin{to{transform:rotate(360deg);}}
-  .progress-bar{width:100%;height:3px;background:var(--border);border-radius:2px;margin-top:12px;overflow:hidden;}
-  .progress-fill{height:100%;background:var(--accent);width:0%;transition:width .5s ease;}
-  .error-box{display:none;background:#1a0800;border:1px solid var(--accent2);border-radius:2px;padding:16px 20px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent2);margin-bottom:16px;line-height:1.7;}
-  .error-box.visible{display:block;}
+/* ============ TOKENS ============ */
+/* Те же токены, что у лендинга мастер-класса: сайт и лендинг должны читаться
+   как одна система, а не как две разные работы. */
+:root{
+  --bg0:#05070A; --bg1:#030508; --bg2:#090C12; --card:#090C12;
+  --gold:#BFA059; --gold-2:#D6BE8A; --gold-3:#E8DBBA; --gold-deep:#7A6229;
+  --cream:#EEF1F5; --muted:#A3ADB9; --faint:#838F9C;
+  --line:rgba(255,255,255,.16); --line-soft:rgba(255,255,255,.09);
+  --line-gold:rgba(191,160,89,.34); --line-gold-soft:rgba(191,160,89,.16);
+  --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono:'JetBrains Mono', 'Courier New', monospace;
+  --dur-fast:140ms; --dur-base:220ms; --dur-mod:340ms; --dur-slow:420ms;
+  --ease-out:cubic-bezier(.16,1,.3,1); --ease-expo:cubic-bezier(.87,0,.13,1);
+  --grad-gold:linear-gradient(105deg,#E8DBBA 0%,#D9B54A 45%,#B08624 80%,#D9B54A 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg0); color:var(--cream); font-family:var(--sans);
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:rgba(191,160,89,.35); color:#fff}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#06080B}
+::-webkit-scrollbar-thumb{background:#232A35; border-radius:6px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold-deep)}
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit}
+:focus-visible{outline:2px solid var(--gold); outline-offset:3px; border-radius:2px}
 
-  /* Reels picker */
-  #reelsPicker{display:none;background:var(--surface);border:1px solid var(--accent);border-radius:2px;padding:24px;margin-bottom:16px;}
-  #reelsPicker.visible{display:block;animation:fadeIn .3s ease;}
-  .picker-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;}
-  .picker-title{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;}
-  .picker-actions{display:flex;gap:8px;}
-  .reels-grid{display:grid;gap:8px;max-height:400px;overflow-y:auto;}
-  .reel-item{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:var(--bg);border:1px solid var(--border);padding:12px 16px;border-radius:2px;cursor:pointer;transition:all .2s;}
-  .reel-item:hover{border-color:#333;}
-  .reel-item.selected{border-color:var(--accent);background:#111a00;}
-  .reel-check{width:16px;height:16px;border:1.5px solid var(--muted);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
-  .reel-item.selected .reel-check{background:var(--accent);border-color:var(--accent);color:#000;}
-  .reel-info{}
-  .reel-caption{font-size:12px;color:#ccc;line-height:1.4;max-width:500px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .reel-stats{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-top:3px;}
-  .reel-date{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-align:right;white-space:nowrap;}
-  .picker-footer{margin-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-  .selected-count{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);}
+html[data-lang="uz"] [data-ru]{display:none!important}
+html[data-lang="ru"] [data-uz]{display:none!important}
 
-  /* Report */
-  #igReport,#ytReport{display:none;}
-  #igReport.visible,#ytReport.visible{display:block;animation:fadeIn .4s ease;}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  .report-top{background:var(--surface);border:1px solid var(--accent);border-radius:2px;padding:28px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
-  .report-username{font-size:32px;font-weight:800;letter-spacing:-.02em;}
-  .report-username span{color:var(--accent);}
-  .report-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);line-height:2;text-align:right;}
-  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px;}
-  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:18px;}
-  .stat-val{font-size:22px;font-weight:800;color:var(--accent);letter-spacing:-.02em;}
-  .stat-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.1em;}
-  .section{background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:28px;margin-bottom:16px;}
-  .section-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-family:'IBM Plex Mono',monospace;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-  .section-body{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.9;color:#ccc;white-space:pre-wrap;}
-  .btn-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
-  .transcript-section{background:#0d1a00;border:1px solid #2a3a00;border-radius:2px;padding:28px;margin-bottom:16px;}
-  .transcript-item{border-bottom:1px solid #1a2a00;padding:16px 0;}
-  .transcript-item:last-child{border-bottom:none;}
-  .transcript-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:8px;}
-  .transcript-text{font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.8;color:#aaccaa;}
-  .transcript-status{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border-radius:2px;display:inline-block;margin-top:4px;}
-  .transcript-status.done{background:#0a2010;color:var(--success);border:1px solid #1a4020;}
-  .transcript-status.fail{background:#200a00;color:var(--accent2);border:1px solid #401a00;}
+/* ============ UTILITIES ============ */
+.container{max-width:1240px; margin:0 auto; padding:0 28px}
+.label{
+  display:flex; align-items:center; gap:14px;
+  font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:28px;
+}
+.label::before{content:""; width:36px; height:1px; background:var(--gold); opacity:.7; flex:none}
+.s-title{
+  font-weight:600; font-size:clamp(25px,3.6vw,47px); line-height:1.14; letter-spacing:-.022em;
+  margin-bottom:22px; text-wrap:balance;
+}
+.s-title em{font-style:normal; background:var(--grad-gold); -webkit-background-clip:text; background-clip:text; color:transparent}
+.s-sub{color:var(--muted); max-width:660px; font-size:clamp(15px,1.4vw,17.5px)}
+section{position:relative; padding:clamp(54px,6.2vw,94px) 0; overflow:clip}
+section[id]{scroll-margin-top:86px}
+.ghost{
+  position:absolute; top:5%; right:-2%; z-index:0; pointer-events:none; user-select:none;
+  font-family:var(--mono); font-weight:700; font-size:clamp(140px,21vw,330px); line-height:1;
+  color:transparent; -webkit-text-stroke:1px rgba(238,241,245,.075);
+}
 
-  /* YT specific */
-  .yt-url-hint{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-top:8px;line-height:1.6;}
-  .lang-badges{display:flex;gap:8px;margin-top:12px;}
-  .lang-badge{background:#111a00;border:1px solid #2a3a00;color:var(--success);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:4px 10px;border-radius:2px;}
+/* reveal system */
+.rv{opacity:0; transform:translateY(12px); transition:opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out)}
+.rv.is-in{opacity:1; transform:none}
+.rv-clip .clip-img{opacity:0; transform:scale(1.05); transition:opacity .8s var(--ease-out), transform 1.2s var(--ease-out)}
+.rv-clip.is-in .clip-img{opacity:1; transform:none}
+.w{display:inline-block; overflow:hidden; vertical-align:bottom}
+.w>i{display:inline-block; font-style:inherit; transform:translateY(102%); transition:transform .8s var(--ease-expo)}
+[data-split].is-in .w>i{transform:none}
+
+/* buttons */
+.btn{
+  position:relative; display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:17px 34px; border-radius:100px; overflow:hidden;
+  font-size:12.5px; font-weight:800; letter-spacing:.22em; text-transform:uppercase;
+  transition:transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), background var(--dur-base), border-color var(--dur-base);
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn-gold{background:var(--grad-gold); box-shadow:0 10px 34px -10px rgba(191,160,89,.45)}
+.btn-gold:hover{box-shadow:0 16px 44px -10px rgba(191,160,89,.6)}
+.btn-gold, .btn-gold span, .btn-gold b{color:#100C02}
+.btn-gold::after{
+  content:""; position:absolute; top:0; left:-80%; width:50%; height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:skewX(-20deg); transition:left .55s var(--ease-out);
+}
+.btn-gold:hover::after{left:130%}
+.btn-ghost{
+  border:1px solid var(--line); color:var(--gold-2); background:rgba(191,160,89,.04);
+  backdrop-filter:blur(6px);
+}
+.btn-ghost:hover{border-color:var(--gold); background:rgba(191,160,89,.09)}
+
+/* grain + ambient */
+.grain{
+  position:fixed; inset:-100px; z-index:2000; pointer-events:none; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
+}
+.amb{position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  transition:background var(--dur-mod), border-color var(--dur-mod);
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{background:rgba(5,7,10,.96); border-color:var(--line-soft)}
+.nav-in{display:flex; align-items:center; justify-content:space-between; gap:20px; transition:padding var(--dur-mod)}
+.nav .nav-in{padding-top:20px; padding-bottom:20px}
+.nav.scrolled .nav-in{padding-top:14px; padding-bottom:14px}
+.logo{display:flex; align-items:center; font-weight:800}
+.logo-word{
+  font-size:14px; letter-spacing:.32em; text-transform:uppercase; color:var(--cream); white-space:nowrap;
+  transition:opacity var(--dur-base);
+}
+.logo-word b{color:var(--gold)}
+.logo:hover .logo-word{opacity:.82}
+.nav-links{display:flex; gap:30px}
+.nav-links a{
+  font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); transition:color var(--dur-base); position:relative;
+}
+.nav-links a::after{
+  content:""; position:absolute; left:0; right:100%; bottom:-6px; height:1px;
+  background:var(--gold); transition:right var(--dur-mod) var(--ease-out);
+}
+.nav-links a:hover{color:var(--cream)}
+.nav-links a:hover::after{right:0}
+.nav-right{display:flex; align-items:center; gap:16px}
+.lang{display:flex; border:1px solid var(--line); border-radius:100px; overflow:hidden}
+.lang button{
+  padding:8px 14px; font-size:11px; font-weight:800; letter-spacing:.1em; color:var(--muted);
+  transition:background var(--dur-base), color var(--dur-base);
+}
+.lang button.on{background:rgba(232,226,214,.12); color:var(--cream)}
+.nav .btn{padding:12px 24px; font-size:11px}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100svh; display:flex; align-items:center;
+  padding:clamp(120px,14vh,170px) 0 clamp(18px,2.4vw,32px); overflow:clip; position:relative;
+}
+#dust{position:absolute; inset:0; z-index:1; pointer-events:none}
+.cyber-grid{
+  position:absolute; left:-12%; right:-12%; bottom:-14%; height:72%; z-index:0; pointer-events:none; opacity:.55;
+  background-image:
+    linear-gradient(rgba(238,241,245,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(238,241,245,.045) 1px, transparent 1px);
+  background-size:46px 46px;
+  transform:perspective(900px) rotateX(58deg);
+  transform-origin:50% 100%;
+  -webkit-mask-image:radial-gradient(70% 85% at 50% 100%, #000 25%, transparent 78%);
+  mask-image:radial-gradient(70% 85% at 50% 100%, #000 25%, transparent 78%);
+}
+.hero .amb.a1{width:640px;height:640px; top:-160px; right:-80px; background:rgba(191,160,89,.14)}
+.hero .amb.a2{width:480px;height:480px; bottom:-180px; left:-140px; background:rgba(140,109,31,.1)}
+.hero-grid{
+  position:relative; z-index:2; display:grid; grid-template-columns:1.08fr .92fr;
+  gap:clamp(30px,5vw,70px); align-items:center; width:100%;
+}
+.eyebrow{
+  display:inline-flex; flex-wrap:wrap; align-items:center; gap:10px 14px;
+  font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2);
+  border:1px solid var(--line-soft); border-radius:100px; padding:10px 20px; margin-bottom:30px;
+  background:rgba(9,12,18,.5); backdrop-filter:blur(8px);
+}
+.eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); flex:none}
+.hero h1{
+  font-weight:600; letter-spacing:-.026em;
+  font-size:clamp(26px,3.6vw,52px); line-height:1.12; margin-bottom:clamp(10px,1.4vh,20px); text-wrap:balance;
+}
+.hero h1 .gl{font-style:normal; background:var(--grad-gold); -webkit-background-clip:text; background-clip:text; color:transparent}
+.hero-lead{color:var(--muted); font-size:clamp(15.5px,1.5vw,18.5px); max-width:580px; margin-bottom:38px}
+.hero-cta{display:flex; flex-wrap:wrap; gap:16px; margin-bottom:44px}
+.hero-stats{
+  display:grid; grid-template-columns:repeat(4,auto); gap:clamp(18px,3vw,44px);
+  justify-content:start; border-top:1px solid var(--line-soft); padding-top:30px;
+}
+.stat .n{
+  display:block; font-weight:700; font-size:clamp(20px,2vw,31px); line-height:1;
+  background:var(--grad-gold); -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-variant-numeric:tabular-nums;
+}
+.stat .t{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-top:9px; max-width:130px; line-height:1.55}
+
+/* hero portrait */
+.scene{position:relative; display:grid; place-items:center; min-height:clamp(400px,56vh,640px)}
+.scene-inner{position:relative; width:min(100%,460px); aspect-ratio:3/4}
+.orbit{position:absolute; top:50%; left:50%; width:124%; aspect-ratio:1; transform:translate(-50%,-52%)}
+.ring{
+  position:absolute; inset:0; border-radius:50%; border:1px solid rgba(191,160,89,.3);
+  box-shadow:0 0 60px rgba(191,160,89,.13), inset 0 0 60px rgba(191,160,89,.06);
+}
+.ring.r2{inset:8%; border-color:rgba(191,160,89,.13); box-shadow:none}
+.halo{
+  position:absolute; top:50%; left:50%; width:88%; aspect-ratio:1; border-radius:50%;
+  transform:translate(-50%,-54%); background:radial-gradient(circle, rgba(191,160,89,.2) 0%, transparent 62%);
+}
+.portrait{
+  position:relative; z-index:2; width:100%; height:100%; border-radius:300px 300px 26px 26px; overflow:hidden;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.85), 0 0 0 1px rgba(191,160,89,.2), 0 0 80px -20px rgba(191,160,89,.26);
+}
+.portrait img{
+  width:100%; height:100%; object-fit:cover; object-position:top center;
+  -webkit-mask-image:linear-gradient(to bottom,#000 82%,transparent 99%);
+  mask-image:linear-gradient(to bottom,#000 82%,transparent 99%);
+}
+.portrait::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(to top, rgba(3,5,8,.6) 0%, transparent 34%), radial-gradient(120% 90% at 80% 10%, rgba(191,160,89,.12), transparent 55%);
+}
+/* подпись у портрета — имя и роль, чтобы лицо сразу читалось как автор сайта */
+.sig{
+  position:absolute; left:0; bottom:6%; z-index:3;
+  background:rgba(5,7,10,.82); border:1px solid var(--line-gold-soft); border-radius:14px;
+  padding:14px 20px; backdrop-filter:blur(10px);
+}
+.sig b{display:block; font-size:15px; font-weight:700; letter-spacing:-.01em}
+.sig span{font-family:var(--mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-2)}
+
+/* ============ MARQUEE ============ */
+.marq{border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); padding:16px 0; overflow:hidden; background:var(--bg1)}
+.marq-track{display:flex; white-space:nowrap; width:max-content; animation:marq 34s linear infinite}
+.marq-track span{
+  font-family:var(--mono); font-size:11.5px; font-weight:700; letter-spacing:.28em; text-transform:uppercase;
+  color:var(--faint); padding:0 4px;
+}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ============ SERVICES ============ */
+.svc-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:52px}
+.svc{
+  position:relative; display:flex; flex-direction:column; gap:16px;
+  background:linear-gradient(160deg, var(--card), #06080C);
+  border:1px solid var(--line-soft); border-radius:20px; padding:clamp(26px,2.6vw,38px);
+  transition:border-color var(--dur-mod), transform var(--dur-mod) var(--ease-out), box-shadow var(--dur-mod);
+  overflow:hidden;
+}
+.svc::before{
+  content:""; position:absolute; inset:0; opacity:0; pointer-events:none;
+  background:radial-gradient(90% 70% at 100% 0%, rgba(191,160,89,.1), transparent 60%);
+  transition:opacity var(--dur-mod);
+}
+.svc:hover{border-color:var(--line-gold); transform:translateY(-4px); box-shadow:0 26px 60px -34px rgba(0,0,0,.9)}
+.svc:hover::before{opacity:1}
+.svc-top{display:flex; align-items:center; justify-content:space-between; gap:16px; position:relative}
+.svc-no{font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.2em; color:var(--gold)}
+.svc-tag{
+  font-family:var(--mono); font-size:9.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold-2); border:1px solid var(--line-gold-soft); border-radius:100px; padding:6px 13px; white-space:nowrap;
+}
+.svc h3{font-size:clamp(19px,1.8vw,25px); font-weight:600; letter-spacing:-.018em; line-height:1.24; position:relative}
+.svc p{color:var(--muted); font-size:15px; position:relative}
+.svc ul{list-style:none; display:grid; gap:9px; position:relative}
+.svc li{display:flex; gap:11px; color:var(--faint); font-size:14px; line-height:1.55}
+.svc li::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--gold); margin-top:9px; flex:none}
+.svc-link{
+  margin-top:auto; padding-top:6px; display:inline-flex; align-items:center; gap:9px; position:relative;
+  font-family:var(--mono); font-size:10.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2);
+  transition:gap var(--dur-base) var(--ease-out), color var(--dur-base);
+}
+.svc-link:hover{gap:15px; color:var(--gold-3)}
+
+/* ============ ROADMAP ============ */
+.road{position:relative; margin-top:56px; padding-left:clamp(0px,4vw,56px)}
+.road-line{position:absolute; left:clamp(0px,4vw,56px); top:8px; bottom:8px; width:1px; background:var(--line-soft)}
+.road-fill{position:absolute; inset:0; background:linear-gradient(to bottom,var(--gold),var(--gold-deep)); transform-origin:top; transform:scaleY(0)}
+.step{position:relative; padding-left:38px; padding-bottom:38px}
+.step:last-child{padding-bottom:0}
+.step::before{
+  content:""; position:absolute; left:-4px; top:7px; width:9px; height:9px; border-radius:50%;
+  background:var(--bg0); border:1px solid var(--gold); box-shadow:0 0 0 4px var(--bg0);
+}
+.step-no{font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:8px}
+.step h3{font-size:clamp(17px,1.6vw,22px); font-weight:600; letter-spacing:-.016em; margin-bottom:8px}
+.step p{color:var(--muted); font-size:15px; max-width:720px}
+.step .tools{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.step .tools span{
+  font-family:var(--mono); font-size:9.5px; font-weight:500; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--faint); border:1px solid var(--line-soft); border-radius:100px; padding:5px 12px;
+}
+
+/* ============ CASES ============ */
+.cases{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:52px}
+.ccard{
+  display:flex; flex-direction:column; background:var(--card); border:1px solid var(--line-soft);
+  border-radius:20px; overflow:hidden; transition:border-color var(--dur-mod), transform var(--dur-mod) var(--ease-out);
+}
+.ccard:hover{border-color:var(--line-gold); transform:translateY(-4px)}
+.ccard .ph{position:relative; aspect-ratio:4/3; overflow:hidden; background:#070A0E}
+.ccard .ph img{width:100%; height:100%; object-fit:cover; object-position:center 22%}
+.ccard .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(9,12,18,.95) 2%, transparent 52%)}
+.ccard .who{position:absolute; left:20px; right:20px; bottom:16px; z-index:2}
+.ccard .who b{display:block; font-size:16px; font-weight:700; letter-spacing:-.01em}
+.ccard .who span{font-family:var(--mono); font-size:9.5px; letter-spacing:.15em; text-transform:uppercase; color:var(--gold-2)}
+.ccard .body{padding:22px 20px 24px; display:flex; flex-direction:column; gap:14px; flex:1}
+.ccard .blk b{
+  display:block; font-family:var(--mono); font-size:9.5px; font-weight:700; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--faint); margin-bottom:6px;
+}
+.ccard .blk.after b{color:var(--gold)}
+.ccard .blk p{font-size:14px; color:var(--muted); line-height:1.6}
+.ccard .res{
+  margin-top:auto; display:flex; align-items:baseline; gap:10px;
+  border-top:1px solid var(--line-soft); padding-top:16px;
+}
+.ccard .res strong{
+  font-size:23px; font-weight:700; letter-spacing:-.02em;
+  background:var(--grad-gold); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.ccard .res span{font-family:var(--mono); font-size:9.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--faint); line-height:1.45}
+
+/* ============ REVIEWS ============ */
+/* Отзывы — широкие скриншоты переписок (примерно 1000×150), поэтому задаём
+   высоту, а ширину отпускаем: иначе каждая карточка сжимается в полоску. */
+.rev{
+  overflow:hidden; padding-top:clamp(30px,3vw,44px);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.rev-track{display:flex; align-items:center; gap:18px; width:max-content; padding:10px 0; animation:marq 46s linear infinite}
+.rev-track:hover{animation-play-state:paused}
+.rev-track img{
+  height:clamp(84px,9vw,116px); width:auto; object-fit:contain; background:#0F1319;
+  border-radius:12px; border:1px solid var(--line-soft); opacity:.86; cursor:zoom-in;
+  transition:opacity var(--dur-mod), border-color var(--dur-base), transform var(--dur-base) var(--ease-out);
+}
+.rev-track img:hover{opacity:1; border-color:var(--line-gold); transform:translateY(-4px)}
+body.lb-open .rev-track{animation-play-state:paused}
+.lb{
+  position:fixed; inset:0; z-index:3000; display:none; place-items:center; padding:5vh 4vw;
+  background:rgba(3,5,8,.94); backdrop-filter:blur(6px);
+}
+.lb.open{display:grid}
+.lb img{max-height:90vh; max-width:100%; border-radius:12px; border:1px solid var(--line-soft)}
+.lb button{
+  position:absolute; top:20px; right:24px; width:42px; height:42px; border-radius:50%;
+  border:1px solid var(--line); color:var(--cream); font-size:22px; line-height:1;
+}
+.lb button:hover{border-color:var(--gold); color:var(--gold-2)}
+
+/* ============ EXPERT ============ */
+.exp{display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(28px,4.5vw,64px); align-items:center}
+.exp-ph{position:relative; border-radius:22px; overflow:hidden; border:1px solid var(--line-soft)}
+.exp-ph img{width:100%; aspect-ratio:4/5; object-fit:cover; object-position:center 18%}
+.exp-ph::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(to top, rgba(5,7,10,.7), transparent 45%);
+}
+.exp-stats{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin:30px 0 34px}
+.exp-stat{border:1px solid var(--line-soft); border-radius:16px; padding:20px 22px; background:var(--card)}
+.exp-stat b{
+  display:block; font-size:clamp(21px,2.1vw,29px); font-weight:700; letter-spacing:-.02em; line-height:1;
+  background:var(--grad-gold); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.exp-stat span{display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); margin-top:10px; line-height:1.5}
+.quote{
+  border-left:2px solid var(--gold); padding-left:22px; color:var(--cream);
+  font-size:clamp(16px,1.6vw,20px); line-height:1.6; font-weight:500;
+}
+
+/* ============ FORM ============ */
+.reg{background:linear-gradient(180deg,var(--bg1),var(--bg0))}
+.reg-grid{display:grid; grid-template-columns:1fr .9fr; gap:clamp(30px,4.5vw,66px); align-items:start}
+.reg-card{
+  background:var(--card); border:1px solid var(--line-gold-soft); border-radius:22px;
+  padding:clamp(26px,3vw,40px); box-shadow:0 40px 90px -50px rgba(0,0,0,.9);
+}
+.field{margin-bottom:14px}
+.field input, .field select{
+  width:100%; background:#06080C; border:1px solid var(--line-soft); border-radius:12px;
+  padding:15px 18px; color:var(--cream); font-family:var(--sans); font-size:15px;
+  transition:border-color var(--dur-base), background var(--dur-base);
+}
+.field input::placeholder{color:#5C6672}
+.field input:focus, .field select:focus{outline:none; border-color:var(--gold); background:#080B10}
+.field select{appearance:none; cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A3ADB9' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 18px center;
+}
+.field select option{background:#06080C; color:var(--cream)}
+.hp{position:absolute; left:-9999px; width:1px; height:1px; opacity:0}
+.lead-btn{width:100%; margin-top:8px}
+.form-msg{margin-top:14px; font-size:13.5px; min-height:20px; color:var(--faint)}
+.form-msg.err{color:#E88A6A}
+.consent{margin-top:14px; font-size:12px; color:var(--faint); line-height:1.6}
+.reg-side ul{list-style:none; display:grid; gap:18px; margin-top:28px}
+.reg-side li{display:flex; gap:14px; align-items:flex-start}
+.reg-side li i{
+  flex:none; width:26px; height:26px; border-radius:50%; border:1px solid var(--line-gold);
+  display:grid; place-items:center; font-style:normal; font-family:var(--mono); font-size:10px; font-weight:700; color:var(--gold);
+}
+.reg-side li p{color:var(--muted); font-size:14.5px}
+.reg-side li p b{color:var(--cream); font-weight:600}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line-soft); padding:44px 0 40px; background:var(--bg1)}
+.f-in{display:flex; flex-wrap:wrap; gap:26px; align-items:center; justify-content:space-between}
+.f-links{display:flex; flex-wrap:wrap; gap:24px}
+.f-links a{
+  font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); transition:color var(--dur-base);
+}
+.f-links a:hover{color:var(--gold-2)}
+.f-note{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--faint)}
+
+/* ============ STICKY CTA ============ */
+.sticky{
+  position:fixed; left:0; right:0; bottom:0; z-index:900; transform:translateY(110%);
+  transition:transform var(--dur-mod) var(--ease-out);
+  background:rgba(5,7,10,.96); border-top:1px solid var(--line-gold-soft);
+  padding:12px 0; padding-bottom:calc(12px + env(safe-area-inset-bottom));
+}
+.sticky.show{transform:none}
+.sticky-in{display:flex; align-items:center; justify-content:space-between; gap:18px}
+.sticky-txt{font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-2)}
+.sticky .btn{padding:13px 26px; font-size:11px}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr; gap:38px}
+  /* Портрет уходит под текст: на узком экране он занимал весь первый экран,
+     и заголовок с кнопкой оказывались за его нижней границей. */
+  .scene{min-height:auto}
+  .scene-inner{width:min(100%,320px)}
+  .hero{min-height:auto; padding-bottom:clamp(40px,8vw,64px)}
+  .exp{grid-template-columns:1fr}
+  .reg-grid{grid-template-columns:1fr}
+  .cases{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+}
+@media(max-width:720px){
+  .container{padding:0 20px}
+  .svc-grid{grid-template-columns:1fr}
+  .cases{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:repeat(2,1fr); gap:22px}
+  .exp-stats{grid-template-columns:1fr}
+  .nav .btn{display:none}
+  .lang button{padding:7px 10px; font-size:10px; letter-spacing:.06em}
+  .btn{padding:15px 26px; font-size:11.5px; letter-spacing:.18em}
+  .sticky-txt{display:none}
+  .sticky-in{justify-content:center}
+  .sticky .btn{width:100%}
+  .scene-inner{width:min(100%,272px)}
+  .sig{padding:11px 16px}
+  .sig b{font-size:14px}
+  .hero-cta{margin-bottom:34px}
+  .hero-cta .btn{width:100%}
+  /* липкая панель перекрывает низ страницы — освобождаем место под неё */
+  footer{padding-bottom:96px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .marq-track, .rev-track{animation:none}
+  .rv, .rv-clip .clip-img, .w>i{opacity:1!important; transform:none!important; transition:none!important}
+}
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <div class="label">// аналитический инструмент v4.0</div>
-    <h1>INSTAGRAM<br><span>ANALYZER</span></h1>
-    <div class="subtitle">→ профиль · посты · транскрипции reels · глубокий анализ · отчёт</div>
-  </header>
+<div class="grain"></div>
 
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="switchTab('ig')">📸 Instagram Анализ</button>
-    <button class="nav-tab" onclick="switchTab('yt')">▶ YouTube Транскрипция</button>
-  </div>
-
-  <!-- ===== INSTAGRAM TAB ===== -->
-  <div id="tab-ig" class="tab-content active">
-    <div class="card">
-      <div class="card-title">// введи username Instagram</div>
-      <div class="input-row">
-        <input type="text" id="igUsername" placeholder="username (без @)" />
-        <button class="btn" id="igLoadBtn" onclick="loadReels()">▶ ЗАГРУЗИТЬ</button>
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="container nav-in">
+    <a class="logo" href="#top" aria-label="Yusufbay Kadirov">
+      <span class="logo-word">AI&nbsp;<b>STRATEG</b></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services"><span data-uz>Yoʻnalishlar</span><span data-ru>Направления</span></a>
+      <a href="#path"><span data-uz>Tizim</span><span data-ru>Система</span></a>
+      <a href="#cases"><span data-uz>Keyslar</span><span data-ru>Кейсы</span></a>
+      <a href="#expert"><span data-uz>Ekspert</span><span data-ru>Эксперт</span></a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Til / Язык">
+        <button type="button" data-setlang="uz">UZ</button>
+        <button type="button" data-setlang="ru">RU</button>
       </div>
-      <div class="label" style="margin-top:16px;margin-bottom:8px;">// количество роликов для анализа</div>
-      <div class="count-select">
-        <button class="count-btn" onclick="setCount(10,this)">10 роликов</button>
-        <button class="count-btn active" onclick="setCount(20,this)">20 роликов</button>
-        <button class="count-btn" onclick="setCount(30,this)">30 роликов</button>
-        <button class="count-btn" onclick="setCount(50,this)">50 роликов</button>
-      </div>
-    </div>
-
-    <div id="igError" class="error-box"></div>
-
-    <!-- Reels picker -->
-    <div id="reelsPicker">
-      <div class="picker-header">
-        <div class="picker-title">// выбери ролики для транскрибации</div>
-        <div class="picker-actions">
-          <button class="btn-outline" onclick="selectAll()">Выбрать все</button>
-          <button class="btn-outline" onclick="selectTop(15)">Топ 15</button>
-          <button class="btn-outline" onclick="selectNone()">Сбросить</button>
-        </div>
-      </div>
-      <div class="reels-grid" id="reelsGrid"></div>
-      <div class="picker-footer">
-        <div class="selected-count" id="selectedCount">Выбрано: 0 роликов</div>
-        <button class="btn" id="transcribeBtn" onclick="startIgAnalysis()">▶ ТРАНСКРИБИРОВАТЬ И АНАЛИЗИРОВАТЬ</button>
-      </div>
-    </div>
-
-    <div id="igStatusBox" class="active" style="display:none;">
-      <div class="step" id="igs1"><div class="dot"></div><span>Ожидание...</span></div>
-      <div class="step" id="igs2"><div class="dot"></div><span>Ожидание...</span></div>
-      <div class="step" id="igs3"><div class="dot"></div><span>Ожидание...</span></div>
-      <div class="step" id="igs4"><div class="dot"></div><span>Ожидание...</span></div>
-      <div class="progress-bar"><div class="progress-fill" id="igProgress"></div></div>
-    </div>
-
-    <div id="igReport">
-      <div class="report-top">
-        <div>
-          <div class="label">// отчёт готов</div>
-          <div class="report-username"><span>@</span><span id="igRUsername"></span></div>
-        </div>
-        <div class="report-meta" id="igRMeta"></div>
-      </div>
-      <div class="stats-grid" id="igStatsGrid"></div>
-      <div class="section">
-        <div class="section-title">// анализ контента · claude ai</div>
-        <div class="section-body" id="igRAnalysis"></div>
-        <div class="btn-row">
-          <button class="btn-outline" onclick="copyReport('ig')">⎘ копировать отчёт</button>
-          <button class="btn" onclick="downloadReport('ig')">↓ скачать отчёт .txt</button>
-          <button class="btn" onclick="downloadTranscripts('ig')">↓ скачать транскрипции .txt</button>
-        </div>
-      </div>
-      <div class="transcript-section" id="igTranscriptSection" style="display:none;">
-        <div class="section-title">// транскрипции reels</div>
-        <div id="igTranscriptList"></div>
-      </div>
+      <a class="btn btn-gold" href="#contact"><span data-uz>Bogʻlanish</span><span data-ru>Связаться</span></a>
     </div>
   </div>
+</header>
 
-  <!-- ===== YOUTUBE TAB ===== -->
-  <div id="tab-yt" class="tab-content">
-    <div class="card">
-      <div class="card-title">// транскрибация YouTube видео</div>
-      <input type="text" id="ytUrl" placeholder="https://youtube.com/watch?v=... или канал" />
-      <div class="yt-url-hint">
-        Поддерживается: ссылка на видео · ссылка на канал · @username канала<br>
-        Для канала — выбери количество последних роликов
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div id="top"></div>
+  <div class="cyber-grid"></div>
+  <canvas id="dust"></canvas>
+  <div class="amb a1"></div>
+  <div class="amb a2"></div>
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow rv">
+        <span class="dot"></span>
+        <span data-uz>AI strateg</span><span data-ru>AI-стратег</span>
+        <span>·</span>
+        <span data-uz>Toshkent</span><span data-ru>Ташкент</span>
+        <span>·</span>
+        <span data-uz>50+ biznes</span><span data-ru>50+ бизнесов</span>
       </div>
-      <div class="label" style="margin-top:16px;margin-bottom:8px;">// язык аудио</div>
-      <div class="lang-badges">
-        <div class="lang-badge">🇺🇿 Узбекский</div>
-        <div class="lang-badge">🇷🇺 Русский</div>
-        <div class="lang-badge">🌐 Авто-определение</div>
+      <h1 data-split>
+        <span data-uz>Biznesingizga sunʼiy intellektni <i class="gl">tizim sifatida</i> joriy qilaman</span>
+        <span data-ru>Внедряю искусственный интеллект в ваш бизнес <i class="gl">как систему</i></span>
+      </h1>
+      <p class="hero-lead rv">
+        <span data-uz>Men AI ni oʻrgatmayman — ishlaydigan tizimni beraman. Rutinani AI-xodimlarga topshirasiz, raqamlarni bitta ekranda koʻrasiz va operatsiyadan chiqib, biznesni strateg sifatida boshqarasiz.</span>
+        <span data-ru>Я не учу искусственному интеллекту — я отдаю работающую систему. Рутину забирают AI-сотрудники, цифры видны на одном экране, а вы выходите из операционки и управляете бизнесом как стратег.</span>
+      </p>
+      <div class="hero-cta rv">
+        <a class="btn btn-gold" href="#contact"><span data-uz>Bepul konsultatsiya →</span><span data-ru>Бесплатная консультация →</span></a>
+        <a class="btn btn-ghost" href="#cases"><span data-uz>Keyslarni koʻrish</span><span data-ru>Смотреть кейсы</span></a>
       </div>
-      <div class="label" style="margin-top:16px;margin-bottom:8px;">// количество видео (для канала)</div>
-      <div class="count-select">
-        <button class="count-btn" onclick="setYtCount(1,this)">1 видео</button>
-        <button class="count-btn active" onclick="setYtCount(5,this)">5 видео</button>
-        <button class="count-btn" onclick="setYtCount(15,this)">15 видео</button>
-        <button class="count-btn" onclick="setYtCount(30,this)">30 видео</button>
-      </div>
-      <button class="btn btn-full" id="ytBtn" onclick="startYt()">▶ ТРАНСКРИБИРОВАТЬ</button>
-    </div>
-
-    <div id="ytError" class="error-box"></div>
-
-    <div id="ytStatusBox">
-      <div class="step" id="yts1"><div class="dot"></div><span>Ожидание...</span></div>
-      <div class="step" id="yts2"><div class="dot"></div><span>Ожидание...</span></div>
-      <div class="step" id="yts3"><div class="dot"></div><span>Ожидание...</span></div>
-      <div class="progress-bar"><div class="progress-fill" id="ytProgress"></div></div>
-    </div>
-
-    <div id="ytReport">
-      <div class="section">
-        <div class="section-title">// транскрипции видео · claude ai</div>
-        <div class="section-body" id="ytAnalysis"></div>
-        <div class="btn-row">
-          <button class="btn-outline" onclick="copyReport('yt')">⎘ копировать</button>
-          <button class="btn" onclick="downloadReport('yt')">↓ скачать .txt</button>
+      <div class="hero-stats rv">
+        <div class="stat">
+          <span class="n" data-count="5" data-suffix="">5</span>
+          <span class="t"><span data-uz>yil zapusk va biznes tajribasi</span><span data-ru>лет опыта в запусках и бизнесе</span></span>
+        </div>
+        <div class="stat">
+          <span class="n" data-count="2" data-prefix="$" data-suffix="M">$2M</span>
+          <span class="t"><span data-uz>sotuvlar hajmi</span><span data-ru>объём продаж</span></span>
+        </div>
+        <div class="stat">
+          <span class="n" data-count="50" data-suffix="+">50+</span>
+          <span class="t"><span data-uz>biznesga AI joriy qilingan</span><span data-ru>бизнесов с внедрённым AI</span></span>
+        </div>
+        <div class="stat">
+          <span class="n" data-count="2000" data-prefix="$" data-suffix="+">$2000+</span>
+          <span class="t"><span data-uz>oyiga tejaladi — mijozlar natijasi</span><span data-ru>экономии в месяц — результат клиентов</span></span>
         </div>
       </div>
-      <div class="transcript-section" id="ytTranscriptSection">
-        <div class="section-title">// транскрипции</div>
-        <div id="ytTranscriptList"></div>
+    </div>
+
+    <div class="scene">
+      <div class="scene-inner rv-clip">
+        <div class="orbit">
+          <div class="ring"></div>
+          <div class="ring r2"></div>
+        </div>
+        <div class="halo"></div>
+        <div class="portrait clip-img">
+          <img src="/masterclass/img/speaker-hero.webp" alt="Yusufbay Kadirov" width="470" height="626" fetchpriority="high">
+        </div>
+        <div class="sig">
+          <b>Yusufbay Kadirov</b>
+          <span data-uz>AI strateg · spiker</span><span data-ru>AI-стратег · спикер</span>
+        </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marq" aria-hidden="true">
+  <div class="marq-track" data-dup>
+    <span>&nbsp;AI-XODIMLAR ✦ RAQAMLI BOʻLIM ✦ BOSHQARUV PULTI ✦ AVTOMATLASHTIRISH ✦ AI-AGENTLAR ✦ YOLLASHSIZ OʻSISH ✦&nbsp;</span>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="ghost">01</div>
+  <div class="container">
+    <div class="label"><span data-uz>Yoʻnalishlar</span><span data-ru>Направления</span></div>
+    <h2 class="s-title" data-split>
+      <span data-uz>Men bilan qanday <em>ishlash mumkin</em></span>
+      <span data-ru>Как со мной <em>можно работать</em></span>
+    </h2>
+    <p class="s-sub rv">
+      <span data-uz>Toʻrtta format. Farqi — chuqurlik va kim ishni bajaradi: siz, jamoangiz yoki men va jamoam.</span>
+      <span data-ru>Четыре формата. Разница — в глубине и в том, кто делает работу: вы, ваша команда или я со своей командой.</span>
+    </p>
+
+    <div class="svc-grid" data-stagger>
+      <article class="svc rv">
+        <div class="svc-top">
+          <span class="svc-no">01</span>
+          <span class="svc-tag"><span data-uz>Offline · 1 kun</span><span data-ru>Офлайн · 1 день</span></span>
+        </div>
+        <h3><span data-uz>Offline master klass</span><span data-ru>Офлайн мастер-класс</span></h3>
+        <p>
+          <span data-uz>Bir kunlik amaliy trening: nazariya + oʻz qoʻlingiz bilan 3 ta AI-agentni joriy qilasiz.</span>
+          <span data-ru>Однодневный практический тренинг: теория + своими руками внедряете 3 AI-агента.</span>
+        </p>
+        <ul>
+          <li><span data-uz>2026-yilda nima real ishlaydi, nima shunchaki trend</span><span data-ru>Что реально работает в 2026-м, а что просто тренд</span></li>
+          <li><span data-uz>Sohangiz uchun eng foydali AI instrumentlar</span><span data-ru>Самые полезные AI-инструменты вашей сферы</span></li>
+          <li><span data-uz>TOP-20 prompt qoʻllanmasi va video darslik</span><span data-ru>Руководство «ТОП-20 промптов» и видеокурс</span></li>
+        </ul>
+        <a class="svc-link" href="/masterclass"><span data-uz>Master klass sahifasi →</span><span data-ru>Страница мастер-класса →</span></a>
+      </article>
+
+      <article class="svc rv">
+        <div class="svc-top">
+          <span class="svc-no">02</span>
+          <span class="svc-tag"><span data-uz>Individual</span><span data-ru>Индивидуально</span></span>
+        </div>
+        <h3><span data-uz>Shaxsiy nastavnichestvo</span><span data-ru>Личное наставничество</span></h3>
+        <p>
+          <span data-uz>Biznesingiz bilan bosqichma-bosqich ishlaymiz: poydevordan boshqaruv pultigacha.</span>
+          <span data-ru>Работаем с вашим бизнесом шаг за шагом: от фундамента до пульта управления.</span>
+        </p>
+        <ul>
+          <li><span data-uz>Biznesni AI tushunadigan bazaga solamiz</span><span data-ru>Переводим бизнес в базу, понятную AI</span></li>
+          <li><span data-uz>Har bir boʻlim uchun AI-xodim</span><span data-ru>AI-сотрудник под каждый отдел</span></li>
+          <li><span data-uz>Natija — boʻshagan vaqt va tejalgan byudjet</span><span data-ru>Результат — освободившееся время и сэкономленный бюджет</span></li>
+        </ul>
+        <a class="svc-link" href="#contact"><span data-uz>Ariza qoldirish →</span><span data-ru>Оставить заявку →</span></a>
+      </article>
+
+      <article class="svc rv">
+        <div class="svc-top">
+          <span class="svc-no">03</span>
+          <span class="svc-tag"><span data-uz>Kalit topshiriq</span><span data-ru>Под ключ</span></span>
+        </div>
+        <h3><span data-uz>AI-boʻlim kalit topshiriq</span><span data-ru>AI-отдел под ключ</span></h3>
+        <p>
+          <span data-uz>Men va jamoam yigʻamiz: 5 ta agent, ularni boshqaradigan «aqlli» agent va deshbord.</span>
+          <span data-ru>Собираем я и моя команда: 5 агентов, «умный» агент над ними и дашборд.</span>
+        </p>
+        <ul>
+          <li><span data-uz>Sotuv, marketing, hisobot va nazorat — avtomat</span><span data-ru>Продажи, маркетинг, отчётность и контроль — на автомате</span></li>
+          <li><span data-uz>Barcha raqamlar bitta ekranda</span><span data-ru>Все цифры на одном экране</span></li>
+          <li><span data-uz>Jamoani tizim bilan ishlashga oʻrgatamiz</span><span data-ru>Обучаем команду работе с системой</span></li>
+        </ul>
+        <a class="svc-link" href="#contact"><span data-uz>Loyihani muhokama qilish →</span><span data-ru>Обсудить проект →</span></a>
+      </article>
+
+      <article class="svc rv">
+        <div class="svc-top">
+          <span class="svc-no">04</span>
+          <span class="svc-tag"><span data-uz>Jamoa uchun</span><span data-ru>Для команды</span></span>
+        </div>
+        <h3><span data-uz>Korporativ trening va chiqishlar</span><span data-ru>Корпоративный тренинг и выступления</span></h3>
+        <p>
+          <span data-uz>Kompaniya jamoasi uchun trening yoki tadbiringizda AI mavzusida chiqish.</span>
+          <span data-ru>Тренинг для команды компании или выступление на вашем мероприятии по теме AI.</span>
+        </p>
+        <ul>
+          <li><span data-uz>Dastur sizning jarayonlaringiz ostida yigʻiladi</span><span data-ru>Программа собирается под ваши процессы</span></li>
+          <li><span data-uz>Amaliyot: har bir xodim oʻz agentini yigʻadi</span><span data-ru>Практика: каждый сотрудник собирает своего агента</span></li>
+          <li><span data-uz>UZ yoki RU tilida</span><span data-ru>На узбекском или русском</span></li>
+        </ul>
+        <a class="svc-link" href="#contact"><span data-uz>Shartlarni soʻrash →</span><span data-ru>Запросить условия →</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PATH / 5 STEPS ============ -->
+<section id="path">
+  <div class="ghost">02</div>
+  <div class="container">
+    <div class="label"><span data-uz>5 bosqich</span><span data-ru>5 этапов</span></div>
+    <h2 class="s-title" data-split>
+      <span data-uz>Operatordan — <em>strategga</em></span>
+      <span data-ru>От оператора — <em>к стратегу</em></span>
+    </h2>
+    <p class="s-sub rv">
+      <span data-uz>Formatidan qatʼi nazar, yoʻl bitta. Har bosqich oldingisining ustiga qoʻyiladi.</span>
+      <span data-ru>Каким бы ни был формат, путь один. Каждый этап ложится на предыдущий.</span>
+    </p>
+
+    <div class="road" id="road">
+      <div class="road-line"><div class="road-fill" id="roadFill"></div></div>
+
+      <div class="step rv">
+        <div class="step-no"><span data-uz>Bosqich 01</span><span data-ru>Этап 01</span></div>
+        <h3><span data-uz>Poydevor — biznes «maʼlumotga» aylanadi</span><span data-ru>Фундамент — бизнес становится «данными»</span></h3>
+        <p><span data-uz>Biznesingizni AI tushunadigan bazaga solasiz. Bozor va raqobat tahlili soatlar emas, daqiqalarda tayyor boʻladi.</span><span data-ru>Вы переводите бизнес в базу, понятную AI. Анализ рынка и конкурентов готов за минуты, а не часы.</span></p>
+        <div class="tools"><span>Gemini</span><span>NotebookLM</span></div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-no"><span data-uz>Bosqich 02</span><span data-ru>Этап 02</span></div>
+        <h3><span data-uz>Birinchi AI-xodim — rutina ketadi</span><span data-ru>Первый AI-сотрудник — рутина уходит</span></h3>
+        <p><span data-uz>Eng koʻp vaqt yeydigan ishni (kunlik hisobot, kontent, tahlil) AI ga topshirasiz. Birinchi natija — boʻshagan vaqt.</span><span data-ru>Самую времязатратную работу (отчёты, контент, аналитику) передаёте AI. Первый результат — освободившееся время.</span></p>
+        <div class="tools"><span data-uz>Avtomatlashtirish</span><span data-ru>Автоматизация</span></div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-no"><span data-uz>Bosqich 03</span><span data-ru>Этап 03</span></div>
+        <h3><span data-uz>Raqamli boʻlim — 5 ta AI-agent</span><span data-ru>Цифровой отдел — 5 AI-агентов</span></h3>
+        <p><span data-uz>Bitta agent emas: har bir boʻlim uchun 5 ta agent + hammasini boshqaradigan 1 ta «aqlli» agent.</span><span data-ru>Не один агент: 5 агентов по отделам + 1 «умный» агент, который управляет всеми.</span></p>
+        <div class="tools"><span>Claude agents</span></div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-no"><span data-uz>Bosqich 04</span><span data-ru>Этап 04</span></div>
+        <h3><span data-uz>Boshqaruv pulti — hammasi bitta ekranda</span><span data-ru>Пульт управления — всё на одном экране</span></h3>
+        <p><span data-uz>Barcha raqamlar va agentlar ishi bir joyda. Endi biznesni «koʻz bilan chamalab» emas, raqamlar bilan boshqarasiz.</span><span data-ru>Все цифры и работа агентов в одном месте. Теперь вы управляете бизнесом по цифрам, а не «на глаз».</span></p>
+        <div class="tools"><span>Dashboard</span><span>Jarvis</span></div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-no"><span data-uz>Bosqich 05</span><span data-ru>Этап 05</span></div>
+        <h3><span data-uz>Yollashsiz oʻsish</span><span data-ru>Рост без найма</span></h3>
+        <p><span data-uz>Tizim 24/7 ishlaydi. Yangi odam yollamay koʻproq mijoz olasiz — yoki bilimingizni AI-mahsulotga aylantirib sotasiz.</span><span data-ru>Система работает 24/7. Больше клиентов без найма — или превращаете свои знания в AI-продукт.</span></p>
+        <div class="tools"><span>24/7</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASES ============ -->
+<section id="cases">
+  <div class="ghost">03</div>
+  <div class="container">
+    <div class="label"><span data-uz>Oʻquvchilar natijasi</span><span data-ru>Результаты учеников</span></div>
+    <h2 class="s-title" data-split>
+      <span data-uz>Ular qildi — <em>siz ham qilasiz</em></span>
+      <span data-ru>Они сделали — <em>сделаете и вы</em></span>
+    </h2>
+    <p class="s-sub rv">
+      <span data-uz>Beshta real keys. Har biri — boshqa soha. Bittasida oʻzingizni tanib qolasiz.</span>
+      <span data-ru>Пять реальных кейсов. Каждый — своя сфера. В одном из них вы узнаете себя.</span>
+    </p>
+
+    <div class="cases" data-stagger>
+      <article class="ccard rv">
+        <div class="ph">
+          <img src="/masterclass/img/cases/bobir.jpg" alt="Bobir Roʻzimatov" loading="lazy">
+          <div class="who">
+            <b>Bobir Roʻzimatov</b>
+            <span data-uz>Qurilish · 2018-yildan</span><span data-ru>Строительство · с 2018</span>
+          </div>
+        </div>
+        <div class="body">
+          <div class="blk">
+            <b><span data-uz>Muammo</span><span data-ru>Проблема</span></b>
+            <p><span data-uz>Obʼektda nima boʻlayotgani bir joyda koʻrinmasdi. Har safar odamlardan soʻrab bilishiga toʻgʻri kelardi.</span><span data-ru>Что происходит на объекте, в одном месте не видно. Каждый раз приходилось выяснять у людей.</span></p>
+          </div>
+          <div class="blk after">
+            <b><span data-uz>Kursdan keyin</span><span data-ru>После курса</span></b>
+            <p><span data-uz>Deshbord, marketing tizimi va ishchi topish uchun «BINO» platformasini oʻzi qurdi. Kunlik ish 4 soatdan 1 soatga.</span><span data-ru>Сам собрал платформу «BINO» — дашборд, маркетинг и наём рабочих. Рабочий день с 4 часов до одного.</span></p>
+          </div>
+          <div class="res">
+            <strong>4→1</strong>
+            <span><span data-uz>soat · kunlik ish</span><span data-ru>часа · рабочий день</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ccard rv">
+        <div class="ph">
+          <img src="/masterclass/img/cases/anvar.jpg" alt="Anvar Baxtiyorov" loading="lazy">
+          <div class="who">
+            <b>Anvar Baxtiyorov</b>
+            <span data-uz>Prodyuser · infobiznes</span><span data-ru>Продюсер · инфобизнес</span>
+          </div>
+        </div>
+        <div class="body">
+          <div class="blk">
+            <b><span data-uz>Muammo</span><span data-ru>Проблема</span></b>
+            <p><span data-uz>Har bir gʻoya ijrochini kutardi. Bitta slaydga $100, oyiga $800.</span><span data-ru>Каждая идея ждала исполнителя. Слайд — $100, в месяц $800.</span></p>
+          </div>
+          <div class="blk after">
+            <b><span data-uz>Kursdan keyin</span><span data-ru>После курса</span></b>
+            <p><span data-uz>Slaydlar bir kunda tayyor. Avatar — ikkita promptda. Reklamani agent oʻzi yoqadi.</span><span data-ru>Слайды готовы за день. Аватар — в два промпта. Рекламу запускает агент.</span></p>
+          </div>
+          <div class="res">
+            <strong>$800</strong>
+            <span><span data-uz>oyiga tejaldi</span><span data-ru>экономии в месяц</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ccard rv">
+        <div class="ph">
+          <img src="/masterclass/img/cases/maxmut.jpg" alt="Maxmut Abdulazizov" loading="lazy">
+          <div class="who">
+            <b>Maxmut Abdulazizov</b>
+            <span data-uz>Onlayn taʼlim · zapusklar</span><span data-ru>Онлайн-образование · запуски</span>
+          </div>
+        </div>
+        <div class="body">
+          <div class="blk">
+            <b><span data-uz>Muammo</span><span data-ru>Проблема</span></b>
+            <p><span data-uz>Har potokda 320–350 mijoz, lekin sotuv boʻlimi ulgurmasdi. Nazorat yoʻq edi.</span><span data-ru>320–350 клиентов на поток, но отдел продаж не справлялся. Контроля не было.</span></p>
+          </div>
+          <div class="blk after">
+            <b><span data-uz>Kursdan keyin</span><span data-ru>После курса</span></b>
+            <p><span data-uz>AI-radar qoʻngʻiroqlarni oʻzi tahlil qiladi. Xodim qoʻshmasdan yiliga $351 000 qoʻshimcha.</span><span data-ru>AI-радар сам разбирает звонки. Плюс $351 000 в год без найма.</span></p>
+          </div>
+          <div class="res">
+            <strong>+40%</strong>
+            <span><span data-uz>zapusk quvvati</span><span data-ru>мощность запуска</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ccard rv">
+        <div class="ph">
+          <img src="/masterclass/img/cases/munira.jpg" alt="Munira Rahimova" loading="lazy">
+          <div class="who">
+            <b>Munira Rahimova</b>
+            <span data-uz>Carbonado · kelin koʻylaklari</span><span data-ru>Carbonado · свадебные платья</span>
+          </div>
+        </div>
+        <div class="body">
+          <div class="blk">
+            <b><span data-uz>Muammo</span><span data-ru>Проблема</span></b>
+            <p><span data-uz>10 yil kontent ogʻriq edi. $20–30 minglik komandalar natija bermadi.</span><span data-ru>10 лет контент был болью. Команды за $20–30 тысяч не давали результата.</span></p>
+          </div>
+          <div class="blk after">
+            <b><span data-uz>Kursdan keyin</span><span data-ru>После курса</span></b>
+            <p><span data-uz>Ikki soatda AI bilan yigʻilgan reels bir kunda 334 ming koʻrish oldi. Oyiga $3500 tejaldi.</span><span data-ru>Reels, собранный с AI за два часа, набрал 334 тысячи просмотров за сутки. Экономия $3500 в месяц.</span></p>
+          </div>
+          <div class="res">
+            <strong>334k</strong>
+            <span><span data-uz>koʻrish · bir sutkada</span><span data-ru>просмотров · за сутки</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ccard rv">
+        <div class="ph">
+          <img src="/masterclass/img/cases/abdullo.jpg" alt="Abdullo Nasullaev" loading="lazy">
+          <div class="who">
+            <b>Abdullo Nasullaev</b>
+            <span data-uz>Media · YouTube</span><span data-ru>Медиа · YouTube</span>
+          </div>
+        </div>
+        <div class="body">
+          <div class="blk">
+            <b><span data-uz>Muammo</span><span data-ru>Проблема</span></b>
+            <p><span data-uz>Dizaynga oyiga 2–3 mln soʻm. Matn hech qachon oʻz ovozida chiqmasdi.</span><span data-ru>На дизайн 2–3 млн сум в месяц. Текст никогда не звучал его голосом.</span></p>
+          </div>
+          <div class="blk after">
+            <b><span data-uz>Kursdan keyin</span><span data-ru>После курса</span></b>
+            <p><span data-uz>Oblozhkalarni oʻzi chiqaradi. Kopirayter uning tone of voice’ida yozadi.</span><span data-ru>Обложки делает сам. Копирайтер пишет его тоном.</span></p>
+          </div>
+          <div class="res">
+            <strong>$1000</strong>
+            <span><span data-uz>tejaldi</span><span data-ru>сэкономил</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ccard rv" style="justify-content:center">
+        <div class="body" style="padding:clamp(26px,2.6vw,34px)">
+          <div class="label" style="margin-bottom:16px"><span data-uz>Keyingi keys</span><span data-ru>Следующий кейс</span></div>
+          <h3 style="font-size:22px; font-weight:600; letter-spacing:-.018em; line-height:1.25">
+            <span data-uz>Bu roʻyxatda keyingi ism sizniki boʻlishi mumkin</span>
+            <span data-ru>Следующим в этом списке может быть ваше имя</span>
+          </h3>
+          <p style="color:var(--muted); font-size:14.5px">
+            <span data-uz>Bepul konsultatsiyada biznesingizni koʻramiz va qayerdan boshlash kerakligini aytaman.</span>
+            <span data-ru>На бесплатной консультации посмотрим ваш бизнес, и я скажу, с чего начинать.</span>
+          </p>
+          <a class="btn btn-gold" href="#contact" style="margin-top:8px"><span data-uz>Ariza qoldirish</span><span data-ru>Оставить заявку</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews">
+  <div class="container">
+    <div class="label"><span data-uz>Fikrlar</span><span data-ru>Отзывы</span></div>
+    <h2 class="s-title" data-split>
+      <span data-uz>Ishtirokchilar <em>nima deydi</em></span>
+      <span data-ru>Что говорят <em>участники</em></span>
+    </h2>
+  </div>
+  <div class="rev">
+    <div class="rev-track" data-dup>
+      <img data-src="/masterclass/img/reviews/r1.png" alt="" loading="lazy">
+      <img data-src="/masterclass/img/reviews/r2.png" alt="" loading="lazy">
+      <img data-src="/masterclass/img/reviews/r3.png" alt="" loading="lazy">
+      <img data-src="/masterclass/img/reviews/r4.png" alt="" loading="lazy">
+      <img data-src="/masterclass/img/reviews/r5.png" alt="" loading="lazy">
+      <img data-src="/masterclass/img/reviews/r6.png" alt="" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="lb" id="lightbox">
+  <button type="button" id="lbClose" aria-label="Yopish">&times;</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<!-- ============ EXPERT ============ -->
+<section id="expert">
+  <div class="ghost">04</div>
+  <div class="container exp">
+    <div class="exp-ph rv-clip">
+      <img class="clip-img" src="/masterclass/img/speaker-studio.jpg" alt="Yusufbay Kadirov" loading="lazy">
+    </div>
+    <div>
+      <div class="label"><span data-uz>Ekspert haqida</span><span data-ru>Об эксперте</span></div>
+      <h2 class="s-title" style="margin-bottom:16px">Yusufbay Kadirov</h2>
+      <p class="s-sub rv">
+        <span data-uz>AI strateg va spiker. Marketing va biznesga sunʼiy intellektni joriy qilaman — oʻrgatib emas, ishlaydigan tizimni topshirib.</span>
+        <span data-ru>AI-стратег и спикер. Внедряю искусственный интеллект в маркетинг и бизнес — не обучением, а передачей работающей системы.</span>
+      </p>
+      <div class="exp-stats" data-stagger>
+        <div class="exp-stat rv">
+          <b>5</b>
+          <span><span data-uz>yil zapusklar va biznesda tajriba</span><span data-ru>лет опыта в запусках и бизнесе</span></span>
+        </div>
+        <div class="exp-stat rv">
+          <b>$2 000 000</b>
+          <span><span data-uz>sotuvlar hajmi</span><span data-ru>объём продаж</span></span>
+        </div>
+        <div class="exp-stat rv">
+          <b>50+</b>
+          <span><span data-uz>soha eksperti va biznes egasiga AI integratsiya qilingan — oxirgi 6 oy ichida</span><span data-ru>экспертов и владельцев бизнеса с внедрённым AI — за последние 6 месяцев</span></span>
+        </div>
+        <div class="exp-stat rv">
+          <b>$2000+</b>
+          <span><span data-uz>oyiga tejaladi — mijozlarning natijasi</span><span data-ru>экономии в месяц — результат клиентов</span></span>
+        </div>
+      </div>
+      <p class="quote rv">
+        <span data-uz>«Men AI ni oʻrgatmayman, ishlaydigan tizimni beraman.»</span>
+        <span data-ru>«Я не учу искусственному интеллекту — я отдаю работающую систему.»</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="reg">
+  <div class="ghost">05</div>
+  <div class="container reg-grid">
+    <div class="reg-card rv">
+      <div class="label" style="margin-bottom:18px"><span data-uz>Ariza</span><span data-ru>Заявка</span></div>
+      <h2 class="s-title" style="font-size:clamp(22px,2.6vw,32px); margin-bottom:12px">
+        <span data-uz>Maʼlumotlaringizni qoldiring</span>
+        <span data-ru>Оставьте свои данные</span>
+      </h2>
+      <p class="s-sub" style="font-size:15px; margin-bottom:26px">
+        <span data-uz>Menejer siz bilan bogʻlanadi, vazifangizni aniqlaymiz va mos formatni tanlaymiz.</span>
+        <span data-ru>Менеджер свяжется с вами, уточним задачу и подберём подходящий формат.</span>
+      </p>
+
+      <form class="lead-form" novalidate>
+        <div class="field">
+          <input type="text" name="name" autocomplete="name" data-ph-uz="Ismingiz" data-ph-ru="Ваше имя" required>
+        </div>
+        <div class="field">
+          <input type="tel" name="phone" autocomplete="tel" data-ph-uz="Telefon raqamingiz" data-ph-ru="Номер телефона" required>
+        </div>
+        <div class="field">
+          <input type="text" name="industry" data-ph-uz="Sohangiz" data-ph-ru="Ваша сфера">
+        </div>
+        <div class="field">
+          <select name="format" aria-label="Format">
+            <option value="master-klass">Master klass / Мастер-класс</option>
+            <option value="nastavnichestvo">Nastavnichestvo / Наставничество</option>
+            <option value="ai-bolim">AI-boʻlim kalit topshiriq / AI-отдел под ключ</option>
+            <option value="korporativ">Korporativ trening / Корпоративный тренинг</option>
+          </select>
+        </div>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-gold lead-btn" type="submit">
+          <span data-uz>Ariza yuborish</span><span data-ru>Отправить заявку</span>
+        </button>
+        <p class="form-msg"></p>
+        <p class="consent">
+          <span data-uz>«Ariza yuborish» tugmasini bosish orqali siz shaxsiy maʼlumotlarni qayta ishlashga rozilik bildirasiz.</span>
+          <span data-ru>Нажимая «Отправить заявку», вы соглашаетесь на обработку персональных данных.</span>
+        </p>
+      </form>
+    </div>
+
+    <div class="reg-side rv">
+      <div class="label"><span data-uz>Keyin nima boʻladi</span><span data-ru>Что дальше</span></div>
+      <h2 class="s-title" style="font-size:clamp(22px,2.6vw,34px)">
+        <span data-uz>Uchta oddiy <em>qadam</em></span>
+        <span data-ru>Три простых <em>шага</em></span>
+      </h2>
+      <ul>
+        <li>
+          <i>1</i>
+          <p><b><span data-uz>Ariza</span><span data-ru>Заявка</span></b> — <span data-uz>ism va telefon raqamini qoldirasiz, keyin Telegramda menejerga tushasiz.</span><span data-ru>оставляете имя и телефон, дальше попадаете к менеджеру в Telegram.</span></p>
+        </li>
+        <li>
+          <i>2</i>
+          <p><b><span data-uz>Suhbat</span><span data-ru>Разговор</span></b> — <span data-uz>biznesingizni va vazifani koʻramiz, qaysi format mos kelishini aytamiz.</span><span data-ru>смотрим ваш бизнес и задачу, говорим, какой формат подходит.</span></p>
+        </li>
+        <li>
+          <i>3</i>
+          <p><b><span data-uz>Ish</span><span data-ru>Работа</span></b> — <span data-uz>birinchi AI-xodimdan boshlaymiz. Natija — birinchi haftadayoq boʻshagan vaqt.</span><span data-ru>начинаем с первого AI-сотрудника. Результат — освободившееся время уже на первой неделе.</span></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container f-in">
+    <div>
+      <div class="logo" style="margin-bottom:8px"><span class="logo-word">AI&nbsp;<b>STRATEG</b></span></div>
+      <div class="f-note">Yusufbay Kadirov · Toshkent</div>
+    </div>
+    <nav class="f-links">
+      <a href="/masterclass"><span data-uz>Master klass</span><span data-ru>Мастер-класс</span></a>
+      <a href="#cases"><span data-uz>Keyslar</span><span data-ru>Кейсы</span></a>
+      <a href="#contact"><span data-uz>Aloqa</span><span data-ru>Контакты</span></a>
+      <a href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener">Telegram</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- ============ STICKY CTA ============ -->
+<div class="sticky" id="stickyCta">
+  <div class="container sticky-in">
+    <span class="sticky-txt"><span data-uz>Biznesingizga AI — tizim sifatida</span><span data-ru>AI в ваш бизнес — как система</span></span>
+    <a class="btn btn-gold" href="#contact"><span data-uz>Bepul konsultatsiya</span><span data-ru>Бесплатная консультация</span></a>
   </div>
 </div>
 
 <script>
-var selectedCount = 20;
-var ytCount = 5;
-var reelsData = [];
-var selectedReels = new Set();
-var reportData = {};
+(function(){
+'use strict';
+var REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function switchTab(tab) {
-  document.querySelectorAll('.tab-content').forEach(function(el){ el.classList.remove('active'); });
-  document.querySelectorAll('.nav-tab').forEach(function(el){ el.classList.remove('active'); });
-  document.getElementById('tab-' + tab).classList.add('active');
-  event.target.classList.add('active');
+/* ---------- language ---------- */
+/* Тот же ключ, что и у лендинга: выбранный язык переносится между страницами. */
+var LKEY='mc-lang';
+function setLang(l){
+  document.documentElement.setAttribute('data-lang', l);
+  document.documentElement.lang = l;
+  try{localStorage.setItem(LKEY,l)}catch(e){}
+  document.querySelectorAll('[data-setlang]').forEach(function(b){
+    b.classList.toggle('on', b.getAttribute('data-setlang')===l);
+  });
+  document.querySelectorAll('[data-ph-uz]').forEach(function(inp){
+    inp.placeholder = inp.getAttribute(l==='ru'?'data-ph-ru':'data-ph-uz') || '';
+  });
+}
+document.querySelectorAll('[data-setlang]').forEach(function(b){
+  b.addEventListener('click', function(){ setLang(b.getAttribute('data-setlang')); });
+});
+var saved='uz'; try{saved=localStorage.getItem(LKEY)||'uz'}catch(e){}
+setLang(saved==='ru'?'ru':'uz');
+
+/* ---------- nav ---------- */
+var nav=document.getElementById('nav');
+var onScrollNav=function(){ nav.classList.toggle('scrolled', scrollY>30); };
+addEventListener('scroll', onScrollNav, {passive:true}); onScrollNav();
+
+/* ---------- word-split for display headlines ---------- */
+document.querySelectorAll('[data-split]').forEach(function(el){
+  el.querySelectorAll(':scope > span').forEach(function(langSpan){ splitNode(langSpan); });
+});
+function splitNode(root){
+  var walker=[];
+  root.childNodes.forEach(function(n){ walker.push(n); });
+  walker.forEach(function(n){
+    if(n.nodeType===3 && n.textContent.trim()){
+      var frag=document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(function(part){
+        if(!part) return;
+        if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(' ')); return; }
+        var w=document.createElement('span'); w.className='w';
+        var i=document.createElement('i'); i.textContent=part;
+        w.appendChild(i); frag.appendChild(w);
+      });
+      root.replaceChild(frag, n);
+    } else if(n.nodeType===1){ splitNode(n); }
+  });
 }
 
-function setCount(n, el) {
-  selectedCount = n;
-  document.querySelectorAll('#tab-ig .count-select .count-btn').forEach(function(b){ b.classList.remove('active'); });
-  el.classList.add('active');
-}
-function setYtCount(n, el) {
-  ytCount = n;
-  document.querySelectorAll('#tab-yt .count-select .count-btn').forEach(function(b){ b.classList.remove('active'); });
-  el.classList.add('active');
-}
+/* ---------- reveal on scroll ---------- */
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting) return;
+    var host=e.target;
+    if(host.hasAttribute('data-stagger')){
+      host.querySelectorAll('.rv').forEach(function(el,i){
+        el.style.transitionDelay=Math.min(i*90,540)+'ms';
+        el.classList.add('is-in');
+      });
+    } else {
+      host.classList.add('is-in');
+      if(host.hasAttribute('data-split')){
+        var idx=0;
+        host.querySelectorAll('.w>i').forEach(function(w){
+          w.style.transitionDelay=Math.min(idx*40,600)+'ms'; idx++;
+        });
+      }
+    }
+    io.unobserve(host);
+  });
+},{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('[data-stagger]').forEach(function(el){ io.observe(el); });
+document.querySelectorAll('.rv, .rv-clip, [data-split]').forEach(function(el){
+  if(!el.closest('[data-stagger]') || !el.classList.contains('rv')) io.observe(el);
+});
 
-function setStep(id, state, text) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  el.className = 'step ' + state;
-  el.innerHTML = (state === 'running' ? '<div class="spin"></div>' : '<div class="dot"></div>') + '<span>' + text + '</span>';
-}
-function setProgress(id, pct) {
-  var el = document.getElementById(id);
-  if (el) el.style.width = pct + '%';
-}
-function showError(boxId, msg) {
-  var el = document.getElementById(boxId);
-  el.innerHTML = '✗ ОШИБКА: ' + msg;
-  el.className = 'error-box visible';
-}
-
-// ===== INSTAGRAM =====
-
-async function loadReels() {
-  var username = document.getElementById('igUsername').value.trim().replace('@','');
-  if (!username) { alert('Введи username!'); return; }
-  document.getElementById('igError').className = 'error-box';
-  document.getElementById('igLoadBtn').disabled = true;
-  document.getElementById('igLoadBtn').textContent = '...';
-  document.getElementById('reelsPicker').className = '';
-
-  try {
-    var res = await fetch('/api/get-reels', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ username: username, limit: selectedCount })
+/* Наблюдатель фиксирует то, что видно в момент запуска. Всё, для чего первый
+   экран освобождает место уже после загрузки шрифтов и картинок, иначе так и
+   остаётся с opacity 0 до первого скролла — а это прячет главную кнопку. */
+(function(){
+  function sweep(){
+    document.querySelectorAll('.rv:not(.is-in), .rv-clip:not(.is-in), [data-split]:not(.is-in)').forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top < innerHeight && r.bottom > 0) el.classList.add('is-in');
     });
-    var data = await res.json();
-    if (!res.ok || data.error) throw new Error(data.error || 'Ошибка загрузки');
-
-    reelsData = data.reels || [];
-    renderReelsPicker(reelsData);
-    document.getElementById('reelsPicker').className = 'visible';
-    selectAll();
-  } catch(e) {
-    showError('igError', e.message);
   }
+  addEventListener('load', function(){ requestAnimationFrame(function(){ sweep(); setTimeout(sweep, 400); }); });
+  if(document.readyState==='complete') requestAnimationFrame(sweep);
+})();
 
-  document.getElementById('igLoadBtn').disabled = false;
-  document.getElementById('igLoadBtn').textContent = '▶ ЗАГРУЗИТЬ';
-}
+/* ---------- counters ---------- */
+var cio=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting) return;
+    var el=e.target; cio.unobserve(el);
+    var target=parseFloat(el.getAttribute('data-count'))||0;
+    var prefix=el.getAttribute('data-prefix')||'', suffix=el.getAttribute('data-suffix')||'';
+    if(REDUCE){ el.textContent=prefix+target+suffix; return; }
+    var t0=null, DUR=1400;
+    function frame(ts){
+      if(!t0) t0=ts;
+      var p=Math.min(1,(ts-t0)/DUR);
+      var ease=1-Math.pow(1-p,4);
+      el.textContent=prefix+Math.round(target*ease)+suffix;
+      if(p<1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  });
+},{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(function(el){ cio.observe(el); });
 
-function renderReelsPicker(reels) {
-  var grid = document.getElementById('reelsGrid');
-  grid.innerHTML = reels.map(function(r, i) {
-    var caption = r.caption || '(без описания)';
-    if (caption.length > 80) caption = caption.slice(0, 80) + '...';
-    var date = r.timestamp ? new Date(r.timestamp * 1000).toLocaleDateString('ru') : '—';
-    return '<div class="reel-item" id="reel-' + i + '" onclick="toggleReel(' + i + ')">' +
-      '<div class="reel-check" id="check-' + i + '">✓</div>' +
-      '<div class="reel-info">' +
-        '<div class="reel-caption">' + escHtml(caption) + '</div>' +
-        '<div class="reel-stats">❤️ ' + (r.likesCount || 0).toLocaleString('ru') + ' 💬 ' + (r.commentsCount || 0).toLocaleString('ru') + ' · ' + (r.videoViewCount ? '▶ ' + r.videoViewCount.toLocaleString('ru') : '') + '</div>' +
-      '</div>' +
-      '<div class="reel-date">' + date + '</div>' +
-    '</div>';
-  }).join('');
-}
-
-function toggleReel(i) {
-  if (selectedReels.has(i)) {
-    selectedReels.delete(i);
-    document.getElementById('reel-' + i).classList.remove('selected');
-  } else {
-    selectedReels.add(i);
-    document.getElementById('reel-' + i).classList.add('selected');
+/* ---------- neural field (hero) ---------- */
+/* Намеренно медленное и еле заметное: фон должен быть чуть живым, а не
+   перетягивать взгляд с заголовка. */
+var canvas=document.getElementById('dust');
+if(canvas && !REDUCE){
+  var ctx=canvas.getContext('2d'), running=true, W=0, H=0;
+  var DPR=Math.min(devicePixelRatio||1, 2);
+  var hero=document.getElementById('hero');
+  function resize(){
+    W=hero.offsetWidth; H=hero.offsetHeight;
+    canvas.width=W*DPR; canvas.height=H*DPR;
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
   }
-  updateSelectedCount();
+  resize(); addEventListener('resize', resize, {passive:true});
+
+  var N = innerWidth<640 ? 20 : 34;
+  var LINK = innerWidth<640 ? 135 : 180;
+  var ns=[];
+  for(var i=0;i<N;i++){
+    ns.push({ x:Math.random()*1600, y:Math.random()*900,
+      vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4,
+      r:Math.random()*1.4+.8 });
+  }
+  var tickFn=function(){
+    if(running){
+      ctx.clearRect(0,0,W,H);
+      var i,j,a,b,dx,dy,d;
+      for(i=0;i<N;i++){
+        a=ns[i]; a.x+=a.vx; a.y+=a.vy;
+        if(a.x<-20)a.x=W+20; if(a.x>W+20)a.x=-20;
+        if(a.y<-20)a.y=H+20; if(a.y>H+20)a.y=-20;
+      }
+      ctx.lineWidth=1;
+      for(i=0;i<N;i++){ for(j=i+1;j<N;j++){
+        a=ns[i]; b=ns[j]; dx=a.x-b.x; dy=a.y-b.y; d=dx*dx+dy*dy;
+        if(d<LINK*LINK){
+          var al=(1-Math.sqrt(d)/LINK)*.24;
+          ctx.strokeStyle='rgba(191,160,89,'+al.toFixed(3)+')';
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }}
+      ctx.fillStyle='rgba(214,190,138,.6)';
+      for(i=0;i<N;i++){
+        a=ns[i]; ctx.beginPath(); ctx.arc(a.x,a.y,a.r,0,6.283); ctx.fill();
+      }
+    }
+    requestAnimationFrame(tickFn);
+  };
+  new IntersectionObserver(function(en){ running=en[0].isIntersecting; },{threshold:0}).observe(hero);
+  document.addEventListener('visibilitychange', function(){ running=!document.hidden; });
+  requestAnimationFrame(tickFn);
 }
 
-function selectAll() {
-  reelsData.forEach(function(_, i) {
-    selectedReels.add(i);
-    var el = document.getElementById('reel-' + i);
-    if (el) el.classList.add('selected');
-  });
-  updateSelectedCount();
+/* ---------- roadmap progress line ---------- */
+var road=document.getElementById('road'), roadFill=document.getElementById('roadFill');
+function applyFx(){
+  if(!road || !roadFill) return;
+  var rr=road.getBoundingClientRect();
+  var prog=Math.max(0, Math.min(1, (innerHeight*.72-rr.top)/rr.height));
+  roadFill.style.transform='scaleY('+prog.toFixed(3)+')';
 }
+var fxQueued=false;
+addEventListener('scroll', function(){
+  if(fxQueued) return;
+  fxQueued=true;
+  requestAnimationFrame(function(){ fxQueued=false; applyFx(); });
+}, {passive:true});
+addEventListener('resize', applyFx, {passive:true});
+applyFx();
 
-function selectTop(n) {
-  selectNone();
-  var sorted = reelsData.map(function(r, i){ return {i:i, likes: r.likesCount||0}; })
-    .sort(function(a,b){ return b.likes-a.likes; }).slice(0, n);
-  sorted.forEach(function(s) {
-    selectedReels.add(s.i);
-    var el = document.getElementById('reel-' + s.i);
-    if (el) el.classList.add('selected');
-  });
-  updateSelectedCount();
-}
+/* ---------- duplicate marquee tracks for a seamless loop ---------- */
+document.querySelectorAll('[data-dup]').forEach(function(t){ t.innerHTML+=t.innerHTML; });
 
-function selectNone() {
-  selectedReels.clear();
-  document.querySelectorAll('.reel-item').forEach(function(el){ el.classList.remove('selected'); });
-  updateSelectedCount();
-}
-
-function updateSelectedCount() {
-  document.getElementById('selectedCount').textContent = 'Выбрано: ' + selectedReels.size + ' роликов';
-}
-
-async function startIgAnalysis() {
-  var username = document.getElementById('igUsername').value.trim().replace('@','');
-  if (selectedReels.size === 0) { alert('Выбери хотя бы один ролик!'); return; }
-
-  var selected = Array.from(selectedReels).map(function(i){ return reelsData[i]; });
-
-  document.getElementById('igError').className = 'error-box';
-  document.getElementById('igReport').className = '';
-  document.getElementById('reelsPicker').className = '';
-  document.getElementById('transcribeBtn').disabled = true;
-  document.getElementById('igStatusBox').style.display = 'block';
-  setProgress('igProgress', 0);
-
-  setStep('igs1','running','Начинаем транскрибацию ' + selected.length + ' роликов...');
-  setStep('igs2','pending','Ожидание...');
-  setStep('igs3','pending','Ожидание...');
-  setStep('igs4','pending','Ожидание...');
-
-  try {
-    var res = await fetch('/api/transcribe-reels', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ username: username, reels: selected })
+/* Лента отзывов едет вбок, поэтому большая часть картинок стоит за пределами
+   экрана по горизонтали и родной lazy-load для них не срабатывает. Грузим всю
+   ленту разом, когда в поле зрения появляется сама секция. */
+(function(){
+  var strip=document.querySelector('.rev-track');
+  if(!strip) return;
+  function load(){
+    strip.querySelectorAll('img[data-src]').forEach(function(img){
+      img.src=img.getAttribute('data-src'); img.removeAttribute('data-src');
     });
-
-    setStep('igs1','done','Задача отправлена ✓');
-    setStep('igs2','running','Скачиваем аудио и транскрибируем...');
-    setProgress('igProgress', 15);
-
-    var data = await res.json();
-    if (!res.ok || data.error) throw new Error(data.error);
-
-    setStep('igs2','done','Транскрибировано: ' + data.transcribedCount + '/' + selected.length + ' ✓');
-    setStep('igs3','running','Claude анализирует весь контент...');
-    setProgress('igProgress', 75);
-
-    // Небольшая задержка для анимации
-    await new Promise(function(r){ setTimeout(r, 500); });
-
-    setStep('igs3','done','Анализ завершён ✓');
-    setStep('igs4','done','Отчёт готов ✓');
-    setProgress('igProgress', 100);
-
-    renderIgReport(data);
-    reportData.ig = data;
-    document.getElementById('igReport').className = 'visible';
-    document.getElementById('igReport').scrollIntoView({behavior:'smooth'});
-
-  } catch(e) {
-    showError('igError', e.message);
-    setStep('igs1','err','✗ ' + e.message);
   }
+  if(!('IntersectionObserver' in window)) return load();
+  var rio=new IntersectionObserver(function(en){
+    if(en[0].isIntersecting){ load(); rio.disconnect(); }
+  },{rootMargin:'300px 0px'});
+  rio.observe(strip.closest('section')||strip);
+})();
 
-  document.getElementById('transcribeBtn').disabled = false;
+/* ---------- reviews open full size (the strip is too small to read) ---------- */
+(function(){
+  var box=document.getElementById('lightbox'), img=document.getElementById('lbImg');
+  var strip=document.querySelector('.rev-track');
+  if(!box||!img||!strip) return;
+  function close(){
+    box.classList.remove('open');
+    document.body.classList.remove('lb-open');
+    document.body.style.overflow='';
+  }
+  strip.addEventListener('click', function(e){
+    var t=e.target.closest('img');
+    if(!t) return;
+    img.src=t.currentSrc||t.src; img.alt=t.alt||'';
+    box.classList.add('open');
+    document.body.classList.add('lb-open');
+    document.body.style.overflow='hidden';
+  });
+  document.getElementById('lbClose').addEventListener('click', close);
+  box.addEventListener('click', function(e){ if(e.target===box) close(); });
+  addEventListener('keydown', function(e){
+    if(e.key==='Escape' && box.classList.contains('open')) close();
+  });
+})();
+
+/* ---------- sticky CTA ---------- */
+var sticky=document.getElementById('stickyCta'), heroEl=document.getElementById('hero'), regEl=document.getElementById('contact');
+if(sticky){
+  var heroOut=false, regIn=false;
+  var upd=function(){ sticky.classList.toggle('show', heroOut && !regIn); };
+  new IntersectionObserver(function(en){ heroOut=!en[0].isIntersecting; upd(); },{threshold:.05}).observe(heroEl);
+  new IntersectionObserver(function(en){ regIn=en[0].isIntersecting; upd(); },{threshold:.2}).observe(regEl);
 }
 
-function renderIgReport(data) {
-  document.getElementById('igRUsername').textContent = data.username;
-  document.getElementById('igRMeta').innerHTML =
-    'Дата: ' + new Date().toLocaleDateString('ru') + '<br>' +
-    'Роликов выбрано: ' + data.totalSelected + '<br>' +
-    'Транскрибировано: ' + data.transcribedCount + '<br>' +
-    'Powered by Apify + Whisper + Claude';
-
-  var stats = [
-    {val: data.followers ? data.followers.toLocaleString('ru') : '—', lbl: 'Подписчики'},
-    {val: data.avgLikes ? data.avgLikes.toLocaleString('ru') : '—', lbl: 'Ср. лайков'},
-    {val: data.erRate ? data.erRate + '%' : '—', lbl: 'ER Rate'},
-    {val: data.transcribedCount + ' / ' + data.totalSelected, lbl: 'Транскрибировано'},
-  ];
-  document.getElementById('igStatsGrid').innerHTML = stats.map(function(s){
-    return '<div class="stat-card"><div class="stat-val">'+s.val+'</div><div class="stat-lbl">'+s.lbl+'</div></div>';
-  }).join('');
-
-  document.getElementById('igRAnalysis').textContent = data.analysis;
-
-  if (data.transcripts && data.transcripts.length > 0) {
-    document.getElementById('igTranscriptList').innerHTML = data.transcripts.map(function(t, i){
-      var statusCls = t.transcript && t.transcript !== '(недоступно)' ? 'done' : 'fail';
-      var statusTxt = statusCls === 'done' ? '✓ транскрибировано' : '✗ не удалось';
-      return '<div class="transcript-item">' +
-        '<div class="transcript-meta">REEL ' + (i+1) + ' · ' + t.date + ' · ❤️ ' + (t.likes||0).toLocaleString('ru') + ' 💬 ' + (t.comments||0).toLocaleString('ru') + '</div>' +
-        '<div class="transcript-meta" style="color:#556">' + escHtml(t.caption || '') + '</div>' +
-        '<span class="transcript-status ' + statusCls + '">' + statusTxt + '</span>' +
-        '<div class="transcript-text" style="margin-top:8px">' + escHtml(t.transcript || '(недоступно)') + '</div>' +
-      '</div>';
-    }).join('');
-    document.getElementById('igTranscriptSection').style.display = 'block';
-  }
-
-  // Сохраняем для скачивания
-  window._igUsername = data.username;
-  window._igReportText = buildReportText(data);
-  window._igTranscriptText = buildTranscriptText(data);
+/* ---------- lead form ---------- */
+/* Telegram заполняет поле ввода из ?text= и на этом останавливается —
+   отправлять за человека он не даёт. Посетитель попадает в чат с уже
+   написанным сообщением, в одно касание от отправки. */
+function managerLink(lang){
+  var msg = lang==='ru'
+    ? 'Здравствуйте! Оставил(а) заявку на сайте.\nХочу обсудить внедрение AI в свой бизнес.'
+    : 'Assalomu alaykum! Saytdan ariza qoldirdim.\nBiznesimga AI joriy qilish bo\'yicha maslahatlashmoqchiman.';
+  return 'https://t.me/Yusufbaymanager?text=' + encodeURIComponent(msg);
 }
 
-// ===== YOUTUBE =====
+document.querySelectorAll('.lead-form').forEach(function(form){
+  var msg = form.querySelector('.form-msg');
+  var btn = form.querySelector('.lead-btn');
 
-async function startYt() {
-  var url = document.getElementById('ytUrl').value.trim();
-  if (!url) { alert('Введи ссылку!'); return; }
-
-  document.getElementById('ytError').className = 'error-box';
-  document.getElementById('ytReport').className = '';
-  document.getElementById('ytBtn').disabled = true;
-  document.getElementById('ytStatusBox').className = 'active';
-  setProgress('ytProgress', 0);
-
-  setStep('yts1','running','Получаем видео...');
-  setStep('yts2','pending','Ожидание...');
-  setStep('yts3','pending','Ожидание...');
-
-  try {
-    var res = await fetch('/api/transcribe-youtube', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ url: url, limit: ytCount })
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    msg.className='form-msg'; msg.textContent='';
+    var lang=document.documentElement.getAttribute('data-lang')||'uz';
+    var name=form.name.value.trim(), phone=form.phone.value.trim();
+    if(!name || phone.replace(/\D/g,'').length<7){
+      msg.className='form-msg err';
+      msg.textContent = lang==='ru' ? 'Заполните имя и корректный номер телефона.' : 'Ism va toʻgʻri telefon raqamini kiriting.';
+      return;
+    }
+    btn.disabled=true; btn.style.opacity=.7;
+    fetch('/api/lead',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name:name, phone:phone,
+        industry:form.industry.value.trim(),
+        /* формат уходит в поле tariff — так заявка с сайта ложится в ту же
+           таблицу и в тот же столбец, что и заявки лендинга */
+        tariff:form.format.value,
+        website:form.website.value,
+        lang:lang, source:'site'
+      })
+    }).then(function(r){ return r.json().catch(function(){return {ok:false}}); })
+    .then(function(j){
+      if(!(j && j.ok)) throw new Error((j&&j.error)||'fail');
+      location.href = managerLink(lang);
+    })
+    .catch(function(){
+      msg.className='form-msg err';
+      msg.textContent = lang==='ru'
+        ? 'Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в Telegram.'
+        : 'Ariza yuborilmadi. Qayta urinib koʻring yoki Telegram orqali yozing.';
+      btn.disabled=false; btn.style.opacity=1;
     });
-
-    setStep('yts1','done','Видео найдено ✓');
-    setStep('yts2','running','Транскрибируем аудио (узбекский / русский)...');
-    setProgress('ytProgress', 20);
-
-    var data = await res.json();
-    if (!res.ok || data.error) throw new Error(data.error);
-
-    setStep('yts2','done','Транскрибировано ✓');
-    setStep('yts3','running','Claude анализирует...');
-    setProgress('ytProgress', 80);
-
-    await new Promise(function(r){ setTimeout(r, 300); });
-    setStep('yts3','done','Готово ✓');
-    setProgress('ytProgress', 100);
-
-    renderYtReport(data);
-    reportData.yt = data;
-    document.getElementById('ytReport').className = 'visible';
-    document.getElementById('ytReport').scrollIntoView({behavior:'smooth'});
-
-  } catch(e) {
-    showError('ytError', e.message);
-    setStep('yts1','err','✗ ' + e.message);
-  }
-
-  document.getElementById('ytBtn').disabled = false;
-}
-
-function renderYtReport(data) {
-  document.getElementById('ytAnalysis').textContent = data.analysis || '(анализ недоступен)';
-
-  if (data.transcripts && data.transcripts.length > 0) {
-    document.getElementById('ytTranscriptList').innerHTML = data.transcripts.map(function(t, i){
-      var statusCls = t.transcript ? 'done' : 'fail';
-      return '<div class="transcript-item">' +
-        '<div class="transcript-meta">ВИДЕО ' + (i+1) + ' · ' + escHtml(t.title || '') + '</div>' +
-        '<span class="transcript-status ' + statusCls + '">' + (statusCls==='done'?'✓ транскрибировано':'✗ не удалось') + '</span>' +
-        '<div class="transcript-text" style="margin-top:8px">' + escHtml(t.transcript || '(недоступно)') + '</div>' +
-      '</div>';
-    }).join('');
-  }
-
-  window._ytReportText = (data.analysis || '') + '\n\n' +
-    (data.transcripts || []).map(function(t,i){
-      return '--- ВИДЕО ' + (i+1) + ' ---\n' + (t.title||'') + '\n\n' + (t.transcript||'');
-    }).join('\n\n');
-}
-
-// ===== UTILS =====
-
-function copyReport(type) {
-  var text = type === 'ig' ? window._igReportText : window._ytReportText;
-  navigator.clipboard.writeText(text || '').then(function(){
-    var msg = type === 'ig' ? 'ig' : 'yt';
-    // flash
   });
-}
-
-function downloadReport(type) {
-  var text = type === 'ig' ? window._igReportText : window._ytReportText;
-  var name = type === 'ig' ? 'report_' + (window._igUsername||'ig') + '.txt' : 'yt_report.txt';
-  dlFile(text || '', name);
-}
-
-function downloadTranscripts(type) {
-  var text = type === 'ig' ? window._igTranscriptText : window._ytReportText;
-  dlFile(text || '', 'transcripts_' + (window._igUsername||'ig') + '.txt');
-}
-
-function dlFile(text, name) {
-  var blob = new Blob([text], {type:'text/plain;charset=utf-8'});
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url; a.download = name; a.click();
-  URL.revokeObjectURL(url);
-}
-
-function buildReportText(data) {
-  return '@' + data.username + ' — Instagram Reels Report\n' + '='.repeat(60) + '\n' +
-    'Подписчики: ' + (data.followers||'—') + ' | ER: ' + (data.erRate||'—') + '%\n' +
-    'Роликов: ' + data.totalSelected + ' | Транскрибировано: ' + data.transcribedCount + '\n' +
-    'Дата: ' + new Date().toLocaleDateString('ru') + '\n\n' +
-    (data.analysis || '');
-}
-
-function buildTranscriptText(data) {
-  var text = 'ТРАНСКРИПЦИИ REELS @' + data.username + '\n' + '='.repeat(60) + '\n';
-  (data.transcripts || []).forEach(function(t, i) {
-    text += '\n--- REEL ' + (i+1) + ' ---\n';
-    text += 'Дата: ' + t.date + ' | ❤️ ' + (t.likes||0) + ' 💬 ' + (t.comments||0) + '\n';
-    text += 'Описание: ' + (t.caption||'') + '\n\n';
-    text += (t.transcript||'(недоступно)') + '\n';
-  });
-  return text;
-}
-
-function escHtml(str) {
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+});
+})();
 </script>
 </body>
 </html>

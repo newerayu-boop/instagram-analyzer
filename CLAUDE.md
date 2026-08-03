@@ -5,7 +5,15 @@
 ## Проект
 
 **instagram-analyzer** — статический сайт на Vercel + serverless-функции.
-- `public/index.html` — фронтенд (статика, `@vercel/static`).
+- `public/index.html` — **главная страница сайта Юсуфбая Кадирова** (AI-стратег):
+  hero с портретом, 4 направления работы, 5 этапов, кейсы учеников, отзывы,
+  об эксперте, форма заявки. UZ/RU, та же дизайн-система, что и лендинг
+  (чёрный+золото, Inter/JetBrains Mono, шрифты переиспользуются из
+  `/masterclass/fonts/`). Заявки уходят в `/api/lead` с `source:'site'`,
+  выбранный формат — в поле `tariff`; после отправки посетитель попадает
+  к менеджеру в Telegram с уже написанным сообщением.
+- `public/analyzer/index.html` — внутренний инструмент разбора Reels (был на `/`,
+  переехал на `/analyzer`, чтобы корень занял публичный сайт).
 - `public/masterclass/` — **премиум-лендинг мастер-класса по ИИ** (чёрный+золото,
   UZ/RU, анимации, доступен по `/masterclass`). Собран по AI·WEB·METHOD и design board.
 - `api/get-reels.js`, `api/transcribe-reels.js` — serverless (`@vercel/node`, Node 22).
@@ -19,7 +27,8 @@
   есть доступ; перенести в основную «Hyatt Regancy 2», когда доступ появится.
   Скрипт не привязан к id таблицы — пишет в ту, внутри которой лежит, поэтому перенос
   это `setup()` в новой таблице и `stop()` в старой. Шаги — в `docs/leads-setup.md`.
-- `vercel.json` — роутинг: `/api/*` → функции, `/masterclass` → лендинг, остальное → `public/`.
+- `vercel.json` — роутинг: `/api/*` → функции, `/masterclass` → лендинг,
+  `/analyzer` → инструмент, `/` → главная, остальное → `public/`.
   Проект на Vercel называется `suniyintellect-mk`, сайт — `suniyintellect-mk.vercel.app`.
 - Командный дашборд задач живёт в **отдельном репозитории `newerayu-boop/team-dashboard`**
   (свой Vercel-проект; данные — Supabase `ai-strateg-klub`, таблицы `dash_*`) — здесь его
