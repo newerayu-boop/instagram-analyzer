@@ -26,6 +26,23 @@
   специально нет, чтобы не смешивать с сайтом мастер-класса.
 - Node-зависимости: `node-fetch`, `form-data`.
 
+## Материалы пользователя (запомнено 2026-08-03)
+
+Присланные файлы лежат в **`docs/materials/`**, подробное описание —
+[`docs/materials/README.md`](docs/materials/README.md). Кратко:
+
+- `combined_presentation.pdf` — карточки товаров для маркетплейсов: кашпо
+  **Lechuza CUBICO Premium 30** (тёмно-зелёный+золото) и **BALCONERA Color**
+  (светлый стиль) + баннер цветочного магазина «Тихая красота Курбан-Хайита».
+- `combined_catalog.pdf` — баннер «Собери свой уют сам», партнёрский каталог
+  **GUUL by Toshkent Gullari «Цветы для ресторанов»** и карточки **Lechuza OJO**.
+- `combined_photos_1.pdf` — брендовые материалы **AI Strateg (@kodiyusufbay)**:
+  обложка с золотым логотипом, афиша мастер-класса «SUN'IY INTELEKT» (18 iyul,
+  M-FACTOR Toshkent), Instagram-карусели «VOX reklama — promptsiz yasang» и
+  «Claude'ni butun jamoaga aylantiring».
+- `vox-legend-demo.mp4` — 50-сек демо VOX-формата (бумажный коллаж «LEGEND»,
+  Higgsfield + maxfusion), пример из карусели про VOX-рекламу.
+
 ## Дизайн и анимация — база ресурсов (запомнено 2026-07-24)
 
 Полная база знаний по созданию продающих сайтов «уровня Apple» с анимацией:
