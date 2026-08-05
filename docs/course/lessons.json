@@ -1,0 +1,464 @@
+{
+  "course_id": "539de632-9b41-4eb4-b6f2-1349fbd509e7",
+  "course_language": "uz",
+  "lessons": [
+    {
+      "number": 1,
+      "title": "1.0 Kirish darsi.(Prompt injeneering)",
+      "kind": "recorded",
+      "file": "01-1-0-kirish-darsi-prompt-injeneering.md",
+      "parts": [
+        {
+          "lecture_id": "8da63eaa-fea9-4523-9693-0066868972a1",
+          "lecture_title": "1.0 Kirish darsi.(Prompt injeneering)"
+        }
+      ],
+      "chars": 10605,
+      "collapsed_repeats": 5
+    },
+    {
+      "number": 2,
+      "title": "2.0.ChatGPT vs Gemini farqlari",
+      "kind": "recorded",
+      "file": "02-2-0-chatgpt-vs-gemini-farqlari.md",
+      "parts": [
+        {
+          "lecture_id": "90d52fa9-9c2e-4737-8ec8-e6096767ad08",
+          "lecture_title": "2.0.ChatGPT vs Gemini farqlari"
+        }
+      ],
+      "chars": 9162,
+      "collapsed_repeats": 3
+    },
+    {
+      "number": 3,
+      "title": "3.1.Prompting sirlari (Junior darajada)",
+      "kind": "recorded",
+      "file": "03-3-1-prompting-sirlari-junior-darajada.md",
+      "parts": [
+        {
+          "lecture_id": "e8c3b460-6f25-4967-bddf-51344e5a2cdf",
+          "lecture_title": "3.1.Prompting sirlari (Junior darajada)"
+        }
+      ],
+      "chars": 7078,
+      "collapsed_repeats": 3
+    },
+    {
+      "number": 4,
+      "title": "3.2. Prompting sirlari (Pro daraja)",
+      "kind": "recorded",
+      "file": "04-3-2-prompting-sirlari-pro-daraja.md",
+      "parts": [
+        {
+          "lecture_id": "9e173b61-ec94-48cb-9e7d-f3d7e63975a0",
+          "lecture_title": "3.2. Prompting sirlari (Pro daraja)"
+        }
+      ],
+      "chars": 13744,
+      "collapsed_repeats": 30
+    },
+    {
+      "number": 5,
+      "title": "4.1.Gemini bilan ishlash (kirish darsi)",
+      "kind": "recorded",
+      "file": "05-4-1-gemini-bilan-ishlash-kirish-darsi.md",
+      "parts": [
+        {
+          "lecture_id": "c6bb8f98-5d6a-4f6c-b93f-58e94060ab14",
+          "lecture_title": "4.1.Gemini bilan ishlash (kirish darsi)"
+        }
+      ],
+      "chars": 10751,
+      "collapsed_repeats": 26
+    },
+    {
+      "number": 6,
+      "title": "4.2.Gemini bilan ishlash (amaliyotda ishlatish)",
+      "kind": "recorded",
+      "file": "06-4-2-gemini-bilan-ishlash-amaliyotda-ishlatish.md",
+      "parts": [
+        {
+          "lecture_id": "6a336a47-d3cc-4d4b-b6cd-44bb567f0276",
+          "lecture_title": "4.2.Gemini bilan ishlash (amaliyotda ishlatish)"
+        }
+      ],
+      "chars": 9779,
+      "collapsed_repeats": 24
+    },
+    {
+      "number": 7,
+      "title": "5.1.NotebookLm da ishlash",
+      "kind": "recorded",
+      "file": "07-5-1-notebooklm-da-ishlash.md",
+      "parts": [
+        {
+          "lecture_id": "6b4ecd35-2efe-413c-926a-1772eac1b859",
+          "lecture_title": "5.1.NotebookLm da ishlash"
+        }
+      ],
+      "chars": 13551,
+      "collapsed_repeats": 53
+    },
+    {
+      "number": 8,
+      "title": "6.1. Chatgpt asistentlari bilan ishlash (marketing boyicha)",
+      "kind": "recorded",
+      "file": "08-6-1-chatgpt-asistentlari-bilan-ishlash-marketing.md",
+      "parts": [
+        {
+          "lecture_id": "34bfc0e6-7de9-4bdd-a84f-4dc5d7c5ea79",
+          "lecture_title": "6.1. Chatgpt asistentlari bilan ishlash (marketing boyicha)"
+        }
+      ],
+      "chars": 5612,
+      "collapsed_repeats": 12
+    },
+    {
+      "number": 9,
+      "title": "6.2. Chat GPTda Promptlar bilan ishlash",
+      "kind": "recorded",
+      "file": "09-6-2-chat-gptda-promptlar-bilan-ishlash.md",
+      "parts": [
+        {
+          "lecture_id": "b3ba8133-1af4-4651-a8e5-cdaec1ed59eb",
+          "lecture_title": "6.2. Chat GPTda Promptlar bilan ishlash"
+        }
+      ],
+      "chars": 4492,
+      "collapsed_repeats": 11
+    },
+    {
+      "number": 10,
+      "title": "6.3. Chat GPTda assistentlar yaratish",
+      "kind": "recorded",
+      "file": "10-6-3-chat-gptda-assistentlar-yaratish.md",
+      "parts": [
+        {
+          "lecture_id": "cba5c5e6-0bc4-446b-9e93-d233e9efd3f6",
+          "lecture_title": "6.3. Chat GPTda assistentlar yaratish"
+        }
+      ],
+      "chars": 19589,
+      "collapsed_repeats": 50
+    },
+    {
+      "number": 11,
+      "title": "6.4. Chat GPtda jadvallar bilan ishlash",
+      "kind": "recorded",
+      "file": "11-6-4-chat-gptda-jadvallar-bilan-ishlash.md",
+      "parts": [
+        {
+          "lecture_id": "79e2d2ba-4a8d-4356-876d-f070ec1f71b0",
+          "lecture_title": "6.4. Chat GPtda jadvallar bilan ishlash"
+        }
+      ],
+      "chars": 7241,
+      "collapsed_repeats": 7
+    },
+    {
+      "number": 12,
+      "title": "7. Prezentatsiyani 5 daqiqada qilish",
+      "kind": "recorded",
+      "file": "12-7-prezentatsiyani-5-daqiqada-qilish.md",
+      "parts": [
+        {
+          "lecture_id": "97291606-8afd-40d0-9dfd-163b1625bd5c",
+          "lecture_title": "7. Prezentatsiyani 5 daqiqada qilish"
+        }
+      ],
+      "chars": 10270,
+      "collapsed_repeats": 43
+    },
+    {
+      "number": 13,
+      "title": "Jonli dars 01 — 1-dars | Kirish: AI 2026 - Katta sarmoyalar va Real holat",
+      "kind": "live",
+      "file": "13-jonli-dars-01-1-dars-kirish-ai-2026-katta-sarmoy.md",
+      "parts": [
+        {
+          "lecture_id": "1064b6d2-facf-44ec-b6a9-0d1a4b9999e2",
+          "lecture_title": "1-qism"
+        },
+        {
+          "lecture_id": "d2bb543c-00cf-4b66-aff7-618d8952efb5",
+          "lecture_title": "2 qism"
+        }
+      ],
+      "chars": 118712,
+      "collapsed_repeats": 243
+    },
+    {
+      "number": 14,
+      "title": "Jonli dars 02",
+      "kind": "live",
+      "file": "14-jonli-dars-02.md",
+      "parts": [
+        {
+          "lecture_id": "2988ea98-75ef-4474-a41c-4a084f9ea783",
+          "lecture_title": "1-qism"
+        },
+        {
+          "lecture_id": "57ad6e9c-fbeb-45ea-b41d-8a8226f32624",
+          "lecture_title": "2 qism"
+        }
+      ],
+      "chars": 203600,
+      "collapsed_repeats": 746
+    },
+    {
+      "number": 15,
+      "title": "Jonli dars 03",
+      "kind": "live",
+      "file": "15-jonli-dars-03.md",
+      "parts": [
+        {
+          "lecture_id": "4a554634-8ab3-4770-93c3-ae1235d00979",
+          "lecture_title": "1-qism"
+        },
+        {
+          "lecture_id": "ca3a95f9-f821-419f-aed0-614da189bc8d",
+          "lecture_title": "2 qism"
+        },
+        {
+          "lecture_id": "2c7dd0c1-a300-4598-9ec3-41b33e09531e",
+          "lecture_title": "3 qism"
+        }
+      ],
+      "chars": 114067,
+      "collapsed_repeats": 444
+    },
+    {
+      "number": 16,
+      "title": "Jonli dars 04",
+      "kind": "live",
+      "file": "16-jonli-dars-04.md",
+      "parts": [
+        {
+          "lecture_id": "96e1b6c7-d814-44e7-a65a-11b70bcbb580",
+          "lecture_title": "1 qism"
+        },
+        {
+          "lecture_id": "d5e98b5e-c084-4fbe-9062-e48cc202cdf4",
+          "lecture_title": "2 qism"
+        }
+      ],
+      "chars": 110285,
+      "collapsed_repeats": 559
+    },
+    {
+      "number": 17,
+      "title": "Jonli dars 05",
+      "kind": "live",
+      "file": "17-jonli-dars-05.md",
+      "parts": [
+        {
+          "lecture_id": "8c4894ee-3d42-44e3-a6b0-b0d3fca51796",
+          "lecture_title": "1-qism"
+        },
+        {
+          "lecture_id": "ad7301f5-680d-46e7-a117-67b5efe93b9f",
+          "lecture_title": "2 qism"
+        }
+      ],
+      "chars": 90055,
+      "collapsed_repeats": 463
+    },
+    {
+      "number": 18,
+      "title": "Jonli dars 06",
+      "kind": "live",
+      "file": "18-jonli-dars-06.md",
+      "parts": [
+        {
+          "lecture_id": "ff1f81e0-daa1-4c12-8309-44b4ac5fa9b1",
+          "lecture_title": "1 qism"
+        },
+        {
+          "lecture_id": "650c0940-29cb-4972-8032-852219edb020",
+          "lecture_title": "2 qism"
+        }
+      ],
+      "chars": 84920,
+      "collapsed_repeats": 552
+    },
+    {
+      "number": 19,
+      "title": "Jonli dars 07",
+      "kind": "live",
+      "file": "19-jonli-dars-07.md",
+      "parts": [
+        {
+          "lecture_id": "6ebda80b-22d2-4335-ab4f-7b3e0db91eb7",
+          "lecture_title": "1-qism"
+        },
+        {
+          "lecture_id": "f47f6225-ab55-420b-943f-fb3369c12c88",
+          "lecture_title": "2-qism"
+        }
+      ],
+      "chars": 84977,
+      "collapsed_repeats": 441
+    },
+    {
+      "number": 20,
+      "title": "Jonli dars 08",
+      "kind": "live",
+      "file": "20-jonli-dars-08.md",
+      "parts": [
+        {
+          "lecture_id": "8b5794d6-0359-4340-b1ba-3954f826b365",
+          "lecture_title": "1-qism"
+        },
+        {
+          "lecture_id": "e09b1ac2-420f-4ca0-bf01-3f2f7f0e210a",
+          "lecture_title": "2-qism"
+        }
+      ],
+      "chars": 109812,
+      "collapsed_repeats": 577
+    },
+    {
+      "number": 21,
+      "title": "Jonli dars 09",
+      "kind": "live",
+      "file": "21-jonli-dars-09.md",
+      "parts": [
+        {
+          "lecture_id": "e0e33378-ab6c-42ae-842e-e002d74ecf01",
+          "lecture_title": "1 qsim"
+        },
+        {
+          "lecture_id": "1e9ed88c-e36d-454f-9694-2c69c74e2247",
+          "lecture_title": "2 qsim"
+        }
+      ],
+      "chars": 72018,
+      "collapsed_repeats": 319
+    },
+    {
+      "number": 22,
+      "title": "Jonli dars 10",
+      "kind": "live",
+      "file": "22-jonli-dars-10.md",
+      "parts": [
+        {
+          "lecture_id": "dd1d5360-0a12-4ff1-9797-61ca6a2b139b",
+          "lecture_title": "1 qism"
+        },
+        {
+          "lecture_id": "9e20c999-ed00-476a-a9d2-3d55780c5353",
+          "lecture_title": "2 qism"
+        },
+        {
+          "lecture_id": "1e883dcd-e164-4a53-b196-9cc2885633f0",
+          "lecture_title": "3 qsiim"
+        }
+      ],
+      "chars": 99773,
+      "collapsed_repeats": 457
+    },
+    {
+      "number": 23,
+      "title": "Jonli dars 11",
+      "kind": "live",
+      "file": "23-jonli-dars-11.md",
+      "parts": [
+        {
+          "lecture_id": "86614599-e0be-40f2-ba87-db17ffe95d73",
+          "lecture_title": "1"
+        },
+        {
+          "lecture_id": "0528fdc0-f579-4903-abaa-e0da6b4405c0",
+          "lecture_title": "2"
+        },
+        {
+          "lecture_id": "8fd8b292-dfb5-4f06-9e4f-ef15262df4af",
+          "lecture_title": "3"
+        },
+        {
+          "lecture_id": "fbe8506b-10ed-454f-8399-d33f1bdae3c4",
+          "lecture_title": "4"
+        }
+      ],
+      "chars": 101516,
+      "collapsed_repeats": 642
+    },
+    {
+      "number": 24,
+      "title": "Jonli dars 12",
+      "kind": "live",
+      "file": "24-jonli-dars-12.md",
+      "parts": [
+        {
+          "lecture_id": "6dc9c5cb-ccec-44e2-9907-c4c3823c7a41",
+          "lecture_title": "2"
+        },
+        {
+          "lecture_id": "37537600-ec15-497b-b995-f75435bb2ac6",
+          "lecture_title": "3"
+        }
+      ],
+      "chars": 49526,
+      "collapsed_repeats": 288
+    },
+    {
+      "number": 25,
+      "title": "Jonli dars 13",
+      "kind": "live",
+      "file": "25-jonli-dars-13.md",
+      "parts": [
+        {
+          "lecture_id": "d832f3ea-4223-4075-94a2-9dfb9d365f12",
+          "lecture_title": "1"
+        },
+        {
+          "lecture_id": "cd3c5af2-3d98-4f62-990d-773f3c69d64d",
+          "lecture_title": "2"
+        }
+      ],
+      "chars": 69686,
+      "collapsed_repeats": 304
+    },
+    {
+      "number": 26,
+      "title": "Jonli dars 14",
+      "kind": "live",
+      "file": "26-jonli-dars-14.md",
+      "parts": [
+        {
+          "lecture_id": "f50acbaa-af61-407b-b269-037d49446a46",
+          "lecture_title": "1"
+        },
+        {
+          "lecture_id": "490aeff2-48ed-43cf-a6e7-f465c681c810",
+          "lecture_title": "2"
+        }
+      ],
+      "chars": 90120,
+      "collapsed_repeats": 660
+    },
+    {
+      "number": 27,
+      "title": "Jonli dars 15",
+      "kind": "live",
+      "file": "27-jonli-dars-15.md",
+      "parts": [
+        {
+          "lecture_id": "fd1fc9f2-b3dc-4fdb-8e3c-1b19aa7991c0",
+          "lecture_title": "1"
+        },
+        {
+          "lecture_id": "eb648231-176d-426b-951b-530bd800be19",
+          "lecture_title": "2"
+        },
+        {
+          "lecture_id": "3da4a7ff-3350-4216-8cb0-393362213bac",
+          "lecture_title": "3"
+        }
+      ],
+      "chars": 104550,
+      "collapsed_repeats": 466
+    }
+  ]
+}
