@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Урок 1 — Gemini + NotebookLM · гайд для учеников</title>
+<style>
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(../masterclass/fonts/inter-400-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(../masterclass/fonts/inter-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:block;src:url(../masterclass/fonts/inter-500-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:block;src:url(../masterclass/fonts/inter-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:block;src:url(../masterclass/fonts/inter-600-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:block;src:url(../masterclass/fonts/inter-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:block;src:url(../masterclass/fonts/inter-700-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:block;src:url(../masterclass/fonts/inter-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:block;src:url(../masterclass/fonts/inter-800-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:block;src:url(../masterclass/fonts/inter-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+  --bg:#F7F0DE; --paper:#FFFCF3; --ink:#43220F; --ink2:#8A6A52;
+  --line:#E6D8BC; --acc:#C4501B; --acc-soft:#FBE3D2;
+  --ok:#2F6B4F; --ok-soft:#E3F0E8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:'Inter',system-ui,sans-serif;background:#CDBFA5;color:var(--ink);font-size:10.5pt;line-height:1.45;-webkit-font-smoothing:antialiased}
+
+@page{size:A4 portrait;margin:0}
+.page{width:210mm;height:297mm;background:var(--bg);padding:14mm 14mm 11mm;position:relative;overflow:hidden;margin:0 auto 8mm;display:flex;flex-direction:column}
+@media print{.page{margin:0;break-after:page}.page:last-child{break-after:auto}}
+
+.head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin-bottom:7mm}
+.kick{font-size:8pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.kick b{color:var(--ink)}
+.pg{font-size:8pt;font-weight:700;color:var(--ink2)}
+h2{font-size:22pt;font-weight:800;letter-spacing:-.022em;line-height:1.08;margin-bottom:2.5mm}
+h3{font-size:11pt;font-weight:700}
+.lead{font-size:11pt;color:var(--ink2);font-weight:500;margin-bottom:7mm}
+.lead b{color:var(--ink)}
+.sec{font-size:8pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:3mm}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:4.5mm}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:5.5mm}
+.card .t{font-size:11pt;font-weight:700;margin-bottom:2mm}
+.card .d{font-size:9.5pt;color:var(--ink2);line-height:1.5}
+.card .d b{color:var(--ink)}
+.ic{width:30px;height:30px;border-radius:9px;background:var(--acc-soft);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--acc);margin-bottom:3.5mm}
+
+.note{background:var(--acc-soft);border-left:3.5px solid var(--acc);border-radius:0 11px 11px 0;padding:4mm 5mm;font-size:10pt;line-height:1.5}
+.good{background:var(--ok-soft);border-left:3.5px solid var(--ok);border-radius:0 11px 11px 0;padding:4mm 5mm;font-size:10pt;line-height:1.5}
+
+.steps{display:flex;flex-direction:column;gap:4mm}
+.step{display:flex;gap:4mm;align-items:flex-start}
+.step .n{flex:none;width:24px;height:24px;border-radius:50%;background:var(--acc);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.step .tx{font-size:10.5pt;line-height:1.45;padding-top:1px}
+.step .tx span{color:var(--ink2)}
+
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm;margin-top:6mm}
+.legend .li{display:flex;gap:3.5mm;align-items:flex-start;font-size:9.8pt;line-height:1.4}
+.legend .n{flex:none;width:21px;height:21px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.legend span{color:var(--ink2)}
+
+/* ——— мокап ——— */
+.shot{position:relative;margin:0 auto}
+.win{border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:0 14px 30px rgba(67,34,15,.11)}
+.bar{display:flex;align-items:center;gap:5px;padding:7px 11px;background:#F1EADC;border-bottom:1px solid var(--line);border-radius:12px 12px 0 0}
+.dot{width:8px;height:8px;border-radius:50%}
+.url{margin-left:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:2.5px 13px;font-size:8pt;color:#8A6E58}
+.app{display:flex;background:#fff;font-size:8.6pt;color:#3B3B3B;border-radius:0 0 12px 12px}
+.side{width:140px;flex:none;background:#F6F2EA;border-right:1px solid #EDE5D6;padding:11px 10px;display:flex;flex-direction:column;gap:8px;border-radius:0 0 0 12px}
+.newbtn{background:#E8E2F5;border-radius:999px;padding:6px 11px;font-weight:600;color:#4B3F72;font-size:8.4pt;text-align:center}
+.slabel{font-size:7.2pt;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#9A8C7A;margin-top:3px}
+.sitem{padding:4px 7px;border-radius:7px;color:#6B6257;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sitem.on{background:#EDE7F6;color:#4B3F72;font-weight:600}
+.main{flex:1;padding:13px 15px;display:flex;flex-direction:column;min-width:0}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.model{display:inline-flex;align-items:center;gap:6px;border:1px solid #E3DED3;border-radius:999px;padding:5px 12px;font-weight:600;color:#4B4238}
+.avatar{width:22px;height:22px;border-radius:50%;background:#C9B7E8}
+.hello{font-size:15pt;font-weight:700;color:#7B5CD6;margin:16px 0 4px}
+.muted{color:#9A9086}
+.input{margin-top:auto;border:1px solid #E3DED3;border-radius:18px;padding:10px 12px;display:flex;align-items:center;gap:10px;background:#FBFAF7}
+.input .ph{flex:1;color:#A79C90}
+.rnd{width:24px;height:24px;border-radius:50%;border:1px solid #E3DED3;display:flex;align-items:center;justify-content:center;color:#6B6257;font-size:10pt;background:#fff;flex:none}
+.rnd.fill{background:#5B4BC4;color:#fff;border-color:#5B4BC4}
+.tools{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+.tool{border:1px solid #E3DED3;border-radius:999px;padding:4px 10px;color:#5C544A;background:#fff;white-space:nowrap}
+.tool.on{background:#EAE4FA;border-color:#D6CCF5;color:#4B3F72;font-weight:600}
+.tool.pri{background:#5B4BC4;color:#fff;border-color:#5B4BC4;font-weight:600}
+.menu{position:absolute;background:#fff;border:1px solid #E3DED3;border-radius:12px;box-shadow:0 12px 26px rgba(0,0,0,.14);padding:6px;font-size:8.4pt;z-index:4}
+.menu .mi{padding:6px 10px;border-radius:8px;display:flex;gap:7px;align-items:center;white-space:nowrap;color:#4B4238}
+.menu .mi.on{background:#F1EDFB;font-weight:600}
+.menu .mi small{color:#A79C90;font-weight:400}
+
+.col{flex:1;border-right:1px solid #EDE5D6;padding:11px;display:flex;flex-direction:column;gap:7px;min-width:0}
+.col:last-child{border-right:0}
+.colhead{display:flex;align-items:center;justify-content:space-between;font-weight:700;color:#3B3B3B;font-size:8.6pt;margin-bottom:3px}
+.src{display:flex;gap:6px;align-items:center;border:1px solid #EDE5D6;border-radius:8px;padding:6px 7px;background:#FBFAF7;white-space:nowrap;overflow:hidden;font-size:8pt}
+.chk{width:13px;height:13px;border-radius:3px;background:#5B4BC4;color:#fff;font-size:8px;display:flex;align-items:center;justify-content:center;flex:none}
+.bub{border-radius:12px;padding:7px 10px;font-size:8.2pt;line-height:1.45}
+.bub.q{background:#EFEAFB;color:#4B3F72;align-self:flex-end;max-width:86%}
+.bub.a{background:#F7F5F1;color:#4B4238}
+.cit{display:inline-block;background:#5B4BC4;color:#fff;border-radius:5px;padding:0 4px;font-size:7pt;font-weight:700;vertical-align:1px}
+.ask{margin-top:auto;border:1px solid #E3DED3;border-radius:16px;padding:8px 10px;display:flex;align-items:center;gap:8px;background:#FBFAF7}
+.ask .ph{flex:1;color:#A79C90}
+.stcard{border:1px solid #EDE5D6;border-radius:10px;padding:8px;background:#FBFAF7;display:flex;gap:7px;align-items:center}
+.stcard .e{width:22px;height:22px;border-radius:7px;background:#EAE4FA;display:flex;align-items:center;justify-content:center;font-size:11px;flex:none}
+.stcard .tt{font-weight:600;font-size:8pt;color:#3B3B3B}
+.stcard .dd{font-size:7.4pt;color:#9A9086}
+
+/* ——— маркеры «нажми сюда» ——— */
+.pin{position:relative;outline:2px solid var(--acc);outline-offset:2.5px;border-radius:9px}
+.pin>.mk{position:absolute;left:-13px;top:-13px}
+.pin.r>.mk{left:auto;right:-13px;top:-13px}
+.pin.bare{outline:none}
+.mk{width:23px;height:23px;border-radius:50%;background:var(--acc);color:#fff;font-size:11.5px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3.5px rgba(196,80,27,.20),0 2px 6px rgba(0,0,0,.20);z-index:9;font-family:'Inter',sans-serif;line-height:1}
+.cap{font-size:9pt;color:var(--ink2);text-align:center;margin-top:3.5mm;font-weight:500}
+
+/* обложка */
+.cover{justify-content:space-between}
+.big{font-size:46pt;font-weight:800;letter-spacing:-.038em;line-height:.98}
+.big em{font-style:normal;color:var(--acc)}
+.tags{display:flex;gap:3mm;flex-wrap:wrap;margin-top:7mm}
+.tag{border:1.5px solid var(--ink);border-radius:999px;padding:2.2mm 4.5mm;font-size:9.5pt;font-weight:600}
+.toc{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.toc .b{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:6mm}
+.toc ol{margin-left:5mm;font-size:9.6pt;color:var(--ink2);line-height:1.85;margin-top:3mm}
+.brand{display:flex;align-items:center;gap:3mm;font-size:9pt;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+.brand .sq{width:10px;height:10px;background:var(--acc);border-radius:2px}
+
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.vs .b{border-radius:13px;padding:5.5mm;border:1px solid var(--line);background:var(--paper)}
+.vs .b.acc{background:var(--acc-soft);border-color:#F0C9AE}
+.vs .b .h{font-weight:800;font-size:12pt;margin-bottom:3mm}
+.vs .b ul{list-style:none;font-size:9.8pt;color:var(--ink2);line-height:1.65}
+.vs .b li:before{content:"— ";color:var(--acc)}
+
+.err{display:grid;grid-template-columns:1fr 1fr;gap:5.5mm 8mm}
+.err .e{display:flex;gap:3mm;font-size:9.8pt;line-height:1.4;align-items:flex-start}
+.err .x{flex:none;width:19px;height:19px;border-radius:50%;background:var(--acc);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.err span{color:var(--ink2)}
+
+.dict{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm;font-size:9.5pt;line-height:1.45}
+.dict span{color:var(--ink2)}
+
+.foot{margin-top:auto;padding-top:5mm;font-size:8pt;color:var(--ink2);display:flex;justify-content:space-between;border-top:1px solid var(--line)}
+.spacer{flex:1}
+.mt{margin-top:7mm}
+.mt3{margin-top:4mm}
+</style>
+</head>
+<body>
+
+<!-- ══════════ 01 ОБЛОЖКА ══════════ -->
+<section class="page cover">
+  <div>
+    <div class="brand"><span class="sq"></span> AI STRATEG · КУРС</div>
+    <div style="margin-top:20mm">
+      <div style="font-size:11pt;font-weight:800;color:var(--acc);letter-spacing:.13em;text-transform:uppercase;margin-bottom:5mm">Урок 1 · гайд для учеников</div>
+      <div class="big">Gemini<br>+ <em>NotebookLM</em></div>
+      <div style="font-size:12.5pt;color:var(--ink2);font-weight:500;margin-top:6mm;max-width:125mm;line-height:1.5">
+        Два инструмента урока 1. Только интерфейс и кнопки: где нажать и что получится.
+      </div>
+      <div class="tags">
+        <span class="tag">Всё с картинками</span>
+        <span class="tag">Коротко</span>
+        <span class="tag" style="border-color:var(--acc);color:var(--acc)">● Оранжевый кружок = нажми сюда</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="toc">
+    <div class="b">
+      <h3>Часть 1 · Gemini</h3>
+      <ol>
+        <li>Что это и зачем · стр. 2</li>
+        <li>Вход за 3 шага · стр. 3</li>
+        <li>Интерфейс: что где · стр. 4</li>
+        <li>Две модели: быстрая и умная · стр. 5</li>
+        <li>Загрузка файлов и фото · стр. 6</li>
+        <li>Deep Research · стр. 7</li>
+        <li>Gems — свой помощник · стр. 8</li>
+        <li>Генерация изображений · стр. 9</li>
+        <li>Ошибки и словарик · стр. 10</li>
+      </ol>
+    </div>
+    <div class="b">
+      <h3>Часть 2 · NotebookLM</h3>
+      <ol>
+        <li>Что это и чем отличается · стр. 11</li>
+        <li>Интерфейс: три панели · стр. 12</li>
+        <li>Источники: как добавить · стр. 13</li>
+        <li>Чат и ссылки-цитаты · стр. 14</li>
+        <li>Студия: аудио-обзор · стр. 15</li>
+        <li>Заметки, ошибки, словарик · стр. 16</li>
+        <li>Задание после урока · стр. 17</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="foot"><span>Гайд урока 1</span><span>suniyintellect-mk.vercel.app</span></div>
+</section>
+
+<!-- ══════════ 03 GEMINI — ЧТО ЭТО ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 1 · <b>Gemini</b></div><div class="pg">02</div></div>
+
+  <h2>Что такое Gemini</h2>
+  <div class="lead">AI-помощник от Google. Работает в браузере и в телефоне.</div>
+
+  <div class="grid4">
+    <div class="card"><div class="ic">💬</div><div class="t">Анализ</div><div class="d">Читает ваши тексты, таблицы и фото — отвечает по ним.</div></div>
+    <div class="card"><div class="ic">🔎</div><div class="t">Deep&nbsp;Research</div><div class="d">Сам ищет в интернете и собирает отчёт со ссылками.</div></div>
+    <div class="card"><div class="ic">🖼</div><div class="t">Картинки</div><div class="d">Рисует изображения по вашему описанию.</div></div>
+    <div class="card"><div class="ic">💎</div><div class="t">Gems</div><div class="d">Личный помощник, который работает по вашей инструкции.</div></div>
+  </div>
+
+  <div class="grid2 mt">
+    <div class="card" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="sec" style="margin-bottom:2.5mm">Где открыть</div>
+      <div style="font-size:17pt;font-weight:800;color:var(--acc);letter-spacing:-.02em">gemini.google.com</div>
+      <div class="d" style="margin-top:2.5mm">Нужен только аккаунт Google (Gmail).<br>На телефоне — приложение «Gemini».</div>
+    </div>
+    <div class="card">
+      <div class="sec" style="margin-bottom:2.5mm">Бесплатно или платно</div>
+      <div style="font-size:10pt;line-height:1.7">
+        <b>Бесплатно</b> — хватает на весь курс.<br>
+        <b>Платно</b> — работает быстрее и даёт больше запусков Deep&nbsp;Research.
+      </div>
+    </div>
+  </div>
+
+  <div class="sec mt">Что уже можно поручить сегодня</div>
+  <div class="grid3">
+    <div class="card"><div class="t">Пост и рассылка</div><div class="d">«Напиши пост про акцию на узбекском, 3 варианта, коротко».</div></div>
+    <div class="card"><div class="t">Разбор файла</div><div class="d">«Вот прайс в Excel — найди 10 самых дорогих позиций».</div></div>
+    <div class="card"><div class="t">Ответ клиенту</div><div class="d">«Клиент жалуется. Напиши вежливый ответ и решение».</div></div>
+  </div>
+
+  <div class="note mt">
+    <b>Правило урока:</b> объясняйте задачу словами, как коллеге — кто вы, для кого текст, на каком языке. Первый ответ почти всегда нужно доработать: «короче», «проще», «добавь цифры».
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Gemini · что это</span><span>02</span></div>
+</section>
+
+<!-- ══════════ 04 ВХОД ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 1 · <b>Gemini</b></div><div class="pg">03</div></div>
+  <h2>Вход за 3 шага</h2>
+  <div class="lead">30 секунд, и только один раз.</div>
+
+  <div class="shot" style="width:160mm">
+    <div class="win">
+      <div class="bar">
+        <span class="dot" style="background:#E8A0A0"></span><span class="dot" style="background:#EBCB8B"></span><span class="dot" style="background:#A3C9A8"></span>
+        <span class="url pin" style="border-radius:999px"><span class="mk">1</span>gemini.google.com</span>
+      </div>
+      <div class="app" style="height:96mm">
+        <div class="main" style="align-items:center;justify-content:center;text-align:center;gap:11px;position:relative">
+          <div style="position:absolute;top:0;right:0;display:flex;align-items:center;gap:7px" class="pin r"><span class="mk">2</span>
+            <span class="avatar"></span><span style="font-size:8pt;color:#6B6257">azizbek@gmail.com</span>
+          </div>
+          <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#8AB4F8,#C58AF9)"></div>
+          <div style="font-size:16pt;font-weight:700;color:#3B3B3B">Gemini</div>
+          <div class="muted" style="font-size:9pt">Войдите в аккаунт Google, чтобы продолжить</div>
+          <div class="pin" style="border-radius:999px;background:#5B4BC4;color:#fff;padding:8px 26px;font-weight:600;font-size:9pt;margin-top:6px"><span class="mk">3</span>Войти</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cap">Первый экран, если вы ещё не вошли</div>
+
+  <div class="steps mt">
+    <div class="step"><span class="n">1</span><div class="tx">В адресной строке пишем <b>gemini.google.com</b> <span>и нажимаем Enter.</span></div></div>
+    <div class="step"><span class="n">2</span><div class="tx">Проверяем справа вверху: там должен быть <b>ваш аккаунт Google</b>. <span>Если чужой — «Сменить аккаунт».</span></div></div>
+    <div class="step"><span class="n">3</span><div class="tx">Нажимаем <b>«Войти»</b>, вводим почту и пароль. <span>Дальше вход будет автоматический.</span></div></div>
+  </div>
+
+  <div class="grid2 mt3">
+    <div class="card"><div class="t">💻 На компьютере</div><div class="d">Браузер Chrome · адрес gemini.google.com · вход один раз, дальше сразу открывается.</div></div>
+    <div class="card"><div class="t">📱 На телефоне</div><div class="d">Play Market / App Store → приложение «Google Gemini» → тот же аккаунт. Чаты общие.</div></div>
+  </div>
+
+  <div class="note mt3"><b>Если пишет «недоступно в вашей стране»:</b> выйдите из всех Google-аккаунтов и войдите заново под одним. На телефоне поставьте приложение «Google Gemini».</div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Gemini · вход</span><span>03</span></div>
+</section>
+
+<!-- ══════════ 05 ИНТЕРФЕЙС ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 1 · <b>Gemini</b></div><div class="pg">04</div></div>
+  <h2>Интерфейс: что где</h2>
+  <div class="lead">Один экран. Восемь мест, которые вам нужны.</div>
+
+  <div class="shot" style="width:176mm">
+    <div class="win">
+      <div class="bar"><span class="dot" style="background:#E8A0A0"></span><span class="dot" style="background:#EBCB8B"></span><span class="dot" style="background:#A3C9A8"></span><span class="url">gemini.google.com/app</span></div>
+      <div class="app" style="height:124mm">
+        <div class="side">
+          <div style="font-size:12pt;color:#6B6257">☰</div>
+          <div class="newbtn pin" style="border-radius:999px"><span class="mk">1</span>＋ Новый чат</div>
+          <div class="slabel">Недавние</div>
+          <div class="sitem on pin"><span class="mk">2</span>План постов на неделю</div>
+          <div class="sitem">Анализ отзывов клиентов</div>
+          <div class="sitem">Скрипт для отдела продаж</div>
+          <div class="slabel">Gems</div>
+          <div class="sitem pin"><span class="mk">3</span>💎 Мой SMM-щик</div>
+          <div class="sitem">💎 Аналитик продаж</div>
+          <div style="margin-top:auto" class="sitem">⚙ Настройки</div>
+        </div>
+        <div class="main">
+          <div class="top">
+            <div class="model pin" style="border-radius:999px"><span class="mk">4</span>Gemini · Быстрая ▾</div>
+            <div style="display:flex;gap:9px;align-items:center"><span class="muted">⠿</span><span class="avatar pin" style="border-radius:50%"><span class="mk">5</span></span></div>
+          </div>
+          <div class="hello">Привет, Азиз</div>
+          <div class="muted" style="font-size:9pt">Чем помочь сегодня?</div>
+          <div class="input">
+            <span class="rnd pin" style="border-radius:50%"><span class="mk">6</span>＋</span>
+            <span class="ph">Спросите Gemini</span>
+            <span class="rnd">🎤</span>
+            <span class="rnd fill pin r" style="border-radius:50%"><span class="mk">7</span>↑</span>
+          </div>
+          <div class="tools">
+            <span class="tool pin" style="border-radius:999px"><span class="mk">8</span>🔎 Deep Research</span>
+            <span class="tool">🖼 Изображение</span>
+            <span class="tool">📄 Canvas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="li"><span class="n">1</span><div><b>Новый чат.</b> <span>Новая тема — всегда новый чат.</span></div></div>
+    <div class="li"><span class="n">2</span><div><b>История чатов.</b> <span>Все прошлые диалоги, можно вернуться.</span></div></div>
+    <div class="li"><span class="n">3</span><div><b>Gems.</b> <span>Ваши помощники — стр. 8.</span></div></div>
+    <div class="li"><span class="n">4</span><div><b>Выбор модели.</b> <span>Быстрая или умная — стр. 5.</span></div></div>
+    <div class="li"><span class="n">5</span><div><b>Аккаунт.</b> <span>Проверьте, что вошли под собой.</span></div></div>
+    <div class="li"><span class="n">6</span><div><b>Плюс «＋».</b> <span>Загрузить файл или фото — стр. 6.</span></div></div>
+    <div class="li"><span class="n">7</span><div><b>Отправить «↑».</b> <span>Или просто Enter.</span></div></div>
+    <div class="li"><span class="n">8</span><div><b>Режимы.</b> <span>Deep Research, Изображение, Canvas.</span></div></div>
+  </div>
+
+  <div class="note mt3">Google часто меняет названия кнопок и моделей. <b>Места на экране остаются те же</b> — ищите по позиции, а не по слову.</div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Gemini · интерфейс</span><span>04</span></div>
+</section>
+
+<!-- ══════════ 06 МОДЕЛИ ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 1 · <b>Gemini</b></div><div class="pg">05</div></div>
+  <h2>Две модели: быстрая и умная</h2>
+  <div class="lead">Переключатель — вверху слева, рядом со словом Gemini.</div>
+
+  <div class="shot" style="width:152mm">
+    <div class="win">
+      <div class="bar"><span class="dot" style="background:#E8A0A0"></span><span class="dot" style="background:#EBCB8B"></span><span class="dot" style="background:#A3C9A8"></span><span class="url">gemini.google.com/app</span></div>
+      <div class="app" style="height:104mm;position:relative">
+        <div class="main">
+          <div class="top">
+            <div class="model pin" style="border-radius:999px"><span class="mk">1</span>Gemini · Быстрая ▾</div>
+            <span class="avatar"></span>
+          </div>
+          <div class="menu" style="left:15px;top:52px;width:78mm">
+            <div class="mi">⚡ Быстрая <small>— короткие задачи</small></div>
+            <div class="mi on pin"><span class="mk">2</span>🧠 Умная (Pro) <small>— сложные задачи</small></div>
+            <div class="mi">🔎 Deep Research <small>— отчёт по интернету</small></div>
+          </div>
+          <div class="input"><span class="rnd">＋</span><span class="ph">Спросите Gemini</span><span class="rnd fill">↑</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cap">1 — нажать на название модели · 2 — выбрать нужную из списка</div>
+
+  <div class="vs mt">
+    <div class="b">
+      <div class="h">⚡ Быстрая</div>
+      <ul>
+        <li>перевести, сократить, переписать</li>
+        <li>идеи для постов и заголовки</li>
+        <li>простой вопрос — быстрый ответ</li>
+      </ul>
+    </div>
+    <div class="b acc">
+      <div class="h">🧠 Умная (Pro)</div>
+      <ul>
+        <li>разбор больших файлов и таблиц</li>
+        <li>стратегия, расчёты, план работы</li>
+        <li>когда быстрая ответила слабо</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec mt">Примеры</div>
+  <div class="grid3">
+    <div class="card"><div class="t">⚡ Быстрая</div><div class="d">«Переведи этот текст на узбекский, коротко».</div></div>
+    <div class="card"><div class="t">🧠 Умная</div><div class="d">«Вот отчёт продаж за 3 месяца — найди, где мы теряем деньги».</div></div>
+    <div class="card"><div class="t">🧠 Умная</div><div class="d">«Составь план запуска нового продукта на 4 недели».</div></div>
+  </div>
+
+  <div class="good mt">
+    <b>Простое правило:</b> начинайте с быстрой. Ответ не устроил — переключите на умную и отправьте тот же запрос ещё раз.
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Gemini · модели</span><span>05</span></div>
+</section>
+
+<!-- ══════════ 07 ФАЙЛЫ ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 1 · <b>Gemini</b></div><div class="pg">06</div></div>
+  <h2>Загрузить файл или фото</h2>
+  <div class="lead">Кнопка «＋» слева в строке ввода.</div>
+
+  <div class="shot" style="width:152mm">
+    <div class="win">
+      <div class="bar"><span class="dot" style="background:#E8A0A0"></span><span class="dot" style="background:#EBCB8B"></span><span class="dot" style="background:#A3C9A8"></span><span class="url">gemini.google.com/app</span></div>
+      <div class="app" style="height:94mm;position:relative">
+        <div class="main">
+          <div class="bub q" style="align-self:flex-end;max-width:60%;margin-bottom:9px">Привет! Помоги разобрать прайс</div>
+          <div class="bub a" style="max-width:76%">Конечно. Прикрепите файл кнопкой «＋» слева внизу и напишите, что нужно найти.</div>
+          <div class="menu" style="left:15px;bottom:112px;width:70mm">
+            <div class="mi pin"><span class="mk">2</span>📁 Загрузить файлы</div>
+            <div class="mi">🖼 Сделать фото</div>
+            <div class="mi">📄 Добавить с Google Диска</div>
+          </div>
+          <div class="input">
+            <span class="rnd pin" style="border-radius:50%"><span class="mk">1</span>＋</span>
+            <span class="ph">Разбери этот прайс и найди 10 самых дорогих позиций</span>
+            <span class="rnd fill pin r" style="border-radius:50%"><span class="mk">3</span>↑</span>
+          </div>
+          <div style="display:flex;gap:7px;margin-top:9px"><span class="tool">📎 Прайс-2026.xlsx</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cap">1 — нажать «＋» · 2 — выбрать откуда · 3 — написать задачу и отправить</div>
+
+  <div class="grid3 mt">
+    <div class="card"><div class="t">Что можно грузить</div><div class="d">PDF · Word · Excel · фото · скриншот экрана.</div></div>
+    <div class="card"><div class="t">Сколько сразу</div><div class="d">Несколько файлов в одном вопросе — можно.</div></div>
+    <div class="card"><div class="t">Важно помнить</div><div class="d">Файл живёт только в этом чате. Новый чат — грузим заново.</div></div>
+  </div>
+
+  <div class="note mt">
+    <b>Всегда пишите задачу вместе с файлом.</b> Не просто «вот прайс», а «вот прайс — сделай таблицу топ-10 по цене и скажи, что убрать».
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Gemini · файлы</span><span>06</span></div>
+</section>
+
+<!-- ══════════ 08 DEEP RESEARCH ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 1 · <b>Gemini</b></div><div class="pg">07</div></div>
+  <h2>Deep Research</h2>
+  <div class="lead">Gemini сам ищет в интернете и собирает готовый отчёт со ссылками.</div>
+
+  <div class="shot" style="width:160mm">
+    <div class="win">
+      <div class="bar"><span class="dot" style="background:#E8A0A0"></span><span class="dot" style="background:#EBCB8B"></span><span class="dot" style="background:#A3C9A8"></span><span class="url">gemini.google.com/app</span></div>
+      <div class="app" style="height:110mm">
+        <div class="main">
+          <div class="bub q" style="align-self:flex-end;max-width:70%;margin-bottom:9px">Конкуренты — кофейни в Ташкенте: цены, фишки, отзывы</div>
+          <div class="pin bare" style="background:#F7F5F1;border-radius:12px;padding:10px 12px;outline:2px solid var(--acc);outline-offset:2.5px">
+            <span class="mk" style="position:absolute;left:-13px;top:-13px">3</span>
+            <b style="color:#3B3B3B">План исследования</b>
+            <div class="muted" style="margin-top:4px;line-height:1.6">
+              1. Найти популярные кофейни Ташкента<br>
+              2. Собрать цены и меню<br>
+              3. Сравнить фишки и отзывы<br>
+              4. Сделать выводы и рекомендации
+            </div>
+            <div style="margin-top:9px;display:flex;gap:7px">
+              <span class="tool pri pin"><span class="mk">4</span>Начать исследование</span>
+              <span class="tool">Изменить план</span>
+            </div>
+          </div>
+          <div class="muted" style="font-size:8pt;margin-top:9px">⏳ Изучено 42 сайта… обычно 5–10 минут</div>
+          <div class="input">
+            <span class="rnd">＋</span><span class="ph pin" style="border-radius:8px;padding:2px 6px"><span class="mk">2</span>Напишите тему подробно: город, ниша, что важно узнать</span><span class="rnd fill">↑</span>
+          </div>
+          <div class="tools">
+            <span class="tool on pin"><span class="mk">1</span>🔎 Deep Research</span>
+            <span class="tool">🖼 Изображение</span>
+            <span class="tool">📄 Canvas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="steps mt">
+    <div class="step"><span class="n">1</span><div class="tx">Под строкой ввода включаем режим <b>Deep Research</b>.</div></div>
+    <div class="step"><span class="n">2</span><div class="tx">Пишем тему <b>подробно</b>: о чём, какой город и ниша, что именно важно узнать.</div></div>
+    <div class="step"><span class="n">3</span><div class="tx">Gemini покажет <b>план</b> — читаем и при желании правим.</div></div>
+    <div class="step"><span class="n">4</span><div class="tx">Жмём <b>«Начать исследование»</b> и ждём 5–10 минут. <span>Вкладку можно закрыть — отчёт сохранится в истории.</span></div></div>
+  </div>
+
+  <div class="good mt3"><b>Как забрать отчёт:</b> внизу ответа есть кнопка <b>«Экспорт в Google Документы»</b> — файл сразу окажется на вашем Google Диске.</div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Gemini · Deep Research</span><span>07</span></div>
+</section>
+
+<!-- ══════════ 09 GEMS ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 1 · <b>Gemini</b></div><div class="pg">08</div></div>
+  <h2>Gems — свой помощник</h2>
+  <div class="lead">Один раз написали инструкцию — дальше он всегда работает по ней.</div>
+
+  <div class="shot" style="width:170mm">
+    <div class="win">
+      <div class="bar"><span class="dot" style="background:#E8A0A0"></span><span class="dot" style="background:#EBCB8B"></span><span class="dot" style="background:#A3C9A8"></span><span class="url">gemini.google.com/gems/create</span></div>
+      <div class="app" style="height:108mm">
+        <div class="side">
+          <div class="newbtn">＋ Новый чат</div>
+          <div class="slabel">Gems</div>
+          <div class="sitem on pin"><span class="mk">1</span>＋ Создать Gem</div>
+          <div class="sitem">💎 Мой SMM-щик</div>
+          <div class="sitem">💎 Аналитик продаж</div>
+        </div>
+        <div class="main">
+          <div style="font-weight:700;color:#3B3B3B;margin-bottom:9px;font-size:10pt">Новый Gem</div>
+          <div style="border:1px solid #E3DED3;border-radius:10px;padding:8px 11px;margin-bottom:9px;color:#8A8079">Название: <span style="color:#3B3B3B;font-weight:600">Мой SMM-щик</span></div>
+          <div class="pin" style="border-radius:10px;border:1px solid #E3DED3;padding:10px 12px;height:34mm;color:#4B4238;line-height:1.6;background:#FBFAF7">
+            <span class="mk">2</span>
+            <span class="muted" style="font-size:7.6pt">Инструкция</span><br>
+            Ты SMM-щик кофейни в Ташкенте. Пишешь на узбекском, коротко и дружелюбно. Всегда даёшь 3 варианта заголовка, а в конце — призыв прийти в кофейню.
+          </div>
+          <div style="display:flex;gap:7px;margin-top:auto;align-items:center">
+            <span class="tool">📎 Добавить файлы</span>
+            <span class="tool pri pin r" style="margin-left:auto"><span class="mk">3</span>Сохранить</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cap">1 — «Создать Gem» · 2 — написать инструкцию · 3 — «Сохранить»</div>
+
+  <div class="grid3 mt">
+    <div class="card"><div class="t">Что писать в инструкции</div><div class="d">Кто ты · для кого пишешь · язык · стиль · что обязательно добавлять в конце.</div></div>
+    <div class="card"><div class="t">Где потом искать</div><div class="d">Слева в меню, раздел <b>Gems</b>. Нажали — и сразу пишете задачу.</div></div>
+    <div class="card"><div class="t">Поделиться с командой</div><div class="d">Внутри Gem → «Поделиться» → отправляете ссылку коллеге.</div></div>
+  </div>
+
+  <div class="note mt">Сделайте 2–3 Gem под свои постоянные задачи: SMM, ответы клиентам, разбор отчётов. Это экономит больше всего времени.</div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Gemini · Gems</span><span>08</span></div>
+</section>
+
+<!-- ══════════ 10 КАРТИНКИ ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 1 · <b>Gemini</b></div><div class="pg">09</div></div>
+  <h2>Генерация изображений</h2>
+  <div class="lead">Режим «Изображение» под строкой ввода.</div>
+
+  <div class="shot" style="width:160mm">
+    <div class="win">
+      <div class="bar"><span class="dot" style="background:#E8A0A0"></span><span class="dot" style="background:#EBCB8B"></span><span class="dot" style="background:#A3C9A8"></span><span class="url">gemini.google.com/app</span></div>
+      <div class="app" style="height:110mm">
+        <div class="main">
+          <div style="display:flex;gap:9px;align-items:flex-end">
+            <div style="width:38mm;height:38mm;border-radius:10px;background:linear-gradient(135deg,#D8C4A0,#B79B72)"></div>
+            <div style="width:38mm;height:38mm;border-radius:10px;background:linear-gradient(135deg,#C8B8DA,#9C86BE)"></div>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <span class="tool pin r"><span class="mk">3</span>⬇ Скачать</span>
+              <span class="tool">↻ Ещё вариант</span>
+            </div>
+          </div>
+          <div class="input">
+            <span class="rnd">＋</span>
+            <span class="ph pin bare" style="color:#5C544A"><span class="mk" style="position:absolute;left:-13px;top:-11px">2</span>Стакан кофе на деревянном столе, утренний свет, вид сверху, для Instagram</span>
+            <span class="rnd fill">↑</span>
+          </div>
+          <div class="tools">
+            <span class="tool">🔎 Deep Research</span>
+            <span class="tool on pin"><span class="mk">1</span>🖼 Изображение</span>
+            <span class="tool">📄 Canvas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cap">1 — включить «Изображение» · 2 — описать картинку · 3 — скачать результат</div>
+
+  <div class="card mt">
+    <div class="sec" style="margin-bottom:3mm">Формула описания</div>
+    <div style="font-size:12.5pt;font-weight:700;line-height:1.6">
+      что на картинке <span style="color:var(--acc)">+</span> где стоит <span style="color:var(--acc)">+</span> свет <span style="color:var(--acc)">+</span> ракурс <span style="color:var(--acc)">+</span> для чего
+    </div>
+    <div class="d" style="margin-top:3mm">Пример: «Стакан кофе на деревянном столе, утренний свет, вид сверху, для Instagram».</div>
+  </div>
+
+  <div class="grid3 mt3">
+    <div class="card"><div class="t">Для поста</div><div class="d">«Букет пионов в вазе на светлом столе, мягкий дневной свет, вид сбоку, для Instagram».</div></div>
+    <div class="card"><div class="t">Для рекламы</div><div class="d">«Баннер: скидка 30%, тёмный фон, золотые буквы, место под текст сверху».</div></div>
+    <div class="card"><div class="t">Изменить готовое</div><div class="d">«Сделай светлее и убери лишние предметы со стола».</div></div>
+  </div>
+
+  <div class="note mt3">Картинки можно использовать для постов и рекламы. <b>Нельзя</b> делать чужие логотипы, лица реальных людей и выдавать сгенерированное фото за настоящее.</div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Gemini · изображения</span><span>09</span></div>
+</section>
+
+<!-- ══════════ 11 ОШИБКИ GEMINI ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 1 · <b>Gemini</b></div><div class="pg">10</div></div>
+  <h2>10 частых ошибок</h2>
+  <div class="lead">Проверьте себя, если ответ не нравится.</div>
+
+  <div class="err">
+    <div class="e"><span class="x">1</span><div><b>Слишком короткий запрос.</b> <span>«Напиши пост» → скучно. Добавьте: о чём, кому, на каком языке.</span></div></div>
+    <div class="e"><span class="x">2</span><div><b>Всё в одном чате.</b> <span>Новая тема — новый чат, иначе Gemini путается.</span></div></div>
+    <div class="e"><span class="x">3</span><div><b>Не указали язык.</b> <span>Пишите прямо: «ответь на узбекском».</span></div></div>
+    <div class="e"><span class="x">4</span><div><b>Не дали пример.</b> <span>Покажите свой старый текст: «пиши в таком же стиле».</span></div></div>
+    <div class="e"><span class="x">5</span><div><b>Сдались после первого ответа.</b> <span>Скажите «короче», «проще», «добавь цифры».</span></div></div>
+    <div class="e"><span class="x">6</span><div><b>Забыли про модель.</b> <span>Сложная задача — включите умную (Pro).</span></div></div>
+    <div class="e"><span class="x">7</span><div><b>Верят цифрам без проверки.</b> <span>Факты, суммы и даты проверяйте сами.</span></div></div>
+    <div class="e"><span class="x">8</span><div><b>Забыли приложить файл.</b> <span>Сначала «＋», потом вопрос.</span></div></div>
+    <div class="e"><span class="x">9</span><div><b>Личные данные клиентов.</b> <span>Паспорта, карты и договоры с данными людей не загружаем.</span></div></div>
+    <div class="e"><span class="x">10</span><div><b>Не сохранили результат.</b> <span>Экспорт в Google Документы или копируем себе.</span></div></div>
+  </div>
+
+  <div class="card mt">
+    <div class="sec" style="margin-bottom:3.5mm">Словарик</div>
+    <div class="dict">
+      <div><b>Промпт</b> <span>— ваш запрос к AI, задание словами.</span></div>
+      <div><b>Модель</b> <span>— «мозг» Gemini: быстрый или умный.</span></div>
+      <div><b>Чат</b> <span>— один диалог, внутри него AI всё помнит.</span></div>
+      <div><b>Gem</b> <span>— помощник с вашей инструкцией.</span></div>
+      <div><b>Deep Research</b> <span>— отчёт по интернету со ссылками.</span></div>
+      <div><b>Экспорт</b> <span>— выгрузить ответ в Google Документы.</span></div>
+    </div>
+  </div>
+
+  <div class="good mt">Возьмите за привычку: не получилось с первого раза — <b>не переписывайте всё заново</b>, просто допишите одно уточнение к тому же чату.</div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Gemini · ошибки и словарик</span><span>10</span></div>
+</section>
+
+<!-- ══════════ 12 NOTEBOOKLM — ЧТО ЭТО ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 2 · <b>NotebookLM</b></div><div class="pg">11</div></div>
+
+  <h2>Что такое NotebookLM</h2>
+  <div class="lead">Тот же AI, но отвечает <b>только по вашим файлам</b>. Открыть: notebooklm.google.com</div>
+
+  <div class="vs">
+    <div class="b">
+      <div class="h">Обычный чат с AI</div>
+      <ul>
+        <li>берёт ответ «из головы» и из интернета</li>
+        <li>может придумать факт</li>
+        <li>сложно проверить, откуда это взято</li>
+      </ul>
+    </div>
+    <div class="b acc">
+      <div class="h">NotebookLM</div>
+      <ul>
+        <li>читает только загруженные вами файлы</li>
+        <li>к каждому ответу даёт ссылку на страницу</li>
+        <li>ничего не выдумывает от себя</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec mt">Зачем это бизнесу</div>
+  <div class="grid3">
+    <div class="card"><div class="ic">📕</div><div class="t">База знаний</div><div class="d">Загрузили регламенты — сотрудник спрашивает и сразу получает ответ со ссылкой на документ.</div></div>
+    <div class="card"><div class="ic">📊</div><div class="t">Разбор документов</div><div class="d">Договоры, отчёты, прайсы — короткий ответ по сути вместо чтения 40 страниц.</div></div>
+    <div class="card"><div class="ic">🎧</div><div class="t">Аудио-обзор</div><div class="d">Из ваших же файлов — подкаст на 10 минут. Удобно слушать в машине.</div></div>
+  </div>
+
+  <div class="sec mt">С чего начать</div>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><div class="tx">Заходим на <b>notebooklm.google.com</b> под тем же аккаунтом Google.</div></div>
+    <div class="step"><span class="n">2</span><div class="tx">Нажимаем <b>«Создать блокнот»</b> и даём ему понятное имя. <span>Например «Кофейня · регламенты».</span></div></div>
+    <div class="step"><span class="n">3</span><div class="tx">Загружаем <b>3–5 своих файлов</b> — и можно задавать вопросы.</div></div>
+  </div>
+
+  <div class="note mt">Бесплатной версии на курсе полностью хватает. <b>Один блокнот = одна тема</b> — так ответы точнее.</div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>NotebookLM · что это</span><span>11</span></div>
+</section>
+
+<!-- ══════════ 13 ИНТЕРФЕЙС NLM ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 2 · <b>NotebookLM</b></div><div class="pg">12</div></div>
+  <h2>Интерфейс: три панели</h2>
+  <div class="lead">Слева — источники. По центру — чат. Справа — студия.</div>
+
+  <div class="shot" style="width:176mm">
+    <div class="win">
+      <div class="bar"><span class="dot" style="background:#E8A0A0"></span><span class="dot" style="background:#EBCB8B"></span><span class="dot" style="background:#A3C9A8"></span><span class="url">notebooklm.google.com</span></div>
+      <div class="app" style="height:120mm;flex-direction:column">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-bottom:1px solid #EDE5D6">
+          <div style="font-weight:700;color:#3B3B3B;font-size:9pt">📓 База знаний кофейни</div>
+          <div style="display:flex;gap:8px;align-items:center"><span class="tool">Поделиться</span><span class="avatar"></span></div>
+        </div>
+        <div style="display:flex;flex:1;min-height:0">
+          <div class="col pin" style="max-width:48mm;border-radius:0;outline-offset:-2px">
+            <span class="mk" style="position:absolute;left:6px;top:6px">1</span>
+            <div class="colhead" style="padding-left:24px">Источники</div>
+            <div class="newbtn pin" style="border-radius:999px"><span class="mk">2</span>＋ Добавить</div>
+            <div class="src"><span class="chk">✓</span> Регламент бариста.pdf</div>
+            <div class="src"><span class="chk">✓</span> Прайс 2026.xlsx</div>
+            <div class="src"><span class="chk">✓</span> сайт-конкурента.uz</div>
+            <div class="src"><span class="chk">✓</span> Видео с обучения</div>
+          </div>
+          <div class="col pin" style="border-radius:0;outline-offset:-2px">
+            <span class="mk" style="position:absolute;left:6px;top:6px">3</span>
+            <div class="colhead" style="padding-left:22px">Чат</div>
+            <div class="bub q">Что делать бариста при жалобе гостя?</div>
+            <div class="bub a">Извиниться, бесплатно заменить напиток и записать жалобу в журнал <span class="cit">1</span>. Если гость всё равно недоволен — позвать менеджера смены <span class="cit">1</span>.</div>
+            <div class="ask pin bare" style="outline:2px solid var(--acc);outline-offset:2px">
+              <span class="mk" style="position:absolute;left:-13px;top:-13px">5</span>
+              <span class="ph">Спросите по источникам…</span><span class="rnd fill">↑</span>
+            </div>
+          </div>
+          <div class="col pin" style="max-width:52mm;border-radius:0;outline-offset:-2px">
+            <span class="mk" style="position:absolute;left:6px;top:6px">4</span>
+            <div class="colhead" style="padding-left:22px">Студия</div>
+            <div class="stcard"><span class="e">🎧</span><div><div class="tt">Аудио-обзор</div><div class="dd">подкаст по вашим файлам</div></div></div>
+            <div class="stcard"><span class="e">📝</span><div><div class="tt">Брифинг</div><div class="dd">краткая выжимка</div></div></div>
+            <div class="stcard"><span class="e">🗂</span><div><div class="tt">Заметки</div><div class="dd">сохранённые ответы</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="li"><span class="n">1</span><div><b>Источники.</b> <span>Все ваши файлы. Галочка = файл участвует в ответе.</span></div></div>
+    <div class="li"><span class="n">2</span><div><b>＋ Добавить.</b> <span>Загрузить новый файл или ссылку — стр. 13.</span></div></div>
+    <div class="li"><span class="n">3</span><div><b>Чат.</b> <span>Ответы только по источникам, с цифрами-ссылками.</span></div></div>
+    <div class="li"><span class="n">4</span><div><b>Студия.</b> <span>Аудио-обзор, брифинг, заметки — стр. 15.</span></div></div>
+    <div class="li"><span class="n">5</span><div><b>Строка вопроса.</b> <span>Пишем вопрос обычными словами.</span></div></div>
+  </div>
+
+  <div class="note mt3">Наверху — <b>название блокнота</b>. Заводите отдельный блокнот на каждую тему: «Кофейня», «Отдел продаж», «Договоры».</div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>NotebookLM · интерфейс</span><span>12</span></div>
+</section>
+
+<!-- ══════════ 14 ИСТОЧНИКИ ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 2 · <b>NotebookLM</b></div><div class="pg">13</div></div>
+  <h2>Источники: как добавить</h2>
+  <div class="lead">Без источников чат не работает. Сначала файлы — потом вопросы.</div>
+
+  <div class="shot" style="width:168mm">
+    <div class="win">
+      <div class="bar"><span class="dot" style="background:#E8A0A0"></span><span class="dot" style="background:#EBCB8B"></span><span class="dot" style="background:#A3C9A8"></span><span class="url">notebooklm.google.com</span></div>
+      <div class="app" style="height:116mm">
+        <div class="side" style="width:46mm;background:#F6F2EA">
+          <div class="colhead">Источники</div>
+          <div class="newbtn pin" style="border-radius:999px"><span class="mk">1</span>＋ Добавить</div>
+          <div class="src"><span class="chk">✓</span> Регламент бариста.pdf</div>
+          <div class="src"><span class="chk">✓</span> Прайс 2026.xlsx</div>
+        </div>
+        <div class="main" style="align-items:center;justify-content:center;background:#FAF8F4">
+          <div style="width:105mm;border:1px solid #E3DED3;border-radius:14px;padding:13px;background:#fff;box-shadow:0 10px 24px rgba(0,0,0,.09)">
+            <div style="font-weight:700;color:#3B3B3B;margin-bottom:9px;font-size:9.4pt">Добавить источники</div>
+            <div class="pin" style="border:1.5px dashed #C9BDA6;border-radius:11px;padding:16px;text-align:center;color:#8A8079;background:#FBF8F2">
+              <span class="mk">2</span>
+              ⬆ Перетащите файлы сюда<br>или <b style="color:var(--acc)">выберите на компьютере</b>
+              <div style="font-size:7.6pt;margin-top:4px">PDF · Word · TXT · аудио</div>
+            </div>
+            <div class="pin" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:11px;border-radius:11px;padding:4px">
+              <span class="mk">3</span>
+              <div class="stcard" style="justify-content:center;padding:7px 4px"><span class="tt">📄 Google&nbsp;Docs</span></div>
+              <div class="stcard" style="justify-content:center;padding:7px 4px"><span class="tt">🔗 Ссылка</span></div>
+              <div class="stcard" style="justify-content:center;padding:7px 4px"><span class="tt">▶ YouTube</span></div>
+              <div class="stcard" style="justify-content:center;padding:7px 4px"><span class="tt">✍ Текст</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="steps mt">
+    <div class="step"><span class="n">1</span><div class="tx">Слева нажимаем <b>«＋ Добавить»</b>.</div></div>
+    <div class="step"><span class="n">2</span><div class="tx">Перетаскиваем файл или жмём <b>«выберите на компьютере»</b>.</div></div>
+    <div class="step"><span class="n">3</span><div class="tx">Или добавляем <b>Google Docs, ссылку на сайт, видео YouTube, свой текст</b>. <span>Обработка занимает 10–30 секунд.</span></div></div>
+  </div>
+
+  <div class="note mt3"><b>Галочки решают всё.</b> Снимите галочку с источника — он перестанет участвовать в ответах. Так можно спрашивать только по одному документу.</div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>NotebookLM · источники</span><span>13</span></div>
+</section>
+
+<!-- ══════════ 15 ЧАТ И ЦИТАТЫ ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 2 · <b>NotebookLM</b></div><div class="pg">14</div></div>
+  <h2>Чат и ссылки-цитаты</h2>
+  <div class="lead">Главная фишка: видно, откуда взят каждый ответ.</div>
+
+  <div class="shot" style="width:160mm">
+    <div class="win">
+      <div class="bar"><span class="dot" style="background:#E8A0A0"></span><span class="dot" style="background:#EBCB8B"></span><span class="dot" style="background:#A3C9A8"></span><span class="url">notebooklm.google.com</span></div>
+      <div class="app" style="height:112mm">
+        <div class="main" style="gap:9px">
+          <div class="bub q" style="align-self:flex-end;max-width:66%">Сделай краткое содержание регламента в 5 пунктах</div>
+          <div class="bub a" style="max-width:86%">1. Открытие смены и проверка оборудования <span class="cit">1</span> · 2. Приветствие гостя за 10 секунд <span class="cit">1</span> · 3. Стандарты напитков <span class="cit">1</span> · 4. Работа с жалобами <span class="cit">1</span> · 5. Закрытие смены и отчёт <span class="cit">1</span>.</div>
+          <div class="bub q" style="align-self:flex-end;max-width:66%">Сколько стоит капучино 400 мл и что входит в стандарт подачи?</div>
+          <div class="bub a" style="max-width:86%">
+            Капучино 400 мл — <b>32 000 сум</b> <span class="cit">2</span>. Стандарт подачи: чашка, стакан воды и салфетка; время приготовления — до 3 минут <span class="cit pin r" style="border-radius:5px"><span class="mk">1</span>1</span>.
+          </div>
+          <div style="display:flex;gap:7px">
+            <span class="tool pin"><span class="mk">2</span>📌 Сохранить в заметку</span>
+            <span class="tool">👍</span><span class="tool">👎</span>
+          </div>
+          <div class="ask pin bare" style="outline:2px solid var(--acc);outline-offset:2.5px;border-radius:16px">
+            <span class="mk" style="position:absolute;left:-13px;top:-13px">3</span>
+            <span class="ph">Спросите по источникам…</span><span class="rnd fill">↑</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cap">1 — синяя цифра: откуда взят ответ · 2 — сохранить в заметки · 3 — строка вопроса</div>
+
+  <div class="grid2 mt">
+    <div class="card">
+      <div class="t">Что спрашивать</div>
+      <div class="d" style="line-height:1.8">
+        «Сделай краткое содержание в 5 пунктах»<br>
+        «Найди все цены и собери таблицу»<br>
+        «Что делать сотруднику при жалобе?»<br>
+        «Составь 10 вопросов для теста по регламенту»
+      </div>
+    </div>
+    <div class="card">
+      <div class="t">Как работают цитаты</div>
+      <div class="d" style="line-height:1.8">
+        Синяя цифра рядом с ответом — это <b>ссылка на источник</b>.<br>
+        Нажали → открылся тот самый кусок документа.<br>
+        Так вы за секунду проверяете, что AI ничего не выдумал.
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>NotebookLM · чат</span><span>14</span></div>
+</section>
+
+<!-- ══════════ 16 СТУДИЯ ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 2 · <b>NotebookLM</b></div><div class="pg">15</div></div>
+  <h2>Студия: аудио-обзор</h2>
+  <div class="lead">Ваши документы превращаются в подкаст, где два голоса всё объясняют.</div>
+
+  <div class="shot" style="width:156mm">
+    <div class="win">
+      <div class="bar"><span class="dot" style="background:#E8A0A0"></span><span class="dot" style="background:#EBCB8B"></span><span class="dot" style="background:#A3C9A8"></span><span class="url">notebooklm.google.com</span></div>
+      <div class="app" style="height:112mm">
+        <div class="main">
+          <div style="font-weight:700;color:#3B3B3B;margin-bottom:9px;font-size:10pt">Студия</div>
+          <div style="border:1px solid #EDE5D6;border-radius:12px;padding:11px;background:#FBFAF7">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span style="width:26px;height:26px;border-radius:8px;background:#EAE4FA;display:flex;align-items:center;justify-content:center;font-size:13px">🎧</span>
+              <div><div style="font-weight:700;font-size:9pt;color:#3B3B3B">Аудио-обзор</div><div class="dd" style="font-size:8pt;color:#9A9086">Разговор двух ведущих по вашим источникам</div></div>
+              <span class="tool pri pin r" style="margin-left:auto"><span class="mk">1</span>Создать</span>
+            </div>
+            <div style="display:flex;gap:7px;margin-top:11px">
+              <span class="tool pin"><span class="mk">2</span>Язык: Русский ▾</span>
+              <span class="tool">⚙ Настроить: на чём сделать акцент</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:11px">
+            <div class="stcard"><span class="e">📝</span><div class="tt">Брифинг</div></div>
+            <div class="stcard"><span class="e">❓</span><div class="tt">FAQ</div></div>
+            <div class="stcard"><span class="e">🕓</span><div class="tt">Хронология</div></div>
+          </div>
+          <div class="pin" style="margin-top:auto;border:1px solid #EDE5D6;border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px;background:#FBFAF7">
+            <span class="mk">3</span>
+            <span class="rnd fill">▶</span>
+            <div style="flex:1;height:5px;border-radius:3px;background:#E3DED3"><div style="width:32%;height:5px;border-radius:3px;background:#5B4BC4"></div></div>
+            <span style="font-size:8pt;color:#9A9086">09:41</span><span class="tool">⬇ Скачать</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="steps mt">
+    <div class="step"><span class="n">1</span><div class="tx">Справа в «Студии» у «Аудио-обзора» нажимаем <b>«Создать»</b>.</div></div>
+    <div class="step"><span class="n">2</span><div class="tx">Перед этим выбираем <b>язык</b> и, если нужно, пишем <b>на чём сделать акцент</b>. <span>Например: «объясни для новых сотрудников».</span></div></div>
+    <div class="step"><span class="n">3</span><div class="tx">Через 3–5 минут слушаем прямо здесь или <b>скачиваем файл</b>.</div></div>
+  </div>
+
+  <div class="good mt3"><b>Где применить:</b> обучение новых сотрудников, разбор длинного договора в дороге, повторение урока курса.</div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>NotebookLM · студия</span><span>15</span></div>
+</section>
+
+<!-- ══════════ 17 ЗАМЕТКИ + ОШИБКИ ══════════ -->
+<section class="page">
+  <div class="head"><div class="kick">Часть 2 · <b>NotebookLM</b></div><div class="pg">16</div></div>
+  <h2>Заметки и частые ошибки</h2>
+  <div class="lead">Последняя страница по инструменту — и можно работать.</div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="t">📌 Заметки — как сохранять</div>
+      <div class="d" style="line-height:1.9">
+        1. Под хорошим ответом жмём <b>«Сохранить в заметку»</b>.<br>
+        2. Заметка появляется в «Студии» справа.<br>
+        3. Заметку можно <b>сделать источником</b> — и спрашивать уже по ней.
+      </div>
+    </div>
+    <div class="card">
+      <div class="t">💡 Правило блокнотов</div>
+      <div class="d" style="line-height:1.9">
+        Один блокнот = одна тема:<br>
+        «Кофейня · регламенты», «Договоры 2026», «Курс AI».<br>
+        Не сваливайте всё в один — ответы станут размытыми.
+      </div>
+    </div>
+  </div>
+
+  <div class="sec mt">Ошибки</div>
+  <div class="err">
+    <div class="e"><span class="x">1</span><div><b>Нет источников.</b> <span>Пустой блокнот не отвечает. Сначала загрузите файлы.</span></div></div>
+    <div class="e"><span class="x">2</span><div><b>Источник не читается.</b> <span>PDF из фотографий — не подходит. Нужен текстовый PDF.</span></div></div>
+    <div class="e"><span class="x">3</span><div><b>Сняты галочки.</b> <span>AI «не видит» файл — проверьте галочку слева.</span></div></div>
+    <div class="e"><span class="x">4</span><div><b>Ответ не на том языке.</b> <span>Допишите в вопросе: «ответь на узбекском».</span></div></div>
+    <div class="e"><span class="x">5</span><div><b>Ждут ответ из интернета.</b> <span>Здесь его нет — только ваши файлы. Для интернета — Gemini.</span></div></div>
+    <div class="e"><span class="x">6</span><div><b>Ссылка на сайт не открылась.</b> <span>Скопируйте текст страницы и добавьте как «Текст».</span></div></div>
+  </div>
+
+  <div class="card mt">
+    <div class="sec" style="margin-bottom:3.5mm">Словарик</div>
+    <div class="dict">
+      <div><b>Блокнот</b> <span>— рабочее пространство под одну тему.</span></div>
+      <div><b>Источник</b> <span>— файл или ссылка, по которой отвечает AI.</span></div>
+      <div><b>Цитата</b> <span>— синяя цифра: откуда взят ответ.</span></div>
+      <div><b>Студия</b> <span>— панель справа: аудио, брифинг, заметки.</span></div>
+      <div><b>Аудио-обзор</b> <span>— подкаст по вашим файлам.</span></div>
+      <div><b>Заметка</b> <span>— сохранённый ответ, можно сделать источником.</span></div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>NotebookLM · заметки и ошибки</span><span>16</span></div>
+</section>
+
+<!-- ══════════ 18 ЗАДАНИЕ ══════════ -->
+<section class="page cover">
+  <div class="brand"><span class="sq"></span> AI STRATEG · КУРС</div>
+
+  <div>
+    <div style="font-size:11pt;font-weight:800;color:var(--acc);letter-spacing:.13em;text-transform:uppercase;margin-bottom:5mm">Задание после урока 1</div>
+    <div style="font-size:32pt;font-weight:800;letter-spacing:-.03em;line-height:1.08;margin-bottom:9mm">Сделайте это сегодня —<br>30 минут</div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="ic">1</div>
+        <div class="t">В Gemini</div>
+        <div class="d" style="line-height:1.9">
+          — Загрузите свой файл (прайс, отчёт, переписку) и задайте по нему 3 вопроса.<br>
+          — Создайте один <b>Gem</b> под свою работу.<br>
+          — Запустите один <b>Deep&nbsp;Research</b> по конкурентам.
+        </div>
+      </div>
+      <div class="card">
+        <div class="ic">2</div>
+        <div class="t">В NotebookLM</div>
+        <div class="d" style="line-height:1.9">
+          — Создайте блокнот по своему бизнесу.<br>
+          — Загрузите 3 источника.<br>
+          — Задайте 3 вопроса и проверьте цитаты.<br>
+          — Сделайте <b>аудио-обзор</b> и послушайте его.
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt">
+      <div class="sec" style="margin-bottom:3.5mm">Чек-лист урока 1</div>
+      <div class="dict" style="line-height:1.9">
+        <div>☐ Вошёл в Gemini под своим аккаунтом</div>
+        <div>☐ Знаю, где переключать модель</div>
+        <div>☐ Загрузил файл и получил разбор</div>
+        <div>☐ Создал свой Gem</div>
+        <div>☐ Создал блокнот в NotebookLM</div>
+        <div>☐ Послушал аудио-обзор</div>
+      </div>
+    </div>
+
+    <div class="note mt">Что-то не получилось — <b>напишите в чат курса</b> и приложите скриншот экрана. Разберём вместе.</div>
+  </div>
+
+  <div class="foot"><span>Урок 1 · Gemini + NotebookLM</span><span>17</span></div>
+</section>
+
+</body>
+</html>
