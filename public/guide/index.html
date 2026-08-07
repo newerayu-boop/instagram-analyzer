@@ -29,6 +29,12 @@
   --acc2:#e8a58a;
   --good:#7fb069;
   --warn:#e0b252;
+  --th:#2f2f2c;          /* jadval sarlavhasi */
+  --boxbg:#2c2c2a;       /* kartochka foni */
+  --blue:#6f9fd8;
+  --blue-b:#9dc0e8;
+  --neg:#e08b7a; --neg-line:#5d4038;
+  --pos:#9ecb86; --pos-line:#3f5a34;
   --serif:'Charter','Bitstream Charter','DejaVu Serif',Georgia,serif;
 }
 *{box-sizing:border-box}
@@ -39,9 +45,33 @@ body{
 }
 @page{size:A4 portrait;margin:0}
 
+/* ============ OCHIQ MAVZU (light sahifalar) ============ */
+.page.light{
+  --bg:#faf9f5; --bg2:#f0eee6; --panel:#ffffff; --panel2:#eeece3;
+  --line:#e4e1d7; --line2:#d3cfc1;
+  --tx:#191917; --tx2:#4d4b46; --tx3:#8a877d;
+  --acc:#c25f3c; --acc2:#a3492b;
+  --th:#efece2; --boxbg:#ffffff;
+  --blue:#3d6ea8; --blue-b:#2f5c92;
+  --warn:#8a6410;
+  --neg:#a8402a; --neg-line:#e2c0b5;
+  --pos:#3d7a2b; --pos-line:#bcd7b0;
+}
+/* mokaplar HAR DOIM qora — Claude'ning haqiqiy koʻrinishi */
+.page.light .ui{
+  --bg:#262624; --bg2:#1f1e1d; --panel:#30302e; --panel2:#3a3a37;
+  --line:#3d3d3a; --line2:#4a4a46;
+  --tx:#f5f4ee; --tx2:#c3c0b6; --tx3:#8f8d84;
+  --acc:#d97757; --acc2:#e8a58a; --warn:#e0b252;
+  color:var(--tx);
+}
+.page.light .ui{box-shadow:0 8px 26px rgba(0,0,0,.18)}
+.box.neg{border-color:var(--neg-line)} .box.neg h4{color:var(--neg)}
+.box.pos{border-color:var(--pos-line)} .box.pos h4{color:var(--pos)}
+
 /* ============ SAHIFA ============ */
 .page{
-  position:relative;width:210mm;height:297mm;background:var(--bg);
+  position:relative;width:210mm;height:297mm;background:var(--bg);color:var(--tx);
   padding:15mm 14mm 13mm;overflow:hidden;
   page-break-after:always;break-after:page;
   counter-increment:pg;
@@ -178,7 +208,7 @@ a{color:var(--acc);text-decoration:none}
 
 /* ============ JADVAL ============ */
 table{width:100%;border-collapse:collapse;font-size:8.6pt}
-th{background:#2f2f2c;color:var(--tx);font-weight:600;text-align:left;padding:2.2mm 2.6mm;
+th{background:var(--th);color:var(--tx);font-weight:600;text-align:left;padding:2.2mm 2.6mm;
   border-bottom:1px solid var(--line2);font-size:8.4pt}
 td{padding:2.1mm 2.6mm;border-bottom:1px solid var(--line);color:var(--tx2);vertical-align:top;line-height:1.35}
 tr:last-child td{border-bottom:none}
@@ -191,13 +221,13 @@ td b{color:var(--tx)}
 .note{border-left:2.6px solid var(--acc);background:rgba(217,119,87,.09);padding:2.8mm 3.4mm;
   border-radius:0 8px 8px 0;font-size:8.7pt;line-height:1.5;color:var(--tx2);margin:3mm 0}
 .note b{color:var(--acc2)}
-.note.blue{border-color:#6f9fd8;background:rgba(111,159,216,.09)}
-.note.blue b{color:#9dc0e8}
+.note.blue{border-color:var(--blue);background:rgba(111,159,216,.10)}
+.note.blue b{color:var(--blue-b)}
 .note.warn{border-color:var(--warn);background:rgba(224,178,82,.09)}
 .note.warn b{color:var(--warn)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3.4mm}
-.box{background:#2c2c2a;border:1px solid var(--line);border-radius:9px;padding:3.4mm}
+.box{background:var(--boxbg);border:1px solid var(--line);border-radius:9px;padding:3.4mm}
 .box h4{color:var(--acc2)}
 .box p{font-size:8.6pt;margin:0}
 .steps{counter-reset:st;padding:0;margin:0;list-style:none}
@@ -246,7 +276,7 @@ td b{color:var(--tx)}
 <g id="i-brain"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-1 5.8V15a3 3 0 0 0 4 2.8V20M15 4a3 3 0 0 1 3 3 3 3 0 0 1 1 5.8V15a3 3 0 0 1-4 2.8V20M12 4v16"/></g>
 </defs></svg>
 
-<!-- ================= MUQOVA ================= -->
+
 <div class="page" style="padding:0;justify-content:flex-end">
   <div style="position:absolute;inset:0;background:
      radial-gradient(58% 44% at 78% 12%,rgba(217,119,87,.20),transparent 70%),
@@ -261,7 +291,7 @@ td b{color:var(--tx)}
 
   <div style="position:relative;padding:0 14mm 26mm">
     <div style="font-size:8.6pt;letter-spacing:.24em;text-transform:uppercase;color:var(--acc);font-weight:700;margin-bottom:5mm">
-      AI STRATEG · 2-DARS
+      AI STRATEG · CLAUDE
     </div>
     <div style="font-family:var(--serif);font-size:46pt;line-height:1.02;color:var(--tx);letter-spacing:-.02em">
       Claude<br>toʻliq<br>qoʻllanma
@@ -280,7 +310,6 @@ td b{color:var(--tx)}
       <span class="chip" style="font-size:8.4pt;padding:1.6mm 3.4mm">Loyihalar</span>
       <span class="chip" style="font-size:8.4pt;padding:1.6mm 3.4mm">Artefaktlar</span>
       <span class="chip" style="font-size:8.4pt;padding:1.6mm 3.4mm">Limitlar</span>
-      <span class="chip" style="font-size:8.4pt;padding:1.6mm 3.4mm">AI-agentlar</span>
     </div>
 
     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:16mm;
@@ -297,56 +326,8 @@ td b{color:var(--tx)}
   </div>
 </div>
 
-<!-- ================= MUNDARIJA ================= -->
-<div class="page">
-  <div class="ph"><span>Claude qoʻllanma</span><span><b>Mundarija</b></span></div>
-  <h1>Mundarija</h1>
-  <p class="lead" style="margin-bottom:6mm">Qoʻllanma 6 boʻlimdan iborat. Har bir sahifada: qisqa matn → rasm → izoh.</p>
 
-  <div class="grid2" style="gap:5mm 8mm">
-    <div>
-      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700;margin-bottom:3mm">1-boʻlim · Boshlash</div>
-      <div class="kv"><i>01</i><div><b>Roʻyxatdan oʻtish</b> — claude.ai<br><small>Google orqali 2 daqiqada</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">3</span></div>
-      <div class="kv"><i>02</i><div><b>Interfeys xaritasi</b> — 11 ta nuqta<br><small>Butun ekran bir rasmda</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">4</span></div>
-      <div class="kv"><i>03</i><div><b>Chap panel</b> — har bir tugma<br><small>Home, Chats, Projects, Artifacts…</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">5</span></div>
-      <div class="kv"><i>04</i><div><b>Yozish oynasi</b> — pastki panel<br><small>+, Chat/Cowork, model, mikrofon</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">6</span></div>
-
-      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700;margin:6mm 0 3mm">2-boʻlim · Pul va limit</div>
-      <div class="kv"><i>05</i><div><b>Tariflar jadvali</b><br><small>Free · Pro · Max 5x · Max 20x · Team</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">7</span></div>
-      <div class="kv"><i>06</i><div><b>Oʻzbekistondan sotib olish</b><br><small>Dollar karta, 3 ta usul</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">8</span></div>
-      <div class="kv"><i>07</i><div><b>Tokenlar va limitlar</b><br><small>5 soatlik sessiya + haftalik limit</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">9</span></div>
-    </div>
-
-    <div>
-      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700;margin-bottom:3mm">3-boʻlim · Modellar</div>
-      <div class="kv"><i>08</i><div><b>Qaysi model nima qiladi</b><br><small>Fable 5 · Opus 5 · Sonnet 5 · Haiku 4.5</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">10</span></div>
-      <div class="kv"><i>09</i><div><b>Effort: Low / Medium / High</b><br><small>Qanchalik chuqur oʻylasin</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">11</span></div>
-
-      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700;margin:6mm 0 3mm">4-boʻlim · Funksiyalar</div>
-      <div class="kv"><i>10</i><div><b>Projects — loyihalar</b><br><small>Doimiy xotira va qoidalar</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">12</span></div>
-      <div class="kv"><i>11</i><div><b>Artifacts — artefaktlar</b><br><small>Ochish, tahrirlash, yuklab olish</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">13</span></div>
-      <div class="kv"><i>12</i><div><b>Fayl yuklash</b><br><small>PDF, Word, Excel, rasm — limitlar</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">14</span></div>
-      <div class="kv"><i>13</i><div><b>Qolgan funksiyalar</b><br><small>Cowork, Scheduled, Design, Code…</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">15</span></div>
-      <div class="kv"><i>14</i><div><b>Sozlamalar (Settings)</b><br><small>Barcha boʻlimlar</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">16</span></div>
-
-      <div style="font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700;margin:6mm 0 3mm">5–6-boʻlim · Amaliyot</div>
-      <div class="kv"><i>15</i><div><b>Web · Mobil · Desktop</b><br><small>Farqi va oʻrnatish</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">17</span></div>
-      <div class="kv"><i>16</i><div><b>4 ta AI-agentni oʻrnatish</b><br><small>ai-sovga.vercel.app — batafsil</small></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">18</span></div>
-      <div class="kv"><i>17</i><div><b>Xatolar, savollar, checklist</b></div><span style="margin-left:auto;color:var(--tx3);font-size:8.6pt;padding-left:3mm">21</span></div>
-    </div>
-  </div>
-
-  <div class="note blue" style="margin-top:auto">
-    <b>Qanday oʻqish kerak?</b> Har bir rasmda toʻq sariq raqamlar bor: <span class="n" style="display:inline-flex;width:4mm;height:4mm;font-size:6.6pt;vertical-align:-.5mm">1</span>
-    <span class="n" style="display:inline-flex;width:4mm;height:4mm;font-size:6.6pt;vertical-align:-.5mm">2</span>
-    <span class="n" style="display:inline-flex;width:4mm;height:4mm;font-size:6.6pt;vertical-align:-.5mm">3</span>.
-    Rasm ostida shu raqamlarning izohi yozilgan. Avval rasmga qarang, keyin izohni oʻqing.
-  </div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-<!-- ================= 01. ROʻYXATDAN OʻTISH ================= -->
-<div class="page">
+<div class="page light">
   <div class="ph"><span>1-boʻlim · Boshlash</span><span><b>01 · Roʻyxatdan oʻtish</b></span></div>
   <span class="sect-no">01-qadam</span>
   <h1>Roʻyxatdan oʻtish: claude.ai</h1>
@@ -417,7 +398,7 @@ td b{color:var(--tx)}
   <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
 </div>
 
-<!-- ================= 02. INTERFEYS XARITASI ================= -->
+
 <div class="page">
   <div class="ph"><span>1-boʻlim · Boshlash</span><span><b>02 · Interfeys xaritasi</b></span></div>
   <span class="sect-no">02-qadam</span>
@@ -473,7 +454,7 @@ td b{color:var(--tx)}
     </div>
 
     <!-- markerlar: chap panel uchun chegara chizigʻida -->
-    <div class="mk" style="--x:52%;--y:5%">1</div>
+    <div class="mk" style="--x:13.5%;--y:5%">1</div>
     <div class="mk" style="--x:22%;--y:14%">2</div>
     <div class="mk" style="--x:22%;--y:23%">3</div>
     <div class="mk" style="--x:22%;--y:40%">4</div>
@@ -510,8 +491,8 @@ td b{color:var(--tx)}
 
   <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
 </div>
-<!-- ================= 03. CHAP PANEL ================= -->
-<div class="page">
+
+<div class="page light">
   <div class="ph"><span>1-boʻlim · Boshlash</span><span><b>03 · Chap panel</b></span></div>
   <span class="sect-no">03-qadam</span>
   <h1>Chap panel — har bir tugma</h1>
@@ -567,8 +548,8 @@ td b{color:var(--tx)}
       <div class="kv"><i>2</i><div><b>Home</b> — oddiy foydalanuvchi rejimi.<br><b>Code</b> — dasturchilar uchun. Boshlovchiga hozircha kerak emas.</div></div>
       <div class="kv"><i>3</i><div><b>+ New</b> — yangi toza suhbat. Mavzu oʻzgarganda albatta yangi suhbat oching.</div></div>
       <div class="kv"><i>4</i><div><b>Chats and tasks</b> — barcha eski suhbatlaringiz roʻyxati. Hech narsa yoʻqolmaydi.</div></div>
-      <div class="kv"><i>5</i><div><b>Projects</b> — loyihalar. Bu yerda Claude sizning fayllaringizni va qoidalaringizni <b>doim eslab turadi</b>. Eng kuchli funksiya. (10-boʻlim)</div></div>
-      <div class="kv"><i>6</i><div><b>Artifacts</b> — Claude yaratgan tayyor natijalar: sayt, jadval, prezentatsiya, hujjat. Hammasi bir joyda. (11-boʻlim)</div></div>
+      <div class="kv"><i>5</i><div><b>Projects</b> — loyihalar. Bu yerda Claude sizning fayllaringizni va qoidalaringizni <b>doim eslab turadi</b>. Eng kuchli funksiya. (08-boʻlim)</div></div>
+      <div class="kv"><i>6</i><div><b>Artifacts</b> — Claude yaratgan tayyor natijalar: sayt, jadval, prezentatsiya, hujjat. Hammasi bir joyda. (09-boʻlim)</div></div>
       <div class="kv"><i>7</i><div><b>Scheduled</b> — jadval boʻyicha ishlar. Masalan: «har kuni ertalab 9:00 da kontent reja tayyorla».</div></div>
       <div class="kv"><i>8</i><div><b>Customize</b> — Claude'ni oʻzingizga moslash: javob uslubi, xotira, ulanishlar (Google Drive, Notion…).</div></div>
       <div class="kv"><i>9</i><div><b>Pinned</b> — mahkamlangan loyiha va suhbatlar. Kerakli suhbat ustiga sichqoncha bilan boring → <b>«…»</b> → <b>Pin</b>.</div></div>
@@ -600,8 +581,8 @@ td b{color:var(--tx)}
   <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
 </div>
 
-<!-- ================= 04. YOZISH OYNASI ================= -->
-<div class="page">
+
+<div class="page light">
   <div class="ph"><span>1-boʻlim · Boshlash</span><span><b>04 · Yozish oynasi</b></span></div>
   <span class="sect-no">04-qadam</span>
   <h1>Yozish oynasi — pastki panel</h1>
@@ -635,11 +616,11 @@ td b{color:var(--tx)}
 
   <ul class="legend" style="margin-top:5mm">
     <li><span class="n">1</span><span><b>Matn maydoni</b> — savolingizni yozasiz. Yangi qator uchun <b>Shift + Enter</b>, yuborish uchun <b>Enter</b>.</span></li>
-    <li><span class="n">2</span><span><b>+ (plyus)</b> — fayl qoʻshish: PDF, Word, Excel, rasm, ekran surati, Google Drive. (12-boʻlim)</span></li>
+    <li><span class="n">2</span><span><b>+ (plyus)</b> — fayl qoʻshish: PDF, Word, Excel, rasm, ekran surati, Google Drive. (10-boʻlim)</span></li>
     <li><span class="n">3</span><span><b>Chat</b> — oddiy suhbat. Savol berasiz — javob olasiz. 95% ish shu rejimda.</span></li>
     <li><span class="n">4</span><span><b>Cowork</b> — uzoq va katta vazifa rejimi. Claude oʻzi bir necha qadam bajaradi (papka bilan ishlash, koʻp fayl).</span></li>
-    <li><span class="n">5</span><span><b>Model nomi</b> — bosing va modelni almashtiring: Fable 5 / Opus 5 / Sonnet 5 / Haiku 4.5. (8-boʻlim)</span></li>
-    <li><span class="n">6</span><span><b>Effort</b> — «qanchalik chuqur oʻylasin»: Low, Medium, High. (9-boʻlim)</span></li>
+    <li><span class="n">5</span><span><b>Model nomi</b> — bosing va modelni almashtiring: Fable 5 / Opus 5 / Sonnet 5 / Haiku 4.5. (05-boʻlim)</span></li>
+    <li><span class="n">6</span><span><b>Effort</b> — «qanchalik chuqur oʻylasin»: Low, Medium, High. (06-boʻlim)</span></li>
     <li><span class="n">7</span><span><b>Mikrofon</b> — gapirasiz, Claude matnga aylantiradi. Oʻzbekcha ham tushunadi.</span></li>
     <li><span class="n">8</span><span><b>Ovozli rejim</b> — Claude bilan jonli gaplashasiz, u ovoz bilan javob beradi.</span></li>
   </ul>
@@ -647,13 +628,13 @@ td b{color:var(--tx)}
   <div class="rule"></div>
   <h3>Yaxshi soʻrov qanday yoziladi?</h3>
   <div class="grid2" style="gap:5mm">
-    <div class="box" style="border-color:#5d4038">
-      <h4 style="color:#e08b7a">✕ Yomon soʻrov</h4>
+    <div class="box neg">
+      <h4>✕ Yomon soʻrov</h4>
       <p class="mono" style="font-size:8.4pt;color:var(--tx3)">"Post yoz"</p>
       <small style="margin-top:2mm">Claude kim uchun, nima haqida, qanday uslubda yozishni bilmaydi. Javob umumiy chiqadi.</small>
     </div>
-    <div class="box" style="border-color:#3f5a34">
-      <h4 style="color:#9ecb86">✓ Yaxshi soʻrov</h4>
+    <div class="box pos">
+      <h4>✓ Yaxshi soʻrov</h4>
       <p class="mono" style="font-size:8.4pt;color:var(--tx2)">"Sen — Instagram marketolog. Mening auditoriyam: 25–35 yosh, Toshkentdagi kichik biznes egalari. Karusel uchun 6 ta slayd matni yoz. Til: oʻzbekcha, sodda. Har slayd 20 soʻzdan oshmasin."</p>
     </div>
   </div>
@@ -661,10 +642,750 @@ td b{color:var(--tx)}
 
   <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
 </div>
-<!-- ================= 05. TARIFLAR ================= -->
+
 <div class="page">
-  <div class="ph"><span>2-boʻlim · Pul va limit</span><span><b>05 · Tariflar</b></span></div>
+  <div class="ph"><span>2-boʻlim · Modellar va limit</span><span><b>05 · Qaysi model?</b></span></div>
   <span class="sect-no">05-qadam</span>
+  <h1>Modellar — qaysi biri nima qiladi</h1>
+  <p style="margin-bottom:4mm"><b>Model</b> — bu Claude'ning «miyasi». Har birining tezligi va kuchi har xil. Yozish oynasida model nomini bosib almashtirasiz.</p>
+
+  <div class="grid2" style="gap:6mm;align-items:start">
+    <div>
+      <!-- MODEL TANLASH MENYUSI -->
+      <div class="ui" style="height:93mm;display:block;padding:4mm;background:var(--bg)">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:2.4mm">
+          <div class="menu" style="width:56mm;padding:1.2mm">
+            <div style="font-size:6.8pt;color:var(--tx3);padding:.8mm 2.2mm">Model</div>
+            <div style="padding:1.1mm 2.2mm;display:block">Fable 5<br><small style="font-size:6.4pt">Eng kuchli · uzoq vazifalar</small></div>
+            <div style="padding:1.1mm 2.2mm;display:block">Opus 5<br><small style="font-size:6.4pt">Murakkab tahlil, kod</small></div>
+            <div class="on" style="padding:1.1mm 2.2mm;display:block">Sonnet 5 ✓<br><small style="font-size:6.4pt;color:#c3c0b6">Tezlik + aql · kundalik ish</small></div>
+            <div style="padding:1.1mm 2.2mm;display:block">Haiku 4.5<br><small style="font-size:6.4pt">Eng tez · oddiy savollar</small></div>
+            <div class="sep"></div>
+            <div style="font-size:6.8pt;color:var(--tx3);padding:.8mm 2.2mm">Effort</div>
+            <div style="padding:1mm 2.2mm">Low</div>
+            <div class="on" style="padding:1mm 2.2mm">Medium ✓</div>
+            <div style="padding:1mm 2.2mm">High</div>
+          </div>
+        </div>
+        <div class="composer">
+          <div class="ph2" style="padding:1mm 1mm 5mm">Savolingizni yozing…</div>
+          <div class="crow">
+            <div class="cl"><span class="plus">+</span><span class="seg"><span class="on">Chat</span><span>Cowork</span></span></div>
+            <div class="cr"><span class="mdl" style="border:1px solid var(--acc);border-radius:5px;padding:.8mm 2mm">Sonnet 5</span><span class="eff">Medium ⌄</span></div>
+          </div>
+        </div>
+        <div class="mk" style="--x:76%;--y:86%">1</div>
+        <div class="mk" style="--x:12%;--y:22%">2</div>
+        <div class="mk" style="--x:12%;--y:62%">3</div>
+      </div>
+      <ul class="legend one" style="margin-top:2.6mm">
+        <li><span class="n">1</span><span><b>Model nomini bosing</b> — yuqorida menyu ochiladi.</span></li>
+        <li><span class="n">2</span><span><b>Model roʻyxati</b> — kerakligini tanlaysiz.</span></li>
+        <li><span class="n">3</span><span><b>Effort</b> — oʻylash chuqurligi (06-boʻlim).</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Tezlik va kuch</h3>
+      <svg viewBox="0 0 300 132" style="width:100%;height:auto">
+        <g font-family="Inter">
+          <rect x="0" y="4" width="6" height="6" rx="1" fill="#d97757"/><text x="10" y="9.5" fill="#8f8d84" font-size="7">Kuch (aql)</text>
+          <rect x="58" y="4" width="6" height="6" rx="1" fill="#6f9fd8"/><text x="68" y="9.5" fill="#8f8d84" font-size="7">Tezlik</text>
+
+          <text x="0" y="30" fill="#f5f4ee" font-size="8" font-weight="700">Fable 5</text>
+          <rect x="62" y="22" width="228" height="8" rx="2" fill="#d97757"/>
+          <rect x="62" y="32" width="68" height="6" rx="2" fill="#6f9fd8"/>
+
+          <text x="0" y="58" fill="#f5f4ee" font-size="8" font-weight="700">Opus 5</text>
+          <rect x="62" y="50" width="200" height="8" rx="2" fill="#d97757"/>
+          <rect x="62" y="60" width="125" height="6" rx="2" fill="#6f9fd8"/>
+
+          <text x="0" y="86" fill="#f5f4ee" font-size="8" font-weight="700">Sonnet 5</text>
+          <rect x="62" y="78" width="168" height="8" rx="2" fill="#d97757"/>
+          <rect x="62" y="88" width="205" height="6" rx="2" fill="#6f9fd8"/>
+
+          <text x="0" y="114" fill="#f5f4ee" font-size="8" font-weight="700">Haiku 4.5</text>
+          <rect x="62" y="106" width="112" height="8" rx="2" fill="#d97757"/>
+          <rect x="62" y="116" width="240" height="6" rx="2" fill="#6f9fd8"/>
+        </g>
+      </svg>
+
+      <h3 style="margin-top:5mm">Xotira hajmi (bir suhbatda)</h3>
+      <svg viewBox="0 0 300 70" style="width:100%;height:auto">
+        <g font-family="Inter">
+          <text x="0" y="16" fill="#c3c0b6" font-size="8">Fable 5 · Opus 5 · Sonnet 5</text>
+          <rect x="0" y="20" width="290" height="12" rx="3" fill="#d97757"/>
+          <text x="145" y="29.5" fill="#241009" font-size="8" font-weight="800" text-anchor="middle">1 000 000 token ≈ 2 500 bet</text>
+
+          <text x="0" y="52" fill="#c3c0b6" font-size="8">Haiku 4.5</text>
+          <rect x="0" y="56" width="58" height="12" rx="3" fill="#5f7fa8"/>
+          <text x="64" y="65.5" fill="#8f8d84" font-size="7.5">200 000 token ≈ 500 bet</text>
+        </g>
+      </svg>
+      <small style="margin-top:2mm">Xotira katta boʻlsa — uzun hujjat va uzun suhbatni unutmaydi.</small>
+    </div>
+  </div>
+
+  <div class="tw" style="margin-top:4mm">
+    <table>
+      <tr><th style="width:28mm">Model</th><th style="width:44mm">Nima uchun</th><th>Amaliy misol</th><th style="width:26mm">Tavsiya</th></tr>
+      <tr>
+        <td><b style="color:var(--acc2)">Fable 5</b></td>
+        <td>Eng kuchli. Uzoq, koʻp bosqichli vazifalar.</td>
+        <td>«Butun kurs dasturini modul-modul yozib chiq, har moduliga uy vazifasi qoʻsh».</td>
+        <td><small>Kam ishlating — limit tez tugaydi.</small></td>
+      </tr>
+      <tr style="background:rgba(217,119,87,.07)">
+        <td><b style="color:var(--acc2)">Opus 5</b></td>
+        <td>Murakkab tahlil, strategiya, kod, katta hujjat.</td>
+        <td>«Raqobatchilarning 5 ta saytini tahlil qil va bizga strategiya yoz».</td>
+        <td><small>Ogʻir ish uchun.</small></td>
+      </tr>
+      <tr style="background:rgba(127,176,105,.08)">
+        <td><b style="color:#9ecb86">Sonnet 5</b><br><small>ASOSIY</small></td>
+        <td><b>Tezlik va aql muvozanati.</b> Kunlik ishning 90% i.</td>
+        <td>«Reels uchun 5 ta ssenariy yoz», «bu matnni tahrir qil», «karusel matni».</td>
+        <td><small><b>Doim shuni qoʻying.</b></small></td>
+      </tr>
+      <tr>
+        <td><b>Haiku 4.5</b></td>
+        <td>Eng tez va eng arzon. Oddiy ish.</td>
+        <td>«Bu matnni oʻzbekchaga oʻgir», «10 ta sarlavha oʻylab top».</td>
+        <td><small>Limitni tejash uchun.</small></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="note" style="margin-top:auto"><b>Qisqa qoida:</b> bilmasangiz — <b>Sonnet 5</b>. Javob sayoz boʻlsa — <b>Opus 5</b> ga oʻting va qayta soʻrang.</div>
+
+  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
+</div>
+
+
+<div class="page">
+  <div class="ph"><span>2-boʻlim · Modellar va limit</span><span><b>06 · Effort</b></span></div>
+  <span class="sect-no">06-qadam</span>
+  <h1>Effort — «qanchalik chuqur oʻylasin»</h1>
+  <p style="margin-bottom:5mm">Model yonida <b>Low / Medium / High</b> yozuvi bor. Bu — Claude javob berishdan oldin qancha «oʻylashi». Chuqurroq oʻylasa — javob yaxshiroq, lekin sekinroq va limit koʻproq ketadi.</p>
+
+  <div class="grid3" style="gap:4mm">
+    <div class="box" style="border-color:#4a6a8a">
+      <div style="font-size:8pt;color:#8fb8dd;font-weight:700;letter-spacing:.1em;margin-bottom:2mm">LOW</div>
+      <h4>Tez javob</h4>
+      <p style="margin-bottom:2.5mm">Deyarli oʻylamaydi, darrov yozadi.</p>
+      <small><b style="color:var(--tx2)">Qachon:</b> tarjima, qisqartirish, sarlavha, oddiy savol, matnni tahrirlash.</small>
+      <div style="margin-top:3mm;height:2.4mm;background:#3d3d3a;border-radius:3px"><div style="width:25%;height:100%;background:#6f9fd8;border-radius:3px"></div></div>
+      <small style="margin-top:1.4mm">Limit sarfi: kam</small>
+    </div>
+    <div class="box" style="border-color:#6d4a3a">
+      <div style="font-size:8pt;color:var(--acc2);font-weight:700;letter-spacing:.1em;margin-bottom:2mm">MEDIUM · standart</div>
+      <h4>Muvozanat</h4>
+      <p style="margin-bottom:2.5mm">Biroz oʻylaydi, keyin yozadi.</p>
+      <small><b style="color:var(--tx2)">Qachon:</b> post, ssenariy, kontent reja, xat, sotuv matni. <b style="color:var(--acc2)">Kunlik ish uchun shu.</b></small>
+      <div style="margin-top:3mm;height:2.4mm;background:#3d3d3a;border-radius:3px"><div style="width:55%;height:100%;background:var(--acc);border-radius:3px"></div></div>
+      <small style="margin-top:1.4mm">Limit sarfi: oʻrtacha</small>
+    </div>
+    <div class="box" style="border-color:#7a5f2e">
+      <div style="font-size:8pt;color:var(--warn);font-weight:700;letter-spacing:.1em;margin-bottom:2mm">HIGH</div>
+      <h4>Chuqur tahlil</h4>
+      <p style="margin-bottom:2.5mm">Uzoq oʻylaydi, tekshiradi, qayta koʻradi.</p>
+      <small><b style="color:var(--tx2)">Qachon:</b> strategiya, biznes-reja, murakkab hisob, katta hujjat tahlili, kod.</small>
+      <div style="margin-top:3mm;height:2.4mm;background:#3d3d3a;border-radius:3px"><div style="width:100%;height:100%;background:var(--warn);border-radius:3px"></div></div>
+      <small style="margin-top:1.4mm">Limit sarfi: koʻp</small>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <h3>Qaysi model + qaysi effort? — qaror sxemasi</h3>
+  <svg viewBox="0 0 620 210" style="width:100%;height:auto;margin-top:2mm">
+    <defs><marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 z" fill="#8f8d84"/></marker></defs>
+    <g font-family="Inter" fill="#f5f4ee">
+      <!-- start -->
+      <rect x="0" y="82" width="118" height="40" rx="8" fill="#30302e" stroke="#4a4a46"/>
+      <text x="59" y="99" font-size="9.5" font-weight="700" text-anchor="middle">Vazifangiz</text>
+      <text x="59" y="112" font-size="8" fill="#8f8d84" text-anchor="middle">qanchalik ogʻir?</text>
+
+      <line x1="118" y1="102" x2="160" y2="30" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
+      <line x1="118" y1="102" x2="160" y2="102" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
+      <line x1="118" y1="102" x2="160" y2="176" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
+
+      <!-- oddiy -->
+      <rect x="168" y="8" width="180" height="44" rx="8" fill="#2c3a48" stroke="#4a6a8a"/>
+      <text x="180" y="26" font-size="8.6" font-weight="700">Oddiy va tez</text>
+      <text x="180" y="40" font-size="7.6" fill="#c3c0b6">tarjima · sarlavha · qisqartirish</text>
+      <line x1="348" y1="30" x2="392" y2="30" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
+      <rect x="400" y="8" width="216" height="44" rx="8" fill="#30302e" stroke="#5f7fa8"/>
+      <text x="412" y="27" font-size="9.4" font-weight="800" fill="#9dc0e8">Haiku 4.5 · Low</text>
+      <text x="412" y="41" font-size="7.6" fill="#8f8d84">tez, limitni deyarli sarflamaydi</text>
+
+      <!-- kundalik -->
+      <rect x="168" y="80" width="180" height="44" rx="8" fill="#3a2f2a" stroke="#6d4a3a"/>
+      <text x="180" y="98" font-size="8.6" font-weight="700">Kundalik kontent</text>
+      <text x="180" y="112" font-size="7.6" fill="#c3c0b6">post · reels · karusel · xat</text>
+      <line x1="348" y1="102" x2="392" y2="102" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
+      <rect x="400" y="80" width="216" height="44" rx="8" fill="#30302e" stroke="#d97757"/>
+      <text x="412" y="99" font-size="9.4" font-weight="800" fill="#e8a58a">Sonnet 5 · Medium</text>
+      <text x="412" y="113" font-size="7.6" fill="#8f8d84">ishning 90% i shu yerda</text>
+
+      <!-- ogir -->
+      <rect x="168" y="152" width="180" height="44" rx="8" fill="#3a3428" stroke="#7a5f2e"/>
+      <text x="180" y="170" font-size="8.6" font-weight="700">Ogʻir va muhim</text>
+      <text x="180" y="184" font-size="7.6" fill="#c3c0b6">strategiya · tahlil · kod</text>
+      <line x1="348" y1="174" x2="392" y2="174" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
+      <rect x="400" y="152" width="216" height="44" rx="8" fill="#30302e" stroke="#e0b252"/>
+      <text x="412" y="171" font-size="9.4" font-weight="800" fill="#e0b252">Opus 5 · High</text>
+      <text x="412" y="185" font-size="7.6" fill="#8f8d84">sekinroq, lekin eng chuqur javob</text>
+    </g>
+  </svg>
+
+  <div class="note blue" style="margin-top:5mm"><b>Amaliy usul:</b> avval <b>Sonnet 5 · Medium</b> bilan soʻrang.
+  Javob yoqmasa — pastdagi <b>«Retry»</b> tugmasini bosing va <b>Opus 5 · High</b> ni tanlang. Bir xil savolni ikki xil model bilan solishtiring.</div>
+
+  <div class="grid3" style="margin-top:auto">
+    <div class="box"><h4>Sekin ishlayapti?</h4><p>Effort'ni <b>Low</b> ga tushiring yoki <b>Haiku 4.5</b> ga oʻting.</p></div>
+    <div class="box"><h4>Javob yuzaki?</h4><p><b>High</b> qoʻying va soʻrovga <b>kontekst</b> qoʻshing.</p></div>
+    <div class="box"><h4>Limit tez tugayapti?</h4><p><b>Opus</b> va <b>High</b> dan kamroq foydalaning.</p></div>
+  </div>
+
+  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
+</div>
+
+<div class="page light">
+  <div class="ph"><span>2-boʻlim · Modellar va limit</span><span><b>07 · Limit va tokenlar</b></span></div>
+  <span class="sect-no">07-qadam</span>
+  <h1>Tokenlar va limitlar</h1>
+  <p style="margin-bottom:4mm"><b>Token</b> — matnning kichik boʻlagi. Taxminan: <b>1 soʻz ≈ 1,5 token</b>. Siz yozgan matn ham, Claude yozgan javob ham token sarflaydi. Katta PDF yuklasangiz — koʻp token ketadi.</p>
+
+  <div class="grid2" style="gap:6mm">
+    <div>
+      <h3>Limit qanday ishlaydi?</h3>
+      <div class="kv"><i>1</i><div><b>5 soatlik sessiya.</b> Birinchi xabaringizdan 5 soat sanaladi. Shu ichida ma'lum miqdorda ishlatasiz. 5 soat tugagach — limit yangilanadi.</div></div>
+      <div class="kv"><i>2</i><div><b>Haftalik limit.</b> Bundan tashqari butun haftaga ham chegara bor. U belgilangan kunda yangilanadi.</div></div>
+      <div class="kv"><i>3</i><div><b>Opus alohida.</b> Eng kuchli model (Opus) uchun alohida haftalik limit bor.</div></div>
+      <div class="note warn">Limit tugasa Claude yozadi: <span class="mono">«You're out of usage»</span> va qachon yangilanishini koʻrsatadi. Bu — xato emas, shunchaki kutish kerak.</div>
+
+      <h3 style="margin-top:5mm">Limitni qanday tejash mumkin?</h3>
+      <div class="kv"><i>✓</i><div>Oddiy ish uchun <b>Sonnet 5</b> ishlating, <b>Opus 5</b> ni faqat ogʻir ishga qoldiring.</div></div>
+      <div class="kv"><i>✓</i><div><b>Effort: Low</b> qoʻying — oddiy savollar uchun yetarli.</div></div>
+      <div class="kv"><i>✓</i><div>Uzun suhbatni <b>yopib, yangi suhbat</b> oching. Uzun suhbatda har savol butun tarixni qayta oʻqiydi.</div></div>
+      <div class="kv"><i>✓</i><div>Bitta 200 betlik PDF oʻrniga <b>kerakli 10 betini</b> yuklang.</div></div>
+      <div class="kv"><i>✓</i><div>Doimiy fayllarni <b>Project</b> ichiga soling — har safar qayta yuklamaysiz.</div></div>
+    </div>
+
+    <div>
+      <h3>Limitni qayerdan koʻrasiz?</h3>
+      <p style="font-size:9pt">Ism → <b>Settings</b> → <b>Usage</b>. Shu sahifada joriy holat koʻrinadi.</p>
+      <div class="ui" style="height:88mm;display:block">
+        <div style="padding:2.6mm 3.4mm;border-bottom:1px solid var(--line);font-size:8.6pt;font-weight:600">Usage</div>
+        <div style="padding:3.4mm">
+          <div style="font-size:7.8pt;color:var(--tx3);margin-bottom:1.4mm">Current session</div>
+          <div style="display:flex;justify-content:space-between;font-size:8pt;margin-bottom:1.4mm">
+            <span>Session usage</span><b>62%</b></div>
+          <div style="height:2.6mm;background:#3d3d3a;border-radius:3px;overflow:hidden">
+            <div style="width:62%;height:100%;background:var(--acc)"></div></div>
+          <small style="margin-top:1.4mm">Resets in 2 hours 14 minutes</small>
+
+          <div style="font-size:7.8pt;color:var(--tx3);margin:4mm 0 1.4mm">Weekly limits</div>
+          <div style="display:flex;justify-content:space-between;font-size:8pt;margin-bottom:1.4mm">
+            <span>All models</span><b>38%</b></div>
+          <div style="height:2.6mm;background:#3d3d3a;border-radius:3px;overflow:hidden">
+            <div style="width:38%;height:100%;background:#6f9fd8"></div></div>
+          <small style="margin-top:1.4mm">Resets Monday, 09:00</small>
+
+          <div style="display:flex;justify-content:space-between;font-size:8pt;margin:3.4mm 0 1.4mm">
+            <span>Claude Opus</span><b>81%</b></div>
+          <div style="height:2.6mm;background:#3d3d3a;border-radius:3px;overflow:hidden">
+            <div style="width:81%;height:100%;background:var(--warn)"></div></div>
+          <small style="margin-top:1.4mm">Resets Monday, 09:00</small>
+
+          <div class="card" style="margin-top:4mm;font-size:7.8pt;color:var(--tx3)">
+            Need more usage? <b style="color:var(--acc2)">Upgrade your plan</b></div>
+        </div>
+        <div class="mk" style="--x:2%;--y:25%">1</div>
+        <div class="mk" style="--x:2%;--y:48%">2</div>
+        <div class="mk" style="--x:2%;--y:68%">3</div>
+      </div>
+      <ul class="legend one" style="margin-top:2.6mm">
+        <li><span class="n">1</span><span><b>Current session</b> — hozirgi 5 soatlik oynada qancha ishlatdingiz.</span></li>
+        <li><span class="n">2</span><span><b>Weekly</b> — hafta boʻyicha umumiy sarf.</span></li>
+        <li><span class="n">3</span><span><b>Opus</b> — eng kuchli model uchun alohida limit.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule" style="margin-top:auto"></div>
+  <div class="grid3">
+    <div class="box"><h4>≈ 750 soʻz</h4><p>1 000 token — taxminan bir sahifa matn.</p></div>
+    <div class="box"><h4>100 bet PDF</h4><p>≈ 50 000–80 000 token. Bir marta yuklash — sezilarli sarf.</p></div>
+    <div class="box"><h4>1 000 000 token</h4><p>Sonnet 5 va Opus 5 bir vaqtda shuncha matnni «yodida» tuta oladi.</p></div>
+  </div>
+
+  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
+</div>
+
+<div class="page light">
+  <div class="ph"><span>3-boʻlim · Funksiyalar</span><span><b>08 · Projects</b></span></div>
+  <span class="sect-no">08-qadam</span>
+  <h1>Projects — loyihalar</h1>
+  <p class="lead" style="margin-bottom:4mm">Bu — Claude'ning eng kuchli funksiyasi. <b>Loyiha</b> — bu alohida ish stoli: ichida oʻz suhbatlaringiz, oʻz fayllaringiz va oʻz qoidalaringiz boʻladi.</p>
+
+  <div class="grid2" style="gap:6mm;align-items:start">
+    <div>
+      <h3>Nima uchun kerak?</h3>
+      <div class="kv"><i>✓</i><div><b>Har safar qaytadan tushuntirmaysiz.</b> Brendingiz, auditoriyangiz, uslubingizni bir marta yozasiz — Claude doim eslab turadi.</div></div>
+      <div class="kv"><i>✓</i><div><b>Fayllar doim yonida.</b> Narxlar roʻyxati, brend kitobi, mahsulot tavsifi — bir marta yuklaysiz.</div></div>
+      <div class="kv"><i>✓</i><div><b>Tartib.</b> «Instagram», «Sotuv», «Kurs» — har biri alohida.</div></div>
+      <div class="kv"><i>✓</i><div><b>Limitni tejaysiz.</b> Fayllarni har suhbatda qayta yuklamaysiz.</div></div>
+
+      <h3 style="margin-top:5mm">Loyiha qanday yaratiladi?</h3>
+      <ol class="steps">
+        <li>Chap paneldan <b>«Projects»</b> ni bosing.</li>
+        <li>Oʻng yuqoridagi <b>«+ New project»</b> tugmasini bosing.</li>
+        <li>Nom yozing. Masalan: <span class="mono">Instagram kontent</span>.</li>
+        <li><b>«Create project»</b> ni bosing.</li>
+        <li>Ichida 2 ta muhim joy bor: <b>Instructions</b> (qoidalar) va <b>Project knowledge</b> (fayllar).</li>
+      </ol>
+      <div class="note"><b>Free</b> tarifda 5 tagacha loyiha. <b>Pro</b> va yuqorisida — cheklovsiz.</div>
+    </div>
+
+    <div>
+      <!-- LOYIHA ICHI -->
+      <div class="ui" style="height:118mm;display:block">
+        <div class="bar" style="justify-content:space-between">
+          <span style="display:flex;align-items:center;gap:2.4mm;color:var(--tx);font-weight:600">
+            <svg class="ico" style="color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-proj"/></svg>
+            Instagram kontent</span>
+          <span class="chip">Share</span>
+        </div>
+        <div style="padding:3mm 3.4mm">
+          <div class="composer" style="padding:2.6mm">
+            <div class="ph2" style="padding:.6mm .6mm 4mm;font-size:8pt">Bu loyihada yangi suhbat boshlang…</div>
+            <div class="crow"><div class="cl"><span class="plus">+</span><span class="seg"><span class="on">Chat</span><span>Cowork</span></span></div>
+              <div class="cr"><span class="mdl">Sonnet 5</span></div></div>
+          </div>
+
+          <div class="card" style="margin-top:3mm">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.6mm">
+              <b style="font-size:8.4pt">Project instructions</b><span class="chip" style="font-size:6.8pt">Edit</span></div>
+            <div style="font-size:7.4pt;color:var(--tx3);line-height:1.45">
+              Sen — Instagram marketolog. Auditoriya: 25–35 yosh, Toshkent, kichik biznes.
+              Til: oʻzbekcha, sodda. Uslub: qisqa jumla, «siz» bilan murojaat. Har javobda 3 ta variant ber.
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:2.6mm">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.6mm">
+              <b style="font-size:8.4pt">Project knowledge</b><span class="chip" style="font-size:6.8pt">+ Add</span></div>
+            <div style="display:flex;flex-direction:column;gap:1.2mm">
+              <div style="display:flex;gap:2mm;align-items:center;font-size:7.4pt;color:var(--tx2)">
+                <svg class="ico" style="width:3mm;height:3mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-file"/></svg>brend-kitob.pdf</div>
+              <div style="display:flex;gap:2mm;align-items:center;font-size:7.4pt;color:var(--tx2)">
+                <svg class="ico" style="width:3mm;height:3mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-file"/></svg>narxlar.xlsx</div>
+              <div style="display:flex;gap:2mm;align-items:center;font-size:7.4pt;color:var(--tx2)">
+                <svg class="ico" style="width:3mm;height:3mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-file"/></svg>mijoz-savollari.docx</div>
+            </div>
+            <div style="margin-top:2mm;height:1.8mm;background:#3d3d3a;border-radius:2px">
+              <div style="width:34%;height:100%;background:var(--acc);border-radius:2px"></div></div>
+            <small style="margin-top:1.2mm;font-size:6.8pt">34% of knowledge capacity used</small>
+          </div>
+
+          <div style="font-size:7.4pt;color:var(--tx3);margin-top:3mm">Recent chats in this project</div>
+          <div style="font-size:7.6pt;color:var(--tx2);margin-top:1.4mm">· Avgust kontent reja</div>
+          <div style="font-size:7.6pt;color:var(--tx2);margin-top:1mm">· Reels ssenariy · 5 ta</div>
+        </div>
+        <div class="mk" style="--x:2.5%;--y:5%">1</div>
+        <div class="mk" style="--x:2.5%;--y:19%">2</div>
+        <div class="mk" style="--x:2.5%;--y:38%">3</div>
+        <div class="mk" style="--x:2.5%;--y:60%">4</div>
+        <div class="mk" style="--x:2.5%;--y:83%">5</div>
+      </div>
+      <ul class="legend one" style="margin-top:2.6mm">
+        <li><span class="n">1</span><span><b>Loyiha nomi</b> — va uni ulashish tugmasi.</span></li>
+        <li><span class="n">2</span><span><b>Yozish oynasi</b> — shu yerdagi har suhbat loyiha qoidalarini biladi.</span></li>
+        <li><span class="n">3</span><span><b>Project instructions</b> — doimiy qoidalar. Eng muhim joy!</span></li>
+        <li><span class="n">4</span><span><b>Project knowledge</b> — fayllar. Toʻlganini foizda koʻrasiz.</span></li>
+        <li><span class="n">5</span><span><b>Loyiha suhbatlari</b> — faqat shu loyihaga tegishli.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note blue" style="margin-top:auto"><b>Instructions'ga nima yoziladi?</b>
+  Sen kimsan · Auditoriya kim · Qaysi tilda · Qanday uslubda · Nimani hech qachon qilma · Javob formati.
+  6 ta jumla yetarli — lekin ular butun ishingizni oʻzgartiradi.</div>
+
+  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
+</div>
+
+
+<div class="page">
+  <div class="ph"><span>3-boʻlim · Funksiyalar</span><span><b>09 · Artefaktlar</b></span></div>
+  <span class="sect-no">09-qadam</span>
+  <h1>Artifacts — artefaktlar</h1>
+  <p class="lead" style="margin-bottom:4mm"><b>Artefakt</b> — bu Claude yaratgan tayyor natija: sayt, jadval, hujjat, prezentatsiya, grafik. U suhbatning <b>oʻng tomonida alohida oynada</b> ochiladi va uni tahrirlash, saqlash, ulashish mumkin.</p>
+
+  <!-- SUHBAT + ARTEFAKT -->
+  <div class="ui" style="height:88mm">
+    <div class="ui-main" style="border-right:1px solid var(--line);flex:0 0 44%">
+      <div class="bar" style="justify-content:space-between;padding:6mm 3.4mm 2.4mm"><span>Kontent reja</span><span class="chip" style="font-size:6.8pt">Sonnet 5</span></div>
+      <div class="msg u" style="text-align:right"><span class="bub">Avgust uchun kontent reja jadvalini tayyorla</span></div>
+      <div class="msg">Albatta! Avgust oyi uchun 4 haftalik kontent reja tayyorladim. Jadvalda: sana, format, mavzu va maqsad bor.</div>
+      <div class="msg" style="padding-top:0">
+        <div class="card" style="display:flex;align-items:center;gap:2.6mm;border-color:var(--acc)">
+          <svg class="ico" style="color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-file"/></svg>
+          <div><b style="font-size:8pt">Avgust kontent reja</b><br><small style="font-size:6.8pt">Jadval · yangilandi</small></div>
+        </div>
+      </div>
+      <div class="msg" style="color:var(--tx3)">Yana nima qoʻshay?</div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;background:#2b2b29">
+      <div class="bar" style="justify-content:space-between;background:#2b2b29;padding:6mm 3.4mm 2.4mm">
+        <span style="color:var(--tx);font-weight:600">Avgust kontent reja</span>
+        <span style="display:flex;gap:2.6mm;align-items:center">
+          <span class="chip" style="font-size:6.6pt">Preview</span><span class="chip" style="font-size:6.6pt">Code</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-copy"/></svg>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-dl"/></svg>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-globe"/></svg>
+        </span>
+      </div>
+      <div style="padding:3mm;font-size:7.2pt">
+        <table style="font-size:7pt">
+          <tr><th style="padding:1.4mm;font-size:6.8pt">Sana</th><th style="padding:1.4mm;font-size:6.8pt">Format</th><th style="padding:1.4mm;font-size:6.8pt">Mavzu</th></tr>
+          <tr><td style="padding:1.4mm">1-avg</td><td style="padding:1.4mm">Reels</td><td style="padding:1.4mm">AI bilan 1 soatda kontent</td></tr>
+          <tr><td style="padding:1.4mm">3-avg</td><td style="padding:1.4mm">Karusel</td><td style="padding:1.4mm">5 ta xato</td></tr>
+          <tr><td style="padding:1.4mm">5-avg</td><td style="padding:1.4mm">Storis</td><td style="padding:1.4mm">Savol-javob</td></tr>
+          <tr><td style="padding:1.4mm">8-avg</td><td style="padding:1.4mm">Reels</td><td style="padding:1.4mm">Mijoz keysi</td></tr>
+          <tr><td style="padding:1.4mm">10-avg</td><td style="padding:1.4mm">Post</td><td style="padding:1.4mm">Narx e'loni</td></tr>
+        </table>
+        <div style="margin-top:3mm;display:flex;gap:2mm;align-items:flex-end;height:20mm">
+          <div style="flex:1;background:var(--acc);height:60%;border-radius:2px"></div>
+          <div style="flex:1;background:var(--acc);height:85%;border-radius:2px"></div>
+          <div style="flex:1;background:var(--acc);height:45%;border-radius:2px"></div>
+          <div style="flex:1;background:var(--acc);height:100%;border-radius:2px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="mk" style="--x:41%;--y:60%">1</div>
+    <div class="mk" style="--x:52%;--y:3.6%">2</div>
+    <div class="mk" style="--x:76%;--y:3.6%">3</div>
+    <div class="mk" style="--x:93%;--y:3.6%">4</div>
+  </div>
+
+  <ul class="legend" style="margin-top:4mm">
+    <li><span class="n">1</span><span><b>Artefakt kartochkasi</b> — suhbatda shunday koʻrinadi. Bosing — oʻngda katta oynada ochiladi.</span></li>
+    <li><span class="n">2</span><span><b>Artefakt nomi</b> — ustiga bosib nomini oʻzgartirasiz.</span></li>
+    <li><span class="n">3</span><span><b>Preview / Code</b> — tayyor koʻrinish yoki ichki kod (dasturchilar uchun).</span></li>
+    <li><span class="n">4</span><span><b>3 ta ikonka:</b> ⧉ <b>Copy</b> (nusxa olish) · ↓ <b>Download</b> (yuklab olish) · ⊕ <b>Publish</b> (havola yaratish).</span></li>
+  </ul>
+
+  <div class="rule"></div>
+  <div class="grid2" style="gap:6mm">
+    <div>
+      <h3>Qanday tahrirlanadi?</h3>
+      <div class="kv"><i>1</i><div><b>Soʻz bilan:</b> «Ustunni qoʻsh», «rangini koʻk qil», «matnni qisqartir» deb yozasiz — artefakt oʻzi yangilanadi.</div></div>
+      <div class="kv"><i>2</i><div><b>Qoʻlda:</b> Code rejimini oching va matnni oʻzgartiring.</div></div>
+      <div class="kv"><i>3</i><div><b>Versiyalar:</b> yuqoridagi <b>«v1 · v2 · v3»</b> orqali eski variantga qaytasiz.</div></div>
+    </div>
+    <div>
+      <h3>Qanday saqlanadi?</h3>
+      <div class="kv"><i>↓</i><div><b>Download</b> — fayl koʻrinishida (.md, .html, .csv, .png).</div></div>
+      <div class="kv"><i>⧉</i><div><b>Copy</b> — buferga oling va Word/Excel'ga joylang.</div></div>
+      <div class="kv"><i>⌾</i><div><b>Publish</b> — internetdagi havola. Havolani mijozga yuborasiz.</div></div>
+      <div class="kv"><i>☰</i><div>Barcha artefaktlar chap paneldagi <b>Artifacts</b> boʻlimida saqlanadi.</div></div>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:auto"><b>Nimalar artefakt boʻladi?</b> Sayt · jadval · grafik · hisobot · prezentatsiya ·
+  kalkulyator · testlar · uzun matn · kod. Qisqa javob artefakt boʻlmaydi — u shunchaki suhbatda yoziladi.</div>
+
+  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
+</div>
+
+
+<div class="page light">
+  <div class="ph"><span>3-boʻlim · Funksiyalar</span><span><b>10 · Fayl yuklash</b></span></div>
+  <span class="sect-no">10-qadam</span>
+  <h1>Fayl yuklash — formatlar va cheklovlar</h1>
+  <p style="margin-bottom:4mm">Yozish oynasidagi <b>+</b> tugmasi orqali fayl qoʻshasiz. Claude PDF, Word, Excel va rasmni oʻqiy oladi.</p>
+
+  <div class="grid2" style="gap:6mm;align-items:start">
+    <div>
+      <div class="ui" style="height:76mm;display:block;padding:4mm;background:var(--bg)">
+        <div style="display:flex;justify-content:flex-start;margin-bottom:2.4mm">
+          <div class="menu" style="width:60mm">
+            <div class="on"><svg class="ico" style="width:3.4mm;height:3.4mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-file"/></svg>Upload from computer</div>
+            <div><svg class="ico" style="width:3.4mm;height:3.4mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-img"/></svg>Add photos</div>
+            <div><svg class="ico" style="width:3.4mm;height:3.4mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-cam"/></svg>Take screenshot</div>
+            <div class="sep"></div>
+            <div><svg class="ico" style="width:3.4mm;height:3.4mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-plug"/></svg>Google Drive</div>
+            <div><svg class="ico" style="width:3.4mm;height:3.4mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-plug"/></svg>Add connectors</div>
+          </div>
+        </div>
+        <div class="composer">
+          <div style="display:flex;gap:2mm;margin-bottom:2.4mm">
+            <div class="card" style="padding:1.6mm 2.4mm;display:flex;gap:2mm;align-items:center;font-size:7.2pt">
+              <svg class="ico" style="width:3mm;height:3mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-file"/></svg>hisobot.pdf</div>
+            <div class="card" style="padding:1.6mm 2.4mm;display:flex;gap:2mm;align-items:center;font-size:7.2pt">
+              <svg class="ico" style="width:3mm;height:3mm;color:#6f9fd8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-img"/></svg>skrin.png</div>
+          </div>
+          <div class="ph2" style="padding:.6mm .6mm 3.4mm;font-size:8pt">Bu hisobotdan asosiy 5 ta xulosani yoz…</div>
+          <div class="crow"><div class="cl"><span class="plus" style="border-color:var(--acc);color:var(--acc)">+</span>
+            <span class="seg"><span class="on">Chat</span><span>Cowork</span></span></div>
+            <div class="cr"><span class="mdl">Sonnet 5</span></div></div>
+        </div>
+        <div class="mk" style="--x:2.5%;--y:87%">1</div>
+        <div class="mk" style="--x:78%;--y:11%">2</div>
+        <div class="mk" style="--x:78%;--y:31%">3</div>
+        <div class="mk" style="--x:78%;--y:48%">4</div>
+      </div>
+      <ul class="legend one" style="margin-top:2.6mm">
+        <li><span class="n">1</span><span><b>+ tugmasi</b> — menyu shu yerdan ochiladi.</span></li>
+        <li><span class="n">2</span><span><b>Upload from computer</b> — kompyuterdan fayl.</span></li>
+        <li><span class="n">3</span><span><b>Take screenshot</b> — ekran surati (desktop ilovada).</span></li>
+        <li><span class="n">4</span><span><b>Google Drive / Connectors</b> — bulutdan olish.</span></li>
+      </ul>
+      <div class="note blue" style="margin-top:3mm"><b>Tezroq usul:</b> faylni sichqoncha bilan <b>ushlab</b>, toʻgʻridan-toʻgʻri
+      yozish oynasiga <b>tashlang</b> (drag &amp; drop). Rasmni <span class="mono">Ctrl+V</span> bilan ham qoʻyish mumkin.</div>
+    </div>
+
+    <div>
+      <h3>Qaysi formatlar qabul qilinadi?</h3>
+      <div class="tw">
+        <table>
+          <tr><th style="width:26mm">Turi</th><th>Formatlar</th></tr>
+          <tr><td><b>Hujjat</b></td><td class="mono" style="font-size:7.8pt">PDF · DOCX · TXT · RTF · ODT · EPUB · HTML</td></tr>
+          <tr><td><b>Jadval</b></td><td class="mono" style="font-size:7.8pt">CSV · XLSX</td></tr>
+          <tr><td><b>Rasm</b></td><td class="mono" style="font-size:7.8pt">JPEG · PNG · GIF · WEBP</td></tr>
+          <tr><td><b>Ma'lumot</b></td><td class="mono" style="font-size:7.8pt">JSON</td></tr>
+        </table>
+      </div>
+
+      <h3 style="margin-top:5mm">Cheklovlar</h3>
+      <div class="tw">
+        <table>
+          <tr><td style="width:44mm"><b>Bitta fayl hajmi</b></td><td><b style="color:var(--acc2)">500 MB</b> gacha</td></tr>
+          <tr><td><b>Bitta suhbatda</b></td><td><b style="color:var(--acc2)">20 tagacha</b> fayl</td></tr>
+          <tr><td><b>PDF beti</b></td><td><b style="color:var(--acc2)">1000 bet</b> gacha</td></tr>
+          <tr><td><b>PDF rasmlari</b></td><td>100 betgacha — matn <b>va rasm</b> oʻqiladi.<br>101–1000 bet — faqat <b>matn</b>.</td></tr>
+          <tr><td><b>Rasm oʻlchami</b></td><td><b style="color:var(--acc2)">8000 × 8000</b> piksel gacha</td></tr>
+        </table>
+      </div>
+
+      <div class="note warn" style="margin-top:4mm"><b>Muhim:</b> Word yoki Excel ichidagi <b>rasmlar oʻqilmaydi</b> — faqat matn olinadi.
+      Agar rasm muhim boʻlsa, uni alohida <b>PNG</b> qilib yuklang yoki ekran surati oling.</div>
+
+      <div class="note" style="margin-top:3mm"><b>XLSX uchun:</b> Excel fayl bilan hisob-kitob qilish uchun sozlamalarda
+      <b>code execution</b> (kod bajarish) yoqilgan boʻlishi kerak. Settings → Features boʻlimida tekshiring.</div>
+    </div>
+  </div>
+
+  <div class="rule" style="margin-top:auto"></div>
+  <div class="grid3">
+    <div class="box"><h4>Skaner qilingan PDF</h4><p>Agar PDF rasm koʻrinishida boʻlsa — 100 betdan kam boʻlsin, shunda Claude rasmni ham koʻradi.</p></div>
+    <div class="box"><h4>Katta fayl sekin</h4><p>200 betlik hujjatdan faqat kerakli boʻlimni ajratib yuklang — tez va arzon.</p></div>
+    <div class="box"><h4>Doimiy fayllar</h4><p>Har kuni kerak boʻladigan fayllarni <b>Project knowledge</b> ga soling.</p></div>
+  </div>
+
+  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
+</div>
+
+<div class="page">
+  <div class="ph"><span>3-boʻlim · Funksiyalar</span><span><b>11 · Barcha vositalar</b></span></div>
+  <span class="sect-no">11-qadam</span>
+  <h1>Claude ichidagi barcha vositalar</h1>
+  <p style="margin-bottom:4mm">Quyida — Claude'dagi har bir vosita: nima qiladi, qayerda turadi va qachon ishlatiladi.</p>
+
+  <div class="grid2" style="gap:4mm 5mm">
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-chat"/></svg>
+        <h4 style="margin:0">Chat — suhbat</h4></div>
+      <p>Oddiy savol-javob. Ishning 90% i shu yerda.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> yozish oynasidagi «Chat» tugmasi.</small>
+    </div>
+
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-brain"/></svg>
+        <h4 style="margin:0">Cowork — birga ishlash</h4></div>
+      <p>Uzoq vazifa rejimi. Claude oʻzi bir necha qadam bajaradi: koʻp faylni oʻqiydi, papka bilan ishlaydi, natijani yigʻadi.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qachon:</b> «10 ta hujjatni oʻqib, umumiy hisobot tayyorla» kabi katta ish. <b>Pro</b> dan boshlab.</small>
+    </div>
+
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-art"/></svg>
+        <h4 style="margin:0">Artifacts — artefaktlar</h4></div>
+      <p>Claude yaratgan barcha tayyor natijalar bir joyda: sayt, jadval, hujjat, grafik.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> chap panel → Artifacts. Batafsil — 09-boʻlim.</small>
+    </div>
+
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-clock"/></svg>
+        <h4 style="margin:0">Scheduled — jadval boʻyicha</h4></div>
+      <p>Vazifani vaqtga qoʻyasiz. Claude oʻzi bajaradi va natijani sizga qoldiradi.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Misol:</b> «Har dushanba 09:00 da haftalik kontent reja tayyorla».</small>
+    </div>
+
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-cust"/></svg>
+        <h4 style="margin:0">Customize — moslash</h4></div>
+      <p>Javob uslubi (Styles), xotira (Memory), ulanishlar (Connectors), koʻnikmalar (Skills) shu yerda.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> chap panel → Customize.</small>
+    </div>
+
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-pal"/></svg>
+        <h4 style="margin:0">Design — dizayn</h4></div>
+      <p>Vizual ish uchun alohida vosita: maket, rasm, sahifa koʻrinishi.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> chap panel eng pastida.</small>
+    </div>
+
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-globe"/></svg>
+        <h4 style="margin:0">Web search — internetdan izlash</h4></div>
+      <p>Claude yangi ma'lumot uchun internetga chiqadi va manbalarni koʻrsatadi.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qanday:</b> shunchaki «internetdan tekshirib ber» deb yozing.</small>
+    </div>
+
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-search"/></svg>
+        <h4 style="margin:0">Research — chuqur tadqiqot</h4></div>
+      <p>Claude oʻnlab manbani oʻqib, manbali katta hisobot yozadi. 5–15 daqiqa vaqt oladi.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qachon:</b> bozor tahlili, raqobatchilar, katta mavzu. <b>Pro</b> dan boshlab.</small>
+    </div>
+
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-plug"/></svg>
+        <h4 style="margin:0">Connectors — ulanishlar</h4></div>
+      <p>Google Drive, Gmail, Notion, Slack, Jira va boshqalarni ulaysiz. Claude ulardan ma'lumot oladi.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> Settings → Connectors.</small>
+    </div>
+
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-brain"/></svg>
+        <h4 style="margin:0">Memory — xotira</h4></div>
+      <p>Claude siz haqingizdagi muhim narsalarni eslab qoladi: kasbingiz, uslubingiz, doimiy talablaringiz.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Boshqarish:</b> Settings → Memory. Xohlasangiz oʻchirasiz.</small>
+    </div>
+
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-mic"/></svg>
+        <h4 style="margin:0">Voice — ovoz</h4></div>
+      <p>Mikrofon — gapirasiz, matnga aylanadi. Ovozli rejim — Claude bilan jonli suhbat.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> yozish oynasining oʻng chekkasi.</small>
+    </div>
+
+    <div class="box">
+      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
+        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-code"/></svg>
+        <h4 style="margin:0">Code — dasturchilar uchun</h4></div>
+      <p>Claude Code: kompyuteringizdagi kod bilan ishlaydi. Boshlovchiga hozircha kerak emas.</p>
+      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> yuqoridagi «Code» tugmasi. <b>Pro</b> dan boshlab.</small>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:auto"><b>Boshlovchiga yetarli:</b> Chat + Projects + Artifacts + fayl yuklash.
+  Qolganini keyinroq, ishni oʻrganganingizdan soʻng ochasiz.</div>
+
+  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
+</div>
+
+
+<div class="page light">
+  <div class="ph"><span>3-boʻlim · Funksiyalar</span><span><b>12 · Sozlamalar</b></span></div>
+  <span class="sect-no">12-qadam</span>
+  <h1>Settings — sozlamalar</h1>
+  <p style="margin-bottom:4mm">Chap pastdagi <b>ismingizni</b> bosing → <b>Settings</b>. Chapda boʻlimlar roʻyxati chiqadi.</p>
+
+  <div style="display:flex;gap:7mm;align-items:flex-start">
+    <div class="ui" style="flex:0 0 78mm;height:118mm;display:block">
+      <div style="padding:3mm 3.4mm;border-bottom:1px solid var(--line);font-size:9pt;font-weight:600">Settings</div>
+      <div style="display:flex;height:calc(100% - 11mm)">
+        <div style="flex:0 0 30mm;border-right:1px solid var(--line);padding:2.4mm 1.6mm;font-size:7.6pt;color:var(--tx2);display:flex;flex-direction:column;gap:.4mm">
+          <div style="padding:1.6mm 2mm;background:#2c2b2a;border-radius:5px;color:var(--tx)">Profile</div>
+          <div style="padding:1.6mm 2mm">Appearance</div>
+          <div style="padding:1.6mm 2mm">Billing</div>
+          <div style="padding:1.6mm 2mm">Usage</div>
+          <div style="padding:1.6mm 2mm">Memory</div>
+          <div style="padding:1.6mm 2mm">Connectors</div>
+          <div style="padding:1.6mm 2mm">Capabilities</div>
+          <div style="padding:1.6mm 2mm">Privacy</div>
+          <div style="padding:1.6mm 2mm">Data controls</div>
+          <div style="padding:1.6mm 2mm">Account</div>
+        </div>
+        <div style="flex:1;padding:3mm">
+          <div style="font-size:8.4pt;font-weight:600;margin-bottom:2.4mm">Profile</div>
+          <small style="margin-bottom:1mm">Full name</small>
+          <div class="card" style="padding:2mm 2.6mm;font-size:7.8pt;margin-bottom:2.6mm">Yusufbay</div>
+          <small style="margin-bottom:1mm">What should Claude call you?</small>
+          <div class="card" style="padding:2mm 2.6mm;font-size:7.8pt;margin-bottom:2.6mm">Yusuf</div>
+          <small style="margin-bottom:1mm">What best describes your work?</small>
+          <div class="card" style="padding:2mm 2.6mm;font-size:7.8pt;margin-bottom:2.6mm">Marketing</div>
+          <small style="margin-bottom:1mm">Personal preferences for Claude</small>
+          <div class="card" style="padding:2mm 2.6mm;font-size:7.2pt;color:var(--tx3);line-height:1.4">
+            Menga oʻzbek tilida, sodda jumlalar bilan javob ber. Uzun kirish soʻzlarsiz — darrov ishga oʻt.
+          </div>
+          <div style="margin-top:3mm;display:flex;justify-content:flex-end">
+            <span style="background:var(--acc);color:#241009;border-radius:6px;padding:1.4mm 4mm;font-size:7.6pt;font-weight:700">Save</span>
+          </div>
+        </div>
+      </div>
+      <div class="mk" style="--x:33%;--y:12%">1</div>
+      <div class="mk" style="--x:33%;--y:22%">2</div>
+      <div class="mk" style="--x:33%;--y:29%">3</div>
+      <div class="mk" style="--x:33%;--y:36%">4</div>
+      <div class="mk" style="--x:33%;--y:43%">5</div>
+      <div class="mk" style="--x:33%;--y:50%">6</div>
+      <div class="mk" style="--x:33%;--y:57%">7</div>
+      <div class="mk" style="--x:33%;--y:64%">8</div>
+      <div class="mk" style="--x:33%;--y:71%">9</div>
+      <div class="mk" style="--x:33%;--y:78%">10</div>
+      <div class="mk g" style="--x:62%;--y:86%">11</div>
+    </div>
+
+    <div style="flex:1">
+      <div class="kv"><i>1</i><div><b>Profile</b> — ismingiz, kasbingiz va <b>«Personal preferences»</b>. Bu yerga yozganingizni Claude <b>har suhbatda</b> hisobga oladi.</div></div>
+      <div class="kv"><i>2</i><div><b>Appearance</b> — tashqi koʻrinish: qora (dark) yoki oq (light) mavzu, matn oʻlchami, til.</div></div>
+      <div class="kv"><i>3</i><div><b>Billing</b> — tarif, karta, hisob-fakturalar. Obunani shu yerdan bekor qilasiz.</div></div>
+      <div class="kv"><i>4</i><div><b>Usage</b> — limit holati: 5 soatlik sessiya va haftalik sarf (07-boʻlim).</div></div>
+      <div class="kv"><i>5</i><div><b>Memory</b> — Claude siz haqingizda nima eslab qolganini koʻrasiz. Kerak boʻlmasa — oʻchirasiz.</div></div>
+      <div class="kv"><i>6</i><div><b>Connectors</b> — Google Drive, Gmail, Notion, Slack ulanishlari.</div></div>
+      <div class="kv"><i>7</i><div><b>Capabilities</b> — funksiyalarni yoqish/oʻchirish: artefaktlar, kod bajarish, tahlil vositasi.</div></div>
+      <div class="kv"><i>8</i><div><b>Privacy</b> — maxfiylik. Suhbatlaringiz oʻqitishda ishlatilishi-ishlatilmasligini boshqarasiz.</div></div>
+      <div class="kv"><i>9</i><div><b>Data controls</b> — ma'lumotni eksport qilish yoki suhbatlarni oʻchirish.</div></div>
+      <div class="kv"><i>10</i><div><b>Account</b> — pochtani oʻzgartirish, hisobni oʻchirish, chiqish (Log out).</div></div>
+      <div class="kv"><i class="mono" style="color:#6f9fd8">11</i><div><b>Save</b> — oʻzgarishni saqlash. Bosishni unutmang!</div></div>
+
+      <div class="note blue" style="margin-top:4mm"><b>Eng foydali sozlama.</b> Profile → <b>Personal preferences</b> ga shuni yozing:
+      <div class="mono" style="margin-top:2mm;color:var(--tx2);line-height:1.5">«Menga doim oʻzbek tilida, sodda va qisqa javob ber.
+      Uzun kirish soʻz kerak emas. Roʻyxat va sarlavhalar bilan yoz. Agar savolim tushunarsiz boʻlsa — avval aniqlashtiruvchi savol ber.»</div></div>
+    </div>
+  </div>
+
+  <div class="rule" style="margin-top:auto"></div>
+  <div class="grid3">
+    <div class="box"><h4>Qora yoki oq?</h4><p>Appearance → <b>Dark</b> / <b>Light</b> / <b>System</b>. Kechqurun ishlasangiz — Dark.</p></div>
+    <div class="box"><h4>Suhbat oʻchirish</h4><p>Suhbat ustiga boring → <b>«…»</b> → <b>Delete</b>. Yoki Data controls'dan hammasini.</p></div>
+    <div class="box"><h4>Hisobdan chiqish</h4><p>Ism → <b>Log out</b>. Boshqa kompyuterda ishlagan boʻlsangiz — albatta chiqing.</p></div>
+  </div>
+
+  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
+</div>
+
+
+<div class="page">
+  <div class="ph"><span>4-boʻlim · Obuna va toʻlov</span><span><b>13 · Tariflar</b></span></div>
+  <span class="sect-no">13-qadam</span>
   <h1>Tariflar — qaysi birini tanlash?</h1>
   <p style="margin-bottom:4mm">Claude'da 5 ta tarif bor. Farqi bitta soʻzda: <b>qancha ishlata olasiz</b>. Model bir xil — limit boshqacha.</p>
 
@@ -782,10 +1503,10 @@ td b{color:var(--tx)}
   <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
 </div>
 
-<!-- ================= 06. OʻZBEKISTONDAN SOTIB OLISH ================= -->
-<div class="page">
-  <div class="ph"><span>2-boʻlim · Pul va limit</span><span><b>06 · Obuna sotib olish</b></span></div>
-  <span class="sect-no">06-qadam</span>
+
+<div class="page light">
+  <div class="ph"><span>4-boʻlim · Obuna va toʻlov</span><span><b>14 · Obuna sotib olish</b></span></div>
+  <span class="sect-no">14-qadam</span>
   <h1>Oʻzbekistondan obuna sotib olish</h1>
   <p style="margin-bottom:4mm">Claude toʻlovni <b>dollarda</b> qabul qiladi. Oddiy Humo yoki UzCard karta ishlamaydi. Sizga <b>xalqaro Visa yoki Mastercard</b> kerak.</p>
 
@@ -873,1234 +1594,7 @@ td b{color:var(--tx)}
   <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
 </div>
 
-<!-- ================= 07. LIMIT VA TOKENLAR ================= -->
-<div class="page">
-  <div class="ph"><span>2-boʻlim · Pul va limit</span><span><b>07 · Limit va tokenlar</b></span></div>
-  <span class="sect-no">07-qadam</span>
-  <h1>Tokenlar va limitlar</h1>
-  <p style="margin-bottom:4mm"><b>Token</b> — matnning kichik boʻlagi. Taxminan: <b>1 soʻz ≈ 1,5 token</b>. Siz yozgan matn ham, Claude yozgan javob ham token sarflaydi. Katta PDF yuklasangiz — koʻp token ketadi.</p>
 
-  <div class="grid2" style="gap:6mm">
-    <div>
-      <h3>Limit qanday ishlaydi?</h3>
-      <div class="kv"><i>1</i><div><b>5 soatlik sessiya.</b> Birinchi xabaringizdan 5 soat sanaladi. Shu ichida ma'lum miqdorda ishlatasiz. 5 soat tugagach — limit yangilanadi.</div></div>
-      <div class="kv"><i>2</i><div><b>Haftalik limit.</b> Bundan tashqari butun haftaga ham chegara bor. U belgilangan kunda yangilanadi.</div></div>
-      <div class="kv"><i>3</i><div><b>Opus alohida.</b> Eng kuchli model (Opus) uchun alohida haftalik limit bor.</div></div>
-      <div class="note warn">Limit tugasa Claude yozadi: <span class="mono">«You're out of usage»</span> va qachon yangilanishini koʻrsatadi. Bu — xato emas, shunchaki kutish kerak.</div>
-
-      <h3 style="margin-top:5mm">Limitni qanday tejash mumkin?</h3>
-      <div class="kv"><i>✓</i><div>Oddiy ish uchun <b>Sonnet 5</b> ishlating, <b>Opus 5</b> ni faqat ogʻir ishga qoldiring.</div></div>
-      <div class="kv"><i>✓</i><div><b>Effort: Low</b> qoʻying — oddiy savollar uchun yetarli.</div></div>
-      <div class="kv"><i>✓</i><div>Uzun suhbatni <b>yopib, yangi suhbat</b> oching. Uzun suhbatda har savol butun tarixni qayta oʻqiydi.</div></div>
-      <div class="kv"><i>✓</i><div>Bitta 200 betlik PDF oʻrniga <b>kerakli 10 betini</b> yuklang.</div></div>
-      <div class="kv"><i>✓</i><div>Doimiy fayllarni <b>Project</b> ichiga soling — har safar qayta yuklamaysiz.</div></div>
-    </div>
-
-    <div>
-      <h3>Limitni qayerdan koʻrasiz?</h3>
-      <p style="font-size:9pt">Ism → <b>Settings</b> → <b>Usage</b>. Shu sahifada joriy holat koʻrinadi.</p>
-      <div class="ui" style="height:88mm;display:block">
-        <div style="padding:2.6mm 3.4mm;border-bottom:1px solid var(--line);font-size:8.6pt;font-weight:600">Usage</div>
-        <div style="padding:3.4mm">
-          <div style="font-size:7.8pt;color:var(--tx3);margin-bottom:1.4mm">Current session</div>
-          <div style="display:flex;justify-content:space-between;font-size:8pt;margin-bottom:1.4mm">
-            <span>Session usage</span><b>62%</b></div>
-          <div style="height:2.6mm;background:#3d3d3a;border-radius:3px;overflow:hidden">
-            <div style="width:62%;height:100%;background:var(--acc)"></div></div>
-          <small style="margin-top:1.4mm">Resets in 2 hours 14 minutes</small>
-
-          <div style="font-size:7.8pt;color:var(--tx3);margin:4mm 0 1.4mm">Weekly limits</div>
-          <div style="display:flex;justify-content:space-between;font-size:8pt;margin-bottom:1.4mm">
-            <span>All models</span><b>38%</b></div>
-          <div style="height:2.6mm;background:#3d3d3a;border-radius:3px;overflow:hidden">
-            <div style="width:38%;height:100%;background:#6f9fd8"></div></div>
-          <small style="margin-top:1.4mm">Resets Monday, 09:00</small>
-
-          <div style="display:flex;justify-content:space-between;font-size:8pt;margin:3.4mm 0 1.4mm">
-            <span>Claude Opus</span><b>81%</b></div>
-          <div style="height:2.6mm;background:#3d3d3a;border-radius:3px;overflow:hidden">
-            <div style="width:81%;height:100%;background:var(--warn)"></div></div>
-          <small style="margin-top:1.4mm">Resets Monday, 09:00</small>
-
-          <div class="card" style="margin-top:4mm;font-size:7.8pt;color:var(--tx3)">
-            Need more usage? <b style="color:var(--acc2)">Upgrade your plan</b></div>
-        </div>
-        <div class="mk" style="--x:2%;--y:25%">1</div>
-        <div class="mk" style="--x:2%;--y:48%">2</div>
-        <div class="mk" style="--x:2%;--y:68%">3</div>
-      </div>
-      <ul class="legend one" style="margin-top:2.6mm">
-        <li><span class="n">1</span><span><b>Current session</b> — hozirgi 5 soatlik oynada qancha ishlatdingiz.</span></li>
-        <li><span class="n">2</span><span><b>Weekly</b> — hafta boʻyicha umumiy sarf.</span></li>
-        <li><span class="n">3</span><span><b>Opus</b> — eng kuchli model uchun alohida limit.</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="rule" style="margin-top:auto"></div>
-  <div class="grid3">
-    <div class="box"><h4>≈ 750 soʻz</h4><p>1 000 token — taxminan bir sahifa matn.</p></div>
-    <div class="box"><h4>100 bet PDF</h4><p>≈ 50 000–80 000 token. Bir marta yuklash — sezilarli sarf.</p></div>
-    <div class="box"><h4>1 000 000 token</h4><p>Sonnet 5 va Opus 5 bir vaqtda shuncha matnni «yodida» tuta oladi.</p></div>
-  </div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-<!-- ================= 08. MODELLAR ================= -->
-<div class="page">
-  <div class="ph"><span>3-boʻlim · Modellar</span><span><b>08 · Qaysi model?</b></span></div>
-  <span class="sect-no">08-qadam</span>
-  <h1>Modellar — qaysi biri nima qiladi</h1>
-  <p style="margin-bottom:4mm"><b>Model</b> — bu Claude'ning «miyasi». Har birining tezligi va kuchi har xil. Yozish oynasida model nomini bosib almashtirasiz.</p>
-
-  <div class="grid2" style="gap:6mm;align-items:start">
-    <div>
-      <!-- MODEL TANLASH MENYUSI -->
-      <div class="ui" style="height:86mm;display:block;padding:4mm;background:var(--bg)">
-        <div style="display:flex;justify-content:flex-end;margin-bottom:2.4mm">
-          <div class="menu" style="width:56mm;padding:1.2mm">
-            <div style="font-size:6.8pt;color:var(--tx3);padding:.8mm 2.2mm">Model</div>
-            <div style="padding:1.1mm 2.2mm;display:block">Fable 5<br><small style="font-size:6.4pt">Eng kuchli · uzoq vazifalar</small></div>
-            <div style="padding:1.1mm 2.2mm;display:block">Opus 5<br><small style="font-size:6.4pt">Murakkab tahlil, kod</small></div>
-            <div class="on" style="padding:1.1mm 2.2mm;display:block">Sonnet 5 ✓<br><small style="font-size:6.4pt;color:#c3c0b6">Tezlik + aql · kundalik ish</small></div>
-            <div style="padding:1.1mm 2.2mm;display:block">Haiku 4.5<br><small style="font-size:6.4pt">Eng tez · oddiy savollar</small></div>
-            <div class="sep"></div>
-            <div style="font-size:6.8pt;color:var(--tx3);padding:.8mm 2.2mm">Effort</div>
-            <div style="padding:1mm 2.2mm">Low</div>
-            <div class="on" style="padding:1mm 2.2mm">Medium ✓</div>
-            <div style="padding:1mm 2.2mm">High</div>
-          </div>
-        </div>
-        <div class="composer">
-          <div class="ph2" style="padding:1mm 1mm 5mm">Savolingizni yozing…</div>
-          <div class="crow">
-            <div class="cl"><span class="plus">+</span><span class="seg"><span class="on">Chat</span><span>Cowork</span></span></div>
-            <div class="cr"><span class="mdl" style="border:1px solid var(--acc);border-radius:5px;padding:.8mm 2mm">Sonnet 5</span><span class="eff">Medium ⌄</span></div>
-          </div>
-        </div>
-        <div class="mk" style="--x:80%;--y:92%">1</div>
-        <div class="mk" style="--x:12%;--y:22%">2</div>
-        <div class="mk" style="--x:12%;--y:62%">3</div>
-      </div>
-      <ul class="legend one" style="margin-top:2.6mm">
-        <li><span class="n">1</span><span><b>Model nomini bosing</b> — yuqorida menyu ochiladi.</span></li>
-        <li><span class="n">2</span><span><b>Model roʻyxati</b> — kerakligini tanlaysiz.</span></li>
-        <li><span class="n">3</span><span><b>Effort</b> — oʻylash chuqurligi (9-boʻlim).</span></li>
-      </ul>
-    </div>
-
-    <div>
-      <h3>Tezlik va kuch</h3>
-      <svg viewBox="0 0 300 132" style="width:100%;height:auto">
-        <g font-family="Inter">
-          <rect x="0" y="4" width="6" height="6" rx="1" fill="#d97757"/><text x="10" y="9.5" fill="#8f8d84" font-size="7">Kuch (aql)</text>
-          <rect x="58" y="4" width="6" height="6" rx="1" fill="#6f9fd8"/><text x="68" y="9.5" fill="#8f8d84" font-size="7">Tezlik</text>
-
-          <text x="0" y="30" fill="#f5f4ee" font-size="8" font-weight="700">Fable 5</text>
-          <rect x="62" y="22" width="228" height="8" rx="2" fill="#d97757"/>
-          <rect x="62" y="32" width="68" height="6" rx="2" fill="#6f9fd8"/>
-
-          <text x="0" y="58" fill="#f5f4ee" font-size="8" font-weight="700">Opus 5</text>
-          <rect x="62" y="50" width="200" height="8" rx="2" fill="#d97757"/>
-          <rect x="62" y="60" width="125" height="6" rx="2" fill="#6f9fd8"/>
-
-          <text x="0" y="86" fill="#f5f4ee" font-size="8" font-weight="700">Sonnet 5</text>
-          <rect x="62" y="78" width="168" height="8" rx="2" fill="#d97757"/>
-          <rect x="62" y="88" width="205" height="6" rx="2" fill="#6f9fd8"/>
-
-          <text x="0" y="114" fill="#f5f4ee" font-size="8" font-weight="700">Haiku 4.5</text>
-          <rect x="62" y="106" width="112" height="8" rx="2" fill="#d97757"/>
-          <rect x="62" y="116" width="240" height="6" rx="2" fill="#6f9fd8"/>
-        </g>
-      </svg>
-
-      <h3 style="margin-top:5mm">Xotira hajmi (bir suhbatda)</h3>
-      <svg viewBox="0 0 300 70" style="width:100%;height:auto">
-        <g font-family="Inter">
-          <text x="0" y="16" fill="#c3c0b6" font-size="8">Fable 5 · Opus 5 · Sonnet 5</text>
-          <rect x="0" y="20" width="290" height="12" rx="3" fill="#d97757"/>
-          <text x="145" y="29.5" fill="#241009" font-size="8" font-weight="800" text-anchor="middle">1 000 000 token ≈ 2 500 bet</text>
-
-          <text x="0" y="52" fill="#c3c0b6" font-size="8">Haiku 4.5</text>
-          <rect x="0" y="56" width="58" height="12" rx="3" fill="#5f7fa8"/>
-          <text x="64" y="65.5" fill="#8f8d84" font-size="7.5">200 000 token ≈ 500 bet</text>
-        </g>
-      </svg>
-      <small style="margin-top:2mm">Xotira katta boʻlsa — uzun hujjat va uzun suhbatni unutmaydi.</small>
-    </div>
-  </div>
-
-  <div class="tw" style="margin-top:5mm">
-    <table>
-      <tr><th style="width:28mm">Model</th><th style="width:44mm">Nima uchun</th><th>Amaliy misol</th><th style="width:26mm">Tavsiya</th></tr>
-      <tr>
-        <td><b style="color:var(--acc2)">Fable 5</b></td>
-        <td>Eng kuchli. Uzoq, koʻp bosqichli vazifalar.</td>
-        <td>«Butun kurs dasturini modul-modul yozib chiq, har moduliga uy vazifasi qoʻsh».</td>
-        <td><small>Kam ishlating — limit tez tugaydi.</small></td>
-      </tr>
-      <tr style="background:rgba(217,119,87,.07)">
-        <td><b style="color:var(--acc2)">Opus 5</b></td>
-        <td>Murakkab tahlil, strategiya, kod, katta hujjat.</td>
-        <td>«Raqobatchilarning 5 ta saytini tahlil qil va bizga strategiya yoz».</td>
-        <td><small>Ogʻir ish uchun.</small></td>
-      </tr>
-      <tr style="background:rgba(127,176,105,.08)">
-        <td><b style="color:#9ecb86">Sonnet 5</b><br><small>ASOSIY</small></td>
-        <td><b>Tezlik va aql muvozanati.</b> Kunlik ishning 90% i.</td>
-        <td>«Reels uchun 5 ta ssenariy yoz», «bu matnni tahrir qil», «karusel matni».</td>
-        <td><small><b>Doim shuni qoʻying.</b></small></td>
-      </tr>
-      <tr>
-        <td><b>Haiku 4.5</b></td>
-        <td>Eng tez va eng arzon. Oddiy ish.</td>
-        <td>«Bu matnni oʻzbekchaga oʻgir», «10 ta sarlavha oʻylab top».</td>
-        <td><small>Limitni tejash uchun.</small></td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="note" style="margin-top:auto"><b>Qisqa qoida:</b> bilmasangiz — <b>Sonnet 5</b>. Javob sayoz boʻlsa — <b>Opus 5</b> ga oʻting va qayta soʻrang.</div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-
-<!-- ================= 09. EFFORT ================= -->
-<div class="page">
-  <div class="ph"><span>3-boʻlim · Modellar</span><span><b>09 · Effort</b></span></div>
-  <span class="sect-no">09-qadam</span>
-  <h1>Effort — «qanchalik chuqur oʻylasin»</h1>
-  <p style="margin-bottom:5mm">Model yonida <b>Low / Medium / High</b> yozuvi bor. Bu — Claude javob berishdan oldin qancha «oʻylashi». Chuqurroq oʻylasa — javob yaxshiroq, lekin sekinroq va limit koʻproq ketadi.</p>
-
-  <div class="grid3" style="gap:4mm">
-    <div class="box" style="border-color:#4a6a8a">
-      <div style="font-size:8pt;color:#8fb8dd;font-weight:700;letter-spacing:.1em;margin-bottom:2mm">LOW</div>
-      <h4>Tez javob</h4>
-      <p style="margin-bottom:2.5mm">Deyarli oʻylamaydi, darrov yozadi.</p>
-      <small><b style="color:var(--tx2)">Qachon:</b> tarjima, qisqartirish, sarlavha, oddiy savol, matnni tahrirlash.</small>
-      <div style="margin-top:3mm;height:2.4mm;background:#3d3d3a;border-radius:3px"><div style="width:25%;height:100%;background:#6f9fd8;border-radius:3px"></div></div>
-      <small style="margin-top:1.4mm">Limit sarfi: kam</small>
-    </div>
-    <div class="box" style="border-color:#6d4a3a">
-      <div style="font-size:8pt;color:var(--acc2);font-weight:700;letter-spacing:.1em;margin-bottom:2mm">MEDIUM · standart</div>
-      <h4>Muvozanat</h4>
-      <p style="margin-bottom:2.5mm">Biroz oʻylaydi, keyin yozadi.</p>
-      <small><b style="color:var(--tx2)">Qachon:</b> post, ssenariy, kontent reja, xat, sotuv matni. <b style="color:var(--acc2)">Kunlik ish uchun shu.</b></small>
-      <div style="margin-top:3mm;height:2.4mm;background:#3d3d3a;border-radius:3px"><div style="width:55%;height:100%;background:var(--acc);border-radius:3px"></div></div>
-      <small style="margin-top:1.4mm">Limit sarfi: oʻrtacha</small>
-    </div>
-    <div class="box" style="border-color:#7a5f2e">
-      <div style="font-size:8pt;color:var(--warn);font-weight:700;letter-spacing:.1em;margin-bottom:2mm">HIGH</div>
-      <h4>Chuqur tahlil</h4>
-      <p style="margin-bottom:2.5mm">Uzoq oʻylaydi, tekshiradi, qayta koʻradi.</p>
-      <small><b style="color:var(--tx2)">Qachon:</b> strategiya, biznes-reja, murakkab hisob, katta hujjat tahlili, kod.</small>
-      <div style="margin-top:3mm;height:2.4mm;background:#3d3d3a;border-radius:3px"><div style="width:100%;height:100%;background:var(--warn);border-radius:3px"></div></div>
-      <small style="margin-top:1.4mm">Limit sarfi: koʻp</small>
-    </div>
-  </div>
-
-  <div class="rule"></div>
-
-  <h3>Qaysi model + qaysi effort? — qaror sxemasi</h3>
-  <svg viewBox="0 0 620 210" style="width:100%;height:auto;margin-top:2mm">
-    <defs><marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
-      <path d="M0 0 L6 3 L0 6 z" fill="#8f8d84"/></marker></defs>
-    <g font-family="Inter" fill="#f5f4ee">
-      <!-- start -->
-      <rect x="0" y="82" width="118" height="40" rx="8" fill="#30302e" stroke="#4a4a46"/>
-      <text x="59" y="99" font-size="9.5" font-weight="700" text-anchor="middle">Vazifangiz</text>
-      <text x="59" y="112" font-size="8" fill="#8f8d84" text-anchor="middle">qanchalik ogʻir?</text>
-
-      <line x1="118" y1="102" x2="160" y2="30" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
-      <line x1="118" y1="102" x2="160" y2="102" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
-      <line x1="118" y1="102" x2="160" y2="176" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
-
-      <!-- oddiy -->
-      <rect x="168" y="8" width="180" height="44" rx="8" fill="#2c3a48" stroke="#4a6a8a"/>
-      <text x="180" y="26" font-size="8.6" font-weight="700">Oddiy va tez</text>
-      <text x="180" y="40" font-size="7.6" fill="#c3c0b6">tarjima · sarlavha · qisqartirish</text>
-      <line x1="348" y1="30" x2="392" y2="30" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
-      <rect x="400" y="8" width="216" height="44" rx="8" fill="#30302e" stroke="#5f7fa8"/>
-      <text x="412" y="27" font-size="9.4" font-weight="800" fill="#9dc0e8">Haiku 4.5 · Low</text>
-      <text x="412" y="41" font-size="7.6" fill="#8f8d84">tez, limitni deyarli sarflamaydi</text>
-
-      <!-- kundalik -->
-      <rect x="168" y="80" width="180" height="44" rx="8" fill="#3a2f2a" stroke="#6d4a3a"/>
-      <text x="180" y="98" font-size="8.6" font-weight="700">Kundalik kontent</text>
-      <text x="180" y="112" font-size="7.6" fill="#c3c0b6">post · reels · karusel · xat</text>
-      <line x1="348" y1="102" x2="392" y2="102" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
-      <rect x="400" y="80" width="216" height="44" rx="8" fill="#30302e" stroke="#d97757"/>
-      <text x="412" y="99" font-size="9.4" font-weight="800" fill="#e8a58a">Sonnet 5 · Medium</text>
-      <text x="412" y="113" font-size="7.6" fill="#8f8d84">ishning 90% i shu yerda</text>
-
-      <!-- ogir -->
-      <rect x="168" y="152" width="180" height="44" rx="8" fill="#3a3428" stroke="#7a5f2e"/>
-      <text x="180" y="170" font-size="8.6" font-weight="700">Ogʻir va muhim</text>
-      <text x="180" y="184" font-size="7.6" fill="#c3c0b6">strategiya · tahlil · kod</text>
-      <line x1="348" y1="174" x2="392" y2="174" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar)"/>
-      <rect x="400" y="152" width="216" height="44" rx="8" fill="#30302e" stroke="#e0b252"/>
-      <text x="412" y="171" font-size="9.4" font-weight="800" fill="#e0b252">Opus 5 · High</text>
-      <text x="412" y="185" font-size="7.6" fill="#8f8d84">sekinroq, lekin eng chuqur javob</text>
-    </g>
-  </svg>
-
-  <div class="note blue" style="margin-top:5mm"><b>Amaliy usul:</b> avval <b>Sonnet 5 · Medium</b> bilan soʻrang.
-  Javob yoqmasa — pastdagi <b>«Retry»</b> tugmasini bosing va <b>Opus 5 · High</b> ni tanlang. Bir xil savolni ikki xil model bilan solishtiring.</div>
-
-  <div class="grid3" style="margin-top:auto">
-    <div class="box"><h4>Sekin ishlayapti?</h4><p>Effort'ni <b>Low</b> ga tushiring yoki <b>Haiku 4.5</b> ga oʻting.</p></div>
-    <div class="box"><h4>Javob yuzaki?</h4><p><b>High</b> qoʻying va soʻrovga <b>kontekst</b> qoʻshing.</p></div>
-    <div class="box"><h4>Limit tez tugayapti?</h4><p><b>Opus</b> va <b>High</b> dan kamroq foydalaning.</p></div>
-  </div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-<!-- ================= 10. PROJECTS ================= -->
-<div class="page">
-  <div class="ph"><span>4-boʻlim · Funksiyalar</span><span><b>10 · Projects</b></span></div>
-  <span class="sect-no">10-qadam</span>
-  <h1>Projects — loyihalar</h1>
-  <p class="lead" style="margin-bottom:4mm">Bu — Claude'ning eng kuchli funksiyasi. <b>Loyiha</b> — bu alohida ish stoli: ichida oʻz suhbatlaringiz, oʻz fayllaringiz va oʻz qoidalaringiz boʻladi.</p>
-
-  <div class="grid2" style="gap:6mm;align-items:start">
-    <div>
-      <h3>Nima uchun kerak?</h3>
-      <div class="kv"><i>✓</i><div><b>Har safar qaytadan tushuntirmaysiz.</b> Brendingiz, auditoriyangiz, uslubingizni bir marta yozasiz — Claude doim eslab turadi.</div></div>
-      <div class="kv"><i>✓</i><div><b>Fayllar doim yonida.</b> Narxlar roʻyxati, brend kitobi, mahsulot tavsifi — bir marta yuklaysiz.</div></div>
-      <div class="kv"><i>✓</i><div><b>Tartib.</b> «Instagram», «Sotuv», «Kurs» — har biri alohida.</div></div>
-      <div class="kv"><i>✓</i><div><b>Limitni tejaysiz.</b> Fayllarni har suhbatda qayta yuklamaysiz.</div></div>
-
-      <h3 style="margin-top:5mm">Loyiha qanday yaratiladi?</h3>
-      <ol class="steps">
-        <li>Chap paneldan <b>«Projects»</b> ni bosing.</li>
-        <li>Oʻng yuqoridagi <b>«+ New project»</b> tugmasini bosing.</li>
-        <li>Nom yozing. Masalan: <span class="mono">Instagram kontent</span>.</li>
-        <li><b>«Create project»</b> ni bosing.</li>
-        <li>Ichida 2 ta muhim joy bor: <b>Instructions</b> (qoidalar) va <b>Project knowledge</b> (fayllar).</li>
-      </ol>
-      <div class="note"><b>Free</b> tarifda 5 tagacha loyiha. <b>Pro</b> va yuqorisida — cheklovsiz.</div>
-    </div>
-
-    <div>
-      <!-- LOYIHA ICHI -->
-      <div class="ui" style="height:118mm;display:block">
-        <div class="bar" style="justify-content:space-between">
-          <span style="display:flex;align-items:center;gap:2.4mm;color:var(--tx);font-weight:600">
-            <svg class="ico" style="color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-proj"/></svg>
-            Instagram kontent</span>
-          <span class="chip">Share</span>
-        </div>
-        <div style="padding:3mm 3.4mm">
-          <div class="composer" style="padding:2.6mm">
-            <div class="ph2" style="padding:.6mm .6mm 4mm;font-size:8pt">Bu loyihada yangi suhbat boshlang…</div>
-            <div class="crow"><div class="cl"><span class="plus">+</span><span class="seg"><span class="on">Chat</span><span>Cowork</span></span></div>
-              <div class="cr"><span class="mdl">Sonnet 5</span></div></div>
-          </div>
-
-          <div class="card" style="margin-top:3mm">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.6mm">
-              <b style="font-size:8.4pt">Project instructions</b><span class="chip" style="font-size:6.8pt">Edit</span></div>
-            <div style="font-size:7.4pt;color:var(--tx3);line-height:1.45">
-              Sen — Instagram marketolog. Auditoriya: 25–35 yosh, Toshkent, kichik biznes.
-              Til: oʻzbekcha, sodda. Uslub: qisqa jumla, «siz» bilan murojaat. Har javobda 3 ta variant ber.
-            </div>
-          </div>
-
-          <div class="card" style="margin-top:2.6mm">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.6mm">
-              <b style="font-size:8.4pt">Project knowledge</b><span class="chip" style="font-size:6.8pt">+ Add</span></div>
-            <div style="display:flex;flex-direction:column;gap:1.2mm">
-              <div style="display:flex;gap:2mm;align-items:center;font-size:7.4pt;color:var(--tx2)">
-                <svg class="ico" style="width:3mm;height:3mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-file"/></svg>brend-kitob.pdf</div>
-              <div style="display:flex;gap:2mm;align-items:center;font-size:7.4pt;color:var(--tx2)">
-                <svg class="ico" style="width:3mm;height:3mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-file"/></svg>narxlar.xlsx</div>
-              <div style="display:flex;gap:2mm;align-items:center;font-size:7.4pt;color:var(--tx2)">
-                <svg class="ico" style="width:3mm;height:3mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-file"/></svg>mijoz-savollari.docx</div>
-            </div>
-            <div style="margin-top:2mm;height:1.8mm;background:#3d3d3a;border-radius:2px">
-              <div style="width:34%;height:100%;background:var(--acc);border-radius:2px"></div></div>
-            <small style="margin-top:1.2mm;font-size:6.8pt">34% of knowledge capacity used</small>
-          </div>
-
-          <div style="font-size:7.4pt;color:var(--tx3);margin-top:3mm">Recent chats in this project</div>
-          <div style="font-size:7.6pt;color:var(--tx2);margin-top:1.4mm">· Avgust kontent reja</div>
-          <div style="font-size:7.6pt;color:var(--tx2);margin-top:1mm">· Reels ssenariy · 5 ta</div>
-        </div>
-        <div class="mk" style="--x:2.5%;--y:5%">1</div>
-        <div class="mk" style="--x:2.5%;--y:19%">2</div>
-        <div class="mk" style="--x:2.5%;--y:38%">3</div>
-        <div class="mk" style="--x:2.5%;--y:60%">4</div>
-        <div class="mk" style="--x:2.5%;--y:83%">5</div>
-      </div>
-      <ul class="legend one" style="margin-top:2.6mm">
-        <li><span class="n">1</span><span><b>Loyiha nomi</b> — va uni ulashish tugmasi.</span></li>
-        <li><span class="n">2</span><span><b>Yozish oynasi</b> — shu yerdagi har suhbat loyiha qoidalarini biladi.</span></li>
-        <li><span class="n">3</span><span><b>Project instructions</b> — doimiy qoidalar. Eng muhim joy!</span></li>
-        <li><span class="n">4</span><span><b>Project knowledge</b> — fayllar. Toʻlganini foizda koʻrasiz.</span></li>
-        <li><span class="n">5</span><span><b>Loyiha suhbatlari</b> — faqat shu loyihaga tegishli.</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="note blue" style="margin-top:auto"><b>Instructions'ga nima yoziladi?</b>
-  Sen kimsan · Auditoriya kim · Qaysi tilda · Qanday uslubda · Nimani hech qachon qilma · Javob formati.
-  6 ta jumla yetarli — lekin ular butun ishingizni oʻzgartiradi.</div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-
-<!-- ================= 11. ARTEFAKTLAR ================= -->
-<div class="page">
-  <div class="ph"><span>4-boʻlim · Funksiyalar</span><span><b>11 · Artefaktlar</b></span></div>
-  <span class="sect-no">11-qadam</span>
-  <h1>Artifacts — artefaktlar</h1>
-  <p class="lead" style="margin-bottom:4mm"><b>Artefakt</b> — bu Claude yaratgan tayyor natija: sayt, jadval, hujjat, prezentatsiya, grafik. U suhbatning <b>oʻng tomonida alohida oynada</b> ochiladi va uni tahrirlash, saqlash, ulashish mumkin.</p>
-
-  <!-- SUHBAT + ARTEFAKT -->
-  <div class="ui" style="height:88mm">
-    <div class="ui-main" style="border-right:1px solid var(--line);flex:0 0 44%">
-      <div class="bar" style="justify-content:space-between;padding:6mm 3.4mm 2.4mm"><span>Kontent reja</span><span class="chip" style="font-size:6.8pt">Sonnet 5</span></div>
-      <div class="msg u" style="text-align:right"><span class="bub">Avgust uchun kontent reja jadvalini tayyorla</span></div>
-      <div class="msg">Albatta! Avgust oyi uchun 4 haftalik kontent reja tayyorladim. Jadvalda: sana, format, mavzu va maqsad bor.</div>
-      <div class="msg" style="padding-top:0">
-        <div class="card" style="display:flex;align-items:center;gap:2.6mm;border-color:var(--acc)">
-          <svg class="ico" style="color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-file"/></svg>
-          <div><b style="font-size:8pt">Avgust kontent reja</b><br><small style="font-size:6.8pt">Jadval · yangilandi</small></div>
-        </div>
-      </div>
-      <div class="msg" style="color:var(--tx3)">Yana nima qoʻshay?</div>
-    </div>
-    <div style="flex:1;display:flex;flex-direction:column;background:#2b2b29">
-      <div class="bar" style="justify-content:space-between;background:#2b2b29;padding:6mm 3.4mm 2.4mm">
-        <span style="color:var(--tx);font-weight:600">Avgust kontent reja</span>
-        <span style="display:flex;gap:2.6mm;align-items:center">
-          <span class="chip" style="font-size:6.6pt">Preview</span><span class="chip" style="font-size:6.6pt">Code</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-copy"/></svg>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-dl"/></svg>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-globe"/></svg>
-        </span>
-      </div>
-      <div style="padding:3mm;font-size:7.2pt">
-        <table style="font-size:7pt">
-          <tr><th style="padding:1.4mm;font-size:6.8pt">Sana</th><th style="padding:1.4mm;font-size:6.8pt">Format</th><th style="padding:1.4mm;font-size:6.8pt">Mavzu</th></tr>
-          <tr><td style="padding:1.4mm">1-avg</td><td style="padding:1.4mm">Reels</td><td style="padding:1.4mm">AI bilan 1 soatda kontent</td></tr>
-          <tr><td style="padding:1.4mm">3-avg</td><td style="padding:1.4mm">Karusel</td><td style="padding:1.4mm">5 ta xato</td></tr>
-          <tr><td style="padding:1.4mm">5-avg</td><td style="padding:1.4mm">Storis</td><td style="padding:1.4mm">Savol-javob</td></tr>
-          <tr><td style="padding:1.4mm">8-avg</td><td style="padding:1.4mm">Reels</td><td style="padding:1.4mm">Mijoz keysi</td></tr>
-          <tr><td style="padding:1.4mm">10-avg</td><td style="padding:1.4mm">Post</td><td style="padding:1.4mm">Narx e'loni</td></tr>
-        </table>
-        <div style="margin-top:3mm;display:flex;gap:2mm;align-items:flex-end;height:20mm">
-          <div style="flex:1;background:var(--acc);height:60%;border-radius:2px"></div>
-          <div style="flex:1;background:var(--acc);height:85%;border-radius:2px"></div>
-          <div style="flex:1;background:var(--acc);height:45%;border-radius:2px"></div>
-          <div style="flex:1;background:var(--acc);height:100%;border-radius:2px"></div>
-        </div>
-      </div>
-    </div>
-    <div class="mk" style="--x:41%;--y:60%">1</div>
-    <div class="mk" style="--x:52%;--y:3.6%">2</div>
-    <div class="mk" style="--x:76%;--y:3.6%">3</div>
-    <div class="mk" style="--x:93%;--y:3.6%">4</div>
-  </div>
-
-  <ul class="legend" style="margin-top:4mm">
-    <li><span class="n">1</span><span><b>Artefakt kartochkasi</b> — suhbatda shunday koʻrinadi. Bosing — oʻngda katta oynada ochiladi.</span></li>
-    <li><span class="n">2</span><span><b>Artefakt nomi</b> — ustiga bosib nomini oʻzgartirasiz.</span></li>
-    <li><span class="n">3</span><span><b>Preview / Code</b> — tayyor koʻrinish yoki ichki kod (dasturchilar uchun).</span></li>
-    <li><span class="n">4</span><span><b>3 ta ikonka:</b> ⧉ <b>Copy</b> (nusxa olish) · ↓ <b>Download</b> (yuklab olish) · ⊕ <b>Publish</b> (havola yaratish).</span></li>
-  </ul>
-
-  <div class="rule"></div>
-  <div class="grid2" style="gap:6mm">
-    <div>
-      <h3>Qanday tahrirlanadi?</h3>
-      <div class="kv"><i>1</i><div><b>Soʻz bilan:</b> «Ustunni qoʻsh», «rangini koʻk qil», «matnni qisqartir» deb yozasiz — artefakt oʻzi yangilanadi.</div></div>
-      <div class="kv"><i>2</i><div><b>Qoʻlda:</b> Code rejimini oching va matnni oʻzgartiring.</div></div>
-      <div class="kv"><i>3</i><div><b>Versiyalar:</b> yuqoridagi <b>«v1 · v2 · v3»</b> orqali eski variantga qaytasiz.</div></div>
-    </div>
-    <div>
-      <h3>Qanday saqlanadi?</h3>
-      <div class="kv"><i>↓</i><div><b>Download</b> — fayl koʻrinishida (.md, .html, .csv, .png).</div></div>
-      <div class="kv"><i>⧉</i><div><b>Copy</b> — buferga oling va Word/Excel'ga joylang.</div></div>
-      <div class="kv"><i>⌾</i><div><b>Publish</b> — internetdagi havola. Havolani mijozga yuborasiz.</div></div>
-      <div class="kv"><i>☰</i><div>Barcha artefaktlar chap paneldagi <b>Artifacts</b> boʻlimida saqlanadi.</div></div>
-    </div>
-  </div>
-
-  <div class="note" style="margin-top:auto"><b>Nimalar artefakt boʻladi?</b> Sayt · jadval · grafik · hisobot · prezentatsiya ·
-  kalkulyator · testlar · uzun matn · kod. Qisqa javob artefakt boʻlmaydi — u shunchaki suhbatda yoziladi.</div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-
-<!-- ================= 12. FAYL YUKLASH ================= -->
-<div class="page">
-  <div class="ph"><span>4-boʻlim · Funksiyalar</span><span><b>12 · Fayl yuklash</b></span></div>
-  <span class="sect-no">12-qadam</span>
-  <h1>Fayl yuklash — formatlar va cheklovlar</h1>
-  <p style="margin-bottom:4mm">Yozish oynasidagi <b>+</b> tugmasi orqali fayl qoʻshasiz. Claude PDF, Word, Excel va rasmni oʻqiy oladi.</p>
-
-  <div class="grid2" style="gap:6mm;align-items:start">
-    <div>
-      <div class="ui" style="height:76mm;display:block;padding:4mm;background:var(--bg)">
-        <div style="display:flex;justify-content:flex-start;margin-bottom:2.4mm">
-          <div class="menu" style="width:60mm">
-            <div class="on"><svg class="ico" style="width:3.4mm;height:3.4mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-file"/></svg>Upload from computer</div>
-            <div><svg class="ico" style="width:3.4mm;height:3.4mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-img"/></svg>Add photos</div>
-            <div><svg class="ico" style="width:3.4mm;height:3.4mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-cam"/></svg>Take screenshot</div>
-            <div class="sep"></div>
-            <div><svg class="ico" style="width:3.4mm;height:3.4mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-plug"/></svg>Google Drive</div>
-            <div><svg class="ico" style="width:3.4mm;height:3.4mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-plug"/></svg>Add connectors</div>
-          </div>
-        </div>
-        <div class="composer">
-          <div style="display:flex;gap:2mm;margin-bottom:2.4mm">
-            <div class="card" style="padding:1.6mm 2.4mm;display:flex;gap:2mm;align-items:center;font-size:7.2pt">
-              <svg class="ico" style="width:3mm;height:3mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-file"/></svg>hisobot.pdf</div>
-            <div class="card" style="padding:1.6mm 2.4mm;display:flex;gap:2mm;align-items:center;font-size:7.2pt">
-              <svg class="ico" style="width:3mm;height:3mm;color:#6f9fd8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-img"/></svg>skrin.png</div>
-          </div>
-          <div class="ph2" style="padding:.6mm .6mm 3.4mm;font-size:8pt">Bu hisobotdan asosiy 5 ta xulosani yoz…</div>
-          <div class="crow"><div class="cl"><span class="plus" style="border-color:var(--acc);color:var(--acc)">+</span>
-            <span class="seg"><span class="on">Chat</span><span>Cowork</span></span></div>
-            <div class="cr"><span class="mdl">Sonnet 5</span></div></div>
-        </div>
-        <div class="mk" style="--x:2.5%;--y:87%">1</div>
-        <div class="mk" style="--x:78%;--y:11%">2</div>
-        <div class="mk" style="--x:78%;--y:31%">3</div>
-        <div class="mk" style="--x:78%;--y:48%">4</div>
-      </div>
-      <ul class="legend one" style="margin-top:2.6mm">
-        <li><span class="n">1</span><span><b>+ tugmasi</b> — menyu shu yerdan ochiladi.</span></li>
-        <li><span class="n">2</span><span><b>Upload from computer</b> — kompyuterdan fayl.</span></li>
-        <li><span class="n">3</span><span><b>Take screenshot</b> — ekran surati (desktop ilovada).</span></li>
-        <li><span class="n">4</span><span><b>Google Drive / Connectors</b> — bulutdan olish.</span></li>
-      </ul>
-      <div class="note blue" style="margin-top:3mm"><b>Tezroq usul:</b> faylni sichqoncha bilan <b>ushlab</b>, toʻgʻridan-toʻgʻri
-      yozish oynasiga <b>tashlang</b> (drag &amp; drop). Rasmni <span class="mono">Ctrl+V</span> bilan ham qoʻyish mumkin.</div>
-    </div>
-
-    <div>
-      <h3>Qaysi formatlar qabul qilinadi?</h3>
-      <div class="tw">
-        <table>
-          <tr><th style="width:26mm">Turi</th><th>Formatlar</th></tr>
-          <tr><td><b>Hujjat</b></td><td class="mono" style="font-size:7.8pt">PDF · DOCX · TXT · RTF · ODT · EPUB · HTML</td></tr>
-          <tr><td><b>Jadval</b></td><td class="mono" style="font-size:7.8pt">CSV · XLSX</td></tr>
-          <tr><td><b>Rasm</b></td><td class="mono" style="font-size:7.8pt">JPEG · PNG · GIF · WEBP</td></tr>
-          <tr><td><b>Ma'lumot</b></td><td class="mono" style="font-size:7.8pt">JSON</td></tr>
-        </table>
-      </div>
-
-      <h3 style="margin-top:5mm">Cheklovlar</h3>
-      <div class="tw">
-        <table>
-          <tr><td style="width:44mm"><b>Bitta fayl hajmi</b></td><td><b style="color:var(--acc2)">500 MB</b> gacha</td></tr>
-          <tr><td><b>Bitta suhbatda</b></td><td><b style="color:var(--acc2)">20 tagacha</b> fayl</td></tr>
-          <tr><td><b>PDF beti</b></td><td><b style="color:var(--acc2)">1000 bet</b> gacha</td></tr>
-          <tr><td><b>PDF rasmlari</b></td><td>100 betgacha — matn <b>va rasm</b> oʻqiladi.<br>101–1000 bet — faqat <b>matn</b>.</td></tr>
-          <tr><td><b>Rasm oʻlchami</b></td><td><b style="color:var(--acc2)">8000 × 8000</b> piksel gacha</td></tr>
-        </table>
-      </div>
-
-      <div class="note warn" style="margin-top:4mm"><b>Muhim:</b> Word yoki Excel ichidagi <b>rasmlar oʻqilmaydi</b> — faqat matn olinadi.
-      Agar rasm muhim boʻlsa, uni alohida <b>PNG</b> qilib yuklang yoki ekran surati oling.</div>
-
-      <div class="note" style="margin-top:3mm"><b>XLSX uchun:</b> Excel fayl bilan hisob-kitob qilish uchun sozlamalarda
-      <b>code execution</b> (kod bajarish) yoqilgan boʻlishi kerak. Settings → Features boʻlimida tekshiring.</div>
-    </div>
-  </div>
-
-  <div class="rule" style="margin-top:auto"></div>
-  <div class="grid3">
-    <div class="box"><h4>Skaner qilingan PDF</h4><p>Agar PDF rasm koʻrinishida boʻlsa — 100 betdan kam boʻlsin, shunda Claude rasmni ham koʻradi.</p></div>
-    <div class="box"><h4>Katta fayl sekin</h4><p>200 betlik hujjatdan faqat kerakli boʻlimni ajratib yuklang — tez va arzon.</p></div>
-    <div class="box"><h4>Doimiy fayllar</h4><p>Har kuni kerak boʻladigan fayllarni <b>Project knowledge</b> ga soling.</p></div>
-  </div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-<!-- ================= 13. QOLGAN FUNKSIYALAR ================= -->
-<div class="page">
-  <div class="ph"><span>4-boʻlim · Funksiyalar</span><span><b>13 · Barcha funksiyalar</b></span></div>
-  <span class="sect-no">13-qadam</span>
-  <h1>Claude ichidagi barcha vositalar</h1>
-  <p style="margin-bottom:4mm">Quyida — Claude'dagi har bir vosita: nima qiladi, qayerda turadi va qachon ishlatiladi.</p>
-
-  <div class="grid2" style="gap:4mm 5mm">
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-chat"/></svg>
-        <h4 style="margin:0">Chat — suhbat</h4></div>
-      <p>Oddiy savol-javob. Ishning 90% i shu yerda.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> yozish oynasidagi «Chat» tugmasi.</small>
-    </div>
-
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-brain"/></svg>
-        <h4 style="margin:0">Cowork — birga ishlash</h4></div>
-      <p>Uzoq vazifa rejimi. Claude oʻzi bir necha qadam bajaradi: koʻp faylni oʻqiydi, papka bilan ishlaydi, natijani yigʻadi.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qachon:</b> «10 ta hujjatni oʻqib, umumiy hisobot tayyorla» kabi katta ish. <b>Pro</b> dan boshlab.</small>
-    </div>
-
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-art"/></svg>
-        <h4 style="margin:0">Artifacts — artefaktlar</h4></div>
-      <p>Claude yaratgan barcha tayyor natijalar bir joyda: sayt, jadval, hujjat, grafik.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> chap panel → Artifacts. Batafsil — 11-boʻlim.</small>
-    </div>
-
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-clock"/></svg>
-        <h4 style="margin:0">Scheduled — jadval boʻyicha</h4></div>
-      <p>Vazifani vaqtga qoʻyasiz. Claude oʻzi bajaradi va natijani sizga qoldiradi.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Misol:</b> «Har dushanba 09:00 da haftalik kontent reja tayyorla».</small>
-    </div>
-
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-cust"/></svg>
-        <h4 style="margin:0">Customize — moslash</h4></div>
-      <p>Javob uslubi (Styles), xotira (Memory), ulanishlar (Connectors), koʻnikmalar (Skills) shu yerda.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> chap panel → Customize.</small>
-    </div>
-
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-pal"/></svg>
-        <h4 style="margin:0">Design — dizayn</h4></div>
-      <p>Vizual ish uchun alohida vosita: maket, rasm, sahifa koʻrinishi.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> chap panel eng pastida.</small>
-    </div>
-
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-globe"/></svg>
-        <h4 style="margin:0">Web search — internetdan izlash</h4></div>
-      <p>Claude yangi ma'lumot uchun internetga chiqadi va manbalarni koʻrsatadi.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qanday:</b> shunchaki «internetdan tekshirib ber» deb yozing.</small>
-    </div>
-
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-search"/></svg>
-        <h4 style="margin:0">Research — chuqur tadqiqot</h4></div>
-      <p>Claude oʻnlab manbani oʻqib, manbali katta hisobot yozadi. 5–15 daqiqa vaqt oladi.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qachon:</b> bozor tahlili, raqobatchilar, katta mavzu. <b>Pro</b> dan boshlab.</small>
-    </div>
-
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-plug"/></svg>
-        <h4 style="margin:0">Connectors — ulanishlar</h4></div>
-      <p>Google Drive, Gmail, Notion, Slack, Jira va boshqalarni ulaysiz. Claude ulardan ma'lumot oladi.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> Settings → Connectors.</small>
-    </div>
-
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-brain"/></svg>
-        <h4 style="margin:0">Memory — xotira</h4></div>
-      <p>Claude siz haqingizdagi muhim narsalarni eslab qoladi: kasbingiz, uslubingiz, doimiy talablaringiz.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Boshqarish:</b> Settings → Memory. Xohlasangiz oʻchirasiz.</small>
-    </div>
-
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-mic"/></svg>
-        <h4 style="margin:0">Voice — ovoz</h4></div>
-      <p>Mikrofon — gapirasiz, matnga aylanadi. Ovozli rejim — Claude bilan jonli suhbat.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> yozish oynasining oʻng chekkasi.</small>
-    </div>
-
-    <div class="box">
-      <div style="display:flex;gap:2.6mm;align-items:center;margin-bottom:2mm">
-        <svg class="ico" style="width:5mm;height:5mm;color:var(--acc)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-code"/></svg>
-        <h4 style="margin:0">Code — dasturchilar uchun</h4></div>
-      <p>Claude Code: kompyuteringizdagi kod bilan ishlaydi. Boshlovchiga hozircha kerak emas.</p>
-      <small style="margin-top:2mm"><b style="color:var(--tx2)">Qayerda:</b> yuqoridagi «Code» tugmasi. <b>Pro</b> dan boshlab.</small>
-    </div>
-  </div>
-
-  <div class="note" style="margin-top:auto"><b>Boshlovchiga yetarli:</b> Chat + Projects + Artifacts + fayl yuklash.
-  Qolganini keyinroq, ishni oʻrganganingizdan soʻng ochasiz.</div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-
-<!-- ================= 14. SOZLAMALAR ================= -->
-<div class="page">
-  <div class="ph"><span>4-boʻlim · Funksiyalar</span><span><b>14 · Sozlamalar</b></span></div>
-  <span class="sect-no">14-qadam</span>
-  <h1>Settings — sozlamalar</h1>
-  <p style="margin-bottom:4mm">Chap pastdagi <b>ismingizni</b> bosing → <b>Settings</b>. Chapda boʻlimlar roʻyxati chiqadi.</p>
-
-  <div style="display:flex;gap:7mm;align-items:flex-start">
-    <div class="ui" style="flex:0 0 78mm;height:118mm;display:block">
-      <div style="padding:3mm 3.4mm;border-bottom:1px solid var(--line);font-size:9pt;font-weight:600">Settings</div>
-      <div style="display:flex;height:calc(100% - 11mm)">
-        <div style="flex:0 0 30mm;border-right:1px solid var(--line);padding:2.4mm 1.6mm;font-size:7.6pt;color:var(--tx2);display:flex;flex-direction:column;gap:.4mm">
-          <div style="padding:1.6mm 2mm;background:#2c2b2a;border-radius:5px;color:var(--tx)">Profile</div>
-          <div style="padding:1.6mm 2mm">Appearance</div>
-          <div style="padding:1.6mm 2mm">Billing</div>
-          <div style="padding:1.6mm 2mm">Usage</div>
-          <div style="padding:1.6mm 2mm">Memory</div>
-          <div style="padding:1.6mm 2mm">Connectors</div>
-          <div style="padding:1.6mm 2mm">Capabilities</div>
-          <div style="padding:1.6mm 2mm">Privacy</div>
-          <div style="padding:1.6mm 2mm">Data controls</div>
-          <div style="padding:1.6mm 2mm">Account</div>
-        </div>
-        <div style="flex:1;padding:3mm">
-          <div style="font-size:8.4pt;font-weight:600;margin-bottom:2.4mm">Profile</div>
-          <small style="margin-bottom:1mm">Full name</small>
-          <div class="card" style="padding:2mm 2.6mm;font-size:7.8pt;margin-bottom:2.6mm">Yusufbay</div>
-          <small style="margin-bottom:1mm">What should Claude call you?</small>
-          <div class="card" style="padding:2mm 2.6mm;font-size:7.8pt;margin-bottom:2.6mm">Yusuf</div>
-          <small style="margin-bottom:1mm">What best describes your work?</small>
-          <div class="card" style="padding:2mm 2.6mm;font-size:7.8pt;margin-bottom:2.6mm">Marketing</div>
-          <small style="margin-bottom:1mm">Personal preferences for Claude</small>
-          <div class="card" style="padding:2mm 2.6mm;font-size:7.2pt;color:var(--tx3);line-height:1.4">
-            Menga oʻzbek tilida, sodda jumlalar bilan javob ber. Uzun kirish soʻzlarsiz — darrov ishga oʻt.
-          </div>
-          <div style="margin-top:3mm;display:flex;justify-content:flex-end">
-            <span style="background:var(--acc);color:#241009;border-radius:6px;padding:1.4mm 4mm;font-size:7.6pt;font-weight:700">Save</span>
-          </div>
-        </div>
-      </div>
-      <div class="mk" style="--x:38.5%;--y:12%">1</div>
-      <div class="mk" style="--x:38.5%;--y:22%">2</div>
-      <div class="mk" style="--x:38.5%;--y:29%">3</div>
-      <div class="mk" style="--x:38.5%;--y:36%">4</div>
-      <div class="mk" style="--x:38.5%;--y:43%">5</div>
-      <div class="mk" style="--x:38.5%;--y:50%">6</div>
-      <div class="mk" style="--x:38.5%;--y:57%">7</div>
-      <div class="mk" style="--x:38.5%;--y:64%">8</div>
-      <div class="mk" style="--x:38.5%;--y:71%">9</div>
-      <div class="mk" style="--x:38.5%;--y:78%">10</div>
-      <div class="mk g" style="--x:73%;--y:89%">11</div>
-    </div>
-
-    <div style="flex:1">
-      <div class="kv"><i>1</i><div><b>Profile</b> — ismingiz, kasbingiz va <b>«Personal preferences»</b>. Bu yerga yozganingizni Claude <b>har suhbatda</b> hisobga oladi.</div></div>
-      <div class="kv"><i>2</i><div><b>Appearance</b> — tashqi koʻrinish: qora (dark) yoki oq (light) mavzu, matn oʻlchami, til.</div></div>
-      <div class="kv"><i>3</i><div><b>Billing</b> — tarif, karta, hisob-fakturalar. Obunani shu yerdan bekor qilasiz.</div></div>
-      <div class="kv"><i>4</i><div><b>Usage</b> — limit holati: 5 soatlik sessiya va haftalik sarf (7-boʻlim).</div></div>
-      <div class="kv"><i>5</i><div><b>Memory</b> — Claude siz haqingizda nima eslab qolganini koʻrasiz. Kerak boʻlmasa — oʻchirasiz.</div></div>
-      <div class="kv"><i>6</i><div><b>Connectors</b> — Google Drive, Gmail, Notion, Slack ulanishlari.</div></div>
-      <div class="kv"><i>7</i><div><b>Capabilities</b> — funksiyalarni yoqish/oʻchirish: artefaktlar, kod bajarish, tahlil vositasi.</div></div>
-      <div class="kv"><i>8</i><div><b>Privacy</b> — maxfiylik. Suhbatlaringiz oʻqitishda ishlatilishi-ishlatilmasligini boshqarasiz.</div></div>
-      <div class="kv"><i>9</i><div><b>Data controls</b> — ma'lumotni eksport qilish yoki suhbatlarni oʻchirish.</div></div>
-      <div class="kv"><i>10</i><div><b>Account</b> — pochtani oʻzgartirish, hisobni oʻchirish, chiqish (Log out).</div></div>
-      <div class="kv"><i class="mono" style="color:#6f9fd8">11</i><div><b>Save</b> — oʻzgarishni saqlash. Bosishni unutmang!</div></div>
-
-      <div class="note blue" style="margin-top:4mm"><b>Eng foydali sozlama.</b> Profile → <b>Personal preferences</b> ga shuni yozing:
-      <div class="mono" style="margin-top:2mm;color:var(--tx2);line-height:1.5">«Menga doim oʻzbek tilida, sodda va qisqa javob ber.
-      Uzun kirish soʻz kerak emas. Roʻyxat va sarlavhalar bilan yoz. Agar savolim tushunarsiz boʻlsa — avval aniqlashtiruvchi savol ber.»</div></div>
-    </div>
-  </div>
-
-  <div class="rule" style="margin-top:auto"></div>
-  <div class="grid3">
-    <div class="box"><h4>Qora yoki oq?</h4><p>Appearance → <b>Dark</b> / <b>Light</b> / <b>System</b>. Kechqurun ishlasangiz — Dark.</p></div>
-    <div class="box"><h4>Suhbat oʻchirish</h4><p>Suhbat ustiga boring → <b>«…»</b> → <b>Delete</b>. Yoki Data controls'dan hammasini.</p></div>
-    <div class="box"><h4>Hisobdan chiqish</h4><p>Ism → <b>Log out</b>. Boshqa kompyuterda ishlagan boʻlsangiz — albatta chiqing.</p></div>
-  </div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-
-<!-- ================= 15. WEB / MOBIL / DESKTOP ================= -->
-<div class="page">
-  <div class="ph"><span>5-boʻlim · Qurilmalar</span><span><b>15 · Web · Mobil · Desktop</b></span></div>
-  <span class="sect-no">15-qadam</span>
-  <h1>Web, mobil va desktop — farqi</h1>
-  <p style="margin-bottom:4mm">Claude 3 xil koʻrinishda ishlaydi. <b>Hisob bitta</b> — hamma qurilmada bir xil suhbatlar koʻrinadi.</p>
-
-  <div class="tw">
-    <table>
-      <tr><th style="width:30mm">Koʻrinish</th><th style="width:38mm">Qayerdan olinadi</th><th>Kuchli tomoni</th><th style="width:44mm">Cheklovi</th></tr>
-      <tr>
-        <td><b>Web (brauzer)</b><br><small>claude.ai</small></td>
-        <td>Hech narsa oʻrnatmaysiz. Brauzerda ochasiz.</td>
-        <td>Darrov ishlaydi. Har qanday kompyuterda. Barcha asosiy funksiyalar bor.</td>
-        <td>Ekran surati olish qulay emas; brauzer yopilsa oyna yoʻqoladi.</td>
-      </tr>
-      <tr style="background:rgba(217,119,87,.07)">
-        <td><b style="color:var(--acc2)">Desktop</b><br><small>Windows · macOS</small></td>
-        <td><span class="mono">claude.ai/download</span></td>
-        <td><b>Eng qulay.</b> Alohida dastur. Tez tugmalar, ekran surati, fayl bilan ishlash osonroq.</td>
-        <td>Oʻrnatish kerak (2–3 daqiqa).</td>
-      </tr>
-      <tr>
-        <td><b>Mobil</b><br><small>iOS · Android</small></td>
-        <td>App Store / Google Play → «Claude by Anthropic»</td>
-        <td>Yoʻlda ishlash, ovoz bilan gapirish, telefondan rasm yuborish.</td>
-        <td>Kichik ekran — uzun hujjat bilan ishlash noqulay.</td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="grid2" style="gap:6mm;margin-top:5mm;align-items:start">
-    <div>
-      <h3>Desktop ilovani oʻrnatish</h3>
-      <ol class="steps">
-        <li>Brauzerda <b class="mono">claude.ai/download</b> ni oching.</li>
-        <li>Tizimingizni tanlang: <b>Windows</b> yoki <b>macOS</b>.</li>
-        <li>Fayl yuklanadi. Uni oching (<span class="mono">.exe</span> yoki <span class="mono">.dmg</span>).</li>
-        <li><b>Windows:</b> «Install» ni bosing.<br><b>Mac:</b> Claude belgisini <b>Applications</b> papkasiga sudrang.</li>
-        <li>Ilovani oching va <b>oʻsha pochta</b> bilan kiring.</li>
-        <li>Tayyor. Barcha suhbatlaringiz joyida turadi.</li>
-      </ol>
-      <div class="note"><b>Tez chaqirish:</b> desktop ilovada <span class="mono">Ctrl</span> + <span class="mono">Alt</span> + <span class="mono">Space</span>
-      (Mac: <span class="mono">⌘</span> + <span class="mono">Shift</span> + <span class="mono">Space</span>) — Claude istalgan dasturdan chaqiriladi.</div>
-    </div>
-
-    <div>
-      <h3>Mobil ilovani oʻrnatish</h3>
-      <div style="display:flex;gap:5mm;align-items:flex-start">
-        <div style="flex:1">
-          <ol class="steps">
-            <li>App Store yoki Google Play'ni oching.</li>
-            <li>Qidiruvga <b>«Claude»</b> deb yozing.</li>
-            <li>Ishlab chiquvchi <b>Anthropic</b> ekanini tekshiring.</li>
-            <li><b>Install</b> / <b>Yuklab olish</b> ni bosing.</li>
-            <li>Oʻsha pochta bilan kiring.</li>
-          </ol>
-        </div>
-        <!-- TELEFON MOKAP -->
-        <div style="flex:0 0 34mm">
-          <div style="border:1.6px solid var(--line2);border-radius:12px;background:var(--bg);padding:2.4mm 1.6mm;height:66mm;
-                      display:flex;flex-direction:column;box-shadow:0 8px 20px rgba(0,0,0,.45)">
-            <div style="height:1mm;width:12mm;background:#3d3d3a;border-radius:2px;margin:0 auto 2.4mm"></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;font-family:var(--serif);font-size:8pt;margin-bottom:4mm">
-              ☰ <span>Claude</span> <span style="color:var(--tx3)">+</span></div>
-            <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
-              <div style="color:var(--acc);font-size:12pt;margin-bottom:2mm">✳</div>
-              <div style="font-family:var(--serif);font-size:8.4pt">Salom, Yusuf</div>
-            </div>
-            <div style="background:var(--panel);border:1px solid var(--line2);border-radius:9px;padding:2.4mm 2mm">
-              <div style="font-size:6.6pt;color:var(--tx3);margin-bottom:3mm">Xabar yozing…</div>
-              <div style="display:flex;justify-content:space-between;color:var(--tx3);font-size:7pt">
-                <span>+</span><span>Sonnet 5</span>
-                <svg class="ico" style="width:3mm;height:3mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-mic"/></svg></div>
-            </div>
-          </div>
-          <small style="text-align:center;margin-top:2mm">Mobil koʻrinish</small>
-        </div>
-      </div>
-      <div class="note blue"><b>Telefonda eng foydalisi:</b> mikrofon. Yoʻlda gapirib fikringizni aytasiz — Claude uni tayyor matnga aylantiradi.</div>
-    </div>
-  </div>
-
-  <div class="note warn" style="margin-top:auto"><b>Diqqat:</b> Play Market va App Store'da soxta «Claude AI» ilovalari bor.
-  Faqat <b>Anthropic</b> nomi yozilganini oling. Yoki toʻgʻridan-toʻgʻri <span class="mono">claude.ai/download</span> sahifasidagi havoladan yuklang.</div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-<!-- ================= 16A. AI-AGENTLAR — SAYT ================= -->
-<div class="page">
-  <div class="ph"><span>6-boʻlim · Amaliyot</span><span><b>16 · 4 ta AI-agent</b></span></div>
-  <span class="sect-no">16-qadam · 1-qism</span>
-  <h1>4 ta AI-agentni oʻrnatish</h1>
-  <p class="lead" style="margin-bottom:3mm">Havola orqali saytga oʻtsangiz, u yerda sizni <b>4 ta AI-agent</b> kutyapti.
-  Ular tayyor «xodimlar» — har biri oʻz ishini biladi. Oʻrnatish <b>10–15 daqiqa</b>, dasturchi boʻlish shart emas.</p>
-
-  <div class="grid2" style="gap:5mm;align-items:center;margin-bottom:5mm">
-    <div class="card" style="border-color:var(--acc);display:flex;gap:4mm;align-items:center">
-      <svg viewBox="0 0 100 100" style="width:11mm;height:11mm;flex:0 0 auto">
-        <g stroke="#d97757" stroke-width="7" stroke-linecap="round"><path d="M50 10v80M10 50h80M22 22l56 56M78 22 22 78"/></g></svg>
-      <div>
-        <small style="margin-bottom:1mm">Sayt</small>
-        <div class="mono" style="font-size:11pt;color:var(--acc2);font-weight:700">ai-sovga.vercel.app</div>
-      </div>
-    </div>
-    <div class="card" style="display:flex;gap:4mm;align-items:center">
-      <div style="flex:0 0 11mm;height:11mm;border-radius:3px;background:#c33;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11pt">▶</div>
-      <div>
-        <small style="margin-bottom:1mm">Toʻliq video yoʻriqnoma</small>
-        <div class="mono" style="font-size:8.6pt;color:var(--tx2)">youtube.com/watch?v=Zlz4q711xHw</div>
-      </div>
-    </div>
-  </div>
-
-  <h3>Qaysi agent nima qiladi?</h3>
-  <div class="grid2" style="gap:4mm;margin-bottom:5mm">
-    <div class="box" style="border-color:#6d4a3a">
-      <h4 style="color:var(--acc2)">AI-marketolog</h4>
-      <p style="margin-bottom:2mm"><b>Muammo:</b> kontent bor, lekin koʻrilmayapti va sotmayapti.</p>
-      <small><b style="color:var(--tx2)">Nima qiladi:</b> Reels ssenariylari, storis prigrev, sotuv matnlari, sarlavha va hooklar.</small>
-    </div>
-    <div class="box" style="border-color:#6d4a3a">
-      <h4 style="color:var(--acc2)">AI-prodyuser</h4>
-      <p style="margin-bottom:2mm"><b>Muammo:</b> mahsulot bor, lekin qachon va qanday sotishni bilmaysiz.</p>
-      <small><b style="color:var(--tx2)">Nima qiladi:</b> zapusk jadvali, kun-baday reja, savdo oynasi qachon ochilishi.</small>
-    </div>
-    <div class="box" style="border-color:#6d4a3a">
-      <h4 style="color:var(--acc2)">AI-ROP <span style="color:var(--tx3);font-weight:400;font-size:8.4pt">(sotuv boʻlimi boshligʻi)</span></h4>
-      <p style="margin-bottom:2mm"><b>Muammo:</b> soʻrashadi, lekin sotib olishmaydi.</p>
-      <small><b style="color:var(--tx2)">Nima qiladi:</b> sotuv skriptlari, e'tirozlarga tayyor javoblar, diagnostika savollari.</small>
-    </div>
-    <div class="box" style="border-color:#6d4a3a">
-      <h4 style="color:var(--acc2)">AI-metodist</h4>
-      <p style="margin-bottom:2mm"><b>Muammo:</b> bilim bor, lekin mahsulotga aylanmagan.</p>
-      <small><b style="color:var(--tx2)">Nima qiladi:</b> kursni modullarga boʻladi, davomiylik va narxni belgilaydi, uy vazifalarini yozadi.</small>
-    </div>
-  </div>
-
-  <h3>Saytda nima qilasiz? — 3 ta qadam</h3>
-  <div class="ui" style="height:70mm;display:block;background:var(--bg)">
-    <div class="bar" style="justify-content:space-between">
-      <span class="mono" style="color:var(--tx3);font-size:7.4pt">ai-sovga.vercel.app</span>
-      <span style="display:flex;gap:2.4mm"><span class="chip" style="font-size:6.8pt">Agentlar</span><span class="chip" style="font-size:6.8pt">Baza</span></span>
-    </div>
-    <div style="padding:4mm;display:flex;gap:3.4mm">
-      <div class="card" style="flex:1;text-align:center;padding:3mm 2.4mm">
-        <div style="width:6mm;height:6mm;border-radius:50%;background:var(--acc);color:#241009;font-weight:800;
-                    display:flex;align-items:center;justify-content:center;margin:0 auto 2mm;font-size:8pt">1</div>
-        <b style="font-size:8pt">Agentni tanlang</b>
-        <small style="margin-top:1.4mm;font-size:6.8pt">4 tadan birini bosing</small>
-      </div>
-      <div class="card" style="flex:1;text-align:center;padding:3mm 2.4mm;border-color:var(--acc)">
-        <div style="width:6mm;height:6mm;border-radius:50%;background:var(--acc);color:#241009;font-weight:800;
-                    display:flex;align-items:center;justify-content:center;margin:0 auto 2mm;font-size:8pt">2</div>
-        <b style="font-size:8pt">Matnni nusxalang</b>
-        <small style="margin-top:1.4mm;font-size:6.8pt">«Copy» tugmasi — 1 bosish</small>
-      </div>
-      <div class="card" style="flex:1;text-align:center;padding:3mm 2.4mm">
-        <div style="width:6mm;height:6mm;border-radius:50%;background:var(--acc);color:#241009;font-weight:800;
-                    display:flex;align-items:center;justify-content:center;margin:0 auto 2mm;font-size:8pt">3</div>
-        <b style="font-size:8pt">Fayllarni yuklang</b>
-        <small style="margin-top:1.4mm;font-size:6.8pt">Qaysi fayl kerakligi yozilgan</small>
-      </div>
-    </div>
-    <div style="padding:0 4mm 4mm">
-      <div class="card" style="border-color:var(--acc)">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2mm">
-          <b style="font-size:8.6pt;color:var(--acc2)">AI-marketolog — shablon matni</b>
-          <span style="background:var(--acc);color:#241009;border-radius:6px;padding:1.2mm 3.4mm;font-size:7.4pt;font-weight:700;
-                       display:flex;align-items:center;gap:1.6mm">
-            <svg class="ico" style="width:3mm;height:3mm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-copy"/></svg>Copy</span>
-        </div>
-        <div class="mono" style="font-size:6.8pt;color:var(--tx3);line-height:1.5">
-          Sen — tajribali Instagram marketologsan. Auditoriyam: … Mahsulotim: … Har javobda 3 ta variant ber.
-          Til: oʻzbekcha, sodda jumlalar. Hech qachon umumiy maslahat berma — faqat tayyor matn yoz…
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="cap">Sayt shu tartibda ishlaydi: agent → shablon → «Copy» → fayllar. Keyingi sahifada shablonni Claude'ga qoʻyamiz.</div>
-
-  <div class="note" style="margin-top:auto"><b>Nega bu ishlaydi?</b> Shablon — bu agentga berilgan «lavozim yoʻriqnomasi».
-  Uni Claude'ning <b>Project instructions</b> boʻlimiga qoʻysangiz, Claude har suhbatda shu roldan chiqmaydi.</div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-
-<!-- ================= 16B. 1–2-QADAM ================= -->
-<div class="page">
-  <div class="ph"><span>6-boʻlim · Amaliyot</span><span><b>16 · Agentni Claude'ga qoʻyish</b></span></div>
-  <span class="sect-no">16-qadam · 2-qism</span>
-  <h1>Agentni Claude ichiga oʻrnatish</h1>
-  <p style="margin-bottom:5mm">Nusxalangan shablonni Claude'da <b>Project</b> ichiga qoʻyamiz. Shunda agent doim yodda turadi — har suhbatda qaytadan yozmaysiz.</p>
-
-  <h3 style="color:var(--acc2)">1-qadam · Loyiha yarating</h3>
-  <div class="grid2" style="gap:6mm;align-items:start;margin-bottom:6mm">
-    <div>
-      <ol class="steps">
-        <li>Claude'da chap paneldan <b>Projects</b> ni bosing.</li>
-        <li>Oʻng yuqorida <b>«+ New project»</b> tugmasi turadi — bosing.</li>
-        <li>Nom yozing: <span class="mono">AI-marketolog</span>.</li>
-        <li><b>Create project</b> ni bosing. Loyiha tayyor.</li>
-      </ol>
-      <div class="note blue"><b>Nomni agent nomi bilan qoʻying.</b> Keyin chap paneldan darrov topasiz:
-      AI-marketolog · AI-prodyuser · AI-ROP · AI-metodist.</div>
-    </div>
-    <div>
-      <div class="ui" style="height:56mm;display:block">
-        <div class="bar" style="justify-content:space-between"><b style="font-size:8.4pt">Projects</b>
-          <span style="background:var(--acc);color:#241009;border-radius:6px;padding:1.2mm 3mm;font-size:7.4pt;font-weight:700">+ New project</span></div>
-        <div style="padding:4mm">
-          <div class="card" style="max-width:64mm;margin:0 auto">
-            <div style="font-size:8.4pt;font-weight:600;margin-bottom:2.4mm">Create a project</div>
-            <small style="margin-bottom:1.4mm">What are you working on?</small>
-            <div style="background:#262624;border:1px solid var(--line2);border-radius:6px;padding:2mm 2.6mm;font-size:7.8pt;color:var(--tx)">AI-marketolog</div>
-            <div style="margin-top:3.4mm;display:flex;justify-content:flex-end;gap:2mm">
-              <span class="chip" style="font-size:7.2pt">Cancel</span>
-              <span style="background:var(--acc);color:#241009;border-radius:6px;padding:1.2mm 3mm;font-size:7.4pt;font-weight:700">Create project</span></div>
-          </div>
-        </div>
-        <div class="mk" style="--x:60%;--y:9%">1</div>
-        <div class="mk" style="--x:11%;--y:58%">2</div>
-        <div class="mk" style="--x:88%;--y:70%">3</div>
-      </div>
-      <ul class="legend one" style="margin-top:2.6mm">
-        <li><span class="n">1</span><span><b>+ New project</b> — yangi loyiha tugmasi.</span></li>
-        <li><span class="n">2</span><span><b>Nom maydoni</b> — agent nomini yozasiz.</span></li>
-        <li><span class="n">3</span><span><b>Create project</b> — tasdiqlash.</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <h3 style="color:var(--acc2)">2-qadam · Shablonni joylashtiring</h3>
-  <div class="grid2" style="gap:6mm;align-items:start">
-    <div>
-      <ol class="steps">
-        <li>Loyiha ichida <b>«Project instructions»</b> boʻlimini toping.</li>
-        <li><b>Edit</b> (yoki «Add instructions») ni bosing.</li>
-        <li>Saytdan nusxalagan matnni <span class="mono">Ctrl</span>+<span class="mono">V</span> bilan qoʻying.</li>
-        <li><b>Boʻsh joylarni toʻldiring</b> — auditoriyangiz, mahsulotingiz, narxingiz.</li>
-        <li><b>Save</b> ni bosing.</li>
-      </ol>
-      <div class="note warn"><b>Eng koʻp qilinadigan xato:</b> shablonni qoʻyib, boʻsh joylarni toʻldirmaslik.
-      Unda agent umumiy javob beradi. 5 daqiqa vaqt ajrating va oʻzingiz haqingizda yozing.</div>
-    </div>
-    <div>
-      <div class="ui" style="height:56mm;display:block">
-        <div class="bar" style="justify-content:space-between"><b style="font-size:8.4pt">Project instructions</b>
-          <span class="chip" style="font-size:6.8pt">Edit</span></div>
-        <div style="padding:3.4mm">
-          <div class="card" style="font-size:7.4pt;color:var(--tx2);line-height:1.55">
-            Sen — tajribali Instagram marketologsan.<br>
-            Auditoriyam: <span style="color:var(--acc2)">25–35 yosh, Toshkent, kichik biznes egalari</span>.<br>
-            Mahsulotim: <span style="color:var(--acc2)">AI boʻyicha onlayn kurs, 1 200 000 soʻm</span>.<br>
-            Til: oʻzbekcha, sodda jumlalar. Har javobda 3 ta variant ber.
-          </div>
-          <div style="margin-top:3mm;display:flex;justify-content:flex-end">
-            <span style="background:var(--acc);color:#241009;border-radius:6px;padding:1.2mm 4mm;font-size:7.4pt;font-weight:700">Save</span></div>
-        </div>
-        <div class="mk" style="--x:2%;--y:34%">1</div>
-        <div class="mk g" style="--x:2%;--y:58%">2</div>
-        <div class="mk" style="--x:76%;--y:66%">3</div>
-      </div>
-      <ul class="legend one" style="margin-top:2.6mm">
-        <li><span class="n">1</span><span><b>Shablon</b> — saytdan nusxalangan matn.</span></li>
-        <li><span class="n g">2</span><span><b>Toʻq sariq joylar</b> — siz oʻzingiz toʻldirasiz. Eng muhim qadam!</span></li>
-        <li><span class="n">3</span><span><b>Save</b> — saqlash.</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-
-<!-- ================= 16C. 3–4-QADAM ================= -->
-<div class="page">
-  <div class="ph"><span>6-boʻlim · Amaliyot</span><span><b>16 · Fayllar va tekshiruv</b></span></div>
-  <span class="sect-no">16-qadam · 3-qism</span>
-  <h1>Fayllarni yuklash va tekshirish</h1>
-
-  <div class="grid2" style="gap:6mm;align-items:start;margin-top:3mm">
-    <div>
-      <h3 style="color:var(--acc2)">3-qadam · Fayllarni yuklang</h3>
-      <p style="font-size:9.4pt">Saytda har bir agent uchun <b>qaysi fayl kerakligi</b> yozilgan.
-      Ularni loyihaning <b>Project knowledge</b> boʻlimiga yuklang: <b>+ Add</b> → faylni tanlang.</p>
-
-      <div class="tw" style="margin-top:3mm">
-        <table>
-          <tr><th style="width:32mm">Agent</th><th>Qanday fayl kerak</th></tr>
-          <tr><td><b>AI-marketolog</b></td><td>Eng yaxshi 10 ta postingiz, brend uslubi, mijoz savollari.</td></tr>
-          <tr><td><b>AI-prodyuser</b></td><td>Oldingi zapusk natijalari, mahsulot tavsifi, narxlar.</td></tr>
-          <tr><td><b>AI-ROP</b></td><td>Haqiqiy direkt yozishmalari, e'tirozlar roʻyxati, narx jadvali.</td></tr>
-          <tr><td><b>AI-metodist</b></td><td>Kurs mavzulari, dars yozuvlari, oʻquvchi savollari.</td></tr>
-        </table>
-      </div>
-
-      <div class="note warn" style="margin-top:3.4mm"><b>Sir shu yerda:</b> agent qanchalik koʻp <b>sizning</b> materialingizni koʻrsa,
-      shunchalik <b>sizga oʻxshab</b> yozadi. Boʻsh agent — oddiy chatbot. Toʻldirilgan agent — sizning xodimingiz.</div>
-
-      <div class="note" style="margin-top:3.4mm"><b>Fayl yoʻqmi?</b> Muammo emas. Instructions'ga oʻz soʻzingiz bilan yozing:
-      mahsulotingiz, narxingiz, mijozlaringiz kim. Keyinroq fayl qoʻshasiz.</div>
-    </div>
-
-    <div>
-      <h3 style="color:var(--acc2)">4-qadam · Tekshiring</h3>
-      <p style="font-size:9.4pt">Loyiha ichida yangi suhbat oching va aynan shu savolni bering:</p>
-      <div class="card mono" style="font-size:8.4pt;color:var(--tx2);line-height:1.55;margin:2.6mm 0 3.4mm;border-color:var(--acc)">
-        «Sen kimsan? Mening auditoriyam kim va mahsulotim nima? Qisqa javob ber.»
-      </div>
-      <div class="kv"><i>✓</i><div>Claude auditoriyangizni va mahsulotingizni <b>toʻgʻri aytsa</b> — agent ishlayapti.</div></div>
-      <div class="kv"><i>✕</i><div>Bilmasa — Instructions saqlanmagan. <b>2-qadamni qayta bajaring</b> va <b>Save</b> ni bosing.</div></div>
-
-      <div class="rule"></div>
-      <h4 style="margin-bottom:2.6mm">Endi shunday soʻrashingiz mumkin:</h4>
-      <div class="kv"><i>→</i><div class="mono" style="font-size:8.2pt">«Shu haftaga 5 ta Reels ssenariysi yoz»</div></div>
-      <div class="kv"><i>→</i><div class="mono" style="font-size:8.2pt">«Direktga kelgan bu savolga javob yoz: …»</div></div>
-      <div class="kv"><i>→</i><div class="mono" style="font-size:8.2pt">«Kursimni 6 ta modulga boʻlib chiq»</div></div>
-      <div class="kv"><i>→</i><div class="mono" style="font-size:8.2pt">«Sentabr zapuski uchun kun-baday reja tuz»</div></div>
-      <div class="kv"><i>→</i><div class="mono" style="font-size:8.2pt">«Narx qimmat deyishdi — 3 xil javob variantini ber»</div></div>
-
-      <div class="note blue" style="margin-top:3.4mm"><b>4 tasini ham qiling.</b> Har bir agent uchun alohida loyiha —
-      jami 4 ta loyiha. Free tarifda ham yetadi (5 tagacha loyiha).</div>
-    </div>
-  </div>
-
-  <div class="rule" style="margin-top:auto"></div>
-  <h3>Butun jarayon — bir qarashda</h3>
-  <svg viewBox="0 0 620 66" style="width:100%;height:auto">
-    <defs><marker id="ar2" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
-      <path d="M0 0 L6 3 L0 6 z" fill="#8f8d84"/></marker></defs>
-    <g font-family="Inter" fill="#f5f4ee">
-      <rect x="0" y="10" width="106" height="44" rx="8" fill="#30302e" stroke="#4a4a46"/>
-      <text x="53" y="29" font-size="8.4" font-weight="700" text-anchor="middle">Saytga kirish</text>
-      <text x="53" y="42" font-size="7" fill="#8f8d84" text-anchor="middle">ai-sovga.vercel.app</text>
-      <line x1="108" y1="32" x2="124" y2="32" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar2)"/>
-
-      <rect x="128" y="10" width="106" height="44" rx="8" fill="#30302e" stroke="#4a4a46"/>
-      <text x="181" y="29" font-size="8.4" font-weight="700" text-anchor="middle">Shablon «Copy»</text>
-      <text x="181" y="42" font-size="7" fill="#8f8d84" text-anchor="middle">1 bosish</text>
-      <line x1="236" y1="32" x2="252" y2="32" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar2)"/>
-
-      <rect x="256" y="10" width="106" height="44" rx="8" fill="#3a2f2a" stroke="#d97757"/>
-      <text x="309" y="29" font-size="8.4" font-weight="700" text-anchor="middle" fill="#e8a58a">Project yaratish</text>
-      <text x="309" y="42" font-size="7" fill="#8f8d84" text-anchor="middle">Claude ichida</text>
-      <line x1="364" y1="32" x2="380" y2="32" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar2)"/>
-
-      <rect x="384" y="10" width="106" height="44" rx="8" fill="#3a2f2a" stroke="#d97757"/>
-      <text x="437" y="29" font-size="8.4" font-weight="700" text-anchor="middle" fill="#e8a58a">Instructions + fayl</text>
-      <text x="437" y="42" font-size="7" fill="#8f8d84" text-anchor="middle">toʻldirasiz · Save</text>
-      <line x1="492" y1="32" x2="508" y2="32" stroke="#8f8d84" stroke-width="1.2" marker-end="url(#ar2)"/>
-
-      <rect x="512" y="10" width="106" height="44" rx="8" fill="#2f3a2c" stroke="#7fb069"/>
-      <text x="565" y="29" font-size="8.4" font-weight="700" text-anchor="middle" fill="#9ecb86">Tekshirish ✓</text>
-      <text x="565" y="42" font-size="7" fill="#8f8d84" text-anchor="middle">agent ishlayapti</text>
-    </g>
-  </svg>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-<!-- ================= 17. XATOLAR VA SAVOLLAR ================= -->
-<div class="page">
-  <div class="ph"><span>6-boʻlim · Amaliyot</span><span><b>17 · Xatolar va savollar</b></span></div>
-  <span class="sect-no">17-qadam</span>
-  <h1>Tez-tez uchraydigan savollar</h1>
-
-  <h3 style="margin-top:3mm">Texnik muammolar</h3>
-  <div class="tw">
-    <table>
-      <tr><th style="width:52mm">Muammo</th><th>Yechim</th></tr>
-      <tr><td><b>Sayt ochilmadi</b></td><td>Brauzerni yangilang, keshni tozalang. Boʻlmasa — VPN yoqing yoki mobil internetdan urinib koʻring.</td></tr>
-      <tr><td><b>«You're out of usage»</b></td><td>Limit tugadi. Yozuvda qachon yangilanishi koʻrsatilgan. Modelni <b>Haiku 4.5</b> ga oʻzgartirib davom eting.</td></tr>
-      <tr><td><b>Javob toʻxtab qoldi</b></td><td>Pastdagi <b>«Continue»</b> ni bosing yoki «davom et» deb yozing.</td></tr>
-      <tr><td><b>Fayl yuklanmadi</b></td><td>Hajmi 500 MB dan katta boʻlishi mumkin. Yoki format qoʻllab-quvvatlanmaydi (masalan <span class="mono">.pages</span>, <span class="mono">.psd</span>).</td></tr>
-      <tr><td><b>Suhbat yoʻqoldi</b></td><td>Chap panel → <b>Chats and tasks</b>. Yoki <span class="mono">Ctrl</span>+<span class="mono">K</span> bilan nomi boʻyicha qidiring.</td></tr>
-      <tr><td><b>Artefakt koʻrinmayapti</b></td><td>Settings → <b>Capabilities</b> → Artifacts yoqilganini tekshiring.</td></tr>
-    </table>
-  </div>
-
-  <div class="grid2" style="gap:5mm;margin-top:5mm">
-    <div>
-      <h3>Natija sifati</h3>
-      <div class="tw">
-        <table>
-          <tr><td style="width:30mm"><b>Javob umumiy</b></td><td>Kontekst yetishmayapti. Kim uchun, qaysi tilda, qanday formatda — yozing.</td></tr>
-          <tr><td><b>Uslub notoʻgʻri</b></td><td>2–3 ta oʻz matningizni yuklab, «shu uslubda yoz» deng.</td></tr>
-          <tr><td><b>Oʻzbekchasi gʻalati</b></td><td>«Sodda, jonli oʻzbek tilida yoz» deb qoʻshing.</td></tr>
-          <tr><td><b>Notoʻgʻri fakt</b></td><td>AI xato qilishi mumkin. Raqamlarni <b>doim tekshiring</b>.</td></tr>
-          <tr><td><b>Har safar unutadi</b></td><td><b>Project</b> yarating va qoidalarni Instructions'ga yozing.</td></tr>
-        </table>
-      </div>
-    </div>
-    <div>
-      <h3>Hisob va toʻlov</h3>
-      <div class="tw">
-        <table>
-          <tr><td style="width:30mm"><b>Karta ishlamadi</b></td><td>Xalqaro toʻlov yoqilganini tekshiring. Kartada $25 dan koʻp boʻlsin.</td></tr>
-          <tr><td><b>Obunani bekor qilish</b></td><td>Settings → Billing → <b>Cancel plan</b>. Oy oxirigacha ishlaydi.</td></tr>
-          <tr><td><b>Pochtani oʻzgartirish</b></td><td>Settings → <b>Account</b>.</td></tr>
-          <tr><td><b>Boshqa hisobga oʻtish</b></td><td>Ism → <b>Log out</b> → boshqa pochta bilan kiring.</td></tr>
-          <tr><td><b>Yordam kerak</b></td><td class="mono" style="font-size:8pt">support.claude.com</td></tr>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="rule"></div>
-  <h3>Xavfsizlik — 5 ta qoida</h3>
-  <div class="grid2" style="gap:1.6mm 6mm">
-    <div class="kv"><i>1</i><div><b>Parol, karta raqami, pasport ma'lumotini</b> hech qachon yozmang.</div></div>
-    <div class="kv"><i>2</i><div><b>Mijoz ma'lumotlarini</b> yuklashdan oldin ism-familiyani olib tashlang.</div></div>
-    <div class="kv"><i>3</i><div><b>Muhim raqamlarni</b> (narx, sana, statistika) doim oʻzingiz tekshiring.</div></div>
-    <div class="kv"><i>4</i><div><b>Tibbiy va yuridik</b> masalada mutaxassisga murojaat qiling.</div></div>
-    <div class="kv"><i>5</i><div><b>Umumiy kompyuterda</b> ishlaganingizda <b>Log out</b> qiling.</div></div>
-  </div>
-
-  <div class="note" style="margin-top:auto"><b>Eslatma:</b> Yordam — <span class="mono">support.claude.com</span> · Narx — <span class="mono">claude.com/pricing</span> · Ilova — <span class="mono">claude.ai/download</span>.<br> AI — yordamchi, xoʻjayin emas. U ishni <b>tezlashtiradi</b>,
-  lekin oxirgi qarorni siz qabul qilasiz. Har javobni oʻqing va oʻzingizga moslang.</div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-
-<!-- ================= YAKUNIY CHECKLIST ================= -->
-<div class="page">
-  <div class="ph"><span>Yakun</span><span><b>Checklist</b></span></div>
-  <span class="sect-no">Yakuniy tekshiruv</span>
-  <h1>Birinchi hafta — checklist</h1>
-  <p style="margin-bottom:5mm">Har bandni bajarganingizda katakchani belgilang. 7 kunda Claude sizning kundalik vositangizga aylanadi.</p>
-
-  <div class="grid2" style="gap:5mm 7mm">
-    <div>
-      <h3 style="color:var(--acc2)">1–2-kun · Boshlash</h3>
-      <div class="kv"><i>☐</i><div><b>claude.ai</b> da hisob ochdim (Google orqali).</div></div>
-      <div class="kv"><i>☐</i><div>Chap paneldagi <b>har bir tugmani</b> bosib koʻrdim.</div></div>
-      <div class="kv"><i>☐</i><div>Settings → <b>Profile</b> ga oʻzim haqimda yozdim va tilni belgiladim.</div></div>
-      <div class="kv"><i>☐</i><div>Birinchi savolimni berdim va javob oldim.</div></div>
-      <div class="kv"><i>☐</i><div><b>Sonnet 5 · Medium</b> qoʻyilganini tekshirdim.</div></div>
-
-      <h3 style="color:var(--acc2);margin-top:5mm">3–4-kun · Fayl va artefakt</h3>
-      <div class="kv"><i>☐</i><div>Bitta <b>PDF</b> yukladim va «asosiy xulosalarni yoz» dedim.</div></div>
-      <div class="kv"><i>☐</i><div>Bitta <b>jadval</b> yaratdim va uni <b>yuklab oldim</b>.</div></div>
-      <div class="kv"><i>☐</i><div>Artefaktni «rangini oʻzgartir» deb <b>tahrirladim</b>.</div></div>
-      <div class="kv"><i>☐</i><div><b>Artifacts</b> boʻlimida natijalarim turganini koʻrdim.</div></div>
-
-      <h3 style="color:var(--acc2);margin-top:5mm">5-kun · Loyiha</h3>
-      <div class="kv"><i>☐</i><div>Birinchi <b>Project</b> yaratdim.</div></div>
-      <div class="kv"><i>☐</i><div><b>Instructions</b> ga 6 ta jumla yozdim.</div></div>
-      <div class="kv"><i>☐</i><div><b>Project knowledge</b> ga 2–3 ta fayl yukladim.</div></div>
-    </div>
-
-    <div>
-      <h3 style="color:var(--acc2)">6–7-kun · AI-agentlar</h3>
-      <div class="kv"><i>☐</i><div><b>ai-sovga.vercel.app</b> saytiga kirdim.</div></div>
-      <div class="kv"><i>☐</i><div>Video yoʻriqnomani koʻrdim.</div></div>
-      <div class="kv"><i>☐</i><div><b>AI-marketolog</b> ni oʻrnatdim va tekshirdim.</div></div>
-      <div class="kv"><i>☐</i><div><b>AI-prodyuser</b> ni oʻrnatdim.</div></div>
-      <div class="kv"><i>☐</i><div><b>AI-ROP</b> ni oʻrnatdim.</div></div>
-      <div class="kv"><i>☐</i><div><b>AI-metodist</b> ni oʻrnatdim.</div></div>
-      <div class="kv"><i>☐</i><div>Har bir agentga oʻz materialimni yukladim.</div></div>
-
-      <h3 style="color:var(--acc2);margin-top:5mm">Doimiy odat</h3>
-      <div class="kv"><i>☐</i><div>Telefon yoki kompyuterga <b>ilovani oʻrnatdim</b>.</div></div>
-      <div class="kv"><i>☐</i><div>Har yangi mavzuga <b>yangi suhbat</b> ochyapman.</div></div>
-      <div class="kv"><i>☐</i><div>Haftada bir marta <b>Usage</b> ni tekshiryapman.</div></div>
-      <div class="kv"><i>☐</i><div>Yaxshi chiqqan soʻrovlarimni <b>saqlab</b> boryapman.</div></div>
-
-      <div class="note" style="margin-top:5mm">
-        <b>Asosiy sir:</b> Claude'ni <b>har kuni</b> ochish. Kuniga 15 daqiqa —
-        bir haftada u sizning eng tez xodimingizga aylanadi.
-      </div>
-    </div>
-  </div>
-
-  <div class="rule" style="margin-top:auto"></div>
-  <h3>Eslatib qoʻyamiz — 5 ta eng muhim narsa</h3>
-  <div class="grid3" style="gap:3.4mm">
-    <div class="box"><h4>1 · Sonnet 5</h4><p>Kundalik ish uchun standart model.</p></div>
-    <div class="box"><h4>2 · Kontekst</h4><p>Kim uchun, qaysi tilda, qanday formatda — doim yozing.</p></div>
-    <div class="box"><h4>3 · Project</h4><p>Doimiy ish uchun loyiha yarating.</p></div>
-  </div>
-  <div class="grid2" style="gap:3.4mm;margin-top:3.4mm">
-    <div class="box"><h4>4 · Tekshiring</h4><p>Raqam va faktlarni doim oʻzingiz tasdiqlang.</p></div>
-    <div class="box"><h4>5 · Har kuni</h4><p>Odat — natijadan muhimroq. Kuniga 15 daqiqa yetadi.</p></div>
-  </div>
-
-  <div class="pf"><span>AI STRATEG · Claude qoʻllanma</span><span class="pgno"></span></div>
-</div>
-
-<!-- ================= ORQA MUQOVA ================= -->
 <div class="page" style="justify-content:center;align-items:center;text-align:center">
   <div style="position:absolute;inset:0;background:
      radial-gradient(60% 40% at 50% 30%,rgba(217,119,87,.16),transparent 70%)"></div>
@@ -2113,20 +1607,7 @@ td b{color:var(--tx)}
       Bu qoʻllanmani bir marta oʻqish yetarli emas. Yoningizda saqlang —
       har bir tugmani birinchi marta bosganingizda shu sahifaga qarang.
     </p>
-    <div style="display:flex;gap:5mm;justify-content:center;flex-wrap:wrap;margin-bottom:12mm">
-      <div class="card" style="min-width:52mm"><small style="margin-bottom:1.4mm">Claude</small>
-        <div class="mono" style="color:var(--acc2);font-size:9.4pt">claude.ai</div></div>
-      <div class="card" style="min-width:52mm"><small style="margin-bottom:1.4mm">4 ta AI-agent</small>
-        <div class="mono" style="color:var(--acc2);font-size:9.4pt">ai-sovga.vercel.app</div></div>
-      <div class="card" style="min-width:52mm"><small style="margin-bottom:1.4mm">Video yoʻriqnoma</small>
-        <div class="mono" style="color:var(--acc2);font-size:9.4pt">youtu.be/Zlz4q711xHw</div></div>
     </div>
-    <div style="width:40mm;height:2px;background:var(--acc);margin:0 auto 6mm"></div>
-    <div style="font-size:9.4pt;color:var(--tx3);line-height:1.7">
-      <b style="color:var(--tx2)">AI STRATEG</b> · 2-dars: Claude-loyihalar<br>
-      Yusufbay Kadirov · 2026
-    </div>
-  </div>
 </div>
 </body>
 </html>
