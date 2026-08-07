@@ -19,6 +19,19 @@
   есть доступ; перенести в основную «Hyatt Regancy 2», когда доступ появится.
   Скрипт не привязан к id таблицы — пишет в ту, внутри которой лежит, поэтому перенос
   это `setup()` в новой таблице и `stop()` в старой. Шаги — в `docs/leads-setup.md`.
+- `public/guide/` — **учебный гайд по Claude для учеников** (`/guide`), узбекский B1,
+  23 страницы A4 в фирменном dark-стиле Claude. Интерфейс Claude нарисован HTML/CSS-мокапами
+  (не скриншоты — их нельзя снять из-за логина), с оранжевыми номерными маркерами и легендой
+  под каждым «скрином». Есть графики (тарифы, модели, лимиты) и schema-диаграммы.
+  PDF `public/guide/claude-qollanma-uz.pdf` собирается из того же HTML:
+  `bash tools/build-guide-pdf.sh` (Chromium `--print-to-pdf`, A4, `printBackground` через
+  `print-color-adjust:exact`). Правишь HTML → перегоняешь PDF. Разделы: регистрация,
+  карта интерфейса, сайдбар, composer, тарифы, оплата из Узбекистана, токены/лимиты,
+  модели (Fable 5 / Opus 5 / Sonnet 5 / Haiku 4.5) и effort, Projects, Artifacts,
+  загрузка файлов, все инструменты, Settings, web/mobile/desktop, установка 4 AI-агентов
+  с `ai-sovga.vercel.app`, FAQ и чек-лист первой недели.
+  **Важно:** `.page` — flex-контейнер, поэтому всем блокам внутри задан `flex-shrink:0` —
+  иначе мокапы с `overflow:hidden` молча обрезаются.
 - `vercel.json` — роутинг: `/api/*` → функции, `/masterclass` → лендинг, остальное → `public/`.
   Проект на Vercel называется `suniyintellect-mk`, сайт — `suniyintellect-mk.vercel.app`.
 - Командный дашборд задач живёт в **отдельном репозитории `newerayu-boop/team-dashboard`**
