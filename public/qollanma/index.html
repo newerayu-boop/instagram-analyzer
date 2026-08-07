@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gemini va Gemini Notebook — to'liq qo'llanma</title>
+<meta name="description" content="Ikki AI vositasi: Gemini va Gemini Notebook (eski nomi NotebookLM). Haqiqiy interfeys, strelkalar bilan tushuntirish. Oddiy o'zbek tilida.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+<style>
+/* ============ ASOS ============ */
+:root{
+  --bg:#f6f7fb;
+  --bg2:#eef1f8;
+  --card:#ffffff;
+  --ink:#141821;
+  --ink2:#3d4557;
+  --muted:#6b7386;
+  --line:#e3e7f0;
+  --line2:#eef1f7;
+
+  --g1:#4285f4;   /* Gemini ko'k */
+  --g2:#8b5cf6;   /* Gemini siyoh */
+  --g3:#d96570;   /* Gemini pushti */
+  --g-soft:#eef2ff;
+  --g-line:#d6dffb;
+
+  --n1:#0f9488;   /* Notebook: ko'k-yashil */
+  --n2:#f0a132;   /* Notebook: sariq */
+  --n-soft:#e9f7f5;
+  --n-line:#c7e8e3;
+
+  --ok:#12805c;
+  --ok-soft:#e7f6ef;
+  --warn:#a15c00;
+  --warn-soft:#fdf3e2;
+
+  --r:16px;
+  --shadow:0 1px 2px rgba(20,24,33,.04), 0 8px 24px rgba(20,24,33,.06);
+  --shadow-s:0 1px 2px rgba(20,24,33,.05), 0 2px 8px rgba(20,24,33,.04);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:78px}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+.wrap{max-width:1060px; margin:0 auto; padding:0 20px}
+h1,h2,h3,h4{line-height:1.25; margin:0; letter-spacing:-.02em}
+h1{font-size:clamp(30px,5.2vw,50px); font-weight:800}
+h2{font-size:clamp(24px,3.6vw,34px); font-weight:800}
+h3{font-size:clamp(19px,2.4vw,23px); font-weight:750}
+h4{font-size:17px; font-weight:700}
+p{margin:12px 0}
+b,strong{font-weight:700; color:var(--ink)}
+a{color:#2f5ae0}
+ul,ol{margin:12px 0; padding-left:22px}
+li{margin:7px 0}
+code{background:var(--bg2); padding:2px 7px; border-radius:6px; font-size:.9em; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ============ NAVIGATSIYA ============ */
+.topbar{
+  position:sticky; top:0; z-index:60; background:rgba(255,255,255,.86);
+  backdrop-filter:blur(12px); border-bottom:1px solid var(--line);
+}
+.topbar-in{max-width:1060px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; gap:14px}
+.topbar .brand{display:flex; align-items:center; gap:9px; font-weight:800; font-size:15px; white-space:nowrap}
+.topbar nav{margin-left:auto; display:flex; gap:6px; overflow-x:auto; scrollbar-width:none}
+.topbar nav::-webkit-scrollbar{display:none}
+.topbar nav a{
+  font-size:14px; font-weight:600; text-decoration:none; color:var(--ink2);
+  padding:7px 12px; border-radius:99px; white-space:nowrap; border:1px solid transparent;
+}
+.topbar nav a:hover{background:var(--bg2); border-color:var(--line)}
+.topbar nav a.g:hover{background:var(--g-soft); border-color:var(--g-line); color:#3b46c4}
+.topbar nav a.n:hover{background:var(--n-soft); border-color:var(--n-line); color:#0c7a70}
+
+/* ============ LOGO NISHONLARI ============ */
+.logo{width:26px; height:26px; flex:none; display:block}
+.logo-lg{width:46px; height:46px}
+.toolbadge{
+  display:inline-flex; align-items:center; gap:9px; padding:7px 15px 7px 9px;
+  border-radius:99px; font-weight:750; font-size:14px; letter-spacing:-.01em;
+  border:1px solid; white-space:nowrap;
+}
+.toolbadge .logo{width:22px; height:22px}
+.tb-g{background:var(--g-soft); border-color:var(--g-line); color:#3730a3}
+.tb-n{background:var(--n-soft); border-color:var(--n-line); color:#0b6e66}
+.tb-c{background:#f1f5f9; border-color:#dbe3ee; color:#334155}
+
+/* ============ HERO ============ */
+.hero{padding:56px 0 30px; text-align:center}
+.hero .kicker{
+  display:inline-block; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--muted); background:#fff; border:1px solid var(--line); padding:7px 16px; border-radius:99px;
+}
+.hero h1{margin:18px 0 0}
+.hero .lead{font-size:19px; color:var(--ink2); max-width:640px; margin:16px auto 0}
+.hero-tools{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px}
+.hero-tool{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px 22px;
+  display:flex; align-items:center; gap:13px; box-shadow:var(--shadow-s); text-align:left; min-width:250px;
+}
+.hero-tool b{display:block; font-size:16px}
+.hero-tool span{font-size:13.5px; color:var(--muted)}
+
+/* ============ BO'LIMLAR ============ */
+.part{padding:44px 0 10px}
+.part-head{
+  border-radius:22px; padding:26px 28px; margin-bottom:8px; border:1px solid;
+  display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+}
+.part-g{background:linear-gradient(120deg,#eef2ff,#f6f0ff); border-color:var(--g-line)}
+.part-n{background:linear-gradient(120deg,#e9f7f5,#fdf6e9); border-color:var(--n-line)}
+.part-c{background:linear-gradient(120deg,#f3f6fa,#eef4ff); border-color:#dce4f0}
+.part-head .t{flex:1; min-width:240px}
+.part-head .t p{margin:6px 0 0; color:var(--ink2); font-size:15.5px}
+.part-num{
+  font-size:13px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+}
+
+.sec{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:26px 26px 22px; margin:18px 0; box-shadow:var(--shadow-s);
+}
+.sec > h3{display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap}
+.sec-num{
+  flex:none; width:32px; height:32px; border-radius:10px; display:grid; place-items:center;
+  font-size:15px; font-weight:800; color:#fff; margin-top:1px;
+}
+.n-g{background:linear-gradient(135deg,var(--g1),var(--g2))}
+.n-n{background:linear-gradient(135deg,var(--n1),#14b8a6)}
+.n-c{background:linear-gradient(135deg,#64748b,#94a3b8)}
+.sec-tag{margin-left:auto}
+
+/* ============ QUTILAR ============ */
+.note,.tip,.warn,.ok{
+  border-radius:12px; padding:14px 16px; margin:16px 0; font-size:15.5px; border:1px solid;
+}
+.note{background:var(--g-soft); border-color:var(--g-line); color:#2c3467}
+.tip{background:var(--n-soft); border-color:var(--n-line); color:#0b5f58}
+.warn{background:var(--warn-soft); border-color:#f4dfb8; color:#7a4600}
+.ok{background:var(--ok-soft); border-color:#c7ebd9; color:#0c6247}
+.note b,.tip b,.warn b,.ok b{color:inherit}
+
+.grid{display:grid; gap:14px; margin:16px 0}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
+.card{background:var(--bg); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+.card h4{margin-bottom:6px}
+.hero-tool b{margin:0}
+.card p{margin:4px 0; font-size:15px; color:var(--ink2)}
+.card.hl{background:#fff; box-shadow:var(--shadow-s)}
+
+/* qadamlar */
+.steps{counter-reset:st; list-style:none; padding:0; margin:18px 0}
+.steps li{
+  position:relative; padding:0 0 0 46px; margin:0 0 16px; counter-increment:st; min-height:32px;
+}
+.steps li::before{
+  content:counter(st); position:absolute; left:0; top:0; width:32px; height:32px; border-radius:50%;
+  display:grid; place-items:center; font-weight:800; font-size:14px; color:#fff;
+}
+.steps.sg li::before{background:linear-gradient(135deg,var(--g1),var(--g2))}
+.steps.sn li::before{background:linear-gradient(135deg,var(--n1),#14b8a6)}
+.steps.sc li::before{background:linear-gradient(135deg,#475569,#94a3b8)}
+.steps li > b{display:block; margin-bottom:2px}
+.steps li p{margin:2px 0; font-size:15.5px; color:var(--ink2)}
+
+/* jadval */
+.tablewrap{overflow-x:auto; margin:18px 0; border:1px solid var(--line); border-radius:12px}
+table{border-collapse:collapse; width:100%; min-width:520px; font-size:15px; background:#fff}
+th,td{padding:12px 14px; text-align:left; border-bottom:1px solid var(--line2); vertical-align:top}
+th{background:var(--bg2); font-weight:700; font-size:13.5px; letter-spacing:.01em; color:var(--ink2)}
+tr:last-child td{border-bottom:none}
+td b{white-space:nowrap}
+
+/* ============ INTERFEYS MAKETI (screenshot) ============ */
+.shotbox{margin:22px 0}
+.shot-title{
+  font-size:13px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
+  margin-bottom:9px; display:flex; align-items:center; gap:8px;
+}
+.shot-scroll{overflow-x:auto; border-radius:14px; -webkit-overflow-scrolling:touch}
+.shot{
+  min-width:700px; border:1px solid #d8dde8; border-radius:14px; overflow:hidden;
+  box-shadow:var(--shadow); background:#fff;
+}
+.shot.narrow{min-width:520px}
+.shot-bar{
+  display:flex; align-items:center; gap:8px; padding:9px 12px; background:#eef1f6; border-bottom:1px solid #dde2ec;
+}
+.dots{display:flex; gap:5px}
+.dots i{width:10px; height:10px; border-radius:50%; display:block}
+.dots i:nth-child(1){background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+.url{
+  flex:1; background:#fff; border:1px solid #dde2ec; border-radius:99px; padding:4px 12px;
+  font-size:12px; color:#5b6172; font-family:ui-monospace,Menlo,monospace; max-width:420px;
+}
+.shot-body{display:flex; min-height:340px; background:#fff; font-size:13px}
+
+/* umumiy ui bo'laklari */
+.ui-side{width:190px; flex:none; background:#f7f8fb; border-right:1px solid var(--line); padding:12px 10px}
+.ui-side.w220{width:222px}
+.ui-main{flex:1; padding:16px 18px; display:flex; flex-direction:column; min-width:0}
+.ui-right{width:230px; flex:none; background:#f7f8fb; border-left:1px solid var(--line); padding:12px 10px}
+.ui-row{display:flex; align-items:center; gap:8px}
+.ui-item{
+  display:flex; align-items:center; gap:8px; padding:7px 9px; border-radius:9px; color:#3d4557; font-size:12.5px;
+  margin-bottom:3px;
+}
+.ui-item.on{background:#e6ecfd; color:#2b3ea8; font-weight:650}
+.ui-item.on-n{background:#dff2ef; color:#0b6e66; font-weight:650}
+.ui-lbl{font-size:10.5px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:#93a0b5; padding:10px 9px 5px}
+.ui-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px; border-radius:99px;
+  font-size:12.5px; font-weight:650; border:1px solid var(--line); background:#fff; color:#3d4557;
+}
+.ui-btn.pri{background:linear-gradient(135deg,var(--g1),var(--g2)); color:#fff; border-color:transparent}
+.ui-btn.pri-n{background:var(--n1); color:#fff; border-color:transparent}
+.ui-btn.gold{background:#fff8ea; border-color:#f3dfb6; color:#8a5b00}
+.ui-chip{
+  display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:99px;
+  border:1px solid var(--line); background:#fff; font-size:12px; color:#4b5568;
+}
+.ui-chip.act{background:#e6ecfd; border-color:#c9d6fb; color:#2b3ea8; font-weight:650}
+.ui-input{
+  border:1px solid #d8dde8; border-radius:26px; padding:12px 14px; display:flex; align-items:center; gap:10px;
+  background:#fff; box-shadow:0 2px 10px rgba(20,24,33,.05); font-size:13px; color:#98a1b2;
+}
+.ui-card{background:#fff; border:1px solid var(--line); border-radius:11px; padding:11px 12px; margin-bottom:9px}
+.ui-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#f0a132,#e2703a);color:#fff;
+  display:grid;place-items:center;font-size:11px;font-weight:800;flex:none}
+.ui-bubble{background:#eef1f7; border-radius:14px; padding:10px 13px; font-size:12.5px; color:#3d4557; max-width:78%}
+.ui-bubble.me{background:#e6ecfd; margin-left:auto; color:#2b3ea8}
+.ui-line{height:8px; border-radius:5px; background:#e8ebf2; margin:7px 0}
+.ui-line.s{width:60%} .ui-line.m{width:82%} .ui-line.l{width:96%}
+.ui-cite{
+  display:inline-grid; place-items:center; width:17px; height:17px; border-radius:5px;
+  background:#dff2ef; color:#0b6e66; font-size:10px; font-weight:800; margin:0 2px;
+}
+.ui-check{width:14px;height:14px;border-radius:4px;border:1.5px solid #b9c2d2;flex:none;background:#fff}
+.ui-check.on{background:var(--n1); border-color:var(--n1); position:relative}
+.ui-check.on::after{content:"✓"; position:absolute; inset:0; color:#fff; font-size:10px; display:grid; place-items:center}
+
+/* PIN — strelka bilan raqam */
+.pin{
+  display:inline-flex; align-items:center; justify-content:center; flex:none;
+  width:22px; height:22px; border-radius:50%; color:#fff; font-size:11.5px; font-weight:800;
+  position:relative; box-shadow:0 1px 4px rgba(0,0,0,.18);
+}
+.pin-g{background:#e8433f}
+.pin-n{background:#0f9488}
+.pin-c{background:#7c3aed}
+.pin::after{
+  content:""; position:absolute; width:0; height:0;
+  border-top:5px solid transparent; border-bottom:5px solid transparent;
+}
+.pin.ar::after{right:-7px; border-left:7px solid currentColor}
+.pin.al::after{left:-7px; border-right:7px solid currentColor}
+.pin-g.ar::after,.pin-g.al::after{color:#e8433f}
+.pin-n.ar::after,.pin-n.al::after{color:#0f9488}
+.pin-c.ar::after,.pin-c.al::after{color:#7c3aed}
+.pinwrap{display:inline-flex; align-items:center; gap:11px}
+
+/* izoh ro'yxati */
+.legend{list-style:none; padding:0; margin:14px 0 0}
+.legend li{display:flex; gap:11px; align-items:flex-start; margin:9px 0; font-size:15.5px}
+.legend .pin{margin-top:3px}
+.legend .pin::after{display:none}
+.legend div > b:first-child{display:block}
+.legend span{color:var(--ink2)}
+
+hr.sep{border:none; border-top:1px solid var(--line); margin:28px 0}
+.foot{padding:40px 0 60px; text-align:center; color:var(--muted); font-size:14px}
+.foot b{color:var(--ink2)}
+</style>
+</head>
+<body>
+
+<!-- ====== LOGOLAR (SVG) ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4285f4"/><stop offset="45%" stop-color="#9b72cb"/><stop offset="100%" stop-color="#d96570"/>
+    </linearGradient>
+    <linearGradient id="ng" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f9488"/><stop offset="100%" stop-color="#2dd4bf"/>
+    </linearGradient>
+    <symbol id="logo-gemini" viewBox="0 0 24 24">
+      <path fill="url(#gg)" d="M12 1.4c.75 6.1 4.5 9.85 10.6 10.6-6.1.75-9.85 4.5-10.6 10.6-.75-6.1-4.5-9.85-10.6-10.6C7.5 11.25 11.25 7.5 12 1.4z"/>
+    </symbol>
+    <symbol id="logo-notebook" viewBox="0 0 24 24">
+      <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#ng)"/>
+      <rect x="6.4" y="6" width="1.7" height="12" rx=".85" fill="#fff" opacity=".9"/>
+      <rect x="10" y="7.6" width="8" height="1.7" rx=".85" fill="#fff" opacity=".95"/>
+      <rect x="10" y="11.2" width="8" height="1.7" rx=".85" fill="#fff" opacity=".7"/>
+      <rect x="10" y="14.8" width="5" height="1.7" rx=".85" fill="#fff" opacity=".5"/>
+    </symbol>
+    <symbol id="logo-chrome" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="#fff"/>
+      <path fill="#ea4335" d="M12 2a10 10 0 0 1 8.66 5H12a5 5 0 0 0-4.33 2.5L4.2 4.9A10 10 0 0 1 12 2z"/>
+      <path fill="#34a853" d="M4.2 4.9 7.67 9.5A5 5 0 0 0 12 17l-2.6 4.5A10 10 0 0 1 4.2 4.9z"/>
+      <path fill="#fbbc05" d="M20.66 7A10 10 0 0 1 9.4 21.5L12 17a5 5 0 0 0 4.33-7.5H20.66z"/>
+      <circle cx="12" cy="12" r="4.1" fill="#4285f4"/>
+    </symbol>
+    <symbol id="logo-youtube" viewBox="0 0 24 24">
+      <rect x="1" y="4" width="22" height="16" rx="5" fill="#ff0000"/>
+      <path d="M10 8.5 16 12l-6 3.5z" fill="#fff"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ====== TEPA PANEL ====== -->
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand"><svg class="logo" style="width:20px;height:20px"><use href="#logo-gemini"/></svg> Qo'llanma</div>
+    <nav>
+      <a class="g" href="#gemini">1. Gemini</a>
+      <a class="n" href="#notebook">2. Notebook</a>
+      <a href="#kengaytma">3. YouTube ulash</a>
+      <a href="#taqqos">Solishtirish</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ====== HERO ====== -->
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker">Kurs uchun qo'llanma · 2026</span>
+    <h1>Gemini va Gemini Notebook:<br>ikki vosita, ikki vazifa</h1>
+    <p class="lead">
+      Ko'p odam bu ikkisini adashtiradi. Ular <b>bir kompaniyaniki</b>, lekin <b>alohida vositalar</b>.
+      Quyida har birini <b>alohida</b> tushuntiraman: haqiqiy interfeys rasmi, strelka bilan
+      «bu tugma nima qiladi» va qisqa izoh.
+    </p>
+
+    <div class="hero-tools">
+      <div class="hero-tool">
+        <svg class="logo logo-lg"><use href="#logo-gemini"/></svg>
+        <div><b>Gemini</b><span>Universal AI-suhbatdosh.<br>O'ylaydi, yozadi, rasm chizadi.</span></div>
+      </div>
+      <div class="hero-tool">
+        <svg class="logo logo-lg"><use href="#logo-notebook"/></svg>
+        <div><b>Gemini Notebook</b><span>Faqat <u>sizning fayllaringiz</u> bo'yicha ishlaydi.<br>Eski nomi — NotebookLM.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="warn">
+    <b>Muhim yangilik.</b> 2026-yil 16-iyuldan <b>NotebookLM</b> nomi <b>Gemini Notebook</b> ga o'zgardi.
+    Mahsulot o'zi o'sha-o'sha: bloknotlaringiz, manbalaringiz, havolalaringiz hammasi joyida qoldi —
+    faqat nomi va logotipi yangilandi. Shuning uchun internetda ikkala nomni ham ko'rasiz.
+    Bu qo'llanmada men <b>«Notebook»</b> deb yozaman.
+  </div>
+
+  <!-- FARQ — eng muhim jadval -->
+  <div class="sec" id="farq">
+    <h3><span class="sec-num n-c">?</span> Eng muhimi: farqi nimada?</h3>
+    <p>Bitta jumla bilan: <b>Gemini — butun dunyoni biladi. Notebook — faqat siz bergan hujjatni biladi.</b></p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:26%">Savol</th><th style="width:37%">Gemini</th><th style="width:37%">Gemini Notebook</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Bilimi qayerdan?</b></td>
+            <td>Internet + o'z bilimi. Har qanday mavzuda gapiradi.</td>
+            <td>Faqat siz yuklagan fayl va havolalardan. Boshqasini bilmaydi.</td>
+          </tr>
+          <tr>
+            <td><b>Yolg'on to'qiydimi?</b></td>
+            <td>Ba'zan bo'lishi mumkin. Tekshirish kerak.</td>
+            <td>Deyarli yo'q. Har javobda <b>manba raqami</b> beradi — bosib, asl matnni ko'rasiz.</td>
+          </tr>
+          <tr>
+            <td><b>Qachon ishlataman?</b></td>
+            <td>Yozish, o'ylash, tahlil, rasm, tarjima, g'oya, reja.</td>
+            <td>Katta hujjatni o'rganish: shartnoma, hisobot, kitob, kurs, video.</td>
+          </tr>
+          <tr>
+            <td><b>Kuchli tomoni</b></td>
+            <td>Deep Research (chuqur tadqiqot), Gems (o'z yordamchilaringiz), rasm chizish.</td>
+            <td>Audio-obzor («podkast»), video-obzor, aqliy xarita, savol-javob.</td>
+          </tr>
+          <tr>
+            <td><b>Manzili</b></td>
+            <td><code>gemini.google.com</code></td>
+            <td><code>notebooklm.google.com</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip">
+      <b>Oddiy misol.</b> Siz restoran ochmoqchisiz.<br>
+      → <b>Gemini</b>dan so'raysiz: «Toshkentda restoran bozori qanday? Tadqiqot qil.»<br>
+      → <b>Notebook</b>ga esa o'zingizning biznes-rejangiz PDF'ini yuklaysiz va so'raysiz:
+      «Bu rejamda qanday xato bor? Sahifasi bilan ko'rsat.»
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     1-QISM: GEMINI
+     ============================================================ -->
+<section class="part" id="gemini">
+  <div class="wrap">
+    <div class="part-head part-g">
+      <svg class="logo" style="width:56px;height:56px"><use href="#logo-gemini"/></svg>
+      <div class="t">
+        <div class="part-num">1-qism</div>
+        <h2>Gemini</h2>
+        <p>Universal AI-suhbatdosh. Bu qismdagi hamma narsa <b>faqat Gemini</b> haqida.</p>
+      </div>
+      <span class="toolbadge tb-g"><svg class="logo"><use href="#logo-gemini"/></svg> gemini.google.com</span>
+    </div>
+
+    <!-- 1.1 -->
+    <div class="sec">
+      <h3><span class="sec-num n-g">1</span> Gemini nima va kursda nega kerak?
+        <span class="toolbadge tb-g sec-tag"><svg class="logo"><use href="#logo-gemini"/></svg> Gemini</span></h3>
+      <p>
+        Gemini — Google'ning sun'iy intellekti. Siz unga oddiy tilda yozasiz, u javob beradi.
+        Xuddi juda ko'p o'qigan, tez ishlaydigan yordamchi kabi. U <b>o'zbek tilini ham tushunadi</b>.
+      </p>
+      <p>Kursda undan <b>to'rtta</b> ish uchun foydalanamiz:</p>
+      <div class="grid g2">
+        <div class="card hl"><h4>1. Tahlil</h4><p>Raqam, matn, jadval, rasm yoki hisobotni tashlaysiz — u tushuntirib, xulosa chiqarib beradi. Masalan: «Bu oylik savdo jadvalidan 3 ta muammoni top».</p></div>
+        <div class="card hl"><h4>2. Deep Research</h4><p>Chuqur tadqiqot. Gemini o'zi internetda 50–100 sahifa o'qiydi va sizga tayyor hisobot yozadi. Bu ishni odam 2 kunda qiladi.</p></div>
+        <div class="card hl"><h4>3. Rasm yaratish</h4><p>Matn yozasiz — rasm chizadi. Post uchun, reklama uchun, tovar kartochkasi uchun.</p></div>
+        <div class="card hl"><h4>4. Gems</h4><p>O'zingizning doimiy yordamchingiz. Bir marta sozlaysiz — keyin har safar qaytadan tushuntirmaysiz. Masalan: «SMM-menejerim».</p></div>
+      </div>
+      <div class="note"><b>Yodda tuting:</b> Gemini — bu xodim emas, <b>asbob</b>. Siz nima so'rasangiz, shunga yarasha javob olasiz. Kursda asosiy mahorat — <b>to'g'ri so'rash</b>.</div>
+    </div>
+
+    <!-- 1.2 -->
+    <div class="sec">
+      <h3><span class="sec-num n-g">2</span> Akkaunt va tariflar: bepulmi yoki pullik?
+        <span class="toolbadge tb-g sec-tag"><svg class="logo"><use href="#logo-gemini"/></svg> Gemini</span></h3>
+      <p>Sizga faqat <b>oddiy Google akkaunt</b> (Gmail) kerak. Boshqa hech narsa shart emas.</p>
+      <ol class="steps sg">
+        <li><b>Gmail oching</b><p>Agar Gmail bo'lmasa: <code>accounts.google.com</code> → «Create account». 3 daqiqa.</p></li>
+        <li><b>gemini.google.com ga kiring</b><p>Google akkauntingiz bilan kiring. Tamom — Gemini ochildi.</p></li>
+        <li><b>Bepul rejada boshlang</b><p>Darrov pul to'lamang. Avval bepul sinab ko'ring.</p></li>
+      </ol>
+
+      <h4 style="margin-top:22px">Tariflar (2026-yil avgust holati)</h4>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Reja</th><th>Narxi (oyiga)</th><th>Nima beradi</th><th>Kursga</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Bepul</b></td><td><b>$0</b></td>
+              <td>Suhbat, rasm, fayl yuklash — hammasi bor, lekin <b>kunlik limit kam</b>. Deep Research oyiga bir necha marta.</td>
+              <td>Boshlash uchun <b>yetadi</b></td>
+            </tr>
+            <tr>
+              <td><b>Google AI Plus</b></td><td><b>≈ $5</b></td>
+              <td>O'rta reja. Limitlar kattaroq, 400 GB Google disk.</td>
+              <td>Byudjet variant</td>
+            </tr>
+            <tr>
+              <td><b>Google AI Pro</b></td><td><b>≈ $20</b></td>
+              <td>Eng kuchli model, Deep Research ko'p, Notebook Pro (300 manba), 2 TB disk.</td>
+              <td><b>Tavsiya qilaman</b></td>
+            </tr>
+            <tr>
+              <td><b>Google AI Ultra</b></td><td><b>$100+</b></td>
+              <td>Professional/studiya uchun. Video generatsiya, eng katta limitlar.</td>
+              <td>Kerak emas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ok">
+        <b>Kurs uchun aniq javob:</b> birinchi kunlar <b>bepul reja</b> bilan yuring — hamma darsni bajara olasiz.
+        Agar Deep Research va rasmni ko'p ishlatsangiz, limit tugaydi. O'shanda <b>Google AI Pro (≈$20)</b> oling.
+        Ko'p hollarda birinchi oy <b>bepul sinov</b> (trial) beriladi — undan foydalaning.
+      </div>
+
+      <h4 style="margin-top:22px">To'lov qanday qilinadi? (O'zbekistondan)</h4>
+      <ol class="steps sg">
+        <li><b>Xalqaro karta kerak</b>
+          <p><b>Visa</b> yoki <b>Mastercard</b> — dollarda to'laydigan. <b>Humo va Uzcard ishlamaydi.</b>
+          Bankdan xalqaro (valyuta) karta oling yoki mavjud kartangizga «xalqaro to'lov» xizmatini yoqing.</p></li>
+        <li><b>Kartada pul bo'lsin</b>
+          <p>Kamida <b>$25</b> turing. Google avval $0–1 tekshiruv to'lovini oladi, keyin qaytaradi.</p></li>
+        <li><b>Gemini ichidan oling</b>
+          <p>Chap panel pastidagi yoki yuqori o'ngdagi <b>«Upgrade»</b> tugmasini bosing → rejani tanlang →
+          <b>Subscribe</b>.</p></li>
+        <li><b>Karta ma'lumotini kiriting</b>
+          <p>Karta raqami, amal muddati, CVC. Manzil so'rasa — o'z manzilingizni yozing (mamlakat: Uzbekistan).</p></li>
+        <li><b>SMS-kodni tasdiqlang</b>
+          <p>Bank SMS yuboradi → kodni kiriting. Tamom, reja faollashdi.</p></li>
+        <li><b>Bekor qilish ham oson</b>
+          <p>Har oy avtomatik yechiladi. Kerak bo'lmasa: <code>one.google.com</code> → Settings → <b>Cancel</b>.
+          Muddat oxirigacha ishlaydi.</p></li>
+      </ol>
+      <div class="warn">
+        <b>Diqqat:</b> narxlar va limitlar tez-tez o'zgaradi. To'lashdan oldin joriy narxni saytda ko'ring.
+        Yuqoridagi raqamlar — <b>taxminiy mo'ljal</b> (2026-yil avgust).
+        $20 ≈ 250 ming so'm atrofida, dollar kursiga qarab o'zgaradi.
+      </div>
+    </div>
+
+    <!-- 1.3 MODELLAR -->
+    <div class="sec">
+      <h3><span class="sec-num n-g">3</span> Ichidagi modellar: tez va aqlli
+        <span class="toolbadge tb-g sec-tag"><svg class="logo"><use href="#logo-gemini"/></svg> Gemini</span></h3>
+      <p>
+        Gemini ichida bir nechta «miya» bor. Ular <b>model</b> deyiladi. Ikkitasini bilsangiz yetadi:
+      </p>
+      <div class="grid g2">
+        <div class="card hl">
+          <h4>⚡ Fast — tez model</h4>
+          <p><b>Qachon:</b> oddiy savol, tarjima, qisqa matn, tez g'oya, sarlavha.</p>
+          <p><b>Tezligi:</b> 2–5 soniya. Limiti katta.</p>
+        </div>
+        <div class="card hl">
+          <h4>🧠 Thinking / Pro — aqlli model</h4>
+          <p><b>Qachon:</b> tahlil, strategiya, uzun hujjat, murakkab hisob, muhim matn.</p>
+          <p><b>Tezligi:</b> 15–60 soniya — u <b>o'ylaydi</b>. Limiti kichik.</p>
+        </div>
+      </div>
+      <div class="note">
+        <b>Oddiy qoida:</b> «Bu ishni odam 5 daqiqada qiladimi?» — <b>Fast</b>.
+        «Bu ish odamning yarim kunini oladimi?» — <b>Thinking/Pro</b>.
+      </div>
+
+      <!-- MAKET: model tanlash -->
+      <div class="shotbox">
+        <div class="shot-title"><svg class="logo" style="width:15px;height:15px"><use href="#logo-gemini"/></svg> Model qayerdan almashtiriladi</div>
+        <div class="shot-scroll">
+        <div class="shot narrow">
+          <div class="shot-bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">gemini.google.com</div></div>
+          <div class="shot-body" style="min-height:270px; display:block; padding:16px 18px">
+            <div class="ui-row" style="margin-bottom:16px">
+              <div class="pinwrap">
+                <span class="pin pin-g ar">1</span>
+                <span class="ui-chip act" style="font-size:13px">Gemini &nbsp;<b>3.1 Pro</b> &nbsp;⌄</span>
+              </div>
+              <div style="margin-left:auto" class="ui-row">
+                <span class="ui-btn gold">✦ Upgrade</span>
+                <span class="ui-avatar">I</span>
+              </div>
+            </div>
+
+            <div style="max-width:330px; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); padding:8px; background:#fff">
+              <div class="ui-lbl" style="padding:6px 9px 4px">Model tanlash</div>
+
+              <div class="ui-item"><span style="font-size:14px">⚡</span>
+                <div><b style="font-size:12.5px">Fast</b><div style="font-size:11px;color:#8a93a6">Tezkor javoblar uchun</div></div>
+                <span class="pin pin-g al" style="margin-left:auto">2</span>
+              </div>
+              <div class="ui-item on"><span style="font-size:14px">🧠</span>
+                <div><b style="font-size:12.5px">Thinking</b><div style="font-size:11px;color:#5c6ab0">Murakkab masalalar uchun</div></div>
+                <span class="pin pin-g al" style="margin-left:auto">3</span>
+              </div>
+              <div class="ui-item"><span style="font-size:14px">✦</span>
+                <div><b style="font-size:12.5px">Pro</b><div style="font-size:11px;color:#8a93a6">Eng kuchli · Pro reja</div></div>
+              </div>
+
+              <div style="border-top:1px solid var(--line2); margin:6px 0; padding-top:6px">
+                <div class="ui-lbl" style="padding:2px 9px 4px">O'ylash darajasi</div>
+                <div class="ui-row" style="padding:0 9px 6px; gap:6px">
+                  <span class="ui-chip act">Standard</span>
+                  <span class="ui-chip">Extended</span>
+                  <span class="pin pin-g al">4</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <ul class="legend">
+          <li><span class="pin pin-g">1</span><div><b>Model nomi — ekran tepasida</b><span>Shu yozuvni bosing. Ochiladigan ro'yxat chiqadi.</span></div></li>
+          <li><span class="pin pin-g">2</span><div><b>Fast — kundalik ishlar</b><span>Kunlik 90% ish shu yerda bajariladi.</span></div></li>
+          <li><span class="pin pin-g">3</span><div><b>Thinking — o'ylaydigan model</b><span>Javob sekinroq keladi, lekin sifati ancha yuqori.</span></div></li>
+          <li><span class="pin pin-g">4</span><div><b>Extended — «uzoqroq o'yla»</b><span>Faqat juda murakkab masalada yoqing. Aks holda vaqt ketadi.</span></div></li>
+        </ul>
+      </div>
+      <div class="warn">
+        <b>Model nomlari o'zgaradi.</b> Bugun «Gemini 3.1 Pro», ertaga «3.5» bo'lishi mumkin.
+        Nomni yodlamang — <b>joyini</b> yodlang: model doim <b>tepada</b> turadi.
+      </div>
+    </div>
+
+    <!-- 1.4 INTERFEYS -->
+    <div class="sec">
+      <h3><span class="sec-num n-g">4</span> Gemini interfeysi: har bir element
+        <span class="toolbadge tb-g sec-tag"><svg class="logo"><use href="#logo-gemini"/></svg> Gemini</span></h3>
+      <p>Quyida — Gemini'ning asosiy ekrani. Qizil raqamlar va strelkalar qayerga qarashni ko'rsatadi.</p>
+
+      <div class="shotbox">
+        <div class="shot-title"><svg class="logo" style="width:15px;height:15px"><use href="#logo-gemini"/></svg> Gemini — asosiy ekran</div>
+        <div class="shot-scroll">
+        <div class="shot">
+          <div class="shot-bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">gemini.google.com/app</div></div>
+          <div class="shot-body">
+
+            <!-- chap panel -->
+            <div class="ui-side w220">
+              <div class="ui-row" style="padding:4px 6px 12px; gap:9px">
+                <span style="font-size:15px">☰</span>
+                <span class="pin pin-g al">1</span>
+              </div>
+              <div class="pinwrap" style="margin-bottom:10px">
+                <span class="ui-btn pri" style="padding:8px 16px">✚ &nbsp;Yangi suhbat</span>
+                <span class="pin pin-g al">2</span>
+              </div>
+              <div class="ui-item"><span>🧭</span> Explore Gems <span class="pin pin-g al" style="margin-left:auto">3</span></div>
+
+              <div class="ui-lbl">So'nggi</div>
+              <div class="ui-item on">Instagram kontent rejasi</div>
+              <div class="ui-item">Raqobatchilar tahlili</div>
+              <div class="ui-item">Sotuv skripti · UZ</div>
+              <div class="ui-item" style="color:#98a1b2">⋯ ko'proq</div>
+              <div class="pinwrap" style="margin-top:6px"><span class="pin pin-g ar">4</span><span style="font-size:11px;color:#98a1b2">tarix shu yerda</span></div>
+
+              <div style="border-top:1px solid var(--line); margin-top:12px; padding-top:10px">
+                <div class="ui-item">⚙️ Sozlamalar</div>
+              </div>
+            </div>
+
+            <!-- markaz -->
+            <div class="ui-main">
+              <div class="ui-row" style="margin-bottom:auto">
+                <span class="ui-chip act">Gemini 3.1 Pro ⌄</span>
+                <span class="pin pin-g al">5</span>
+                <span style="margin-left:auto" class="ui-btn gold">✦ Upgrade</span>
+                <span class="ui-avatar" style="margin-left:8px">I</span>
+                <span class="pin pin-g al">6</span>
+              </div>
+
+              <div style="text-align:center; padding:26px 0 22px">
+                <div style="font-size:22px; font-weight:800; background:linear-gradient(90deg,#4285f4,#9b72cb,#d96570);
+                     -webkit-background-clip:text; background-clip:text; color:transparent">Salom, Islomiya</div>
+                <div style="color:#98a1b2; font-size:13px; margin-top:4px">Bugun nima bilan yordam beray?</div>
+              </div>
+
+              <div style="margin-top:auto">
+                <div class="ui-input">
+                  <span style="font-size:16px; color:#5b6172">＋</span>
+                  <span class="pin pin-g al">7</span>
+                  <span style="flex:1">Gemini'ga savolingizni yozing…</span>
+                  <span style="font-size:15px">🎤</span>
+                  <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#4285f4,#9b72cb);
+                        color:#fff;display:grid;place-items:center;font-size:13px">↑</span>
+                </div>
+                <div class="ui-row" style="gap:7px; margin-top:10px; flex-wrap:wrap">
+                  <span class="ui-chip">🔬 Deep Research</span>
+                  <span class="pin pin-g al">8</span>
+                  <span class="ui-chip">🖼 Rasm yaratish</span>
+                  <span class="ui-chip">📄 Canvas</span>
+                  <span class="pin pin-g al">9</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <ul class="legend">
+          <li><span class="pin pin-g">1</span><div><b>Menyu tugmasi (☰)</b><span>Chap panelni yopadi yoki ochadi. Ekran kichik bo'lsa foydali.</span></div></li>
+          <li><span class="pin pin-g">2</span><div><b>Yangi suhbat</b><span>Yangi mavzu boshlaganda <b>doim</b> shuni bosing. Aks holda Gemini eski mavzuni aralashtirib yuboradi.</span></div></li>
+          <li><span class="pin pin-g">3</span><div><b>Explore Gems</b><span>Tayyor va o'zingiz yasagan yordamchilar shu yerda. (6-bo'limda batafsil.)</span></div></li>
+          <li><span class="pin pin-g">4</span><div><b>Suhbatlar tarixi</b><span>Hamma eski suhbatlaringiz saqlanadi. Bosib, kechagi ishga qaytasiz. Ustiga sichqoncha olib borsangiz — nomini o'zgartirish/o'chirish chiqadi.</span></div></li>
+          <li><span class="pin pin-g">5</span><div><b>Model tanlash</b><span>Fast / Thinking / Pro. (3-bo'limga qarang.)</span></div></li>
+          <li><span class="pin pin-g">6</span><div><b>Akkaunt rasmi</b><span>Qaysi Gmail bilan kirganingizni ko'rsatadi. Ish va shaxsiy akkauntni adashtirmang.</span></div></li>
+          <li><span class="pin pin-g">7</span><div><b>«＋» — fayl yuklash</b><span>Eng muhim tugma. PDF, rasm, Word, Excel, Google Docs qo'shasiz. Rasmni to'g'ridan-to'g'ri sudrab tashlasa ham bo'ladi.</span></div></li>
+          <li><span class="pin pin-g">8</span><div><b>Deep Research</b><span>Chuqur tadqiqot rejimi. Yoqib qo'yib savol yozasiz. (5-bo'limda.)</span></div></li>
+          <li><span class="pin pin-g">9</span><div><b>Canvas</b><span>Matn yoki kodni yonma-yon tahrirlash oynasi. Uzun matn yozayotganda qulay.</span></div></li>
+        </ul>
+      </div>
+
+      <div class="tip">
+        <b>Amaliyot (2 daqiqa).</b> Gemini'ni oching → «Yangi suhbat» → <b>＋</b> orqali istalgan PDF yuklang →
+        yozing: <code>Bu hujjatni 5 ta oddiy jumla bilan tushuntir.</code> Natijani ko'ring.
+      </div>
+    </div>
+    <!-- 1.5 DEEP RESEARCH -->
+    <div class="sec">
+      <h3><span class="sec-num n-g">5</span> Deep Research — chuqur tadqiqot
+        <span class="toolbadge tb-g sec-tag"><svg class="logo"><use href="#logo-gemini"/></svg> Gemini</span></h3>
+      <p>
+        Bu Gemini'ning eng kuchli funksiyasi. Siz bitta savol berasiz — Gemini <b>o'zi</b> internetda
+        o'nlab saytni ochib o'qiydi, taqqoslaydi va sizga <b>tayyor hisobot</b> yozib beradi.
+        Hisobot ichida <b>havolalar</b> bo'ladi, ya'ni har bir gap qayerdan olinganini ko'rasiz.
+      </p>
+
+      <div class="shotbox">
+        <div class="shot-title"><svg class="logo" style="width:15px;height:15px"><use href="#logo-gemini"/></svg> Deep Research — 3 bosqich</div>
+        <div class="shot-scroll">
+        <div class="shot">
+          <div class="shot-bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">gemini.google.com/app</div></div>
+          <div class="shot-body" style="display:block; padding:16px 18px; min-height:auto">
+
+            <!-- bosqich A -->
+            <div class="ui-row" style="gap:8px; margin-bottom:8px">
+              <span class="ui-chip act">🔬 Deep Research</span>
+              <span class="pin pin-g al">1</span>
+              <span style="font-size:11px;color:#98a1b2">— yoqilgan</span>
+            </div>
+            <div class="ui-input" style="margin-bottom:14px">
+              <span style="font-size:16px;color:#5b6172">＋</span>
+              <span style="flex:1; color:#3d4557">Toshkentda gul yetkazib berish bozorini tahlil qil: raqobatchilar, narxlar, kanallar</span>
+              <span style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#4285f4,#9b72cb);color:#fff;display:grid;place-items:center;font-size:12px">↑</span>
+            </div>
+
+            <!-- bosqich B: reja -->
+            <div class="ui-card" style="border-color:#d6dffb; background:#f8faff">
+              <div class="ui-row" style="gap:8px; margin-bottom:8px">
+                <b style="font-size:12.5px">Tadqiqot rejasi</b>
+                <span class="pin pin-g al">2</span>
+              </div>
+              <div style="font-size:11.5px;color:#5b6172; line-height:1.7">
+                1. Toshkentdagi yirik gul do'konlarini aniqlash<br>
+                2. Narx darajasini taqqoslash<br>
+                3. Yetkazib berish shartlari va ijtimoiy tarmoqlar<br>
+                4. Bo'sh nishalarni topish
+              </div>
+              <div class="ui-row" style="gap:7px; margin-top:10px">
+                <span class="ui-btn" style="padding:6px 12px">✎ Rejani tahrirlash</span>
+                <span class="pinwrap"><span class="ui-btn pri" style="padding:6px 14px">▶ Tadqiqotni boshlash</span><span class="pin pin-g al">3</span></span>
+              </div>
+            </div>
+
+            <!-- bosqich C: jarayon -->
+            <div class="ui-card">
+              <div class="ui-row" style="gap:8px; margin-bottom:7px">
+                <b style="font-size:12.5px">Tadqiqot ketmoqda…</b>
+                <span style="font-size:11px;color:#98a1b2">64 ta sayt o'qildi</span>
+                <span class="pin pin-g al">4</span>
+              </div>
+              <div style="height:5px;border-radius:3px;background:#e8ebf2;overflow:hidden">
+                <div style="width:62%;height:100%;background:linear-gradient(90deg,#4285f4,#9b72cb)"></div>
+              </div>
+              <div style="font-size:11px;color:#98a1b2;margin-top:7px">gullar.uz · olx.uz · instagram.com/… · kun.uz · +61</div>
+            </div>
+
+            <!-- bosqich D: hisobot -->
+            <div class="ui-card">
+              <div class="ui-row" style="gap:8px; margin-bottom:6px">
+                <b style="font-size:12.5px">Tayyor hisobot</b>
+                <span style="margin-left:auto" class="pinwrap">
+                  <span class="pin pin-g ar">5</span>
+                  <span class="ui-btn" style="padding:5px 11px">📄 Docs'ga eksport</span>
+                </span>
+              </div>
+              <div class="ui-line l"></div><div class="ui-line m"></div>
+              <div class="ui-line" style="width:70%"></div>
+              <div class="ui-row" style="gap:5px; margin-top:8px; font-size:10.5px; color:#5b6172">
+                Manbalar: <span class="ui-chip" style="padding:3px 8px;font-size:10px">gullar.uz</span>
+                <span class="ui-chip" style="padding:3px 8px;font-size:10px">olx.uz</span>
+                <span class="ui-chip" style="padding:3px 8px;font-size:10px">+62</span>
+                <span class="pin pin-g al">6</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <ul class="legend">
+          <li><span class="pin pin-g">1</span><div><b>Deep Research'ni yoqing</b><span>Savol yozishdan <b>oldin</b> shu tugmani bosing. Ko'k rangga kirsa — yoqilgan.</span></div></li>
+          <li><span class="pin pin-g">2</span><div><b>Gemini avval reja ko'rsatadi</b><span>U darrov qidirmaydi. «Men shu 4 ta narsani o'rganaman» deb so'raydi.</span></div></li>
+          <li><span class="pin pin-g">3</span><div><b>«Boshlash» tugmasi</b><span>Reja to'g'ri bo'lsa — bosing. Noto'g'ri bo'lsa — «Tahrirlash» orqali o'zgartiring. <b>Bu qadamni tashlab ketmang</b> — reja qanday bo'lsa, hisobot ham shunday chiqadi.</span></div></li>
+          <li><span class="pin pin-g">4</span><div><b>Kutish vaqti: 5–15 daqiqa</b><span>Oynani yopsangiz ham bo'ladi — ish davom etadi. Tayyor bo'lgach, suhbat tarixida turadi.</span></div></li>
+          <li><span class="pin pin-g">5</span><div><b>Google Docs'ga eksport</b><span>Bir bosishda hisobot Google hujjatiga o'tadi. U yerdan PDF qilib mijozga yuborasiz.</span></div></li>
+          <li><span class="pin pin-g">6</span><div><b>Manbalar ro'yxati</b><span>Har bir havolani bosib tekshiring. <b>Muhim raqamni albatta tekshiring</b> — AI xato o'qishi mumkin.</span></div></li>
+        </ul>
+      </div>
+
+      <div class="grid g2">
+        <div class="card"><h4>Necha marta ishlatsa bo'ladi?</h4>
+          <p><b>Bepul reja:</b> oyiga bir necha marta (taxminan 5–10). Tugasa — keyingi oyni kutasiz.</p>
+          <p><b>AI Pro:</b> ancha ko'p, kuniga o'nlab marta.</p>
+          <p style="margin-top:6px;color:var(--muted);font-size:14px">Aniq raqam vaqt bilan o'zgaradi.</p>
+        </div>
+        <div class="card"><h4>Yaxshi so'rov qanday bo'ladi?</h4>
+          <p>❌ <i>«Gul biznesi haqida yoz»</i> — juda keng.</p>
+          <p>✅ <i>«Toshkentda onlayn gul yetkazish: 10 ta raqobatchi, narxlari, yetkazish vaqti, Instagram obunachilari. Jadval qilib ber.»</i></p>
+        </div>
+      </div>
+      <div class="note"><b>Sir:</b> hisobot oxirida yana savol bering — masalan «shu asosda men uchun 3 ta g'oya ayt». Gemini hisobotni eslab turadi.</div>
+    </div>
+
+    <!-- 1.6 GEMS -->
+    <div class="sec">
+      <h3><span class="sec-num n-g">6</span> Gems — o'zingizning yordamchilaringiz
+        <span class="toolbadge tb-g sec-tag"><svg class="logo"><use href="#logo-gemini"/></svg> Gems</span></h3>
+      <p>
+        <b>Gem</b> — bu Gemini'ning bir «roli». Siz unga bir marta yo'riqnoma yozasiz — kim ekanini,
+        qanday javob berishini. Keyin har safar tushuntirib o'tirmaysiz: Gem'ni ochasiz va ishlaysiz.
+      </p>
+      <p>Masalan: <b>«SMM-menejerim»</b>, <b>«Sotuv skripti yozuvchi»</b>, <b>«Buxgalterim»</b>.</p>
+
+      <div class="shotbox">
+        <div class="shot-title"><svg class="logo" style="width:15px;height:15px"><use href="#logo-gemini"/></svg> Gem yaratish oynasi</div>
+        <div class="shot-scroll">
+        <div class="shot">
+          <div class="shot-bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">gemini.google.com/gems/create</div></div>
+          <div class="shot-body">
+            <div class="ui-side">
+              <div class="ui-btn pri" style="padding:7px 13px; margin-bottom:12px">✚ Yangi suhbat</div>
+              <div class="ui-item on">🧭 Explore Gems <span class="pin pin-g al" style="margin-left:auto">1</span></div>
+              <div class="ui-lbl">Mening Gems'larim</div>
+              <div class="ui-item">💼 SMM-menejerim</div>
+              <div class="ui-item">📞 Sotuv skripti</div>
+              <div class="ui-lbl">Tayyor</div>
+              <div class="ui-item">✍️ Writing editor</div>
+              <div class="ui-item">🎓 Learning coach</div>
+            </div>
+
+            <div class="ui-main" style="gap:10px">
+              <div class="ui-row"><b style="font-size:14px">Yangi Gem</b>
+                <span class="ui-btn pri" style="margin-left:auto; padding:6px 14px">Saqlash</span>
+                <span class="pin pin-g al">5</span>
+              </div>
+
+              <div>
+                <div class="ui-lbl" style="padding:0 0 4px">Nomi</div>
+                <div class="ui-card" style="margin:0; padding:9px 11px; font-size:12px; color:#3d4557">SMM-menejerim
+                  <span class="pin pin-g al" style="float:right">2</span></div>
+              </div>
+
+              <div>
+                <div class="ui-lbl" style="padding:8px 0 4px">Yo'riqnoma (Instructions)</div>
+                <div class="ui-card" style="margin:0; padding:10px 11px; font-size:11.5px; color:#5b6172; line-height:1.7">
+                  Sen — o'zbek tilida ishlaydigan SMM-menejersan.<br>
+                  Mening biznesim: Toshkentda gul yetkazish.<br>
+                  Auditoriya: 25–40 yosh, ayollar.<br>
+                  Har doim 3 ta variant ber. Qisqa yoz, hissiyot qo'sh.<br>
+                  Emoji kam ishlat. Oxirida CTA yoz.
+                  <span class="pin pin-g al" style="float:right">3</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="ui-lbl" style="padding:8px 0 4px">Bilim fayllari</div>
+                <div class="ui-row" style="gap:7px">
+                  <span class="ui-chip">📎 brend-kitob.pdf</span>
+                  <span class="ui-chip">＋ Fayl qo'shish</span>
+                  <span class="pin pin-g al">4</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <ul class="legend">
+          <li><span class="pin pin-g">1</span><div><b>Explore Gems</b><span>Chap paneldan kiriladi. U yerda <b>«Yangi Gem» / «New Gem»</b> tugmasi bor.</span></div></li>
+          <li><span class="pin pin-g">2</span><div><b>Nomi</b><span>O'zingiz uchun tushunarli nom bering.</span></div></li>
+          <li><span class="pin pin-g">3</span><div><b>Yo'riqnoma — eng muhim joy</b><span>Bu yerga 5–10 jumla yozing: <b>kim sen · mening biznesim · auditoriya · qanday javob ber</b>. Qanchalik aniq yozsangiz, shunchalik yaxshi ishlaydi.</span></div></li>
+          <li><span class="pin pin-g">4</span><div><b>Bilim fayllari</b><span>Doimiy kerak bo'ladigan fayl (narxlar, brend-kitob) qo'shing. Gem har safar shuni biladi.</span></div></li>
+          <li><span class="pin pin-g">5</span><div><b>Saqlash</b><span>Saqlangach, Gem chap panelda paydo bo'ladi va doim shu yerda turadi.</span></div></li>
+        </ul>
+      </div>
+
+      <div class="grid g2">
+        <div class="card"><h4>Qayerda saqlanadi?</h4>
+          <p>Sizning Google akkauntingizda. Chap panel → <b>Explore Gems</b> → «Mening Gems'larim».
+          Boshqa qurilmadan kirsangiz ham joyida turadi.</p></div>
+        <div class="card"><h4>Qanday ulashiladi?</h4>
+          <p>Gem yonidagi <b>⋮</b> → <b>Share</b> → havola nusxalanadi. Uni jamoangizga yuborasiz.
+          Ulashish imkoni reja va akkaunt turiga bog'liq — ba'zi bepul akkauntlarda bo'lmasligi mumkin.</p></div>
+      </div>
+      <div class="tip"><b>Yo'riqnoma shabloni:</b><br>
+        <code>Sen — [kasb]san. Mening biznesim: [nima]. Mijozlarim: [kim]. Ohang: [qanday].
+        Har doim [nechta] variant ber. [Nima qilma].</code></div>
+    </div>
+
+    <!-- 1.7 RASM -->
+    <div class="sec">
+      <h3><span class="sec-num n-g">7</span> Rasm yaratish
+        <span class="toolbadge tb-g sec-tag"><svg class="logo"><use href="#logo-gemini"/></svg> Gemini</span></h3>
+      <p>Gemini matndan rasm chizadi. Alohida sayt kerak emas — o'sha suhbat oynasining o'zida.</p>
+      <ol class="steps sg">
+        <li><b>«Rasm yaratish» ni tanlang</b><p>Kiritish maydoni ostidagi tugmalardan. Yoki shunchaki yozing: «Menga … rasm chizib ber».</p></li>
+        <li><b>Rasmni tasvirlab bering</b><p>Nima, qayerda, qanday yorug'lik, qanday uslub, qanday format.</p></li>
+        <li><b>Tahrirlashni so'rang</b><p>Rasm chiqqach: «fonini oq qil», «matnni kattaroq yoz», «vertikal qil» deb yozaverasiz. Yangi suhbat ochish shart emas.</p></li>
+        <li><b>Yuklab oling</b><p>Rasm ustidagi yuklab olish belgisini bosing.</p></li>
+      </ol>
+      <div class="grid g2">
+        <div class="card"><h4>❌ Yomon so'rov</h4><p><i>«Gul rasmi chiz»</i></p></div>
+        <div class="card"><h4>✅ Yaxshi so'rov</h4><p><i>«Oq atirgul buketi, yumshoq tabiiy yorug'lik, oq marmar stol, tepadan olingan kadr, Instagram uchun kvadrat format, premium uslub»</i></p></div>
+      </div>
+
+      <h4 style="margin-top:20px">Limitlar</h4>
+      <ul>
+        <li><b>Bepul rejada</b> kuniga cheklangan miqdorda rasm chiqadi (bir necha dona). Limit tugasa — ertaga qayta tiklanadi.</li>
+        <li>Eng kuchli rasm modeli (<b>«Pro»</b> variant) bepulda kuniga atigi 2–4 marta ishlaydi, keyin oddiy modelga tushadi.</li>
+        <li><b>AI Pro/Ultra</b> rejalarida limit ancha katta.</li>
+      </ul>
+
+      <h4 style="margin-top:20px">Foydalanish huquqi — muhim</h4>
+      <div class="ok">
+        ✅ Google yaratilgan rasmni <b>tijorat uchun ishlatishga ruxsat beradi</b> — bepul rejada ham.
+        Ya'ni post, reklama, tovar kartochkasiga qo'ysangiz bo'ladi. Google rasmga egalik qilmaydi.
+      </div>
+      <div class="warn">
+        ⚠️ Lekin uch narsani biling:<br>
+        <b>1.</b> Har bir rasmda <b>SynthID</b> degan <b>ko'rinmas belgi</b> bor — bu «AI chizgan» degan raqamli iz.
+        U ko'zga ko'rinmaydi, kesib tashlab bo'lmaydi.<br>
+        <b>2.</b> Bepul/o'rta rejalarda rasm burchagida <b>ko'rinadigan belgi</b> ham bo'lishi mumkin. Uni olib tashlash faqat yuqori rejalarda.<br>
+        <b>3.</b> Boshqa odamning yuzini, mashhur brend logotipini yoki chalg'ituvchi rasm yaratmang — bu qoidalarga zid.
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     2-QISM: GEMINI NOTEBOOK
+     ============================================================ -->
+<section class="part" id="notebook">
+  <div class="wrap">
+    <div class="part-head part-n">
+      <svg class="logo" style="width:56px;height:56px"><use href="#logo-notebook"/></svg>
+      <div class="t">
+        <div class="part-num">2-qism</div>
+        <h2>Gemini Notebook <span style="font-size:.55em; color:var(--muted); font-weight:600">(eski nomi: NotebookLM)</span></h2>
+        <p>Sizning hujjatlaringiz bo'yicha ishlaydigan tadqiqotchi. Bu qismdagi hamma narsa <b>faqat Notebook</b> haqida.</p>
+      </div>
+      <span class="toolbadge tb-n"><svg class="logo"><use href="#logo-notebook"/></svg> notebooklm.google.com</span>
+    </div>
+
+    <div class="note" style="background:var(--n-soft); border-color:var(--n-line); color:#0b5f58">
+      <b>Asosiy g'oya.</b> Notebook internetdan qidirmaydi. U <b>faqat siz bergan materialni</b> o'qiydi.
+      Shuning uchun javoblari aniq bo'ladi va har bir gapdan keyin <b>manba raqami</b> turadi.
+      Bu — «o'z kutubxonangiz bilan suhbat».
+    </div>
+
+    <!-- 2.8 INTERFEYS -->
+    <div class="sec">
+      <h3><span class="sec-num n-n">8</span> Notebook interfeysi: uchta panel
+        <span class="toolbadge tb-n sec-tag"><svg class="logo"><use href="#logo-notebook"/></svg> Notebook</span></h3>
+      <p>
+        Notebook ekrani <b>uch qismga</b> bo'lingan. Shu uchtasini tushunsangiz — hammasini tushunasiz:<br>
+        <b>chapda</b> — materiallar, <b>o'rtada</b> — suhbat, <b>o'ngda</b> — natijalar (studiya va eslatmalar).
+      </p>
+
+      <div class="shotbox">
+        <div class="shot-title"><svg class="logo" style="width:15px;height:15px"><use href="#logo-notebook"/></svg> Notebook — asosiy ekran</div>
+        <div class="shot-scroll">
+        <div class="shot" style="min-width:860px">
+          <div class="shot-bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">notebooklm.google.com</div></div>
+          <div class="shot-body" style="min-height:400px">
+
+            <!-- CHAP: manbalar -->
+            <div class="ui-side w220" style="background:#f7fbfa">
+              <div class="ui-row" style="justify-content:space-between; padding:2px 6px 10px">
+                <b style="font-size:12px">Manbalar</b>
+                <span style="font-size:11px;color:#98a1b2">6 / 50</span>
+              </div>
+              <div class="ui-row" style="gap:6px; margin-bottom:11px">
+                <span class="pinwrap"><span class="ui-btn pri-n" style="padding:6px 12px">✚ Qo'shish</span><span class="pin pin-n al">1</span></span>
+                <span class="ui-btn" style="padding:6px 10px">🔍</span>
+              </div>
+
+              <div class="ui-row" style="padding:4px 8px; gap:8px; border-bottom:1px solid var(--line); margin-bottom:6px">
+                <span class="ui-check on"></span>
+                <span style="font-size:11px;color:#6b7386">Hammasini tanlash</span>
+                <span class="pin pin-n al" style="margin-left:auto">2</span>
+              </div>
+
+              <div class="ui-item"><span class="ui-check on"></span><span>📕</span> Biznes-reja 2026.pdf</div>
+              <div class="ui-item"><span class="ui-check on"></span><span>📗</span> Shartnoma.docx</div>
+              <div class="ui-item"><span class="ui-check on"></span><svg class="logo" style="width:14px;height:14px"><use href="#logo-youtube"/></svg> Marketing darsi</div>
+              <div class="ui-item"><span class="ui-check on"></span><span>🌐</span> Raqobatchi sayti</div>
+              <div class="ui-item"><span class="ui-check"></span><span>📊</span> Savdo hisoboti.xlsx</div>
+              <div class="ui-item"><span class="ui-check on"></span><span>📝</span> Qo'lda kiritilgan matn</div>
+              <div class="pinwrap" style="margin-top:8px"><span class="pin pin-n ar">3</span><span style="font-size:10.5px;color:#98a1b2">belgini olsangiz — hisobga olinmaydi</span></div>
+            </div>
+
+            <!-- O'RTA: suhbat -->
+            <div class="ui-main" style="gap:9px">
+              <div class="ui-row">
+                <b style="font-size:13px">Gul biznesi · tadqiqot</b>
+                <span class="pin pin-n al">4</span>
+                <span class="ui-row" style="margin-left:auto; gap:6px">
+                  <span class="ui-btn" style="padding:5px 11px">↗ Ulashish</span>
+                  <span class="ui-btn" style="padding:5px 9px">⚙️</span>
+                  <span class="pin pin-n al">5</span>
+                </span>
+              </div>
+
+              <div style="flex:1; display:flex; flex-direction:column; gap:9px; padding-top:6px">
+                <div class="ui-bubble me">Shartnomadagi eng xavfli 3 ta bandni ayt</div>
+                <div class="ui-bubble" style="max-width:92%">
+                  Uchta band e'tibor talab qiladi:<br>
+                  <b>1.</b> To'lov muddati 90 kun qilib belgilangan <span class="ui-cite">2</span><br>
+                  <b>2.</b> Jarima faqat bir tomonga yozilgan <span class="ui-cite">2</span><span class="ui-cite">5</span><br>
+                  <b>3.</b> Bekor qilish sharti ko'rsatilmagan <span class="ui-cite">1</span>
+                  <div class="ui-row" style="gap:6px;margin-top:9px">
+                    <span class="ui-chip" style="padding:4px 9px;font-size:10.5px">📌 Eslatmaga saqlash</span>
+                    <span class="pin pin-n al">7</span>
+                  </div>
+                </div>
+                <div class="pinwrap" style="margin-left:8px"><span class="pin pin-n ar">6</span><span style="font-size:10.5px;color:#98a1b2">raqamni bosing — asl matn ochiladi</span></div>
+              </div>
+
+              <div class="ui-input" style="border-radius:16px">
+                <span style="flex:1">Manbalaringiz bo'yicha savol bering…</span>
+                <span style="font-size:11px;color:#98a1b2">6 manba</span>
+                <span style="width:26px;height:26px;border-radius:50%;background:#0f9488;color:#fff;display:grid;place-items:center;font-size:12px">↑</span>
+              </div>
+            </div>
+
+            <!-- O'NG: studiya -->
+            <div class="ui-right" style="background:#fbfaf7">
+              <div class="ui-row" style="gap:10px; padding:2px 6px 6px">
+                <b style="font-size:12px">Studiya</b>
+                <span class="pin pin-n al">8</span>
+              </div>
+
+              <div class="ui-card" style="border-color:#f0dfc0; background:#fffdf8; margin-top:2px">
+                <div class="ui-row" style="gap:7px"><span style="font-size:14px">🎧</span><b style="font-size:11.5px">Audio-obzor</b></div>
+                <div style="font-size:10.5px;color:#8a93a6; margin:4px 0 7px">Ikki boshlovchi sizning materialingizni muhokama qiladi</div>
+                <div class="ui-row" style="gap:6px">
+                  <span class="ui-btn pri-n" style="padding:5px 11px; font-size:11px">▶ Yaratish</span>
+                  <span class="ui-btn" style="padding:5px 9px; font-size:11px">⚙ Sozlash</span>
+                </div>
+              </div>
+
+              <div class="ui-row" style="flex-wrap:wrap; gap:6px; margin-bottom:10px">
+                <span class="ui-chip" style="font-size:10.5px">🎬 Video-obzor</span>
+                <span class="ui-chip" style="font-size:10.5px">🗺 Aqliy xarita</span>
+                <span class="ui-chip" style="font-size:10.5px">📑 Brifing</span>
+                <span class="ui-chip" style="font-size:10.5px">🃏 Kartochkalar</span>
+                <span class="ui-chip" style="font-size:10.5px">❓ Test</span>
+                <span class="ui-chip" style="font-size:10.5px">📊 Slaydlar</span>
+              </div>
+
+              <div style="border-top:1px solid var(--line); padding-top:9px">
+                <div class="ui-row" style="justify-content:space-between; padding:0 6px 7px">
+                  <b style="font-size:12px">Eslatmalar</b>
+                  <span class="ui-btn" style="padding:3px 9px;font-size:10.5px">✚</span>
+                </div>
+                <div class="ui-card" style="padding:8px 10px">
+                  <div style="font-size:10.5px;font-weight:700">Shartnoma xatolari</div>
+                  <div class="ui-line s" style="height:5px"></div>
+                </div>
+                <span class="pinwrap"><span class="pin pin-n ar">9</span><span style="font-size:10.5px;color:#98a1b2">saqlangan javoblar</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <ul class="legend">
+          <li><span class="pin pin-n">1</span><div><b>«＋ Qo'shish» — manba yuklash</b><span>Butun ish shu tugmadan boshlanadi. Manba bo'lmasa, Notebook hech narsa qila olmaydi.</span></div></li>
+          <li><span class="pin pin-n">2</span><div><b>Manbalar soni (6 / 50)</b><span>Bepul rejada bitta bloknotga 50 tagacha manba. Pro'da — 300 tagacha.</span></div></li>
+          <li><span class="pin pin-n">3</span><div><b>Belgilar (checkbox)</b><span>Juda foydali! Belgini olsangiz, Notebook <b>o'sha faylni hisobga olmaydi</b>. Faqat bitta hujjat bo'yicha savol bermoqchi bo'lsangiz — qolganini o'chirib qo'ying.</span></div></li>
+          <li><span class="pin pin-n">4</span><div><b>Bloknot nomi</b><span>Bosib o'zgartirasiz. Har bir mavzuga alohida bloknot oching — aralashib ketmasin.</span></div></li>
+          <li><span class="pin pin-n">5</span><div><b>Ulashish va sozlamalar</b><span>Bloknotni hamkasbga berish, <b>javob tilini</b> tanlash shu yerda.</span></div></li>
+          <li><span class="pin pin-n">6</span><div><b>Manba raqamlari <span class="ui-cite">2</span></b><span>Notebook'ning eng kuchli tomoni. Raqamni bossangiz — hujjatning aynan o'sha joyi ochiladi. Ya'ni javobni <b>darrov tekshirasiz</b>.</span></div></li>
+          <li><span class="pin pin-n">7</span><div><b>«Eslatmaga saqlash»</b><span>Yoqqan javobni bosib saqlaysiz — u o'ng tarafda qoladi.</span></div></li>
+          <li><span class="pin pin-n">8</span><div><b>Studiya</b><span>Materialingizni podkast, video, xarita yoki testga aylantiradigan joy. (10-bo'limda.)</span></div></li>
+          <li><span class="pin pin-n">9</span><div><b>Eslatmalar</b><span>Sizning shaxsiy daftaringiz. (11-bo'limda.)</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2.9 MANBALAR -->
+    <div class="sec">
+      <h3><span class="sec-num n-n">9</span> Manbalar: nima yuklash mumkin
+        <span class="toolbadge tb-n sec-tag"><svg class="logo"><use href="#logo-notebook"/></svg> Notebook</span></h3>
+      <p>«＋ Qo'shish» ni bosganingizda quyidagi oyna ochiladi:</p>
+
+      <div class="shotbox">
+        <div class="shot-title"><svg class="logo" style="width:15px;height:15px"><use href="#logo-notebook"/></svg> Manba qo'shish oynasi</div>
+        <div class="shot-scroll">
+        <div class="shot narrow">
+          <div class="shot-bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">notebooklm.google.com — Manba qo'shish</div></div>
+          <div class="shot-body" style="display:block; padding:18px; min-height:auto; background:#fbfdfc">
+
+            <div style="border:2px dashed #b9d8d3; border-radius:14px; padding:22px; text-align:center; background:#fff; margin-bottom:14px">
+              <div style="font-size:22px">⬆️</div>
+              <b style="font-size:13px">Fayllarni bu yerga tashlang</b>
+              <div style="font-size:11px;color:#8a93a6;margin-top:4px">PDF · .txt · Markdown · .docx · .mp3 (audio)</div>
+              <span class="pin pin-n al" style="margin-top:8px">1</span>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px">
+              <div class="ui-card" style="text-align:center; padding:14px 8px">
+                <div style="font-size:18px">📁</div><b style="font-size:11.5px">Google Drive</b>
+                <div style="font-size:10px;color:#8a93a6">Docs · Slides · Sheets</div>
+                <span class="pin pin-n al">2</span>
+              </div>
+              <div class="ui-card" style="text-align:center; padding:14px 8px">
+                <div style="font-size:18px">🔗</div><b style="font-size:11.5px">Havola</b>
+                <div style="font-size:10px;color:#8a93a6">Sayt · YouTube</div>
+                <span class="pin pin-n al">3</span>
+              </div>
+              <div class="ui-card" style="text-align:center; padding:14px 8px">
+                <div style="font-size:18px">📋</div><b style="font-size:11.5px">Matn</b>
+                <div style="font-size:10px;color:#8a93a6">Nusxa-joylashtirish</div>
+                <span class="pin pin-n al">4</span>
+              </div>
+            </div>
+
+            <div class="ui-card" style="margin-top:12px; display:flex; align-items:center; gap:9px">
+              <span style="font-size:15px">🔍</span>
+              <div><b style="font-size:11.5px">Manba topish (Discover)</b>
+                <div style="font-size:10px;color:#8a93a6">Mavzuni yozing — Notebook o'zi internetdan manba taklif qiladi</div></div>
+              <span class="pin pin-n al" style="margin-left:auto">5</span>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <ul class="legend">
+          <li><span class="pin pin-n">1</span><div><b>Fayl yuklash</b><span>PDF, matn fayli, Word, hatto <b>audio yozuv (mp3)</b>. Audio bo'lsa — o'zi matnga aylantiradi.</span></div></li>
+          <li><span class="pin pin-n">2</span><div><b>Google Drive</b><span>Google Docs, Slides, Sheets'ni to'g'ridan-to'g'ri tanlaysiz. Yuklab olish shart emas.</span></div></li>
+          <li><span class="pin pin-n">3</span><div><b>Havola: sayt va YouTube</b><span>Sayt manzilini yoki YouTube video havolasini tashlaysiz. <b>YouTube uchun muhim shart</b> — video ochiq bo'lishi va <b>subtitri</b> bo'lishi kerak. Subtitri yo'q videoni o'qiy olmaydi.</span></div></li>
+          <li><span class="pin pin-n">4</span><div><b>Matn joylashtirish</b><span>Telegram yozishmasi, xat, eslatma — shunchaki nusxa qilib tashlaysiz.</span></div></li>
+          <li><span class="pin pin-n">5</span><div><b>Discover — manba qidirish</b><span>Materialingiz yo'q bo'lsa, mavzuni yozing: Notebook internetdan mos manbalarni topib, ro'yxat qilib beradi. Yoqqanini tanlaysiz.</span></div></li>
+        </ul>
+      </div>
+
+      <h4>Limitlar (bilib qo'ying)</h4>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Nima</th><th>Bepul</th><th>AI Pro bilan</th></tr></thead>
+          <tbody>
+            <tr><td>Bloknotlar soni</td><td>≈ 100 ta</td><td>Ancha ko'p</td></tr>
+            <tr><td>Bitta bloknotdagi manba</td><td><b>50 ta</b></td><td><b>300 ta</b></td></tr>
+            <tr><td>Kunlik savol-javob</td><td>≈ 50 ta</td><td>Bir necha barobar ko'p</td></tr>
+            <tr><td>Audio/video obzor</td><td>Kuniga ≈ 3 ta</td><td>Ancha ko'p</td></tr>
+            <tr><td>Bitta faylning hajmi</td><td colspan="2">≈ 500 000 so'zgacha yoki ≈ 200 MB gacha — ya'ni butun kitob ham sig'adi</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warn"><b>Raqamlar taxminiy</b> va Google tomonidan o'zgartirilishi mumkin. Aniq holatni chap paneldagi hisoblagichda (masalan «6 / 50») ko'rasiz.</div>
+      <div class="tip"><b>Maslahat:</b> hamma narsani bitta bloknotga tashlamang. <b>Bitta loyiha = bitta bloknot.</b>
+      Aks holda javoblar aralashib, sifat tushadi.</div>
+    </div>
+
+    <!-- 2.10 STUDIYA -->
+    <div class="sec">
+      <h3><span class="sec-num n-n">10</span> Studiya: podkast, video, brifing
+        <span class="toolbadge tb-n sec-tag"><svg class="logo"><use href="#logo-notebook"/></svg> Notebook</span></h3>
+      <p>
+        Studiya — Notebook'ning eng ta'sirli qismi. U sizning quruq hujjatingizni
+        <b>tinglash yoki ko'rish mumkin bo'lgan</b> narsaga aylantiradi.
+      </p>
+
+      <div class="grid g3">
+        <div class="card hl"><h4>🎧 Audio-obzor</h4><p>Ikki «boshlovchi» sizning hujjatingizni suhbat shaklida muhokama qiladi. Xuddi podkast. 5–15 daqiqa. Yo'lda tinglash uchun zo'r.</p></div>
+        <div class="card hl"><h4>🎬 Video-obzor</h4><p>Slaydli, ovozli qisqa video. Prezentatsiya o'rniga bo'ladi.</p></div>
+        <div class="card hl"><h4>🗺 Aqliy xarita</h4><p>Butun hujjat — bitta sxemada. Tuzilmani bir qarashda ko'rasiz.</p></div>
+        <div class="card hl"><h4>📑 Brifing / Hisobot</h4><p>Qisqa xulosa hujjati: asosiy fikrlar, faktlar, tavsiyalar. Yig'ilishga tayyorlanish uchun.</p></div>
+        <div class="card hl"><h4>🃏 Kartochka va test</h4><p>O'rganish uchun: savol-javob kartochkalari va o'zingizni tekshiradigan test.</p></div>
+        <div class="card hl"><h4>📊 Slaydlar</h4><p>Materialdan taqdimot slaydlari yig'adi.</p></div>
+      </div>
+
+      <div class="shotbox">
+        <div class="shot-title"><svg class="logo" style="width:15px;height:15px"><use href="#logo-notebook"/></svg> Audio-obzor yaratish va tilni tanlash</div>
+        <div class="shot-scroll">
+        <div class="shot narrow">
+          <div class="shot-bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">notebooklm.google.com — Studiya</div></div>
+          <div class="shot-body" style="display:block; padding:18px; min-height:auto; background:#fbfaf7">
+
+            <div class="ui-card" style="border-color:#f0dfc0; background:#fffdf8">
+              <div class="ui-row" style="gap:8px"><span style="font-size:16px">🎧</span><b style="font-size:12.5px">Audio-obzor</b>
+                <span style="margin-left:auto" class="pinwrap"><span class="pin pin-n ar">1</span>
+                <span class="ui-btn" style="padding:5px 11px;font-size:11px">⚙ Sozlash</span></span>
+              </div>
+              <div style="font-size:11px;color:#8a93a6;margin:6px 0 10px">Ikki boshlovchi manbalaringizni muhokama qiladi</div>
+              <div class="pinwrap"><span class="ui-btn pri-n" style="padding:6px 14px;font-size:11.5px">▶ Yaratish</span><span class="pin pin-n al">2</span></div>
+            </div>
+
+            <div class="ui-card" style="margin-top:10px">
+              <div class="ui-lbl" style="padding:0 0 6px">Sozlash oynasi</div>
+              <div style="font-size:11px;color:#5b6172; margin-bottom:8px">
+                «Nimaga e'tibor qaratishini yozing»:
+              </div>
+              <div class="ui-card" style="margin:0 0 10px; padding:8px 10px; font-size:11px; color:#5b6172">
+                Faqat narx va raqobat qismini muhokama qiling. Boshlang'ich tadbirkorga tushunarli qilib gapiring.
+                <span class="pin pin-n al" style="float:right">3</span>
+              </div>
+              <div class="ui-row" style="gap:7px; flex-wrap:wrap">
+                <span class="ui-chip" style="font-size:10.5px">Qisqa</span>
+                <span class="ui-chip act" style="font-size:10.5px; background:#dff2ef;border-color:#c7e8e3;color:#0b6e66">Standart</span>
+                <span class="ui-chip" style="font-size:10.5px">Uzun</span>
+                <span class="pin pin-n al">4</span>
+              </div>
+            </div>
+
+            <div class="ui-card" style="margin-top:10px">
+              <div class="ui-row" style="gap:8px">
+                <span style="font-size:14px">🌐</span>
+                <div><b style="font-size:11.5px">Chiqish tili (Output language)</b>
+                  <div style="font-size:10px;color:#8a93a6">Bloknot sozlamalari ⚙️ ichida</div></div>
+                <span class="ui-chip" style="margin-left:auto; font-size:10.5px">O'zbek ⌄</span>
+                <span class="pin pin-n al">5</span>
+              </div>
+            </div>
+
+            <div class="ui-card" style="margin-top:10px">
+              <div class="ui-row" style="gap:9px">
+                <span style="width:30px;height:30px;border-radius:50%;background:#0f9488;color:#fff;display:grid;place-items:center">▶</span>
+                <div style="flex:1">
+                  <div style="height:4px;border-radius:2px;background:#e8ebf2"><div style="width:35%;height:100%;background:#0f9488;border-radius:2px"></div></div>
+                  <div style="font-size:10px;color:#98a1b2;margin-top:5px">04:12 / 11:48</div>
+                </div>
+                <span class="ui-btn" style="padding:4px 10px;font-size:10.5px">⬇ Yuklab olish</span>
+                <span class="pin pin-n al">6</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <ul class="legend">
+          <li><span class="pin pin-n">1</span><div><b>«Sozlash» — avval shuni bosing</b><span>To'g'ridan-to'g'ri «Yaratish» bossangiz, umumiy podkast chiqadi. Sozlash orqali mavzuni yo'naltirasiz.</span></div></li>
+          <li><span class="pin pin-n">2</span><div><b>Yaratish</b><span>Kutish: 3–10 daqiqa. Oynani yopsangiz ham tayyorlanaveradi.</span></div></li>
+          <li><span class="pin pin-n">3</span><div><b>Yo'naltiruvchi matn</b><span>«Faqat narx qismini gapiring», «boshlang'ich uchun tushuntiring» kabi ko'rsatma bering — sifat keskin oshadi.</span></div></li>
+          <li><span class="pin pin-n">4</span><div><b>Uzunlik</b><span>Qisqa / Standart / Uzun. Birinchi marta «Qisqa» ni sinang — tez tayyor bo'ladi.</span></div></li>
+          <li><span class="pin pin-n">5</span><div><b>Til qayerdan tanlanadi</b><span>Bloknot <b>sozlamalari (⚙️)</b> → <b>Chiqish tili / Output language</b>. Uni o'zgartirsangiz, audio ham, javoblar ham o'sha tilda bo'ladi. 80 dan ortiq til bor.</span></div></li>
+          <li><span class="pin pin-n">6</span><div><b>Yuklab olish</b><span>Tayyor audioni telefonga yuklab, yo'lda tinglaysiz. Xodimlarga ham yuborsa bo'ladi.</span></div></li>
+        </ul>
+      </div>
+
+      <div class="tip">
+        <b>Kuchli qo'llanma:</b> audio-obzor tinglayotganda <b>«Qo'shilish» (Join)</b> tugmasi bo'lsa —
+        bosing va boshlovchilarga <b>ovoz bilan savol bering</b>. Ular to'xtab, sizga javob berishadi.
+        Bu funksiya barcha tillarda ishlamasligi mumkin.
+      </div>
+      <div class="warn">
+        <b>Til haqida rost gap:</b> o'zbek tilidagi audio ba'zan ingliz yoki rus tilidagichalik silliq chiqmaydi.
+        Muhim material bo'lsa — ikkala tilda sinab, yaxshirog'ini oling.
+      </div>
+    </div>
+
+    <!-- 2.11 ESLATMALAR -->
+    <div class="sec">
+      <h3><span class="sec-num n-n">11</span> Eslatmalar: javoblarni saqlash
+        <span class="toolbadge tb-n sec-tag"><svg class="logo"><use href="#logo-notebook"/></svg> Notebook</span></h3>
+      <p>
+        Notebook'da suhbat <b>doimiy saqlanmaydi</b> — bloknotni yopib qaytsangiz, savol-javob yo'qolishi mumkin.
+        Shuning uchun <b>yaxshi javobni darrov saqlash</b> kerak.
+      </p>
+      <ol class="steps sn">
+        <li><b>Javob ostidagi «Eslatmaga saqlash» ni bosing</b><p>Javob o'ng paneldagi «Eslatmalar» bo'limiga o'tadi.</p></li>
+        <li><b>Yoki o'zingiz yozing</b><p>Eslatmalar yonidagi <b>✚</b> tugmasi — bo'sh eslatma ochadi. O'z fikringizni yozasiz.</p></li>
+        <li><b>Eslatmani manbaga aylantiring</b><p>Eng foydali hiyla: eslatmani tanlab <b>«Manbaga aylantirish» (Convert to source)</b> qiling.
+        Endi Notebook o'z xulosangizni ham material sifatida o'qiydi va uning ustiga yangi tahlil quradi.</p></li>
+        <li><b>Tashqariga chiqaring</b><p>Eslatma matnini nusxalab, Google Docs yoki Telegram'ga tashlaysiz.</p></li>
+      </ol>
+      <div class="note" style="background:var(--n-soft);border-color:var(--n-line);color:#0b5f58">
+        <b>Ish tartibi:</b> savol bering → yaxshi javobni saqlang → 5–6 ta eslatma yig'iling →
+        ularni manbaga aylantiring → «shu xulosalar asosida menga reja tuz» deb so'rang.
+        Shunday qilib <b>o'z bilimingizni to'playsiz</b>.
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     3-QISM: KENGAYTMALAR (YouTube ulash)
+     ============================================================ -->
+<section class="part" id="kengaytma">
+  <div class="wrap">
+    <div class="part-head part-c">
+      <div class="ui-row" style="gap:8px">
+        <svg class="logo" style="width:46px;height:46px"><use href="#logo-chrome"/></svg>
+        <svg class="logo" style="width:34px;height:34px"><use href="#logo-youtube"/></svg>
+      </div>
+      <div class="t">
+        <div class="part-num">3-qism</div>
+        <h2>YouTube'ni Notebook'ga ulash</h2>
+        <p>Ikkita Chrome kengaytmasi. Video havolasini qo'lda ko'chirmasdan, <b>bir bosishda</b> Notebook'ga yuborasiz.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h3><span class="sec-num n-c">A</span> Kengaytma nima va nega kerak?
+        <span class="toolbadge tb-c sec-tag"><svg class="logo"><use href="#logo-chrome"/></svg> Chrome</span></h3>
+      <p>
+        <b>Kengaytma (extension)</b> — brauzerga qo'shiladigan kichik dastur. U brauzeringizga
+        <b>yangi tugma</b> qo'shadi. Bizning holatda: YouTube sahifasida
+        «<b>Notebook'ga yuborish</b>» tugmasi paydo bo'ladi.
+      </p>
+      <div class="grid g2">
+        <div class="card"><h4>Kengaytmasiz</h4><p>Video ochasiz → havolani nusxalaysiz → Notebook'ni ochasiz → «Qo'shish» → «Havola» → joylashtirasiz. Har bir video uchun 5 qadam.</p></div>
+        <div class="card hl"><h4>Kengaytma bilan</h4><p>Video ochasiz → tugmani bosasiz → bloknotni tanlaysiz. <b>2 qadam.</b> Butun pleylistni bir yo'la yuborsa ham bo'ladi.</p></div>
+      </div>
+      <div class="warn">
+        <b>Shartlar:</b> 1) <b>Chrome</b> brauzeri kerak (Edge va Brave'da ham ishlaydi). Safari/Firefox'da yo'q.
+        2) Kompyuterda ishlaydi, telefonda emas.
+        3) Chrome'da <b>Notebook'ga kirgan Google akkauntingiz</b> ochiq bo'lsin.
+      </div>
+    </div>
+
+    <!-- KENGAYTMALAR TANISHUVI -->
+    <div class="sec">
+      <h3><span class="sec-num n-c">B</span> Ikkita kengaytma — farqi nimada?
+        <span class="toolbadge tb-c sec-tag"><svg class="logo"><use href="#logo-chrome"/></svg> Chrome Web Store</span></h3>
+
+      <div class="grid g2">
+        <div class="card hl" style="border-color:#dbe3ee">
+          <div class="ui-row" style="gap:9px; margin-bottom:6px">
+            <svg class="logo" style="width:26px;height:26px"><use href="#logo-youtube"/></svg>
+            <h4 style="margin:0">YouTube to NotebookLM</h4>
+          </div>
+          <p><b>⭐ 4.9</b> · 868 baho</p>
+          <p><b>Nimaga kuchli:</b> YouTube uchun maxsus. Bitta video, butun <b>pleylist</b>, butun <b>kanal</b>, hatto qidiruv natijalarini ham yuboradi. Xulosa va vaqt belgilarini chiqaradi.</p>
+          <p style="margin-top:8px"><b>Kimga:</b> YouTube'dan ko'p o'rganadiganlarga.</p>
+          <p style="font-size:13px;color:var(--muted);margin-top:8px">chromewebstore.google.com/detail/<br><code style="font-size:11px">kobncfkmjelbefaoohoblamnbackjggk</code></p>
+        </div>
+
+        <div class="card hl" style="border-color:#dbe3ee">
+          <div class="ui-row" style="gap:9px; margin-bottom:6px">
+            <svg class="logo" style="width:26px;height:26px"><use href="#logo-notebook"/></svg>
+            <h4 style="margin:0">NotebookLM Web Importer</h4>
+          </div>
+          <p><b>⭐ 4.7</b> · 250 baho · 200 000+ foydalanuvchi</p>
+          <p><b>Nimaga kuchli:</b> hamma narsani yuboradi — YouTube video/pleylist, <b>oddiy saytlar</b>, maqolalar, RSS, ochiq oynalar (tablar). Ko'pini bir vaqtda.</p>
+          <p style="margin-top:8px"><b>Kimga:</b> saytlar va maqolalar bilan ham ishlaydiganlarga.</p>
+          <p style="font-size:13px;color:var(--muted);margin-top:8px">chromewebstore.google.com/detail/<br><code style="font-size:11px">ijdefdijdmghafocfmmdojfghnpelnfn</code></p>
+        </div>
+      </div>
+
+      <div class="ok">
+        <b>Qaysi birini olay?</b> Ikkalasini ham o'rnatsangiz bo'ladi — bir-biriga xalaqit bermaydi.
+        Agar bittasini tanlasangiz: asosan <b>YouTube</b> bilan ishlasangiz — birinchisini;
+        <b>sayt va maqola</b> ham ko'p bo'lsa — ikkinchisini oling.
+      </div>
+      <div class="warn">
+        <b>Diqqat:</b> bu kengaytmalarni Google emas, <b>boshqa dasturchilar</b> yaratgan.
+        O'rnatishda ular «tashrif buyurgan saytlaringizni o'qish» ruxsatini so'raydi — bu ishlashi uchun kerak.
+        Faqat <b>rasmiy Chrome Web Store</b>dan o'rnating, boshqa saytdagi fayllardan emas.
+      </div>
+    </div>
+
+    <!-- O'RNATISH -->
+    <div class="sec">
+      <h3><span class="sec-num n-c">C</span> Qanday o'rnatiladi (2 daqiqa)
+        <span class="toolbadge tb-c sec-tag"><svg class="logo"><use href="#logo-chrome"/></svg> Chrome</span></h3>
+
+      <div class="shotbox">
+        <div class="shot-title"><svg class="logo" style="width:15px;height:15px"><use href="#logo-chrome"/></svg> Chrome Web Store sahifasi</div>
+        <div class="shot-scroll">
+        <div class="shot narrow">
+          <div class="shot-bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">chromewebstore.google.com/detail/…</div></div>
+          <div class="shot-body" style="display:block; padding:20px; min-height:auto">
+            <div class="ui-row" style="gap:14px; align-items:flex-start">
+              <svg class="logo" style="width:52px;height:52px;flex:none"><use href="#logo-youtube"/></svg>
+              <div style="flex:1">
+                <b style="font-size:15px">YouTube to NotebookLM</b>
+                <div style="font-size:11px;color:#8a93a6;margin:3px 0 8px">
+                  ⭐ 4.9 (868) &nbsp;·&nbsp; Mahsuldorlik &nbsp;·&nbsp; 100 000+ foydalanuvchi
+                  <span class="pin pin-c al" style="margin-left:8px">1</span>
+                </div>
+                <div class="ui-line l" style="height:6px"></div>
+                <div class="ui-line m" style="height:6px"></div>
+              </div>
+              <div class="pinwrap">
+                <span class="ui-btn" style="background:#1a73e8;color:#fff;border-color:transparent;padding:9px 18px;font-size:12.5px">Chrome'ga qo'shish</span>
+                <span class="pin pin-c al">2</span>
+              </div>
+            </div>
+
+            <div style="margin-top:18px; border:1px solid var(--line); border-radius:12px; padding:14px; background:#fff; box-shadow:var(--shadow-s); max-width:400px">
+              <b style="font-size:12.5px">«YouTube to NotebookLM» qo'shilsinmi?</b>
+              <div style="font-size:11px;color:#5b6172;margin:8px 0 12px; line-height:1.7">
+                U quyidagilarni qila oladi:<br>
+                • Tashrif buyurgan saytlaringizdagi ma'lumotni o'qish<br>
+                • Yuklamalarni boshqarish
+              </div>
+              <div class="ui-row" style="gap:8px; justify-content:flex-end">
+                <span class="ui-btn" style="padding:6px 13px;font-size:11.5px">Bekor qilish</span>
+                <span class="pinwrap"><span class="ui-btn" style="background:#1a73e8;color:#fff;border-color:transparent;padding:6px 15px;font-size:11.5px">Kengaytma qo'shish</span><span class="pin pin-c al">3</span></span>
+              </div>
+            </div>
+
+            <div class="ui-row" style="margin-top:18px; gap:10px; justify-content:flex-end">
+              <span style="font-size:11px;color:#8a93a6">Chrome yuqori o'ng burchagi →</span>
+              <span class="ui-btn" style="padding:6px 10px">🧩</span>
+              <span class="pin pin-c al">4</span>
+              <span class="ui-avatar">I</span>
+            </div>
+          </div>
+        </div>
+        </div>
+        <ul class="legend">
+          <li><span class="pin pin-c">1</span><div><b>Avval bahoni tekshiring</b><span>Yuqoridagi havolani ochganda nom va reyting mos kelayotganiga ishonch hosil qiling.</span></div></li>
+          <li><span class="pin pin-c">2</span><div><b>«Chrome'ga qo'shish» (Add to Chrome)</b><span>Ko'k tugma. Bosasiz.</span></div></li>
+          <li><span class="pin pin-c">3</span><div><b>Ruxsatni tasdiqlang</b><span>Kichik oyna chiqadi → <b>«Kengaytma qo'shish»</b>. Shu bilan o'rnatish tugadi.</span></div></li>
+          <li><span class="pin pin-c">4</span><div><b>Yolg'iz qolmasin: 🧩 → mahkamlang</b><span>Chrome'ning o'ng yuqorisidagi <b>puzzle belgisi</b>ni bosing → kengaytma yonidagi <b>knopka (pin)</b> belgisini bosing. Endi tugma doim ko'rinib turadi.</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ISHLATISH -->
+    <div class="sec">
+      <h3><span class="sec-num n-c">D</span> Qanday ishlatiladi: YouTube → Notebook
+        <span class="toolbadge tb-c sec-tag"><svg class="logo"><use href="#logo-youtube"/></svg> YouTube</span></h3>
+
+      <div class="shotbox">
+        <div class="shot-title"><svg class="logo" style="width:15px;height:15px"><use href="#logo-youtube"/></svg> YouTube sahifasidagi yangi tugma</div>
+        <div class="shot-scroll">
+        <div class="shot">
+          <div class="shot-bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">youtube.com/watch?v=…</div>
+            <span class="ui-row" style="gap:6px"><span class="ui-btn" style="padding:3px 8px;font-size:11px">🧩</span>
+            <span class="pin pin-c al">4</span></span>
+          </div>
+          <div class="shot-body" style="display:block; padding:16px; min-height:auto; background:#fff">
+            <div style="display:flex; gap:14px">
+              <div style="flex:1">
+                <div style="aspect-ratio:16/9; background:linear-gradient(135deg,#1f2430,#3a4152); border-radius:10px;
+                     display:grid; place-items:center; color:#fff; font-size:26px">▶</div>
+                <b style="font-size:13px; display:block; margin-top:10px">Marketing asoslari: 2026-yilda nima ishlaydi</b>
+                <div class="ui-row" style="gap:7px; margin-top:9px; flex-wrap:wrap">
+                  <span class="ui-chip" style="font-size:11px">👍 12K</span>
+                  <span class="ui-chip" style="font-size:11px">↗ Ulashish</span>
+                  <span class="ui-chip" style="font-size:11px">⬇ Yuklab olish</span>
+                  <span class="pinwrap">
+                    <span class="pin pin-c ar">1</span>
+                    <span class="ui-chip" style="font-size:11px; background:#ecfdf5; border-color:#a7e3d5; color:#0b6e66; font-weight:700">
+                      <svg class="logo" style="width:13px;height:13px"><use href="#logo-notebook"/></svg> Notebook'ga yuborish</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- kengaytma oynasi -->
+              <div style="width:250px; flex:none; border:1px solid var(--line); border-radius:12px; padding:13px; box-shadow:var(--shadow); background:#fff">
+                <div class="ui-row" style="gap:8px; margin-bottom:9px">
+                  <svg class="logo" style="width:18px;height:18px"><use href="#logo-notebook"/></svg>
+                  <b style="font-size:12px">Bloknotni tanlang</b>
+                  <span class="pin pin-c al" style="margin-left:auto">2</span>
+                </div>
+                <div class="ui-item on-n" style="font-size:11.5px">📔 Marketing kursi</div>
+                <div class="ui-item" style="font-size:11.5px">📔 Gul biznesi</div>
+                <div class="ui-item" style="font-size:11.5px">✚ Yangi bloknot yaratish</div>
+                <div style="border-top:1px solid var(--line2); margin:9px 0; padding-top:9px">
+                  <div class="ui-row" style="gap:7px; margin-bottom:7px">
+                    <span class="ui-check on"></span><span style="font-size:11px">Faqat shu video</span>
+                  </div>
+                  <div class="ui-row" style="gap:7px">
+                    <span class="ui-check"></span><span style="font-size:11px">Butun pleylist (24 ta)</span>
+                    <span class="pin pin-c al">3</span>
+                  </div>
+                </div>
+                <div class="ui-btn pri-n" style="width:100%; justify-content:center; padding:7px; font-size:11.5px">Yuborish</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <ul class="legend">
+          <li><span class="pin pin-c">1</span><div><b>Video ostidagi yangi tugma</b><span>Kengaytma o'rnatilgach, «Ulashish» yonida <b>«Notebook'ga yuborish»</b> paydo bo'ladi. Bosasiz.</span></div></li>
+          <li><span class="pin pin-c">2</span><div><b>Qaysi bloknotga?</b><span>Mavjud bloknotlaringiz ro'yxati chiqadi. Yoki shu yerdan yangisini yaratasiz.</span></div></li>
+          <li><span class="pin pin-c">3</span><div><b>Pleylistni to'liq yuborish</b><span>Butun kursni bir bosishda yuborish mumkin. <b>Ehtiyot bo'ling:</b> 24 ta video = 24 ta manba. Bepul rejada limit 50 ta — tez to'lib qoladi.</span></div></li>
+          <li><span class="pin pin-c">4</span><div><b>Kengaytma belgisi (🧩 yonida)</b><span>Tugma sahifada ko'rinmasa — brauzer yuqorisidagi kengaytma belgisini bosing, oyna shu yerdan ham ochiladi. YouTube dizayni o'zgarsa, tugma joyi ham siljishi mumkin.</span></div></li>
+        </ul>
+      </div>
+
+      <h4>Yuborgandan keyin nima qilasiz</h4>
+      <ol class="steps sc">
+        <li><b>Notebook'ni oching</b><p><code>notebooklm.google.com</code> → o'sha bloknot. Video chap panelda manba bo'lib turadi.</p></li>
+        <li><b>Bir-ikki daqiqa kuting</b><p>Notebook video matnini (subtitrni) o'qib chiqadi.</p></li>
+        <li><b>Savol bering</b><p>Masalan: <code>Bu videoning asosiy 7 ta fikrini ro'yxat qil, har biriga vaqt belgisi bilan.</code></p></li>
+        <li><b>Audio-obzor qiling</b><p>10 ta videodan bitta 12 daqiqalik xulosa podkast — kursni takrorlash uchun ideal.</p></li>
+      </ol>
+
+      <div class="warn">
+        <b>Ishlamasa — sabablari shular:</b><br>
+        • Video <b>subtitrsiz</b> (yoki subtitr o'chirilgan) → Notebook o'qiy olmaydi.<br>
+        • Video <b>yopiq/maxfiy</b> (private) yoki yosh cheklovi bor.<br>
+        • Chrome'da <b>boshqa Google akkaunt</b> ochiq → bloknotlar ro'yxati bo'sh chiqadi.<br>
+        • YouTube sahifasi yangilanmagan → <b>F5</b> bosib qayta yuklang.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     YAKUN
+     ============================================================ -->
+<section class="part" id="taqqos">
+  <div class="wrap">
+    <div class="sec">
+      <h3><span class="sec-num n-c">✦</span> Qaysi vositani qachon ishlataman?</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:52%">Vazifa</th><th>Vosita</th></tr></thead>
+          <tbody>
+            <tr><td>Post, sarlavha, sotuv matni yozish</td><td><span class="toolbadge tb-g"><svg class="logo"><use href="#logo-gemini"/></svg> Gemini</span></td></tr>
+            <tr><td>Bozorni o'rganish, raqobatchi tahlili</td><td><span class="toolbadge tb-g"><svg class="logo"><use href="#logo-gemini"/></svg> Gemini · Deep Research</span></td></tr>
+            <tr><td>Rasm, banner, tovar kartochkasi</td><td><span class="toolbadge tb-g"><svg class="logo"><use href="#logo-gemini"/></svg> Gemini</span></td></tr>
+            <tr><td>Doimiy yordamchi (SMM, sotuv, buxgalteriya)</td><td><span class="toolbadge tb-g"><svg class="logo"><use href="#logo-gemini"/></svg> Gemini · Gems</span></td></tr>
+            <tr><td>Shartnoma, hisobot, katta PDF'ni tahlil qilish</td><td><span class="toolbadge tb-n"><svg class="logo"><use href="#logo-notebook"/></svg> Notebook</span></td></tr>
+            <tr><td>Kurs yoki kitobni o'rganish, konspekt qilish</td><td><span class="toolbadge tb-n"><svg class="logo"><use href="#logo-notebook"/></svg> Notebook</span></td></tr>
+            <tr><td>10 ta YouTube darsdan bitta xulosa</td><td><span class="toolbadge tb-n"><svg class="logo"><use href="#logo-notebook"/></svg> Notebook + kengaytma</span></td></tr>
+            <tr><td>Yig'ilish yozuvidan vazifalar ro'yxati</td><td><span class="toolbadge tb-n"><svg class="logo"><use href="#logo-notebook"/></svg> Notebook</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ok" style="margin-top:20px">
+        <b>Eng kuchli usul — ikkalasini birga ishlatish:</b><br>
+        <b>1.</b> Gemini'da <b>Deep Research</b> qilasiz → hisobot olasiz.<br>
+        <b>2.</b> Hisobotni Google Docs'ga eksport qilasiz.<br>
+        <b>3.</b> O'sha hujjatni <b>Notebook</b>ga manba qilib yuklaysiz + o'z fayllaringizni qo'shasiz.<br>
+        <b>4.</b> Notebook'dan <b>audio-obzor</b> qilasiz va jamoangizga yuborasiz.<br>
+        Natija: tadqiqot + shaxsiy ma'lumot + tinglanadigan format.
+      </div>
+    </div>
+
+    <div class="sec">
+      <h3><span class="sec-num n-c">✓</span> Boshlash uchun tekshiruv ro'yxati</h3>
+      <ol class="steps sc">
+        <li><b>Google akkaunt tayyor</b><p>Gmail bor, parol esimda.</p></li>
+        <li><b>gemini.google.com ochildi</b><p>Bir savol berib ko'rdim.</p></li>
+        <li><b>Bitta fayl yukladim</b><p>«＋» orqali PDF tashlab, xulosa so'radim.</p></li>
+        <li><b>Bitta Gem yasadim</b><p>O'z biznesim uchun yordamchi.</p></li>
+        <li><b>Bitta Deep Research ishga tushirdim</b><p>Va hisobotni Docs'ga chiqardim.</p></li>
+        <li><b>notebooklm.google.com ochildi</b><p>Yangi bloknot yaratdim.</p></li>
+        <li><b>3 ta manba yukladim</b><p>PDF + sayt havolasi + YouTube video.</p></li>
+        <li><b>Audio-obzor qildim</b><p>Va oxirigacha tingladim.</p></li>
+        <li><b>Kengaytmani o'rnatdim</b><p>YouTube'dan bir video yubordim.</p></li>
+      </ol>
+      <div class="tip"><b>Bularning hammasi bepul rejada bajariladi.</b> Hech qanday to'lovsiz boshlayvering.</div>
+    </div>
+
+    <div class="warn">
+      <b>So'nggi eslatma.</b> AI vositalari juda tez o'zgaradi: tugmalar joyi siljiydi, nomlar yangilanadi,
+      narx va limitlar o'zgaradi. Shuning uchun <b>tugma joyini emas, mantiqni yodlang</b>:<br>
+      Gemini = <i>«dunyo bilan suhbat»</i> · Notebook = <i>«o'z hujjatim bilan suhbat»</i>.
+      Bu mantiq o'zgarmaydi.
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <div class="wrap">
+    <b>Gemini va Gemini Notebook — kurs qo'llanmasi</b><br>
+    Ma'lumotlar 2026-yil avgust holatiga to'g'ri keladi.<br>
+    Narx va limitlarni ishlatishdan oldin rasmiy saytdan tekshiring.
+  </div>
+</div>
+
+</body>
+</html>
