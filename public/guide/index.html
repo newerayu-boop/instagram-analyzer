@@ -100,6 +100,46 @@ tr:last-child td{border-bottom:0}
 .leg.ex i{background:var(--teal)}
 .leg b{color:var(--ink)}
 
+/* ---- flow: ketma-ket kichik ekranlar ---- */
+.flow{display:grid;gap:7px;align-items:stretch}
+.flow.f3{grid-template-columns:1fr 16px 1fr 16px 1fr}
+.flow.f4{grid-template-columns:1fr 14px 1fr 14px 1fr 14px 1fr}
+.flow .ar{display:flex;align-items:center;justify-content:center;color:#B6BDC9;font-size:15px;font-weight:800}
+.fbox{border:1px solid var(--line);border-radius:11px;background:#fff;overflow:hidden;display:flex;flex-direction:column}
+.fbox .fh{background:var(--cream2);padding:5px 9px;font-size:9.5px;font-weight:800;display:flex;gap:6px;align-items:center;color:var(--ink)}
+.fbox .fh i{width:15px;height:15px;border-radius:50%;background:var(--ink);color:#fff;font:800 9px/15px Inter;text-align:center;font-style:normal;flex:0 0 auto}
+.fbox.gm .fh i{background:linear-gradient(135deg,var(--g1),var(--g2) 55%,var(--g3))}
+.fbox.nb .fh i{background:var(--blue)}
+.fbox .fb{padding:8px 9px;font-size:10px;color:var(--ink2);line-height:1.45;flex:1}
+.fbox .pic{background:#fff;border-top:1px solid var(--line2);padding:7px 8px}
+
+/* ---- misol: chat ko'rinishi ---- */
+.chatbox{border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px 12px}
+.bub{border-radius:11px;padding:7px 10px;font-size:10.5px;line-height:1.5;margin-bottom:6px}
+.bub:last-child{margin-bottom:0}
+.bub.u{background:#E8F0FE;color:#174EA6;margin-left:120px}
+.bub.a{background:var(--cream);color:var(--ink2);border:1px solid var(--line2)}
+.bub .who2{display:block;font-size:8.5px;font-weight:800;letter-spacing:.06em;opacity:.65;margin-bottom:2px}
+
+/* ---- oldin / keyin ---- */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.ba .bad{border:1px solid #F5C6C2;background:#FEF7F6;border-radius:12px;padding:10px 12px}
+.ba .good{border:1px solid #B7E1C4;background:#F4FBF6;border-radius:12px;padding:10px 12px}
+.ba h4{font-size:11.5px;margin-bottom:5px}
+.ba .bad h4{color:#8C1D18}.ba .good h4{color:#14532D}
+.ba small{font-size:10.3px;line-height:1.5;display:block;color:var(--ink2)}
+
+/* ---- studiya formatlari uchun kichik namunalar ---- */
+.demo{border:1px solid var(--line);border-radius:11px;background:#fff;padding:9px 10px}
+.demo .dt{font-size:10.5px;font-weight:800;margin-bottom:6px;display:flex;gap:6px;align-items:center}
+.mapnode{display:inline-block;border:1px solid #C9D7EE;background:#EEF4FE;border-radius:9px;padding:2px 7px;font-size:8.8px;color:#174EA6;font-weight:600}
+.mapline{height:1px;background:#C9D7EE;flex:1}
+.fcard{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:9.3px;background:#FBFCFE}
+.fcard b{display:block;font-size:8.5px;color:var(--mut);letter-spacing:.05em;margin-bottom:2px}
+.qrow{display:flex;align-items:center;gap:6px;font-size:9.5px;padding:3px 0}
+.qrow .rd{width:11px;height:11px;border-radius:50%;border:1.5px solid #BDC1C6;flex:0 0 auto}
+.qrow .rd.on{border-color:#188038;background:#188038}
+
 /* ============ SCREENSHOT MOCKUPS ============ */
 .shot{position:relative;padding:24px 50px;background:var(--cream2);border:1px solid var(--line);border-radius:16px}
 .shot.tight{padding:22px 34px}
@@ -322,136 +362,16 @@ tr:last-child td{border-bottom:0}
         lekin mantiq bir xil qoladi.
       </div>
       <div style="text-align:right">
-        <div style="font-family:Manrope;font-weight:800;font-size:13px">36 sahifa</div>
+        <div style="font-family:Manrope;font-weight:800;font-size:13px">35 sahifa</div>
         <div style="font-size:10px;color:#6B7385">Til darajasi: oddiy o'zbekcha (B1)</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- =============================== 2. TOC =============================== -->
-<div class="page">
-  <div class="ph"><div class="who">AI STRATEG · QO'LLANMA</div><div class="num">02</div></div>
-  <h2>Mundarija</h2>
-  <p class="lead" style="margin-bottom:10px;font-size:12.5px">Kerakli bo'limni topib, o'sha sahifani oching. Har bir bo'lim mustaqil — boshidan oxirigacha o'qish shart emas.</p>
-
-  <div class="toc">
-    <div class="h">BOSHLASH</div>
-    <div class="t"><b>0</b><span>Qo'llanmadan qanday foydalanish — belgilar va ranglar</span><span class="p">3</span></div>
-    <div class="t"><b>1</b><span>Ikkita vosita — qanday farqi bor va qachon qaysi biri kerak</span><span class="p">4</span></div>
-    <div class="t"><b>2</b><span>Google akkaunt ochish (ro'yxatdan o'tish) — qadamma-qadam</span><span class="p">5</span></div>
-    <div class="t"><b>3</b><span>Gemini'ga birinchi marta kirish</span><span class="p">6</span></div>
-
-    <div class="h gm" style="margin-top:9px">1-QISM · GEMINI</div>
-    <div class="t"><b>4</b><span>Gemini nima va kursda nimaga kerak</span><span class="p">8</span></div>
-    <div class="t"><b>5</b><span>Interfeys xaritasi — barcha tugmalar strelka bilan</span><span class="p">9–10</span></div>
-    <div class="t"><b>6</b><span>Modellar: <b>Flash</b> (tez) va <b>Pro</b> (aqlli) — qayerda almashtiriladi</span><span class="p">11</span></div>
-    <div class="t"><b>7</b><span>Tariflar: bepul va pullik. Narx va to'lov qilish yo'li</span><span class="p">12</span></div>
-    <div class="t"><b>8</b><span>Fayl yuklash, ovoz, kamera — «+» tugmasi ichi</span><span class="p">13</span></div>
-    <div class="t"><b>9</b><span>Deep Research — chuqur izlanish hisoboti</span><span class="p">14–15</span></div>
-    <div class="t"><b>10</b><span>Gems — o'zingizning shaxsiy yordamchingiz</span><span class="p">16</span></div>
-    <div class="t"><b>11</b><span>Rasm yaratish: limit va foydalanish huquqi</span><span class="p">17</span></div>
-    <div class="t"><b>12</b><span>Video, Kutubxona, Chat tarixi va Sozlamalar</span><span class="p">18</span></div>
-    <div class="t"><b>13</b><span>Prompt formulasi + 10 ta tayyor prompt</span><span class="p">19</span></div>
-
-    <div class="h nb" style="margin-top:9px">2-QISM · GEMINI NOTEBOOK (NotebookLM)</div>
-    <div class="t"><b>14</b><span>Notebook nima va Gemini'dan farqi</span><span class="p">21</span></div>
-    <div class="t"><b>15</b><span>Ichiga kirishning 2 yo'li + birinchi bloknot</span><span class="p">22</span></div>
-    <div class="t"><b>16</b><span>Interfeys xaritasi — 3 ta panel strelka bilan</span><span class="p">23–24</span></div>
-    <div class="t"><b>17</b><span>Manbalar: qaysi turlarni yuklash mumkin va limitlar</span><span class="p">25</span></div>
-    <div class="t"><b>18</b><span>Chat va iqtiboslar (havolalar). Tilni o'zbekchaga qo'yish</span><span class="p">26</span></div>
-    <div class="t"><b>19</b><span>Studiya: Audio sharh — «biznesingiz haqida podkast»</span><span class="p">27</span></div>
-    <div class="t"><b>20</b><span>Studiya: Video, Mind map, Kartochka, Test, Hisobot, Slayd</span><span class="p">28</span></div>
-    <div class="t"><b>21</b><span>Eslatmalar: javoblarni saqlash va ulashish</span><span class="p">29</span></div>
-
-    <div class="h ex" style="margin-top:9px">3-QISM · CHROME KENGAYTMALAR</div>
-    <div class="t"><b>22</b><span>Kengaytma nima. Chrome Web Store'dan o'rnatish</span><span class="p">31</span></div>
-    <div class="t"><b>23</b><span>YouTube to NotebookLM — YouTube'ni bloknotga ulash</span><span class="p">32</span></div>
-    <div class="t"><b>24</b><span>NotebookLM Web Importer — sayt va maqolalarni yuklash</span><span class="p">33</span></div>
-    <div class="t"><b>25</b><span>Kengaytmani panelga qadash va tez-tez uchraydigan xatolar</span><span class="p">34</span></div>
-
-    <div class="h" style="margin-top:9px">YAKUN</div>
-    <div class="t"><b>26</b><span>Amaliy vazifa + o'zini tekshirish ro'yxati</span><span class="p">35</span></div>
-    <div class="t"><b>27</b><span>Savol-javob va lug'at</span><span class="p">36</span></div>
-  </div>
-
-  <div class="tipbar" style="margin-top:12px">
-    <div class="ic">✦</div>
-    <div><b>Qo'llanmadan qanday foydalanish.</b> Rasmda raqamli doiralar bor: <b>1</b>, <b>2</b>, <b>3</b>…
-      Strelka qaysi tugmani ko'rsatsa, o'sha raqamning izohi rasm ostida yozilgan.</div>
-  </div>
-
-  <div class="pf"><span>Gemini va Gemini Notebook — to'liq qo'llanma</span><span>02</span></div>
-</div>
-
-
-<!-- =============================== 2b. HOW TO USE =============================== -->
-<div class="page">
-  <div class="ph"><div class="who">AI STRATEG · QO'LLANMA</div><div class="num">03</div></div>
-  <div class="kicker">0-bo'lim</div>
-  <h2>Qo'llanmadan qanday foydalanish</h2>
-  <p class="lead" style="margin-bottom:14px">Bu yerda ishlatilgan belgilarni bir marta tushunib olsangiz,
-    keyingi 33 sahifa juda oson o'qiladi.</p>
-
-  <h3>1 · Ekran rasmlari va strelkalar</h3>
-  <p style="margin-bottom:10px">Har bir muhim oyna chizib ko'rsatilgan. Rangli doiradagi raqamdan
-    <b>strelka</b> chiqadi va aniq tugmani ko'rsatadi. Raqam izohi — rasm ostida.</p>
-
-  <div class="shot gmp tight" style="margin-bottom:14px;padding:26px 44px">
-    <div class="cap">Belgilar qanday ishlaydi</div>
-    <div class="ui" style="height:104px;background:#fff;padding:14px 18px;display:flex;align-items:center;gap:14px">
-      <div class="anchor" style="background:#0B57D0;color:#fff;border-radius:16px;padding:7px 18px;font-size:11px;font-weight:600">Tugma
-        <span class="pin l">1</span></div>
-      <div class="anchor" style="border:1px solid #DADCE0;border-radius:8px;padding:7px 14px;font-size:11px;color:#80868B;flex:1">Yozish maydoni
-        <span class="pin t" style="top:-30px">2</span></div>
-      <div class="anchor" style="width:26px;height:26px;border:1.6px solid #5F6368;border-radius:6px">
-        <span class="pin r">3</span></div>
-    </div>
-  </div>
-
-  <div class="leg gm" style="margin-bottom:16px">
-    <div><i>1</i><span>Strelka <b>o'ngga</b> qaragan — raqam elementning chap tomonida turadi.</span></div>
-    <div><i>2</i><span>Strelka <b>pastga</b> qaragan — raqam yuqorida turadi.</span></div>
-    <div><i>3</i><span>Strelka <b>chapga</b> qaragan — raqam o'ng tomonda turadi.</span></div>
-    <div><i>—</i><span>Izohda «—» belgisi — qo'shimcha maslahat, rasmdagi element emas.</span></div>
-  </div>
-
-  <h3>2 · Ranglar nimani bildiradi</h3>
-  <div class="grid g3" style="margin:9px 0 16px">
-    <div class="card w" style="border-color:#E0D7F5"><h4 style="color:#7B4FC0">● Binafsha</h4><small><b>Gemini</b> bo'limi (1-qism, 7–18-sahifalar)</small></div>
-    <div class="card w" style="border-color:#D2E3FC"><h4 style="color:#1A73E8">● Ko'k</h4><small><b>Notebook</b> bo'limi (2-qism, 20–28-sahifalar)</small></div>
-    <div class="card w" style="border-color:#9BD9D0"><h4 style="color:#0F9D8B">● Yashil</h4><small><b>Kengaytmalar</b> (3-qism, 30–33-sahifalar)</small></div>
-  </div>
-
-  <h3>3 · Ramkalar</h3>
-  <div style="display:grid;gap:8px;margin:9px 0 16px">
-    <div class="ok"><b>Yashil ramka</b> — foydali maslahat yoki qoida. O'qishga arziydi.</div>
-    <div class="note"><b>Sariq ramka</b> — e'tibor bering: nozik nuqta yoki o'zgarib turadigan ma'lumot.</div>
-    <div class="warn"><b>Qizil ramka</b> — ogohlantirish. Xato qilmaslik uchun o'qing.</div>
-    <div class="tipbar"><div class="ic">✦</div><div><b>Ko'k ramka</b> — tezlashtiradigan hiyla yoki qo'shimcha imkoniyat.</div></div>
-  </div>
-
-  <h3>4 · Boshqa belgilar</h3>
-  <div class="grid g2" style="gap:6px 20px;font-size:11.5px;color:var(--ink2)">
-    <div><code>gemini.google.com</code> — brauzerga yoziladigan manzil</div>
-    <div><span class="kb">Enter</span> — klaviatura tugmasi</div>
-    <div><b>⚙</b> — sozlamalar · <b>⋮</b> — qo'shimcha menyu</div>
-    <div><b>＋</b> — yangi narsa qo'shish tugmasi</div>
-  </div>
-
-  <div class="tipbar" style="margin-top:16px">
-    <div class="ic">✦</div>
-    <div><b>Eng yaxshi usul.</b> Qo'llanmani telefonda oching, kompyuterda esa Gemini'ni oching.
-      Bir sahifani o'qing — darrov o'sha amalni bajaring. Faqat o'qib chiqilgan qo'llanma
-      bir haftada unutiladi; bajarilgani — qoladi.</div>
-  </div>
-
-  <div class="pf"><span>Qo'llanmadan foydalanish</span><span>03</span></div>
-</div>
-
 <!-- =============================== 3. GEMINI vs NOTEBOOK =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">BOSHLASH · 1-BO'LIM</div><div class="num">04</div></div>
+  <div class="ph"><div class="who">BOSHLASH</div><div class="num">02</div></div>
   <div class="kicker">Eng muhim narsa</div>
   <h2>Ikkita vosita — qanday farqi bor?</h2>
   <p class="lead" style="margin-bottom:14px">Ko'pchilik shu yerda adashadi. Farqi juda oddiy: <b>Gemini butun internetni biladi.
@@ -513,16 +433,16 @@ tr:last-child td{border-bottom:0}
     ikkalasi bir xil joy, bitta akkauntda sinxron.
   </div>
 
-  <div class="pf"><span>Ikkita vosita — farqi</span><span>04</span></div>
+  <div class="pf"><span>Ikkita vosita — farqi</span><span>02</span></div>
 </div>
 
 <!-- =============================== 4. REGISTRATION =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">BOSHLASH · 2-BO'LIM</div><div class="num">05</div></div>
+  <div class="ph"><div class="who">BOSHLASH</div><div class="num">03</div></div>
   <div class="kicker">Birinchi qadam</div>
   <h2>Google akkaunt ochish</h2>
   <p class="lead" style="margin-bottom:12px">Ikkala vosita ham <b>Google akkaunt</b> bilan ishlaydi. Agar sizda Gmail bo'lsa —
-    akkaunt bor, 3-bo'limga o'ting. Agar yo'q bo'lsa, quyidagi 6 qadamni bajaring. Vaqt: ~4 daqiqa.</p>
+    akkaunt bor, keyingi sahifaga o'ting. Agar yo'q bo'lsa, quyidagi 6 qadamni bajaring. Vaqt: ~4 daqiqa.</p>
 
   <div class="shot gmp tight" style="margin-bottom:12px">
     <div class="cap">accounts.google.com — ro'yxatdan o'tish oynasi</div>
@@ -588,12 +508,12 @@ tr:last-child td{border-bottom:0}
       keyin bloknotlaringiz va chatlaringiz chalkashib ketmaydi.</div>
   </div>
 
-  <div class="pf"><span>Google akkaunt ochish</span><span>05</span></div>
+  <div class="pf"><span>Google akkaunt ochish</span><span>03</span></div>
 </div>
 
 <!-- =============================== 5. FIRST LOGIN =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">BOSHLASH · 3-BO'LIM</div><div class="num">06</div></div>
+  <div class="ph"><div class="who">BOSHLASH</div><div class="num">04</div></div>
   <div class="kicker">Ikkinchi qadam</div>
   <h2>Gemini'ga birinchi marta kirish</h2>
   <p class="lead" style="margin-bottom:13px">Akkaunt tayyor bo'lgach, Gemini'ga kirish 30 soniya vaqt oladi.</p>
@@ -643,7 +563,7 @@ tr:last-child td{border-bottom:0}
     <code>Javobni o'zbek tilida yoz.</code>
   </div>
 
-  <div class="pf"><span>Gemini'ga birinchi kirish</span><span>06</span></div>
+  <div class="pf"><span>Gemini'ga birinchi kirish</span><span>04</span></div>
 </div>
 
 <!-- =============================== 6. GEMINI DIVIDER =============================== -->
@@ -665,14 +585,14 @@ tr:last-child td{border-bottom:0}
       <span>Interfeys xaritasi</span><span>Flash / Pro</span><span>Tariflar va to'lov</span>
       <span>Fayl yuklash</span><span>Deep Research</span><span>Gems</span><span>Rasm</span><span>Video</span><span>Promptlar</span>
     </div>
-    <div style="position:absolute;left:70px;bottom:70px;font-size:10.5px;color:#9AA1B0;font-weight:700;letter-spacing:.06em">SAHIFA 08 — 19</div>
+    <div style="position:absolute;left:70px;bottom:70px;font-size:10.5px;color:#9AA1B0;font-weight:700;letter-spacing:.06em">SAHIFA 06 — 18</div>
   </div>
 </div>
 
 <!-- =============================== 7. WHAT IS GEMINI =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">08</div></div>
-  <div class="kicker">4-bo'lim</div>
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">06</div></div>
+  <div class="kicker">Tanishuv</div>
   <h2>Gemini nima va kursda nimaga kerak</h2>
   <p class="lead" style="margin-bottom:13px">Gemini — Google'ning sun'iy intellekti. Siz oddiy so'z bilan yozasiz, u ishni bajaradi.
     U <b>matnni</b>, <b>rasmni</b>, <b>faylni</b>, <b>ovozni</b> va <b>videoni</b> tushunadi.</p>
@@ -709,13 +629,13 @@ tr:last-child td{border-bottom:0}
     Sozlamalarda <b>«Ma'lumot va maxfiylik»</b> bo'limidan chat tarixini o'chirib qo'yish mumkin.
   </div>
 
-  <div class="pf"><span>Gemini nima</span><span>08</span></div>
+  <div class="pf"><span>Gemini nima</span><span>06</span></div>
 </div>
 
 <!-- =============================== 8. GEMINI INTERFACE MAP =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">09</div></div>
-  <div class="kicker">5-bo'lim</div>
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">07</div></div>
+  <div class="kicker">Interfeys</div>
   <h2>Gemini interfeysi — xarita</h2>
   <p class="lead" style="margin-bottom:12px">Bu — Gemini ochilganda ko'radigan asosiy oyna. Har bir raqamga strelka qo'yildi.
     Izohlar rasm ostida va keyingi sahifada.</p>
@@ -815,75 +735,19 @@ tr:last-child td{border-bottom:0}
     <div><i>8</i><span><b>Profil va ⚙ Sozlamalar.</b> Til, mavzu, maxfiylik, tarif.</span></div>
     <div><i>9</i><span><b>Yangilash (Upgrade).</b> Pullik tarifga o'tish tugmasi.</span></div>
     <div><i>10</i><span><b>Yangi oyna.</b> Chatni alohida oynada ochadi.</span></div>
-    <div><i>11</i><span><b>«+» tugmasi.</b> Fayl, rasm, Google Drive'dan yuklash (13-sahifa).</span></div>
-    <div><i>12</i><span><b>Model tanlash.</b> Flash yoki Pro (11-sahifa).</span></div>
+    <div><i>11</i><span><b>«+» tugmasi.</b> Fayl, rasm, Google Drive'dan yuklash (keyingi bo'lim).</span></div>
+    <div><i>12</i><span><b>Model tanlash.</b> Flash yoki Pro (keyingi bo'lim).</span></div>
     <div><i>13</i><span><b>Mikrofon.</b> Yozish o'rniga gapirib aytasiz.</span></div>
     <div><i>—</i><span>Ostidagi chiplar — tez rejimlar: Deep Research, Rasm, Canvas, Video.</span></div>
   </div>
 
-  <div class="pf"><span>Gemini interfeysi — xarita</span><span>09</span></div>
-</div>
-
-<!-- =============================== 9. INTERFACE DETAILS =============================== -->
-<div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">10</div></div>
-  <h3 style="font-size:20px;margin-bottom:10px">Interfeys — batafsil izohlar</h3>
-
-  <div class="grid g2" style="margin-bottom:12px">
-    <div class="card w"><h4>2 · Yangi chat — eng ko'p unutiladigan tugma</h4>
-      <small>Gemini bitta chatdagi hamma gapni eslab qoladi. Agar gul do'koni haqida gaplashib turib,
-        birdan avtomobil haqida so'rasangiz — javob chalkashadi. <b>Yangi mavzu = yangi chat.</b></small></div>
-    <div class="card w"><h4>7 · Chat tarixi</h4>
-      <small>Har bir suhbat avtomatik saqlanadi. Nomini o'zgartirish yoki o'chirish uchun chat ustiga
-        sichqonchani olib boring va o'ngdagi <b>⋮</b> belgisini bosing.</small></div>
-    <div class="card w"><h4>5 · Kutubxona (Library)</h4>
-      <small>Siz yaratgan rasm va videolar bu yerda turadi. Yuklab olish uchun ustiga bosing →
-        <b>⤓ Yuklab olish</b>.</small></div>
-    <div class="card w"><h4>13 · Mikrofon</h4>
-      <small>Yozishga erinsangiz — mikrofonni bosib, gapiring. O'zbekcha nutqni ham tushunadi,
-        lekin ismlarni ba'zan xato yozadi.</small></div>
-  </div>
-
-  <h3 style="margin-top:4px">Pastdagi tez tugmalar (chiplar)</h3>
-  <p style="margin-bottom:9px">Yozish maydoni ostidagi tugmalar — eng kerakli rejimlar. Bosilgach, rejim yoqiladi
-    va shundan keyin so'rovingizni yozasiz.</p>
-  <div class="tbl" style="margin-bottom:13px">
-    <table>
-      <tr><th style="width:24%">Tugma</th><th>Nima qiladi</th><th style="width:22%">Qachon kerak</th></tr>
-      <tr><td><b>🔎 Deep Research</b></td><td>Internetdan o'nlab manbani o'qib, uzun hisobot yozadi</td><td>Bozor, raqobat, tahlil</td></tr>
-      <tr><td><b>🎨 Rasm yaratish</b></td><td>Matndan rasm chizadi yoki bor rasmni tahrirlaydi</td><td>Banner, afisha</td></tr>
-      <tr><td><b>📄 Canvas</b></td><td>Matn/kodni alohida oynada ochadi, birga tahrirlaysiz</td><td>Uzun matn yozish</td></tr>
-      <tr><td><b>🎬 Video</b></td><td>Matndan qisqa video yasaydi</td><td>Reels uchun fon</td></tr>
-    </table>
-  </div>
-
-  <h3>Klaviatura yordamchilari</h3>
-  <div class="grid g3" style="margin:8px 0 13px">
-    <div class="card"><b><span class="kb">Enter</span></b><br><small>So'rovni yuborish</small></div>
-    <div class="card"><b><span class="kb">Shift</span> + <span class="kb">Enter</span></b><br><small>Yangi qatorga o'tish (yubormaydi)</small></div>
-    <div class="card"><b><span class="kb">Ctrl</span> + <span class="kb">V</span></b><br><small>Rasmni to'g'ridan-to'g'ri qo'yish</small></div>
-  </div>
-
-  <div class="tipbar">
-    <div class="ic">✦</div>
-    <div><b>Javob yoqmadimi?</b> Javob ostida kichik tugmalar bor: <b>👍 / 👎</b>, <b>⟳ Qayta yaratish</b>,
-      <b>⧉ Nusxa olish</b>, <b>↗ Ulashish</b>. «Qayta yaratish» — eng foydalisi: bir xil so'rovga
-      boshqa variant beradi. Yoki javob ostidagi <b>«Qisqartir / Uzaytir»</b> ni tanlang.</div>
-  </div>
-
-  <div class="note" style="margin-top:12px">
-    <b>Mavzu (Theme) — qora yoki oq.</b> Gemini'ni qora fonda ham, oq fonda ham ishlatish mumkin.
-    ⚙ <b>Sozlamalar → Mavzu</b> dan tanlaysiz. Bu qo'llanmadagi rasmlar <b>oq</b> rejimda ko'rsatilgan.
-    Sizniki qora bo'lsa — tugmalarning joyi baribir bir xil.
-  </div>
-
-  <div class="pf"><span>Interfeys — batafsil</span><span>10</span></div>
+  <div class="pf"><span>Gemini interfeysi — xarita</span><span>07</span></div>
 </div>
 
 <!-- =============================== 10. MODELS =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">11</div></div>
-  <div class="kicker">6-bo'lim</div>
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">08</div></div>
+  <div class="kicker">Modellar</div>
   <h2>Modellar: Flash va Pro</h2>
   <p class="lead" style="margin-bottom:12px">Gemini ichida bir nechta «miya» bor. <b>Flash</b> — tez, lekin oddiyroq.
     <b>Pro</b> — sekinroq, lekin ancha aqlli. Almashtirish yozish maydonidagi kichik tugmadan bo'ladi.</p>
@@ -952,88 +816,61 @@ tr:last-child td{border-bottom:0}
     Raqamlarga qaramang — <b>«Flash» so'zi tez</b>, <b>«Pro» so'zi aqlli</b> degani. Mantiq o'zgarmaydi.
   </div>
 
-  <div class="pf"><span>Modellar: Flash va Pro</span><span>11</span></div>
-</div>
-
-<!-- =============================== 11. PLANS =============================== -->
-<div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">12</div></div>
-  <div class="kicker">7-bo'lim</div>
-  <h2>Tariflar: bepul va pullik</h2>
-  <p class="lead" style="margin-bottom:12px">Kursni <b>to'liq bepul tarifda</b> o'tish mumkin. Pullik tarif faqat
-    ko'p ishlaydiganlarga kerak: kuniga o'nlab rasm, ko'p Deep Research yoki video.</p>
-
-  <div class="tbl" style="margin-bottom:12px">
-    <table>
-      <tr><th style="width:26%">Tarif</th><th style="width:16%">Narx (taxminan)</th><th>Nima beradi</th></tr>
-      <tr><td><b>Bepul (Free)</b> <span class="chip f">KURSGA YETADI</span></td><td><b>0 $</b></td>
-        <td>Flash cheksizga yaqin · Pro kuniga bir necha marta · Deep Research oyiga bir necha hisobot ·
-          rasm kuniga ~10–20 ta · Gems · Notebook (50 manba)</td></tr>
-      <tr><td><b>Google AI Plus</b></td><td>~5 $/oy</td><td>Limitlar 2–3 barobar ko'p, 400 GB Google disk</td></tr>
-      <tr><td><b>Google AI Pro</b> <span class="chip p">TAVSIYA</span></td><td>~20 $/oy</td>
-        <td>Pro modelga keng ruxsat, ko'p Deep Research, Veo video, Notebook 300 manba, 2 TB disk</td></tr>
-      <tr><td><b>Google AI Ultra</b></td><td>~100–200 $/oy</td><td>Eng yuqori limit. Oddiy foydalanuvchiga kerak emas</td></tr>
-    </table>
-  </div>
-
-  <div class="warn" style="margin-bottom:12px">
-    <b>Narxlar o'zgarib turadi.</b> Google har necha oyda tarif va limitlarni o'zgartiradi.
-    Aniq narxni <b>o'z akkauntingizda</b> ko'ring: ⚙ Sozlamalar → <b>Yangilash (Upgrade)</b>,
-    yoki <code>one.google.com/about/ai-plans</code>. Yuqoridagi raqamlar — mo'ljal uchun.
-  </div>
-
-  <h3>To'lovni qanday qilish (O'zbekistondan)</h3>
-  <div class="steps" style="margin:9px 0 12px">
-    <div class="step gm"><div class="n">1</div><div class="t"><b>Xalqaro karta tayyorlang</b>
-      <span><b>Visa</b> yoki <b>Mastercard</b> kerak. UZCARD va HUMO <b>ishlamaydi</b> — ular faqat mamlakat ichida yuradi.
-      Ko'p banklar ilovasida «xalqaro virtual karta» ochish mumkin.</span></div></div>
-    <div class="step gm"><div class="n">2</div><div class="t"><b>Kartada dollar bo'lsin</b>
-      <span>Oylik to'lov dollarda yechiladi. Kartada kamida to'lov summasi + 10% turishi kerak (konvertatsiya uchun).</span></div></div>
-    <div class="step gm"><div class="n">3</div><div class="t"><b>Gemini'da «Yangilash» tugmasini bosing</b>
-      <span>O'ng yuqorida turadi (interfeys xaritasida — 9-raqam). Tarifni tanlang.</span></div></div>
-    <div class="step gm"><div class="n">4</div><div class="t"><b>Karta ma'lumotini kiriting</b>
-      <span>Nomer, amal qilish muddati, CVC, ism. Bank SMS bilan kod yuboradi — kodni kiriting.</span></div></div>
-    <div class="step gm"><div class="n">5</div><div class="t"><b>Bekor qilishni unutmang</b>
-      <span>Tarif <b>har oy avtomatik</b> uzaytiriladi. Kerak bo'lmasa: <code>one.google.com</code> → Obuna → <b>Bekor qilish</b>.</span></div></div>
-  </div>
-
-  <div class="grid g2">
-    <div class="ok"><b>Bepul sinov.</b> Google ko'pincha yangi foydalanuvchiga 1 oylik bepul sinov beradi.
-      Sinov davrida ham karta bog'lash kerak — lekin oxirgi kundan oldin bekor qilsangiz, pul yechilmaydi.</div>
-    <div class="note"><b>Talabalar uchun.</b> Ba'zi davlatlarda talabalarga uzoq muddatli bepul Pro beriladi.
-      «Yangilash» oynasida shunday taklif chiqsa — tekshirib ko'ring.</div>
-  </div>
-
-  <div class="pf"><span>Tariflar va to'lov</span><span>12</span></div>
+  <div class="pf"><span>Modellar: Flash va Pro</span><span>08</span></div>
 </div>
 
 <!-- =============================== 12. PLUS BUTTON / UPLOAD =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">13</div></div>
-  <div class="kicker">8-bo'lim</div>
-  <h2>Fayl yuklash — «+» tugmasi</h2>
-  <p class="lead" style="margin-bottom:12px">Gemini faqat matnni emas, <b>fayllarni</b> ham tushunadi. Yozish maydonining
-    chap tomonidagi <b>«+»</b> ni bosing — quyidagi ro'yxat chiqadi.</p>
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">09</div></div>
+  <div class="kicker">Fayl bilan ishlash</div>
+  <h2>Faylni Gemini'ga qanday berish</h2>
+  <p class="lead" style="margin-bottom:12px">Gemini faqat yozgan gapingizni emas, <b>fayllaringizni</b> ham o'qiy oladi.
+    PDF, Excel, rasm — tashlaysiz va shu fayl haqida savol berasiz. Bu 3 qadamda bo'ladi.</p>
 
-  <div class="shot gmp tight" style="margin-bottom:12px">
+  <div class="flow f3" style="margin-bottom:12px">
+    <div class="fbox gm">
+      <div class="fh"><i>1</i> «+» ni bosing</div>
+      <div class="fb">Yozish maydonining <b>chap</b> tomonida turadi. Bosgach, ro'yxat ochiladi.</div>
+      <div class="pic" style="display:flex;justify-content:center;padding:10px">
+        <span style="width:26px;height:26px;border-radius:50%;border:1.6px solid #0B57D0;color:#0B57D0;font:400 19px/24px Inter;text-align:center;display:inline-block">+</span>
+      </div>
+    </div>
+    <div class="ar">→</div>
+    <div class="fbox gm">
+      <div class="fh"><i>2</i> Faylni tanlang</div>
+      <div class="fb">Kompyuteringizdan fayl tanlaysiz. Yuklanishi 3–20 soniya.</div>
+      <div class="pic">
+        <div style="border:1px solid #E4E8F0;border-radius:7px;padding:5px 7px;font-size:9px;display:flex;gap:6px;align-items:center;background:#FBFCFE">
+          📄 <span style="flex:1">savdo-2026.xlsx</span> <span style="color:#188038;font-weight:700">✓</span></div>
+      </div>
+    </div>
+    <div class="ar">→</div>
+    <div class="fbox gm">
+      <div class="fh"><i>3</i> Savolingizni yozing</div>
+      <div class="fb">Fayl yonidagi maydonga <b>nima qilish kerakligini</b> yozasiz va <span class="kb">Enter</span>.</div>
+      <div class="pic">
+        <div style="border:1px solid #E4E8F0;border-radius:14px;padding:5px 9px;font-size:9px;color:#5F6368">Qaysi mahsulot ko'p sotilgan?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shot gmp tight" style="margin-bottom:11px">
     <div class="cap">«+» tugmasi ichidagi ro'yxat</div>
-    <div class="ui" style="height:246px;padding:14px 20px;background:#fff">
-      <div style="width:236px;border:1px solid #DADCE0;border-radius:12px;box-shadow:0 8px 22px rgba(0,0,0,.12);overflow:hidden;background:#fff">
-        <div class="anchor" style="padding:9px 12px;display:flex;gap:9px;align-items:center;font-size:10.5px">🖼 <span>Rasm yuklash</span>
+    <div class="ui" style="height:196px;padding:14px 20px;background:#fff">
+      <div style="width:230px;border:1px solid #DADCE0;border-radius:12px;box-shadow:0 8px 22px rgba(0,0,0,.12);overflow:hidden;background:#fff">
+        <div class="anchor" style="padding:8px 12px;display:flex;gap:9px;align-items:center;font-size:10.5px">🖼 <span>Rasm yuklash</span>
           <span class="pin r" style="right:-40px">1</span></div>
-        <div class="anchor" style="padding:9px 12px;display:flex;gap:9px;align-items:center;font-size:10.5px">📄 <span>Fayl yuklash</span>
+        <div class="anchor" style="padding:8px 12px;display:flex;gap:9px;align-items:center;font-size:10.5px">📄 <span>Fayl yuklash</span>
           <span class="pin r" style="right:-40px">2</span></div>
-        <div class="anchor" style="padding:9px 12px;display:flex;gap:9px;align-items:center;font-size:10.5px">▲ <span>Google Drive'dan</span>
+        <div class="anchor" style="padding:8px 12px;display:flex;gap:9px;align-items:center;font-size:10.5px">▲ <span>Google Drive'dan</span>
           <span class="pin r" style="right:-40px">3</span></div>
-        <div class="anchor" style="padding:9px 12px;display:flex;gap:9px;align-items:center;font-size:10.5px">📷 <span>Kamera</span>
+        <div class="anchor" style="padding:8px 12px;display:flex;gap:9px;align-items:center;font-size:10.5px;border-top:1px solid #EEF1F5">💎 <span>Gem tanlash</span>
           <span class="pin r" style="right:-40px">4</span></div>
-        <div class="anchor" style="padding:9px 12px;display:flex;gap:9px;align-items:center;font-size:10.5px;border-top:1px solid #EEF1F5">💎 <span>Gem tanlash</span>
-          <span class="pin r" style="right:-40px">5</span></div>
       </div>
       <div style="position:absolute;left:20px;right:20px;bottom:14px">
         <div style="border:1px solid #DADCE0;border-radius:22px;padding:8px 12px;display:flex;align-items:center;gap:9px;font-size:10.5px;color:#8E9199">
           <div class="plus anchor" style="background:#E8F0FE;border-color:#0B57D0;color:#0B57D0">+
-            <span class="pin b" style="bottom:-30px">6</span></div>
+            <span class="pin b" style="bottom:-30px">5</span></div>
           <div style="flex:1">Gemini'dan so'rang</div>
           <div style="background:#F0F4F9;border-radius:14px;padding:3px 9px;color:#444746;font-weight:600;font-size:10px">Flash ▾</div>
         </div>
@@ -1041,371 +878,630 @@ tr:last-child td{border-bottom:0}
     </div>
   </div>
 
-  <div class="leg gm" style="margin-bottom:13px">
-    <div><i>6</i><span>Avval <b>«+»</b> ni bosasiz — shundan keyin ro'yxat ochiladi.</span></div>
-    <div><i>1</i><span><b>Rasm.</b> Skrinshot, mahsulot surati, qo'lda yozilgan varaq — hammasini o'qiydi.</span></div>
-    <div><i>2</i><span><b>Fayl.</b> PDF, Word, Excel, CSV, TXT, prezentatsiya.</span></div>
-    <div><i>3</i><span><b>Google Drive.</b> Diskdagi hujjatni yuklamasdan ulaysiz.</span></div>
-    <div><i>4</i><span><b>Kamera.</b> Telefonda — surat olib, darrov so'raysiz.</span></div>
-    <div><i>5</i><span><b>Gem.</b> Tayyor yordamchini tanlash (16-sahifa).</span></div>
-    <div><i>—</i><span>Faylni <b>sichqoncha bilan sudrab</b> tashlasangiz ham yuklanadi.</span></div>
+  <div class="leg gm" style="margin-bottom:12px">
+    <div><i>5</i><span>Avval shu <b>«+»</b> ni bosasiz — ro'yxat shundan keyin chiqadi.</span></div>
+    <div><i>1</i><span><b>Rasm</b> — skrinshot, mahsulot surati, qo'lda yozilgan varaq.</span></div>
+    <div><i>2</i><span><b>Fayl</b> — PDF, Word, Excel, CSV, matn, prezentatsiya.</span></div>
+    <div><i>3</i><span><b>Google Drive</b> — diskdagi hujjatni yuklamasdan ulaysiz.</span></div>
+    <div><i>4</i><span><b>Gem</b> — tayyor yordamchini yoqish (keyingi bo'limda).</span></div>
+    <div><i>—</i><span>Faylni sichqoncha bilan <b>sudrab tashlasangiz</b> ham yuklanadi.</span></div>
   </div>
 
-  <h3>Fayl bilan nima so'rash mumkin</h3>
-  <div class="grid g2" style="margin:8px 0 12px">
-    <div class="card w"><h4>📄 PDF / shartnoma</h4><small>«Bu shartnomadagi asosiy 5 shartni oddiy tilda tushuntir. Xavfli joylari bormi?»</small></div>
-    <div class="card w"><h4>📊 Excel / savdo hisoboti</h4><small>«Qaysi 3 ta mahsulot eng ko'p daromad keltirgan? Jadval qilib ber.»</small></div>
-    <div class="card w"><h4>🖼 Skrinshot</h4><small>«Bu Instagram statistikasi. Qaysi post yaxshi ishlagan va nega?»</small></div>
-    <div class="card w"><h4>🧾 Qo'lda yozilgan varaq</h4><small>«Suratdagi yozuvni matnga o'gir va tartibga sol.»</small></div>
-  </div>
-
-  <div class="note">
-    <b>Chegaralar.</b> Bitta so'rovda bir nechta fayl yuklash mumkin, lekin juda katta fayl (yuzlab bet)
-    xato berishi mumkin. Bunday holda faylni bo'laklarga bo'ling — <b>yoki 2-qismdagi Notebook'dan foydalaning</b>:
-    u aynan katta hujjatlar uchun yaratilgan.
-  </div>
-
-  <div class="pf"><span>Fayl yuklash</span><span>13</span></div>
-</div>
-
-<!-- =============================== 13. DEEP RESEARCH =============================== -->
-<div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">14</div></div>
-  <div class="kicker">9-bo'lim</div>
-  <h2>Deep Research — chuqur izlanish</h2>
-  <p class="lead" style="margin-bottom:12px">Oddiy savolda Gemini 1–2 soniyada javob beradi. <b>Deep Research</b> esa
-    5–15 daqiqa davomida <b>o'nlab saytni</b> o'qiydi va sizga tayyor <b>hisobot</b> yozadi —
-    xuddi yordamchi xodim qilgandek.</p>
-
-  <div class="steps" style="margin-bottom:12px">
-    <div class="step gm"><div class="n">1</div><div class="t"><b>Yozish maydoni ostidan «🔎 Deep Research» ni bosing</b>
-      <span>Tugma yonib turadi — demak rejim yoqilgan.</span></div></div>
-    <div class="step gm"><div class="n">2</div><div class="t"><b>Mavzuni aniq yozing</b>
-      <span>Yomon: «Gullar haqida». Yaxshi: «Toshkentdagi onlayn gul do'konlari: narx, yetkazish shartlari, Instagram'dagi faollik. 2026-yil.»</span></div></div>
-    <div class="step gm"><div class="n">3</div><div class="t"><b>Rejani tasdiqlang</b>
-      <span>Gemini avval <b>reja</b> ko'rsatadi. O'qing. Kerak bo'lsa «Rejani tahrirlash» ni bosib qo'shimcha yozing, keyin <b>«Boshlash»</b>.</span></div></div>
-    <div class="step gm"><div class="n">4</div><div class="t"><b>Kuting (5–15 daqiqa)</b>
-      <span>Oynani yopsangiz ham bo'ladi — ish fonda davom etadi. Tayyor bo'lgach chat tarixida paydo bo'ladi.</span></div></div>
-    <div class="step gm"><div class="n">5</div><div class="t"><b>Hisobotni o'qing va yuklab oling</b>
-      <span>O'ngda barcha manbalar ro'yxati turadi. Har bir faktni bosib, asl saytga o'tish mumkin.</span></div></div>
-  </div>
-
-  <div class="shot gmp tight" style="margin-bottom:12px">
-    <div class="cap">Deep Research — tayyor hisobot oynasi</div>
-    <div class="ui" style="height:236px;display:flex;background:#fff">
-      <div style="flex:1;padding:13px 16px;min-width:0">
-        <div class="anchor" style="display:inline-flex;align-items:center;gap:6px;background:#F3E8FD;color:#6A2FA0;border-radius:14px;padding:3px 10px;font-size:9.5px;font-weight:700">🔎 Deep Research
-          <span class="pin t" style="top:-30px">1</span></div>
-        <div style="font-family:Manrope;font-weight:800;font-size:14px;margin:9px 0 4px">Toshkent onlayn gul bozori — 2026</div>
-        <div style="font-size:9.5px;color:#5F6368;margin-bottom:9px">42 ta manba o'qildi · 11 daqiqa</div>
-        <div style="height:6px;background:#EEF1F5;border-radius:3px;margin-bottom:5px;width:92%"></div>
-        <div style="height:6px;background:#EEF1F5;border-radius:3px;margin-bottom:5px;width:97%"></div>
-        <div style="height:6px;background:#EEF1F5;border-radius:3px;margin-bottom:5px;width:78%"></div>
-        <div style="height:6px;background:#EEF1F5;border-radius:3px;margin-bottom:11px;width:88%"></div>
-        <div class="anchor" style="display:flex;gap:6px">
-          <span style="border:1px solid #DADCE0;border-radius:14px;padding:3px 10px;font-size:9.5px">⤓ Google Docs'ga</span>
-          <span style="border:1px solid #DADCE0;border-radius:14px;padding:3px 10px;font-size:9.5px">⧉ Nusxa</span>
-          <span style="border:1px solid #DADCE0;border-radius:14px;padding:3px 10px;font-size:9.5px">🎧 Audio</span>
-          <span class="pin b" style="bottom:-30px;left:22%">3</span>
-        </div>
-      </div>
-      <div class="anchor" style="width:172px;flex:0 0 172px;border-left:1px solid #E5E8EC;padding:13px 12px;background:#FBFCFE">
-        <div style="font-size:10px;font-weight:800;margin-bottom:8px">Manbalar · 42</div>
-        <div style="font-size:9.3px;color:#5F6368;line-height:1.7">
-          1 · uzum.uz<br>2 · olx.uz<br>3 · flowers.uz<br>4 · instagram.com<br>5 · kun.uz<br>6 · spot.uz</div>
-        <span class="pin l" style="left:-40px;top:34px;margin-top:0">2</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="leg gm">
-    <div><i>1</i><span><b>Rejim belgisi.</b> «Deep Research» yozuvi turgan bo'lsa — hisobot rejimi ishlagan.</span></div>
-    <div><i>2</i><span><b>Manbalar ro'yxati.</b> Qaysi saytlardan olganini ko'rsatadi. Bosib tekshiring.</span></div>
-    <div><i>3</i><span><b>Chiqarish.</b> Google Docs'ga yuborish, nusxa olish yoki audio qilib eshitish.</span></div>
-    <div><i>—</i><span>Hisobot ostida davom ettirib savol berish mumkin: «Faqat narxlar jadvalini chiqar».</span></div>
-  </div>
-
-  <div class="pf"><span>Deep Research</span><span>14</span></div>
-</div>
-
-<!-- =============================== 14. DEEP RESEARCH LIMITS =============================== -->
-<div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">15</div></div>
-  <h3 style="font-size:20px;margin-bottom:10px">Deep Research — limit va foydali qoidalar</h3>
-
-  <div class="tbl" style="margin-bottom:13px">
-    <table>
-      <tr><th style="width:30%">Tarif</th><th style="width:30%">Nechta hisobot</th><th>Izoh</th></tr>
-      <tr><td><b>Bepul</b></td><td>Oyiga bir nechta (~5 ta)</td><td>Behuda sarflamang — mavzuni oldindan aniq yozing</td></tr>
-      <tr><td><b>AI Plus / Pro</b></td><td>Ancha ko'p</td><td>Kuniga bir necha marta ishlatsa bo'ladi</td></tr>
-      <tr><td><b>Ultra</b></td><td>Eng ko'p</td><td>Kunlik og'ir ish uchun</td></tr>
-    </table>
-  </div>
-  <p class="mut" style="font-size:10.5px;margin-top:-6px;margin-bottom:14px">Aniq son o'zgarib turadi. Limit tugasa Gemini
-    «limit tugadi, ertaga urinib ko'ring» deb yozadi.</p>
-
-  <h3>Yaxshi so'rov qanday yoziladi</h3>
-  <div class="grid g2" style="margin:9px 0 13px">
-    <div class="card" style="border-color:#F5C6C2;background:#FEF6F5">
-      <h4 style="color:#8C1D18">✕ Yomon</h4>
-      <small>«Gul biznesi haqida hisobot yoz.»<br><br>
-        Natija: umumiy, foydasiz matn. Qaysi shahar? Qaysi yil? Kimga kerak — noma'lum.</small>
-    </div>
-    <div class="card" style="border-color:#B7E1C4;background:#F3FBF5">
-      <h4 style="color:#14532D">✓ Yaxshi</h4>
-      <small>«Toshkentdagi onlayn gul do'konlari bo'yicha hisobot. Kerak: (1) 10 ta yirik do'kon,
-        (2) buket narxi diapazoni, (3) yetkazish narxi va vaqti, (4) Instagram obunachilari,
-        (5) mijozlar shikoyati. Jadval bilan. Manba — 2025–2026-yil.»</small>
-    </div>
-  </div>
-
-  <div class="card w" style="margin-bottom:12px">
-    <h4>Deep Research so'rovining 4 qismi</h4>
-    <div class="prompt" style="margin-top:8px"><span class="k">MAVZU:</span> <span class="v">[aniq nima haqida]</span>
-<span class="k">HUDUD VA VAQT:</span> <span class="v">[Toshkent, 2025–2026]</span>
-<span class="k">KERAK BO'LGAN BO'LIMLAR:</span> <span class="v">[1) … 2) … 3) …]</span>
-<span class="k">KO'RINISH:</span> <span class="v">[jadval + qisqa xulosa + tavsiyalar]</span></div>
-  </div>
-
-  <div class="grid g2" style="margin-bottom:12px">
-    <div class="ok"><b>Nima uchun zo'r.</b> Bir kunlik qo'l mehnatini 10 daqiqaga qisqartiradi:
-      raqobatchi tahlili, bozor o'rganish, mavzu bo'yicha o'quv material to'plash.</div>
-    <div class="warn"><b>Nima uchun ehtiyot bo'lish kerak.</b> Internetdagi ma'lumot eskirgan yoki xato bo'lishi mumkin.
-      Narx va raqamlarni <b>manbaga kirib</b> tekshiring — shuning uchun manbalar ro'yxati berilgan.</div>
-  </div>
-
-  <div class="tipbar">
-    <div class="ic">✦</div>
-    <div><b>Eng kuchli kombinatsiya.</b> Deep Research hisobotini <b>Google Docs'ga</b> chiqaring →
-      keyin uni <b>Notebook</b>ka manba qilib yuklang. Endi hisobot bo'yicha cheksiz savol berish,
-      podkast va konspekt yasash mumkin. Bu — 2-qismda.</div>
-  </div>
-
-  <div class="pf"><span>Deep Research — limitlar</span><span>15</span></div>
-</div>
-
-<!-- =============================== 15. GEMS =============================== -->
-<div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">16</div></div>
-  <div class="kicker">10-bo'lim</div>
-  <h2>Gems — shaxsiy yordamchingiz</h2>
-  <p class="lead" style="margin-bottom:12px"><b>Gem</b> — bu bir marta sozlanadigan yordamchi. Har safar bir xil
-    ko'rsatmani yozib o'tirmaysiz: Gem sizning uslubingizni, tilingizni va vazifangizni doim eslab turadi.
-    Masalan: «SMM-menejerim», «Sotuv skripti yozuvchi», «Ustoz — o'zbek tilida tushuntiradi».</p>
-
-  <div class="shot gmp tight" style="margin-bottom:12px">
-    <div class="cap">Gem yaratish oynasi</div>
-    <div class="ui" style="height:250px;display:flex;background:#fff">
-      <div style="width:150px;flex:0 0 150px;background:#F0F4F9;padding:11px 9px">
-        <div style="font-size:10px;font-weight:800;margin-bottom:8px">Gems</div>
-        <div class="gem" style="display:block">
-          <div class="it on anchor" style="font-size:10px">＋ Yangi Gem
-            <span class="pin l" style="left:-40px">1</span></div>
-          <div class="it" style="font-size:10px">💎 SMM-menejer</div>
-          <div class="it" style="font-size:10px">💎 Sotuv skripti</div>
-          <div class="it" style="font-size:10px">💎 Ustoz</div>
-          <div class="it" style="font-size:10px">💎 Tarjimon</div>
-        </div>
-      </div>
-      <div style="flex:1;padding:13px 16px">
-        <div class="anchor" style="border:1px solid #DADCE0;border-radius:8px;padding:7px 10px;font-size:10.5px;color:#80868B;margin-bottom:9px">Gem nomi: <b style="color:#202124">SMM-menejer</b>
-          <span class="pin r" style="right:-40px">2</span></div>
-        <div class="anchor" style="border:1px solid #DADCE0;border-radius:8px;padding:9px 10px;font-size:9.6px;color:#3C4043;line-height:1.55;height:112px">
-          <b>Ko'rsatma (Instructions)</b><br>
-          Sen — o'zbek tilida ishlaydigan SMM-menejersan. Mening biznesim: gul do'koni, Toshkent.
-          Auditoriya: 25–40 yosh ayollar. Uslub: iliq, sodda, hurmatli, «siz» bilan…
-          <span class="pin r" style="right:-40px">3</span>
-        </div>
-        <div class="row" style="gap:8px;margin-top:10px">
-          <div class="anchor" style="border:1px solid #DADCE0;border-radius:16px;padding:5px 12px;font-size:10px">📎 Fayl qo'shish
-            <span class="pin b" style="bottom:-28px">4</span></div>
-          <div class="anchor" style="background:#0B57D0;color:#fff;border-radius:16px;padding:5px 16px;font-size:10px;font-weight:600">Saqlash
-            <span class="pin b" style="bottom:-28px">5</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="leg gm" style="margin-bottom:13px">
-    <div><i>1</i><span>Chap paneldagi <b>Gems</b> bo'limi → <b>«＋ Yangi Gem»</b>.</span></div>
-    <div><i>2</i><span><b>Nom.</b> O'zingiz tushunadigan qilib yozing.</span></div>
-    <div><i>3</i><span><b>Ko'rsatma</b> — eng muhimi. Quyidagi shablonni ko'chiring.</span></div>
-    <div><i>4</i><span><b>Fayl qo'shish.</b> Narxlar ro'yxati, brend qo'llanmasi — Gem doim shundan foydalanadi.</span></div>
-    <div><i>5</i><span><b>Saqlash.</b> Gem chap panelda paydo bo'ladi va istalgan vaqt ochiladi.</span></div>
-    <div><i>—</i><span>Gem'lar <b>sizning akkauntingizda</b> saqlanadi. Havola orqali boshqalarga ulashish mumkin.</span></div>
-  </div>
-
-  <div class="card w">
-    <h4>Ko'rsatma uchun tayyor shablon — ko'chiring va o'zingizga moslang</h4>
-    <div class="prompt" style="margin-top:8px">Sen — <span class="v">[kim: SMM-menejer / sotuvchi / ustoz]</span>san.
-
-<span class="k">MENING BIZNESIM:</span> <span class="v">[nima sotaman, qayerda]</span>
-<span class="k">MIJOZLARIM:</span> <span class="v">[yosh, jins, muammosi]</span>
-<span class="k">USLUB:</span> <span class="v">[sodda / rasmiy / hazil bilan]</span>, <span class="v">[«siz» yoki «sen»]</span>
-<span class="k">TIL:</span> doim o'zbek tilida javob ber.
-<span class="k">QOIDALAR:</span>
- - Javobni qisqa qil, suv quyma.
- - Har doim 3 ta variant taklif qil.
- - Narxni o'zingdan to'qima, mendan so'ra.</div>
+  <h3>Haqiqiy misol — Excel fayl bilan</h3>
+  <div class="chatbox" style="margin-top:8px">
+    <div class="bub u"><span class="who2">SIZ · fayl bilan birga</span>
+      📄 savdo-2026.xlsx — «Qaysi 3 ta mahsulot eng ko'p daromad keltirgan? Har biriga summasini yoz.»</div>
+    <div class="bub a"><span class="who2">GEMINI</span>
+      Faylni o'qidim. Eng ko'p daromad keltirgan 3 ta mahsulot:<br>
+      <b>1.</b> Katta buket «Kuz» — 48 250 000 so'm<br>
+      <b>2.</b> Lechuza CUBICO 30 — 31 400 000 so'm<br>
+      <b>3.</b> Sovg'a qutisi «Mini» — 22 900 000 so'm<br>
+      Umumiy savdoning 61% shu uchtasiga to'g'ri keladi.</div>
   </div>
 
   <div class="note" style="margin-top:12px">
-    <b>Gem'ni ishga tushirish.</b> Chap paneldan Gem'ni bosing (yoki yozish maydonidagi «+» → <b>Gem tanlash</b>).
-    Yuqorida Gem nomi turadi — demak, u ishlayapti. Oddiy chatga qaytish uchun <b>«Yangi chat»</b> ni bosing.
+    <b>Fayl juda katta bo'lsa.</b> Yuzlab betlik hujjatda Gemini adashishi mumkin.
+    Bunday holda faylni <b>Notebook</b>ka yuklang (2-qism) — u aynan katta hujjatlar uchun yaratilgan.
   </div>
 
-  <div class="pf"><span>Gems</span><span>16</span></div>
+  <div class="pf"><span>Fayl yuklash</span><span>09</span></div>
 </div>
-
-<!-- =============================== 16. IMAGES =============================== -->
+<!-- =============================== 13. DEEP RESEARCH =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">17</div></div>
-  <div class="kicker">11-bo'lim</div>
-  <h2>Rasm yaratish</h2>
-  <p class="lead" style="margin-bottom:12px">Gemini matndan rasm chizadi va bor rasmni tahrirlaydi.
-    Bu funksiya ba'zan <b>«Nano Banana»</b> deb ham ataladi — bu rasm modelining nomi.</p>
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">10</div></div>
+  <div class="kicker">Deep Research · 1-qism</div>
+  <h2>Deep Research nima?</h2>
+  <p class="lead" style="margin-bottom:12px">Bir jumlada: <b>Gemini siz uchun internetni o'qib chiqadi va hisobot yozib beradi.</b>
+    Oddiy savolga 2 soniyada javob beradi. Deep Research esa 5–15 daqiqa ishlaydi,
+    o'nlab saytga kirib chiqadi va uzun, manbali hisobot tayyorlaydi.</p>
 
-  <div class="steps" style="margin-bottom:12px">
-    <div class="step gm"><div class="n">1</div><div class="t"><b>«🎨 Rasm yaratish» tugmasini bosing</b><span>Yozish maydoni ostida turadi. Yoki shunchaki «…rasmini chiz» deb yozing.</span></div></div>
-    <div class="step gm"><div class="n">2</div><div class="t"><b>Rasmni so'z bilan tasvirlab bering</b><span>Qancha aniq yozsangiz, natija shuncha yaxshi. Formulani pastda ko'ring.</span></div></div>
-    <div class="step gm"><div class="n">3</div><div class="t"><b>Tahrirlashni davom ettiring</b><span>«Fonini oq qil», «Matnni o'ngga ko'chir», «Yorug'roq qil» — chatda oddiy gap bilan aytasiz.</span></div></div>
-    <div class="step gm"><div class="n">4</div><div class="t"><b>Yuklab oling</b><span>Rasm ustiga bosing → <b>⤓ Yuklab olish</b>. Rasm <b>Kutubxona</b> bo'limida ham saqlanadi.</span></div></div>
+  <h3>Farqini bir misolda ko'ring</h3>
+  <div class="ba" style="margin:8px 0 13px">
+    <div class="bad" style="border-color:#E4E8F0;background:#FBFCFE">
+      <h4 style="color:var(--ink)">Oddiy savol (2 soniya)</h4>
+      <small><b>Siz:</b> «Toshkentda gul biznesi qanday?»<br><br>
+        <b>Gemini:</b> «Toshkentda gul bozori rivojlangan. Bayramlarda talab oshadi.
+        Onlayn do'konlar ko'paymoqda…»<br><br>
+        <i style="color:#8C1D18">Natija: umumiy gaplar. Raqam yo'q, manba yo'q, ish uchun yaramaydi.</i></small>
+    </div>
+    <div class="good">
+      <h4>Deep Research (11 daqiqa)</h4>
+      <small><b>Siz:</b> shu savol, lekin Deep Research rejimida.<br><br>
+        <b>Gemini:</b> 42 ta saytni o'qidi va 6 betlik hisobot yozdi:
+        10 ta do'kon nomi, buket narxlari jadvali, yetkazish shartlari,
+        Instagram obunachilari soni, mijoz shikoyatlari.<br><br>
+        <i style="color:#14532D">Natija: tayyor material. Har bir raqam yonida manba bor.</i></small>
+    </div>
   </div>
 
-  <div class="card w" style="margin-bottom:12px">
-    <h4>Rasm uchun prompt formulasi</h4>
-    <div class="prompt" style="margin-top:8px"><span class="k">NIMA:</span> <span class="v">[asosiy obyekt]</span> + <span class="k">QAYERDA:</span> <span class="v">[fon, joy]</span>
-<span class="k">USLUB:</span> <span class="v">[foto / 3D / minimalist / akvarel]</span>
-<span class="k">YORUG'LIK VA RANG:</span> <span class="v">[yumshoq yorug'lik, issiq ranglar]</span>
-<span class="k">FORMAT:</span> <span class="v">[kvadrat 1:1 / vertikal 9:16 / gorizontal 16:9]</span>
-<span class="k">MATN:</span> <span class="v">[rasmda qanday so'z yozilsin va qayerda]</span></div>
-    <div style="margin-top:9px;font-size:11px;color:var(--ink2)">
-      <b>Misol:</b> «Kuz gullari solingan qutini chiz. Fon — issiq bej rang, yumshoq tabiiy yorug'lik.
-      Uslub: professional mahsulot fotosurati. Format vertikal 9:16. Yuqori qismda bo'sh joy qoldir —
-      u yerga matn yozaman.»
+  <h3>Qachon ishlatiladi</h3>
+  <div class="grid g2" style="margin:8px 0 12px">
+    <div class="card w" style="border-color:#B7E1C4">
+      <h4 style="color:#14532D">✓ Shu holatlarda kerak</h4>
+      <small>
+        · Raqobatchilarni o'rganish<br>
+        · Yangi bozorga kirishdan oldin tekshirish<br>
+        · Mavzu bo'yicha katta material to'plash<br>
+        · Narx va statistika yig'ish<br>
+        · Kurs yoki taqdimotga tayyorgarlik</small>
+    </div>
+    <div class="card w" style="border-color:#F5C6C2">
+      <h4 style="color:#8C1D18">✕ Bunda kerak emas</h4>
+      <small>
+        · Qisqa post yoki sarlavha yozish<br>
+        · Tarjima qilish<br>
+        · O'z faylingizni tahlil qilish<br>
+        · Oddiy savolga javob olish<br>
+        <b>Sabab:</b> limit sarflanadi va 10 daqiqa kutasiz.</small>
     </div>
   </div>
 
   <div class="tbl" style="margin-bottom:12px">
     <table>
       <tr><th style="width:34%">Savol</th><th>Javob</th></tr>
-      <tr><td>Kuniga nechta rasm?</td><td>Bepul tarifda taxminan <b>10–20 ta</b>. Eng yangi «Pro» rasm modeli bepulda kuniga 1–2 ta bo'lishi mumkin. Limit tugasa ertaga tiklanadi.</td></tr>
-      <tr><td>Rasmni sotsam bo'ladimi?</td><td>Ha. Google shartlariga ko'ra yaratilgan rasmni <b>tijorat maqsadida</b> ishlatish mumkin. Lekin mualliflik huquqi to'liq himoyalanmaydi — logotip sifatida ro'yxatdan o'tkazish muammoli.</td></tr>
-      <tr><td>Rasmda belgi bormi?</td><td>Ha. Google ko'rinmas <b>SynthID</b> belgisi qo'yadi va ba'zan burchakda kichik yorliq bo'ladi. Bu — «bu rasm AI tomonidan yaratilgan» degani.</td></tr>
-      <tr><td>Nega odam yuzi buziladi?</td><td>Bu modelning ma'lum kamchiligi. Yechim: yuzni yaqindan olmang, yoki «yuzi ko'rinmasin, orqadan» deb yozing.</td></tr>
-      <tr><td>Mashhur odamni chizadimi?</td><td>Yo'q. Real shaxslar, brend logotiplari va zo'ravonlik tasvirlari cheklangan.</td></tr>
+      <tr><td>Qancha kutish kerak?</td><td><b>5–15 daqiqa.</b> Oynani yopsangiz ham ish to'xtamaydi — tayyor bo'lgach chat tarixida paydo bo'ladi.</td></tr>
+      <tr><td>Nechta hisobot bepul?</td><td>Bepul tarifda <b>oyiga bir nechta</b> (taxminan 5 ta). Shuning uchun mavzuni oldindan aniq yozing.</td></tr>
+      <tr><td>Javobiga ishonsam bo'ladimi?</td><td>Hisobot ostida <b>barcha manbalar</b> ro'yxati bo'ladi. Muhim raqamni bosib, asl saytga kirib tekshiring.</td></tr>
+      <tr><td>O'zbekcha yozadimi?</td><td>Ha. So'rov oxiriga <code>Hisobotni o'zbek tilida yoz</code> deb qo'shing.</td></tr>
     </table>
   </div>
 
-  <div class="warn">
-    <b>Muhim: matnli rasm.</b> AI rasm ichidagi <b>o'zbekcha yozuvni</b> ko'pincha xato yozadi
-    (harflar aralashib ketadi). Ishonchli yo'l: rasmni <b>matnsiz</b> chizdiring, matnni keyin
-    Canva yoki boshqa dasturda o'zingiz qo'ying.
+  <div class="tipbar">
+    <div class="ic">✦</div>
+    <div><b>Eng kuchli kombinatsiya.</b> Tayyor hisobotni <b>Google Docs'ga</b> chiqaring, keyin uni
+      <b>Notebook</b>ka manba qilib yuklang. Shundan keyin hisobot bo'yicha cheksiz savol berish,
+      podkast va konspekt yasash mumkin bo'ladi.</div>
   </div>
 
-  <div class="pf"><span>Rasm yaratish</span><span>17</span></div>
+  <div class="pf"><span>Deep Research — nima</span><span>10</span></div>
 </div>
 
-<!-- =============================== 17. VIDEO / LIBRARY / SETTINGS =============================== -->
+<!-- =============================== 13b. DEEP RESEARCH STEPS =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">18</div></div>
-  <div class="kicker">12-bo'lim</div>
-  <h2>Video, Kutubxona va Sozlamalar</h2>
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">11</div></div>
+  <div class="kicker">Deep Research · 2-qism</div>
+  <h2>Qadamma-qadam: 4 ta ekran</h2>
+  <p class="lead" style="margin-bottom:12px">Deep Research ishga tushgandan keyin siz ketma-ket
+    <b>4 ta ekranni</b> ko'rasiz. Quyida har birini alohida ko'rsatamiz.</p>
 
-  <h3 style="margin-top:6px">🎬 Video (Veo)</h3>
-  <p style="margin-bottom:9px">Chap paneldagi <b>«Video»</b> bo'limi matndan qisqa video yasaydi (odatda 6–8 soniya, ovoz bilan).
-    Reels uchun fon, mahsulot ko'rsatuvi yoki intro sifatida ishlatiladi.</p>
-  <div class="grid g2" style="margin-bottom:13px">
-    <div class="card"><h4>Qanday ishlatiladi</h4><small>«Video» → sahnani tasvirlang: <b>kim / nima qilyapti / qanday kamera harakati / qanday yorug'lik</b>.
-      Masalan: «Stol ustidagi gul qutisi, kamera sekin aylanadi, ertalabki yorug'lik».</small></div>
-    <div class="card"><h4>Limit</h4><small>Bepul tarifda video juda cheklangan yoki umuman ochilmasligi mumkin —
-      bu asosan <b>pullik</b> imkoniyat. Haftalik limit sozlamalarda ko'rinadi.</small></div>
+  <!-- STEP 1 -->
+  <div class="shot gmp tight" style="margin-bottom:9px;padding:20px 34px">
+    <div class="cap">1-ekran · rejimni yoqish</div>
+    <div class="ui" style="height:92px;padding:12px 16px;background:#fff">
+      <div style="border:1px solid #DADCE0;border-radius:20px;padding:7px 11px;display:flex;align-items:center;gap:9px;font-size:10px;color:#8E9199">
+        <div class="plus">+</div><div style="flex:1">Gemini'dan so'rang</div>
+        <div style="background:#F0F4F9;border-radius:14px;padding:3px 9px;font-size:9.5px;color:#444746">Flash ▾</div>
+      </div>
+      <div class="row" style="gap:6px;margin-top:9px">
+        <span class="anchor" style="border:1.4px solid #7B4FC0;background:#F3E8FD;color:#6A2FA0;border-radius:14px;padding:3px 10px;font-size:9.5px;font-weight:700">🔎 Deep Research
+          <span class="pin b" style="bottom:-26px">1</span></span>
+        <span style="border:1px solid #DADCE0;border-radius:14px;padding:3px 10px;font-size:9.5px;color:#444746">🎨 Rasm yaratish</span>
+        <span style="border:1px solid #DADCE0;border-radius:14px;padding:3px 10px;font-size:9.5px;color:#444746">📄 Canvas</span>
+      </div>
+    </div>
+  </div>
+  <div class="leg gm" style="grid-template-columns:1fr;margin:0 0 11px"><div><i>1</i>
+    <span>Tugmani bosing — u <b>rangli</b> bo'lib yonadi. Demak rejim yoqildi. Endi mavzuni yozasiz.</span></div></div>
+
+  <!-- STEP 2 -->
+  <div class="shot gmp tight" style="margin-bottom:9px;padding:20px 34px">
+    <div class="cap">2-ekran · Gemini reja taklif qiladi</div>
+    <div class="ui" style="height:122px;padding:12px 16px;background:#fff">
+      <div style="font-size:10px;font-weight:700;margin-bottom:6px">Men shu reja bo'yicha izlanaman:</div>
+      <div style="font-size:9.5px;color:#3C4043;line-height:1.75;border-left:2px solid #E0D7F5;padding-left:9px">
+        1 · Toshkentdagi yirik onlayn gul do'konlarini aniqlash<br>
+        2 · Buket narxlari va yetkazish shartlarini yig'ish<br>
+        3 · Instagram faolligini taqqoslash<br>
+        4 · Mijoz sharhlaridagi asosiy shikoyatlarni ajratish</div>
+      <div class="row" style="gap:7px;margin-top:10px">
+        <span class="anchor" style="border:1px solid #DADCE0;border-radius:14px;padding:4px 11px;font-size:9.5px">✎ Rejani tahrirlash
+          <span class="pin b" style="bottom:-26px">2</span></span>
+        <span class="anchor" style="background:#0B57D0;color:#fff;border-radius:14px;padding:4px 14px;font-size:9.5px;font-weight:600">Boshlash
+          <span class="pin b" style="bottom:-26px">3</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="leg gm" style="margin:0 0 11px">
+    <div><i>2</i><span><b>Rejani o'qing.</b> Nimadir yetishmasa — shu tugmani bosib qo'shimcha yozing.</span></div>
+    <div><i>3</i><span><b>Boshlash</b> — ish shu yerdan boshlanadi. Endi kutasiz.</span></div>
   </div>
 
-  <h3>📚 Kutubxona (Library)</h3>
-  <p style="margin-bottom:13px">Siz yaratgan barcha rasm va videolar shu yerda to'planadi. Qidirish, yuklab olish va
-    o'chirish mumkin. Bir marta yaratgan rasmni qayta topish uchun chat tarixini titkilash shart emas.</p>
-
-  <h3>⚙ Sozlamalar — nimalarni bilish kerak</h3>
-  <div class="tbl" style="margin:8px 0 13px">
-    <table>
-      <tr><th style="width:32%">Bo'lim</th><th>Nima qiladi</th></tr>
-      <tr><td><b>Til (Language)</b></td><td>Menyu tilini o'zgartiradi</td></tr>
-      <tr><td><b>Mavzu (Theme)</b></td><td>Oq yoki qora fon</td></tr>
-      <tr><td><b>Shaxsiylashtirish</b></td><td>Gemini sizni eslab qolsinmi — yoqish/o'chirish</td></tr>
-      <tr><td><b>Ma'lumot va maxfiylik</b></td><td>Chat tarixini o'chirish, saqlash muddatini belgilash</td></tr>
-      <tr><td><b>Ilovalar (Apps)</b></td><td>Gmail, Drive, YouTube, Xaritalar bilan bog'lash</td></tr>
-      <tr><td><b>Yangilash (Upgrade)</b></td><td>Tarifni ko'rish va o'zgartirish</td></tr>
-    </table>
+  <!-- STEP 3 + 4 -->
+  <div class="flow f3" style="margin-bottom:11px">
+    <div class="fbox gm">
+      <div class="fh"><i>3</i> Kutish ekrani</div>
+      <div class="fb">«17 ta sayt o'qildi…» degan yozuvni ko'rasiz. Oynani yopsangiz ham ish davom etadi.</div>
+    </div>
+    <div class="ar">→</div>
+    <div class="fbox gm">
+      <div class="fh"><i>4</i> Tayyor hisobot</div>
+      <div class="fb">Uzun matn + o'ng tomonda <b>manbalar ro'yxati</b>. Har bir manbani bosib tekshirasiz.</div>
+    </div>
+    <div class="ar">→</div>
+    <div class="fbox gm">
+      <div class="fh"><i>5</i> Chiqarish</div>
+      <div class="fb">Ostidagi tugmalar: <b>⤓ Google Docs'ga</b>, <b>⧉ Nusxa</b>, <b>🎧 Audio</b>.</div>
+    </div>
   </div>
 
-  <div class="card w" style="margin-bottom:12px">
-    <h4>«Ilovalar» — kam ma'lum, lekin kuchli imkoniyat</h4>
-    <small>Ulangandan keyin Gemini'ga shunday deyish mumkin:<br>
-      · «Gmail'imdagi kechagi xatlar orasidan mijoz buyurtmalarini top»<br>
-      · «Google Drive'dagi <b>narxlar.xlsx</b> faylini och va xulosa yoz»<br>
-      · «Bu YouTube video nima haqida — qisqacha ayt» (havolani tashlaysiz)<br>
-      Ulash: ⚙ Sozlamalar → <b>Ilovalar</b> → kerakligini yoqing.</small>
+  <div class="card w">
+    <h4>So'rovni shu shablon bo'yicha yozing</h4>
+    <div class="prompt" style="margin-top:7px"><span class="k">MAVZU:</span> <span class="v">Toshkentdagi onlayn gul do'konlari</span>
+<span class="k">HUDUD VA YIL:</span> <span class="v">Toshkent, 2025-2026</span>
+<span class="k">MENGA KERAK:</span> <span class="v">1) 10 ta do'kon nomi  2) buket narxlari
+3) yetkazish narxi va vaqti  4) Instagram obunachilari  5) shikoyatlar</span>
+<span class="k">KO'RINISHI:</span> <span class="v">jadval + qisqa xulosa + 5 ta tavsiya</span>
+<span class="k">TIL:</span> <span class="v">o'zbek tilida</span></div>
+    <div style="margin-top:8px;font-size:11px;color:var(--ink2)">
+      <b>Qoida:</b> «Gullar haqida yozib ber» degan so'rov foydasiz javob beradi.
+      Qancha aniq yozsangiz, hisobot shuncha qimmatli bo'ladi.</div>
+  </div>
+
+  <div class="pf"><span>Deep Research — qadamlar</span><span>11</span></div>
+</div>
+<!-- =============================== 15. GEMS =============================== -->
+<div class="page">
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">12</div></div>
+  <div class="kicker">Gems · 1-qism</div>
+  <h2>Gem nima? Oddiy qilib</h2>
+  <p class="lead" style="margin-bottom:13px"><b>Gem — bu sizning shaxsiy yordamchingiz.</b>
+    Uni yangi xodimga o'xshating: bir marta o'tirib «biznesim shu, mijozim shunday,
+    shu uslubda yoz» deb tushuntirasiz — va u buni <b>doim eslab turadi</b>.
+    Har safar qaytadan tushuntirmaysiz.</p>
+
+  <h3>Gem'siz va Gem bilan — farqi</h3>
+  <div class="ba" style="margin:8px 0 14px">
+    <div class="bad">
+      <h4>✕ Gem'siz — har safar shuni yozasiz</h4>
+      <small>«Sen SMM-menejersan. Mening biznesim — Toshkentdagi gul do'koni.
+        Mijozlarim 25–40 yosh ayollar, sovg'a izlaydi. Iliq va sodda ohangda,
+        "siz" bilan murojaat qil. O'zbek tilida yoz. Endi menga 5 ta post sarlavhasi kerak.»<br><br>
+        <i style="color:#8C1D18">Har kuni shu 4 qatorni qayta yozasiz. Unutsangiz — javob mos kelmaydi.</i></small>
+    </div>
+    <div class="good">
+      <h4>✓ Gem bilan — shuncha yetadi</h4>
+      <small style="font-size:12px;line-height:1.6">«5 ta post sarlavhasi kerak.»<br><br><br><br>
+        <i style="color:#14532D">Qolgan hammasi Gem ichida saqlangan. Javob doim bir xil uslubda,
+        bir xil tilda, bir xil mijozga qaratilgan bo'ladi.</i></small>
+    </div>
+  </div>
+
+  <h3>Gem qayerda turadi</h3>
+  <div class="shot gmp tight" style="margin:8px 0 11px;padding:20px 42px">
+    <div class="cap">Chap panel — Gems bo'limi</div>
+    <div class="ui" style="height:150px;display:flex;background:#fff">
+      <div style="width:170px;flex:0 0 170px;background:#F0F4F9;padding:10px 9px;border-radius:11px 0 0 11px">
+        <div class="gem" style="display:block">
+          <div class="it" style="font-size:10px">◇ Yangi chat</div>
+          <div class="it" style="font-size:10px">○ Chatlardan qidirish</div>
+          <div class="sec anchor" style="padding:9px 9px 3px">Gems
+            <span class="pin l" style="left:-40px;top:6px;margin-top:0">1</span></div>
+          <div class="it on" style="font-size:10px">💎 SMM-menejer</div>
+          <div class="it" style="font-size:10px">💎 Sotuvchi</div>
+          <div class="it anchor" style="font-size:10px;color:#0B57D0">＋ Yangi Gem
+            <span class="pin l" style="left:-40px">2</span></div>
+        </div>
+      </div>
+      <div style="flex:1;padding:14px 16px">
+        <div class="anchor" style="display:inline-flex;align-items:center;gap:6px;background:#F3E8FD;color:#6A2FA0;border-radius:14px;padding:4px 11px;font-size:10px;font-weight:700">💎 SMM-menejer
+          <span class="pin b" style="bottom:-28px">3</span></div>
+        <div style="margin-top:12px;border:1px solid #DADCE0;border-radius:20px;padding:7px 11px;font-size:10px;color:#8E9199;display:flex;gap:8px">
+          <div class="plus">+</div><div style="flex:1">5 ta post sarlavhasi kerak</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="leg gm" style="margin-bottom:12px">
+    <div><i>1</i><span>Chap panelda <b>Gems</b> bo'limi. Yasagan Gem'laringiz shu yerda turadi.</span></div>
+    <div><i>2</i><span><b>＋ Yangi Gem</b> — yangisini yasash tugmasi.</span></div>
+    <div><i>3</i><span>Gem yoqilganda yuqorida <b>nomi ko'rinadi</b>. Demak, u ishlayapti.</span></div>
+    <div><i>—</i><span>Oddiy chatga qaytish: <b>«Yangi chat»</b> ni bosing — Gem o'chadi.</span></div>
   </div>
 
   <div class="ok">
-    <b>Telefonda ham bor.</b> Play Market yoki App Store'dan <b>Gemini</b> ilovasini yuklang.
-    Bir xil akkaunt bilan kirsangiz, chatlaringiz va bloknotlaringiz kompyuter bilan sinxron bo'ladi.
+    <b>Qachon Gem yasash kerak?</b> Agar biror ishni <b>haftada 2 martadan ko'p</b> qilsangiz —
+    unga Gem yasang. Masalan: post yozish, mijozga javob berish, matnni o'zbekchaga o'girish.
   </div>
 
-  <div class="pf"><span>Video, Kutubxona, Sozlamalar</span><span>18</span></div>
+  <div class="pf"><span>Gem nima</span><span>12</span></div>
 </div>
 
+<!-- =============================== 15b. GEMS BUILD =============================== -->
+<div class="page">
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">13</div></div>
+  <div class="kicker">Gems · 2-qism</div>
+  <h2>Gem yaratish — 5 daqiqa</h2>
+
+  <div class="shot gmp tight" style="margin-bottom:11px">
+    <div class="cap">Gem yaratish oynasi</div>
+    <div class="ui" style="height:204px;display:flex;background:#fff">
+      <div style="width:130px;flex:0 0 130px;background:#F0F4F9;padding:10px 8px;border-radius:11px 0 0 11px">
+        <div style="font-size:9.5px;font-weight:800;margin-bottom:7px">Gems</div>
+        <div class="gem" style="display:block">
+          <div class="it on" style="font-size:9.5px">＋ Yangi Gem</div>
+          <div class="it" style="font-size:9.5px">💎 SMM-menejer</div>
+          <div class="it" style="font-size:9.5px">💎 Sotuvchi</div>
+        </div>
+      </div>
+      <div style="flex:1;padding:12px 15px">
+        <div class="anchor" style="border:1px solid #DADCE0;border-radius:8px;padding:7px 10px;font-size:10px;color:#80868B;margin-bottom:8px">Nomi: <b style="color:#202124">SMM-menejer</b>
+          <span class="pin r" style="right:-40px">1</span></div>
+        <div class="anchor" style="border:1px solid #DADCE0;border-radius:8px;padding:8px 10px;font-size:9.3px;color:#3C4043;line-height:1.5;height:92px">
+          <b style="font-size:9.8px">Ko'rsatma (Instructions)</b><br>
+          Sen — o'zbek tilida ishlaydigan SMM-menejersan.<br>
+          BIZNESIM: gul do'koni, Toshkent.<br>
+          MIJOZLARIM: 25–40 yosh ayollar, sovg'a izlaydi.<br>
+          USLUB: iliq, sodda, «siz» bilan…
+          <span class="pin r" style="right:-40px">2</span>
+        </div>
+        <div class="row" style="gap:8px;margin-top:9px">
+          <div class="anchor" style="border:1px solid #DADCE0;border-radius:16px;padding:5px 11px;font-size:9.5px">📎 Fayl qo'shish
+            <span class="pin b" style="bottom:-26px">3</span></div>
+          <div class="anchor" style="background:#0B57D0;color:#fff;border-radius:16px;padding:5px 15px;font-size:9.5px;font-weight:600">Saqlash
+            <span class="pin b" style="bottom:-26px">4</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="leg gm" style="margin-bottom:12px">
+    <div><i>1</i><span><b>Nom</b> — o'zingiz tushunadigan qilib yozing.</span></div>
+    <div><i>2</i><span><b>Ko'rsatma</b> — eng muhim maydon. Pastdagi shablonni ko'chiring.</span></div>
+    <div><i>3</i><span><b>Fayl</b> — narxlar ro'yxati, brend qo'llanmasi. Gem doim shundan foydalanadi.</span></div>
+    <div><i>4</i><span><b>Saqlash</b> — Gem chap panelda paydo bo'ladi.</span></div>
+  </div>
+
+  <div class="card w" style="margin-bottom:11px">
+    <h4>Ko'rsatma shabloni — ko'chiring va o'zingiznikini yozing</h4>
+    <div class="prompt" style="margin-top:7px">Sen — <span class="v">[SMM-menejer / sotuvchi / o'qituvchi]</span>san.
+<span class="k">BIZNESIM:</span> <span class="v">[nima sotaman, qayerda]</span>
+<span class="k">MIJOZLARIM:</span> <span class="v">[yoshi, jinsi, qanday muammosi bor]</span>
+<span class="k">USLUB:</span> <span class="v">[sodda / rasmiy / hazil bilan]</span>, <span class="v">[«siz» yoki «sen»]</span>
+<span class="k">TIL:</span> doim o'zbek tilida javob ber.
+<span class="k">QOIDALAR:</span>
+ - Qisqa yoz, suv quyma.
+ - Har doim 3 ta variant ber.
+ - Narxni o'zingdan to'qima — mendan so'ra.</div>
+  </div>
+
+  <h3>3 ta tayyor Gem — ko'chirib ishlating</h3>
+  <div class="grid g3" style="margin-top:8px">
+    <div class="card"><h4>💎 Kontent-menejer</h4>
+      <small>«Sen SMM-menejersan. Biznesim: [___]. Har so'rovga 3 ta variant ber.
+        Har biri 6 so'zdan oshmasin. O'zbekcha, iliq ohangda.»</small></div>
+    <div class="card"><h4>💎 Sotuvchi</h4>
+      <small>«Sen tajribali sotuvchisan. Mijoz e'tiroziga muloyim javob yozasan.
+        Bosim o'tkazma, foydani tushuntir. Javob 3 gapdan oshmasin. O'zbekcha.»</small></div>
+    <div class="card"><h4>💎 Ustoz</h4>
+      <small>«Sen sabrli o'qituvchisan. Har qanday mavzuni 12 yoshli bolaga
+        tushuntirgandek aytasan. Doim 1 ta hayotiy misol keltirasan. O'zbekcha.»</small></div>
+  </div>
+
+  <div class="tbl" style="margin-top:12px">
+    <table>
+      <tr><th style="width:30%">Nima qilmoqchisiz</th><th>Qanday qilinadi</th></tr>
+      <tr><td>Gem'ni ishga tushirish</td><td>Chap paneldan nomini bosing. Yoki «+» → <b>Gem tanlash</b>.</td></tr>
+      <tr><td>Gem'ni o'zgartirish</td><td>Nomi yonidagi <b>⋮</b> → <b>Tahrirlash</b> → ko'rsatmani tuzating → Saqlash.</td></tr>
+      <tr><td>Gem'ni o'chirish</td><td><b>⋮</b> → <b>O'chirish</b>. Eski chatlar joyida qoladi.</td></tr>
+      <tr><td>Boshqaga berish</td><td><b>⋮</b> → <b>Ulashish</b> → havolani nusxalab yuboring.</td></tr>
+    </table>
+  </div>
+
+  <div class="pf"><span>Gem yaratish</span><span>13</span></div>
+</div>
+<!-- =============================== 16. IMAGES =============================== -->
+<div class="page">
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">14</div></div>
+  <div class="kicker">Rasm · 1-qism</div>
+  <h2>Rasm yaratish — qanday</h2>
+  <p class="lead" style="margin-bottom:12px">Siz so'z bilan tasvirlab berasiz — Gemini rasm chizadi.
+    Banner, afisha, mahsulot foni, ijtimoiy tarmoq uchun surat.</p>
+
+  <div class="flow f4" style="margin-bottom:12px">
+    <div class="fbox gm"><div class="fh"><i>1</i> Tugmani bosing</div>
+      <div class="fb">Yozish maydoni ostidagi <b>🎨 Rasm yaratish</b>.</div></div>
+    <div class="ar">→</div>
+    <div class="fbox gm"><div class="fh"><i>2</i> Tasvirlab bering</div>
+      <div class="fb">Nima, qayerda, qanday uslubda — pastdagi formula bo'yicha.</div></div>
+    <div class="ar">→</div>
+    <div class="fbox gm"><div class="fh"><i>3</i> Tuzating</div>
+      <div class="fb">«Fonini oq qil», «yorug'roq qil» deb chatda davom ettirasiz.</div></div>
+    <div class="ar">→</div>
+    <div class="fbox gm"><div class="fh"><i>4</i> Yuklab oling</div>
+      <div class="fb">Rasm ustiga bosing → <b>⤓ Yuklab olish</b>.</div></div>
+  </div>
+
+  <h3>Rasm uchun formula — 5 ta qism</h3>
+  <p style="margin-bottom:9px">Rasm sifati faqat shunga bog'liq. Beshta savolga javob bering — natija bir necha barobar yaxshi bo'ladi.</p>
+  <div class="tbl" style="margin-bottom:11px">
+    <table>
+      <tr><th style="width:20%">Qism</th><th style="width:36%">Savol</th><th>Misol</th></tr>
+      <tr><td><b>1 · NIMA</b></td><td>Rasmda asosiy narsa nima?</td><td>kuz gullari solingan quti</td></tr>
+      <tr><td><b>2 · QAYERDA</b></td><td>Fon qanday?</td><td>issiq bej rangli stol ustida</td></tr>
+      <tr><td><b>3 · USLUB</b></td><td>Foto? Rasm? 3D?</td><td>professional mahsulot fotosurati</td></tr>
+      <tr><td><b>4 · YORUG'LIK</b></td><td>Qanday yorug'lik va rang?</td><td>yumshoq tabiiy yorug'lik, issiq ranglar</td></tr>
+      <tr><td><b>5 · FORMAT</b></td><td>Qanday o'lchamda?</td><td>vertikal 9:16, yuqorida matn uchun bo'sh joy</td></tr>
+    </table>
+  </div>
+
+  <div class="chatbox" style="margin-bottom:12px">
+    <div class="bub u"><span class="who2">TAYYOR PROMPT — beshta qismni birlashtirdik</span>
+      «Kuz gullari solingan qutini chiz. Fon — issiq bej rangli stol. Uslub: professional mahsulot
+      fotosurati. Yumshoq tabiiy yorug'lik, issiq ranglar. Format vertikal 9:16.
+      Yuqori qismda bo'sh joy qoldir — u yerga matn yozaman.»</div>
+  </div>
+
+  <div class="ba">
+    <div class="bad"><h4>✕ Shunday yozmang</h4>
+      <small>«Chiroyli gul rasmi chiz.»<br><br>
+        Natija: tasodifiy rasm. Har safar butunlay boshqacha chiqadi, ishlatib bo'lmaydi.</small></div>
+    <div class="good"><h4>✓ Shunday yozing</h4>
+      <small>Yuqoridagi kabi — 5 qism bilan.<br><br>
+        Natija: siz o'ylagan rasmga yaqin. Kichik tuzatish bilan tayyor bo'ladi.</small></div>
+  </div>
+
+  <div class="pf"><span>Rasm yaratish</span><span>14</span></div>
+</div>
+
+<!-- =============================== 16b. IMAGES EDIT + LIMITS =============================== -->
+<div class="page">
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">15</div></div>
+  <div class="kicker">Rasm · 2-qism</div>
+  <h2>Bor rasmni tahrirlash va cheklovlar</h2>
+
+  <h3 style="margin-top:4px">O'z rasmingizni yuklab, o'zgartirish</h3>
+  <p style="margin-bottom:10px">Yangi rasm chizdirish shart emas. <b>«+» → Rasm yuklash</b> qilib,
+    o'z suratingizni tashlaysiz va oddiy gap bilan buyruq berasiz.</p>
+
+  <div class="grid g2" style="margin-bottom:12px">
+    <div class="card w"><h4>Eng ko'p ishlatiladigan buyruqlar</h4>
+      <small>
+        · «Fonini oq qilib ber»<br>
+        · «Fonini olib tashla, faqat mahsulot qolsin»<br>
+        · «Yorug'ligini oshir, ranglarini jonliroq qil»<br>
+        · «Bu rasmni vertikal 9:16 formatga o'tkaz»<br>
+        · «Yon tomonida matn uchun bo'sh joy qo'sh»</small></div>
+    <div class="card w"><h4>Qanday ishlaydi</h4>
+      <small>Har bir buyruqdan keyin <b>yangi variant</b> chiqadi. Yoqmasa —
+        «yo'q, oldingisiga qaytib, faqat fonini o'zgartir» deb yozing.
+        Gemini oldingi rasmlarni eslab turadi.</small></div>
+  </div>
+
+  <h3>Bilib qo'yish kerak bo'lgan 5 ta narsa</h3>
+  <div class="tbl" style="margin:8px 0 12px">
+    <table>
+      <tr><th style="width:32%">Savol</th><th>Javob</th></tr>
+      <tr><td><b>Kuniga nechta rasm?</b></td><td>Bepul tarifda taxminan <b>10–20 ta</b>. Limit tugasa «ertaga urinib ko'ring» deb yozadi va ertasiga tiklanadi.</td></tr>
+      <tr><td><b>Sotsam bo'ladimi?</b></td><td>Ha, Google shartlariga ko'ra <b>tijoratda ishlatish mumkin</b>. Lekin logotip qilib ro'yxatdan o'tkazish muammoli — mualliflik huquqi to'liq himoyalanmaydi.</td></tr>
+      <tr><td><b>Rasmda belgi bormi?</b></td><td>Ha — ko'rinmas <b>SynthID</b> belgisi. Bu «rasm AI tomonidan yaratilgan» degani. Ko'z bilan ko'rinmaydi.</td></tr>
+      <tr><td><b>Mashhur odamni chizadimi?</b></td><td>Yo'q. Real shaxslar, brend logotiplari va zo'ravonlik tasvirlari cheklangan.</td></tr>
+      <tr><td><b>Nega yuz buziladi?</b></td><td>Modelning ma'lum kamchiligi. Yechim: yuzni yaqindan olmang yoki «yuzi ko'rinmasin, orqadan» deb yozing.</td></tr>
+    </table>
+  </div>
+
+  <div class="warn" style="margin-bottom:11px">
+    <b>Eng ko'p uchraydigan xato: rasmga matn yozdirish.</b> AI rasm ichidagi <b>o'zbekcha yozuvni</b>
+    deyarli doim xato yozadi — harflar aralashib ketadi, qo'shimcha belgilar chiqadi.<br>
+    <b>To'g'ri yo'l:</b> rasmni <b>matnsiz</b> chizdiring va promptga «matn uchun bo'sh joy qoldir» deb qo'shing.
+    Matnni keyin Canva yoki boshqa dasturda o'zingiz qo'ying.
+  </div>
+
+  <div class="tipbar">
+    <div class="ic">✦</div>
+    <div><b>Yoqqan rasmni yo'qotmang.</b> Barcha yaratgan rasmlaringiz chap paneldagi
+      <b>Kutubxona</b> bo'limida saqlanadi. Chat tarixini titkilash shart emas —
+      to'g'ridan-to'g'ri o'sha yerdan topib, yuklab olasiz.</div>
+  </div>
+
+  <div class="pf"><span>Rasmni tahrirlash</span><span>15</span></div>
+</div>
+<!-- =============================== 17. VIDEO / LIBRARY =============================== -->
+<div class="page">
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">16</div></div>
+  <div class="kicker">Qo'shimcha bo'limlar</div>
+  <h2>Video, Kutubxona va Sozlamalar</h2>
+
+  <h3 style="margin-top:4px">🎬 Video</h3>
+  <p style="margin-bottom:10px">Chap paneldagi <b>«Video»</b> bo'limi matndan qisqa video yasaydi —
+    odatda 6–8 soniya, ovoz bilan. Reels uchun fon yoki intro sifatida ishlatiladi.</p>
+
+  <div class="flow f3" style="margin-bottom:11px">
+    <div class="fbox gm"><div class="fh"><i>1</i> Sahnani tasvirlang</div>
+      <div class="fb"><b>Kim/nima</b> + <b>nima qilyapti</b> + <b>kamera qanday harakat qiladi</b> + <b>yorug'lik</b>.</div></div>
+    <div class="ar">→</div>
+    <div class="fbox gm"><div class="fh"><i>2</i> 1–3 daqiqa kuting</div>
+      <div class="fb">Video tayyorlanadi. Boshqa ish bilan shug'ullanishingiz mumkin.</div></div>
+    <div class="ar">→</div>
+    <div class="fbox gm"><div class="fh"><i>3</i> Yuklab oling</div>
+      <div class="fb">MP4 fayl. Kutubxonada ham saqlanib qoladi.</div></div>
+  </div>
+
+  <div class="grid g2" style="margin-bottom:13px">
+    <div class="card w"><h4>Misol prompt</h4>
+      <small>«Stol ustidagi gul qutisi. Kamera sekin chapdan o'ngga aylanadi.
+        Ertalabki yumshoq yorug'lik, oyna oldida. Fon xira.»</small></div>
+    <div class="card w" style="border-color:#F5C6C2"><h4 style="color:#8C1D18">Muhim: limit</h4>
+      <small>Video — eng «qimmat» funksiya. Bepul tarifda juda cheklangan yoki umuman ochilmasligi mumkin.
+        Ochilmasa, bu xato emas — tarifingiz shunday.</small></div>
+  </div>
+
+  <h3>📚 Kutubxona (Library)</h3>
+  <p style="margin-bottom:12px">Siz yaratgan <b>barcha rasm va videolar</b> shu yerda to'planadi.
+    Ustiga bosib yuklab olasiz yoki o'chirasiz. Bir marta yaratganingizni qayta topish uchun
+    eski chatlarni izlash shart emas.</p>
+
+  <h3>⚙ Sozlamalar — nimani bilish kerak</h3>
+  <div class="shot gmp tight" style="margin:8px 0 11px;padding:20px 42px">
+    <div class="cap">Sozlamalar oynasi</div>
+    <div class="ui" style="height:150px;display:flex;background:#fff">
+      <div style="width:168px;flex:0 0 168px;background:#F0F4F9;padding:10px 9px;border-radius:11px 0 0 11px">
+        <div class="gem" style="display:block">
+          <div class="it anchor" style="font-size:10px">Til (Language)
+            <span class="pin l" style="left:-40px">1</span></div>
+          <div class="it anchor" style="font-size:10px">Mavzu (Theme)
+            <span class="pin l" style="left:-40px">2</span></div>
+          <div class="it on anchor" style="font-size:10px">Ma'lumot va maxfiylik
+            <span class="pin l" style="left:-40px">3</span></div>
+          <div class="it anchor" style="font-size:10px">Ilovalar (Apps)
+            <span class="pin l" style="left:-40px">4</span></div>
+        </div>
+      </div>
+      <div style="flex:1;padding:13px 16px">
+        <div style="font-family:Manrope;font-weight:800;font-size:12px;margin-bottom:8px">Ma'lumot va maxfiylik</div>
+        <div class="row" style="justify-content:space-between;font-size:10px;padding:5px 0;border-bottom:1px solid #EEF1F5">
+          <span>Chat tarixini saqlash</span>
+          <span style="width:26px;height:14px;border-radius:9px;background:#0B57D0;position:relative"><span style="position:absolute;right:2px;top:2px;width:10px;height:10px;border-radius:50%;background:#fff"></span></span></div>
+        <div class="row" style="justify-content:space-between;font-size:10px;padding:5px 0">
+          <span style="color:#C5221F;font-weight:600">Barcha tarixni o'chirish</span><span style="color:#5F6368">›</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="leg gm" style="margin-bottom:12px">
+    <div><i>1</i><span><b>Til</b> — menyular tili. Javob tili bilan aralashtirmang.</span></div>
+    <div><i>2</i><span><b>Mavzu</b> — oq yoki qora fon.</span></div>
+    <div><i>3</i><span><b>Maxfiylik</b> — chat tarixini saqlash yoki hammasini o'chirish.</span></div>
+    <div><i>4</i><span><b>Ilovalar</b> — Gmail, Drive, YouTube bilan bog'lash.</span></div>
+  </div>
+
+  <div class="ok">
+    <b>«Ilovalar» nimaga kerak.</b> Ulangandan keyin shunday deyish mumkin:
+    «Google Drive'dagi <b>narxlar.xlsx</b> faylini och va xulosa yoz» yoki
+    «Bu YouTube video nima haqida?» (havolani tashlaysiz).
+    Ulash: ⚙ Sozlamalar → <b>Ilovalar</b> → keraklisini yoqing.
+  </div>
+
+  <div class="pf"><span>Video, Kutubxona, Sozlamalar</span><span>16</span></div>
+</div>
 <!-- =============================== 18. PROMPTS =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">19</div></div>
-  <div class="kicker">13-bo'lim</div>
-  <h2>Prompt formulasi + 10 tayyor prompt</h2>
-  <p class="lead" style="margin-bottom:12px"><b>Prompt</b> — bu sizning so'rovingiz. Natija sifati 90% shunga bog'liq.
-    Quyidagi 5 qismli formulani eslab qoling.</p>
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">17</div></div>
+  <div class="kicker">Promptlar · 1-qism</div>
+  <h2>Yaxshi so'rov qanday yoziladi</h2>
+  <p class="lead" style="margin-bottom:12px"><b>Prompt</b> — bu sizning so'rovingiz.
+    Javob sifati 90% shunga bog'liq. AI aqlsiz emas — u shunchaki <b>sizni tushunmaydi</b>,
+    agar aniq aytmasangiz.</p>
 
-  <div class="card w" style="margin-bottom:13px">
-    <h4>R.V.K.F.T formulasi</h4>
-    <div class="grid g2" style="margin-top:9px;gap:7px">
-      <div style="font-size:11px"><b>R — Rol.</b> «Sen tajribali SMM-menejersan.»</div>
-      <div style="font-size:11px"><b>V — Vazifa.</b> «10 ta post sarlavhasini yoz.»</div>
-      <div style="font-size:11px"><b>K — Kontekst.</b> «Biznes: gul do'koni, Toshkent, mijoz 25–40 yosh ayol.»</div>
-      <div style="font-size:11px"><b>F — Format.</b> «Ro'yxat qilib, har biri 6 so'zdan oshmasin.»</div>
-      <div style="font-size:11px;grid-column:1/-1"><b>T — Til va uslub.</b> «O'zbek tilida, sodda va iliq ohangda, «siz» bilan.»</div>
+  <h3>5 ta savolga javob bering</h3>
+  <div class="grid g2" style="margin:8px 0 12px;gap:7px">
+    <div class="card" style="padding:10px 13px"><h4>1 · KIM bo'lib yozsin?</h4>
+      <small>«Sen tajribali SMM-menejersan»</small></div>
+    <div class="card" style="padding:10px 13px"><h4>2 · NIMA qilsin?</h4>
+      <small>«10 ta post sarlavhasini yoz»</small></div>
+    <div class="card" style="padding:10px 13px"><h4>3 · KIM UCHUN? (kontekst)</h4>
+      <small>«Toshkentdagi gul do'koni, mijozlar 25–40 yosh ayollar»</small></div>
+    <div class="card" style="padding:10px 13px"><h4>4 · QANDAY KO'RINISHDA?</h4>
+      <small>«Ro'yxat qilib, har biri 6 so'zdan oshmasin»</small></div>
+    <div class="card" style="padding:10px 13px;grid-column:1/-1"><h4>5 · QAYSI TILDA va QANDAY OHANGDA?</h4>
+      <small>«O'zbek tilida, iliq va sodda ohangda, "siz" bilan murojaat qilib»</small></div>
+  </div>
+
+  <h3>Bir xil savol — ikki xil natija</h3>
+  <div class="ba" style="margin:8px 0 12px">
+    <div class="bad">
+      <h4>✕ «Gul do'koni uchun post yoz»</h4>
+      <small><b>Javob:</b><br>
+        «Bizning gul do'konimizda eng chiroyli gullar bor! Sifat va xizmat kafolatlangan.
+        Buyurtma bering!»<br><br>
+        <i style="color:#8C1D18">Har qanday do'konga to'g'ri keladi. Ya'ni — hech kimga to'g'ri kelmaydi.</i></small>
     </div>
-    <div class="prompt" style="margin-top:10px">Sen tajribali SMM-menejersan. Toshkentdagi gul do'koni uchun
-10 ta Instagram post sarlavhasini yoz. Mijozlar: 25-40 yosh ayollar,
-sovg'a izlaydi. Ro'yxat qilib ber, har biri 6 so'zdan oshmasin.
+    <div class="good">
+      <h4>✓ 5 qismli prompt bilan</h4>
+      <small><b>Javob:</b><br>
+        «Onangizga qo'ng'iroq qilganingizga necha kun bo'ldi? 🌷<br>
+        Ba'zida bitta buket "sog'indim" degan so'zdan kuchliroq gapiradi.<br>
+        Bugun buyurtma — ertaga ertalab eshigi oldida.»<br><br>
+        <i style="color:#14532D">Aniq mijozga, aniq his bilan yozilgan.</i></small>
+    </div>
+  </div>
+
+  <div class="card w" style="margin-bottom:11px">
+    <h4>To'liq prompt — shu ko'rinishda bo'lishi kerak</h4>
+    <div class="prompt" style="margin-top:7px">Sen tajribali SMM-menejersan. Toshkentdagi gul do'koni uchun
+10 ta Instagram post sarlavhasini yoz.
+Mijozlar: 25-40 yosh ayollar, sovg'a izlaydi.
+Ro'yxat qilib ber, har biri 6 so'zdan oshmasin.
 O'zbek tilida, iliq va sodda ohangda yoz.</div>
   </div>
 
-  <h3>10 ta tayyor prompt — ko'chiring va ishlating</h3>
-  <div class="tbl" style="margin-top:8px">
+  <div class="tipbar">
+    <div class="ic">✦</div>
+    <div><b>Hammasini bir marta yozish qiyinmi?</b> Unda shu matnni <b>Gem</b>ga solib qo'ying —
+      keyin faqat «10 ta sarlavha kerak» deyish yetadi. Gems haqida oldingi bo'limda yozilgan.</div>
+  </div>
+
+  <div class="pf"><span>Yaxshi prompt</span><span>17</span></div>
+</div>
+
+<!-- =============================== 18b. READY PROMPTS =============================== -->
+<div class="page">
+  <div class="ph"><div class="who">1-QISM · GEMINI</div><div class="num">18</div></div>
+  <div class="kicker">Promptlar · 2-qism</div>
+  <h2>10 ta tayyor prompt</h2>
+  <p class="lead" style="margin-bottom:11px">Ko'chiring, kvadrat qavs ichidagi joyni o'zingiznikiga almashtiring va yuboring.</p>
+
+  <div class="tbl" style="margin-bottom:12px">
     <table>
-      <tr><th style="width:22%">Maqsad</th><th>Prompt</th></tr>
+      <tr><th style="width:21%">Maqsad</th><th>Prompt</th></tr>
       <tr><td><b>1 · Kontent reja</b></td><td>«[biznes] uchun 2 haftalik Instagram reja tuz. Har kunga: format (reels/post/story), mavzu, sarlavha, chaqiruv. Jadval qilib ber.»</td></tr>
       <tr><td><b>2 · Reels skript</b></td><td>«[mavzu] bo'yicha 30 soniyalik reels skripti yoz. Birinchi 3 soniya — diqqatni tortadigan gap. Oxirida chaqiruv bo'lsin. O'zbekcha.»</td></tr>
       <tr><td><b>3 · Sotuv matni</b></td><td>«[mahsulot] ni sotish uchun matn yoz. Tuzilishi: muammo → yechim → foyda → isbot → chaqiruv. 120 so'zdan oshmasin.»</td></tr>
       <tr><td><b>4 · Mijoz e'tirozi</b></td><td>«Mijoz "qimmat" deyapti. 5 ta muloyim javob variantini yoz. Bosim o'tkazma, foydani tushuntir.»</td></tr>
-      <tr><td><b>5 · Tahlil</b></td><td>(faylni yuklab) «Bu hisobotdan 5 ta muhim xulosa chiqar va 3 ta amaliy tavsiya ber.»</td></tr>
+      <tr><td><b>5 · Fayl tahlili</b></td><td>(faylni yuklab) «Bu hisobotdan 5 ta muhim xulosa chiqar va 3 ta amaliy tavsiya ber.»</td></tr>
       <tr><td><b>6 · Tarjima</b></td><td>«Bu matnni o'zbek tiliga tarjima qil. So'zma-so'z emas — tabiiy, jonli qilib yoz.»</td></tr>
-      <tr><td><b>7 · Tushuntirish</b></td><td>«[murakkab mavzu] ni 12 yoshli bolaga tushuntirgandek ayt. Misol keltir.»</td></tr>
-      <tr><td><b>8 · Xat</b></td><td>«Hamkorga [vaziyat] bo'yicha rasmiy xat yoz. Hurmatli, lekin aniq. 100 so'z.»</td></tr>
+      <tr><td><b>7 · Tushuntirish</b></td><td>«[murakkab mavzu] ni 12 yoshli bolaga tushuntirgandek ayt. Hayotiy misol keltir.»</td></tr>
+      <tr><td><b>8 · Rasmiy xat</b></td><td>«Hamkorga [vaziyat] bo'yicha rasmiy xat yoz. Hurmatli, lekin aniq. 100 so'z.»</td></tr>
       <tr><td><b>9 · G'oyalar</b></td><td>«[mavzu] bo'yicha 20 ta g'oya ber. Oddiylaridan boshlab, oxirida g'ayrioddiylarini yoz.»</td></tr>
-      <tr><td><b>10 · Tekshirish</b></td><td>«Bu matnni tahrir qil: xatolarni tuzat, uzun gaplarni qisqartir. O'zgarishlarni ro'yxat qilib ko'rsat.»</td></tr>
+      <tr><td><b>10 · Tahrir</b></td><td>«Bu matnni tahrir qil: xatolarni tuzat, uzun gaplarni qisqartir. O'zgarishlarni ro'yxat qilib ko'rsat.»</td></tr>
     </table>
   </div>
 
-  <div class="tipbar" style="margin-top:13px">
-    <div class="ic">✦</div>
-    <div><b>Javob yoqmadimi — tashlab ketmang.</b> Shunday yozing: «Bu variant menga to'g'ri kelmadi.
-      Sabab: juda rasmiy. Yana 3 ta variant yoz, lekin do'stona ohangda.»
-      Gemini oldingi javobni eslab turadi — har safar boshidan tushuntirish shart emas.</div>
+  <h3>Javob yoqmadi — nima qilish kerak</h3>
+  <p style="margin-bottom:9px">Chatni yopib, hammasini boshidan yozmang. Gemini oldingi gaplarni eslab turadi —
+    shunchaki <b>nima yoqmaganini ayting</b>.</p>
+
+  <div class="chatbox" style="margin-bottom:11px">
+    <div class="bub u"><span class="who2">SIZ</span>10 ta post sarlavhasi yoz.</div>
+    <div class="bub a"><span class="who2">GEMINI</span>1. Eng sara gullar bizda…  2. Sifat kafolati…  3. Tez yetkazib berish…</div>
+    <div class="bub u"><span class="who2">SIZ — mana shunday tuzating</span>
+      «Bu variantlar juda rasmiy va reklamaga o'xshab qoldi. Yana 10 ta yoz,
+      lekin do'stona ohangda, savol bilan boshlansin va reklama hidi kelmasin.»</div>
+    <div class="bub a"><span class="who2">GEMINI</span>1. Onangiz oxirgi marta qachon gul olgan? …</div>
   </div>
 
-  <div class="pf"><span>Promptlar</span><span>19</span></div>
-</div>
+  <div class="grid g2">
+    <div class="card w"><h4>Tez ishlaydigan iboralar</h4>
+      <small>· «Qisqaroq qil»  · «Sodda tilda yoz»<br>
+        · «Yana 5 ta variant ber»  · «Jadval qilib ber»<br>
+        · «Misol keltir»  · «Faqat ro'yxat, tushuntirishsiz»</small></div>
+    <div class="card w"><h4>Javob ostidagi tugmalar</h4>
+      <small>· <b>⟳ Qayta yaratish</b> — bir xil so'rovga boshqa variant<br>
+        · <b>Qisqartir / Uzaytir</b> — uzunligini o'zgartiradi<br>
+        · <b>⧉ Nusxa</b> — matnni ko'chirib olish</small></div>
+  </div>
 
+  <div class="pf"><span>Tayyor promptlar</span><span>18</span></div>
+</div>
 <!-- =============================== 19. NOTEBOOK DIVIDER =============================== -->
 <div class="page" style="padding:0">
   <div style="position:absolute;inset:0;background:
@@ -1429,140 +1525,170 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
       <span>3 ta panel</span><span>Manbalar</span><span>Iqtiboslar</span><span>Audio sharh</span>
       <span>Video sharh</span><span>Mind map</span><span>Kartochkalar</span><span>Test</span><span>Eslatmalar</span>
     </div>
-    <div style="position:absolute;left:70px;bottom:70px;font-size:10.5px;color:#9AA1B0;font-weight:700;letter-spacing:.06em">SAHIFA 21 — 29</div>
+    <div style="position:absolute;left:70px;bottom:70px;font-size:10.5px;color:#9AA1B0;font-weight:700;letter-spacing:.06em">SAHIFA 20 — 28</div>
   </div>
 </div>
 
 <!-- =============================== 20. WHAT IS NOTEBOOK =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">21</div></div>
-  <div class="kicker nb">14-bo'lim</div>
-  <h2>Notebook nima va nega kerak</h2>
-  <p class="lead" style="margin-bottom:12px">Tasavvur qiling: siz 300 betlik kitob, 10 ta YouTube dars va 20 ta maqolani
-    bitta papkaga soldingiz. Endi shu papkaning <b>o'zi gapiradi</b>: savol berasiz — javob beradi,
-    va «bu javobni <b>4-manbaning 12-betidan</b> oldim» deb ko'rsatadi.</p>
+  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">20</div></div>
+  <div class="kicker nb">Eng boshidan</div>
+  <h2>Notebook nima? Bitta misolda</h2>
 
-  <div class="grid g3" style="margin-bottom:13px">
-    <div class="card"><h4>📥 1. Manba yuklaysiz</h4><small>PDF, sayt havolasi, YouTube video, Google Docs, oddiy matn.</small></div>
-    <div class="card"><h4>💬 2. Savol berasiz</h4><small>Notebook <b>faqat</b> shu manbalardan javob beradi. O'zidan to'qimaydi.</small></div>
-    <div class="card"><h4>🎧 3. Format yasaysiz</h4><small>Podkast, video, mind map, test, konspekt — bir bosishda.</small></div>
-  </div>
-
-  <h3>Gemini'dan asosiy 5 ta farqi</h3>
-  <div class="tbl" style="margin:8px 0 13px">
-    <table>
-      <tr><th style="width:34%"></th><th style="width:33%">Gemini</th><th style="width:33%">Notebook</th></tr>
-      <tr><td>Ma'lumot manbasi</td><td>Butun internet</td><td><b style="color:var(--blue)">Faqat siz yuklagan fayllar</b></td></tr>
-      <tr><td>«O'zidan to'qish» xavfi</td><td>Bor</td><td><b style="color:var(--blue)">Deyarli yo'q</b></td></tr>
-      <tr><td>Manbani ko'rsatadimi</td><td>Ba'zan</td><td><b style="color:var(--blue)">Har bir gapda</b></td></tr>
-      <tr><td>Katta hujjat</td><td>Qiynaladi</td><td><b style="color:var(--blue)">Aynan shu uchun yaratilgan</b></td></tr>
-      <tr><td>Podkast / test / mind map</td><td>Yo'q</td><td><b style="color:var(--blue)">Bor (Studiya)</b></td></tr>
-    </table>
-  </div>
-
-  <h3>Kimga eng foydali</h3>
-  <div class="grid g2" style="margin:8px 0 12px">
-    <div class="card w"><h4>🎓 O'quvchi</h4><small>Kurs materiallarini bitta bloknotga yig'ib, imtihonga tayyorlanadi: konspekt, kartochka, test.</small></div>
-    <div class="card w"><h4>💼 Tadbirkor</h4><small>Shartnoma, hisobot, raqobatchi tahlilini yuklab, «asosiy xulosa nima?» deb so'raydi.</small></div>
-    <div class="card w"><h4>📱 SMM-mutaxassis</h4><small>10 ta YouTube darsni yuklab, ulardan 30 ta post g'oyasi chiqaradi.</small></div>
-    <div class="card w"><h4>🧑‍🏫 O'qituvchi</h4><small>Darslikdan avtomatik test va tarqatma material tayyorlaydi.</small></div>
-  </div>
-
-  <div class="ok">
-    <b>Eng qimmatli xususiyat — iqtibos (citation).</b> Har bir jumlaning yonida kichik raqam turadi.
-    Bosasiz — Notebook asl matndagi <b>aynan o'sha joyni</b> ochib beradi. Shuning uchun
-    o'qish va tekshirish juda tez bo'ladi.
-  </div>
-
-  <div class="pf"><span>Notebook nima</span><span>21</span></div>
-</div>
-
-<!-- =============================== 21. ENTER + CREATE NOTEBOOK =============================== -->
-<div class="page">
-  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">22</div></div>
-  <div class="kicker nb">15-bo'lim</div>
-  <h2>Ichiga kirish va birinchi bloknot</h2>
-
-  <h3 style="margin-top:4px">Kirishning 2 yo'li — ikkalasi ham bir joyga olib boradi</h3>
-  <div class="grid g2" style="margin:9px 0 13px">
-    <div class="card w" style="border-color:#D2E3FC">
-      <h4>1-yo'l · Gemini ichidan</h4>
-      <small>Gemini oynasining chap panelida <b>«Bloknotlar»</b> bo'limi bor →
-        <b>«＋ Yangi bloknot»</b> yoki <b>«Barcha bloknotlar»</b>.</small>
-    </div>
-    <div class="card w" style="border-color:#D2E3FC">
-      <h4>2-yo'l · To'g'ridan-to'g'ri</h4>
-      <small>Brauzerga <code>notebooklm.google.com</code> deb yozing.
-        Bu — Notebook'ning to'liq oynasi, ish uchun qulayroq.</small>
+  <div class="card w" style="border-color:#D2E3FC;background:#F8FBFF;margin-bottom:13px">
+    <div style="font-size:12.5px;color:var(--ink2);line-height:1.65">
+      Tasavvur qiling: qo'lingizda <b>12 ta YouTube dars</b>, <b>3 ta PDF kitob</b> va
+      <b>5 ta maqola</b> bor. Hammasini o'qishga vaqt yo'q.<br>
+      Siz ularni bitta joyga tashlaysiz. Notebook 1 daqiqada hammasini o'qib chiqadi.
+      Endi undan <b>istalgan narsani so'rashingiz mumkin</b> — va u
+      «bu javobni <b>4-manbaning 12-betidan</b> oldim» deb ko'rsatib beradi.
     </div>
   </div>
 
-  <div class="shot nbp tight" style="margin-bottom:12px">
-    <div class="cap">notebooklm.google.com — bosh sahifa (bloknotlar ro'yxati)</div>
-    <div class="ui" style="height:224px;background:#F7F9FC">
-      <div class="nbk">
-        <div class="hd">
-          <svg width="15" height="15" viewBox="0 0 24 24"><defs><linearGradient id="hg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1A73E8"/><stop offset="100%" stop-color="#0F9D8B"/></linearGradient></defs>
-            <rect x="2.5" y="2" width="19" height="20" rx="4" fill="url(#hg1)"/><rect x="5.4" y="2" width="2.1" height="20" fill="#fff" opacity=".55"/>
-            <rect x="9.4" y="6.6" width="8.6" height="1.9" rx=".95" fill="#fff"/><rect x="9.4" y="10.6" width="8.6" height="1.9" rx=".95" fill="#fff" opacity=".8"/></svg>
-          <div class="ttl">Gemini Notebook</div>
-          <div style="margin-left:auto" class="anchor">
-            <span style="font-size:10px;color:#5F6368">⚙</span>
-            <span class="pin r" style="right:-38px">4</span>
-          </div>
-          <div class="av" style="width:19px;height:19px;border-radius:50%;background:linear-gradient(135deg,#9B72CB,#4285F4);color:#fff;font:800 9px/19px Inter;text-align:center">R</div>
-        </div>
-        <div style="padding:12px 14px">
-          <div class="row" style="justify-content:space-between;margin-bottom:10px">
-            <div class="anchor" style="background:#0B57D0;color:#fff;border-radius:18px;padding:6px 15px;font-size:10.5px;font-weight:600">＋ Yangi
-              <span class="pin r" style="right:-40px">1</span></div>
-            <div class="row" style="gap:7px">
-              <span class="anchor" style="border:1px solid #DADCE0;border-radius:14px;padding:3px 10px;font-size:9.5px;background:#fff">🔎 Qidirish
-                <span class="pin t" style="top:-30px">2</span></span>
-              <span style="border:1px solid #DADCE0;border-radius:14px;padding:3px 10px;font-size:9.5px;background:#fff">▦ Ko'rinish</span>
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px">
-            <div class="anchor" style="border:1px solid #E5E8EC;border-radius:10px;padding:10px 11px;background:#fff;height:82px">
-              <div style="font-size:15px">📗</div>
-              <div style="font-weight:700;font-size:10.5px;margin-top:6px">Kurs materiallari</div>
-              <div style="font-size:9px;color:#5F6368;margin-top:3px">12 manba · 2-avgust</div>
-              <span class="pin b" style="bottom:-30px">3</span>
-            </div>
-            <div style="border:1px solid #E5E8EC;border-radius:10px;padding:10px 11px;background:#fff;height:82px">
-              <div style="font-size:15px">📘</div>
-              <div style="font-weight:700;font-size:10.5px;margin-top:6px">Marketing 2026</div>
-              <div style="font-size:9px;color:#5F6368;margin-top:3px">7 manba · 28-iyul</div>
-            </div>
-            <div style="border:1px dashed #C6CDD8;border-radius:10px;height:82px;display:flex;align-items:center;justify-content:center;color:#8E9199;font-size:10px">＋ Yangi bloknot</div>
-          </div>
-        </div>
+  <h3>Qanday ishlaydi — 3 qadam</h3>
+  <div class="flow f3" style="margin:9px 0 14px">
+    <div class="fbox nb">
+      <div class="fh"><i>1</i> SIZ BERASIZ</div>
+      <div class="fb">Fayllaringizni yuklaysiz.</div>
+      <div class="pic" style="display:flex;flex-direction:column;gap:4px">
+        <div style="font-size:9px;background:#F7F9FC;border-radius:5px;padding:3px 6px">📄 AI marketing.pdf</div>
+        <div style="font-size:9px;background:#F7F9FC;border-radius:5px;padding:3px 6px">▶ YouTube dars</div>
+        <div style="font-size:9px;background:#F7F9FC;border-radius:5px;padding:3px 6px">🌐 spot.uz maqola</div>
+      </div>
+    </div>
+    <div class="ar">→</div>
+    <div class="fbox nb">
+      <div class="fh"><i>2</i> U O'QIYDI</div>
+      <div class="fb">Hammasini boshdan-oxir o'qib chiqadi va eslab qoladi.</div>
+      <div class="pic" style="text-align:center;padding:14px">
+        <span style="font-size:20px">📖</span>
+        <div style="font-size:8.6px;color:var(--mut);margin-top:3px">~1 daqiqa</div>
+      </div>
+    </div>
+    <div class="ar">→</div>
+    <div class="fbox nb">
+      <div class="fh"><i>3</i> SIZ OLASIZ</div>
+      <div class="fb">Javob, konspekt, podkast, test — nimani so'rasangiz.</div>
+      <div class="pic" style="display:flex;flex-wrap:wrap;gap:3px">
+        <span style="font-size:8.6px;border:1px solid #D2E3FC;border-radius:9px;padding:2px 6px;color:#174EA6">javob</span>
+        <span style="font-size:8.6px;border:1px solid #D2E3FC;border-radius:9px;padding:2px 6px;color:#174EA6">konspekt</span>
+        <span style="font-size:8.6px;border:1px solid #D2E3FC;border-radius:9px;padding:2px 6px;color:#174EA6">podkast</span>
+        <span style="font-size:8.6px;border:1px solid #D2E3FC;border-radius:9px;padding:2px 6px;color:#174EA6">test</span>
       </div>
     </div>
   </div>
 
-  <div class="leg nb" style="margin-bottom:13px">
-    <div><i>1</i><span><b>＋ Yangi</b> — yangi bloknot ochish. Har bir mavzuga <b>alohida</b> bloknot qiling.</span></div>
-    <div><i>2</i><span><b>Qidirish</b> — bloknotlar orasidan nom bo'yicha topadi.</span></div>
-    <div><i>3</i><span><b>Bloknot kartasi.</b> Nomi, manbalar soni va sanasi. Bosib ichiga kirasiz.</span></div>
-    <div><i>4</i><span><b>⚙ Sozlamalar</b> — javob tili, uzunligi va tarif shu yerda.</span></div>
+  <h3>Eng muhim narsa — buni tushunib oling</h3>
+  <div class="grid g2" style="margin:8px 0 12px">
+    <div class="card w" style="border-color:#E0D7F5">
+      <h4 style="color:#7B4FC0">Gemini internetdan javob beradi</h4>
+      <small>U hamma narsani biladi, lekin ba'zan <b>o'zidan to'qiydi</b>.
+        Sizning faylingizni ko'rmagan bo'lsa ham «bilaman» deb javob berishi mumkin.</small></div>
+    <div class="card w" style="border-color:#D2E3FC">
+      <h4 style="color:var(--blue)">Notebook faqat sizning fayldan javob beradi</h4>
+      <small>Fayllarda javob bo'lmasa, u ochiq aytadi: <b>«manbalarda bu haqda ma'lumot yo'q»</b>.
+        Shuning uchun unga <b>ishonsa bo'ladi</b>.</small></div>
   </div>
 
-  <h3>Birinchi bloknotni yaratish — 4 qadam</h3>
-  <div class="steps" style="margin-top:9px">
-    <div class="step nb"><div class="n">1</div><div class="t"><b>«＋ Yangi» ni bosing</b><span>Darrov «Manba qo'shish» oynasi ochiladi.</span></div></div>
-    <div class="step nb"><div class="n">2</div><div class="t"><b>Birinchi manbani yuklang</b><span>Fayl tanlang, havola qo'ying yoki matn ko'chiring. Kamida <b>1 ta</b> manba bo'lishi shart.</span></div></div>
-    <div class="step nb"><div class="n">3</div><div class="t"><b>10–60 soniya kuting</b><span>Notebook manbani o'qib chiqadi. Katta PDF bo'lsa biroz uzoqroq.</span></div></div>
-    <div class="step nb"><div class="n">4</div><div class="t"><b>Bloknot nomini o'zgartiring</b><span>Yuqoridagi nom ustiga bosing va o'zingizga tushunarli nom yozing.</span></div></div>
+  <div class="chatbox" style="margin-bottom:12px">
+    <div class="bub u"><span class="who2">SIZ</span>Reels uchun eng muhim 3 qoida nima?</div>
+    <div class="bub a"><span class="who2">NOTEBOOK</span>
+      Manbalarga ko'ra: birinchi 3 soniyada diqqatni tortish
+      <span style="background:#E8F0FE;color:#0B57D0;border-radius:4px;padding:0 4px;font-size:9px;font-weight:700">2</span>,
+      videoni oxirigacha ko'rishga undash
+      <span style="background:#E8F0FE;color:#0B57D0;border-radius:4px;padding:0 4px;font-size:9px;font-weight:700">2</span>
+      va bitta aniq chaqiruv qo'yish
+      <span style="background:#E8F0FE;color:#0B57D0;border-radius:4px;padding:0 4px;font-size:9px;font-weight:700">4</span>.
+      <br><small style="color:var(--mut)">Ko'k raqamlar — manba raqami. Bosing va asl matnni ko'ring.</small></div>
   </div>
 
-  <div class="pf"><span>Bloknot yaratish</span><span>22</span></div>
+  <div class="ok">
+    <b>Kimga eng foydali.</b> <b>O'quvchi</b> — kurs materiallaridan konspekt va test yasaydi.
+    <b>Tadbirkor</b> — shartnoma va hisobotdan xulosa chiqaradi.
+    <b>SMM-mutaxassis</b> — 10 ta darsdan 30 ta post g'oyasi oladi.
+  </div>
+
+  <div class="pf"><span>Notebook nima</span><span>20</span></div>
 </div>
 
+<!-- =============================== 21. FIRST NOTEBOOK =============================== -->
+<div class="page">
+  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">21</div></div>
+  <div class="kicker nb">Boshlash</div>
+  <h2>Birinchi bloknot — 4 ta ekran</h2>
+  <p class="lead" style="margin-bottom:11px">Kirish manzili: <code>notebooklm.google.com</code>.
+    Yoki Gemini'ning chap panelidagi <b>«Bloknotlar»</b> bo'limidan. Ikkalasi bir joy.</p>
+
+  <!-- screen 1 -->
+  <div class="shot nbp tight" style="margin-bottom:8px;padding:20px 40px">
+    <div class="cap">1-ekran · bosh sahifa</div>
+    <div class="ui" style="height:118px;background:#fff;padding:12px 15px">
+      <div class="row" style="justify-content:space-between;margin-bottom:9px">
+        <div class="anchor" style="background:#0B57D0;color:#fff;border-radius:16px;padding:5px 14px;font-size:10px;font-weight:600">＋ Yangi
+          <span class="pin r" style="right:-38px">1</span></div>
+        <span style="border:1px solid #DADCE0;border-radius:13px;padding:3px 9px;font-size:9px">🔎 Qidirish</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+        <div style="border:1px solid #E5E8EC;border-radius:9px;padding:8px 9px;height:58px">
+          <div style="font-size:13px">📗</div><div style="font-weight:700;font-size:9.5px;margin-top:4px">Kurs materiallari</div>
+          <div style="font-size:8.3px;color:#5F6368">12 manba</div></div>
+        <div style="border:1px solid #E5E8EC;border-radius:9px;padding:8px 9px;height:58px">
+          <div style="font-size:13px">📘</div><div style="font-weight:700;font-size:9.5px;margin-top:4px">Marketing 2026</div>
+          <div style="font-size:8.3px;color:#5F6368">7 manba</div></div>
+        <div style="border:1px dashed #C6CDD8;border-radius:9px;height:58px;display:flex;align-items:center;justify-content:center;color:#8E9199;font-size:9px">bo'sh</div>
+      </div>
+    </div>
+  </div>
+  <div class="leg nb" style="grid-template-columns:1fr;margin:0 0 9px"><div><i>1</i>
+    <span><b>＋ Yangi</b> ni bosing. Har bir mavzuga <b>alohida</b> bloknot oching — aralashtirmang.</span></div></div>
+
+  <!-- screen 2 -->
+  <div class="shot nbp tight" style="margin-bottom:8px;padding:20px 40px">
+    <div class="cap">2-ekran · birinchi manbani yuklash</div>
+    <div class="ui" style="height:132px;background:#fff;padding:12px 15px">
+      <div style="font-family:Manrope;font-weight:800;font-size:11.5px;margin-bottom:8px">Manba qo'shish</div>
+      <div class="anchor" style="border:1.4px dashed #C6CDD8;border-radius:9px;padding:12px;text-align:center;background:#FBFCFE;margin-bottom:8px">
+        <div style="font-size:14px">⤒</div>
+        <div style="font-size:9.5px;font-weight:700;margin-top:3px">Fayllarni bu yerga tashlang</div>
+        <span class="pin r" style="right:-38px">2</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+        <div style="border:1px solid #E5E8EC;border-radius:7px;padding:5px;text-align:center;font-size:8.4px;font-weight:600">▲ Drive</div>
+        <div style="border:1px solid #E5E8EC;border-radius:7px;padding:5px;text-align:center;font-size:8.4px;font-weight:600">🔗 Sayt</div>
+        <div class="anchor" style="border:1px solid #E5E8EC;border-radius:7px;padding:5px;text-align:center;font-size:8.4px;font-weight:600">▶ YouTube
+          <span class="pin b" style="bottom:-26px">3</span></div>
+        <div style="border:1px solid #E5E8EC;border-radius:7px;padding:5px;text-align:center;font-size:8.4px;font-weight:600">📋 Matn</div>
+      </div>
+    </div>
+  </div>
+  <div class="leg nb" style="margin:0 0 9px">
+    <div><i>2</i><span>Faylni <b>sudrab tashlang</b> yoki bosib kompyuterdan tanlang.</span></div>
+    <div><i>3</i><span>Yoki manba turini tanlang: Drive, sayt havolasi, YouTube, matn.</span></div>
+  </div>
+
+  <!-- screens 3-4 -->
+  <div class="flow f3" style="margin-bottom:11px">
+    <div class="fbox nb"><div class="fh"><i>3</i> Kutasiz</div>
+      <div class="fb">Notebook manbani o'qiydi: <b>10–60 soniya</b>. Katta PDF biroz uzoqroq.</div></div>
+    <div class="ar">→</div>
+    <div class="fbox nb"><div class="fh"><i>4</i> Nom qo'yasiz</div>
+      <div class="fb">Yuqoridagi nom ustiga bosing va tushunarli nom yozing: «Kurs materiallari 2026».</div></div>
+    <div class="ar">→</div>
+    <div class="fbox nb"><div class="fh"><i>5</i> Ishlaysiz</div>
+      <div class="fb">Bloknot tayyor. Endi savol berasiz yoki Studiyadan format yasaysiz.</div></div>
+  </div>
+
+  <div class="note">
+    <b>Kamida 1 ta manba shart.</b> Manbasiz bloknot ishlamaydi — Notebook'ning butun ma'nosi
+    sizning fayllaringizda. Boshida bitta fayl bo'lsa ham yetadi, keyin qo'shib borasiz.
+  </div>
+
+  <div class="pf"><span>Birinchi bloknot</span><span>21</span></div>
+</div>
 <!-- =============================== 22. NOTEBOOK INTERFACE MAP =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">23</div></div>
-  <div class="kicker nb">16-bo'lim</div>
+  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">22</div></div>
+  <div class="kicker nb">Interfeys</div>
   <h2>Interfeys xaritasi — 3 ta panel</h2>
   <p class="lead" style="margin-bottom:12px">Notebook oynasi doim <b>3 ustundan</b> iborat:
     chapda <b>Manbalar</b>, o'rtada <b>Chat</b>, o'ngda <b>Studiya</b>. Shuni tushunsangiz — hammasi oson.</p>
@@ -1678,12 +1804,12 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
     </div>
   </div>
 
-  <div class="pf"><span>Notebook interfeysi</span><span>23</span></div>
+  <div class="pf"><span>Notebook interfeysi</span><span>22</span></div>
 </div>
 
 <!-- =============================== 23. NOTEBOOK LEGEND =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">24</div></div>
+  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">23</div></div>
   <h3 style="font-size:20px;margin-bottom:11px">Interfeys izohlari — 14 ta element</h3>
 
   <div class="leg nb" style="grid-template-columns:1fr;gap:7px;margin-top:0;margin-bottom:14px">
@@ -1697,9 +1823,9 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
     <div><i>8</i><span><b>Tavsiya etilgan savollar.</b> Nimadan boshlashni bilmasangiz — shulardan birini bosing.</span></div>
     <div><i>9</i><span><b>Savol maydoni.</b> Shu yerga yozasiz. Faqat manbalar bo'yicha javob beradi.</span></div>
     <div><i>10</i><span><b>Studiya paneli (o'ng).</b> Manbalardan tayyor mahsulot yasaydigan joy.</span></div>
-    <div><i>11</i><span><b>🎧 Audio sharh.</b> Podkast. 4 ta format bor: Chuqur suhbat, Qisqacha, Tanqid, Bahs (27-sahifa).</span></div>
+    <div><i>11</i><span><b>🎧 Audio sharh.</b> Podkast. 4 ta format bor: Chuqur suhbat, Qisqacha, Tanqid, Bahs.</span></div>
     <div><i>12</i><span><b>🎬 Video sharh.</b> Slaydli qisqa video — ko'rish orqali o'rganadiganlar uchun.</span></div>
-    <div><i>13</i><span><b>Boshqa formatlar.</b> Mind map, kartochka, test, hisobot, infografika, slaydlar (28-sahifa).</span></div>
+    <div><i>13</i><span><b>Boshqa formatlar.</b> Mind map, kartochka, test, hisobot, infografika, slaydlar.</span></div>
     <div><i>14</i><span><b>Eslatmalar.</b> Yoqqan javobni saqlab qo'yasiz. Saqlangan eslatma <b>yangi manbaga</b> ham aylanishi mumkin.</span></div>
   </div>
 
@@ -1711,90 +1837,87 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
       Ehtiyot bo'ling: o'chirilgan manbaga tayangan eski javoblar endi tekshirilmaydi.</div>
   </div>
 
-  <div class="pf"><span>Interfeys izohlari</span><span>24</span></div>
+  <div class="pf"><span>Interfeys izohlari</span><span>23</span></div>
 </div>
 
 <!-- =============================== 24. SOURCES =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">25</div></div>
-  <div class="kicker nb">17-bo'lim</div>
-  <h2>Manbalar: nimani yuklash mumkin</h2>
-  <p class="lead" style="margin-bottom:12px">Manba — bu Notebook o'qiydigan material. Qanchalik yaxshi manba bersangiz,
-    javob shunchalik aniq bo'ladi.</p>
+  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">24</div></div>
+  <div class="kicker nb">Manbalar</div>
+  <h2>Nimani yuklash mumkin</h2>
+  <p class="lead" style="margin-bottom:11px">Manba — Notebook o'qiydigan material. 5 xil yo'l bilan qo'shiladi.
+    Har birini alohida ko'rsatamiz.</p>
 
-  <div class="shot nbp tight" style="margin-bottom:12px">
-    <div class="cap">«Manba qo'shish» oynasi</div>
-    <div class="ui" style="height:216px;background:#fff;padding:14px 18px">
-      <div style="font-family:Manrope;font-weight:800;font-size:13px;margin-bottom:3px">Manba qo'shish</div>
-      <div style="font-size:9.5px;color:#5F6368;margin-bottom:10px">Notebook javoblari faqat shu manbalarga asoslanadi</div>
-      <div class="anchor" style="border:1.5px dashed #C6CDD8;border-radius:10px;padding:16px;text-align:center;background:#FBFCFE;margin-bottom:10px">
-        <div style="font-size:16px">⤒</div>
-        <div style="font-size:10.5px;font-weight:700;margin-top:4px">Fayllarni bu yerga tashlang</div>
-        <div style="font-size:9px;color:#5F6368;margin-top:2px">yoki <span style="color:#0B57D0;font-weight:600">kompyuterdan tanlang</span></div>
-        <span class="pin r" style="right:-40px">1</span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px">
-        <div class="anchor" style="border:1px solid #E5E8EC;border-radius:9px;padding:8px;text-align:center;font-size:9px;font-weight:600">▲<br>Google Drive
-          <span class="pin b" style="bottom:-28px">2</span></div>
-        <div class="anchor" style="border:1px solid #E5E8EC;border-radius:9px;padding:8px;text-align:center;font-size:9px;font-weight:600">🔗<br>Sayt havolasi
-          <span class="pin b" style="bottom:-28px">3</span></div>
-        <div class="anchor" style="border:1px solid #E5E8EC;border-radius:9px;padding:8px;text-align:center;font-size:9px;font-weight:600">▶<br>YouTube
-          <span class="pin b" style="bottom:-28px">4</span></div>
-        <div class="anchor" style="border:1px solid #E5E8EC;border-radius:9px;padding:8px;text-align:center;font-size:9px;font-weight:600">📋<br>Matn ko'chirish
-          <span class="pin b" style="bottom:-28px">5</span></div>
-      </div>
-    </div>
+  <div class="grid g2" style="gap:8px;margin-bottom:11px">
+    <div class="card w" style="padding:11px 13px">
+      <h4>📄 Fayl — kompyuterdan</h4>
+      <small><b>Bo'ladi:</b> PDF, Word (.docx), matn (.txt), prezentatsiya, audio fayl.<br>
+        <b>Qanday:</b> ＋ Qo'shish → faylni sudrab tashlang yoki tanlang.<br>
+        <b>Misol:</b> kitob, shartnoma, ma'ruza konspekti.</small></div>
+    <div class="card w" style="padding:11px 13px">
+      <h4>▲ Google Drive</h4>
+      <small><b>Bo'ladi:</b> Google Docs, Slides, Sheets.<br>
+        <b>Qanday:</b> ＋ Qo'shish → Google Drive → faylni tanlang.<br>
+        <b>Foydasi:</b> yuklab olish shart emas, to'g'ridan-to'g'ri ulanadi.</small></div>
+    <div class="card w" style="padding:11px 13px">
+      <h4>🔗 Sayt havolasi</h4>
+      <small><b>Bo'ladi:</b> ochiq maqola, blog, yangilik sahifasi.<br>
+        <b>Qanday:</b> ＋ Qo'shish → Sayt havolasi → manzilni qo'ying.<br>
+        <b>Ishlamaydi:</b> parol yoki login talab qiladigan saytlar.</small></div>
+    <div class="card w" style="padding:11px 13px">
+      <h4>▶ YouTube video</h4>
+      <small><b>Bo'ladi:</b> ochiq video (subtitri bor).<br>
+        <b>Qanday:</b> ＋ Qo'shish → YouTube → havolani qo'ying.<br>
+        <b>Muhim:</b> Notebook videoni <b>ko'rmaydi</b> — subtitr matnini o'qiydi.</small></div>
+    <div class="card w" style="padding:11px 13px;grid-column:1/-1">
+      <h4>📋 Matn ko'chirish</h4>
+      <small><b>Bo'ladi:</b> istalgan matn — Telegram yozishmasi, xat, o'z eslatmangiz, boshqa joydan ko'chirilgan parcha.
+        <b>Qanday:</b> ＋ Qo'shish → Matn ko'chirish → matnni tashlang. Bu — <b>eng ishonchli</b> usul:
+        sayt yoki video import bo'lmasa, matnini shu yerga qo'ying.</small></div>
   </div>
 
-  <div class="leg nb" style="margin-bottom:12px">
-    <div><i>1</i><span><b>Fayl.</b> PDF, Word (.docx), matn (.txt), Markdown, prezentatsiya, audio fayl.</span></div>
-    <div><i>2</i><span><b>Google Drive.</b> Docs, Slides va Sheets fayllarini to'g'ridan-to'g'ri ulaysiz.</span></div>
-    <div><i>3</i><span><b>Sayt havolasi.</b> Maqola manzilini qo'yasiz — matnini o'zi oladi.</span></div>
-    <div><i>4</i><span><b>YouTube.</b> Video havolasi. Notebook <b>subtitrlarni</b> o'qiydi (3-qismga qarang).</span></div>
-    <div><i>5</i><span><b>Matn ko'chirish.</b> Istalgan matnni ko'chirib tashlaysiz — Telegram yozishmasi ham bo'ladi.</span></div>
-    <div><i>—</i><span>Bir vaqtning o'zida <b>bir nechta</b> fayl yuklash mumkin.</span></div>
-  </div>
-
-  <h3>Limitlar</h3>
-  <div class="tbl" style="margin:8px 0 12px">
+  <h3>Limitlar — sodda qilib</h3>
+  <div class="tbl" style="margin:8px 0 11px">
     <table>
-      <tr><th style="width:26%">Nima</th><th style="width:24%">Bepul</th><th style="width:24%">Pullik (Pro)</th><th>Izoh</th></tr>
-      <tr><td>Bitta bloknotdagi manba</td><td><b>50 ta</b></td><td><b>300 ta</b> gacha</td><td>AI Plus — ~100 ta</td></tr>
-      <tr><td>Bitta manba hajmi</td><td colspan="2"><b>~500 000 so'z</b> yoki <b>200 MB</b></td><td>Qaysi biri oldin tugasa</td></tr>
-      <tr><td>Bloknotlar soni</td><td>~100 ta</td><td>Ancha ko'p</td><td>Kundalik ish uchun yetadi</td></tr>
+      <tr><th style="width:30%">Nima</th><th style="width:22%">Bepul</th><th style="width:22%">Pullik</th><th>Izoh</th></tr>
+      <tr><td>Bitta bloknotdagi manba</td><td><b>50 ta</b></td><td><b>300 ta</b> gacha</td><td>Chapdagi «5 / 50» yozuvi shuni ko'rsatadi</td></tr>
+      <tr><td>Bitta manba hajmi</td><td colspan="2"><b>~500 000 so'z</b> (juda katta)</td><td>Oddiy kitob ~100 000 so'z</td></tr>
       <tr><td>Audio sharh (kuniga)</td><td>~3 ta</td><td>~20 ta</td><td>Ertasiga tiklanadi</td></tr>
     </table>
   </div>
-  <p class="mut" style="font-size:10.5px;margin-top:-4px;margin-bottom:12px">Raqamlar o'zgarishi mumkin — aniq holatni
-    manbalar paneli ostidagi hisobda (<b>«5 / 50»</b>) ko'rasiz.</p>
 
-  <div class="grid g2" style="margin-bottom:12px">
-    <div class="warn"><b>Nima ishlamaydi.</b> Skanerlangan (rasm ko'rinishidagi) PDF — matni bo'lmasa o'qiy olmaydi.
-      Parol bilan yopilgan fayl. Yopiq (login talab qiladigan) saytlar. Subtitrsiz YouTube video.</div>
-    <div class="ok"><b>Sifat qoidasi.</b> 5 ta <b>kerakli</b> manba 50 ta tasodifiy manbadan yaxshiroq.
-      Mavzuga aloqasi yo'q faylni qo'shmang — javoblar loyqalashadi.</div>
+  <div class="grid g2" style="margin-bottom:11px">
+    <div class="warn"><b>Nima ishlamaydi</b><br>
+      · Skanerlangan PDF (rasm ko'rinishidagi, matni yo'q)<br>
+      · Parol bilan yopilgan fayl<br>
+      · Login talab qiladigan sayt<br>
+      · Subtitri yo'q YouTube video</div>
+    <div class="ok"><b>Sifat qoidasi</b><br>
+      5 ta <b>kerakli</b> manba 50 ta tasodifiy manbadan yaxshiroq.
+      Mavzuga aloqasi yo'q faylni qo'shmang — javoblar loyqalashadi va aniqlik yo'qoladi.</div>
   </div>
 
   <div class="tipbar">
     <div class="ic">✦</div>
-    <div><b>«🔎 Kashf etish» (Discover) — vaqtni tejaydi.</b> Manba qidirib yurmang: shu tugmani bosib,
-      mavzuni yozing (masalan «Instagram Reels algoritmi 2026»). Notebook internetdan manbalarni topib,
-      ro'yxat qilib beradi — kerakligini belgilab, «Import» ni bosasiz.</div>
+    <div><b>Manba qidirib yurmang — «🔎 Kashf etish» bor.</b> Shu tugmani bosib mavzuni yozing
+      (masalan «Instagram Reels algoritmi 2026»). Notebook internetdan mos manbalarni <b>o'zi topib</b>
+      ro'yxat qilib beradi — keraklisini belgilab, «Import» ni bosasiz.</div>
   </div>
 
-  <div class="pf"><span>Manbalar va limitlar</span><span>25</span></div>
+  <div class="pf"><span>Manbalar</span><span>24</span></div>
 </div>
-
-<!-- =============================== 25. CHAT + CITATIONS + LANGUAGE =============================== -->
+<!-- =============================== 25. CHAT + CITATIONS =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">26</div></div>
-  <div class="kicker nb">18-bo'lim</div>
-  <h2>Chat, iqtiboslar va til</h2>
+  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">25</div></div>
+  <div class="kicker nb">Savol berish</div>
+  <h2>Savol berish va javobni tekshirish</h2>
+  <p class="lead" style="margin-bottom:11px">Notebook'ning eng qimmatli tomoni — <b>har bir javobni tekshirib
+    ko'rsangiz bo'ladi</b>. Buni qanday qilish quyida.</p>
 
-  <div class="shot nbp tight" style="margin-bottom:12px">
-    <div class="cap">Javob va iqtibos — asl matnni ochish</div>
-    <div class="ui" style="height:196px;background:#fff;display:flex">
-      <div style="flex:1;padding:13px 15px;min-width:0">
+  <div class="shot nbp tight" style="margin-bottom:10px">
+    <div class="cap">Javob va iqtibos</div>
+    <div class="ui" style="height:186px;background:#fff;display:flex">
+      <div style="flex:1;padding:12px 14px;min-width:0">
         <div style="font-size:9.5px;font-weight:700;color:#5F6368;margin-bottom:5px">Savol: Reels uchun eng muhim 3 qoida nima?</div>
         <div style="font-size:10px;line-height:1.65;color:#202124">
           Manbalarga ko'ra eng muhim uch qoida: birinchi 3 soniyada diqqatni tortish
@@ -1803,69 +1926,68 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
           <span style="background:#E8F0FE;color:#0B57D0;border-radius:4px;padding:0 4px;font-size:8.5px;font-weight:700">2</span>
           va bitta aniq chaqiruv qo'yish
           <span style="background:#E8F0FE;color:#0B57D0;border-radius:4px;padding:0 4px;font-size:8.5px;font-weight:700">4</span>.
-          <span class="pin b" style="bottom:-26px;left:38%">1</span>
+          <span class="pin b" style="bottom:-24px;left:34%">1</span>
         </div>
-        <div class="row anchor" style="gap:6px;margin-top:11px">
-          <span class="btn" style="font-size:9px">📌 Eslatmaga saqlash</span>
-          <span class="btn" style="font-size:9px">⧉ Nusxa</span>
-          <span class="btn" style="font-size:9px">👍</span>
-          <span class="pin b" style="bottom:-26px">2</span>
+        <div class="row anchor" style="gap:6px;margin-top:10px">
+          <span class="btn" style="font-size:9px;border:1px solid #DADCE0;border-radius:14px;padding:4px 9px;color:#0B57D0;font-weight:600">📌 Eslatmaga saqlash</span>
+          <span class="btn" style="font-size:9px;border:1px solid #DADCE0;border-radius:14px;padding:4px 9px;color:#0B57D0;font-weight:600">⧉ Nusxa</span>
+          <span class="pin b" style="bottom:-24px">2</span>
         </div>
       </div>
-      <div class="anchor" style="width:196px;flex:0 0 196px;border-left:1px solid #E5E8EC;background:#FBFCFE;padding:12px 12px">
+      <div class="anchor" style="width:190px;flex:0 0 190px;border-left:1px solid #E5E8EC;background:#FBFCFE;padding:12px">
         <div style="font-size:9.5px;font-weight:800;margin-bottom:6px">▶ YouTube: Reels strategiya</div>
-        <div style="font-size:9px;color:#5F6368;line-height:1.6;background:#FFF3C4;border-radius:5px;padding:5px 6px">
+        <div style="font-size:8.8px;color:#5F6368;line-height:1.6;background:#FFF3C4;border-radius:5px;padding:5px 6px">
           «…birinchi uch soniyada tomoshabinni ushlab qolmasangiz, qolgani ahamiyatsiz…»</div>
-        <div style="font-size:8.6px;color:#5F6368;margin-top:6px;line-height:1.6">Manba 2 · 04:12 daqiqa</div>
-        <span class="pin l" style="left:-40px;top:30px;margin-top:0">3</span>
+        <div style="font-size:8.4px;color:#5F6368;margin-top:6px">Manba 2 · 04:12 daqiqa</div>
+        <span class="pin l" style="left:-38px;top:28px;margin-top:0">3</span>
       </div>
     </div>
   </div>
 
-  <div class="leg nb" style="margin-bottom:13px">
-    <div><i>1</i><span><b>Ko'k raqamlar</b> — iqtiboslar. Har bir gap qaysi manbadan olinganini bildiradi.</span></div>
-    <div><i>2</i><span><b>Javob ostidagi tugmalar.</b> «📌 Eslatmaga saqlash» eng foydalisi.</span></div>
-    <div><i>3</i><span><b>Raqamni bossangiz</b> — o'ngda asl matn ochiladi va kerakli joy sariq bilan belgilanadi.</span></div>
-    <div><i>—</i><span>Video manbada <b>daqiqa</b> ham ko'rsatiladi — to'g'ridan-to'g'ri o'sha joyga o'tasiz.</span></div>
+  <div class="leg nb" style="margin-bottom:12px">
+    <div><i>1</i><span><b>Ko'k raqamlar</b> — bu iqtibos. Har bir gap qaysi manbadan olinganini bildiradi.</span></div>
+    <div><i>2</i><span><b>📌 Eslatmaga saqlash</b> — yoqqan javobni yo'qotmaslik uchun.</span></div>
+    <div><i>3</i><span><b>Raqamni bosing</b> — o'ngda asl matn ochiladi, kerakli joy <b>sariq</b> bilan belgilanadi.</span></div>
+    <div><i>—</i><span>Video manbada <b>daqiqa</b> ham ko'rsatiladi — o'sha joyga to'g'ridan-to'g'ri o'tasiz.</span></div>
   </div>
 
-  <h3>Javob tilini o'zbekchaga qo'yish — 2 yo'l</h3>
-  <div class="grid g2" style="margin:9px 0 13px">
-    <div class="card w"><h4>1-yo'l · Sozlamalardan (doimiy)</h4>
-      <small>O'ng yuqoridagi <b>⚙</b> → <b>Chiqish tili (Output language)</b> → <b>O'zbek</b> ni tanlang.
-        Endi barcha javoblar, konspektlar va Audio sharh <b>o'zbekcha</b> chiqadi.</small></div>
-    <div class="card w"><h4>2-yo'l · Savolda (bir martalik)</h4>
-      <small>Savol oxiriga qo'shib qo'ying: <code>Javobni o'zbek tilida yoz.</code>
-        Manba ingliz yoki rus tilida bo'lsa ham, javob o'zbekcha bo'ladi.</small></div>
+  <h3>Javob o'zbekcha bo'lishi uchun</h3>
+  <div class="grid g2" style="margin:8px 0 12px">
+    <div class="card w"><h4>Doimiy — sozlamalardan</h4>
+      <small>O'ng yuqoridagi <b>⚙</b> → <b>Chiqish tili (Output language)</b> → <b>O'zbek</b>.<br>
+        Endi barcha javoblar, konspektlar va <b>Audio sharh</b> ham o'zbekcha bo'ladi.</small></div>
+    <div class="card w"><h4>Bir martalik — savolda</h4>
+      <small>Savol oxiriga qo'shing: <code>Javobni o'zbek tilida yoz.</code><br>
+        Manba ingliz yoki rus tilida bo'lsa ham, javob o'zbekcha chiqadi.</small></div>
   </div>
 
-  <h3>Notebook'ga beriladigan eng foydali 8 ta savol</h3>
+  <h3>Nimani so'rash mumkin — 8 ta tayyor savol</h3>
   <div class="tbl" style="margin-top:8px">
     <table>
-      <tr><th style="width:30%">Maqsad</th><th>Savol</th></tr>
+      <tr><th style="width:28%">Maqsad</th><th>Savol</th></tr>
       <tr><td>Umumiy tushunish</td><td>«Bu manbalarning asosiy g'oyasi nima? 5 ta band qilib yoz.»</td></tr>
       <tr><td>Konspekt</td><td>«Barcha manbalardan bitta konspekt tuz. Sarlavhalar bilan, o'zbekcha.»</td></tr>
-      <tr><td>Amaliy qadamlar</td><td>«Shu materialdan kelib chiqib, men ertadan boshlaydigan 7 ta aniq qadam yoz.»</td></tr>
+      <tr><td>Amaliy qadamlar</td><td>«Shu materialdan kelib chiqib, ertadan boshlaydigan 7 ta aniq qadam yoz.»</td></tr>
       <tr><td>Taqqoslash</td><td>«1 va 3-manba bir-biriga zid joylari bormi? Jadval qilib ko'rsat.»</td></tr>
       <tr><td>Raqamlar</td><td>«Manbalardagi barcha raqam va statistikani ro'yxat qilib chiqar.»</td></tr>
-      <tr><td>Kontent</td><td>«Shu materialdan 15 ta Instagram post g'oyasi chiqar. Har biriga sarlavha.»</td></tr>
+      <tr><td>Kontent</td><td>«Shu materialdan 15 ta Instagram post g'oyasi chiqar.»</td></tr>
       <tr><td>Bo'shliq</td><td>«Bu manbalarda javob berilmagan muhim savollar qaysilar?»</td></tr>
       <tr><td>Imtihon</td><td>«Shu mavzu bo'yicha 10 ta savol tuz va javoblarini alohida yoz.»</td></tr>
     </table>
   </div>
 
-  <div class="note" style="margin-top:12px">
-    <b>«Manbalarda bu haqda ma'lumot yo'q» degan javob.</b> Bu — xato emas, <b>ishlayotganining belgisi</b>.
-    Notebook o'zidan to'qimaydi. Javob kerak bo'lsa — mavzuga oid yangi manba qo'shing.
+  <div class="note" style="margin-top:11px">
+    <b>«Manbalarda bu haqda ma'lumot yo'q» degan javob — bu xato emas.</b>
+    Aksincha, to'g'ri ishlayotganining belgisi: Notebook o'zidan to'qimaydi.
+    Javob kerak bo'lsa — mavzuga oid <b>yangi manba qo'shing</b>.
   </div>
 
-  <div class="pf"><span>Chat va iqtiboslar</span><span>26</span></div>
+  <div class="pf"><span>Savol berish</span><span>25</span></div>
 </div>
-
 <!-- =============================== 26. AUDIO OVERVIEW =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">27</div></div>
-  <div class="kicker nb">19-bo'lim</div>
+  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">26</div></div>
+  <div class="kicker nb">Studiya</div>
   <h2>Studiya: Audio sharh (podkast)</h2>
   <p class="lead" style="margin-bottom:12px">Bu — Notebook'ning eng mashhur imkoniyati. Ikki «boshlovchi» sizning
     materialingizni <b>jonli suhbat</b> ko'rinishida muhokama qiladi. Natija — 5–25 daqiqalik audio,
@@ -1932,68 +2054,116 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
       ⚙ Sozlamalardan tilni belgilang yoki sozlash maydoniga yozing. Ovoz sifati ingliz tilida hozircha eng yaxshi.</div>
   </div>
 
-  <div class="pf"><span>Audio sharh</span><span>27</span></div>
+  <div class="pf"><span>Audio sharh</span><span>26</span></div>
 </div>
 
 <!-- =============================== 27. OTHER STUDIO FORMATS =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">28</div></div>
-  <div class="kicker nb">20-bo'lim</div>
-  <h2>Studiyaning boshqa formatlari</h2>
-  <p class="lead" style="margin-bottom:12px">Bitta manba to'plamidan <b>7 xil</b> mahsulot olish mumkin.
-    Har biri bir bosishda yasaladi va yuklab olinadi.</p>
+  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">27</div></div>
+  <div class="kicker nb">Studiya</div>
+  <h2>Qolgan formatlar — ko'rib tanlang</h2>
+  <p class="lead" style="margin-bottom:12px">Bitta manba to'plamidan <b>6 xil</b> mahsulot chiqadi.
+    Har biri bir bosishda yasaladi. Quyida <b>qanday ko'rinishini</b> ko'rsatamiz —
+    shunda qaysi biri kerakligini darrov tushunasiz.</p>
 
-  <div class="grid g2" style="margin-bottom:12px">
-    <div class="card w"><h4>🎬 Video sharh</h4>
-      <small>Slaydlar + ovozli tushuntirish. Ko'rib o'rganadiganlar uchun. Dars, taqdimot yoki
-        ijtimoiy tarmoq uchun material sifatida ishlatiladi.</small></div>
-    <div class="card w"><h4>🧠 Mind map (fikr xaritasi)</h4>
-      <small>Mavzu shoxlarga bo'linadi. Bosib ochasiz, ichida yana shoxlar. Katta mavzuning
-        <b>tuzilishini</b> 30 soniyada tushunish uchun eng tez yo'l.</small></div>
-    <div class="card w"><h4>🗂 Kartochkalar (Flashcards)</h4>
-      <small>Old tomonda savol, orqa tomonda javob. Yodlash uchun. Imtihonga tayyorgarlikda ajoyib ishlaydi.</small></div>
-    <div class="card w"><h4>❓ Test (Quiz)</h4>
-      <small>Variantli savollar. O'zingizni tekshirasiz, xatolarni ko'rsatadi va tushuntiradi.</small></div>
-    <div class="card w"><h4>📑 Hisobot (Report)</h4>
-      <small>Yozma konspekt: o'quv qo'llanma, brifing, xronologiya yoki savol-javob ro'yxati.
-        Google Docs'ga chiqarish mumkin.</small></div>
-    <div class="card w"><h4>📊 Infografika · 🖼 Slaydlar</h4>
-      <small>Bir sahifalik vizual xulosa yoki tayyor taqdimot slaydlari.
-        Uchrashuvga tez tayyorgarlik ko'rish uchun.</small></div>
+  <div class="grid g2" style="gap:9px;margin-bottom:11px">
+
+    <div class="demo">
+      <div class="dt">🧠 Mind map — fikr xaritasi</div>
+      <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
+        <span class="mapnode" style="background:#D2E3FC;font-weight:700">Reels strategiya</span>
+        <span class="mapline"></span>
+      </div>
+      <div style="padding-left:14px;display:flex;flex-direction:column;gap:3px">
+        <div style="display:flex;align-items:center;gap:5px"><span style="color:#C9D7EE">└</span><span class="mapnode">Hook (3 soniya)</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><span style="color:#C9D7EE">└</span><span class="mapnode">Ushlab turish</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><span style="color:#C9D7EE">└</span><span class="mapnode">Chaqiruv</span></div>
+      </div>
+      <small style="display:block;margin-top:7px;font-size:10px;color:var(--ink2)">
+        Mavzu shoxlarga bo'linadi, ustiga bossangiz ichi ochiladi.
+        <b>Qachon:</b> katta mavzuning tuzilishini 30 soniyada tushunish uchun.</small>
+    </div>
+
+    <div class="demo">
+      <div class="dt">🗂 Kartochkalar — yodlash uchun</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+        <div class="fcard"><b>OLD TOMON</b>Hook nima?</div>
+        <div class="fcard" style="background:#F3FBF5;border-color:#B7E1C4"><b>ORQA TOMON</b>Videoning birinchi 3 soniyasi — diqqatni tortadigan gap</div>
+      </div>
+      <small style="display:block;margin-top:7px;font-size:10px;color:var(--ink2)">
+        Savol → javob kartochkalari. Bosib aylantirasiz.
+        <b>Qachon:</b> imtihon yoki test oldidan yodlash uchun.</small>
+    </div>
+
+    <div class="demo">
+      <div class="dt">❓ Test — o'zini tekshirish</div>
+      <div style="font-size:9.5px;font-weight:700;margin-bottom:4px">Reels'da eng muhim qism qaysi?</div>
+      <div class="qrow"><span class="rd"></span> Videoning oxiri</div>
+      <div class="qrow"><span class="rd on"></span> Birinchi 3 soniya</div>
+      <div class="qrow"><span class="rd"></span> Musiqa tanlash</div>
+      <small style="display:block;margin-top:6px;font-size:10px;color:var(--ink2)">
+        Variantli savollar. Xato qilsangiz — nima uchun xato ekanini tushuntiradi.
+        <b>Qachon:</b> bilimni mustahkamlash uchun.</small>
+    </div>
+
+    <div class="demo">
+      <div class="dt">📑 Hisobot — yozma konspekt</div>
+      <div style="border:1px solid var(--line2);border-radius:7px;padding:7px 8px;background:#FBFCFE">
+        <div style="font-size:9.3px;font-weight:800;margin-bottom:4px">1. Asosiy g'oyalar</div>
+        <div style="height:4px;background:#EEF1F5;border-radius:2px;margin-bottom:3px;width:94%"></div>
+        <div style="height:4px;background:#EEF1F5;border-radius:2px;margin-bottom:5px;width:81%"></div>
+        <div style="font-size:9.3px;font-weight:800;margin-bottom:4px">2. Amaliy qadamlar</div>
+        <div style="height:4px;background:#EEF1F5;border-radius:2px;width:88%"></div>
+      </div>
+      <small style="display:block;margin-top:7px;font-size:10px;color:var(--ink2)">
+        O'quv qo'llanma, brifing yoki savol-javob ro'yxati. Google Docs'ga chiqariladi.
+        <b>Qachon:</b> rahbarga yoki jamoaga berish uchun.</small>
+    </div>
+
+    <div class="demo">
+      <div class="dt">📊 Infografika — bir sahifalik xulosa</div>
+      <div style="display:flex;align-items:flex-end;gap:5px;height:44px;padding:0 4px">
+        <div style="flex:1;height:60%;background:#D2E3FC;border-radius:3px 3px 0 0"></div>
+        <div style="flex:1;height:95%;background:#0B57D0;border-radius:3px 3px 0 0"></div>
+        <div style="flex:1;height:42%;background:#D2E3FC;border-radius:3px 3px 0 0"></div>
+        <div style="flex:1;height:70%;background:#D2E3FC;border-radius:3px 3px 0 0"></div>
+      </div>
+      <small style="display:block;margin-top:7px;font-size:10px;color:var(--ink2)">
+        Raqam va asosiy fikrlar rasm ko'rinishida.
+        <b>Qachon:</b> ijtimoiy tarmoqqa qo'yish yoki tez ko'rsatish uchun.</small>
+    </div>
+
+    <div class="demo">
+      <div class="dt">🖼 Slaydlar va 🎬 Video sharh</div>
+      <div style="display:flex;gap:5px">
+        <div style="flex:1;border:1px solid var(--line2);border-radius:6px;height:38px;background:#FBFCFE;display:flex;align-items:center;justify-content:center;font-size:8.4px;color:var(--mut)">1</div>
+        <div style="flex:1;border:1px solid var(--line2);border-radius:6px;height:38px;background:#FBFCFE;display:flex;align-items:center;justify-content:center;font-size:8.4px;color:var(--mut)">2</div>
+        <div style="flex:1;border:1px solid var(--line2);border-radius:6px;height:38px;background:#0B57D0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff">▶</div>
+      </div>
+      <small style="display:block;margin-top:7px;font-size:10px;color:var(--ink2)">
+        Tayyor taqdimot slaydlari yoki ovozli qisqa video.
+        <b>Qachon:</b> dars o'tish, jamoaga tushuntirish uchun.</small>
+    </div>
   </div>
 
-  <h3>Qaysi formatni qachon tanlash kerak</h3>
-  <div class="tbl" style="margin:8px 0 13px">
-    <table>
-      <tr><th style="width:44%">Vaziyat</th><th>Format</th></tr>
-      <tr><td>Yo'lda ketayotib o'rganmoqchiman</td><td><b>🎧 Audio sharh</b></td></tr>
-      <tr><td>Mavzuning umumiy tuzilishini ko'rmoqchiman</td><td><b>🧠 Mind map</b></td></tr>
-      <tr><td>Ertaga imtihon / test bor</td><td><b>🗂 Kartochka + ❓ Test</b></td></tr>
-      <tr><td>Rahbarga qisqa hisobot kerak</td><td><b>📑 Hisobot</b> yoki <b>📊 Infografika</b></td></tr>
-      <tr><td>Jamoaga tushuntirishim kerak</td><td><b>🎬 Video sharh</b> yoki <b>🖼 Slaydlar</b></td></tr>
-    </table>
-  </div>
-
-  <div class="tipbar" style="margin-bottom:12px">
+  <div class="tipbar" style="margin-bottom:10px">
     <div class="ic">✦</div>
-    <div><b>Faqat kerakli manbadan yasang.</b> Studiyada biror format yaratishdan oldin,
-      chap paneldagi <b>✓ katakchalar</b> bilan kerakli manbalarni belgilang, qolganini olib tashlang.
-      Shunda natija aniqroq va mavzuga mos bo'ladi.</div>
+    <div><b>Format yasashdan oldin manbalarni saralang.</b> Chap paneldagi <b>✓ katakchalar</b> bilan
+      faqat keraklisini belgilang, qolganini olib tashlang. Shunda natija ancha aniq bo'ladi —
+      50 ta manbadan yasalgan test tarqoq chiqadi.</div>
   </div>
 
   <div class="note">
-    <b>Yangi formatlar qo'shilib turadi.</b> Google Studiyaga muntazam yangi turlar qo'shmoqda
-    (masalan interaktiv ilova). Studiya panelini vaqti-vaqti bilan ko'zdan kechiring —
-    yangi tugma paydo bo'lgan bo'lishi mumkin.
+    <b>Yangi formatlar qo'shilib turadi.</b> Google Studiyaga muntazam yangi turlar qo'shmoqda.
+    Studiya panelini vaqti-vaqti bilan ko'zdan kechiring — yangi tugma paydo bo'lgan bo'lishi mumkin.
   </div>
 
-  <div class="pf"><span>Studiya formatlari</span><span>28</span></div>
+  <div class="pf"><span>Studiya formatlari</span><span>27</span></div>
 </div>
-
 <!-- =============================== 28. NOTES + SHARING =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">29</div></div>
-  <div class="kicker nb">21-bo'lim</div>
+  <div class="ph"><div class="who">2-QISM · GEMINI NOTEBOOK</div><div class="num">28</div></div>
+  <div class="kicker nb">Saqlash va ulashish</div>
   <h2>Eslatmalar va ulashish</h2>
 
   <h3 style="margin-top:4px">📌 Eslatmalar — javoblarni saqlash</h3>
@@ -2040,7 +2210,7 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
     yoki alohida bloknot yarating.
   </div>
 
-  <div class="pf"><span>Eslatmalar va ulashish</span><span>29</span></div>
+  <div class="pf"><span>Eslatmalar va ulashish</span><span>28</span></div>
 </div>
 
 <!-- =============================== 29. EXTENSIONS DIVIDER =============================== -->
@@ -2069,14 +2239,14 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
       <span>Chrome Web Store</span><span>YouTube to NotebookLM</span><span>NotebookLM Web Importer</span>
       <span>Panelga qadash</span><span>Xatolarni tuzatish</span>
     </div>
-    <div style="position:absolute;left:70px;bottom:70px;font-size:10.5px;color:#9AA1B0;font-weight:700;letter-spacing:.06em">SAHIFA 31 — 34</div>
+    <div style="position:absolute;left:70px;bottom:70px;font-size:10.5px;color:#9AA1B0;font-weight:700;letter-spacing:.06em">SAHIFA 30 — 33</div>
   </div>
 </div>
 
 <!-- =============================== 30. INSTALLING FROM WEB STORE =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">3-QISM · KENGAYTMALAR</div><div class="num">31</div></div>
-  <div class="kicker ex">22-bo'lim</div>
+  <div class="ph"><div class="who">3-QISM · KENGAYTMALAR</div><div class="num">30</div></div>
+  <div class="kicker ex">O'rnatish</div>
   <h2>Kengaytma nima va qanday o'rnatiladi</h2>
   <p class="lead" style="margin-bottom:11px"><b>Kengaytma (extension)</b> — brauzerga qo'shiladigan kichik dastur.
     U brauzerga yangi tugma qo'shadi. Bizga kerak bo'lgani: YouTube videosini yoki saytni
@@ -2141,13 +2311,13 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
     Ishlatmaydiganini o'chirib tashlang: <code>chrome://extensions</code>.
   </div>
 
-  <div class="pf"><span>Kengaytma o'rnatish</span><span>31</span></div>
+  <div class="pf"><span>Kengaytma o'rnatish</span><span>30</span></div>
 </div>
 
 <!-- =============================== 31. EXTENSION 1 =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">3-QISM · KENGAYTMALAR</div><div class="num">32</div></div>
-  <div class="kicker ex">23-bo'lim</div>
+  <div class="ph"><div class="who">3-QISM · KENGAYTMALAR</div><div class="num">31</div></div>
+  <div class="kicker ex">1-kengaytma</div>
   <div class="row" style="gap:11px;align-items:center;margin-bottom:4px">
     <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#FF0033,#1A73E8);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px">▶</div>
     <h2 style="margin:0">YouTube to NotebookLM</h2>
@@ -2213,13 +2383,13 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
     <b>«Transkript»</b> tugmasi bormi? Bo'lsa — ishlaydi.
   </div>
 
-  <div class="pf"><span>YouTube to NotebookLM</span><span>32</span></div>
+  <div class="pf"><span>YouTube to NotebookLM</span><span>31</span></div>
 </div>
 
 <!-- =============================== 32. EXTENSION 2 =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">3-QISM · KENGAYTMALAR</div><div class="num">33</div></div>
-  <div class="kicker ex">24-bo'lim</div>
+  <div class="ph"><div class="who">3-QISM · KENGAYTMALAR</div><div class="num">32</div></div>
+  <div class="kicker ex">2-kengaytma</div>
   <div class="row" style="gap:11px;align-items:center;margin-bottom:4px">
     <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#1A73E8,#0F9D8B);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px">⤓</div>
     <h2 style="margin:0">NotebookLM Web Importer</h2>
@@ -2285,13 +2455,13 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
     </table>
   </div>
 
-  <div class="pf"><span>NotebookLM Web Importer</span><span>33</span></div>
+  <div class="pf"><span>NotebookLM Web Importer</span><span>32</span></div>
 </div>
 
 <!-- =============================== 33. PIN + TROUBLESHOOT =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">3-QISM · KENGAYTMALAR</div><div class="num">34</div></div>
-  <div class="kicker ex">25-bo'lim</div>
+  <div class="ph"><div class="who">3-QISM · KENGAYTMALAR</div><div class="num">33</div></div>
+  <div class="kicker ex">Sozlash va xatolar</div>
   <h2>Panelga qadash va xatolar</h2>
 
   <h3 style="margin-top:4px">Kengaytmani ko'rinadigan qilish (pin)</h3>
@@ -2349,13 +2519,13 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
     qo'lda qo'ysangiz ham ishlaydi. Kengaytma faqat <b>vaqtni tejaydi</b> — majburiy emas.
   </div>
 
-  <div class="pf"><span>Qadash va xatolar</span><span>34</span></div>
+  <div class="pf"><span>Qadash va xatolar</span><span>33</span></div>
 </div>
 
 <!-- =============================== 34. PRACTICE =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">YAKUN</div><div class="num">35</div></div>
-  <div class="kicker">26-bo'lim</div>
+  <div class="ph"><div class="who">YAKUN</div><div class="num">34</div></div>
+  <div class="kicker">Amaliyot</div>
   <h2>Amaliy vazifa — 40 daqiqada</h2>
   <p class="lead" style="margin-bottom:13px">O'qish yetarli emas. Quyidagi 3 ta vazifani bajarsangiz,
     ikkala vositani ham haqiqatda ishlata olasiz.</p>
@@ -2366,7 +2536,7 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
       <li>Gemini'ni oching va <b>Yangi chat</b> ni bosing.</li>
       <li>O'z biznesingiz (yoki qiziqishingiz) uchun <b>R.V.K.F.T formulasi</b> bo'yicha prompt yozing.</li>
       <li>Javob yuzaki chiqsa — modelni <b>Pro</b> ga o'zgartirib, «Qayta yaratish» ni bosing.</li>
-      <li><b>Gem</b> yarating: nomi «Mening SMM-menejerim», ko'rsatmani 16-sahifadagi shablondan oling.</li>
+      <li><b>Gem</b> yarating: nomi «Mening SMM-menejerim», ko'rsatmani «Gem yaratish» bo'limidagi shablondan oling.</li>
     </ol>
   </div>
 
@@ -2419,13 +2589,13 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
       istalgan savolga javob beradigan.</div>
   </div>
 
-  <div class="pf"><span>Amaliy vazifa</span><span>35</span></div>
+  <div class="pf"><span>Amaliy vazifa</span><span>34</span></div>
 </div>
 
 <!-- =============================== 35. FAQ + GLOSSARY =============================== -->
 <div class="page">
-  <div class="ph"><div class="who">YAKUN</div><div class="num">36</div></div>
-  <div class="kicker">27-bo'lim</div>
+  <div class="ph"><div class="who">YAKUN</div><div class="num">35</div></div>
+  <div class="kicker">Yakun</div>
   <h2>Savol-javob</h2>
 
   <div class="tbl" style="margin:9px 0 14px">
@@ -2479,8 +2649,9 @@ O'zbek tilida, iliq va sodda ohangda yoz.</div>
     <div style="font-size:10px;color:var(--mut);margin-top:2px">Sun'iy intellekt kursi · 2026</div>
   </div>
 
-  <div class="pf"><span>Savol-javob va lug'at</span><span>36</span></div>
+  <div class="pf"><span>Savol-javob va lug'at</span><span>35</span></div>
 </div>
+
 
 </body>
 </html>
