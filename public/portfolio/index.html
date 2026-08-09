@@ -155,22 +155,30 @@ h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 .wcard.vid::after{content:"▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(10,8,18,.7);border:1px solid var(--line);display:grid;place-items:center;font-size:20px;color:var(--pink)}
 /* сайт «как видео»: длинный кадр страницы сам едет вверх и перематывается.
    Секция отдельная — Исламия презентует её вживую, поэтому темп спокойный */
+/* сайт мастер-класса во всю ширину: экран браузера, страница листается как видео */
 .sitecase{border-top:1px solid var(--line-soft)}
-.sitecase-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,4vw,60px);align-items:center}
-.dev-frame{--wh:clamp(360px,52vh,520px);position:relative;height:var(--wh);width:min(100%,340px);justify-self:center;border-radius:20px;border:1px solid var(--line);background:var(--bg2);box-shadow:0 44px 90px -40px rgba(0,0,0,.9),0 0 80px -30px rgba(139,92,246,.35);overflow:hidden;padding-top:34px}
-.dev-bar{position:absolute;top:0;left:0;right:0;height:34px;display:flex;align-items:center;gap:6px;padding:0 14px;background:rgba(239,233,255,.05);border-bottom:1px solid var(--line-soft);z-index:2}
-.dev-bar i{width:9px;height:9px;border-radius:50%;background:rgba(239,233,255,.16)}
+.dev-frame{--wh:min(74vh,660px);position:relative;height:var(--wh);width:min(94vw,1180px);margin:30px auto 0;border-radius:18px;border:1px solid var(--line);background:var(--bg2);box-shadow:0 50px 110px -46px rgba(0,0,0,.95),0 0 110px -34px rgba(139,92,246,.4);overflow:hidden;padding-top:38px}
+.dev-bar{position:absolute;top:0;left:0;right:0;height:38px;display:flex;align-items:center;gap:7px;padding:0 16px;background:rgba(239,233,255,.05);border-bottom:1px solid var(--line-soft);z-index:2}
+.dev-bar i{width:10px;height:10px;border-radius:50%;background:rgba(239,233,255,.16);flex:none}
 .dev-bar i:first-child{background:rgba(255,158,210,.6)}
-.site-scroll{position:absolute;inset:34px 0 0;overflow:hidden;display:block}
-.site-img{width:100%;height:auto;display:block;animation:sitescroll 26s linear infinite}
+.dev-bar b{margin-left:12px;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.site-scroll{position:absolute;inset:38px 0 0;overflow:hidden;display:block}
+.site-img{width:100%;height:auto;display:block;animation:sitescroll 30s linear infinite}
+.site-img.phone{display:none}
 .dev-frame:hover .site-img{animation-play-state:paused}
 @keyframes sitescroll{
   0%{transform:translateY(0)}
-  88%{transform:translateY(calc(-100% + var(--wh) - 34px))}
-  94%{transform:translateY(calc(-100% + var(--wh) - 34px))}
+  88%{transform:translateY(calc(-100% + var(--wh) - 38px))}
+  94%{transform:translateY(calc(-100% + var(--wh) - 38px))}
   100%{transform:translateY(0)}
 }
-@media(max-width:860px){.sitecase-grid{grid-template-columns:1fr}.dev-frame{width:min(100%,320px);justify-self:start}}
+.sitecase-note{max-width:680px;text-align:center;margin-top:26px}
+.sitecase-note .s-sub{margin-left:auto;margin-right:auto}
+@media(max-width:700px){
+  .dev-frame{--wh:min(62vh,520px);width:min(92vw,340px)}
+  .site-img.desk{display:none}
+  .site-img.phone{display:block}
+}
 @media(prefers-reduced-motion:reduce){.site-img{animation:none}}
 .gal-hint{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);padding:18px 4vw 0}
 @media(max-width:860px){
@@ -195,6 +203,23 @@ h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 }
 .wl img{width:100%;height:auto;display:block}
 .wl:hover{outline:2px solid rgba(196,169,255,.7)}
+
+/* финал: слайды собираются в пост Instagram и набирают просмотры */
+.ig-result{margin-top:clamp(26px,4vw,48px);display:flex;flex-direction:column;align-items:center}
+.ig-phone{width:min(86vw,300px);border-radius:22px;border:1px solid var(--line);background:var(--bg2);box-shadow:0 40px 90px -40px rgba(0,0,0,.9),0 0 80px -32px rgba(139,92,246,.4);overflow:hidden}
+.ig-top{display:flex;align-items:center;gap:9px;padding:11px 13px;border-bottom:1px solid var(--line-soft);font-size:13px;font-weight:700}
+.ig-ava{width:26px;height:26px;border-radius:50%;background:var(--grad);flex:none}
+.ig-shot{position:relative;aspect-ratio:4/5;overflow:hidden;background:#0A0812}
+.ig-shot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0;transition:opacity .5s ease}
+.ig-result.is-in .ig-shot img{opacity:1}
+.ig-dots{display:flex;justify-content:center;gap:5px;padding:9px 0 4px}
+.ig-dots i{width:5px;height:5px;border-radius:50%;background:rgba(239,233,255,.2)}
+.ig-dots i.on{background:var(--vio2)}
+.ig-live{display:flex;align-items:center;justify-content:center;gap:8px;padding:6px 12px 16px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--vio2)}
+.ig-pulse{width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 0 rgba(255,158,210,.6);animation:igpulse 2s ease-out infinite}
+@keyframes igpulse{70%{box-shadow:0 0 0 9px rgba(255,158,210,0)}100%{box-shadow:0 0 0 0 rgba(255,158,210,0)}}
+@media(prefers-reduced-motion:reduce){.ig-pulse{animation:none}}
+.ig-note{margin-top:16px;font-size:14px;color:var(--muted);text-align:center}
 
 /* ---------- WB анализ ---------- */
 .wb{background:var(--bg2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
@@ -256,33 +281,22 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
 .f-in a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line-soft)}
 .f-in a:hover{color:var(--vio2)}
 
-/* ---------- главный экран-встреча: робот утягивает обложку ---------- */
+/* ---------- вход: робот собирается из нейронов ---------- */
 .intro{position:fixed;inset:0;z-index:200;display:none;cursor:pointer;overflow:hidden;
-  background:radial-gradient(64% 52% at 46% 42%,#2A2044,#0A0812 82%);
-  opacity:0;transition:opacity .35s ease}
+  background:radial-gradient(62% 52% at 50% 46%,#241B3B,#0A0812 82%);
+  opacity:0;transition:opacity .3s ease}
 .intro.go{display:block;opacity:1}
-/* белый корешок обложки — за него робот и держится */
-.intro::after{content:"";position:absolute;top:0;bottom:0;right:0;width:12px;background:linear-gradient(180deg,#F6F3FC,#DAD2EE);box-shadow:-6px 0 24px rgba(0,0,0,.35)}
-.intro-stage{position:absolute;top:50%;right:-2vw;transform:translateY(-50%)}
-.intro-bot{
-  width:auto;height:min(70vh,600px);display:block;
-  filter:drop-shadow(-18px 26px 40px rgba(0,0,0,.55));
-  opacity:0;transform:translateX(24vw);
-  transition:opacity .4s ease,transform .6s var(--ease);
-}
-.intro.s1 .intro-bot{opacity:1;transform:none}
+#introFx{position:absolute;inset:0;width:100%;height:100%}
 .intro-bubble{
-  position:absolute;top:6%;right:78%;opacity:0;z-index:2;white-space:nowrap;
-  font-size:clamp(15px,2.4vw,24px);font-weight:800;letter-spacing:-.015em;color:var(--ink);
-  background:linear-gradient(140deg,#241B3D,#171126);border:1px solid var(--line);border-radius:20px 20px 6px 20px;
-  padding:13px 22px;box-shadow:0 22px 50px -20px rgba(0,0,0,.85),0 0 60px -20px rgba(139,92,246,.55);
-  transform:scale(.5);transform-origin:100% 100%;
+  position:absolute;left:50%;top:6%;transform:translateX(-50%) scale(.6);opacity:0;z-index:2;white-space:nowrap;
+  font-size:clamp(16px,2.6vw,26px);font-weight:800;letter-spacing:-.015em;color:var(--ink);
+  background:linear-gradient(140deg,#241B3D,#171126);border:1px solid var(--line);border-radius:20px;
+  padding:13px 24px;box-shadow:0 22px 50px -20px rgba(0,0,0,.85),0 0 60px -20px rgba(139,92,246,.55);
 }
-.intro.s1 .intro-bubble{animation:ibub .45s var(--ease) .5s forwards}
-@keyframes ibub{to{opacity:1;transform:scale(1)}}
+.intro.say .intro-bubble{animation:ibub .45s var(--ease) forwards}
+@keyframes ibub{to{opacity:1;transform:translateX(-50%) scale(1)}}
 .intro-skip{position:absolute;bottom:18px;left:22px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
-/* рывок: вся обложка вместе с роботом уезжает вправо — сайт открывается ей вслед */
-.intro.pull{transition:transform .75s cubic-bezier(.5,0,.8,.4);transform:translateX(105%)}
+.intro.out{transition:opacity .5s ease,transform .6s var(--ease);opacity:0;transform:scale(1.4);pointer-events:none}
 
 /* ---------- лайтбокс и видео ---------- */
 .lb{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(6,4,12,.92);padding:4vh 4vw}
@@ -294,13 +308,10 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
 </head>
 <body>
 
-<!-- главный экран при открытии ссылки: фон раскрывается, робот хватает
-     обложку и утягивает её к себе — сайт открывается следом -->
+<!-- вход: робот собирается из нейронов, здоровается — и сайт открывается -->
 <div class="intro" id="intro" aria-hidden="true">
-  <div class="intro-stage">
-    <span class="intro-bubble">Assalomu alaykum! 👋</span>
-    <img class="intro-bot" id="introBot" src="/portfolio/img/robot2-cut.webp" width="640" height="791" alt="" fetchpriority="high">
-  </div>
+  <canvas id="introFx"></canvas>
+  <span class="intro-bubble">Assalomu alaykum! 👋</span>
   <span class="intro-skip"><span data-uz>oʻtkazib yuborish — bosing</span><span data-ru>пропустить — клик</span></span>
 </div>
 
@@ -440,18 +451,21 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
 
 <!-- ============ САЙТ — ОТДЕЛЬНО, ДЛЯ ПРЕЗЕНТАЦИИ ============ -->
 <section class="sitecase" id="sayt">
-  <div class="container sitecase-grid">
-    <div>
-      <div class="s-eyebrow rv"><span data-uz>KATTA LOYIHA</span><span data-ru>БОЛЬШОЙ ПРОЕКТ</span></div>
-      <h2 class="rv"><span data-uz>Master klass <em>sayti</em></span><span data-ru>Сайт <em>мастер-класса</em></span></h2>
-      <p class="s-sub rv"><span data-uz>Bu saytni men AI STRATEG uchun yigʻdim. Ikki til: UZ va RU. Animatsiyalar, roʻyxatdan oʻtish formasi va toʻliq avtomatika: arizalar oʻzi Google Sheets'ga tushadi, mijoz esa menejerning Telegram'iga oʻtadi.</span><span data-ru>Этот сайт я собрала для AI STRATEG. Два языка: UZ и RU. Анимации, форма регистрации и полная автоматика: заявки сами падают в Google Sheets, а клиент переходит в Telegram менеджера.</span></p>
-      <div class="rv" style="margin-top:24px">
-        <a class="btn mag" href="/masterclass" target="_blank" rel="noopener"><span data-uz>Jonli koʻrish</span><span data-ru>Смотреть вживую</span> →</a>
-      </div>
-    </div>
-    <div class="dev-frame rv" aria-label="Sayt koʻrinishi">
-      <span class="dev-bar"><i></i><i></i><i></i></span>
-      <span class="site-scroll"><img class="site-img" src="/portfolio/img/mc-scroll.jpg" width="300" height="11036" alt="AI Master Klass sayti — toʻliq sahifa" loading="lazy" decoding="async"></span>
+  <div class="container" style="text-align:center">
+    <div class="s-eyebrow rv" style="justify-content:center"><span data-uz>KATTA LOYIHA</span><span data-ru>БОЛЬШОЙ ПРОЕКТ</span></div>
+    <h2 class="rv"><span data-uz>Master klass <em>sayti</em></span><span data-ru>Сайт <em>мастер-класса</em></span></h2>
+  </div>
+  <div class="dev-frame rv" aria-label="Sayt koʻrinishi">
+    <span class="dev-bar"><i></i><i></i><i></i><b>suniyintellect-mk.vercel.app/masterclass</b></span>
+    <span class="site-scroll">
+      <img class="site-img desk" src="/portfolio/img/mc-desk.jpg" width="1100" height="9625" alt="AI Master Klass sayti — toʻliq sahifa" loading="lazy" decoding="async">
+      <img class="site-img phone" src="/portfolio/img/mc-scroll.jpg" width="300" height="11036" alt="AI Master Klass sayti — telefonda" loading="lazy" decoding="async">
+    </span>
+  </div>
+  <div class="container sitecase-note">
+    <p class="s-sub rv"><span data-uz>Bu saytni men AI STRATEG uchun yigʻdim. Ikki til: UZ va RU. Animatsiyalar, roʻyxatdan oʻtish formasi va toʻliq avtomatika: arizalar oʻzi Google Sheets'ga tushadi, mijoz esa menejerning Telegram'iga oʻtadi.</span><span data-ru>Этот сайт я собрала для AI STRATEG. Два языка: UZ и RU. Анимации, форма регистрации и полная автоматика: заявки сами падают в Google Sheets, а клиент переходит в Telegram менеджера.</span></p>
+    <div class="rv" style="margin-top:22px">
+      <a class="btn mag" href="/masterclass" target="_blank" rel="noopener"><span data-uz>Jonli koʻrish</span><span data-ru>Смотреть вживую</span> →</a>
     </div>
   </div>
 </section>
@@ -543,6 +557,16 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
       <div class="wl" data-full="/portfolio/img/wl-19.jpg"><img src="/portfolio/img/wl-19.jpg" alt="Slayd 19" loading="lazy" decoding="async"></div>
       <div class="wl" data-full="/portfolio/img/wl-20.jpg"><img src="/portfolio/img/wl-20.jpg" alt="Slayd 20" loading="lazy" decoding="async"></div>
     </div>
+  </div>
+  <!-- итог волны: слайды выходят постом в Instagram -->
+  <div class="ig-result rv" id="igResult">
+    <div class="ig-phone">
+      <div class="ig-top"><span class="ig-ava"></span><b>@kodiyusufbay</b></div>
+      <div class="ig-shot"><img src="/portfolio/img/cov-1.jpg" alt="" loading="lazy" decoding="async"></div>
+      <div class="ig-dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      <div class="ig-live"><span class="ig-pulse"></span><span data-uz>Instagram'da jonli</span><span data-ru>Опубликовано в Instagram</span></div>
+    </div>
+    <p class="ig-note"><span data-uz>Har bir karusel shu tarzda Instagram'ga chiqadi.</span><span data-ru>Каждая карусель именно так выходит в Instagram.</span></p>
   </div>
 </section>
 
@@ -792,23 +816,107 @@ document.querySelectorAll('[data-dup]').forEach(function(t){
   },{threshold:.3}).observe(document.getElementById('flow'));
 })();
 
-/* ---------- встреча: фон открывается, робот здоровается и утягивает обложку ---------- */
+/* ---------- встреча: нейроны слетаются в робота, он машет и открывает сайт ---------- */
 (function(){
   var intro=document.getElementById('intro');
   if(!intro) return;
   if(REDUCED){ intro.remove(); return; }
-  intro.classList.add('go');                                   /* фон раскрывается */
+  intro.classList.add('go');
   document.body.style.overflow='hidden';
   var done=false;
   function finish(){
     if(done) return; done=true;
-    intro.classList.add('pull');                               /* тянет страницу к себе */
+    intro.classList.add('out');
     document.body.style.overflow='';
-    setTimeout(function(){ intro.remove(); }, 800);
+    setTimeout(function(){ intro.remove(); }, 620);
   }
   intro.addEventListener('click', finish);
-  setTimeout(function(){ intro.classList.add('s1'); }, 250);   /* робот появляется */
-  setTimeout(finish, 1600);                                    /* и открывает сайт */
+  setTimeout(function(){ intro.classList.add('say'); }, 1250);
+  setTimeout(finish, 2600);
+
+  var cv=document.getElementById('introFx'), ctx=cv.getContext('2d');
+  var dpr=Math.min(devicePixelRatio||1,2), W,H,S,CX,CY;
+  /* силуэт робота точками: голова, антенна, корпус, руки, ноги */
+  function shape(){
+    var p=[], i;
+    for(i=0;i<26;i++){ var a=Math.PI*2*i/26; p.push([Math.cos(a)*.9, -2.35+Math.sin(a)*.78]); }   /* голова */
+    for(i=0;i<9;i++){ var t=i/8; p.push([-.30+t*.60, -2.45+Math.sin(t*Math.PI)*.10]); }            /* визор */
+    p.push([0,-3.35],[0,-3.62],[0,-3.86]);                                                        /* антенна */
+    for(i=0;i<30;i++){ var t2=i/29; p.push([-1.06+t2*2.12, -1.30]); }                              /* плечи */
+    for(i=0;i<22;i++){ var t3=i/21; p.push([-1.02, -1.15+t3*1.85]); p.push([1.02, -1.15+t3*1.85]); }/* бока */
+    for(i=0;i<16;i++){ var t4=i/15; p.push([-1.02-t4*.72, -1.18+t4*.30]); p.push([1.02+t4*.72, -1.18+t4*.30]); } /* руки */
+    for(i=0;i<12;i++){ var t5=i/11; p.push([-1.80+t5*.30, -.86-t5*.55]); p.push([1.80-t5*.30, -.86-t5*.55]); }   /* кисти вверх */
+    for(i=0;i<26;i++){ var t6=i/25; p.push([-1.02+t6*2.04, .70]); }                                /* низ корпуса */
+    for(i=0;i<14;i++){ var t7=i/13; p.push([-.52, .70+t7*.95]); p.push([.52, .70+t7*.95]); }       /* ноги */
+    for(i=0;i<10;i++){ var t8=i/9; p.push([-.74+t8*.44, 1.70]); p.push([.30+t8*.44, 1.70]); }      /* ступни */
+    return p;
+  }
+  var pts=shape(), ps=[];
+  function size(){
+    W=innerWidth; H=innerHeight;
+    cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    /* фигура ниже и компактнее, чтобы антенна не упиралась в реплику */
+    S=Math.min(H*.104, W*.078); CX=W/2; CY=H*.60;
+    ps=pts.map(function(p){
+      var an=Math.random()*Math.PI*2, r=Math.max(W,H)*(.5+Math.random()*.5);
+      return { tx:CX+p[0]*S, ty:CY+p[1]*S,
+               x:CX+Math.cos(an)*r, y:CY+Math.sin(an)*r,
+               pink:Math.random()<.28, r:1.5+Math.random()*1.5 };
+    });
+  }
+  size(); addEventListener('resize', size);
+  var t0=null;
+  (function tick(ts){
+    if(done || !cv.isConnected) return;
+    if(t0===null) t0=ts;
+    var e=(ts-t0)/1000;
+    var k=Math.min(e/1.15,1); k=1-Math.pow(1-k,3);                 /* слетаются */
+    var wave=e>1.35 ? Math.sin((e-1.35)*7)*0.5 : 0;                /* машет руками */
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<ps.length;i++){
+      var p=ps[i];
+      p.cx=p.x+(p.tx-p.x)*k; p.cy=p.y+(p.ty-p.y)*k;
+      if(wave){                                                     /* поднятые кисти качаются */
+        var dy=(p.ty-CY)/S;
+        if(dy<-.7 && Math.abs((p.tx-CX)/S)>1.3) p.cy += wave*S*.22;
+      }
+    }
+    for(var a=0;a<ps.length;a++) for(var b=a+1;b<ps.length;b++){
+      var dx=ps[a].cx-ps[b].cx, dy2=ps[a].cy-ps[b].cy, d=dx*dx+dy2*dy2;
+      if(d < S*S*.5){
+        ctx.strokeStyle='rgba(164,124,255,'+(.30*k*(1-Math.sqrt(d)/(S*.71)))+')';
+        ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(ps[a].cx,ps[a].cy); ctx.lineTo(ps[b].cx,ps[b].cy); ctx.stroke();
+      }
+    }
+    for(var j=0;j<ps.length;j++){
+      var q=ps[j];
+      ctx.fillStyle=q.pink?'rgba(255,158,210,.95)':'rgba(214,198,255,.92)';
+      ctx.beginPath(); ctx.arc(q.cx,q.cy,q.r,0,Math.PI*2); ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  })(performance.now());
+})();
+
+/* ---------- пост в Instagram: карусель листается сама ---------- */
+(function(){
+  var res=document.getElementById('igResult');
+  if(!res) return;
+  var img=res.querySelector('.ig-shot img'), dots=[].slice.call(res.querySelectorAll('.ig-dots i'));
+  var srcs=['cov-1','sl-1','car-grid','sl-3','cov-3'].map(function(n){ return '/portfolio/img/'+n+'.jpg'; });
+  var i=0, run=false;
+  new IntersectionObserver(function(en){ run=en[0].isIntersecting; },{threshold:.3}).observe(res);
+  if(REDUCED) return;
+  setInterval(function(){
+    if(!run) return;
+    i=(i+1)%srcs.length;
+    img.style.opacity=0;
+    setTimeout(function(){
+      img.src=srcs[i];
+      img.style.opacity=1;
+      dots.forEach(function(d,k){ d.classList.toggle('on', k===i); });
+    }, 260);
+  }, 2200);
 })();
 
 /* ---------- волна из слайдов: бегущая синусоида, как в референсе ---------- */
