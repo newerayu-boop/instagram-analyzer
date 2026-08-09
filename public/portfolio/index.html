@@ -282,24 +282,38 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
 .f-in a:hover{color:var(--vio2)}
 
 /* ---------- вход: робот собирается из нейронов в HUD-рамке ---------- */
-.intro{position:fixed;inset:0;z-index:200;display:none;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,3vh,34px);
+/* заставка нарисована сразу, ещё до скриптов — иначе на миг видно сам сайт */
+.intro{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,3vh,34px);
   cursor:pointer;overflow:hidden;
-  background:radial-gradient(62% 52% at 50% 48%,#241B3B,#0A0812 82%);
-  opacity:0;transition:opacity .3s ease}
-.intro.go{display:flex;opacity:1}
+  background:radial-gradient(62% 52% at 50% 48%,#241B3B,#0A0812 82%)}
+@media (prefers-reduced-motion:reduce){.intro{display:none}}
 /* сцена: как у референса — уголки и два встречно вращающихся ореола */
-.intro-stage{position:relative;width:min(78vw,440px);aspect-ratio:1;animation:botfloat 6s ease-in-out infinite alternate}
+.intro-stage{position:relative;width:min(84vw,62vh,520px);aspect-ratio:1;animation:botfloat 6s ease-in-out infinite alternate}
 @keyframes botfloat{0%{transform:translateY(0)}100%{transform:translateY(-10px)}}
 .intro-stage .halo{position:absolute;left:50%;top:50%;width:74%;height:74%;margin:-37% 0 0 -37%;border-radius:50%;border:1px solid rgba(139,92,246,.28);animation:halospin 38s linear infinite}
 .intro-stage .halo.rev{width:96%;height:96%;margin:-48% 0 0 -48%;border-color:rgba(255,158,210,.16);animation-duration:52s;animation-direction:reverse}
 @keyframes halospin{to{transform:rotate(360deg)}}
-.intro-stage .brk{position:absolute;width:clamp(26px,5vw,46px);height:clamp(26px,5vw,46px);border-color:rgba(139,92,246,.45);opacity:0;transition:opacity .5s ease .35s}
-.intro.go .intro-stage .brk{opacity:1}
-.intro-stage .brk.tl{left:0;top:0;border-left:1px solid;border-top:1px solid}
-.intro-stage .brk.tr{right:0;top:0;border-right:1px solid;border-top:1px solid}
-.intro-stage .brk.bl{left:0;bottom:0;border-left:1px solid;border-bottom:1px solid}
-.intro-stage .brk.br{right:0;bottom:0;border-right:1px solid;border-bottom:1px solid}
-#introFx{position:absolute;inset:0;width:100%;height:100%}
+/* робот в худи */
+.bot{position:absolute;left:50%;top:50%;height:94%;width:auto;transform:translate(-50%,-50%) scale(.84);opacity:0;
+  filter:drop-shadow(0 24px 52px rgba(139,92,246,.4));
+  transition:opacity .5s ease,transform .8s var(--ease)}
+.intro.go .bot{opacity:1;transform:translate(-50%,-50%) scale(1)}
+/* глаза загораются: тёмные — вспышка с дрожью — ровное свечение */
+.bot .eyes .lid,.bot .eyes .glow,.bot .spark{opacity:0}
+.intro.lit .bot .eyes .lid{animation:eyeon .62s ease forwards}
+.intro.lit .bot .eyes .glow{animation:eyeglow .5s ease .18s forwards,eyepulse 2.8s ease-in-out .8s infinite}
+.intro.lit .bot .spark{animation:spark .6s ease forwards}
+@keyframes eyeon{0%{opacity:0}16%{opacity:1}28%{opacity:.1}44%{opacity:1}58%{opacity:.35}100%{opacity:1}}
+@keyframes eyeglow{to{opacity:1}}
+@keyframes eyepulse{0%,100%{opacity:.7}50%{opacity:1}}
+@keyframes spark{0%{opacity:0}20%{opacity:.8}100%{opacity:0}}
+/* моргание — уже после розжига */
+.intro.lit .bot .eyes{animation:blink 4.6s ease-in-out 2s infinite;transform-box:fill-box;transform-origin:50% 50%}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%,97.6%{transform:scaleY(.08)}}
+/* машет поднятой рукой — ось вращения в плече */
+.bot .arm-r{transform-box:fill-box;transform-origin:13px 60.5px}
+.intro.lit .bot .arm-r{animation:wave .62s ease-in-out .1s 4}
+@keyframes wave{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(14deg)}}
 .intro-bubble{
   position:relative;transform:scale(.6);opacity:0;z-index:2;white-space:nowrap;
   font-size:clamp(15px,2.4vw,25px);font-weight:800;letter-spacing:-.015em;color:var(--ink);
@@ -323,17 +337,112 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
 </head>
 <body>
 
-<!-- вход: робот собирается из нейронов, машет и здоровается — и сайт открывается -->
+<!-- вход: робот в худи, глаза загораются, машет — и сайт открывается -->
 <div class="intro" id="intro" aria-hidden="true">
   <div class="intro-bubble">Assalomu alaykum! 👋</div>
   <div class="intro-stage">
     <span class="halo"></span>
     <span class="halo rev"></span>
-    <span class="brk tl"></span><span class="brk tr"></span><span class="brk bl"></span><span class="brk br"></span>
-    <canvas id="introFx"></canvas>
+    <svg class="bot" viewBox="0 0 200 232" aria-hidden="true">
+      <defs>
+        <linearGradient id="hood" x1=".15" y1="0" x2=".8" y2="1">
+          <stop offset="0%" stop-color="#F7F4FE"/><stop offset="42%" stop-color="#DED7F0"/>
+          <stop offset="78%" stop-color="#BAB1D6" /><stop offset="100%" stop-color="#8C83AA"/>
+        </linearGradient>
+        <linearGradient id="body" x1=".2" y1="0" x2=".85" y2="1">
+          <stop offset="0%" stop-color="#EFEAFA"/><stop offset="55%" stop-color="#D2CAE7"/><stop offset="100%" stop-color="#9A91BA"/>
+        </linearGradient>
+        <linearGradient id="sleeve" x1=".1" y1="0" x2=".9" y2="1">
+          <stop offset="0%" stop-color="#E8E2F6"/><stop offset="58%" stop-color="#C7BFE0"/><stop offset="100%" stop-color="#928AB2"/>
+        </linearGradient>
+        <radialGradient id="bloom"><stop offset="0%" stop-color="#FF9ED2" stop-opacity=".85"/><stop offset="45%" stop-color="#C4A9FF" stop-opacity=".32"/><stop offset="100%" stop-color="#C4A9FF" stop-opacity="0"/></radialGradient>
+        <linearGradient id="visor" x1="0" y1="0" x2=".6" y2="1">
+          <stop offset="0%" stop-color="#2A2142"/><stop offset="60%" stop-color="#140F26"/><stop offset="100%" stop-color="#0C0819"/>
+        </linearGradient>
+      </defs>
+
+      <!-- ноги и кроссовки -->
+      <rect x="76" y="168" width="20" height="42" rx="9" fill="#4A4266"/>
+      <rect x="104" y="168" width="20" height="42" rx="9" fill="#4A4266"/>
+      <rect x="64" y="202" width="36" height="18" rx="9" fill="#F6F3FD"/>
+      <rect x="100" y="202" width="36" height="18" rx="9" fill="#F6F3FD"/>
+      <rect x="64" y="212" width="36" height="8" rx="4" fill="#FF9ED2" opacity=".5"/>
+      <rect x="100" y="212" width="36" height="8" rx="4" fill="#FF9ED2" opacity=".5"/>
+
+      <!-- левый рукав — за корпусом, поэтому плечо срастается с худи -->
+      <rect x="30" y="104" width="27" height="64" rx="13.5" fill="url(#sleeve)"/>
+      <circle cx="43.5" cy="170" r="14" fill="url(#hood)"/>
+
+      <!-- корпус худи -->
+      <path d="M50 128 Q50 106 74 102 L126 102 Q150 106 150 128 L152 180 Q100 190 48 180 Z" fill="url(#body)"/>
+      <path d="M48 170 Q100 180 152 170 L152 180 Q100 190 48 180 Z" fill="#0A0812" opacity=".1"/>
+      <!-- карман-кенгуру -->
+      <path d="M74 146 Q100 156 126 146 L126 166 Q100 176 74 166 Z" fill="#0A0812" opacity=".13"/>
+
+      <!-- капюшон: задняя часть, тень внутри и лицо -->
+      <path d="M100 12 C144 12 160 44 160 80 C160 106 150 122 138 128 L62 128 C50 122 40 106 40 80 C40 44 56 12 100 12 Z" fill="url(#hood)"/>
+      <path d="M100 24 C138 24 150 52 150 80 C150 106 128 118 100 118 C72 118 50 106 50 80 C50 52 62 24 100 24 Z" fill="#0A0812" opacity=".12"/>
+      <path d="M100 32 C134 32 144 56 144 80 C144 104 126 114 100 114 C74 114 56 104 56 80 C56 56 66 32 100 32 Z" fill="url(#visor)"/>
+      <path d="M68 62 Q80 44 100 42" stroke="#EFE9FF" stroke-opacity=".14" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+      <!-- наушник: справа его закрывала бы поднятая рука, поэтому он один -->
+      <circle cx="40" cy="86" r="14" fill="#4A4266"/>
+      <circle cx="40" cy="86" r="6.5" fill="#C4A9FF" opacity=".7"/>
+      <circle cx="40" cy="77" r="2.4" fill="#FF9ED2"/>
+
+      <!-- завязки капюшона -->
+      <path d="M84 120 L80 150" stroke="#F7F4FE" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M116 120 L120 150" stroke="#F7F4FE" stroke-width="4.5" stroke-linecap="round"/>
+      <circle cx="80" cy="152" r="3.6" fill="#FF9ED2"/>
+      <circle cx="120" cy="152" r="3.6" fill="#FF9ED2"/>
+
+      <!-- глаза: сначала тёмные гнёзда, потом загораются -->
+      <rect x="74" y="64" width="20" height="12" rx="6" fill="#2A2142"/>
+      <rect x="106" y="64" width="20" height="12" rx="6" fill="#2A2142"/>
+      <g class="eyes">
+        <circle class="glow" cx="84" cy="70" r="20" fill="url(#bloom)"/>
+        <circle class="glow" cx="116" cy="70" r="20" fill="url(#bloom)"/>
+        <rect class="lid" x="74" y="64" width="20" height="12" rx="6" fill="#FF9ED2"/>
+        <rect class="lid" x="106" y="64" width="20" height="12" rx="6" fill="#FF9ED2"/>
+      </g>
+      <circle class="spark" cx="100" cy="76" r="52" fill="url(#bloom)"/>
+      <path d="M88 92 Q100 100 112 92" stroke="#C4A9FF" stroke-opacity=".5" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+      <!-- поднятая рука — машет; ось в плече (140,124) -->
+      <g class="arm-r">
+        <circle cx="140" cy="124" r="13" fill="url(#sleeve)"/>
+        <polygon points="129.6,116.2 150.4,131.8 180.4,91.8 159.6,76.2" fill="url(#sleeve)"/>
+        <circle cx="170" cy="84" r="13" fill="url(#sleeve)"/>
+        <circle cx="176" cy="78" r="14.5" fill="url(#hood)"/>
+      </g>
+    </svg>
   </div>
   <span class="intro-skip"><span data-uz>oʻtkazib yuborish — bosing</span><span data-ru>пропустить — клик</span></span>
 </div>
+<noscript><style>.intro{display:none}</style></noscript>
+<script>
+/* встреча: робот в худи — глаза загораются, машет, и сайт открывается.
+   скрипт стоит сразу за разметкой, чтобы отсчёт шёл с первого кадра */
+(function(){
+  var intro=document.getElementById('intro');
+  if(!intro) return;
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ intro.remove(); return; }
+  document.documentElement.style.overflow='hidden';
+  requestAnimationFrame(function(){ intro.classList.add('go'); });
+  var done=false;
+  function finish(){
+    if(done) return; done=true;
+    intro.classList.add('out');
+    document.documentElement.style.overflow='';
+    document.body.style.overflow='';
+    setTimeout(function(){ intro.remove(); }, 620);
+  }
+  intro.addEventListener('click', finish);
+  setTimeout(function(){ intro.classList.add('lit'); }, 620);   /* глаза загораются, машет */
+  setTimeout(function(){ intro.classList.add('say'); }, 1150);  /* здоровается */
+  setTimeout(finish, 3000);
+})();
+</script>
 
 <header class="hdr">
   <div class="container hdr-in">
@@ -834,88 +943,6 @@ document.querySelectorAll('[data-dup]').forEach(function(t){
       i++; setTimeout(next, 1600);
     })();
   },{threshold:.3}).observe(document.getElementById('flow'));
-})();
-
-/* ---------- встреча: нейроны слетаются в робота, он машет и открывает сайт ---------- */
-(function(){
-  var intro=document.getElementById('intro');
-  if(!intro) return;
-  if(REDUCED){ intro.remove(); return; }
-  intro.classList.add('go');
-  document.body.style.overflow='hidden';
-  var done=false;
-  function finish(){
-    if(done) return; done=true;
-    intro.classList.add('out');
-    document.body.style.overflow='';
-    setTimeout(function(){ intro.remove(); }, 620);
-  }
-  intro.addEventListener('click', finish);
-  setTimeout(function(){ intro.classList.add('say'); }, 1250);
-  setTimeout(finish, 2600);
-
-  var cv=document.getElementById('introFx'), ctx=cv.getContext('2d');
-  var dpr=Math.min(devicePixelRatio||1,2), W,H,S,CX,CY;
-  /* силуэт робота точками. arm — кисть (машет), eye — глаз (моргает) */
-  function shape(){
-    var p=[], i, t;
-    for(i=0;i<26;i++){ var a=Math.PI*2*i/26; p.push([Math.cos(a)*.92,-2.30+Math.sin(a)*.80,0]); }  /* голова */
-    for(i=0;i<7;i++){ t=i/6; p.push([-.46+t*.26,-2.42,2]); p.push([.20+t*.26,-2.42,2]); }          /* глаза */
-    for(i=0;i<7;i++){ t=i/6; p.push([-.30+t*.60,-2.02+Math.sin(t*Math.PI)*.10,0]); }               /* улыбка */
-    p.push([0,-3.28,0],[0,-3.54,0],[0,-3.76,0]);                                                   /* антенна */
-    for(i=0;i<26;i++){ t=i/25; p.push([-1.04+t*2.08,-1.28,0]); }                                   /* плечи */
-    for(i=0;i<20;i++){ t=i/19; p.push([-1.00,-1.14+t*1.80,0]); p.push([1.00,-1.14+t*1.80,0]); }    /* бока */
-    for(i=0;i<14;i++){ t=i/13; p.push([-1.00-t*.66,-1.16+t*.26,1]); p.push([1.00+t*.66,-1.16+t*.26,1]); } /* руки */
-    for(i=0;i<11;i++){ t=i/10; p.push([-1.70+t*.28,-.90-t*.58,1]); p.push([1.70-t*.28,-.90-t*.58,1]); }   /* кисти */
-    for(i=0;i<24;i++){ t=i/23; p.push([-1.00+t*2.00,.66,0]); }                                     /* низ корпуса */
-    for(i=0;i<12;i++){ t=i/11; p.push([-.50,.66+t*.92,0]); p.push([.50,.66+t*.92,0]); }            /* ноги */
-    for(i=0;i<9;i++){ t=i/8; p.push([-.72+t*.42,1.62,0]); p.push([.30+t*.42,1.62,0]); }            /* ступни */
-    return p;
-  }
-  var pts=shape(), ps=[];
-  function size(){
-    var r=cv.getBoundingClientRect();
-    W=r.width; H=r.height;
-    cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
-    S=Math.min(H*.155, W*.165); CX=W/2; CY=H*.56;
-    ps=pts.map(function(p){
-      var an=Math.random()*Math.PI*2, rr=Math.max(W,H)*(.9+Math.random()*.8);
-      return { tx:CX+p[0]*S, ty:CY+p[1]*S, kind:p[2],
-               x:CX+Math.cos(an)*rr, y:CY+Math.sin(an)*rr,
-               pink:Math.random()<.26, r:1.5+Math.random()*1.4 };
-    });
-  }
-  size(); addEventListener('resize', size);
-  var t0=null;
-  (function tick(ts){
-    if(done || !cv.isConnected) return;
-    if(t0===null) t0=ts;
-    var e=(ts-t0)/1000;
-    var k=Math.min(e/1.05,1); k=1-Math.pow(1-k,3);                  /* слетаются */
-    var wave=e>1.2 ? Math.sin((e-1.2)*7.5) : 0;                     /* машет кистями */
-    var blink=(e>1.7 && e%2.4<.13) ? .1 : 1;                        /* моргает */
-    ctx.clearRect(0,0,W,H);
-    for(var i=0;i<ps.length;i++){
-      var p=ps[i];
-      p.cx=p.x+(p.tx-p.x)*k; p.cy=p.y+(p.ty-p.y)*k;
-      if(p.kind===1 && wave) p.cy += wave*S*.20;                     /* качается кисть */
-      if(p.kind===2) p.cy = CY-2.42*S + (p.ty-(CY-2.42*S))*blink;    /* глаз схлопывается */
-    }
-    for(var a=0;a<ps.length;a++) for(var b=a+1;b<ps.length;b++){
-      var dx=ps[a].cx-ps[b].cx, dy=ps[a].cy-ps[b].cy, d=dx*dx+dy*dy;
-      if(d < S*S*.42){
-        ctx.strokeStyle='rgba(164,124,255,'+(.32*k*(1-Math.sqrt(d)/(S*.65)))+')';
-        ctx.lineWidth=1;
-        ctx.beginPath(); ctx.moveTo(ps[a].cx,ps[a].cy); ctx.lineTo(ps[b].cx,ps[b].cy); ctx.stroke();
-      }
-    }
-    for(var j=0;j<ps.length;j++){
-      var q=ps[j];
-      ctx.fillStyle = q.kind===2 ? 'rgba(255,158,210,1)' : (q.pink?'rgba(255,158,210,.95)':'rgba(214,198,255,.92)');
-      ctx.beginPath(); ctx.arc(q.cx,q.cy,q.kind===2?q.r*1.3:q.r,0,Math.PI*2); ctx.fill();
-    }
-    requestAnimationFrame(tick);
-  })(performance.now());
 })();
 
 /* ---------- пост в Instagram: карусель листается сама ---------- */
