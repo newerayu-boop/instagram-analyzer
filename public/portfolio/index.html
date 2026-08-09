@@ -281,20 +281,35 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
 .f-in a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line-soft)}
 .f-in a:hover{color:var(--vio2)}
 
-/* ---------- вход: робот собирается из нейронов ---------- */
-.intro{position:fixed;inset:0;z-index:200;display:none;cursor:pointer;overflow:hidden;
-  background:radial-gradient(62% 52% at 50% 46%,#241B3B,#0A0812 82%);
+/* ---------- вход: робот собирается из нейронов в HUD-рамке ---------- */
+.intro{position:fixed;inset:0;z-index:200;display:none;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,3vh,34px);
+  cursor:pointer;overflow:hidden;
+  background:radial-gradient(62% 52% at 50% 48%,#241B3B,#0A0812 82%);
   opacity:0;transition:opacity .3s ease}
-.intro.go{display:block;opacity:1}
+.intro.go{display:flex;opacity:1}
+/* сцена: как у референса — уголки и два встречно вращающихся ореола */
+.intro-stage{position:relative;width:min(78vw,440px);aspect-ratio:1;animation:botfloat 6s ease-in-out infinite alternate}
+@keyframes botfloat{0%{transform:translateY(0)}100%{transform:translateY(-10px)}}
+.intro-stage .halo{position:absolute;left:50%;top:50%;width:74%;height:74%;margin:-37% 0 0 -37%;border-radius:50%;border:1px solid rgba(139,92,246,.28);animation:halospin 38s linear infinite}
+.intro-stage .halo.rev{width:96%;height:96%;margin:-48% 0 0 -48%;border-color:rgba(255,158,210,.16);animation-duration:52s;animation-direction:reverse}
+@keyframes halospin{to{transform:rotate(360deg)}}
+.intro-stage .brk{position:absolute;width:clamp(26px,5vw,46px);height:clamp(26px,5vw,46px);border-color:rgba(139,92,246,.45);opacity:0;transition:opacity .5s ease .35s}
+.intro.go .intro-stage .brk{opacity:1}
+.intro-stage .brk.tl{left:0;top:0;border-left:1px solid;border-top:1px solid}
+.intro-stage .brk.tr{right:0;top:0;border-right:1px solid;border-top:1px solid}
+.intro-stage .brk.bl{left:0;bottom:0;border-left:1px solid;border-bottom:1px solid}
+.intro-stage .brk.br{right:0;bottom:0;border-right:1px solid;border-bottom:1px solid}
 #introFx{position:absolute;inset:0;width:100%;height:100%}
 .intro-bubble{
-  position:absolute;left:50%;top:6%;transform:translateX(-50%) scale(.6);opacity:0;z-index:2;white-space:nowrap;
-  font-size:clamp(16px,2.6vw,26px);font-weight:800;letter-spacing:-.015em;color:var(--ink);
-  background:linear-gradient(140deg,#241B3D,#171126);border:1px solid var(--line);border-radius:20px;
+  position:relative;transform:scale(.6);opacity:0;z-index:2;white-space:nowrap;
+  font-size:clamp(15px,2.4vw,25px);font-weight:800;letter-spacing:-.015em;color:var(--ink);
+  background:linear-gradient(140deg,#241B3D,#171126);border:1px solid var(--line);border-radius:18px;
   padding:13px 24px;box-shadow:0 22px 50px -20px rgba(0,0,0,.85),0 0 60px -20px rgba(139,92,246,.55);
 }
+/* уголок-стрелка вниз, как в референсе */
+.intro-bubble::after{content:"";position:absolute;left:50%;bottom:-7px;width:12px;height:12px;margin-left:-6px;transform:rotate(45deg);background:#1B1430;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
 .intro.say .intro-bubble{animation:ibub .45s var(--ease) forwards}
-@keyframes ibub{to{opacity:1;transform:translateX(-50%) scale(1)}}
+@keyframes ibub{to{opacity:1;transform:scale(1)}}
 .intro-skip{position:absolute;bottom:18px;left:22px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
 .intro.out{transition:opacity .5s ease,transform .6s var(--ease);opacity:0;transform:scale(1.4);pointer-events:none}
 
@@ -308,10 +323,15 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
 </head>
 <body>
 
-<!-- вход: робот собирается из нейронов, здоровается — и сайт открывается -->
+<!-- вход: робот собирается из нейронов, машет и здоровается — и сайт открывается -->
 <div class="intro" id="intro" aria-hidden="true">
-  <canvas id="introFx"></canvas>
-  <span class="intro-bubble">Assalomu alaykum! 👋</span>
+  <div class="intro-bubble">Assalomu alaykum! 👋</div>
+  <div class="intro-stage">
+    <span class="halo"></span>
+    <span class="halo rev"></span>
+    <span class="brk tl"></span><span class="brk tr"></span><span class="brk bl"></span><span class="brk br"></span>
+    <canvas id="introFx"></canvas>
+  </div>
   <span class="intro-skip"><span data-uz>oʻtkazib yuborish — bosing</span><span data-ru>пропустить — клик</span></span>
 </div>
 
@@ -836,32 +856,33 @@ document.querySelectorAll('[data-dup]').forEach(function(t){
 
   var cv=document.getElementById('introFx'), ctx=cv.getContext('2d');
   var dpr=Math.min(devicePixelRatio||1,2), W,H,S,CX,CY;
-  /* силуэт робота точками: голова, антенна, корпус, руки, ноги */
+  /* силуэт робота точками. arm — кисть (машет), eye — глаз (моргает) */
   function shape(){
-    var p=[], i;
-    for(i=0;i<26;i++){ var a=Math.PI*2*i/26; p.push([Math.cos(a)*.9, -2.35+Math.sin(a)*.78]); }   /* голова */
-    for(i=0;i<9;i++){ var t=i/8; p.push([-.30+t*.60, -2.45+Math.sin(t*Math.PI)*.10]); }            /* визор */
-    p.push([0,-3.35],[0,-3.62],[0,-3.86]);                                                        /* антенна */
-    for(i=0;i<30;i++){ var t2=i/29; p.push([-1.06+t2*2.12, -1.30]); }                              /* плечи */
-    for(i=0;i<22;i++){ var t3=i/21; p.push([-1.02, -1.15+t3*1.85]); p.push([1.02, -1.15+t3*1.85]); }/* бока */
-    for(i=0;i<16;i++){ var t4=i/15; p.push([-1.02-t4*.72, -1.18+t4*.30]); p.push([1.02+t4*.72, -1.18+t4*.30]); } /* руки */
-    for(i=0;i<12;i++){ var t5=i/11; p.push([-1.80+t5*.30, -.86-t5*.55]); p.push([1.80-t5*.30, -.86-t5*.55]); }   /* кисти вверх */
-    for(i=0;i<26;i++){ var t6=i/25; p.push([-1.02+t6*2.04, .70]); }                                /* низ корпуса */
-    for(i=0;i<14;i++){ var t7=i/13; p.push([-.52, .70+t7*.95]); p.push([.52, .70+t7*.95]); }       /* ноги */
-    for(i=0;i<10;i++){ var t8=i/9; p.push([-.74+t8*.44, 1.70]); p.push([.30+t8*.44, 1.70]); }      /* ступни */
+    var p=[], i, t;
+    for(i=0;i<26;i++){ var a=Math.PI*2*i/26; p.push([Math.cos(a)*.92,-2.30+Math.sin(a)*.80,0]); }  /* голова */
+    for(i=0;i<7;i++){ t=i/6; p.push([-.46+t*.26,-2.42,2]); p.push([.20+t*.26,-2.42,2]); }          /* глаза */
+    for(i=0;i<7;i++){ t=i/6; p.push([-.30+t*.60,-2.02+Math.sin(t*Math.PI)*.10,0]); }               /* улыбка */
+    p.push([0,-3.28,0],[0,-3.54,0],[0,-3.76,0]);                                                   /* антенна */
+    for(i=0;i<26;i++){ t=i/25; p.push([-1.04+t*2.08,-1.28,0]); }                                   /* плечи */
+    for(i=0;i<20;i++){ t=i/19; p.push([-1.00,-1.14+t*1.80,0]); p.push([1.00,-1.14+t*1.80,0]); }    /* бока */
+    for(i=0;i<14;i++){ t=i/13; p.push([-1.00-t*.66,-1.16+t*.26,1]); p.push([1.00+t*.66,-1.16+t*.26,1]); } /* руки */
+    for(i=0;i<11;i++){ t=i/10; p.push([-1.70+t*.28,-.90-t*.58,1]); p.push([1.70-t*.28,-.90-t*.58,1]); }   /* кисти */
+    for(i=0;i<24;i++){ t=i/23; p.push([-1.00+t*2.00,.66,0]); }                                     /* низ корпуса */
+    for(i=0;i<12;i++){ t=i/11; p.push([-.50,.66+t*.92,0]); p.push([.50,.66+t*.92,0]); }            /* ноги */
+    for(i=0;i<9;i++){ t=i/8; p.push([-.72+t*.42,1.62,0]); p.push([.30+t*.42,1.62,0]); }            /* ступни */
     return p;
   }
   var pts=shape(), ps=[];
   function size(){
-    W=innerWidth; H=innerHeight;
+    var r=cv.getBoundingClientRect();
+    W=r.width; H=r.height;
     cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
-    /* фигура ниже и компактнее, чтобы антенна не упиралась в реплику */
-    S=Math.min(H*.104, W*.078); CX=W/2; CY=H*.60;
+    S=Math.min(H*.155, W*.165); CX=W/2; CY=H*.56;
     ps=pts.map(function(p){
-      var an=Math.random()*Math.PI*2, r=Math.max(W,H)*(.5+Math.random()*.5);
-      return { tx:CX+p[0]*S, ty:CY+p[1]*S,
-               x:CX+Math.cos(an)*r, y:CY+Math.sin(an)*r,
-               pink:Math.random()<.28, r:1.5+Math.random()*1.5 };
+      var an=Math.random()*Math.PI*2, rr=Math.max(W,H)*(.9+Math.random()*.8);
+      return { tx:CX+p[0]*S, ty:CY+p[1]*S, kind:p[2],
+               x:CX+Math.cos(an)*rr, y:CY+Math.sin(an)*rr,
+               pink:Math.random()<.26, r:1.5+Math.random()*1.4 };
     });
   }
   size(); addEventListener('resize', size);
@@ -870,29 +891,28 @@ document.querySelectorAll('[data-dup]').forEach(function(t){
     if(done || !cv.isConnected) return;
     if(t0===null) t0=ts;
     var e=(ts-t0)/1000;
-    var k=Math.min(e/1.15,1); k=1-Math.pow(1-k,3);                 /* слетаются */
-    var wave=e>1.35 ? Math.sin((e-1.35)*7)*0.5 : 0;                /* машет руками */
+    var k=Math.min(e/1.05,1); k=1-Math.pow(1-k,3);                  /* слетаются */
+    var wave=e>1.2 ? Math.sin((e-1.2)*7.5) : 0;                     /* машет кистями */
+    var blink=(e>1.7 && e%2.4<.13) ? .1 : 1;                        /* моргает */
     ctx.clearRect(0,0,W,H);
     for(var i=0;i<ps.length;i++){
       var p=ps[i];
       p.cx=p.x+(p.tx-p.x)*k; p.cy=p.y+(p.ty-p.y)*k;
-      if(wave){                                                     /* поднятые кисти качаются */
-        var dy=(p.ty-CY)/S;
-        if(dy<-.7 && Math.abs((p.tx-CX)/S)>1.3) p.cy += wave*S*.22;
-      }
+      if(p.kind===1 && wave) p.cy += wave*S*.20;                     /* качается кисть */
+      if(p.kind===2) p.cy = CY-2.42*S + (p.ty-(CY-2.42*S))*blink;    /* глаз схлопывается */
     }
     for(var a=0;a<ps.length;a++) for(var b=a+1;b<ps.length;b++){
-      var dx=ps[a].cx-ps[b].cx, dy2=ps[a].cy-ps[b].cy, d=dx*dx+dy2*dy2;
-      if(d < S*S*.5){
-        ctx.strokeStyle='rgba(164,124,255,'+(.30*k*(1-Math.sqrt(d)/(S*.71)))+')';
+      var dx=ps[a].cx-ps[b].cx, dy=ps[a].cy-ps[b].cy, d=dx*dx+dy*dy;
+      if(d < S*S*.42){
+        ctx.strokeStyle='rgba(164,124,255,'+(.32*k*(1-Math.sqrt(d)/(S*.65)))+')';
         ctx.lineWidth=1;
         ctx.beginPath(); ctx.moveTo(ps[a].cx,ps[a].cy); ctx.lineTo(ps[b].cx,ps[b].cy); ctx.stroke();
       }
     }
     for(var j=0;j<ps.length;j++){
       var q=ps[j];
-      ctx.fillStyle=q.pink?'rgba(255,158,210,.95)':'rgba(214,198,255,.92)';
-      ctx.beginPath(); ctx.arc(q.cx,q.cy,q.r,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle = q.kind===2 ? 'rgba(255,158,210,1)' : (q.pink?'rgba(255,158,210,.95)':'rgba(214,198,255,.92)');
+      ctx.beginPath(); ctx.arc(q.cx,q.cy,q.kind===2?q.r*1.3:q.r,0,Math.PI*2); ctx.fill();
     }
     requestAnimationFrame(tick);
   })(performance.now());
