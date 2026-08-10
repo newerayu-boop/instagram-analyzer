@@ -302,15 +302,21 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
   filter:drop-shadow(0 24px 52px rgba(139,92,246,.4));
   transition:opacity .4s ease}
 .intro.built .bot{opacity:1}
-/* глаза включаются один раз и ровно: без дрожи и мультяшных вспышек */
+/* глаза: сперва тёмные щели, потом раскрываются и загораются */
 .bot .eyes .lid,.bot .eyes .glow,.bot .spark{opacity:0}
-.intro.lit .bot .eyes .lid{animation:eyeon .8s var(--ease) forwards}
-.intro.lit .bot .eyes .glow{animation:eyeglow .7s ease .12s forwards,eyepulse 4.6s ease-in-out 1s infinite}
-.intro.lit .bot .spark{animation:spark .9s ease forwards}
-@keyframes eyeon{0%{opacity:0}45%{opacity:1}62%{opacity:.55}100%{opacity:1}}
+.bot .eyes .lid{transform-box:fill-box;transform-origin:50% 50%;transform:scaleY(.08)}
+.intro.lit .bot .eyes .lid{animation:eyeopen .78s var(--ease) forwards}
+.intro.lit .bot .eyes .glow{animation:eyeglow .7s ease .26s forwards,eyepulse 4.6s ease-in-out 1.1s infinite}
+.intro.lit .bot .spark{animation:spark .9s ease .2s forwards}
+@keyframes eyeopen{
+  0%{opacity:0;transform:scaleY(.08)}
+  20%{opacity:1;transform:scaleY(.1)}
+  62%{opacity:1;transform:scaleY(1.14)}
+  100%{opacity:1;transform:scaleY(1)}
+}
 @keyframes eyeglow{to{opacity:1}}
-@keyframes eyepulse{0%,100%{opacity:.72}50%{opacity:1}}
-@keyframes spark{0%{opacity:0}30%{opacity:.45}100%{opacity:0}}
+@keyframes eyepulse{0%,100%{opacity:.7}50%{opacity:1}}
+@keyframes spark{0%{opacity:0}30%{opacity:.4}100%{opacity:0}}
 /* моргание — редкое и короткое */
 .intro.lit .bot .eyes{animation:blink 7s ease-in-out 2.6s infinite;transform-box:fill-box;transform-origin:50% 50%}
 @keyframes blink{0%,95%,100%{transform:scaleY(1)}97%,98.2%{transform:scaleY(.1)}}
@@ -346,75 +352,109 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
     <span class="halo"></span>
     <span class="halo rev"></span>
     <canvas class="neuro" id="botNeuro" aria-hidden="true"></canvas>
-    <svg class="bot" viewBox="0 0 200 264" aria-hidden="true">
+    <svg class="bot" viewBox="0 0 200 284" aria-hidden="true">
       <defs>
-        <linearGradient id="hood" x1=".15" y1="0" x2=".8" y2="1">
-          <stop offset="0%" stop-color="#DCD8EA"/><stop offset="45%" stop-color="#ADA6C4"/>
-          <stop offset="100%" stop-color="#6B6489"/>
+        <linearGradient id="knitg" x1=".18" y1="0" x2=".82" y2="1">
+          <stop offset="0%" stop-color="#EAE6DF"/><stop offset="46%" stop-color="#C6C0B8"/>
+          <stop offset="100%" stop-color="#8B857E"/>
         </linearGradient>
-        <linearGradient id="body" x1=".2" y1="0" x2=".85" y2="1">
-          <stop offset="0%" stop-color="#D3CEE2"/><stop offset="52%" stop-color="#9E97B8"/><stop offset="100%" stop-color="#5E5880"/>
+        <linearGradient id="knitb" x1=".2" y1="0" x2=".85" y2="1">
+          <stop offset="0%" stop-color="#E2DDD5"/><stop offset="52%" stop-color="#BAB4AC"/>
+          <stop offset="100%" stop-color="#7E7872"/>
         </linearGradient>
-        <linearGradient id="sleeve" x1=".1" y1="0" x2=".9" y2="1">
-          <stop offset="0%" stop-color="#C9C3DA"/><stop offset="58%" stop-color="#948DAE"/><stop offset="100%" stop-color="#575178"/>
+        <linearGradient id="visorg" x1=".22" y1="0" x2=".78" y2="1">
+          <stop offset="0%" stop-color="#33333A"/><stop offset="38%" stop-color="#141418"/>
+          <stop offset="100%" stop-color="#050508"/>
         </linearGradient>
-        <radialGradient id="bloom"><stop offset="0%" stop-color="#FF9ED2" stop-opacity=".8"/><stop offset="45%" stop-color="#C4A9FF" stop-opacity=".26"/><stop offset="100%" stop-color="#C4A9FF" stop-opacity="0"/></radialGradient>
-        <linearGradient id="visor" x1="0" y1="0" x2=".6" y2="1">
-          <stop offset="0%" stop-color="#1E1738"/><stop offset="60%" stop-color="#0E0A1F"/><stop offset="100%" stop-color="#080611"/>
+        <linearGradient id="denim" x1=".2" y1="0" x2=".8" y2="1">
+          <stop offset="0%" stop-color="#454B5C"/><stop offset="100%" stop-color="#272B37"/>
         </linearGradient>
+        <linearGradient id="denim2" x1=".2" y1="0" x2=".8" y2="1">
+          <stop offset="0%" stop-color="#C2CAD8"/><stop offset="100%" stop-color="#8F98A9"/>
+        </linearGradient>
+        <radialGradient id="bloom"><stop offset="0%" stop-color="#FFD8EC" stop-opacity=".85"/><stop offset="38%" stop-color="#FF9ED2" stop-opacity=".38"/><stop offset="100%" stop-color="#FF9ED2" stop-opacity="0"/></radialGradient>
+        <!-- вязка: мелкие штрихи поверх ткани, иначе худи выглядит пластиком -->
+        <pattern id="knitpat" width="6" height="6" patternUnits="userSpaceOnUse">
+          <path d="M0 3 L3 0 M3 6 L6 3" stroke="#6E675F" stroke-opacity=".2" stroke-width="1.1" fill="none"/>
+        </pattern>
+        <filter id="eyeblur" x="-120%" y="-320%" width="340%" height="740%">
+          <feGaussianBlur stdDeviation="2.6"/>
+        </filter>
       </defs>
 
-      <!-- ноги и обувь -->
-      <rect x="82" y="188" width="16" height="56" rx="6" fill="#241E3C"/>
-      <rect x="102" y="188" width="16" height="56" rx="6" fill="#241E3C"/>
-      <rect x="71" y="240" width="28" height="14" rx="6" fill="#171226"/>
-      <rect x="101" y="240" width="28" height="14" rx="6" fill="#171226"/>
-      <rect x="71" y="249" width="28" height="5" rx="2.5" fill="#C4A9FF" opacity=".24"/>
-      <rect x="101" y="249" width="28" height="5" rx="2.5" fill="#C4A9FF" opacity=".24"/>
+      <!-- кроссовки: толстая подошва, розовый носок -->
+      <rect x="52" y="252" width="46" height="18" rx="8" fill="#E9E5DE"/>
+      <rect x="102" y="252" width="46" height="18" rx="8" fill="#E9E5DE"/>
+      <path d="M52 260 Q60 254 74 255 L74 268 L56 268 Q52 268 52 264 Z" fill="#F0C6BE"/>
+      <path d="M148 260 Q140 254 126 255 L126 268 L144 268 Q148 268 148 264 Z" fill="#F0C6BE"/>
+      <rect x="46" y="264" width="54" height="13" rx="6" fill="#FBFAF7"/>
+      <rect x="100" y="264" width="54" height="13" rx="6" fill="#FBFAF7"/>
+      <rect x="46" y="272" width="54" height="5" rx="2.5" fill="#DED9D1"/>
+      <rect x="100" y="272" width="54" height="5" rx="2.5" fill="#DED9D1"/>
 
-      <!-- рукава: за корпусом, обе руки опущены — спокойная поза -->
-      <rect x="38" y="98" width="21" height="84" rx="10.5" fill="url(#sleeve)"/>
-      <circle cx="48.5" cy="184" r="10.5" fill="url(#hood)"/>
-      <rect x="141" y="98" width="21" height="84" rx="10.5" fill="url(#sleeve)"/>
-      <circle cx="151.5" cy="184" r="10.5" fill="url(#hood)"/>
+      <!-- подвёрнутые светлые манжеты джинсов -->
+      <rect x="62" y="238" width="36" height="20" rx="5" fill="url(#denim2)"/>
+      <rect x="102" y="238" width="36" height="20" rx="5" fill="url(#denim2)"/>
+      <rect x="62" y="238" width="36" height="5" rx="2.5" fill="#0A0812" opacity=".14"/>
+      <rect x="102" y="238" width="36" height="5" rx="2.5" fill="#0A0812" opacity=".14"/>
 
-      <!-- корпус: плечи шире головы, книзу сужается — взрослый силуэт -->
-      <path d="M56 120 Q56 100 76 95 L124 95 Q144 100 144 120 L136 190 Q100 197 64 190 Z" fill="url(#body)"/>
-      <path d="M65 183 Q100 189 135 183 L136 190 Q100 197 64 190 Z" fill="#0A0812" opacity=".12"/>
-      <path d="M80 148 Q100 154 120 148 L120 165 Q100 171 80 165 Z" fill="#0A0812" opacity=".08"/>
-      <path d="M100 102 L100 148" stroke="#0A0812" stroke-opacity=".1" stroke-width="1.6"/>
+      <!-- тёмные джинсовые шорты -->
+      <path d="M58 214 Q100 222 142 214 L138 244 L106 244 L104 230 Q100 228 96 230 L94 244 L62 244 Z" fill="url(#denim)"/>
+      <path d="M58 214 Q100 222 142 214 L141 222 Q100 230 59 222 Z" fill="#0A0812" opacity=".18"/>
 
-      <!-- капюшон: задняя часть, тень внутри, визор -->
-      <path d="M100 16 C122 16 134 34 134 56 C134 78 128 92 119 98 L81 98 C72 92 66 78 66 56 C66 34 78 16 100 16 Z" fill="url(#hood)"/>
-      <path d="M100 25 C118 25 127 39 127 57 C127 77 115 86 100 86 C85 86 73 77 73 57 C73 39 82 25 100 25 Z" fill="#0A0812" opacity=".14"/>
-      <path d="M100 30 C116 30 125 42 125 57 C125 74 114 82 100 82 C86 82 75 74 75 57 C75 42 84 30 100 30 Z" fill="url(#visor)"/>
-      <path d="M82 48 Q89 38 100 37" stroke="#EFE9FF" stroke-opacity=".1" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+      <!-- рукава: изгибаются вниз и внутрь — руки убраны в карман -->
+      <path d="M62 164 C50 180 52 200 84 208" stroke="url(#knitb)" stroke-width="21" fill="none" stroke-linecap="round"/>
+      <path d="M138 164 C150 180 148 200 116 208" stroke="url(#knitb)" stroke-width="21" fill="none" stroke-linecap="round"/>
+      <path d="M62 164 C50 180 52 200 84 208" stroke="url(#knitpat)" stroke-width="21" fill="none" stroke-linecap="round"/>
+      <path d="M138 164 C150 180 148 200 116 208" stroke="url(#knitpat)" stroke-width="21" fill="none" stroke-linecap="round"/>
 
-      <!-- наушники: тонкая дужка поверх капюшона, узкие чашки -->
-      <path d="M66 62 C63 34 79 14 100 14 C121 14 137 34 134 62" stroke="#2E2848" stroke-width="5" fill="none" stroke-linecap="round"/>
-      <path d="M66 62 C63 34 79 14 100 14 C121 14 137 34 134 62" stroke="#8F86B8" stroke-width="1.5" fill="none" stroke-linecap="round" transform="translate(0,-1.6)"/>
-      <ellipse cx="66" cy="62" rx="7.5" ry="11.5" fill="#2E2848"/>
-      <ellipse cx="66" cy="62" rx="3" ry="5" fill="#C4A9FF" opacity=".5"/>
-      <ellipse cx="134" cy="62" rx="7.5" ry="11.5" fill="#2E2848"/>
-      <ellipse cx="134" cy="62" rx="3" ry="5" fill="#C4A9FF" opacity=".5"/>
-      <circle cx="134" cy="50" r="1.7" fill="#FF9ED2"/>
+      <!-- корпус худи -->
+      <path d="M50 176 Q50 156 68 150 L132 150 Q150 156 150 176 L152 220 Q100 228 48 220 Z" fill="url(#knitb)"/>
+      <path d="M50 176 Q50 156 68 150 L132 150 Q150 156 150 176 L152 220 Q100 228 48 220 Z" fill="url(#knitpat)"/>
+      <path d="M49 212 Q100 220 151 212 L152 220 Q100 228 48 220 Z" fill="#0A0812" opacity=".13"/>
+
+      <!-- карман-кенгуру поверх рукавов: кисти «внутри» -->
+      <path d="M68 190 Q100 198 132 190 L132 216 Q100 224 68 216 Z" fill="#0A0812" opacity=".09"/>
+      <path d="M68 190 Q100 198 132 190" stroke="#0A0812" stroke-opacity=".16" stroke-width="1.6" fill="none"/>
+      <rect x="84" y="199" width="32" height="4" rx="2" fill="#C9BFB4"/>
+
+      <!-- антенна -->
+      <path d="M139 44 Q150 22 157 4" stroke="#2A2A30" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+      <!-- капюшон: вязаный, надвинут -->
+      <path d="M100 16 C138 16 164 46 164 86 C164 122 151 148 132 158 L68 158 C49 148 36 122 36 86 C36 46 62 16 100 16 Z" fill="url(#knitg)"/>
+      <path d="M100 16 C138 16 164 46 164 86 C164 122 151 148 132 158 L68 158 C49 148 36 122 36 86 C36 46 62 16 100 16 Z" fill="url(#knitpat)"/>
+      <path d="M100 30 C130 30 152 54 152 88 C152 118 130 138 100 138 C70 138 48 118 48 88 C48 54 70 30 100 30 Z" fill="#0A0812" opacity=".16"/>
+
+      <!-- визор: большой глянцевый овал -->
+      <path d="M100 44 C132 44 152 64 152 90 C152 118 130 138 100 138 C70 138 48 118 48 90 C48 64 68 44 100 44 Z" fill="url(#visorg)"/>
+      <path d="M100 44 C132 44 152 64 152 90 C152 118 130 138 100 138 C70 138 48 118 48 90 C48 64 68 44 100 44 Z" fill="none" stroke="#3C3C44" stroke-width="1.6"/>
+      <path d="M66 74 Q80 56 104 53" stroke="#FFFFFF" stroke-opacity=".1" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <ellipse cx="74" cy="66" rx="7" ry="4" fill="#FFFFFF" opacity=".13" transform="rotate(-28 74 66)"/>
+
+      <!-- наушник сбоку -->
+      <circle cx="40" cy="96" r="19" fill="#17171B"/>
+      <circle cx="40" cy="96" r="13" fill="none" stroke="#3E3E46" stroke-width="2"/>
+      <circle cx="40" cy="96" r="6.5" fill="#232329"/>
+      <rect x="33" y="94.5" width="14" height="3" rx="1.5" fill="#4E4E58"/>
+      <path d="M28 88 Q26 96 29 104" stroke="#42424C" stroke-width="2" fill="none" stroke-linecap="round"/>
 
       <!-- завязки капюшона -->
-      <path d="M90 98 L88 118" stroke="#DCD8EA" stroke-width="2.8" stroke-linecap="round"/>
-      <path d="M110 98 L112 118" stroke="#DCD8EA" stroke-width="2.8" stroke-linecap="round"/>
-      <circle cx="88" cy="120" r="2.2" fill="#C4A9FF"/>
-      <circle cx="112" cy="120" r="2.2" fill="#C4A9FF"/>
+      <path d="M86 152 L84 190" stroke="#EAE6DF" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M114 152 L116 190" stroke="#EAE6DF" stroke-width="3.4" stroke-linecap="round"/>
+      <circle cx="84" cy="192" r="2.6" fill="#D6D0C6"/>
+      <circle cx="116" cy="192" r="2.6" fill="#D6D0C6"/>
 
-      <!-- глаза: тонкие полосы света, сначала погашены -->
-      <rect x="82" y="52" width="14" height="5" rx="2.5" fill="#221C36"/>
-      <rect x="104" y="52" width="14" height="5" rx="2.5" fill="#221C36"/>
+      <!-- глаза: тёмные щели, потом раскрываются и загораются -->
+      <rect x="66" y="84" width="26" height="11" rx="5.5" fill="#1B1B21"/>
+      <rect x="108" y="84" width="26" height="11" rx="5.5" fill="#1B1B21"/>
       <g class="eyes">
-        <circle class="glow" cx="89" cy="54.5" r="14" fill="url(#bloom)"/>
-        <circle class="glow" cx="111" cy="54.5" r="14" fill="url(#bloom)"/>
-        <rect class="lid" x="82" y="52" width="14" height="5" rx="2.5" fill="#FF9ED2"/>
-        <rect class="lid" x="104" y="52" width="14" height="5" rx="2.5" fill="#FF9ED2"/>
+        <ellipse class="glow" cx="79" cy="89.5" rx="32" ry="23" fill="url(#bloom)"/>
+        <ellipse class="glow" cx="121" cy="89.5" rx="32" ry="23" fill="url(#bloom)"/>
+        <rect class="lid" x="66" y="84" width="26" height="11" rx="5.5" fill="#FFE4F2" filter="url(#eyeblur)"/>
+        <rect class="lid" x="108" y="84" width="26" height="11" rx="5.5" fill="#FFE4F2" filter="url(#eyeblur)"/>
       </g>
-      <circle class="spark" cx="100" cy="56" r="40" fill="url(#bloom)"/>
+      <ellipse class="spark" cx="100" cy="90" rx="58" ry="42" fill="url(#bloom)"/>
     </svg>
   </div>
   <div class="intro-id">
@@ -461,14 +501,14 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
   function inCapsule(ax,ay,bx,by,r,n){ for(var i=0;i<n;i++){ var k=rnd();
       var x=ax+(bx-ax)*k, y=ay+(by-ay)*k, a=rnd()*6.283, d=r*Math.sqrt(rnd());
       pts.push([x+Math.cos(a)*d, y+Math.sin(a)*d]); } }
-  inEllipse(100,57,34,41,270);            /* капюшон с головой */
-  inQuad(56,144,64,136,95,195,330);       /* корпус */
-  inCapsule(48.5,108,48.5,176,10.5,86);   /* левый рукав */
-  inCapsule(151.5,108,151.5,176,10.5,86); /* правый рукав */
-  inCircle(48.5,184,10.5,24); inCircle(151.5,184,10.5,24); /* кисти */
-  inEllipse(66,62,7.5,11.5,24); inEllipse(134,62,7.5,11.5,24); /* наушники */
-  inQuad(82,98,82,98,188,244,58); inQuad(102,118,102,118,188,244,58); /* ноги */
-  inQuad(71,99,71,99,240,254,34); inQuad(101,129,101,129,240,254,34); /* обувь */
+  inEllipse(100,87,64,71,420);            /* капюшон с визором */
+  inQuad(50,150,48,152,150,224,300);      /* корпус худи */
+  inCapsule(54,176,70,206,10.5,64);       /* левый рукав */
+  inCapsule(146,176,130,206,10.5,64);     /* правый рукав */
+  inCircle(40,96,19,40);                  /* наушник */
+  inQuad(58,142,62,138,214,244,120);      /* шорты */
+  inQuad(62,98,62,98,238,258,40); inQuad(102,138,102,138,238,258,40); /* манжеты */
+  inQuad(46,100,46,100,252,277,46); inQuad(100,154,100,154,252,277,46); /* кроссовки */
 
   var cv=document.getElementById('botNeuro'), ctx=cv&&cv.getContext&&cv.getContext('2d');
   var stage=intro.querySelector('.intro-stage'), bot=intro.querySelector('.bot');
@@ -490,7 +530,7 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
       var a=rnd()*6.283, d=26+rnd()*64;
       return { tx:ox+p[0]*sc, ty:oy+p[1]*sc,
                sx:ox+p[0]*sc+Math.cos(a)*d, sy:oy+p[1]*sc+Math.sin(a)*d,
-               d:(p[1]/264)*SWEEP+rnd()*.09, dur:.42+rnd()*.16,
+               d:(p[1]/284)*SWEEP+rnd()*.09, dur:.42+rnd()*.16,
                r:.7+rnd()*1.05, pink:rnd()<.2, link:i%8===0 };
     });
   }
