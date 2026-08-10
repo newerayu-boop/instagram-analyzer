@@ -287,11 +287,11 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
   cursor:pointer;overflow:hidden;
   background:radial-gradient(62% 52% at 50% 48%,#241B3B,#0A0812 82%)}
 @media (prefers-reduced-motion:reduce){.intro{display:none}}
-/* сцена: как у референса — уголки и два встречно вращающихся ореола */
-.intro-stage{position:relative;width:min(84vw,62vh,520px);aspect-ratio:1;animation:botfloat 6s ease-in-out infinite alternate}
-@keyframes botfloat{0%{transform:translateY(0)}100%{transform:translateY(-10px)}}
-.intro-stage .halo{position:absolute;left:50%;top:50%;width:74%;height:74%;margin:-37% 0 0 -37%;border-radius:50%;border:1px solid rgba(139,92,246,.28);animation:halospin 38s linear infinite}
-.intro-stage .halo.rev{width:96%;height:96%;margin:-48% 0 0 -48%;border-color:rgba(255,158,210,.16);animation-duration:52s;animation-direction:reverse}
+/* сцена: два встречно вращающихся ореола, еле заметных — без «мультика» */
+.intro-stage{position:relative;width:min(84vw,60vh,500px);aspect-ratio:1;animation:botfloat 9s ease-in-out infinite alternate}
+@keyframes botfloat{0%{transform:translateY(0)}100%{transform:translateY(-6px)}}
+.intro-stage .halo{position:absolute;left:50%;top:50%;width:76%;height:76%;margin:-38% 0 0 -38%;border-radius:50%;border:1px solid rgba(139,92,246,.16);animation:halospin 54s linear infinite}
+.intro-stage .halo.rev{width:98%;height:98%;margin:-49% 0 0 -49%;border-color:rgba(196,169,255,.09);animation-duration:74s;animation-direction:reverse}
 @keyframes halospin{to{transform:rotate(360deg)}}
 /* нейроны слетаются в силуэт робота, потом уступают место рисунку */
 .intro-stage .neuro{position:absolute;inset:0;width:100%;height:100%;transition:opacity .34s ease}
@@ -302,34 +302,33 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
   filter:drop-shadow(0 24px 52px rgba(139,92,246,.4));
   transition:opacity .4s ease}
 .intro.built .bot{opacity:1}
-/* глаза загораются: тёмные — вспышка с дрожью — ровное свечение */
+/* глаза включаются один раз и ровно: без дрожи и мультяшных вспышек */
 .bot .eyes .lid,.bot .eyes .glow,.bot .spark{opacity:0}
-.intro.lit .bot .eyes .lid{animation:eyeon .62s ease forwards}
-.intro.lit .bot .eyes .glow{animation:eyeglow .5s ease .18s forwards,eyepulse 2.8s ease-in-out .8s infinite}
-.intro.lit .bot .spark{animation:spark .6s ease forwards}
-@keyframes eyeon{0%{opacity:0}16%{opacity:1}28%{opacity:.1}44%{opacity:1}58%{opacity:.35}100%{opacity:1}}
+.intro.lit .bot .eyes .lid{animation:eyeon .8s var(--ease) forwards}
+.intro.lit .bot .eyes .glow{animation:eyeglow .7s ease .12s forwards,eyepulse 4.6s ease-in-out 1s infinite}
+.intro.lit .bot .spark{animation:spark .9s ease forwards}
+@keyframes eyeon{0%{opacity:0}45%{opacity:1}62%{opacity:.55}100%{opacity:1}}
 @keyframes eyeglow{to{opacity:1}}
-@keyframes eyepulse{0%,100%{opacity:.7}50%{opacity:1}}
-@keyframes spark{0%{opacity:0}20%{opacity:.8}100%{opacity:0}}
-/* моргание — уже после розжига */
-.intro.lit .bot .eyes{animation:blink 4.6s ease-in-out 2s infinite;transform-box:fill-box;transform-origin:50% 50%}
-@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%,97.6%{transform:scaleY(.08)}}
-/* машет поднятой рукой — ось вращения в плече */
-.bot .arm-r{transform-box:fill-box;transform-origin:13px 56px}
-.intro.lit .bot .arm-r{animation:wave .62s ease-in-out .1s 4}
-@keyframes wave{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(14deg)}}
-.intro-bubble{
-  position:relative;transform:scale(.6);opacity:0;z-index:2;white-space:nowrap;
-  font-size:clamp(15px,2.4vw,25px);font-weight:800;letter-spacing:-.015em;color:var(--ink);
-  background:linear-gradient(140deg,#241B3D,#171126);border:1px solid var(--line);border-radius:18px;
-  padding:13px 24px;box-shadow:0 22px 50px -20px rgba(0,0,0,.85),0 0 60px -20px rgba(139,92,246,.55);
-}
-/* уголок-стрелка вниз, как в референсе */
-.intro-bubble::after{content:"";position:absolute;left:50%;bottom:-7px;width:12px;height:12px;margin-left:-6px;transform:rotate(45deg);background:#1B1430;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-.intro.say .intro-bubble{animation:ibub .45s var(--ease) forwards}
-@keyframes ibub{to{opacity:1;transform:scale(1)}}
+@keyframes eyepulse{0%,100%{opacity:.72}50%{opacity:1}}
+@keyframes spark{0%{opacity:0}30%{opacity:.45}100%{opacity:0}}
+/* моргание — редкое и короткое */
+.intro.lit .bot .eyes{animation:blink 7s ease-in-out 2.6s infinite;transform-box:fill-box;transform-origin:50% 50%}
+@keyframes blink{0%,95%,100%{transform:scaleY(1)}97%,98.2%{transform:scaleY(.1)}}
+
+/* подпись под роботом вместо облачка с эмодзи */
+.intro-id{display:flex;flex-direction:column;align-items:center;gap:11px;text-align:center;padding:0 20px}
+.intro-id>*{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .7s var(--ease)}
+.intro.say .intro-id>*{opacity:1;transform:none}
+.intro.say .intro-name{transition-delay:.09s}
+.intro.say .intro-rule{transition-delay:.2s}
+.intro.say .intro-role{transition-delay:.28s}
+.intro-hi{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--faint)}
+.intro-name{font-size:clamp(24px,4.2vw,42px);font-weight:800;letter-spacing:.17em;color:var(--ink)}
+.intro-rule{width:64px;height:1px;background:linear-gradient(90deg,transparent,var(--vio2),transparent)}
+.intro-role{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 .intro-skip{position:absolute;bottom:18px;left:22px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
-.intro.out{transition:opacity .5s ease,transform .6s var(--ease);opacity:0;transform:scale(1.4);pointer-events:none}
+/* уход — спокойный: не «прыжок» в кадр, а сдержанное растворение */
+.intro.out{transition:opacity .62s ease,transform .8s var(--ease);opacity:0;transform:scale(1.05);pointer-events:none}
 
 /* ---------- лайтбокс и видео ---------- */
 .lb{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(6,4,12,.92);padding:4vh 4vw}
@@ -341,83 +340,88 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
 </head>
 <body>
 
-<!-- вход: робот в худи, глаза загораются, машет — и сайт открывается -->
+<!-- вход: нейросеть собирает робота, у него включаются глаза — и открывается сайт -->
 <div class="intro" id="intro" aria-hidden="true">
-  <div class="intro-bubble">Assalomu alaykum! 👋</div>
   <div class="intro-stage">
     <span class="halo"></span>
     <span class="halo rev"></span>
     <canvas class="neuro" id="botNeuro" aria-hidden="true"></canvas>
-    <svg class="bot" viewBox="0 0 200 214" aria-hidden="true">
+    <svg class="bot" viewBox="0 0 200 264" aria-hidden="true">
       <defs>
         <linearGradient id="hood" x1=".15" y1="0" x2=".8" y2="1">
-          <stop offset="0%" stop-color="#F7F4FE"/><stop offset="42%" stop-color="#DED7F0"/>
-          <stop offset="78%" stop-color="#BAB1D6" /><stop offset="100%" stop-color="#8C83AA"/>
+          <stop offset="0%" stop-color="#DCD8EA"/><stop offset="45%" stop-color="#ADA6C4"/>
+          <stop offset="100%" stop-color="#6B6489"/>
         </linearGradient>
         <linearGradient id="body" x1=".2" y1="0" x2=".85" y2="1">
-          <stop offset="0%" stop-color="#EFEAFA"/><stop offset="55%" stop-color="#D2CAE7"/><stop offset="100%" stop-color="#9A91BA"/>
+          <stop offset="0%" stop-color="#D3CEE2"/><stop offset="52%" stop-color="#9E97B8"/><stop offset="100%" stop-color="#5E5880"/>
         </linearGradient>
         <linearGradient id="sleeve" x1=".1" y1="0" x2=".9" y2="1">
-          <stop offset="0%" stop-color="#E8E2F6"/><stop offset="58%" stop-color="#C7BFE0"/><stop offset="100%" stop-color="#928AB2"/>
+          <stop offset="0%" stop-color="#C9C3DA"/><stop offset="58%" stop-color="#948DAE"/><stop offset="100%" stop-color="#575178"/>
         </linearGradient>
-        <radialGradient id="bloom"><stop offset="0%" stop-color="#FF9ED2" stop-opacity=".85"/><stop offset="45%" stop-color="#C4A9FF" stop-opacity=".32"/><stop offset="100%" stop-color="#C4A9FF" stop-opacity="0"/></radialGradient>
+        <radialGradient id="bloom"><stop offset="0%" stop-color="#FF9ED2" stop-opacity=".8"/><stop offset="45%" stop-color="#C4A9FF" stop-opacity=".26"/><stop offset="100%" stop-color="#C4A9FF" stop-opacity="0"/></radialGradient>
         <linearGradient id="visor" x1="0" y1="0" x2=".6" y2="1">
-          <stop offset="0%" stop-color="#2A2142"/><stop offset="60%" stop-color="#140F26"/><stop offset="100%" stop-color="#0C0819"/>
+          <stop offset="0%" stop-color="#1E1738"/><stop offset="60%" stop-color="#0E0A1F"/><stop offset="100%" stop-color="#080611"/>
         </linearGradient>
       </defs>
 
-      <!-- левый рукав — за корпусом, поэтому плечо срастается с худи -->
-      <rect x="28" y="104" width="27" height="60" rx="13.5" fill="url(#sleeve)"/>
-      <circle cx="41.5" cy="166" r="14" fill="url(#hood)"/>
+      <!-- ноги и обувь -->
+      <rect x="82" y="188" width="16" height="56" rx="6" fill="#241E3C"/>
+      <rect x="102" y="188" width="16" height="56" rx="6" fill="#241E3C"/>
+      <rect x="71" y="240" width="28" height="14" rx="6" fill="#171226"/>
+      <rect x="101" y="240" width="28" height="14" rx="6" fill="#171226"/>
+      <rect x="71" y="249" width="28" height="5" rx="2.5" fill="#C4A9FF" opacity=".24"/>
+      <rect x="101" y="249" width="28" height="5" rx="2.5" fill="#C4A9FF" opacity=".24"/>
 
-      <!-- корпус худи: книзу расширяется, как у референса -->
-      <path d="M50 132 Q50 106 76 102 L124 102 Q150 106 150 132 L154 188 Q156 199 144 201 Q100 208 56 201 Q44 199 46 188 Z" fill="url(#body)"/>
-      <path d="M46 182 Q100 194 154 182 L154 188 Q156 199 144 201 Q100 208 56 201 Q44 199 46 188 Z" fill="#0A0812" opacity=".1"/>
-      <!-- карман-кенгуру -->
-      <path d="M76 150 Q100 159 124 150 L124 170 Q100 179 76 170 Z" fill="#0A0812" opacity=".1"/>
+      <!-- рукава: за корпусом, обе руки опущены — спокойная поза -->
+      <rect x="38" y="98" width="21" height="84" rx="10.5" fill="url(#sleeve)"/>
+      <circle cx="48.5" cy="184" r="10.5" fill="url(#hood)"/>
+      <rect x="141" y="98" width="21" height="84" rx="10.5" fill="url(#sleeve)"/>
+      <circle cx="151.5" cy="184" r="10.5" fill="url(#hood)"/>
 
-      <!-- капюшон: задняя часть, тень внутри и лицо -->
-      <path d="M100 16 C146 16 162 46 162 82 C162 110 152 126 140 132 L60 132 C48 126 38 110 38 82 C38 46 54 16 100 16 Z" fill="url(#hood)"/>
-      <path d="M100 28 C140 28 152 56 152 82 C152 110 130 122 100 122 C70 122 48 110 48 82 C48 56 60 28 100 28 Z" fill="#0A0812" opacity=".12"/>
-      <path d="M100 38 C136 38 146 60 146 82 C146 106 128 116 100 116 C72 116 54 106 54 82 C54 60 64 38 100 38 Z" fill="url(#visor)"/>
-      <path d="M68 66 Q80 48 100 46" stroke="#EFE9FF" stroke-opacity=".14" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <!-- корпус: плечи шире головы, книзу сужается — взрослый силуэт -->
+      <path d="M56 120 Q56 100 76 95 L124 95 Q144 100 144 120 L136 190 Q100 197 64 190 Z" fill="url(#body)"/>
+      <path d="M65 183 Q100 189 135 183 L136 190 Q100 197 64 190 Z" fill="#0A0812" opacity=".12"/>
+      <path d="M80 148 Q100 154 120 148 L120 165 Q100 171 80 165 Z" fill="#0A0812" opacity=".08"/>
+      <path d="M100 102 L100 148" stroke="#0A0812" stroke-opacity=".1" stroke-width="1.6"/>
 
-      <!-- наушники: дужка поверх капюшона, чашки по бокам.
-           два штриха — тёмный корпус и светлый блик, иначе дужка теряется -->
-      <path d="M40 96 C36 54 60 10 100 10 C140 10 164 54 160 96" stroke="#3A3358" stroke-width="9" fill="none" stroke-linecap="round"/>
-      <path d="M40 96 C36 54 60 10 100 10 C140 10 164 54 160 96" stroke="#9A8FC4" stroke-width="2.6" fill="none" stroke-linecap="round" transform="translate(0,-2.6)"/>
-      <circle cx="40" cy="96" r="13.5" fill="#3A3358"/>
-      <circle cx="40" cy="96" r="6.5" fill="#C4A9FF" opacity=".7"/>
-      <circle cx="160" cy="96" r="13.5" fill="#3A3358"/>
-      <circle cx="160" cy="96" r="6.5" fill="#C4A9FF" opacity=".7"/>
-      <circle cx="160" cy="86" r="2.4" fill="#FF9ED2"/>
+      <!-- капюшон: задняя часть, тень внутри, визор -->
+      <path d="M100 16 C122 16 134 34 134 56 C134 78 128 92 119 98 L81 98 C72 92 66 78 66 56 C66 34 78 16 100 16 Z" fill="url(#hood)"/>
+      <path d="M100 25 C118 25 127 39 127 57 C127 77 115 86 100 86 C85 86 73 77 73 57 C73 39 82 25 100 25 Z" fill="#0A0812" opacity=".14"/>
+      <path d="M100 30 C116 30 125 42 125 57 C125 74 114 82 100 82 C86 82 75 74 75 57 C75 42 84 30 100 30 Z" fill="url(#visor)"/>
+      <path d="M82 48 Q89 38 100 37" stroke="#EFE9FF" stroke-opacity=".1" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+
+      <!-- наушники: тонкая дужка поверх капюшона, узкие чашки -->
+      <path d="M66 62 C63 34 79 14 100 14 C121 14 137 34 134 62" stroke="#2E2848" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M66 62 C63 34 79 14 100 14 C121 14 137 34 134 62" stroke="#8F86B8" stroke-width="1.5" fill="none" stroke-linecap="round" transform="translate(0,-1.6)"/>
+      <ellipse cx="66" cy="62" rx="7.5" ry="11.5" fill="#2E2848"/>
+      <ellipse cx="66" cy="62" rx="3" ry="5" fill="#C4A9FF" opacity=".5"/>
+      <ellipse cx="134" cy="62" rx="7.5" ry="11.5" fill="#2E2848"/>
+      <ellipse cx="134" cy="62" rx="3" ry="5" fill="#C4A9FF" opacity=".5"/>
+      <circle cx="134" cy="50" r="1.7" fill="#FF9ED2"/>
 
       <!-- завязки капюшона -->
-      <path d="M84 124 L80 154" stroke="#F7F4FE" stroke-width="4.5" stroke-linecap="round"/>
-      <path d="M116 124 L120 154" stroke="#F7F4FE" stroke-width="4.5" stroke-linecap="round"/>
-      <circle cx="80" cy="156" r="3.6" fill="#FF9ED2"/>
-      <circle cx="120" cy="156" r="3.6" fill="#FF9ED2"/>
+      <path d="M90 98 L88 118" stroke="#DCD8EA" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M110 98 L112 118" stroke="#DCD8EA" stroke-width="2.8" stroke-linecap="round"/>
+      <circle cx="88" cy="120" r="2.2" fill="#C4A9FF"/>
+      <circle cx="112" cy="120" r="2.2" fill="#C4A9FF"/>
 
-      <!-- глаза: сначала тёмные гнёзда, потом загораются розовым -->
-      <circle cx="84" cy="76" r="8.5" fill="#2A2142"/>
-      <circle cx="116" cy="76" r="8.5" fill="#2A2142"/>
+      <!-- глаза: тонкие полосы света, сначала погашены -->
+      <rect x="82" y="52" width="14" height="5" rx="2.5" fill="#221C36"/>
+      <rect x="104" y="52" width="14" height="5" rx="2.5" fill="#221C36"/>
       <g class="eyes">
-        <circle class="glow" cx="84" cy="76" r="21" fill="url(#bloom)"/>
-        <circle class="glow" cx="116" cy="76" r="21" fill="url(#bloom)"/>
-        <circle class="lid" cx="84" cy="76" r="8.5" fill="#FF9ED2"/>
-        <circle class="lid" cx="116" cy="76" r="8.5" fill="#FF9ED2"/>
+        <circle class="glow" cx="89" cy="54.5" r="14" fill="url(#bloom)"/>
+        <circle class="glow" cx="111" cy="54.5" r="14" fill="url(#bloom)"/>
+        <rect class="lid" x="82" y="52" width="14" height="5" rx="2.5" fill="#FF9ED2"/>
+        <rect class="lid" x="104" y="52" width="14" height="5" rx="2.5" fill="#FF9ED2"/>
       </g>
-      <circle class="spark" cx="100" cy="78" r="54" fill="url(#bloom)"/>
-      <path d="M86 96 Q100 106 114 96" stroke="#C4A9FF" stroke-opacity=".5" stroke-width="3" fill="none" stroke-linecap="round"/>
-
-      <!-- поднятая рука — машет; ось в плече (146,134) -->
-      <g class="arm-r">
-        <circle cx="146" cy="134" r="13" fill="url(#sleeve)"/>
-        <polygon points="136.32,125.33 155.68,142.67 189.68,104.67 170.32,87.33" fill="url(#sleeve)"/>
-        <circle cx="180" cy="96" r="13" fill="url(#sleeve)"/>
-        <circle cx="184" cy="92" r="14" fill="url(#hood)"/>
-      </g>
+      <circle class="spark" cx="100" cy="56" r="40" fill="url(#bloom)"/>
     </svg>
+  </div>
+  <div class="intro-id">
+    <span class="intro-hi"><span data-uz>Assalomu alaykum</span><span data-ru>Здравствуйте</span></span>
+    <span class="intro-name">ISLAMIYA</span>
+    <span class="intro-rule"></span>
+    <span class="intro-role"><span data-uz>dizayner · AI-integrator · kurator</span><span data-ru>дизайнер · AI-интегратор · куратор</span></span>
   </div>
   <span class="intro-skip"><span data-uz>oʻtkazib yuborish — bosing</span><span data-ru>пропустить — клик</span></span>
 </div>
@@ -444,7 +448,7 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
   intro.addEventListener('click', finish);
 
   /* ---- нейроны: точки берём из тех же фигур, что и рисунок робота ---- */
-  var ASSEMBLE=1100;                      /* летят ~860мс, потом силуэт держится */
+  var ASSEMBLE=1250, SWEEP=.62;           /* SWEEP — за сколько скан проходит фигуру */
   var rnd=(function(s){ return function(){ s=(s*16807)%2147483647; return s/2147483647; }; })(20260809);
   var pts=[];
   function inCircle(cx,cy,r,n){ for(var i=0;i<n;i++){ var a=rnd()*6.283, d=r*Math.sqrt(rnd());
@@ -457,17 +461,18 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
   function inCapsule(ax,ay,bx,by,r,n){ for(var i=0;i<n;i++){ var k=rnd();
       var x=ax+(bx-ax)*k, y=ay+(by-ay)*k, a=rnd()*6.283, d=r*Math.sqrt(rnd());
       pts.push([x+Math.cos(a)*d, y+Math.sin(a)*d]); } }
-  inEllipse(100,74,62,58,330);            /* капюшон с головой */
-  inQuad(50,150,46,154,102,202,330);      /* корпус худи */
-  inCapsule(41,110,41,160,13,100);        /* левый рукав */
-  inCircle(41.5,166,14,36);               /* левая кисть */
-  inCapsule(146,134,180,96,13,100);       /* поднятая рука */
-  inCircle(184,92,14,36);                 /* правая кисть */
-  inCircle(40,96,13.5,32); inCircle(160,96,13.5,32);  /* наушники */
+  inEllipse(100,57,34,41,270);            /* капюшон с головой */
+  inQuad(56,144,64,136,95,195,330);       /* корпус */
+  inCapsule(48.5,108,48.5,176,10.5,86);   /* левый рукав */
+  inCapsule(151.5,108,151.5,176,10.5,86); /* правый рукав */
+  inCircle(48.5,184,10.5,24); inCircle(151.5,184,10.5,24); /* кисти */
+  inEllipse(66,62,7.5,11.5,24); inEllipse(134,62,7.5,11.5,24); /* наушники */
+  inQuad(82,98,82,98,188,244,58); inQuad(102,118,102,118,188,244,58); /* ноги */
+  inQuad(71,99,71,99,240,254,34); inQuad(101,129,101,129,240,254,34); /* обувь */
 
   var cv=document.getElementById('botNeuro'), ctx=cv&&cv.getContext&&cv.getContext('2d');
   var stage=intro.querySelector('.intro-stage'), bot=intro.querySelector('.bot');
-  var P=[], ox=0, oy=0, sc=1, W=0, H=0;
+  var P=[], ox=0, oy=0, sc=1, W=0, H=0, bw=0, bh=0;
   function layout(){
     var s=stage.getBoundingClientRect(), b=bot.getBoundingClientRect();
     W=s.width; H=s.height;
@@ -476,14 +481,17 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
     cv.style.width=W+'px'; cv.style.height=H+'px';
     ctx.setTransform(dpr,0,0,dpr,0,0);
     sc=b.width/200; ox=b.left-s.left; oy=b.top-s.top;
+    bw=b.width; bh=b.height;
   }
+  /* Сборка идёт сверху вниз: задержка точки зависит от её высоты, а не
+     случайна. Получается сканирование, а не рой — так солиднее. */
   function seed(){
     P=pts.map(function(p,i){
-      var a=rnd()*6.283, d=W*(.52+rnd()*.5);
+      var a=rnd()*6.283, d=26+rnd()*64;
       return { tx:ox+p[0]*sc, ty:oy+p[1]*sc,
-               sx:W/2+Math.cos(a)*d, sy:H/2+Math.sin(a)*d,
-               d:rnd()*.2, dur:.46+rnd()*.2,
-               r:.75+rnd()*1.25, pink:rnd()<.26, link:i%8===0 };
+               sx:ox+p[0]*sc+Math.cos(a)*d, sy:oy+p[1]*sc+Math.sin(a)*d,
+               d:(p[1]/264)*SWEEP+rnd()*.09, dur:.42+rnd()*.16,
+               r:.7+rnd()*1.05, pink:rnd()<.2, link:i%8===0 };
     });
   }
   function run(){
@@ -498,21 +506,29 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
       for(var i=0;i<P.length;i++){
         var p=P[i], k=Math.max(0,Math.min(1,(t-p.d)/p.dur)), e=ease(k);
         var x=p.sx+(p.tx-p.sx)*e, y=p.sy+(p.ty-p.sy)*e;
-        if(p.link&&e>.35) live.push(x,y);
-        ctx.globalAlpha=.14+.68*e;
-        ctx.fillStyle=p.pink?'#FF9ED2':'#B79BFF';
+        if(p.link&&e>.3) live.push(x,y);
+        ctx.globalAlpha=.1+.62*e;
+        ctx.fillStyle=p.pink?'#FF9ED2':'#A78BFA';
         ctx.beginPath(); ctx.arc(x,y,p.r,0,6.283); ctx.fill();
       }
       /* связи между соседями — тот самый «нейронный» вид */
       if(live.length){
-        ctx.lineWidth=1; ctx.strokeStyle='#8B5CF6';
+        ctx.lineWidth=.9; ctx.strokeStyle='#7C4DEF';
         for(var a=0;a<live.length;a+=2){
           for(var b=a+2;b<live.length;b+=2){
             var dx=live[a]-live[b], dy=live[a+1]-live[b+1], d2=dx*dx+dy*dy;
-            if(d2<620){ ctx.globalAlpha=.3*(1-d2/620); ctx.beginPath();
+            if(d2<560){ ctx.globalAlpha=.24*(1-d2/560); ctx.beginPath();
               ctx.moveTo(live[a],live[a+1]); ctx.lineTo(live[b],live[b+1]); ctx.stroke(); }
           }
         }
+      }
+      /* линия сканирования идёт по фронту сборки */
+      var sw=t/(SWEEP+.34);
+      if(sw<1){
+        var ly=oy+sw*bh, g=ctx.createLinearGradient(0,ly-30,0,ly+4);
+        g.addColorStop(0,'rgba(196,169,255,0)'); g.addColorStop(1,'rgba(196,169,255,.34)');
+        ctx.globalAlpha=Math.min(1,(1-sw)*3); ctx.fillStyle=g;
+        ctx.fillRect(ox-12,ly-30,bw+24,34);
       }
       ctx.globalCompositeOperation='source-over'; ctx.globalAlpha=1;
       if(t*1000<ASSEMBLE) requestAnimationFrame(frame);
@@ -520,10 +536,10 @@ footer{border-top:1px solid var(--line-soft);padding:26px 0 36px}
   }
   run();
 
-  setTimeout(function(){ intro.classList.add('built'); }, ASSEMBLE);  /* робот собрался */
-  setTimeout(function(){ intro.classList.add('lit');   }, ASSEMBLE+430);  /* глаза загораются, машет */
-  setTimeout(function(){ intro.classList.add('say');   }, ASSEMBLE+880);  /* здоровается */
-  setTimeout(finish, ASSEMBLE+2900);
+  setTimeout(function(){ intro.classList.add('built'); }, ASSEMBLE);      /* робот собрался */
+  setTimeout(function(){ intro.classList.add('lit');   }, ASSEMBLE+380);  /* включаются глаза */
+  setTimeout(function(){ intro.classList.add('say');   }, ASSEMBLE+700);  /* проявляется подпись */
+  setTimeout(finish, ASSEMBLE+2150);
 })();
 </script>
 
