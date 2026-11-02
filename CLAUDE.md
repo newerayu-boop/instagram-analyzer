@@ -135,3 +135,12 @@ parallax, word-reveal, marquee, hover-микро. Всё на transform/opacity,
 движение на экран; всегда fallback на reduced-motion. Главный принцип методологии:
 **сайт — это смысл, а не шаблон** (уникальность в деталях: шрифт, сетка, движение,
 реальные изображения и тексты по смыслу).
+
+## Эксперт-агенты — `docs/experts/` (2026-11-02)
+
+`docs/experts/nikita-vels/` — агент по материалам Никиты Велса (YouTube @NickVels_AI,
+закрытый TG «Никита Велс | AI»): профиль, каталог 38 видео + 65 Shorts, системный промпт
+(`AGENT.md`), промпт сборки базы (`BUILD_PROMPT.md`). Расшифровки из облака не берутся
+(YouTube банит облачные IP), поэтому скрипты `tools/expert-kb/fetch_youtube.py` и
+`tg_export_to_md.py` запускаются у пользователя. Затем из `transcripts/` и `telegram/`
+собирается `knowledge/`.
