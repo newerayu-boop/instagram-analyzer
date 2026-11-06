@@ -1,0 +1,712 @@
+<title>Geotex и Rebar Uzbekistan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: floating liquid-glass panels over a slow basalt/sand/teal light field; one column of sections, segmented tabs on top. */
+:root{
+  --bg:#e9edf5;
+  --fg:#0c1322;
+  --muted:#5a6477;
+  --accent:#0a7cff;
+  --accent-soft:rgba(10,124,255,.14);
+  --good:#1fae55;
+  --warn:#e08600;
+  --glass:rgba(255,255,255,.52);
+  --glass-strong:rgba(255,255,255,.74);
+  --stroke:rgba(255,255,255,.85);
+  --hair:rgba(18,28,48,.09);
+  --sheen:rgba(255,255,255,.75);
+  --shadow:rgba(30,45,80,.14);
+  --bar:rgba(60,72,96,.22);
+  --blob1:#7fb2ff; --blob2:#ffc785; --blob3:#6fe0cf; --blob4:#c3a6ff;
+  --f-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Onest",system-ui,sans-serif;
+  --f-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Onest",system-ui,sans-serif;
+  --f-mono:"SF Mono","JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r-xl:32px; --r-lg:24px; --r-md:16px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#05070c; --fg:#f1f4fa; --muted:#98a2b5; --accent:#3d9bff; --accent-soft:rgba(61,155,255,.18);
+  --good:#34d26a; --warn:#ffac33;
+  --glass:rgba(30,35,48,.46); --glass-strong:rgba(36,42,58,.7); --stroke:rgba(255,255,255,.14);
+  --hair:rgba(255,255,255,.08); --sheen:rgba(255,255,255,.16); --shadow:rgba(0,0,0,.45); --bar:rgba(200,210,230,.22);
+  --blob1:#1f4fb3; --blob2:#8a4c12; --blob3:#0f6b62; --blob4:#4a2f9a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#05070c; --fg:#f1f4fa; --muted:#98a2b5; --accent:#3d9bff; --accent-soft:rgba(61,155,255,.18);
+  --good:#34d26a; --warn:#ffac33;
+  --glass:rgba(30,35,48,.46); --glass-strong:rgba(36,42,58,.7); --stroke:rgba(255,255,255,.14);
+  --hair:rgba(255,255,255,.08); --sheen:rgba(255,255,255,.16); --shadow:rgba(0,0,0,.45); --bar:rgba(200,210,230,.22);
+  --blob1:#1f4fb3; --blob2:#8a4c12; --blob3:#0f6b62; --blob4:#4a2f9a; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+
+/* light field */
+.scene{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.scene span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.75;animation:drift 26s ease-in-out infinite alternate}
+.scene .b1{width:52vmax;height:52vmax;left:-14vmax;top:-18vmax;background:var(--blob1)}
+.scene .b2{width:40vmax;height:40vmax;right:-10vmax;top:8vmax;background:var(--blob2);animation-delay:-8s}
+.scene .b3{width:46vmax;height:46vmax;left:20vmax;bottom:-24vmax;background:var(--blob3);animation-delay:-14s}
+.scene .b4{width:30vmax;height:30vmax;right:18vmax;bottom:6vmax;background:var(--blob4);animation-delay:-4s;opacity:.55}
+@keyframes drift{to{transform:translate(6vmax,4vmax) scale(1.08)}}
+
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 64px;display:flex;flex-direction:column;gap:28px}
+
+/* glass */
+.glass{position:relative;background:var(--glass);-webkit-backdrop-filter:blur(28px) saturate(185%);backdrop-filter:blur(28px) saturate(185%);border:1px solid var(--stroke);border-radius:var(--r-xl);box-shadow:inset 0 1px 0 var(--sheen),inset 0 -1px 0 var(--hair),0 18px 40px -18px var(--shadow)}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(140deg,var(--sheen) 0%,transparent 34%,transparent 70%,var(--sheen) 130%);opacity:.55;mix-blend-mode:soft-light}
+.pad{padding:28px}
+@media (max-width:640px){.pad{padding:20px}.glass{border-radius:var(--r-lg)}}
+
+/* top bar */
+.bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 8px 8px 20px;border-radius:999px}
+.brand{font-family:var(--f-display);font-weight:700;letter-spacing:-.01em;font-size:15px;white-space:nowrap}
+.brand small{color:var(--muted);font-weight:500;margin-left:6px}
+.seg{position:relative;display:flex;padding:4px;border-radius:999px;background:var(--hair)}
+.seg button{position:relative;z-index:1;border:0;background:none;color:var(--fg);font:600 14px/1 var(--f-body);padding:10px 16px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:color .2s}
+.seg button[aria-selected="false"]{color:var(--muted)}
+.thumb{position:absolute;top:4px;bottom:4px;left:4px;border-radius:999px;background:var(--glass-strong);box-shadow:inset 0 1px 0 var(--sheen),0 4px 14px -4px var(--shadow);transition:transform .32s cubic-bezier(.3,1.3,.5,1),width .32s cubic-bezier(.3,1.3,.5,1)}
+@media (max-width:640px){.bar{border-radius:var(--r-lg);padding:10px}.brand{padding-left:8px}.seg{width:100%}.seg button{flex:1;padding:10px 6px;font-size:13px}}
+
+/* hero */
+.hero{display:grid;gap:22px;padding-top:24px}
+.eyebrow{font:600 12px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(36px,6.4vw,72px);line-height:1.02;letter-spacing:-.035em;margin:0;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(100deg,var(--accent),var(--fg) 140%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:64ch;font-size:17px;color:var(--muted);margin:0}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.kpi{padding:18px 20px;border-radius:var(--r-lg)}
+.kpi b{display:block;font-family:var(--f-display);font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.kpi span{font-size:13px;color:var(--muted)}
+@media (max-width:820px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.kpi b{font-size:22px}.kpi{padding:14px 16px}}
+
+/* sections */
+section[role="tabpanel"]{display:flex;flex-direction:column;gap:22px}
+h2{font-family:var(--f-display);font-weight:700;font-size:clamp(24px,3.2vw,34px);letter-spacing:-.025em;line-height:1.1;margin:0;text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:650;font-size:18px;letter-spacing:-.01em;margin:0}
+.head{display:flex;flex-direction:column;gap:8px}
+.head p{margin:0;color:var(--muted);max-width:68ch}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}}
+.stack{display:flex;flex-direction:column;gap:16px;min-width:0}
+.co-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.co-top h3{font-size:22px}
+.tag{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 var(--f-body);padding:7px 11px;border-radius:999px;background:var(--hair);color:var(--fg);white-space:nowrap}
+.tag.ok{background:color-mix(in srgb,var(--good) 18%,transparent);color:var(--good)}
+.tag.blue{background:var(--accent-soft);color:var(--accent)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+dl.kv{display:grid;grid-template-columns:minmax(120px,38%) 1fr;gap:10px 16px;margin:0}
+dl.kv dt{color:var(--muted);font-size:13.5px}
+dl.kv dd{margin:0;font-weight:500;min-width:0}
+.mono{font-family:var(--f-mono);font-size:13px;letter-spacing:.02em}
+.callout{border-radius:var(--r-md);padding:16px 18px;background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+.callout b{font-family:var(--f-display);font-size:22px;letter-spacing:-.015em;display:block}
+.callout p{margin:4px 0 0;font-size:13.5px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin:0}
+ul.clean{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.divider{height:1px;background:var(--hair);border:0;margin:4px 0}
+
+/* tables */
+.tbl{overflow-x:auto;border-radius:var(--r-md);border:1px solid var(--hair);background:var(--glass-strong)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.num{white-space:nowrap;font-weight:600}
+.wide table{min-width:780px}
+
+/* tree */
+.tree{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;position:relative}
+.node{border-radius:var(--r-lg);padding:16px 18px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.node strong{font-family:var(--f-display);font-size:15.5px}
+.node span{font-size:13px;color:var(--muted)}
+.node.main{outline:2px solid var(--accent);outline-offset:-2px}
+.root{max-width:520px;margin:0 auto 26px;text-align:center}
+.root::after{content:"";position:absolute;left:50%;bottom:-27px;height:26px;width:1px;background:var(--muted);opacity:.5}
+.tree-wrap{position:relative;display:flex;flex-direction:column}
+.tree-wrap .rail{position:absolute;left:16.6%;right:16.6%;height:1px;background:var(--muted);opacity:.5}
+.sub{margin-top:14px;font-size:12.5px}
+@media (max-width:760px){.tree{grid-template-columns:1fr}.tree-wrap .rail,.root::after{display:none}}
+
+/* bar chart */
+.chart{display:flex;flex-direction:column;gap:10px;position:relative;padding-top:30px}
+.crow{display:grid;grid-template-columns:minmax(120px,210px) 1fr;gap:14px;align-items:center}
+.crow .lab{font-size:13.5px;text-align:right;min-width:0}
+.crow.main .lab{font-weight:700}
+.track{position:relative;height:26px}
+.fill{height:100%;border-radius:8px;background:var(--bar);display:flex;align-items:center;justify-content:flex-end;padding-right:0;transform-origin:left;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
+.crow.main .fill{background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 70%,transparent),var(--accent))}
+.val{position:absolute;top:50%;transform:translateY(-50%);font-weight:600;font-size:13px;padding-left:8px;white-space:nowrap}
+.ref{position:absolute;top:0;bottom:0;border-left:1.5px dashed var(--muted);pointer-events:none}
+.ref span{position:absolute;top:0;right:8px;white-space:nowrap;font-size:12px;color:var(--muted)}
+.plot{position:relative;grid-column:2}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (max-width:560px){.crow{grid-template-columns:110px 1fr;gap:10px}.crow .lab{font-size:12px}}
+
+/* maps */
+.maps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:900px){.maps{grid-template-columns:1fr}}
+.mapbox{overflow-x:auto}
+.map{position:relative;min-width:420px;aspect-ratio:1.35/1;border-radius:var(--r-md);border:1px solid var(--hair);background:var(--glass-strong);max-width:100%}
+.map::before,.map::after{content:"";position:absolute;background:var(--hair)}
+.map::before{left:50%;top:0;bottom:0;width:1px}
+.map::after{top:50%;left:0;right:0;height:1px}
+.q{position:absolute;font-size:11.5px;color:var(--muted);padding:10px 12px;line-height:1.2}
+.q.tl{left:0;top:0}.q.tr{right:0;top:0;text-align:right}.q.bl{left:0;bottom:0}.q.br{right:0;bottom:0;text-align:right}
+.q.hot{color:var(--accent);font-weight:600}
+.zone{position:absolute;left:0;top:0;width:50%;height:50%;background:var(--accent-soft);border-top-left-radius:var(--r-md)}
+.dot{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--muted);opacity:.85;box-shadow:0 0 0 3px var(--glass-strong)}
+.dot.main{background:var(--accent);opacity:1;width:14px;height:14px;margin:-7px 0 0 -7px;box-shadow:0 0 0 4px var(--accent-soft),0 0 18px var(--accent)}
+.dl{position:absolute;font-size:12.5px;white-space:nowrap;transform:translateY(-50%)}
+.dl.main{font-weight:700}
+.axis{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:8px}
+
+/* process */
+.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.step{border-radius:var(--r-lg);padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.step.hot{outline:2px solid var(--accent);outline-offset:-2px;background:color-mix(in srgb,var(--accent) 10%,var(--glass))}
+.step h3{font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12.5px;padding:5px 10px;border-radius:999px;background:var(--glass-strong);border:1px solid var(--hair)}
+.chip b{color:var(--accent);margin-right:4px}
+@media (max-width:760px){.flow{grid-template-columns:1fr}}
+
+/* solution cards */
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{border:1px solid var(--stroke);background:var(--glass);color:var(--fg);font:600 13px/1 var(--f-body);padding:9px 14px;border-radius:999px;cursor:pointer;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.sols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:980px){.sols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.sols{grid-template-columns:1fr}}
+.sol{border-radius:var(--r-lg);padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.sol .n{font:700 12px/1 var(--f-mono);color:var(--accent)}
+.sol h3{font-size:16.5px;line-height:1.25}
+.sol p{margin:0;font-size:13.5px;color:var(--muted)}
+.sol .meta{margin-top:auto;display:flex;gap:6px;flex-wrap:wrap}
+.sol.first{box-shadow:inset 0 0 0 2px var(--accent),inset 0 1px 0 var(--sheen),0 18px 40px -18px var(--shadow)}
+.case{display:flex;flex-direction:column;gap:3px;padding:12px 14px;border-radius:var(--r-md);background:var(--glass-strong);border:1px solid var(--hair);color:var(--fg);text-decoration:none;transition:transform .18s ease-out,border-color .18s}
+.case:hover{text-decoration:none;transform:translateY(-2px);border-color:var(--accent)}
+.case-k{font:600 11px/1.2 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.case b{font-family:var(--f-display);font-size:14.5px}
+.case-m{font-size:12.5px;color:var(--muted)}
+.case-m strong{color:var(--accent);font-weight:700}
+.case-go{font-size:12.5px;font-weight:600;color:var(--accent)}
+.show{display:flex;flex-direction:column;gap:16px}
+.row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:22px;padding:20px;border-radius:var(--r-lg);align-items:start}
+@media (max-width:860px){.row{grid-template-columns:1fr}}
+.row-t{display:flex;flex-direction:column;gap:10px;min-width:0}
+.row-t .n{font:700 12px/1 var(--f-mono);color:var(--accent)}
+.row-t h3{font-size:19px}
+.row-t .lbl{font:600 11px/1.2 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.row-t p{margin:0;font-size:14px}
+.row-t .apply{padding:12px 14px;border-radius:var(--r-md);background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 28%,transparent)}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;min-width:0}
+.shot{display:flex;flex-direction:column;gap:8px;min-width:0;margin:0}
+.shot button{display:block;padding:0;border:1px solid var(--hair);border-radius:var(--r-md);overflow:hidden;cursor:zoom-in;background:#0d0d10;box-shadow:0 12px 28px -14px var(--shadow);transition:transform .2s ease-out}
+.shot button:hover{transform:translateY(-2px) scale(1.01)}
+.shot img{display:block;width:100%;height:auto;max-width:100%}
+.shot figcaption{font-size:12.5px;color:var(--muted);line-height:1.4}
+.shot figcaption a{font-weight:600;white-space:nowrap}
+.thumb-btn{display:block;padding:0;border:1px solid var(--hair);border-radius:var(--r-md);overflow:hidden;cursor:zoom-in;background:#0d0d10;aspect-ratio:16/10}
+.thumb-btn img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+dialog#lb{border:0;padding:0;background:transparent;max-width:min(980px,94vw);width:100%;color:var(--fg)}
+dialog#lb::backdrop{background:rgba(5,8,14,.62);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+dialog#lb figure{margin:0;border-radius:var(--r-lg);overflow:hidden;background:var(--glass-strong);border:1px solid var(--stroke)}
+dialog#lb img{display:block;width:100%;height:auto;max-height:76vh;object-fit:contain;background:#0d0d10}
+dialog#lb figcaption{padding:14px 18px;font-size:14px}
+.lb-bar{display:flex;justify-content:flex-end;gap:10px;margin-top:10px}
+.lb-bar a,.lb-bar button{font:600 14px/1 var(--f-body);padding:11px 16px;border-radius:999px;border:1px solid var(--stroke);background:var(--glass-strong);color:var(--fg);cursor:pointer;text-decoration:none}
+.lb-bar a{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (max-width:600px){.cases{grid-template-columns:1fr}}
+.cs{border-radius:var(--r-lg);padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0;color:var(--fg);text-decoration:none;transition:transform .2s ease-out}
+.cs:hover{text-decoration:none;transform:translateY(-3px)}
+.cs-top{display:flex;gap:12px;align-items:center;position:relative;z-index:1}
+.mono-av{flex:none;width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font:700 15px/1 var(--f-display);color:#fff;background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 40%,var(--blob3)))}
+.cs-top div{min-width:0}
+.cs-top b{display:block;font-family:var(--f-display);font-size:16px}
+.cs-top span{font-size:12.5px;color:var(--muted)}
+.cs-metric{font-family:var(--f-display);font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.cs-metric small{display:block;font:500 12.5px/1.3 var(--f-body);color:var(--muted);letter-spacing:0}
+.cs p{margin:0;font-size:13.5px;color:var(--muted)}
+.cs .uses{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.cs .go{font-size:13px;font-weight:600;color:var(--accent)}
+
+/* chat */
+.chat{display:flex;flex-direction:column;gap:8px;max-width:560px}
+.msg{max-width:86%;padding:10px 14px;border-radius:20px;font-size:14px;line-height:1.4}
+.msg.in{align-self:flex-start;background:var(--glass-strong);border:1px solid var(--hair);border-bottom-left-radius:6px}
+.msg.out{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:6px}
+.msg small{display:block;opacity:.7;font-size:11px;margin-top:2px}
+.examples{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:900px){.examples{grid-template-columns:1fr}}
+
+footer{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+footer p{margin:0}
+
+@media (prefers-reduced-motion:reduce){.scene span,.fill{animation:none}.thumb{transition:none}}
+</style>
+
+<div class="scene" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></div>
+
+<div class="wrap">
+  <nav class="bar glass" aria-label="Разделы">
+    <div class="brand">SA GROUP<small>Geotex · Rebar</small></div>
+    <div class="seg" role="tablist">
+      <span class="thumb" aria-hidden="true"></span>
+      <button role="tab" id="t-companies" aria-controls="p-companies" data-tab="companies" aria-selected="true">Компании</button>
+      <button role="tab" id="t-competitors" aria-controls="p-competitors" data-tab="competitors" aria-selected="false">Конкуренты</button>
+      <button role="tab" id="t-ai" aria-controls="p-ai" data-tab="ai" aria-selected="false">AI-решения</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow">Разбор для предложения · 06.11.2026</div>
+    <h1>Geotex и Rebar&nbsp;— <em>заводы одного холдинга</em></h1>
+    <p class="lede">Геотекстиль из Ургенча и базальтовая арматура из Сардобы. Сильный продукт, госзаказы и экспорт — и почти нулевое присутствие в онлайне. Ниже: кто они, с кем конкурируют и какие AI-решения им предложить.</p>
+    <div class="kpis">
+      <div class="kpi glass"><b>500 тыс. м²</b><span>геотекстиля в месяц — мощность Geotex</span></div>
+      <div class="kpi glass"><b>~20%</b><span>фактическая загрузка Geotex (наша оценка)</span></div>
+      <div class="kpi glass"><b>5 000 т</b><span>композитной арматуры в год — мощность Rebar</span></div>
+      <div class="kpi glass"><b>300+</b><span>сотрудников в холдинге SA GROUP</span></div>
+    </div>
+  </header>
+
+  <!-- ===== TAB 1 ===== -->
+  <section role="tabpanel" id="p-companies" aria-labelledby="t-companies">
+    <div class="glass pad">
+      <div class="head">
+        <div class="eyebrow">Структура</div>
+        <h2>Три завода, три турецких партнёра, один торговый дом</h2>
+        <p>Доли и уставные фонды — из реестра (orginfo.uz, 2024–2025). Связь юрлиц с брендом SA GROUP видна по общим адресам, почте, телефонам и Telegram.</p>
+      </div>
+      <div class="tree-wrap" style="margin-top:22px">
+        <div class="node glass root"><strong>SA GROUP — бренд холдинга</strong><span>Основатель Турсунов Сардоржон Юсуф угли · торговый дом · БЦ Trilliant, Ташкент</span></div>
+        <div class="tree">
+          <div class="node glass main"><strong>GEOTEKS PRODUCTIONS</strong><span>Геотекстиль · Ургенч</span><span>Seramiksan (Турция) 70,8% · Назаров И.Д. 29,2%</span><span>УФ 35,3 млрд сум</span>
+            <div class="sub">↳ дочка <b>Khorezm Orient Ceramik</b> (98%) — производство, её ИНН стоит на сайте</div></div>
+          <div class="node glass main"><strong>SA Sardoba Rebar Mesh</strong><span>Композитная арматура и сетка · Сардоба</span><span>Ottomans (Турция) 79,1% · Турсунов Ж.Х. 20,6%</span><span>УФ 65,9 млрд сум</span></div>
+          <div class="node glass"><strong>Khorezm Insulation Group</strong><span>Базальтовая вата Thermoplus · Ургенч</span><span>Actera (Турция) 61,7% · SA Finance Invest 18,5%</span><span>Проект $44 млн, кредит ЕБРР до $29 млн</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <!-- Geotex -->
+      <article class="glass pad stack">
+        <div class="co-top">
+          <div><div class="eyebrow">Ургенч, Хорезм</div><h3>Geotex</h3></div>
+          <div class="tags"><span class="tag blue">Геотекстиль</span><span class="tag">с 2021</span></div>
+        </div>
+        <dl class="kv">
+          <dt>Юрлицо</dt><dd>СП ООО «GEOTEKS PRODUCTIONS»</dd>
+          <dt>ИНН</dt><dd class="mono">308 684 805</dd>
+          <dt>Директор</dt><dd>Назаров Исмоилжон Дилмуродбекович</dd>
+          <dt>Оборудование</dt><dd>Линия Dilo (Германия), цех 8 000 м²</dd>
+          <dt>Выпущено</dt><dd>5,2 млн м², 140+ объектов</dd>
+          <dt>Экспорт</dt><dd>Казахстан, Таджикистан, Кыргызстан, Туркменистан</dd>
+          <dt>Сертификаты</dt><dd>UZ.SMT, СТ-1, ГОСТ, EN 12224/13249; ISO — «скоро»</dd>
+          <dt>Рейтинг</dt><dd>«Удовлетворительный» · не крупный налогоплательщик</dd>
+        </dl>
+        <div class="callout"><b>3,3–5,5 млрд сум в год</b><p>Оценка оборота: ~1,1 млн м²/год × 3–5 тыс. сум. При полной загрузке — 18–30 млрд сум (≈ $1,4–2,4 млн).</p></div>
+        <h3>Продукция, г/м²</h3>
+        <div class="tbl"><table>
+          <thead><tr><th>Плотность</th><th>Применение</th></tr></thead>
+          <tbody>
+            <tr><td class="num">100–150</td><td>Ландшафт, тротуары</td></tr>
+            <tr><td class="num">200–250</td><td>Дороги частного сектора</td></tr>
+            <tr><td class="num">300–350</td><td>Автодороги, стоянки, магистрали</td></tr>
+            <tr><td class="num">400–550</td><td>ВПП, железные дороги, тяжёлый транспорт</td></tr>
+            <tr><td class="num">600–800</td><td>Полигоны ТБО, дренаж, противоэрозия</td></tr>
+          </tbody></table></div>
+        <p class="note">Рулон до 6 × 100 м, ПП и ПЭ, иглопробивной и термоскреплённый. Цены на сайте — «по запросу».</p>
+      </article>
+
+      <!-- Rebar -->
+      <article class="glass pad stack">
+        <div class="co-top">
+          <div><div class="eyebrow">Сардоба, Сырдарья</div><h3>Rebar Uzbekistan</h3></div>
+          <div class="tags"><span class="tag blue">Композит</span><span class="tag ok">Рейтинг «Высокий»</span></div>
+        </div>
+        <dl class="kv">
+          <dt>Юрлицо</dt><dd>СП ООО «SA SARDOBA REBAR MESH PRODUCTION»</dd>
+          <dt>ИНН</dt><dd class="mono">307 627 494</dd>
+          <dt>Директор</dt><dd>Махмудов Шохжахон Наби угли</dd>
+          <dt>Мощность</dt><dd>5 000 т/год, запуск 2021</dd>
+          <dt>Продукты</dt><dd>АБК 1 200 МПа и АСК 1 100 МПа, Ø 4–32 мм; сетки от 50×50 мм</dd>
+          <dt>Сертификат</dt><dd>ISO 9001:2015 (TUV Cert)</dd>
+          <dt>Госзакупки</dt><dd>10 побед в тендерах МЧС (04–07.2026, до 331 млн сум за лот), прямые закупки Минстроя</dd>
+          <dt>Партнёры на сайте</dt><dd>Узбекнефтегаз, Artel, MODERA towers</dd>
+        </dl>
+        <div class="callout"><b>до ~225 млрд сум в год</b><p>Потолок при полной загрузке: ~45 млн сум за тонну по прайсу rebar.uz (≈ $18 млн). Реальная загрузка неизвестна.</p></div>
+        <h3>Вес и упаковка</h3>
+        <div class="tbl"><table>
+          <thead><tr><th>Ø, мм</th><th>г/п.м</th><th>м в 1 т</th><th>Упаковка</th></tr></thead>
+          <tbody>
+            <tr><td class="num">6</td><td>50</td><td>20 000</td><td>Бухта 200 м</td></tr>
+            <tr><td class="num">8</td><td>90</td><td>11 111</td><td>Бухта 100 м</td></tr>
+            <tr><td class="num">10</td><td>125</td><td>8 000</td><td>Бухта 100 м</td></tr>
+            <tr><td class="num">12</td><td>195</td><td>5 128</td><td>Хлыст 11,7 м</td></tr>
+            <tr><td class="num">16</td><td>350</td><td>2 857</td><td>Хлыст 11,7 м</td></tr>
+          </tbody></table></div>
+        <p class="note">Применение: дороги, фундаменты, гидротехника, тоннели, фасады, стяжки, бассейны.</p>
+      </article>
+    </div>
+
+    <div class="glass pad stack">
+      <div class="head"><div class="eyebrow">Geotex · проекты</div><h2>Крупные дорожные объекты</h2></div>
+      <div class="tbl wide"><table>
+        <thead><tr><th>Год</th><th>Объект</th><th>Регион</th><th>Марка</th><th>Заказчик</th></tr></thead>
+        <tbody>
+          <tr><td class="num">2026</td><td>Платная автомагистраль Ургенч–Хива</td><td>Хорезм</td><td>ПП 300 и 500</td><td>O‘zyo‘lko‘prik klasteri</td></tr>
+          <tr><td class="num">2026</td><td>Реконструкция А-380, 673–698 км</td><td>Каракалпакстан</td><td>ПП 450</td><td>New Tech Samarkand</td></tr>
+          <tr><td class="num">2026</td><td>А-380, участок Бухара</td><td>Бухара</td><td>ПП 450</td><td>CRBC Bukhara-L1</td></tr>
+          <tr><td class="num">2026</td><td>Канал с бетонным покрытием</td><td>Самарканд</td><td>ПП 300</td><td>Zarafshon Vodiy Maxsus Qurilish</td></tr>
+          <tr><td class="num">2025</td><td>Реконструкция М-34, 5 км</td><td>Джизак</td><td>ПП 450</td><td>Zomin tuman yo‘llardan foydalanish</td></tr>
+          <tr><td class="num">2025</td><td>А-373, 3-й этап</td><td>Бухара</td><td>ПП 400</td><td>Камчикавтойўл</td></tr>
+          <tr><td class="num">2024–25</td><td>Дарбанд–Бойсун–Элбаён</td><td>Сурхандарья</td><td>ПП 450</td><td>Lankaran Yol Tikinti</td></tr>
+          <tr><td class="num">2021</td><td>М-39 Самарканд–Бухара, 85 000 м²</td><td>Самарканд</td><td>NRC 140</td><td>—</td></tr>
+        </tbody></table></div>
+    </div>
+
+    <div class="glass pad stack">
+      <div class="head"><div class="eyebrow">До договора</div><h2>Что не найдено и что проверить</h2></div>
+      <ul class="clean">
+        <li><b>Выручка, прибыль, налоги, НДС, численность</b> публично не раскрыты: ООО не публикуют отчётность. Источники — платный отчёт statsnet.co, проверка НДС на my.soliq.uz или вопрос на встрече.</li>
+        <li><b>На geoteks.uz стоит ИНН дочки</b> (ИНН 310 811 844, рег. 27.09.2023), а не GEOTEKS PRODUCTIONS. Уточнить, с каким юрлицом подписывать.</li>
+        <li><b>Сайты:</b> у Geotex все ссылки на сертификаты ведут на PDF другого продукта; у Rebar не заполнены мощность и площадь, сломана ссылка на Telegram, нет ГОСТ 31938-2012.</li>
+        <li>orginfo.uz — неофициальный агрегатор; реестровые данные сверить с госреестром.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== TAB 2 ===== -->
+  <section role="tabpanel" id="p-competitors" aria-labelledby="t-competitors" hidden>
+    <div class="glass pad stack">
+      <div class="head">
+        <div class="eyebrow">Геотекстиль</div>
+        <h2>Sanfa — главный по продукту, Geo Guard — главный по цене</h2>
+        <p>Строительный геотекстиль на OLX стоит 2 500–7 200 сум. Geotex у дилера — 2 200 сум/м², ниже всего рынка. Других заводов в регионах не найдено: Geotex — единственный на западе страны.</p>
+      </div>
+      <div class="tbl wide"><table>
+        <thead><tr><th>Компания</th><th>Тип</th><th>Продукт</th><th>Цена, сум</th><th>Маркетинг</th><th>Чем опасен</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://geomembrane.uz" target="_blank" rel="noopener">Sanfa / Sangeotex</a></td><td>Местный завод</td><td>ПЭТ 150–600 г/м², геомембраны, бентоматы</td><td class="num">от 7 500</td><td>Сильные сайты, UzBuild 2026</td><td>Материал + монтаж, 850+ человек, 240 км на А-380</td></tr>
+          <tr><td><a href="https://www.olx.uz/d/obyavlenie/zavod-geotekstil-dornit-geopolotno-igloprobivnoy-ot-2500-sum-m2-ID48lKs.html" target="_blank" rel="noopener">Geo Guard Materials</a></td><td>Местный завод</td><td>ПЭТ 100–1000 г/м², до 350 т/мес</td><td class="num">от 2 500/м²</td><td>Агрессивно на OLX</td><td>Самая низкая цена, склад в Ташкенте</td></tr>
+          <tr><td><a href="https://geo-sm.uz" target="_blank" rel="noopener">GeoSM</a></td><td>Импорт РФ</td><td>100–1000 г/м², геосетки</td><td class="num">5 000–5 500</td><td>Сайт на 3 языках, ISO</td><td>«Гарантия лучшей цены»</td></tr>
+          <tr><td><a href="https://www.boris-international.com" target="_blank" rel="noopener">Boris International</a></td><td>Импорт + монтаж</td><td>Геотекстиль, мембраны, маты</td><td class="num">5 035</td><td>Слабый сайт, OLX с 2014</td><td>Гидротехника, ГЭС Тупаланг</td></tr>
+          <tr><td>MARJA TEX</td><td>Трейдер</td><td>ПЭТ 100–400 г/м²</td><td class="num">4 000–5 500</td><td>OLX, prom.uz</td><td>Склад в Ташкенте</td></tr>
+          <tr><td>ТЕПЛОДОМ</td><td>Дистрибьютор</td><td>ПЭТ 150–600 г/м², до 6,3 м</td><td class="num">7 000</td><td>prom.uz</td><td>Ширина 6,3 м</td></tr>
+          <tr><td>Komitex, Геодор, Геоспан</td><td>Импорт РФ</td><td>80–600 г/м²</td><td class="num">1 836–12 000</td><td>Объявления</td><td>Известны проектировщикам</td></tr>
+          <tr><td>DuPont Typar</td><td>Премиум-импорт</td><td>Термоскреплённый</td><td class="num">15 000–20 000</td><td>prom.uz</td><td>В спецификациях международных проектов</td></tr>
+        </tbody></table></div>
+      <p class="note">Цены из объявлений на 06.11.2026; единица и плотность в объявлениях часто не указаны — это ориентир, а не прайс.</p>
+    </div>
+
+    <div class="glass pad stack">
+      <div class="head">
+        <div class="eyebrow">Композитная арматура</div>
+        <h2>Базальт Rebar — самый дорогой композит, но на 46% дешевле равнопрочной стали</h2>
+        <p>Цена Ø8 мм, сум за погонный метр. Композит Ø8 заменяет сталь Ø12 (по калькулятору rebar.uz, сталь — 8,4 млн сум/т).</p>
+      </div>
+      <div class="chart" id="priceChart" aria-label="Цены на композитную арматуру Ø8"></div>
+      <p class="note">Источники: rebar.uz/calculator, glotr.uz, prom.uz, OLX. ARMATURAKOMPOZIT и VETAGROMEX продают продукцию одного российского завода.</p>
+      <div class="tbl wide"><table>
+        <thead><tr><th>Компания</th><th>Тип</th><th>Продукт</th><th>ГОСТ 31938</th><th>Маркетинг</th><th>Позиционирование</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://armaturakompozit.uz" target="_blank" rel="noopener">ARMATURAKOMPOZIT</a></td><td>Импорт РФ</td><td>АСК, сетка, фибра</td><td>Да</td><td>YouTube, Instagram, DIY-сети</td><td>«Российское качество по лучшей цене»</td></tr>
+          <tr><td><a href="https://komposit.uz" target="_blank" rel="noopener">VETAGROMEX</a></td><td>Импорт РФ</td><td>АСК, сетка</td><td>Да</td><td>Сайт, TG 96 подп.</td><td>Скидка до 8%, доставка от 1 500 м</td></tr>
+          <tr><td>ARM-COMPOSITE</td><td>«Завод»</td><td>АСК, сетка</td><td>Да</td><td>prom.uz 7 лет</td><td>«Лидер рынка», опт</td></tr>
+          <tr><td><a href="https://armatura.gl.uz" target="_blank" rel="noopener">Universal FRP Systems</a></td><td>Производство / трейд</td><td>АСК, дорожная сетка</td><td>Да</td><td>Сайт, prom.uz 8 лет</td><td>«Экономия 35–40%»</td></tr>
+          <tr><td><a href="https://www.spot.uz/ru/2026/08/24/bazalt-mega-invest/" target="_blank" rel="noopener">Basalt Uzbekistan</a></td><td>Местный завод</td><td>АБК, базальтовое волокно</td><td>—</td><td>Сайт не работает</td><td>Завод на торгах с 08.2026 — ниша свободна</td></tr>
+          <tr><td>Узметкомбинат и др.</td><td>Сталь</td><td>А500С, 8,0–9,6 млн сум/т</td><td>—</td><td>Металлобазы</td><td>Привычка проектировщиков</td></tr>
+        </tbody></table></div>
+    </div>
+
+    <div class="glass pad stack">
+      <div class="head">
+        <div class="eyebrow">Позиционирование</div>
+        <h2>Geotex дешевле всех, Rebar дороже всех — и оба почти невидимы в онлайне</h2>
+        <p>Оценка по ценам из таблиц и присутствию на сайте, OLX, prom.uz, в соцсетях и розничных сетях. Подписчиков в Instagram получить не удалось; в Telegram у всех игроков меньше 100.</p>
+      </div>
+      <div class="maps">
+        <div class="stack"><h3>Геотекстиль</h3><div class="mapbox"><div class="map" id="mapGeo"></div></div><div class="axis"><span>← дешевле</span><span>дороже →</span></div></div>
+        <div class="stack"><h3>Композитная арматура</h3><div class="mapbox"><div class="map" id="mapRebar"></div></div><div class="axis"><span>← дешевле</span><span>дороже →</span></div></div>
+      </div>
+    </div>
+
+    <div class="glass pad stack">
+      <div class="head"><div class="eyebrow">Спрос</div><h2>Кто покупает</h2></div>
+      <div class="grid2" style="gap:14px">
+        <div class="node glass"><strong>Дороги</strong><span>21 500 км отремонтировано в 2025; в 2026 — программа 4 000 км трасс до уровня автобана. <a href="https://kun.uz/en/news/2026/02/20/uzbekistan-to-upgrade-4000-km-of-highways-to-international-autobahn-standards" target="_blank" rel="noopener">kun.uz</a></span></div>
+        <div class="node glass"><strong>Ирригация</strong><span>$200 млн Всемирного банка на бетонирование 259 км каналов, включая Каракалпакстан и Бухару. <a href="https://kun.uz/ru/news/2025/05/21/vb-vydelit-uzbekistanu-200-mln-dollarov-na-modernizatsiyu-irrigatsionnoy-infrastruktury" target="_blank" rel="noopener">kun.uz</a></span></div>
+        <div class="node glass"><strong>Полигоны ТБО</strong><span>50 рекультивировано в 2024–25, ещё 18 в 2026. <a href="https://gov.uz/ru/sanitation/news/view/206321" target="_blank" rel="noopener">gov.uz</a></span></div>
+        <div class="node glass"><strong>Госзаказ на композит</strong><span>МЧС и инжиниринговые компании Минстроя уже покупают у Rebar напрямую и через тендеры.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TAB 3 ===== -->
+  <section role="tabpanel" id="p-ai" aria-labelledby="t-ai" hidden>
+    <div class="glass pad stack">
+      <div class="head">
+        <div class="eyebrow">Карта процессов</div>
+        <h2>Быстрее всего окупаются продажи и тендеры — с них пилот</h2>
+        <p>Обе компании продают B2B: дорожникам, строителям, дилерам и по тендерам. Решения в продажах не требуют доступа к оборудованию и сразу видны в заявках.</p>
+      </div>
+      <div class="flow" id="flow"></div>
+    </div>
+
+    <div class="glass pad stack">
+      <div class="head">
+        <div class="eyebrow">Каталог</div>
+        <h2>12 решений с примерами</h2>
+        <p>Сроки и эффект — наша оценка для пилота, уточняется после аудита процессов. Синяя рамка — первый пакет.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Фильтр по компании">
+        <button type="button" data-f="all" aria-pressed="true">Все</button>
+        <button type="button" data-f="geotex" aria-pressed="false">Для Geotex</button>
+        <button type="button" data-f="rebar" aria-pressed="false">Для Rebar</button>
+        <button type="button" data-f="first" aria-pressed="false">Первый пакет</button>
+      </div>
+      <div class="sols" id="sols"></div>
+    </div>
+
+    <div class="glass pad stack">
+      <div class="head">
+        <div class="eyebrow">Кейсы AI Strateg</div>
+        <h2>Это уже построено у наших учеников. Вот что возьмём для Geotex и Rebar</h2>
+        <p>Слева — что предприниматель из Узбекистана сам собрал с AI за 6 недель курса. Справа — как то же самое ляжет на процессы Geotex и Rebar. Нажмите на скриншот, чтобы увеличить, или откройте кейс целиком.</p>
+      </div>
+      <div class="show" id="show"></div>
+      <p class="note">Все 90+ кейсов по отраслям — <a href="https://honor-keys.vercel.app/" target="_blank" rel="noopener">honor-keys.vercel.app</a>. Суммы в кейсах изменены по просьбе учеников (коммерческая тайна).</p>
+    </div>
+
+<dialog id="lb" aria-label="Скриншот кейса"><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure><div class="lb-bar"><a id="lbLink" href="#" target="_blank" rel="noopener">Открыть кейс ↗</a><button type="button" id="lbClose">Закрыть</button></div></dialog>
+
+    <div class="examples">
+      <div class="glass pad stack">
+        <div class="eyebrow">Пример 1 · AI-менеджер Geotex, Telegram, 23:40</div>
+        <div class="chat">
+          <div class="msg in">Assalomu alaykum, 2 km yo‘l uchun geotekstil kerak, kengligi 7 metr</div>
+          <div class="msg out">Va alaykum assalom! Bu taxminan 14 000 m² + ustma-ust qo‘yish uchun zaxira. Grunt qanday va vazifasi: qatlamlarni ajratishmi yoki drenaj?</div>
+          <div class="msg in">Qatlamlarni ajratish, yuk mashinalari yuradi</div>
+          <div class="msg out">Geotex 300 tavsiya qilaman. Kerak bo‘ladi: 6×100 m rulon — 25 dona. Narx va yetkazib berishni hisoblab, ertalab menejer qo‘ng‘iroq qiladi.<small>Сделка создана в CRM: объём, регион, срок, телефон</small></div>
+        </div>
+      </div>
+      <div class="glass pad stack">
+        <div class="eyebrow">Пример 2 · Калькулятор Rebar «металл → композит»</div>
+        <dl class="kv">
+          <dt>Ввод</dt><dd>Фундамент частного дома, сталь Ø12, 1,8 т</dd>
+          <dt>Замена</dt><dd>Композит Ø8 (равнопрочно по таблице завода)</dd>
+          <dt>Метраж</dt><dd>1,8 т ÷ 0,888 кг/м ≈ 2 030 п.м</dd>
+          <dt>Сталь</dt><dd>≈ 15,1 млн сум, 1,8 т</dd>
+          <dt>Базальт АБК-8</dt><dd><b>≈ 8,2 млн сум, 183 кг</b></dd>
+        </dl>
+        <div class="callout"><b>−46% к цене, в 10 раз легче</b><p>На выходе PDF-КП с логотипом, сертификатом и кнопкой «заказать». Закрывает главный вопрос рынка: «сколько брать композита».</p></div>
+      </div>
+      <div class="glass pad stack">
+        <div class="eyebrow">Пример 3 · Тендерный радар, сводка в 08:00</div>
+        <div class="chat">
+          <div class="msg in">Новых лотов: 3. Подходит: 2.<br>• Реконструкция дороги, Хорезм — геотекстиль 300 г/м², 40 000 м², подача через 6 дней<br>• Базальтовая сетка, МЧС — 12 000 м²<br>Не подходит: 1 (нужна геомембрана)<small>Пример формата; к каждому лоту — список документов и черновик заявки</small></div>
+        </div>
+      </div>
+      <div class="glass pad stack">
+        <div class="eyebrow">Пример 4 · Камера на линии Geotex</div>
+        <ul class="clean">
+          <li>Камера над полотном ловит светлые пятна (недобор волокна) и дыры.</li>
+          <li>Оператор получает сигнал и метр рулона, где дефект.</li>
+          <li>В паспорт партии попадает карта качества — аргумент для дорожных заказчиков и тендеров.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glass pad stack">
+      <div class="head">
+        <div class="eyebrow">Приоритеты</div>
+        <h2>Начинать с продаж и тендеров: максимум эффекта при малых затратах</h2>
+        <p>Положение точек — экспертная оценка до аудита, не измерение.</p>
+      </div>
+      <div class="mapbox"><div class="map" id="mapPrio" style="aspect-ratio:1.7/1"></div></div>
+      <div class="axis"><span>← проще и дешевле</span><span>сложнее и дороже →</span></div>
+    </div>
+
+    <div class="glass pad stack">
+      <div class="head"><div class="eyebrow">Встреча</div><h2>Вопросы для аудита</h2></div>
+      <ul class="clean">
+        <li>Какая CRM и учётная система: 1С, Bitrix24, amoCRM или Excel?</li>
+        <li>Сколько входящих заявок в месяц и сколько приходит вечером и в выходные?</li>
+        <li>Какая доля выручки приходит из тендеров и кто их сейчас ищет?</li>
+        <li>Сколько времени уходит на одно КП и на пакет тендерных документов?</li>
+        <li>Какой процент брака на линиях и как его сейчас ловят?</li>
+        <li>Сколько тонн арматуры и квадратных метров геотекстиля продаётся в месяц сейчас?</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="glass pad">
+    <p><b>Источники:</b> <a href="https://geoteks.uz/" target="_blank" rel="noopener">geoteks.uz</a>, <a href="https://rebar.uz/" target="_blank" rel="noopener">rebar.uz</a>, <a href="https://www.sagroup.uz/" target="_blank" rel="noopener">sagroup.uz</a>, <a href="https://orginfo.uz/ru/organization/be7fad360bc3/" target="_blank" rel="noopener">orginfo: Geoteks</a>, <a href="https://orginfo.uz/ru/organization/bd19a6c670d2/" target="_blank" rel="noopener">orginfo: Rebar</a>, <a href="https://president.uz/en/lists/view/7062" target="_blank" rel="noopener">president.uz</a>, <a href="https://ewsdata.rightsindevelopment.org/projects/57466-dff-khorezm-insulation-group/" target="_blank" rel="noopener">ЕБРР / EWS</a>, prom.uz, glotr.uz, olx.uz, goldenpages.uz.</p>
+    <p>Курс пересчёта — ориентировочно 12 600 сум за $1. Оценки оборота — расчёт по мощностям и ценам, не отчётность.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const fmt = v => Math.round(v).toLocaleString('ru-RU');
+
+  /* tabs */
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  const thumb = document.querySelector('.thumb');
+  const ids = tabs.map(t => t.dataset.tab);
+  function moveThumb(btn){ thumb.style.width = btn.offsetWidth + 'px'; thumb.style.transform = 'translateX(' + (btn.offsetLeft - 4) + 'px)'; }
+  function show(id, push){
+    if (!ids.includes(id)) id = 'companies';
+    tabs.forEach(t => { const on = t.dataset.tab === id; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; if (on) moveThumb(t); });
+    ids.forEach(x => document.getElementById('p-' + x).hidden = x !== id);
+    if (push && location.hash !== '#' + id) { try { history.replaceState(null, '', '#' + id); } catch (e) { location.hash = id; } }
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => { show(t.dataset.tab, true); const h = document.querySelector('.hero'); if (window.scrollY > h.offsetTop + h.offsetHeight) window.scrollTo({top: h.offsetTop + h.offsetHeight - 40, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}); });
+    t.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      n.focus(); show(n.dataset.tab, true);
+    });
+  });
+  window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+  window.addEventListener('resize', () => { const a = tabs.find(t => t.getAttribute('aria-selected') === 'true'); if (a) moveThumb(a); });
+
+  /* price chart */
+  const prices = [
+    {s:'REBAR, базальт АБК-8', p:4050, main:true},
+    {s:'ARM-COMPOSITE, АСК-8', p:3500},
+    {s:'SA GROUP, стекло АСК-8', p:3300},
+    {s:'Universal FRP Systems', p:3300},
+    {s:'VETAGROMEX (прайс 2023)', p:2992},
+    {s:'ARMATURAKOMPOZIT', p:2980},
+    {s:'OLX, типичная цена', p:2800}
+  ];
+  const steel = {label:'Сталь Ø12', perTon:8400000, kgPerM:0.888};
+  const steelM = steel.perTon * steel.kgPerM / 1000, max = 8000;
+  const chart = document.getElementById('priceChart');
+  chart.innerHTML = prices.map(r => `<div class="crow${r.main ? ' main' : ''}"><div class="lab">${r.s}</div><div class="track"><div class="fill" style="width:${r.p / max * 100}%"></div><span class="val" style="left:${r.p / max * 100}%">${fmt(r.p)}</span></div></div>`).join('')
+    + `<div class="crow" style="position:absolute;inset:0 0 0 0;pointer-events:none"><div></div><div class="plot" style="height:100%"><div class="ref" style="left:${steelM / max * 100}%"><span>${steel.label} — ${fmt(steelM)} сум/м</span></div></div></div>`;
+
+  /* scatter maps */
+  function map(el, pts, q, hotZone){
+    if (!el) return;
+    el.innerHTML = (hotZone ? '<div class="zone"></div>' : '')
+      + `<div class="q tl${hotZone ? ' hot' : ''}">${q[0]}</div><div class="q tr">${q[1]}</div><div class="q bl">${q[2]}</div><div class="q br">${q[3]}</div>`
+      + pts.map(p => {
+          const left = p.x * 100, top = (1 - p.y) * 100;
+          const lab = p.left ? `right:calc(${100 - left}% + 12px)` : `left:calc(${left}% + 12px)`;
+          return `<span class="dot${p.main ? ' main' : ''}" style="left:${left}%;top:${top}%"></span><span class="dl${p.main ? ' main' : ''}" style="${lab};top:${top}%">${p.n}</span>`;
+        }).join('');
+  }
+  const qMarket = ['дёшево и на виду', 'дорого и на виду', 'дёшево, но незаметно', 'дорого и незаметно'];
+  map(document.getElementById('mapGeo'), [
+    {n:'Geotex', x:.1, y:.45, main:true}, {n:'Geo Guard', x:.15, y:.72}, {n:'GeoSM', x:.45, y:.65},
+    {n:'Sanfa', x:.62, y:.82}, {n:'MARJA TEX', x:.33, y:.33}, {n:'Boris', x:.47, y:.2},
+    {n:'ТЕПЛОДОМ', x:.7, y:.3}, {n:'DuPont Typar', x:.93, y:.46, left:true}
+  ], qMarket);
+  map(document.getElementById('mapRebar'), [
+    {n:'REBAR (базальт)', x:.92, y:.45, main:true, left:true}, {n:'ARMATURAKOMPOZIT', x:.12, y:.8},
+    {n:'VETAGROMEX', x:.13, y:.6}, {n:'ARM-COMPOSITE', x:.6, y:.58, left:true}, {n:'Universal FRP', x:.45, y:.33, left:true}
+  ], qMarket);
+
+  /* solutions */
+  const S = [
+    {n:1, t:'AI-менеджер 24/7', st:'Продажи', for:'both', first:true, d:'Отвечает в Telegram, Instagram и на сайте на узбекском и русском, считает объём, задаёт 2–3 вопроса и передаёт готовую заявку в CRM.', pilot:'2–3 нед', eff:'Ответ за минуты, нет потерь вечером и в выходные'},
+    {n:2, t:'Калькулятор и КП за минуту', st:'Продажи', for:'both', first:true, d:'Подбирает плотность или диаметр, считает рулоны или метры и доставку, собирает PDF-КП с сертификатами.', pilot:'2–4 нед', eff:'КП за 1–5 минут вместо часа или дня'},
+    {n:3, t:'Тендерный радар', st:'Тендеры', for:'both', first:true, d:'Каждый день просматривает xarid.uzex.uz, etender и закупки дорожных проектов, читает ТЗ, сверяет с ассортиментом, пишет сводку.', pilot:'3–4 нед', eff:'Не пропускать лоты, документы быстрее'},
+    {n:4, t:'Мониторинг цен конкурентов', st:'Маркетинг', for:'both', d:'Раз в неделю собирает цены с prom.uz, OLX, glotr и сайтов конкурентов и показывает, кто дешевле и на сколько.', pilot:'2 нед', eff:'Цена по фактам рынка'},
+    {n:5, t:'Контент-завод', st:'Маркетинг', for:'both', first:true, d:'Из фото объектов и видео цеха делает карусели, Reels, SEO-статьи RU/UZ, кейсы «до и после», AI-видео.', pilot:'2–3 нед', eff:'12–20 единиц контента в месяц без агентства'},
+    {n:6, t:'Анализ звонков', st:'Продажи', for:'both', d:'Расшифровывает звонки на узбекском и русском, оценивает по скрипту, находит причины отказа.', pilot:'3 нед', eff:'Руководитель видит все звонки'},
+    {n:7, t:'Камера контроля качества', st:'Производство', for:'both', d:'Компьютерное зрение на линии Dilo ищет дыры и неравномерность; на линии арматуры — диаметр, шаг навивки, непропитку.', pilot:'6–10 нед', eff:'Меньше брака, фотоотчёт на партию'},
+    {n:8, t:'Прогноз спроса и сырья', st:'Снабжение', for:'both', d:'По продажам, сезону стройки и тендерам прогнозирует спрос по позициям и время закупки волокна, ровинга, смолы.', pilot:'6–8 нед', eff:'Меньше денег в складе, нет простоя'},
+    {n:9, t:'AI-диспетчер логистики', st:'Логистика', for:'geotex', d:'Считает доставку из Ургенча по регионам, собирает сборные рейсы, сообщает клиенту статус в Telegram.', pilot:'3–4 нед', eff:'Дешевле доставка до Ташкента и долины'},
+    {n:10, t:'Документы качества', st:'Качество', for:'both', d:'Из данных испытаний собирает паспорт партии, сертификаты ГОСТ/EN и пакет документов для тендера.', pilot:'2–3 нед', eff:'Документы без ручного набора'},
+    {n:11, t:'Дилерский Telegram-бот', st:'Дилеры', for:'rebar', d:'Дилер спрашивает остатки, свою цену и статус заказа обычными словами; бот берёт данные из 1С.', pilot:'4 нед', eff:'Меньше звонков «что есть на складе»'},
+    {n:12, t:'Поиск экспортных клиентов', st:'Экспорт', for:'geotex', d:'Ищет дорожных подрядчиков и дистрибьюторов в Туркменистане, Казахстане, Кыргызстане, Афганистане и пишет им письма.', pilot:'4–6 нед', eff:'Новые рынки без отдела экспорта'}
+  ];
+  const K = 'https://honor-keys.vercel.app/';
+  const C = {
+    visapro:{co:'VisaPro', who:'Жамшид, основатель', field:'Рабочие визы в Европу', m:'1 час → 10 с', ml:'первый ответ на заявку', d:'Telegram-бот отвечает на заявку за 10 секунд, клиент сам видит статус документов. Оборот +50%, не пришлось нанимать 3 менеджеров.', url:K + 'jamshid.html'},
+    metall:{co:'METIKS × MetallStal', who:'Билол и Абдувохид', field:'Торговля металлом и лазерный цех', m:'6× КП', ml:'успевает один продавец · чек +25%', d:'Продавец пишет в группу «Продажа: Armatura 12 — 2 t» — бот сам находит клиента и товар в 1С и проводит реализацию.', url:K + 'metall.html'},
+    distrib:{co:'Дистрибуция продуктов', who:'Хабибулла ака и Дадахон', field:'От заводов до магазинов · 60+ сотрудников', m:'6 → 1 час', ml:'ежедневный контроль и сверка', d:'«Штаб» из 5 AI-агентов каждый день сам проверяет долг завода, ошибки в 1С и отгрузку и присылает отчёт.', url:K + 'distribyutsiya.html'},
+    ahror:{co:'Texno Grand · снабжение', who:'Ахроржон', field:'Бытовая техника · 28 магазинов', m:'+$2 200', ml:'дополнительный ретро-бонус', d:'Руководитель снабжения построил AI-системы для закупок и получил от поставщиков дополнительный ретро-бонус.', url:K + 'texnogrand.html#ahror'},
+    carbonado:{co:'Carbonado', who:'Мунира, основательница', field:'Свадебный салон · 10 лет', m:'334 тыс.', ml:'просмотров Reels за сутки', d:'Контент с AI вместо контент-группы: $3–4 тыс. → $350 в месяц. Ролик собран с AI за 2 часа.', url:K + 'munira.html'},
+    loyalty:{co:'Loyalty ELD', who:'Миродил, Ойбек, Искандар', field:'ELD-сервис для траков США', m:'$75k → $105k', ml:'выручка в месяц', d:'Каждый звонок записывается и оценивается AI, база лидов пополняется сама. 500 → 700+ траков за 18 дней.', url:K + 'loyalty.html'},
+    alsage:{co:'ALSAGE PHARM', who:'Матлюба, Абдулазиз, Сарвиноз', field:'Производство БАДов · 2 завода, 500+ продуктов', m:'15 → 4 ч', ml:'ручного управления в неделю', d:'«Цифровой директор» завода: 15 AI-агентов, 21 отдел на одном экране вместо 10 Excel-файлов.', url:K + 'alsage.html'},
+    aliyor:{co:'Texno Grand · продажи', who:'Алиёр', field:'Бытовая техника · 28 магазинов', m:'5–10 дней → 1 клик', ml:'план продаж на месяц', d:'План по каждому филиалу ставится сам по прошлогодним продажам и проценту роста. Отчёт по продажам — 2 часа → 30 секунд.', url:K + 'texnogrand.html#aliyor'},
+    honor:{co:'Honor Furniture', who:'Абдурахмон, основатель', field:'Мебель и своя фабрика', m:'$19 000 / год', ml:'сэкономлено', d:'Программа считает, сколько коробок нужно и влезет ли всё в машину. 7 Excel-файлов → 1 база, накладные в телефоне.', url:K + 'honor.html'},
+    sarvinoz:{co:'ALSAGE PHARM · склад', who:'Сарвиноз', field:'Склад и учёт завода', m:'$1 500', ml:'стоимость бота склада у программистов', d:'Telegram-бот для склада завода, собранный самостоятельно с AI.', url:K + 'alsage.html#sarvinoz'},
+    texno:{co:'Texno Grand', who:'Команда Texno Grand', field:'Бытовая техника · 28 магазинов', m:'20+ AI-систем', ml:'без программиста, $30 000+ в год', d:'', url:K + 'texnogrand.html'},
+    phoenix:{co:'Phoenix Prime', who:'Феруз ака, руководитель', field:'Промышленная фильтрация · 5 стран', m:'$4 000', ml:'предложили за его программу', d:'B2B-сайт промышленного производителя: каталог, подбор по отрасли, заявка-ТЗ инженеру. Поставки по Центральной Азии.', url:K + 'feruz.html'}
+  };
+  const USE = {1:['visapro'], 2:['metall'], 3:['distrib', true], 4:['metall'], 5:['carbonado'], 6:['loyalty'], 7:['texno', true], 8:['aliyor'], 9:['texno', true], 10:['loyalty', true], 11:['distrib', true], 12:['loyalty', true]};
+  const caseLink = n => { const u = USE[n]; if (!u) return ''; const c = C[u[0]];
+    return `<a class="case" href="${c.url}" target="_blank" rel="noopener"><span class="case-k">Кейс${u[1] ? ' · похожая механика' : ''}</span><b>${c.co}</b><span class="case-m"><strong>${c.m}</strong> ${c.ml}</span><span class="case-go">Открыть кейс ↗</span></a>`; };
+  const sols = document.getElementById('sols');
+  const forLabel = f => f === 'both' ? 'Обе компании' : f === 'geotex' ? 'Geotex' : 'Rebar';
+  function renderSols(f){
+    sols.innerHTML = S.filter(s => f === 'all' || (f === 'first' ? s.first : (s.for === f || s.for === 'both'))).map(s =>
+      `<article class="sol glass${s.first ? ' first' : ''}">${shotBtn(SH[s.n].shots[0], 'thumb-btn')}<span class="n">${String(s.n).padStart(2, '0')} · ${s.st}</span><h3>${s.t}</h3><p>${s.d}</p><p><b style="color:var(--fg)">Эффект:</b> ${s.eff}</p>${caseLink(s.n)}<div class="meta"><span class="tag">${forLabel(s.for)}</span><span class="tag blue">Пилот ${s.pilot}</span></div></article>`).join('');
+  }
+  const IMG = 'img/';
+  const SH = {
+    1:{apply:'Агент на узбекском и русском за секунды отвечает дорожникам и прорабам в Telegram, считает рулоны или метры и передаёт готовую заявку менеджеру.', shots:[['jamshid-4','VisaPro: AI-агент отвечает на каждую заявку за 10 секунд, даже ночью','visapro'],['texnogrand-2','Texno Grand: AI-продавец продаёт на узбекском — 87% уровня руководителя','aliyor']]},
+    2:{apply:'Rebar: прайс по диаметрам каждое утро сам уходит дилерам в Telegram, а заказ «АБК-8 — 3 000 м» из чата сразу становится документом в 1С и КП в PDF.', shots:[['metall-1','METIKS: прайс арматуры каждый день в 08:00 сам уходит в 15 групп','metall'],['metall-13','METIKS: «Продажа: Armatura 12 — 2 t» в чате → документ в 1С','metall']]},
+    3:{apply:'Тот же формат «отчёт сам приходит утром», только агенты смотрят тендерные площадки и дорожные проекты и отбирают лоты под геотекстиль и арматуру.', shots:[['distribyutsiya-0','Дистрибуция: «штаб» из 5 AI-агентов, отчёт приходит сам в 08:10','distrib']]},
+    4:{apply:'Раз в неделю — сводка цен конкурентов с prom.uz, OLX и их сайтов: кто дешевле и на сколько по каждой плотности и диаметру.', shots:[['metall-0','METIKS: Jarvis — 16 систем в одной, включая прайс и отслеживание цен заводов','metall']]},
+    5:{apply:'Ролики с объектов: укладка геотекстиля на трассе, испытание арматуры на излом, сравнение веса со сталью. Сценарии на узбекском пишет AI.', shots:[['munira-4','Carbonado: Reels, собранный с AI за 2 часа, — 334 тыс. просмотров за сутки','carbonado'],['munira-5','Carbonado: сценарии пишет AI — больше 1 000 вместо 40 за $4 500','carbonado']]},
+    6:{apply:'Каждый звонок менеджера расшифровывается и оценивается. Видно, почему клиент ушёл: «дорого», «долго везти из Ургенча» или «нет ГОСТа».', shots:[['loyalty-0','Loyalty ELD: каждый звонок записывается и оценивается — 388 звонков','loyalty'],['texnogrand-1','Texno Grand: агент «Ukam» — из 100 звонков 60 становятся заказами (было 3–4)','aliyor']]},
+    7:{apply:'Принцип «фото → решение»: оператор снимает полотно или стержень, AI отмечает дефект и пишет в паспорт партии. Камера на линии — следующий шаг.', shots:[['texnogrand-9','Texno Grand: бот брака — по фото находит модель, цену и решение','texno']]},
+    8:{apply:'План продаж и закупок волокна, ровинга и смолы по прошлому году и сезону стройки. Директор видит оба завода на одном экране.', shots:[['texnogrand-0','Texno Grand: план на месяц ставится сам — 5–10 дней → 1 клик','aliyor'],['alsage-0','ALSAGE PHARM: AI-директор — завод на одном экране, 15 → 4 часа в неделю','alsage']]},
+    9:{apply:'Каждый заказ из Ургенча виден от склада до машины. Программа считает, сколько рулонов войдёт в фуру и как собрать сборный рейс.', shots:[['texnogrand-8','Texno Grand: складское приложение — видно, где каждый заказ','texno'],['honor-boxes','Honor Furniture: программа считает коробки и проверяет, влезет ли всё в машину','honor']]},
+    10:{apply:'Паспорта партий, счета и акты сверки с дорожными подрядчиками собираются и отправляются сами — без ручного набора.', shots:[['loyalty-6','Loyalty ELD: AI-бухгалтер делает счёт в PDF по фото отчёта — 2 недели → 3 дня','loyalty'],['texnogrand-7','Texno Grand: акт сверки с поставщиком уходит сам каждый месяц','texno']]},
+    11:{apply:'Дилер Rebar пишет «сколько АБК-10 на складе?» — бот отвечает из 1С. Менеджер видит остатки по всем складам сразу.', shots:[['distribyutsiya-1','Дистрибуция: спрашиваешь бота словами — он находит ответ в 1С и SmartUp','distrib'],['texnogrand-14','Texno Grand: оператор видит остатки 39 филиалов — ответ клиенту за 5 минут','texno']]},
+    12:{apply:'Каждый день — новые дорожные подрядчики Казахстана и Туркменистана в базе. Сайт Geotex на языках этих стран, с заявкой-ТЗ.', shots:[['loyalty-2','Loyalty ELD: ~100 новых активных компаний в базе лидов каждый день','loyalty'],['feruz-2','Phoenix Prime: сайт на 4 языках, сделал сам вместо подрядчика за $1 200','phoenix']]}
+  };
+  const lb = document.getElementById('lb');
+  const openLb = (img, cap, url) => { document.getElementById('lbImg').src = IMG + img + '.jpg'; document.getElementById('lbImg').alt = cap; document.getElementById('lbCap').textContent = cap; document.getElementById('lbLink').href = url; try { lb.showModal(); } catch (e) { lb.setAttribute('open', ''); } };
+  document.getElementById('lbClose').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+  document.addEventListener('click', e => { const t = e.target.closest('[data-img]'); if (!t) return; openLb(t.dataset.img, t.dataset.cap, t.dataset.url); });
+  const shotBtn = (sh, cls) => { const c = C[sh[2]]; return `<button type="button" class="${cls || ''}" data-img="${sh[0]}" data-cap="${sh[1]}" data-url="${c.url}" aria-label="Увеличить: ${sh[1]}"><img src="${IMG}${sh[0]}.jpg" alt="${sh[1]}" loading="lazy"></button>`; };
+  document.getElementById('show').innerHTML = S.map(s => { const r = SH[s.n];
+    return `<div class="row glass"><div class="row-t"><span class="n">${String(s.n).padStart(2, '0')} · ${s.st}</span><h3>${s.t}</h3><span class="lbl">Что возьмём для Geotex и Rebar</span><p class="apply">${r.apply}</p></div><div class="shots">${r.shots.map(sh => `<figure class="shot">${shotBtn(sh)}<figcaption>${sh[1]} · <a href="${C[sh[2]].url}" target="_blank" rel="noopener">Открыть кейс ↗</a></figcaption></figure>`).join('')}</div></div>`; }).join('');
+  document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    renderSols(b.dataset.f);
+  }));
+  renderSols('all');
+
+  /* process flow */
+  const flow = [
+    {t:'Маркетинг', ids:[5, 4]}, {t:'Продажи', ids:[1, 2, 6], hot:true}, {t:'Тендеры и экспорт', ids:[3, 10, 12], hot:true},
+    {t:'Снабжение и план', ids:[8]}, {t:'Производство и качество', ids:[7, 10]}, {t:'Логистика и дилеры', ids:[9, 11]}
+  ];
+  const short = {1:'AI-менеджер', 2:'Калькулятор + КП', 3:'Тендерный радар', 4:'Мониторинг цен', 5:'Контент-завод', 6:'Анализ звонков', 7:'Камера QC', 8:'Прогноз спроса', 9:'Логистика', 10:'Документы качества', 11:'Дилерский бот', 12:'Экспорт'};
+  document.getElementById('flow').innerHTML = flow.map(s => `<div class="step glass${s.hot ? ' hot' : ''}"><h3>${s.t}</h3><div class="chips">${s.ids.map(i => `<span class="chip"><b>${i}</b>${short[i]}</span>`).join('')}</div></div>`).join('');
+
+  /* priority matrix */
+  map(document.getElementById('mapPrio'), [
+    {n:'1 AI-менеджер', x:.16, y:.84, main:true, left:true}, {n:'3 Тендерный радар', x:.26, y:.93, main:true},
+    {n:'2 Калькулятор и КП', x:.26, y:.76, main:true}, {n:'12 Экспорт', x:.41, y:.66, left:true},
+    {n:'5 Контент-завод', x:.2, y:.6, left:true}, {n:'6 Звонки', x:.4, y:.55, left:true},
+    {n:'7 Камера QC', x:.84, y:.82}, {n:'8 Прогноз спроса', x:.7, y:.68}, {n:'9 Логистика', x:.56, y:.58},
+    {n:'4 Мониторинг цен', x:.14, y:.36}, {n:'10 Документы качества', x:.22, y:.2}, {n:'11 Дилерский бот', x:.6, y:.33}
+  ], ['Начать сейчас', 'Второй этап', 'Быстрые дополнения', 'По запросу'], true);
+
+  show(location.hash.slice(1) || 'companies');
+  requestAnimationFrame(() => { const a = tabs.find(t => t.getAttribute('aria-selected') === 'true'); if (a) moveThumb(a); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { const a = tabs.find(t => t.getAttribute('aria-selected') === 'true'); if (a) moveThumb(a); });
+})();
+</script>

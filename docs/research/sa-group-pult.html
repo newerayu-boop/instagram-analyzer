@@ -1,0 +1,826 @@
+<title>Пульт SA GROUP</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app shell — glass sidebar of modules on the left, one view at a time on the right; phone: modules become a scrolling pill row. Liquid glass over a slow light field. */
+:root{
+  --bg:#e9edf5; --fg:#0c1322; --muted:#5a6477; --faint:#8a93a6;
+  --accent:#0a7cff; --accent-soft:rgba(10,124,255,.13);
+  --good:#1a9e4b; --warn:#d97800; --bad:#e0352b;
+  --good-soft:rgba(26,158,75,.13); --warn-soft:rgba(217,120,0,.14); --bad-soft:rgba(224,53,43,.12);
+  --glass:rgba(255,255,255,.55); --glass-strong:rgba(255,255,255,.78); --stroke:rgba(255,255,255,.85);
+  --hair:rgba(18,28,48,.09); --sheen:rgba(255,255,255,.75); --shadow:rgba(30,45,80,.14);
+  --bar:rgba(60,72,96,.2);
+  --a1:#5e5ce6; --a2:#af52de; --a3:#ff9f0a; --a4:#0a7cff; --a5:#30b158; --a6:#30b0c7; --a7:#ff375f;
+  --blob1:#7fb2ff; --blob2:#ffc785; --blob3:#6fe0cf; --blob4:#c3a6ff;
+  --f-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Onest",system-ui,sans-serif;
+  --f-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Onest",system-ui,sans-serif;
+  --f-mono:"SF Mono","JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r-xl:28px; --r-lg:20px; --r-md:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#05070c; --fg:#f1f4fa; --muted:#98a2b5; --faint:#6b7488; --accent:#3d9bff; --accent-soft:rgba(61,155,255,.17);
+  --good:#34d26a; --warn:#ffac33; --bad:#ff5a4f; --good-soft:rgba(52,210,106,.14); --warn-soft:rgba(255,172,51,.15); --bad-soft:rgba(255,90,79,.15);
+  --glass:rgba(30,35,48,.48); --glass-strong:rgba(38,44,60,.74); --stroke:rgba(255,255,255,.13);
+  --hair:rgba(255,255,255,.08); --sheen:rgba(255,255,255,.14); --shadow:rgba(0,0,0,.5); --bar:rgba(200,210,230,.2);
+  --blob1:#1f4fb3; --blob2:#7a4410; --blob3:#0f6b62; --blob4:#4a2f9a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#05070c; --fg:#f1f4fa; --muted:#98a2b5; --faint:#6b7488; --accent:#3d9bff; --accent-soft:rgba(61,155,255,.17);
+  --good:#34d26a; --warn:#ffac33; --bad:#ff5a4f; --good-soft:rgba(52,210,106,.14); --warn-soft:rgba(255,172,51,.15); --bad-soft:rgba(255,90,79,.15);
+  --glass:rgba(30,35,48,.48); --glass-strong:rgba(38,44,60,.74); --stroke:rgba(255,255,255,.13);
+  --hair:rgba(255,255,255,.08); --sheen:rgba(255,255,255,.14); --shadow:rgba(0,0,0,.5); --bar:rgba(200,210,230,.2);
+  --blob1:#1f4fb3; --blob2:#7a4410; --blob3:#0f6b62; --blob4:#4a2f9a; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:14.5px;line-height:1.5;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+.scene{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.scene span{position:absolute;border-radius:50%;filter:blur(80px);opacity:.7;animation:drift 28s ease-in-out infinite alternate}
+.scene .b1{width:50vmax;height:50vmax;left:-14vmax;top:-18vmax;background:var(--blob1)}
+.scene .b2{width:38vmax;height:38vmax;right:-10vmax;top:6vmax;background:var(--blob2);animation-delay:-8s}
+.scene .b3{width:44vmax;height:44vmax;left:24vmax;bottom:-24vmax;background:var(--blob3);animation-delay:-14s}
+.scene .b4{width:28vmax;height:28vmax;right:16vmax;bottom:4vmax;background:var(--blob4);animation-delay:-4s;opacity:.5}
+@keyframes drift{to{transform:translate(6vmax,4vmax) scale(1.08)}}
+
+.glass{position:relative;background:var(--glass);-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);border:1px solid var(--stroke);border-radius:var(--r-xl);box-shadow:inset 0 1px 0 var(--sheen),0 16px 36px -18px var(--shadow)}
+.card{background:var(--glass-strong);border:1px solid var(--hair);border-radius:var(--r-lg);padding:16px;min-width:0}
+
+/* shell */
+.app{display:grid;grid-template-columns:248px minmax(0,1fr);gap:18px;max-width:1440px;margin:0 auto;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px));padding-block:14px 48px;min-height:100%}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 14px);align-self:start;max-height:calc(100vh - 28px);overflow:auto;padding:14px 10px;display:flex;flex-direction:column;gap:4px}
+.logo{display:flex;align-items:center;gap:10px;padding:6px 10px 14px}
+.logo i{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--a6));color:#fff;font:800 13px/1 var(--f-display);font-style:normal}
+.logo b{font-family:var(--f-display);font-size:15px;display:block;line-height:1.15}
+.logo span{font-size:11.5px;color:var(--muted)}
+.grp{font:600 10.5px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:12px 10px 6px}
+.nav{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;text-align:left;padding:9px 10px;border-radius:12px;cursor:pointer;font-weight:500;font-size:14px;color:var(--fg)}
+.nav:hover{background:var(--hair)}
+.nav[aria-current="page"]{background:var(--glass-strong);box-shadow:inset 0 1px 0 var(--sheen),0 4px 14px -6px var(--shadow);font-weight:650}
+.nav .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:13px;flex:none;color:#fff}
+.nav .ct{margin-left:auto;font:600 11px/1 var(--f-mono);color:var(--muted)}
+.main{display:flex;flex-direction:column;gap:16px;min-width:0}
+.top{position:sticky;top:calc(env(safe-area-inset-top,0px) + 14px);z-index:20;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 16px;border-radius:999px}
+.top .crumb{font-family:var(--f-display);font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ask{flex:1;display:flex;align-items:center;gap:8px;min-width:0;background:var(--hair);border-radius:999px;padding:8px 14px;color:var(--muted);font-size:13.5px;border:0;cursor:pointer;text-align:left}
+.live{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 var(--f-body);padding:8px 12px;border-radius:999px;background:var(--good-soft);color:var(--good);white-space:nowrap}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 0 currentColor;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,currentColor 50%,transparent)}100%{box-shadow:0 0 0 8px transparent}}
+.demo{font:600 11px/1 var(--f-body);padding:8px 10px;border-radius:999px;background:var(--warn-soft);color:var(--warn);white-space:nowrap}
+@media (max-width:960px){
+  .app{grid-template-columns:1fr}
+  .side{position:sticky;top:env(safe-area-inset-top,0px);z-index:25;flex-direction:row;overflow-x:auto;max-height:none;padding:8px;border-radius:var(--r-lg);gap:4px;scrollbar-width:none}
+  .side::-webkit-scrollbar{display:none}
+  .logo,.grp{display:none}
+  #navList{display:flex;gap:4px}
+  .nav{white-space:nowrap;width:auto;padding:8px 12px}
+  .nav .ct{display:none}
+  .top{position:static;border-radius:var(--r-lg);flex-wrap:wrap}
+  .ask{order:3;flex-basis:100%}
+}
+
+/* view basics */
+.view{display:flex;flex-direction:column;gap:16px;min-width:0}
+.vh{display:flex;flex-direction:column;gap:6px;padding:4px 4px 0}
+.eyebrow{font:600 11.5px/1 var(--f-body);letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4vw,46px);line-height:1.04;letter-spacing:-.03em;margin:0;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(100deg,var(--accent),var(--a6));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-family:var(--f-display);font-weight:700;font-size:21px;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:650;font-size:15.5px;margin:0}
+.lede{margin:0;color:var(--muted);max-width:72ch;font-size:15px}
+.pad{padding:20px}
+.sec{display:flex;flex-direction:column;gap:14px}
+.sec-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sec-h p{margin:0;color:var(--muted);font-size:13.5px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.g21{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px}
+@media (max-width:1100px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.g2,.g3,.g21{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:420px){.g4{grid-template-columns:1fr 1fr}}
+.kpi{display:flex;flex-direction:column;gap:4px}
+.kpi .l{font-size:12.5px;color:var(--muted)}
+.kpi .v{font-family:var(--f-display);font-weight:700;font-size:26px;letter-spacing:-.02em;line-height:1.1}
+.kpi .v small{font-size:13px;font-weight:600;color:var(--muted);margin-left:3px}
+.kpi .d{font-size:12px;font-weight:600}
+.up{color:var(--good)}.dn{color:var(--bad)}.wn{color:var(--warn)}
+.pill{display:inline-flex;align-items:center;gap:5px;font:600 11.5px/1 var(--f-body);padding:6px 9px;border-radius:999px;background:var(--hair);white-space:nowrap}
+.pill.g{background:var(--good-soft);color:var(--good)}.pill.w{background:var(--warn-soft);color:var(--warn)}.pill.r{background:var(--bad-soft);color:var(--bad)}.pill.b{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--muted);margin:0}
+.list{display:flex;flex-direction:column}
+.li{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--hair)}
+.li:last-child{border-bottom:0}
+.li .t{font-size:13.5px;min-width:0;flex:1}
+.li .t b{font-weight:650}
+.li .tm{font:600 11.5px/1.4 var(--f-mono);color:var(--muted);flex:none;min-width:40px}
+.av{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font:700 10.5px/1 var(--f-display);color:#fff;flex:none}
+.tbl{overflow-x:auto;border-radius:var(--r-md);border:1px solid var(--hair)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{white-space:nowrap;font-weight:600;text-align:right}
+.btn{border:1px solid var(--stroke);background:var(--glass-strong);padding:8px 13px;border-radius:999px;font-weight:600;font-size:13px;cursor:pointer}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.ghost{background:transparent;border-color:var(--hair)}
+.btn:disabled{opacity:.5;cursor:default}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--hair);background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:600;font-size:13px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.bar-t{height:8px;border-radius:99px;background:var(--hair);overflow:hidden}
+.bar-t i{display:block;height:100%;border-radius:99px;background:var(--accent)}
+svg text{font-family:var(--f-body)}
+
+/* tour: layers */
+.layers{display:flex;flex-direction:column;gap:10px}
+.layer{display:grid;grid-template-columns:180px minmax(0,1fr);gap:16px;align-items:center;padding:14px 16px;border-radius:var(--r-lg);background:var(--glass-strong);border:1px solid var(--hair);position:relative}
+.layer .ln b{display:block;font-family:var(--f-display);font-size:15px}
+.layer .ln span{font-size:12px;color:var(--muted)}
+.layer .chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12.5px;padding:6px 10px;border-radius:999px;background:var(--glass);border:1px solid var(--hair);white-space:nowrap}
+.layer.top1{border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:color-mix(in srgb,var(--accent) 9%,var(--glass-strong))}
+.flowcol{display:flex;justify-content:space-between;padding:0 24px;color:var(--muted);font-size:12px}
+.updown{display:flex;justify-content:center;gap:28px;font-size:12px;color:var(--muted)}
+.updown span{display:inline-flex;align-items:center;gap:6px}
+@media (max-width:700px){.layer{grid-template-columns:1fr}}
+.stops{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:900px){.stops{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stop{display:flex;flex-direction:column;gap:6px;text-align:left;cursor:pointer;border:1px solid var(--hair);background:var(--glass-strong);border-radius:var(--r-lg);padding:14px;transition:transform .18s ease-out}
+.stop:hover{transform:translateY(-2px);border-color:var(--accent)}
+.stop .k{font:700 11px/1 var(--f-mono);color:var(--accent)}
+.stop b{font-family:var(--f-display);font-size:14.5px}
+.stop span{font-size:12.5px;color:var(--muted)}
+.ab{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.ab{grid-template-columns:1fr}}
+.ab .card h3{margin-bottom:8px}
+.ab ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:13.5px}
+
+/* founder */
+.brief{display:flex;gap:12px;align-items:flex-start}
+.brief .av{width:38px;height:38px;border-radius:12px;font-size:12px}
+.brief p{margin:0;font-size:14px}
+.dec{display:flex;flex-direction:column;gap:10px}
+.decision{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start;padding:14px;border-radius:var(--r-md);background:var(--glass-strong);border:1px solid var(--hair)}
+.decision.done{opacity:.55}
+.decision b{font-family:var(--f-display);font-size:14.5px;display:block}
+.decision p{margin:4px 0 0;font-size:12.8px;color:var(--muted)}
+.decision .eff{font-size:12.5px;font-weight:650;margin-top:6px}
+.decision .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:560px){.decision{grid-template-columns:1fr}.decision .acts{justify-content:flex-start}}
+.phone{width:300px;max-width:100%;margin:0 auto;border-radius:44px;padding:12px;background:#0b0d12;box-shadow:0 30px 60px -24px var(--shadow),inset 0 0 0 2px #2a2f3a}
+.screen{border-radius:34px;overflow:hidden;background:var(--bg);min-height:560px;display:flex;flex-direction:column;gap:10px;padding:16px 12px}
+.notch{width:96px;height:26px;border-radius:99px;background:#0b0d12;margin:-6px auto 4px}
+.widget{border-radius:18px;padding:12px;background:var(--glass-strong);border:1px solid var(--hair)}
+.widget .l{font-size:11px;color:var(--muted)}
+.widget .v{font-family:var(--f-display);font-weight:700;font-size:20px}
+.qa{display:flex;flex-direction:column;gap:8px}
+.qbtns{display:flex;flex-wrap:wrap;gap:6px}
+.bubble{padding:10px 13px;border-radius:16px;font-size:13.5px;max-width:92%}
+.bubble.me{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:5px}
+.bubble.ai{align-self:flex-start;background:var(--glass-strong);border:1px solid var(--hair);border-bottom-left-radius:5px}
+
+/* plant */
+.line{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;position:relative}
+@media (max-width:1180px){.line{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:560px){.line{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stage{display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:var(--r-md);background:var(--glass-strong);border:1px solid var(--hair);text-align:left;cursor:pointer;position:relative;min-width:0}
+.stage[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.stage .no{font:700 10.5px/1 var(--f-mono);color:var(--muted)}
+.stage b{font-family:var(--f-display);font-size:13px;line-height:1.2;hyphens:auto;overflow-wrap:anywhere}
+.stage .s{font:600 12px/1.3 var(--f-mono)}
+.stage .ai{font-size:11px;color:var(--accent);font-weight:600}
+.stage .dot{position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--good)}
+.stage .dot.w{background:var(--warn)}
+.belt{height:6px;border-radius:99px;background:repeating-linear-gradient(90deg,var(--accent) 0 14px,transparent 14px 28px);opacity:.5;animation:belt 1.2s linear infinite;background-size:28px 6px}
+@keyframes belt{to{background-position:28px 0}}
+.detail{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:14px}
+@media (max-width:860px){.detail{grid-template-columns:1fr}}
+.sensor{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--hair);font-size:13px}
+.sensor:last-child{border-bottom:0}
+.sensor b{font-family:var(--f-mono);font-weight:600}
+.cam{position:relative;border-radius:var(--r-md);overflow:hidden;height:150px;background:repeating-linear-gradient(115deg,#d9dde4 0 3px,#cfd4dc 3px 6px)}
+:root[data-theme="dark"] .cam{background:repeating-linear-gradient(115deg,#3a3f49 0 3px,#333842 3px 6px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cam{background:repeating-linear-gradient(115deg,#3a3f49 0 3px,#333842 3px 6px)}}
+.cam .scan{position:absolute;top:0;bottom:0;width:2px;background:var(--accent);box-shadow:0 0 14px var(--accent);animation:scan 3.2s ease-in-out infinite}
+@keyframes scan{0%{left:2%}50%{left:96%}100%{left:2%}}
+.cam .box{position:absolute;border:2px solid var(--bad);border-radius:6px}
+.cam .box span{position:absolute;top:-20px;left:-2px;background:var(--bad);color:#fff;font:600 10.5px/1 var(--f-body);padding:4px 6px;border-radius:5px;white-space:nowrap}
+.cam .lbl{position:absolute;left:8px;bottom:8px;font:600 10.5px/1 var(--f-mono);background:rgba(0,0,0,.55);color:#fff;padding:5px 7px;border-radius:6px}
+.ticker{display:flex;flex-direction:column;gap:0;max-height:300px;overflow:auto}
+
+/* org */
+.org{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+.org .lvl{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.person{padding:12px 14px;border-radius:var(--r-md);background:var(--glass-strong);border:1px solid var(--hair);min-width:200px;text-align:center}
+.person b{display:block;font-family:var(--f-display);font-size:14px}
+.person span{font-size:12px;color:var(--muted)}
+.hub{max-width:620px;margin:0 auto;text-align:center;padding:14px 18px;border-radius:var(--r-lg);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 18%,var(--glass-strong)),color-mix(in srgb,var(--a6) 14%,var(--glass-strong)));border:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+.hub b{font-family:var(--f-display);font-size:15px}
+.hub span{display:block;font-size:12.5px;color:var(--muted)}
+.vline{width:1px;height:18px;background:var(--muted);opacity:.4;margin:0 auto}
+.depts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:1100px){.depts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.depts{grid-template-columns:1fr}}
+.dept{display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:var(--r-lg);background:var(--glass-strong);border:1px solid var(--hair);min-width:0}
+.dept .hd{display:flex;align-items:center;gap:8px}
+.dept .hd b{font-family:var(--f-display);font-size:14.5px}
+.dept .who{font-size:12px;color:var(--muted)}
+.agent{display:flex;gap:8px;align-items:flex-start;padding:7px 9px;border-radius:12px;background:var(--glass);border:1px solid var(--hair);font-size:12.5px;cursor:pointer;text-align:left;width:100%}
+.agent:hover{border-color:var(--accent)}
+.agent i{font-style:normal;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;color:#fff;font:700 9.5px/1 var(--f-display);flex:none}
+.agent .ph{margin-left:auto;font:600 10px/1 var(--f-body);color:var(--muted);padding-top:4px;white-space:nowrap}
+.agent b{font-weight:650;display:block}
+.agent span{color:var(--muted);font-size:11.5px}
+
+/* command center */
+.cc{display:grid;grid-template-columns:220px minmax(0,1fr) 280px;gap:14px;min-height:520px}
+@media (max-width:1200px){.cc{grid-template-columns:200px minmax(0,1fr)}.cc .feed{grid-column:1/-1}}
+@media (max-width:760px){.cc{grid-template-columns:1fr}}
+.alist{display:flex;flex-direction:column;gap:4px}
+.alist button{display:flex;gap:8px;align-items:center;border:0;background:none;padding:8px;border-radius:12px;cursor:pointer;text-align:left;font-size:13px;font-weight:550}
+.alist button[aria-pressed="true"]{background:var(--glass-strong);box-shadow:0 0 0 1px var(--hair)}
+.chat{display:flex;flex-direction:column;gap:10px;min-width:0}
+.thread{flex:1;display:flex;flex-direction:column;gap:10px;min-height:300px;max-height:560px;overflow:auto;padding:4px}
+.steps{display:flex;flex-direction:column;gap:5px;font-size:12.5px;color:var(--muted)}
+.steps div{display:flex;gap:8px;align-items:center}
+.spin{width:12px;height:12px;border-radius:50%;border:2px solid var(--hair);border-top-color:var(--accent);animation:sp .8s linear infinite;flex:none}
+.ok{color:var(--good);font-weight:700;width:12px;text-align:center;flex:none}
+@keyframes sp{to{transform:rotate(360deg)}}
+.artifact{border-radius:var(--r-md);border:1px solid var(--hair);background:var(--glass-strong);padding:12px;display:flex;flex-direction:column;gap:10px}
+.artifact .acts{display:flex;gap:6px;flex-wrap:wrap}
+.tasks{display:flex;flex-wrap:wrap;gap:6px}
+.tasks button{border:1px dashed var(--muted);background:transparent;padding:7px 11px;border-radius:999px;font-size:12.5px;cursor:pointer}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;position:relative}
+@media (max-width:1000px){.road{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.road{grid-template-columns:1fr}}
+.phase{display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:var(--r-lg);background:var(--glass-strong);border:1px solid var(--hair);min-width:0}
+.phase .when{font:700 11px/1 var(--f-mono);color:var(--accent)}
+.phase h3{font-size:17px}
+.phase ul{margin:0;padding-left:17px;font-size:13px;display:flex;flex-direction:column;gap:4px}
+.gate{margin-top:auto;padding:10px 12px;border-radius:12px;background:var(--accent-soft);font-size:12.5px}
+.gate b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+.track{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3px;margin-top:6px}
+.track span{height:8px;border-radius:3px;background:var(--hair)}
+
+/* money */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:14px}
+@media (max-width:960px){.calc{grid-template-columns:minmax(0,1fr)}}
+.sl{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-bottom:1px solid var(--hair)}
+.sl:last-child{border-bottom:0}
+.sl label{display:flex;justify-content:space-between;gap:10px;font-size:13px}
+.sl label output{font:600 13px/1 var(--f-mono);white-space:nowrap}
+.sl input{width:100%;accent-color:var(--accent)}
+.sl .hint{font-size:11.5px;color:var(--muted)}
+.big{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,5vw,52px);letter-spacing:-.03em;line-height:1}
+.res-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--hair);font-size:13.5px}
+.res-row:last-child{border-bottom:0}
+.res-row .val{font:700 13.5px/1 var(--f-mono);text-align:right}
+.res-row .bar-t{grid-column:1/-1;height:6px}
+
+/* world */
+.ws{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:1000px){.ws{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.ws{grid-template-columns:1fr}}
+.w{display:flex;flex-direction:column;gap:6px}
+.w .who{font:600 11px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.w b{font-family:var(--f-display);font-size:14.5px}
+.w p{margin:0;font-size:13px;color:var(--muted)}
+.w .use{font-size:12.5px;font-weight:600;color:var(--accent)}
+
+@media (max-width:700px){[data-proc]{grid-template-columns:1fr!important}}
+.fade{animation:fade .35s ease-out both}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.scene span,.belt,.cam .scan,.live::before,.spin,.fade{animation:none}}
+</style>
+
+<div class="scene" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></div>
+
+<div class="app" lang="ru">
+  <aside class="side glass" aria-label="Модули">
+    <div class="logo"><i>SA</i><div><b>Пульт SA GROUP</b><span>AI-завод · точка B</span></div></div>
+    <div id="navList"></div>
+  </aside>
+
+  <main class="main">
+    <div class="top glass">
+      <span class="crumb" id="crumb">Экскурсия</span>
+      <button class="ask" id="askBtn" type="button">⌘ Спросить завод: «почему вырос брак на линии 1?»</button>
+      <span class="live">AI на связи · 31 агент</span>
+      <span class="demo">Демо-данные</span>
+    </div>
+    <div id="views"></div>
+  </main>
+</div>
+
+<script>
+(function(){
+const $ = s => document.querySelector(s);
+const fmt = (v, d = 0) => Number(v).toLocaleString('ru-RU', {maximumFractionDigits: d, minimumFractionDigits: d});
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- data: agents ---------- */
+const DEPT = [
+  {id:'sales', n:'Продажи', who:'РОП + 4 менеджера', c:'var(--a4)', ic:'₽', agents:[['mgr','AI-менеджер 24/7','отвечает в Telegram/Instagram на UZ/RU, считает объём',1],['kp','AI-КП','калькулятор и КП в PDF за минуту',1],['calls','Разбор звонков','оценивает каждый звонок по скрипту',2],['crm','Бот контроля продаж','следит, чтобы у каждого лида были сумма и шаг',1]]},
+  {id:'tender', n:'Тендеры и экспорт', who:'тендер-менеджер', c:'var(--a2)', ic:'T', agents:[['radar','Тендерный радар','xarid, etender, дорожные проекты — каждое утро',1],['tdoc','Пакет документов','собирает заявку и сертификаты под ТЗ',2],['exp','Экспорт-лидоген','подрядчики KZ, TM, KG, AF + письма',4]]},
+  {id:'mkt', n:'Маркетинг', who:'маркетолог', c:'var(--a7)', ic:'M', agents:[['content','Контент-завод','Reels, карусели, SEO на UZ/RU',1],['price','Мониторинг цен','prom.uz, OLX, сайты конкурентов',2]]},
+  {id:'gx', n:'Цех Geotex', who:'начальник цеха, 3 смены', c:'var(--a5)', ic:'G', agents:[['oee','Агент линии (OEE)','скорость, простои, причины — в реальном времени',3],['vis','Vision-контроль полотна','камеры ищут дыры и пятна по всей ширине',3],['pdm','Предиктивный ТО','износ игл и подшипников иглопробивных машин',4]]},
+  {id:'rb', n:'Цех Rebar', who:'начальник цеха, 2 смены', c:'var(--a3)', ic:'R', agents:[['cure','Агент режимов печи','температура, скорость протяжки, смола',3],['rvis','Vision стержня','диаметр, шаг навивки, непропитка',3]]},
+  {id:'qa', n:'Качество', who:'лаборатория', c:'var(--a6)', ic:'Q', agents:[['pass','Паспорт партии','испытания → паспорт и сертификат сам',2],['spc','SPC-агент','ловит дрейф плотности и прочности до брака',3]]},
+  {id:'sup', n:'Снабжение и склад', who:'снабженец, кладовщик', c:'var(--a1)', ic:'S', agents:[['buy','Агент закупок','цены волокна, ровинга, смолы; когда покупать',2],['fc','Прогноз сырья','сколько заказать на 8 недель вперёд',2],['wh','Складской бот','остатки по запросу словами',2],['disp','Диспетчер рейсов','сборные рейсы из Ургенча и Сардобы',2]]},
+  {id:'fin', n:'Финансы', who:'финдиректор, 2 бухгалтера', c:'var(--a5)', ic:'F', agents:[['cash','Казначей','касса и платёжный календарь на 8 недель',2],['ar','Дебиторка','кто должен, сколько и кому звонить первым',2],['acc','AI-бухгалтер','счета, акты сверки, ЭСФ',2]]},
+  {id:'hr', n:'Люди', who:'HR', c:'var(--a2)', ic:'H', agents:[['coach','Coach-агент','обучает новичков на линии и в продажах',4],['tab','Табель-бот','смены, опоздания, KPI',1]]}
+];
+const AG = {}; DEPT.forEach(d => d.agents.forEach(a => AG[a[0]] = {id:a[0], n:a[1], d:a[2], ph:a[3], dept:d.n, c:d.c}));
+
+/* ---------- views registry ---------- */
+const VIEWS = [
+  {id:'tour', n:'Экскурсия', ic:'★', c:'var(--a4)', g:'Старт'},
+  {id:'founder', n:'Основатель', ic:'◎', c:'var(--a1)', g:'Верх: управление', ct:'5'},
+  {id:'top', n:'Топ-менеджмент', ic:'▲', c:'var(--a2)', g:'Верх: управление', ct:'6'},
+  {id:'geotex', n:'Завод Geotex', ic:'G', c:'var(--a5)', g:'Низ: завод и отделы'},
+  {id:'rebar', n:'Завод Rebar', ic:'R', c:'var(--a3)', g:'Низ: завод и отделы'},
+  {id:'sales', n:'Продажи и тендеры', ic:'₽', c:'var(--a4)', g:'Низ: завод и отделы', ct:'72'},
+  {id:'supply', n:'Снабжение и склад', ic:'S', c:'var(--a1)', g:'Низ: завод и отделы'},
+  {id:'finance', n:'Финансы', ic:'F', c:'var(--a5)', g:'Низ: завод и отделы'},
+  {id:'agents', n:'AI-оргструктура', ic:'AI', c:'var(--a6)', g:'Связка', ct:'31'},
+  {id:'road', n:'Этапы внедрения', ic:'→', c:'var(--a7)', g:'Связка'},
+  {id:'money', n:'Экономика', ic:'$', c:'var(--a5)', g:'Итог'},
+  {id:'world', n:'Мировой опыт', ic:'◍', c:'var(--a2)', g:'Итог'}
+];
+let lastG = '';
+$('#navList').innerHTML = VIEWS.map(v => { const g = v.g !== lastG ? `<div class="grp">${v.g}</div>` : ''; lastG = v.g;
+  return g + `<button class="nav" type="button" data-v="${v.id}"><span class="ic" style="background:${v.c}">${v.ic}</span>${v.n}${v.ct ? `<span class="ct">${v.ct}</span>` : ''}</button>`; }).join('');
+$('#views').innerHTML = VIEWS.map(v => `<section class="view" id="v-${v.id}" hidden></section>`).join('');
+
+/* ---------- helpers ---------- */
+const kpi = (l, v, u, d, cls) => `<div class="card kpi"><span class="l">${l}</span><span class="v">${v}${u ? `<small>${u}</small>` : ''}</span>${d ? `<span class="d ${cls || 'up'}">${d}</span>` : ''}</div>`;
+const agentChip = id => { const a = AG[id]; return `<button type="button" class="agent" data-agent="${id}"><i style="background:${a.c}">${a.n.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()}</i><div><b>${a.n}</b><span>${a.d}</span></div><span class="ph">этап ${a.ph}</span></button>`; };
+function spark(vals, h = 46, color = 'var(--accent)'){
+  const w = 220, mx = Math.max(...vals), mn = Math.min(...vals), sx = w / (vals.length - 1);
+  const pts = vals.map((v, i) => [i * sx, h - 6 - (v - mn) / (mx - mn || 1) * (h - 12)]);
+  const d = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('');
+  const last = pts.at(-1);
+  return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}" preserveAspectRatio="none" aria-hidden="true"><path d="${d}L${w} ${h}L0 ${h}Z" fill="${color}" fill-opacity=".12"/><path d="${d}" fill="none" stroke="${color}" stroke-width="2" vector-effect="non-scaling-stroke"/><circle cx="${last[0]}" cy="${last[1]}" r="3.5" fill="${color}"/></svg>`;
+}
+function bars(rows, opt = {}){
+  const w = 640, h = opt.h || 200, pad = 34, max = opt.max || Math.max(...rows.map(r => Math.max(r.v, r.p || 0))) * 1.12;
+  const bw = (w - pad) / rows.length, Y = v => h - 26 - v / max * (h - 46);
+  return `<svg viewBox="0 0 ${w} ${h}" width="100%" role="img" aria-label="${opt.label || ''}">${[0, .5, 1].map(t => `<line x1="${pad}" x2="${w}" y1="${Y(max * t / 1.12)}" y2="${Y(max * t / 1.12)}" stroke="var(--hair)"/><text x="${pad - 6}" y="${Y(max * t / 1.12) + 4}" text-anchor="end" font-size="10.5" fill="var(--muted)">${fmt(max * t / 1.12, opt.dec || 0)}</text>`).join('')}
+  ${rows.map((r, i) => { const x = pad + i * bw + bw * .18, bwi = bw * .64; return `<g><rect x="${x}" y="${Y(r.v)}" width="${bwi}" height="${h - 26 - Y(r.v)}" rx="4" fill="${r.c || (r.f ? 'var(--accent)' : 'var(--bar)')}" ${r.f ? 'fill-opacity=".45"' : ''}><title>${r.l}: ${fmt(r.v, opt.dec || 0)} ${opt.unit || ''}</title></rect>${r.p ? `<line x1="${x - 3}" x2="${x + bwi + 3}" y1="${Y(r.p)}" y2="${Y(r.p)}" stroke="var(--fg)" stroke-width="2"/>` : ''}<text x="${x + bwi / 2}" y="${h - 9}" text-anchor="middle" font-size="10.5" fill="var(--muted)">${r.l}</text></g>`; }).join('')}</svg>`;
+}
+
+/* ---------- TOUR ---------- */
+$('#v-tour').innerHTML = `
+<div class="vh"><div class="eyebrow">Экскурсия · точка B через 12 месяцев</div>
+<h1>Один завод, где <em>AI готовит, а люди решают</em></h1>
+<p class="lede">Так может выглядеть SA GROUP после полной интеграции: каждая линия, каждый отдел и каждый руководитель подключены к одной системе. Снизу данные идут от станков, лаборатории, 1С и Telegram к AI-агентам. Сверху основатели и топ-менеджеры видят готовые цифры и утверждают решения.</p></div>
+<div class="glass pad sec">
+  <div class="sec-h"><h2>Как соединены верх и низ</h2><p>Данные поднимаются вверх, решения и задачи спускаются вниз</p></div>
+  <div class="layers">
+    <div class="layer top1"><div class="ln"><b>Основатели</b><span>решают и утверждают</span></div><div class="chips"><span class="chip">Цены и скидки</span><span class="chip">Крупные закупки сырья</span><span class="chip">Тендеры выше 1 млрд сум</span><span class="chip">Инвестиции и вторая линия</span><span class="chip">Экспорт</span></div></div>
+    <div class="layer"><div class="ln"><b>Топ-менеджмент</b><span>6 дашбордов, ритм дня</span></div><div class="chips"><span class="chip">Коммерция</span><span class="chip">Производство</span><span class="chip">Финансы</span><span class="chip">Снабжение и логистика</span><span class="chip">Качество</span><span class="chip">Люди</span></div></div>
+    <div class="layer"><div class="ln"><b>Главный AI-ассистент</b><span>штаб над всеми агентами</span></div><div class="chips"><span class="chip">Утренний бриф 07:30</span><span class="chip">Очередь решений</span><span class="chip">Сверка цифр между отделами</span><span class="chip">«Спросить завод»</span><span class="chip">Бот контроля задач</span></div></div>
+    <div class="layer"><div class="ln"><b>31 AI-агент в 9 отделах</b><span>работают круглые сутки</span></div><div class="chips"><span class="chip">Продажи · 4</span><span class="chip">Тендеры и экспорт · 3</span><span class="chip">Маркетинг · 2</span><span class="chip">Цех Geotex · 3</span><span class="chip">Цех Rebar · 2</span><span class="chip">Качество · 2</span><span class="chip">Снабжение и склад · 4</span><span class="chip">Финансы · 3</span><span class="chip">Люди · 2</span></div></div>
+    <div class="layer"><div class="ln"><b>Источники данных</b><span>то, что уже есть + датчики</span></div><div class="chips"><span class="chip">1С</span><span class="chip">CRM и телефония</span><span class="chip">Telegram-чаты</span><span class="chip">Датчики линий Dilo и пултрузии</span><span class="chip">Камеры на линиях</span><span class="chip">Лаборатория</span><span class="chip">Банк</span><span class="chip">xarid.uzex.uz, etender</span><span class="chip">Цены конкурентов</span></div></div>
+  </div>
+  <div class="updown"><span>↑ цифры, отклонения, черновики решений</span><span>↓ утверждения, задачи, контроль исполнения</span></div>
+</div>
+<div class="ab">
+  <div class="card"><h3>Точка А — сейчас</h3><ul>
+    <li>Geotex загружен примерно на 20% (5,2 млн м² за 4,5 года при мощности 6 млн м² в год)</li>
+    <li>Цифры — в 1С, Excel и Telegram; отчёт собирают вручную</li>
+    <li>Заявки после 18:00 и в выходные ждут до утра</li>
+    <li>Тендеры ищут вручную, документы набирают заново</li>
+    <li>Брак и простой линии видны в конце смены</li>
+    <li>Основатель узнаёт о проблеме, когда она уже стоит денег</li></ul></div>
+  <div class="card" style="border-color:color-mix(in srgb,var(--accent) 40%,transparent)"><h3>Точка B — через 12 месяцев</h3><ul>
+    <li>Загрузка Geotex — 74%, Rebar — 62% (цель пилота, демо)</li>
+    <li>Все цифры в одном пульте, обновляются сами каждые 5 минут</li>
+    <li>Ответ клиенту — до 1 минуты, 24/7, на узбекском и русском</li>
+    <li>Каждый подходящий тендер найден в день публикации, пакет готов за 2 часа</li>
+    <li>Камеры ловят дефект за секунды, ТО — до поломки</li>
+    <li>Основатель тратит 20 минут утром и утверждает 3–5 решений</li></ul></div>
+</div>
+<div class="glass pad sec">
+  <div class="sec-h"><h2>Маршрут экскурсии</h2><p>8 остановок, ~25 минут</p></div>
+  <div class="stops">
+    ${[['founder','01','Рабочее место основателя','Бриф, деньги, решения на утверждение'],['top','02','Топ-менеджмент','6 директоров: дашборды, агенты, ритм дня'],['geotex','03','Завод Geotex','Линия Dilo с датчиками и камерами'],['rebar','04','Завод Rebar','Пултрузия: печь, протяжка, контроль стержня'],['sales','05','Продажи и тендеры','Воронка, тендерный радар, AI-менеджер'],['agents','06','AI-оргструктура','Люди + 31 агент, командный центр'],['road','07','Этапы внедрения','4 этапа за 12 месяцев'],['money','08','Экономика','Сколько времени и денег это даёт']].map(s => `<button class="stop" type="button" data-go="${s[0]}"><span class="k">${s[1]}</span><b>${s[2]}</b><span>${s[3]}</span></button>`).join('')}
+  </div>
+</div>`;
+
+/* ---------- FOUNDER ---------- */
+const DECISIONS = [
+  {t:'Поднять цену Geotex 300–450 на 5%', why:'Geo Guard поднял цены на 7%, Sanfa — на 4% за неделю. Спрос по тендерам за месяц +18%. Наш прайс ниже рынка на 11%.', eff:'+96 млн сум в месяц к марже', by:['price','kp'], risk:'Риск: 2 дилера могут попросить отсрочку'},
+  {t:'Закупить 140 т ПЭТ-волокна сейчас', why:'Цена у поставщика растёт третью неделю (+6%). Запаса хватит на 11 дней, в плане — 3 крупных тендера.', eff:'экономия ~210 млн сум к цене через месяц', by:['buy','fc'], risk:'Заморозит 1,9 млрд сум на 5 недель'},
+  {t:'Подать заявку: тендер А-380, лот 4', why:'52 000 м², 450 г/м², Каракалпакстан. Мы поставляли на соседний участок. Вероятность победы 64%, маржа 31%.', eff:'+1,9 млрд сум выручки', by:['radar','tdoc'], risk:'Отгрузка совпадает с пиком — нужна 3-я смена на 2 недели'},
+  {t:'Перевести линию Rebar-2 на Ø8 на 2 недели', why:'Дилеры Казахстана заказали 180 тыс. п.м Ø8. Склад Ø8 закончится через 9 дней.', eff:'+2,3 млрд сум, склад без дефицита', by:['fc','disp'], risk:'Ø12 упадёт до 14 дней запаса'},
+  {t:'Заменить игольную доску NL-3 в ночную смену', why:'Предиктивный ТО: износ игл 92%, вибрация растёт 4 дня. Если ждать — 70% вероятность поломки за 10 дней.', eff:'не потерять ~9 часов простоя (~140 тыс. м²)', by:['pdm','oee'], risk:'Ночная смена −35% выпуска'}
+];
+const ASK = {
+  'Почему вырос брак на линии 1?':'Брак вчера — 2,4% вместо 1,5%. 71% дефектов — тонкие места на правом крае полотна. Камера связывает их с иглопробивной машиной NL-3: износ игл 92%. Рекомендую заменить доску в ночную смену — решение уже в очереди.',
+  'Сколько денег будет через 8 недель?':'Касса через 8 недель — 21,6 млрд сум (сейчас 18,4). Минимум — 15,2 млрд на 5-й неделе из-за закупки волокна и зарплаты. Разрыва нет. Если тендер А-380 выигран, на 7-й неделе нужна предоплата сырья 1,1 млрд.',
+  'Кто из дилеров перестал покупать?':'3 дилера Rebar не заказывали больше 30 дней: «Qurilish Servis» (Самарканд), «Baraka Stroy» (Фергана), «Euro Beton» (Нукус). Двое стали покупать у ARMATURAKOMPOZIT по 2 980 сум/м. Агент продаж подготовил им предложение со скидкой 4% на объём.',
+  'Какая маржа по каждому продукту?':'Geotex 300 — 29%, Geotex 450 — 31%, Geotex 800 — 22% (сырьё дороже). Rebar АБК-8 — 34%, АСК-8 — 27%, сетка 50×50 — 24%. Самый выгодный рост — Geotex 450 под дороги и АБК-8 для дилеров.'
+};
+$('#v-founder').innerHTML = `
+<div class="vh"><div class="eyebrow">Рабочее место основателя · пятница, 07:30</div><h1>20 минут утром — и вся компания под контролем</h1>
+<p class="lede">Основатель не собирает цифры и не обзванивает людей. Он читает бриф, смотрит на отклонения и утверждает 3–5 решений, которые подготовили агенты. Всё остальное — у топ-менеджеров.</p></div>
+<div class="g21">
+  <div class="sec">
+    <div class="glass pad brief"><span class="av" style="background:linear-gradient(135deg,var(--accent),var(--a6))">AI</span><div><b>Утренний бриф от главного AI-ассистента</b>
+      <p style="margin-top:6px">Доброе утро. За вчера: выручка 612 млн сум (+8% к плану), отгружено 18 400 м² Geotex и 11,6 т арматуры. Найдено 3 новых тендера, один подходит — А-380, лот 4. Брак на линии Geotex-1 вырос до 2,4% — причина найдена. Касса 18,4 млрд сум, разрыва на 8 недель нет. <b>Нужно ваше решение по 5 вопросам.</b></p></div></div>
+    <div class="g4">
+      ${kpi('Выручка, месяц', '13,6', 'млрд сум', '▲ 9% к плану')}
+      ${kpi('Валовая маржа', '28,4', '%', '▲ 1,6 п.п.')}
+      ${kpi('Касса', '18,4', 'млрд сум', '8 недель без разрыва')}
+      ${kpi('Дебиторка', '9,2', 'млрд сум', '1,1 млрд просрочено', 'wn')}
+      ${kpi('Загрузка Geotex', '74', '%', 'была ~20%')}
+      ${kpi('Загрузка Rebar', '62', '%', '▲ 7 п.п. за квартал')}
+      ${kpi('OEE заводов', '76', '%', 'цель 80%', 'wn')}
+      ${kpi('Брак', '1,7', '%', 'был ~4%')}
+    </div>
+    <div class="glass pad sec"><div class="sec-h"><h2>Решения на утверждение</h2><p>агенты подготовили, вы решаете</p></div><div class="dec" id="decList"></div></div>
+  </div>
+  <div class="sec">
+    <div class="phone" aria-label="Пульт основателя в телефоне"><div class="screen">
+      <div class="notch"></div>
+      <div style="font-family:var(--f-display);font-weight:800;font-size:22px;padding:0 4px">Доброе утро</div>
+      <div class="g2" style="grid-template-columns:1fr 1fr;gap:8px">
+        <div class="widget"><div class="l">Выручка вчера</div><div class="v">612 млн</div><div class="up" style="font-size:11px;font-weight:600">+8% к плану</div></div>
+        <div class="widget"><div class="l">Касса</div><div class="v">18,4 млрд</div><div style="font-size:11px;color:var(--muted)">сум</div></div>
+      </div>
+      <div class="widget"><div class="l">Выручка, 30 дней</div>${spark([410,452,430,498,520,505,560,548,590,575,602,598,612,630,612], 60)}</div>
+      <div class="widget"><div class="l">Требует решения</div><div style="font-weight:700;font-size:15px;margin-top:2px" id="phoneDec">5 решений</div><div style="font-size:11.5px;color:var(--muted)">цена, закупка, тендер, линия, ТО</div></div>
+      <div class="widget"><div class="l">За ночь агенты сделали</div><div style="font-size:12.5px;margin-top:4px;display:flex;flex-direction:column;gap:4px"><span>• ответили 23 клиентам, 6 заявок в CRM</span><span>• нашли 3 тендера, 1 подходит</span><span>• отправили 4 акта сверки</span><span>• предупредили о поломке NL-3</span></div></div>
+    </div></div>
+    <div class="glass pad qa"><h2>Спросить завод</h2><div class="qbtns">${Object.keys(ASK).map(q => `<button class="btn ghost" type="button" data-q="${q}">${q}</button>`).join('')}</div><div class="thread" id="askThread" style="min-height:120px;max-height:340px"></div></div>
+  </div>
+</div>
+<div class="g2">
+  <div class="glass pad sec"><div class="sec-h"><h2>Выручка по неделям</h2><p>млн сум · линия — план</p></div>${bars([{l:'Н1',v:2810,p:2900},{l:'Н2',v:3020,p:2950},{l:'Н3',v:3150,p:3050},{l:'Н4',v:3380,p:3100},{l:'Н5',v:3290,p:3200},{l:'Н6',v:3550,p:3250},{l:'Н7',v:3420,p:3300},{l:'Н8',v:3610,p:3350,f:1}], {label:'Выручка по неделям', unit:'млн сум'})}</div>
+  <div class="glass pad sec"><div class="sec-h"><h2>Риски недели</h2><p>что может стоить денег</p></div><div class="list">
+    <div class="li"><span class="pill r">Высокий</span><div class="t"><b>Поломка NL-3</b> — 70% за 10 дней, если не менять иглы</div></div>
+    <div class="li"><span class="pill w">Средний</span><div class="t"><b>Просрочка «Yo'l Qurilish Invest»</b> — 640 млн сум, 21 день</div></div>
+    <div class="li"><span class="pill w">Средний</span><div class="t"><b>Цена ПЭТ-волокна</b> — +6% за 3 недели, тренд продолжается</div></div>
+    <div class="li"><span class="pill b">Наблюдать</span><div class="t"><b>ARMATURAKOMPOZIT</b> снизил цену Ø8 до 2 980 сум/м</div></div>
+    <div class="li"><span class="pill g">Решено</span><div class="t"><b>Дефицит Ø8</b> — решение о перестройке линии в очереди</div></div>
+  </div></div>
+</div>`;
+function renderDecisions(){
+  $('#decList').innerHTML = DECISIONS.map((d, i) => `<div class="decision${d.done ? ' done' : ''}"><div><b>${d.t}</b><p>${d.why}</p><div class="eff up">${d.eff}</div><p>${d.risk} · готовили: ${d.by.map(a => AG[a].n).join(', ')}</p>${d.done ? `<p style="color:var(--fg);font-weight:600">${d.done}</p>` : ''}</div><div class="acts">${d.done ? '' : `<button class="btn pri" type="button" data-ok="${i}">Утвердить</button><button class="btn ghost" type="button" data-no="${i}">Отложить</button>`}</div></div>`).join('');
+  const left = DECISIONS.filter(d => !d.done).length; $('#phoneDec').textContent = left ? left + (left === 1 ? ' решение' : left < 5 ? ' решения' : ' решений') : 'Всё решено';
+}
+renderDecisions();
+document.addEventListener('click', e => {
+  const ok = e.target.closest('[data-ok]'), no = e.target.closest('[data-no]');
+  if (ok) { const d = DECISIONS[ok.dataset.ok]; d.done = '✓ Утверждено. ' + AG[d.by[0]].n + ' исполняет, отчёт придёт в 18:00.'; renderDecisions(); }
+  if (no) { const d = DECISIONS[no.dataset.no]; d.done = '⏸ Отложено на понедельник. Агент напомнит.'; renderDecisions(); }
+  const q = e.target.closest('[data-q]');
+  if (q) { const th = $('#askThread'); th.insertAdjacentHTML('beforeend', `<div class="bubble me fade">${q.dataset.q}</div>`); const id = 'a' + Date.now(); th.insertAdjacentHTML('beforeend', `<div class="bubble ai fade" id="${id}"><span class="steps"><div><span class="spin"></span>Смотрю 1С, линии и CRM…</div></span></div>`); th.scrollTop = th.scrollHeight;
+    setTimeout(() => { const el = document.getElementById(id); if (el) { el.textContent = ASK[q.dataset.q]; th.scrollTop = th.scrollHeight; } }, RM ? 0 : 900); }
+});
+
+/* ---------- TOP MANAGEMENT ---------- */
+const TOP = [
+  {id:'com', n:'Коммерческий директор', kpis:[['Заявки, месяц','412','▲ 64%'],['Конверсия в сделку','23%','▲ 6 п.п.'],['Ответ клиенту','48 с','было 3 ч'],['Тендеры в работе','9','выиграно 4 из 11']], agents:['mgr','kp','calls','radar','price'], was:['Отчёт по продажам собирают 2 часа','Звонки никто не слушает','Тендеры находят случайно'], now:['План и факт по каждому менеджеру — в реальном времени','Каждый звонок оценён, ошибки — на утренней планёрке','Радар присылает подходящие лоты в 08:00 с черновиком заявки'], rhythm:[['08:00','Сводка тендеров и заявок за ночь'],['09:30','Планёрка 15 минут: AI показывает 3 сделки под риском'],['Пт 16:00','Цены рынка и предложение по прайсу основателю']], dec:'Скидки до 5%, приоритет сделок, распределение лидов'},
+  {id:'prod', n:'Директор по производству', kpis:[['OEE Geotex','78%','▲ 21 п.п.'],['OEE Rebar','71%','▲ 15 п.п.'],['Незапланированный простой','3,1 ч/нед','было 19 ч'],['Брак','1,7%','было ~4%']], agents:['oee','vis','pdm','cure','rvis'], was:['О простое узнают в конце смены','Иглы меняют по поломке','Брак видят в лаборатории — партия уже готова'], now:['Каждая остановка с причиной и минутами','ТО по износу: доска меняется до поломки','Камера останавливает дефект на 3-й секунде'], rhythm:[['07:45','Итог ночной смены и причины простоев'],['Каждый час','Отклонения OEE больше 5% — в Telegram'],['Пн 10:00','План ТО на неделю от предиктивного агента']], dec:'График смен, ТО, перестройка линий под заказ'},
+  {id:'fin', n:'Финансовый директор', kpis:[['Касса','18,4 млрд','8 нед. без разрыва'],['Дебиторка','9,2 млрд','просрочка 12%'],['Закрытие месяца','2 дня','было 10'],['Маржа по SKU','онлайн','по 41 позиции']], agents:['cash','ar','acc'], was:['Касса в Excel раз в неделю','Акты сверки — когда вспомнят','Маржа по продукту — раз в квартал'], now:['Платёжный календарь на 8 недель обновляется сам','Акты сверки уходят каждый месяц','Маржа по каждому SKU и клиенту — в любой момент'], rhythm:[['08:30','Касса, поступления, кому платить сегодня'],['Ср','Список должников: кому звонить первым'],['1-е число','Закрытие месяца: черновик P&L готов к утру']], dec:'Платежи, отсрочки клиентам, лимиты дилеров'},
+  {id:'sup', n:'Снабжение и логистика', kpis:[['Запас сырья','23 дня','цель 20–30'],['Экономия на закупках','2,4%','к прошлому году'],['Загрузка машин','91%','было 64%'],['Отгрузка вовремя','97%','▲ 12 п.п.']], agents:['buy','fc','wh','disp'], was:['Сырьё заказывают, когда кончается','Машины уходят полупустыми','«Что есть на складе?» — звонок кладовщику'], now:['Прогноз сырья на 8 недель и лучший момент покупки','Сборные рейсы считаются сами','Остатки отвечает бот, дилеры видят свои заказы'], rhythm:[['08:15','Что приходит и уходит сегодня'],['Вт','Цены волокна, ровинга и смолы, рекомендация закупки'],['Ежедневно','Рейсы на завтра собраны к 17:00']], dec:'Закупки до лимита, поставщики, рейсы'},
+  {id:'qa', n:'Руководитель качества', kpis:[['Партий проверено','100%','было выборочно'],['Паспорт партии','5 мин','было 2 ч'],['Рекламации','0,3%','было 1,4%'],['Дрейф плотности','±2,1%','цель ±3%']], agents:['pass','spc','vis'], was:['Паспорта набирают вручную','Сертификаты ищут по папкам','Дрейф видят после брака'], now:['Испытание → паспорт и сертификат сами','SPC-агент ловит дрейф до выхода за допуск','Карта дефектов прикладывается к партии'], rhythm:[['Каждая партия','Паспорт и протокол — автоматически'],['Ежедневно','SPC-карты по плотности и прочности'],['Мес','Отчёт по рекламациям с причинами']], dec:'Выпуск партии, допуск сырья'},
+  {id:'hr', n:'HR и люди', kpis:[['Сотрудников','300+','холдинг'],['Обучение новичка','9 дней','было 30'],['Опоздания','−64%','табель-бот'],['Текучесть','11%','▼ 6 п.п.']], agents:['coach','tab'], was:['Новичка учит мастер, когда есть время','Табель на бумаге'], now:['Coach-агент учит в Telegram и принимает тест','Отметки по QR, KPI видны каждому'], rhythm:[['Ежедневно','Табель и опоздания'],['Пн','Кому нужно обучение по ошибкам недели']], dec:'Найм, обучение, премии'}
+];
+$('#v-top').innerHTML = `
+<div class="vh"><div class="eyebrow">Топ-менеджмент</div><h1>У каждого директора — свой пульт и свои агенты</h1>
+<p class="lede">Директор не тратит утро на сбор цифр. Агенты готовят отчёты, находят отклонения и предлагают решения в его зоне. Директор утверждает и отвечает за результат, основатель видит итог.</p></div>
+<div class="glass pad sec"><div class="seg" id="topSeg">${TOP.map((t, i) => `<button type="button" data-top="${i}" aria-pressed="${i === 0}">${t.n}</button>`).join('')}</div><div id="topBody"></div></div>`;
+function renderTop(i){
+  const t = TOP[i];
+  document.querySelectorAll('[data-top]').forEach(b => b.setAttribute('aria-pressed', b.dataset.top == i));
+  $('#topBody').innerHTML = `<div class="sec fade"><div class="g4">${t.kpis.map(k => kpi(k[0], k[1], '', k[2])).join('')}</div>
+  <div class="g3">
+    <div class="card"><h3>Было → стало</h3><div class="list">${t.was.map((w, j) => `<div class="li"><div class="t"><span class="dn" style="text-decoration:line-through;opacity:.8">${w}</span><br><b>${t.now[j]}</b></div></div>`).join('')}</div></div>
+    <div class="card"><h3>Ритм дня</h3><div class="list">${t.rhythm.map(r => `<div class="li"><span class="tm">${r[0]}</span><div class="t">${r[1]}</div></div>`).join('')}</div><p class="note" style="margin-top:8px"><b>Решает сам:</b> ${t.dec}</p></div>
+    <div class="card"><h3>Агенты директора</h3><div class="sec" style="gap:6px;margin-top:8px">${t.agents.map(agentChip).join('')}</div><p class="note" style="margin-top:8px">Этап — когда агент подключается</p></div>
+  </div></div>`;
+}
+renderTop(0);
+document.addEventListener('click', e => { const b = e.target.closest('[data-top]'); if (b) renderTop(+b.dataset.top); });
+
+/* ---------- PLANTS ---------- */
+const GX = [
+  {n:'Вскрытие кип и смешивание', s:[['Подача волокна','1 420 кг/ч'],['Влажность','0,6%'],['Смесь ПЭТ/ПП','100/0']], ai:'Агент закупок проверяет партию волокна по паспорту поставщика', a:['buy']},
+  {n:'Чесальная машина', s:[['Скорость выхода','38 м/мин'],['Неровнота холста','CV 3,1%'],['Ток привода','68 А']], ai:'Предиктивный ТО слушает вибрацию гарнитуры', a:['pdm']},
+  {n:'Преобразователь холста', s:[['Слоёв','14'],['Ширина','6,2 м'],['Профиль по ширине','±2%']], ai:'Агент линии подстраивает профиль под заказ', a:['oee']},
+  {n:'Иглопробивание NL-1…3', s:[['Ходов иглы','1 200 /мин'],['Износ игл NL-3','92%'],['Вибрация NL-3','↑ 4 дня']], ai:'Предиктивный ТО: заменить доску NL-3 ночью', a:['pdm'], w:1},
+  {n:'Термоскрепление', s:[['Температура','168 °C'],['Давление','42 Н/мм'],['Энергия','0,21 кВт·ч/м²']], ai:'Агент энергии держит минимум кВт·ч на м²', a:['oee']},
+  {n:'Онлайн-контроль', s:[['Плотность','452 г/м²'],['Цель','450 ±3%'],['Дефектов/км','0,4']], ai:'Vision-контроль сканирует всю ширину 6 м', a:['vis','spc']},
+  {n:'Намотка и резка', s:[['Рулон','6 × 100 м'],['Рулонов/смену','58'],['Маркировка','QR партии']], ai:'Паспорт партии создаётся сам по QR', a:['pass']},
+  {n:'Склад и отгрузка', s:[['На складе','312 тыс. м²'],['Рейсов сегодня','7'],['Загрузка машин','91%']], ai:'Диспетчер собирает сборные рейсы', a:['disp','wh']}
+];
+const RB = [
+  {n:'Шпулярник ровинга', s:[['Нитей','96'],['Обрывов/смену','2'],['Базальт','2400 текс']], ai:'Камера ловит обрыв нити до брака', a:['rvis']},
+  {n:'Пропиточная ванна', s:[['Смола','эпоксидная'],['Температура','38 °C'],['Вязкость','в норме']], ai:'Агент режимов следит за жизнеспособностью смолы', a:['cure']},
+  {n:'Формование и навивка', s:[['Диаметр','Ø8,02 мм'],['Шаг навивки','15 мм'],['Допуск','±0,1 мм']], ai:'Vision стержня меряет диаметр и шаг', a:['rvis']},
+  {n:'Печь полимеризации', s:[['Зона 1/2/3','140/165/180 °C'],['Степень отверждения','98%'],['Энергия','в норме']], ai:'Агент режимов подбирает температуру под скорость', a:['cure'], w:1},
+  {n:'Тянущее устройство', s:[['Скорость','4,2 м/мин'],['Усилие','норма'],['Линий','6']], ai:'Агент линии повышает скорость, пока качество в допуске', a:['oee']},
+  {n:'Резка и бухтование', s:[['Бухта','100 м'],['Хлыст','11,7 м'],['Бухт/смену','186']], ai:'QR на каждую бухту и хлыст', a:['pass']},
+  {n:'Испытания', s:[['Прочность','1 240 МПа'],['Волокно / отверждение','78% / 98%'],['ГОСТ 31938','соответствует']], ai:'Паспорт и протокол — автоматически', a:['pass','spc']},
+  {n:'Склад и дилеры', s:[['Ø8 на складе','9 дней'],['Ø12','26 дней'],['Заказы дилеров','14']], ai:'Складской бот отвечает дилерам', a:['wh','disp']}
+];
+const EVENTS_G = ['NL-3: вибрация +3% к утру — доска в плане на ночь','Vision: тонкое место 40 мм на правом крае, рулон 1107-23, метр 38','Плотность 452 г/м² — в допуске','Смена Б: OEE 81%, выше плана','Рулон 1107-24 упакован, паспорт создан','Энергия 0,21 кВт·ч/м² — на 4% ниже прошлой недели','Склад: 312 тыс. м², хватит на 9 дней заказов'];
+const EVENTS_R = ['Печь, зона 3: 181 °C — норма','Vision: шаг навивки 15,1 мм — в допуске','Обрыв нити на позиции 47 — заправлено за 2 мин','Бухта RB8-1107-186 упакована, QR создан','Испытание: 1 240 МПа, партия выпущена','Склад Ø8: 9 дней — предложена перестройка линии 2'];
+function plant(id, title, sub, stages, kpis, events, camLbl){
+  $('#v-' + id).innerHTML = `
+  <div class="vh"><div class="eyebrow">${sub}</div><h1>${title}</h1></div>
+  <div class="g4">${kpis.map(k => kpi(k[0], k[1], k[2], k[3], k[4])).join('')}</div>
+  <div class="glass pad sec"><div class="sec-h"><h2>Производственный цикл в реальном времени</h2><p>нажмите на участок — увидите датчики и агента</p></div>
+    <div class="belt" aria-hidden="true"></div>
+    <div class="line" id="${id}Line">${stages.map((s, i) => `<button type="button" class="stage" data-st="${id}:${i}" aria-pressed="${i === 3}"><span class="dot${s.w ? ' w' : ''}"></span><span class="no">${String(i + 1).padStart(2, '0')}</span><b>${s.n}</b><span class="s">${s.s[0][1]}</span><span class="ai">${s.a.length} агент${s.a.length > 1 ? 'а' : ''}</span></button>`).join('')}</div>
+    <div id="${id}Detail"></div></div>
+  <div class="g2">
+    <div class="glass pad sec"><div class="sec-h"><h2>Камера на линии</h2><p>${camLbl}</p></div><div class="cam"><span class="scan"></span><span class="box" style="left:62%;top:38%;width:46px;height:30px"><span>дефект 98%</span></span><span class="lbl">CAM-04 · 120 кадров/с · вся ширина</span></div><p class="note">Модель обучается на фото брака этого завода. Дефект — сигнал оператору и метка на рулоне или бухте.</p></div>
+    <div class="glass pad sec"><div class="sec-h"><h2>Лента событий линии</h2><p>обновляется сама</p></div><div class="list ticker" id="${id}Feed"></div></div>
+  </div>`;
+  const feed = $('#' + id + 'Feed'); let k = 0; const now = new Date(2026, 10, 7, 9, 12);
+  const add = () => { const t = new Date(now.getTime() + k * 60000); feed.insertAdjacentHTML('afterbegin', `<div class="li fade"><span class="tm">${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}</span><div class="t">${events[k % events.length]}</div></div>`); k++; if (feed.children.length > 9) feed.lastElementChild.remove(); };
+  for (let i = 0; i < 5; i++) add();
+  if (!RM) setInterval(() => { if (!document.getElementById('v-' + id).hidden) add(); }, 6000);
+  showStage(id, stages, 3);
+}
+function showStage(id, stages, i){
+  const s = stages[i];
+  document.querySelectorAll(`[data-st^="${id}:"]`).forEach(b => b.setAttribute('aria-pressed', b.dataset.st === id + ':' + i));
+  $('#' + id + 'Detail').innerHTML = `<div class="detail fade"><div class="card"><h3>${String(i + 1).padStart(2, '0')} · ${s.n}</h3>${s.s.map(x => `<div class="sensor"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}</div><div class="card"><h3>Что делает AI</h3><p style="margin:8px 0 10px;font-size:13.5px">${s.ai}</p><div class="sec" style="gap:6px">${s.a.map(agentChip).join('')}</div></div></div>`;
+}
+plant('geotex', 'Линия Dilo: от кипы волокна до паспорта рулона', 'Завод Geotex · Ургенч · иглопробивной геотекстиль', GX,
+  [['Выпуск сегодня','18 400','м²','план 17 000'],['OEE','78','%','▲ 21 п.п.'],['Плотность (σ)','±2,1','%','допуск ±3%'],['Брак','1,6','%','было ~4%']], EVENTS_G, 'Vision-контроль полотна');
+plant('rebar', 'Пултрузия: от ровинга до бухты с QR', 'Завод Rebar · Сардоба · базальтовая и стеклокомпозитная арматура', RB,
+  [['Выпуск сегодня','11,6','т','6 линий'],['OEE','71','%','▲ 15 п.п.'],['Прочность','1 240','МПа','ГОСТ 31938'],['Брак','2,1','%','цель 1,5%','wn']], EVENTS_R, 'Vision стержня: диаметр и навивка');
+document.addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (!b) return; const [id, i] = b.dataset.st.split(':'); showStage(id, id === 'geotex' ? GX : RB, +i); });
+
+/* ---------- SALES ---------- */
+const FUN = [['Заявки',412],['Квалифицированы AI',268],['КП отправлено',201],['Переговоры',134],['Сделки',95]];
+$('#v-sales').innerHTML = `
+<div class="vh"><div class="eyebrow">Продажи и тендеры</div><h1>Ни одна заявка и ни один тендер не теряются</h1></div>
+<div class="g4">${kpi('Заявки за месяц','412','','▲ 64%')}${kpi('Ответ клиенту','48','сек','было ~3 ч')}${kpi('Средний чек','143','млн сум','▲ 12%')}${kpi('Тендеров найдено','37','','11 подходящих')}</div>
+<div class="g2">
+  <div class="glass pad sec"><div class="sec-h"><h2>Воронка месяца</h2><p>от заявки до сделки</p></div>
+    <div class="sec" style="gap:8px">${FUN.map((f, i) => `<div><div style="display:flex;justify-content:space-between;font-size:13px"><span>${f[0]}</span><b>${f[1]}</b></div><div class="bar-t"><i style="width:${f[1] / FUN[0][1] * 100}%;opacity:${1 - i * .14}"></i></div>${i ? `<span class="note">${Math.round(f[1] / FUN[i - 1][1] * 100)}% от предыдущего шага</span>` : ''}</div>`).join('')}</div></div>
+  <div class="glass pad sec"><div class="sec-h"><h2>Тендерный радар · сегодня 08:00</h2><p>3 новых лота</p></div><div class="tbl"><table><thead><tr><th>Лот</th><th>Объём</th><th>Шанс</th><th>Статус</th></tr></thead><tbody>
+    <tr><td>А-380, лот 4 · Каракалпакстан<br><span class="note">Geotex 450 г/м²</span></td><td class="n">52 000 м²</td><td class="n">64%</td><td><span class="pill b">Ждёт основателя</span></td></tr>
+    <tr><td>Канал Бухара · облицовка<br><span class="note">Geotex 300 + мембрана</span></td><td class="n">18 000 м²</td><td class="n">41%</td><td><span class="pill w">Нужна мембрана</span></td></tr>
+    <tr><td>МЧС · базальтовая сетка<br><span class="note">Rebar, сетка 50×50</span></td><td class="n">12 000 м²</td><td class="n">72%</td><td><span class="pill g">Пакет готов</span></td></tr>
+  </tbody></table></div><p class="note">Агент читает ТЗ, сверяет с ассортиментом и сертификатами, готовит черновик заявки.</p></div>
+</div>
+<div class="g2">
+  <div class="glass pad sec"><div class="sec-h"><h2>AI-менеджер · 23:40</h2><p>Telegram, узбекский</p></div><div class="qa">
+    <div class="bubble ai" style="align-self:flex-start;background:var(--glass-strong)">Assalomu alaykum, 2 km yo‘l uchun geotekstil kerak, kengligi 7 metr</div>
+    <div class="bubble me">Bu taxminan 14 000 m² + zaxira. Grunt qanday va yuk mashinalari yuradimi?</div>
+    <div class="bubble ai" style="align-self:flex-start;background:var(--glass-strong)">Ha, og‘ir mashinalar</div>
+    <div class="bubble me">Geotex 450 tavsiya qilaman: 6×100 m rulon — 25 dona. KP PDF yubordim, ertalab menejer qo‘ng‘iroq qiladi.</div>
+    <span class="note">→ сделка в CRM: 15 000 м², Хорезм, срок — апрель, КП №2026/418</span></div></div>
+  <div class="glass pad sec"><div class="sec-h"><h2>Дилеры Rebar</h2><p>кто покупает и кто ушёл</p></div><div class="tbl"><table><thead><tr><th>Дилер</th><th>Последний заказ</th><th>За 3 мес</th><th>AI</th></tr></thead><tbody>
+    <tr><td>Stroy Baza Tashkent</td><td>2 дня назад</td><td class="n">4,8 млрд</td><td><span class="pill g">Растёт</span></td></tr>
+    <tr><td>Almaty Composite (KZ)</td><td>5 дней</td><td class="n">3,1 млрд</td><td><span class="pill g">Заказал Ø8</span></td></tr>
+    <tr><td>Qurilish Servis</td><td>34 дня</td><td class="n">1,2 млрд</td><td><span class="pill r">Ушёл к конкуренту</span></td></tr>
+    <tr><td>Baraka Stroy</td><td>31 день</td><td class="n">0,9 млрд</td><td><span class="pill w">Предложение отправлено</span></td></tr>
+  </tbody></table></div></div>
+</div>`;
+
+/* ---------- SUPPLY ---------- */
+$('#v-supply').innerHTML = `
+<div class="vh"><div class="eyebrow">Снабжение, склад и логистика</div><h1>Сырьё покупается вовремя, машины уходят полными</h1></div>
+<div class="g4">${kpi('Запас ПЭТ-волокна','11','дней','ниже нормы 20','wn')}${kpi('Запас ровинга','34','дня','норма')}${kpi('Загрузка машин','91','%','было 64%')}${kpi('Отгрузка вовремя','97','%','▲ 12 п.п.')}</div>
+<div class="g2">
+  <div class="glass pad sec"><div class="sec-h"><h2>Цена ПЭТ-волокна</h2><p>сум/кг · 12 недель · агент закупок</p></div>${spark([14200,14100,14150,14000,13950,14050,14100,14300,14450,14600,14800,14950], 120, 'var(--warn)')}
+    <div class="card" style="margin-top:4px"><b>Рекомендация агента:</b> закупить 140 т сейчас. Цена растёт третью неделю (+6%), запас 11 дней, впереди 3 тендера. Ожидаемая экономия — ~210 млн сум.</div></div>
+  <div class="glass pad sec"><div class="sec-h"><h2>Прогноз сырья на 8 недель</h2><p>т · столбцы — потребность, линия — запас</p></div>${bars([{l:'Н1',v:46,p:52},{l:'Н2',v:48,p:40},{l:'Н3',v:51,p:30},{l:'Н4',v:55,p:150},{l:'Н5',v:53,p:120},{l:'Н6',v:58,p:95},{l:'Н7',v:60,p:68},{l:'Н8',v:57,p:44}], {label:'Прогноз сырья', unit:'т'})}<p class="note">Н4 — приход закупки 140 т, если основатель утвердит.</p></div>
+</div>
+<div class="glass pad sec"><div class="sec-h"><h2>Рейсы на завтра</h2><p>собраны диспетчером к 17:00</p></div><div class="tbl"><table><thead><tr><th>Рейс</th><th>Откуда → куда</th><th>Груз</th><th>Загрузка</th><th>Клиенты</th></tr></thead><tbody>
+  <tr><td>R-1</td><td>Ургенч → Нукус</td><td>Geotex 450 · 42 рулона</td><td class="n">96%</td><td>New Tech Samarkand (А-380)</td></tr>
+  <tr><td>R-2</td><td>Ургенч → Бухара → Самарканд</td><td>Geotex 300 · 38 рулонов</td><td class="n">92%</td><td>2 подрядчика, сборный</td></tr>
+  <tr><td>R-3</td><td>Сардоба → Ташкент</td><td>АБК-8 · 54 бухты, сетка</td><td class="n">88%</td><td>3 дилера, сборный</td></tr>
+  <tr><td>R-4</td><td>Сардоба → Алматы</td><td>АБК-8 · 180 тыс. п.м</td><td class="n">94%</td><td>Almaty Composite</td></tr>
+</tbody></table></div></div>`;
+
+/* ---------- FINANCE ---------- */
+$('#v-finance').innerHTML = `
+<div class="vh"><div class="eyebrow">Финансы</div><h1>Деньги видны на 8 недель вперёд</h1></div>
+<div class="g4">${kpi('Касса','18,4','млрд сум','без разрыва')}${kpi('Дебиторка','9,2','млрд сум','просрочка 1,1 млрд','wn')}${kpi('Маржа месяца','28,4','%','▲ 1,6 п.п.')}${kpi('Закрытие месяца','2','дня','было 10')}</div>
+<div class="g2">
+  <div class="glass pad sec"><div class="sec-h"><h2>Касса на 8 недель</h2><p>млрд сум · казначей</p></div>${bars([{l:'Н1',v:18.4},{l:'Н2',v:17.6},{l:'Н3',v:16.1},{l:'Н4',v:15.6},{l:'Н5',v:15.2,c:'var(--warn)'},{l:'Н6',v:17.9},{l:'Н7',v:19.8},{l:'Н8',v:21.6}], {label:'Касса на 8 недель', unit:'млрд сум', dec:1})}<p class="note">Минимум на 5-й неделе: закупка волокна + зарплата. Разрыва нет.</p></div>
+  <div class="glass pad sec"><div class="sec-h"><h2>Маржа по продуктам</h2><p>%, этот месяц</p></div>${bars([{l:'GX300',v:29},{l:'GX450',v:31,c:'var(--accent)'},{l:'GX800',v:22},{l:'АБК-8',v:34,c:'var(--accent)'},{l:'АСК-8',v:27},{l:'Сетка',v:24}], {label:'Маржа по продуктам', unit:'%', max:40})}</div>
+</div>
+<div class="glass pad sec"><div class="sec-h"><h2>Кому звонить первым</h2><p>агент дебиторки · сортировка по риску</p></div><div class="tbl"><table><thead><tr><th>Клиент</th><th>Долг</th><th>Просрочка</th><th>Риск</th><th>Действие агента</th></tr></thead><tbody>
+  <tr><td>Yo'l Qurilish Invest</td><td class="n">640 млн</td><td class="n">21 день</td><td><span class="pill r">Высокий</span></td><td>Акт сверки отправлен, звонок финдиректора сегодня</td></tr>
+  <tr><td>Baraka Stroy</td><td class="n">280 млн</td><td class="n">9 дней</td><td><span class="pill w">Средний</span></td><td>Напоминание в Telegram, лимит отгрузки заморожен</td></tr>
+  <tr><td>Euro Beton</td><td class="n">190 млн</td><td class="n">4 дня</td><td><span class="pill g">Низкий</span></td><td>Платёжка обещана на пятницу</td></tr>
+</tbody></table></div></div>`;
+
+/* ---------- AGENTS ORG + COMMAND CENTER ---------- */
+const TASKS = {
+  radar:[['Найди тендеры под Geotex 450 за неделю', ['Читаю xarid.uzex.uz и etender…','Сверяю ТЗ с ассортиментом и сертификатами…','Считаю шанс и маржу…'], `<b>3 лота подходят</b><div class="tbl"><table><tbody><tr><td>А-380, лот 4</td><td class="n">52 000 м²</td><td class="n">64%</td></tr><tr><td>М-39, ремонт</td><td class="n">21 000 м²</td><td class="n">55%</td></tr><tr><td>Канал, Хорезм</td><td class="n">9 000 м²</td><td class="n">48%</td></tr></tbody></table></div>`]],
+  pdm:[['Почему брак на линии 1 вырос вчера?', ['Смотрю камеры и карту дефектов…','Связываю дефекты с машинами…','Проверяю вибрацию и износ игл…'], `<b>Причина — иглопробивная машина NL-3</b><p class="note">71% дефектов — тонкие места на правом крае. Износ игл 92%, вибрация растёт 4 дня. Замена доски в ночную смену: 3,5 ч простоя вместо риска 9 ч.</p>`]],
+  fc:[['Сколько ПЭТ-волокна заказать на 8 недель?', ['Беру продажи и план производства…','Добавляю тендеры с шансом выше 50%…','Сравниваю с запасом и ценой…'], `<b>Заказать 140 т сейчас + 120 т на 6-й неделе</b><p class="note">Потребность 428 т за 8 недель, запас 52 т. Цена растёт 3 недели — покупка сейчас экономит ~210 млн сум.</p>`]],
+  kp:[['Сделай КП для «Yo‘l Qurilish» на 40 000 м² Geotex 300', ['Беру реквизиты из 1С…','Считаю рулоны, доставку в Нукус и скидку…','Собираю PDF с сертификатами…'], `<b>КП №2026/421 готово</b><div class="tbl"><table><tbody><tr><td>Geotex 300, 6×100 м</td><td class="n">67 рулонов</td></tr><tr><td>Цена</td><td class="n">4 150 сум/м²</td></tr><tr><td>Доставка Ургенч → Нукус</td><td class="n">2 рейса</td></tr><tr><td>Итого</td><td class="n">172,4 млн сум</td></tr></tbody></table></div>`]],
+  ar:[['Кто из клиентов может не заплатить?', ['Смотрю дебиторку и историю оплат…','Проверяю чаты и обещания…'], `<b>2 клиента под риском</b><p class="note">Yo'l Qurilish Invest — 640 млн, 21 день, обещания не выполнялись дважды. Baraka Stroy — 280 млн, заказы падают. Предлагаю заморозить отгрузку обоим до оплаты.</p>`]],
+  cash:[['Покажи кассу на 8 недель', ['Беру платёжный календарь…','Добавляю прогноз поступлений…'], `<b>Минимум — 15,2 млрд сум на 5-й неделе</b><p class="note">Разрыва нет. Через 8 недель — 21,6 млрд сум. Если выиграем А-380, на 7-й неделе нужна предоплата сырья 1,1 млрд.</p>`]],
+  pass:[['Подготовь паспорт партии GX450-1107', ['Беру результаты лаборатории…','Сверяю с EN ISO и ГОСТ…','Собираю PDF…'], `<b>Паспорт GX450-1107 готов</b><div class="tbl"><table><tbody><tr><td>Поверхностная плотность</td><td class="n">452 г/м²</td></tr><tr><td>Прочность на разрыв</td><td class="n">в норме</td></tr><tr><td>Продавливание CBR</td><td class="n">в норме</td></tr><tr><td>Рулонов в партии</td><td class="n">24</td></tr></tbody></table></div>`]],
+  mgr:[['Сколько заявок пришло ночью?', ['Смотрю Telegram, Instagram, сайт…'], `<b>23 обращения, 6 заявок</b><p class="note">Самая крупная — 15 000 м² Geotex 450, Хорезм. Все внесены в CRM, утром менеджеры звонят по приоритету.</p>`]]
+};
+const ccAgents = Object.keys(TASKS);
+const PROC = [
+  ['Заявка → деньги','order-to-cash',[['Обращение','mgr'],['Расчёт и КП','kp'],['Договор',''],['Резерв на складе','wh'],['Отгрузка','disp'],['Счёт и ЭСФ','acc'],['Оплата и сверка','ar']]],
+  ['Тендер → контракт','госзаказ и дороги',[['Поиск лота','radar'],['Разбор ТЗ','radar'],['Пакет документов','tdoc'],['Решение основателя',''],['Подача',''],['Исполнение','disp']]],
+  ['План → производство','S&OP',[['Прогноз спроса','fc'],['План линий',''],['Сырьё','buy'],['Смена','oee'],['Контроль на линии','vis'],['Партия на склад','pass']]],
+  ['Закупка → оплата','procure-to-pay',[['Потребность','fc'],['Цены поставщиков','buy'],['Утверждение',''],['Приёмка сырья','wh'],['Оплата','cash']]],
+  ['Качество','от сырья до паспорта',[['Входной контроль','buy'],['Онлайн-контроль','spc'],['Лаборатория',''],['Паспорт и сертификат','pass'],['Рекламации','calls']]],
+  ['ТОиР','обслуживание линий',[['Датчики вибрации и тока','pdm'],['Прогноз износа','pdm'],['План ТО',''],['Замена в ночную смену',''],['Отчёт по простоям','oee']]]
+];
+$('#v-agents').innerHTML = `
+<div class="vh"><div class="eyebrow">AI-оргструктура</div><h1>Люди и 31 AI-агент в одной структуре</h1>
+<p class="lede">У каждого отдела остаётся руководитель-человек. Рядом с ним работают агенты: делают рутину, следят за цифрами и готовят решения. Над всеми — главный AI-ассистент: сверяет цифры между отделами и собирает бриф для основателей. «Этап 1–4» — когда агент подключается.</p></div>
+<div class="glass pad org">
+  <div class="lvl"><div class="person"><b>Основатели</b><span>стратегия, цены, крупные решения</span></div></div>
+  <div class="vline"></div>
+  <div class="lvl"><div class="person"><b>Генеральный директор</b><span>операционное управление</span></div><div class="person"><b>Бот контроля</b><span>каждому руководителю: что просрочено</span></div></div>
+  <div class="vline"></div>
+  <div class="hub"><b>Главный AI-ассистент (штаб)</b><span>утренний бриф · очередь решений · сверка цифр · «Спросить завод»</span></div>
+  <div class="vline"></div>
+  <div class="depts">${DEPT.map(d => `<div class="dept"><div class="hd"><span class="av" style="background:${d.c}">${d.ic}</span><div><b>${d.n}</b><div class="who">👤 ${d.who}</div></div></div>${d.agents.map(a => agentChip(a[0])).join('')}</div>`).join('')}</div>
+</div>
+<div class="glass pad sec"><div class="sec-h"><h2>Карта бизнес-процессов</h2><p>6 сквозных процессов · ● — шаг делает или готовит агент</p></div><div class="sec" style="gap:10px">${PROC.map(pr => `<div class="card" style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:14px;align-items:center" data-proc><div><b style="font-family:var(--f-display)">${pr[0]}</b><div class="note">${pr[1]}</div></div><div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">${pr[2].map((st, i) => `${i ? '<span style="color:var(--faint)">→</span>' : ''}<span class="chip" style="${st[1] ? 'border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:var(--accent-soft)' : ''}">${st[1] ? '● ' : ''}${st[0]}${st[1] ? ` <span class="note" style="display:inline">· ${AG[st[1]].n}</span>` : ''}</span>`).join('')}</div></div>`).join('')}</div><p class="note">Структура процессов — по классификатору APQC PCF 7.4. Реальную оргструктуру и владельцев процессов SA GROUP уточняем на встрече: здесь она восстановлена по открытым данным (3 завода, торговый дом, 300+ сотрудников).</p></div>
+<div class="glass pad sec"><div class="sec-h"><h2>Командный центр</h2><p>дайте агенту задачу — он покажет шаги и результат на утверждение</p></div>
+  <div class="cc">
+    <div class="alist" id="ccList">${ccAgents.map((a, i) => `<button type="button" data-cc="${a}" aria-pressed="${i === 0}"><span class="av" style="background:${AG[a].c};width:24px;height:24px;font-size:9.5px">${AG[a].n.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()}</span>${AG[a].n}</button>`).join('')}</div>
+    <div class="chat card"><div id="ccHead"></div><div class="thread" id="ccThread"></div><div class="tasks" id="ccTasks"></div></div>
+    <div class="card feed"><h3>Лента агентов</h3><div class="list ticker" id="agFeed"></div></div>
+  </div></div>`;
+let ccCur = ccAgents[0];
+function ccSel(a){ ccCur = a; document.querySelectorAll('[data-cc]').forEach(b => b.setAttribute('aria-pressed', b.dataset.cc === a));
+  $('#ccHead').innerHTML = `<b>${AG[a].n}</b> <span class="note">· ${AG[a].dept} · ${AG[a].d}</span>`;
+  $('#ccThread').innerHTML = `<div class="bubble ai">Готов. Выберите задачу ниже.</div>`;
+  $('#ccTasks').innerHTML = TASKS[a].map((t, i) => `<button type="button" data-task="${i}">${t[0]}</button>`).join(''); }
+ccSel(ccCur);
+document.addEventListener('click', e => {
+  const s = e.target.closest('[data-cc]'); if (s) ccSel(s.dataset.cc);
+  const t = e.target.closest('[data-task]'); if (t) { const task = TASKS[ccCur][+t.dataset.task], th = $('#ccThread');
+    th.insertAdjacentHTML('beforeend', `<div class="bubble me fade">${task[0]}</div>`); const id = 's' + Date.now();
+    th.insertAdjacentHTML('beforeend', `<div class="steps fade" id="${id}"></div>`); const box = document.getElementById(id); let i = 0;
+    const step = () => { if (i > 0) box.lastElementChild.innerHTML = `<span class="ok">✓</span>${task[1][i - 1]}`;
+      if (i < task[1].length) { box.insertAdjacentHTML('beforeend', `<div><span class="spin"></span>${task[1][i]}</div>`); i++; setTimeout(step, RM ? 0 : 700); }
+      else { th.insertAdjacentHTML('beforeend', `<div class="artifact fade">${task[2]}<div class="acts"><button class="btn pri" type="button" data-appr>Утвердить</button><button class="btn ghost" type="button" data-appr>Доработать</button></div></div>`); th.scrollTop = th.scrollHeight; } th.scrollTop = th.scrollHeight; };
+    step(); }
+  const ap = e.target.closest('[data-appr]'); if (ap) { const a = ap.closest('.artifact'); a.querySelector('.acts').innerHTML = `<span class="pill g">${ap.textContent === 'Утвердить' ? '✓ Утверждено — агент исполняет' : '↺ Агент дорабатывает'}</span>`; }
+});
+const AGF = [['mgr','ответил клиенту из Хивы, заявка 6 000 м²'],['radar','нашёл тендер МЧС: базальтовая сетка 12 000 м²'],['acc','отправил 4 акта сверки'],['pdm','NL-3: вибрация +3%, замена в плане'],['price','Geo Guard поднял цену Geotex 300 на 7%'],['wh','ответил дилеру: Ø10 — 41 тыс. п.м на складе'],['spc','плотность в допуске 6 часов подряд'],['disp','собрал рейс R-2 из двух заказов'],['coach','новый оператор сдал тест по NL-1'],['ar','Baraka Stroy: напоминание об оплате']];
+let agk = 0; const agFeed = $('#agFeed');
+const agAdd = () => { const f = AGF[agk % AGF.length], a = AG[f[0]]; agFeed.insertAdjacentHTML('afterbegin', `<div class="li fade"><span class="av" style="background:${a.c};width:22px;height:22px;font-size:9px">${a.n.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()}</span><div class="t"><b>${a.n}</b> ${f[1]}</div></div>`); agk++; if (agFeed.children.length > 8) agFeed.lastElementChild.remove(); };
+for (let i = 0; i < 5; i++) agAdd();
+if (!RM) setInterval(() => { if (!$('#v-agents').hidden) agAdd(); }, 7000);
+document.addEventListener('click', e => { const a = e.target.closest('[data-agent]'); if (!a || !TASKS[a.dataset.agent]) return; go('agents'); ccSel(a.dataset.agent); $('#ccHead').scrollIntoView({behavior: RM ? 'auto' : 'smooth', block: 'center'}); });
+
+/* ---------- ROADMAP ---------- */
+const PH = [
+  {w:'Месяцы 1–2', t:'Продажи и контроль', m:[0,1], items:['AI-менеджер 24/7 и КП за минуту','Тендерный радар','Бот контроля для руководителей','Пульт основателя v1: 1С + CRM','Контент-завод'], gate:'Ответ клиенту < 5 мин, 100% тендеров в радаре, основатель пользуется пультом каждый день'},
+  {w:'Месяцы 3–4', t:'Деньги и склад', m:[2,3], items:['Казначей: касса на 8 недель','Дебиторка и акты сверки','Складской бот и прогноз сырья','Мониторинг цен конкурентов','Разбор звонков, пакет тендерных документов'], gate:'Закрытие месяца ≤ 3 дней, запас сырья в норме 20–30 дней'},
+  {w:'Месяцы 5–8', t:'Цех', m:[4,5,6,7], items:['Датчики на линиях Dilo и пултрузии','Агент линии: OEE и причины простоев','Vision-контроль полотна и стержня','Паспорт партии и SPC','Агент режимов печи'], gate:'OEE видно по каждой смене, брак < 2%'},
+  {w:'Месяцы 9–12', t:'Предиктив и рост', m:[8,9,10,11], items:['Предиктивный ТО иглопробивных машин','Экспорт-лидоген KZ, TM, KG, AF','Coach-агент для новичков','S&OP: план продаж ↔ производство ↔ сырьё','Цифровой двойник линии'], gate:'Незапланированный простой −50%, загрузка Geotex > 70%'}
+];
+$('#v-road').innerHTML = `
+<div class="vh"><div class="eyebrow">Этапы внедрения</div><h1>4 этапа за 12 месяцев: сначала деньги, потом цех</h1>
+<p class="lede">Начинаем там, где эффект виден за недели и не нужно трогать оборудование: продажи, тендеры, контроль. Цех подключаем, когда команда уже доверяет системе. Каждый этап закрывается воротами — измеримыми критериями.</p></div>
+<div class="road">${PH.map((p, i) => `<div class="phase"><span class="when">Э${i + 1} · ${p.w}</span><h3>${p.t}</h3><div class="track">${Array.from({length:12}, (_, k) => `<span style="${p.m.includes(k) ? 'background:var(--accent)' : ''}"></span>`).join('')}</div><ul>${p.items.map(x => `<li>${x}</li>`).join('')}</ul><div class="gate"><b>Ворота этапа</b>${p.gate}</div></div>`).join('')}</div>
+<div class="glass pad sec"><div class="sec-h"><h2>Что нужно от SA GROUP</h2></div><div class="g3">
+  <div class="card"><h3>Доступы</h3><p class="note" style="margin-top:6px">1С, CRM/телефония, Telegram-боты, банк-клиент только на чтение, папка сертификатов.</p></div>
+  <div class="card"><h3>Люди</h3><p class="note" style="margin-top:6px">Владелец процесса в каждом отделе — 2 часа в неделю. Один ответственный за внедрение со стороны компании.</p></div>
+  <div class="card"><h3>Оборудование (этап 3)</h3><p class="note" style="margin-top:6px">Камеры на выходе линий, датчики вибрации и тока на иглопробивных машинах, сбор данных с контроллеров линий.</p></div>
+</div></div>`;
+
+/* ---------- MONEY ---------- */
+const SL = [
+  {id:'fh', g:'Время', l:'Часов в неделю у каждого основателя на операционный контроль', v:30, min:5, max:50, st:1, u:'ч'},
+  {id:'fh2', g:'Время', l:'…после внедрения', v:8, min:2, max:30, st:1, u:'ч'},
+  {id:'fn', g:'Время', l:'Основателей', v:2, min:1, max:4, st:1, u:''},
+  {id:'fr', g:'Время', l:'Стоимость часа основателя (допущение)', v:80, min:20, max:300, st:10, u:'$'},
+  {id:'tn', g:'Время', l:'Топ-менеджеров', v:6, min:2, max:12, st:1, u:''},
+  {id:'th', g:'Время', l:'Часов в неделю у топ-менеджера на отчёты и сбор данных', v:14, min:2, max:30, st:1, u:'ч'},
+  {id:'th2', g:'Время', l:'…после внедрения', v:5, min:1, max:20, st:1, u:'ч'},
+  {id:'ts', g:'Время', l:'Зарплата топ-менеджера в месяц', v:1800, min:600, max:5000, st:100, u:'$'},
+  {id:'on', g:'Время', l:'Офис и продажи: сотрудников', v:30, min:5, max:80, st:1, u:''},
+  {id:'op', g:'Время', l:'…доля рутины, которую берут агенты', v:25, min:5, max:50, st:1, u:'%'},
+  {id:'os', g:'Время', l:'…средняя зарплата', v:600, min:300, max:1500, st:50, u:'$'},
+  {id:'gu', g:'Бизнес', l:'Geotex: рост загрузки', v:15, min:0, max:50, st:1, u:'п.п.'},
+  {id:'gm', g:'Бизнес', l:'Geotex: маржа на м²', v:1200, min:300, max:2500, st:50, u:'сум'},
+  {id:'rv', g:'Бизнес', l:'Rebar: выпуск в год', v:3000, min:500, max:5000, st:100, u:'т'},
+  {id:'rs', g:'Бизнес', l:'Rebar: снижение брака', v:1, min:0, max:3, st:.1, u:'п.п.'},
+  {id:'rc', g:'Бизнес', l:'Rebar: себестоимость тонны', v:30, min:15, max:45, st:1, u:'млн сум'},
+  {id:'pv', g:'Бизнес', l:'Закупки сырья в год', v:6, min:1, max:20, st:.5, u:'млн $'},
+  {id:'pp', g:'Бизнес', l:'…экономия на закупках', v:2, min:0, max:6, st:.5, u:'%'},
+  {id:'tw', g:'Бизнес', l:'Дополнительно выигранных тендеров в год', v:6, min:0, max:20, st:1, u:''},
+  {id:'tm', g:'Бизнес', l:'…маржа одного тендера', v:15, min:3, max:60, st:1, u:'тыс. $'},
+  {id:'rev', g:'Бизнес', l:'Выручка холдинга в год', v:13, min:3, max:60, st:1, u:'млн $'},
+  {id:'ard', g:'Бизнес', l:'Сокращение дебиторки', v:15, min:0, max:45, st:1, u:'дней'},
+  {id:'inv', g:'Вложения', l:'Внедрение (разово)', v:60, min:10, max:300, st:5, u:'тыс. $'},
+  {id:'sub', g:'Вложения', l:'Поддержка и AI в месяц', v:4, min:1, max:20, st:.5, u:'тыс. $'}
+];
+const SC = {cau:{fh2:12, th2:8, op:15, gu:8, rs:.5, pp:1, tw:3, ard:8}, base:{fh2:8, th2:5, op:25, gu:15, rs:1, pp:2, tw:6, ard:15}, amb:{fh2:5, th2:3, op:35, gu:30, rs:2, pp:3.5, tw:10, ard:25}};
+const RATE = 12600;
+$('#v-money').innerHTML = `
+<div class="vh"><div class="eyebrow">Экономика интеграции</div><h1>Сколько времени и денег это вернёт основателям и команде</h1>
+<p class="lede">Все цифры — допущения для разговора. Двигайте ползунки на встрече вместе с основателями и подставляйте их реальные значения.</p></div>
+<div class="glass pad sec"><div class="seg" id="scSeg"><button type="button" data-sc="cau" aria-pressed="false">Осторожный</button><button type="button" data-sc="base" aria-pressed="true">Базовый</button><button type="button" data-sc="amb" aria-pressed="false">Амбициозный</button></div>
+<div class="calc">
+  <div class="card" id="sliders"></div>
+  <div class="sec">
+    <div class="card" style="border-color:color-mix(in srgb,var(--accent) 40%,transparent)"><span class="eyebrow">Эффект в год</span><div class="big" id="mTotal"></div><div class="note" id="mTotalS"></div>
+      <div class="g3" style="margin-top:14px">${['Окупаемость (деньги)','Возврат на $1 за 2 года','Чистый эффект 1-го года'].map((l, i) => `<div class="kpi"><span class="l">${l}</span><span class="v" id="mK${i}" style="font-size:22px"></span></div>`).join('')}</div></div>
+    <div class="card"><h3>Время</h3><div class="g3" style="margin-top:10px">${['Основатели','Топ-менеджеры','Офис и продажи'].map((l, i) => `<div class="kpi"><span class="l">${l}</span><span class="v" id="mH${i}" style="font-size:22px"></span><span class="d" id="mHd${i}" style="color:var(--muted);font-weight:500"></span></div>`).join('')}</div></div>
+    <div class="card"><h3>Из чего складывается</h3><div id="mRows"></div></div>
+  </div>
+</div></div>`;
+const val = {}; SL.forEach(s => val[s.id] = s.v);
+let lastSlG = '';
+$('#sliders').innerHTML = SL.map(s => { const g = s.g !== lastSlG ? `<div class="eyebrow" style="margin-top:${lastSlG ? 14 : 0}px">${s.g}</div>` : ''; lastSlG = s.g;
+  return g + `<div class="sl"><label for="s-${s.id}"><span>${s.l}</span><output id="o-${s.id}"></output></label><input type="range" id="s-${s.id}" min="${s.min}" max="${s.max}" step="${s.st}" value="${s.v}"></div>`; }).join('');
+function calc(){
+  SL.forEach(s => { const o = $('#o-' + s.id); o.textContent = (s.u === '$' ? '$' + fmt(val[s.id]) : fmt(val[s.id], s.st < 1 ? 1 : 0) + (s.u ? ' ' + s.u : '')); });
+  const fHours = Math.max(0, val.fh - val.fh2) * 52 * val.fn, tHours = Math.max(0, val.th - val.th2) * 52 * val.tn, oHours = val.on * 168 * 12 * val.op / 100;
+  const items = [
+    ['Время основателей', fHours * val.fr],
+    ['Время топ-менеджеров', tHours * val.ts / 168],
+    ['Рутина офиса и продаж', val.on * val.os * 12 * val.op / 100],
+    ['Geotex: рост загрузки', 6e6 * val.gu / 100 * val.gm / RATE],
+    ['Rebar: меньше брака', val.rv * val.rs / 100 * val.rc * 1e6 / RATE],
+    ['Закупки сырья дешевле', val.pv * 1e6 * val.pp / 100],
+    ['Новые тендеры', val.tw * val.tm * 1e3],
+    ['Деньги из дебиторки (20% годовых)', val.rev * 1e6 / 365 * val.ard * .2]
+  ];
+  const total = items.reduce((s, x) => s + x[1], 0), yearCost = val.inv * 1e3 + val.sub * 12e3;
+  const cashFull = items.slice(2).reduce((s, x) => s + x[1], 0) / 12;
+  const ramp = m => Math.min(1, m / 10);
+  let cum = -val.inv * 1e3, pay = null, y1 = 0, y2 = 0;
+  for (let m = 1; m <= 24; m++) { const net = cashFull * ramp(m) - val.sub * 1e3; cum += net; if (m <= 12) y1 += cashFull * ramp(m); y2 += cashFull * ramp(m); if (pay === null && cum >= 0) pay = m; }
+  $('#mTotal').textContent = '$' + fmt(total / 1e3) + ' тыс.';
+  $('#mTotalS').textContent = 'при полной работе системы · ≈ ' + fmt(total * RATE / 1e9, 1) + ' млрд сум · деньгами $' + fmt(cashFull * 12 / 1e3) + ' тыс., временем $' + fmt((items[0][1] + items[1][1]) / 1e3) + ' тыс.';
+  $('#mK0').textContent = pay ? pay + ' мес' : '> 24 мес';
+  $('#mK1').textContent = '$' + fmt(y2 / (val.inv * 1e3 + val.sub * 24e3), 1);
+  $('#mK2').textContent = '$' + fmt((y1 - yearCost) / 1e3) + ' тыс.';
+  [[fHours, val.fn, 'основателя'], [tHours, val.tn, 'менеджера'], [oHours, val.on, 'сотрудника']].forEach((h, i) => { $('#mH' + i).textContent = fmt(h[0]) + ' ч/год'; $('#mHd' + i).textContent = '≈ ' + fmt(h[0] / h[1] / 8) + ' рабочих дней на ' + h[2]; });
+  const mx = Math.max(...items.map(x => x[1]));
+  $('#mRows').innerHTML = items.sort((a, b) => b[1] - a[1]).map(x => `<div class="res-row"><span>${x[0]}</span><span class="val">$${fmt(x[1] / 1e3)} тыс.</span><div class="bar-t"><i style="width:${x[1] / mx * 100}%"></i></div></div>`).join('') + `<p class="note" style="margin-top:8px">Вложения за 1-й год: $${fmt(yearCost / 1e3)} тыс. (внедрение + 12 месяцев поддержки). Окупаемость и эффект 1-го года считаем только по денежным строкам и с поэтапным запуском: эффект растёт до 100% к 10-му месяцу. Время основателей и топ-менеджеров оценено по стоимости часа — это не деньги в кассе, а время на развитие.</p>`;
+}
+document.addEventListener('input', e => { if (e.target.id && e.target.id.startsWith('s-')) { val[e.target.id.slice(2)] = +e.target.value; calc(); } });
+document.addEventListener('click', e => { const b = e.target.closest('[data-sc]'); if (!b) return; document.querySelectorAll('[data-sc]').forEach(x => x.setAttribute('aria-pressed', x === b)); Object.assign(val, SC[b.dataset.sc]); Object.keys(SC[b.dataset.sc]).forEach(k => $('#s-' + k).value = val[k]); calc(); });
+calc();
+
+/* ---------- WORLD ---------- */
+const WORLD = [
+  {who:'ANDRITZ · Австрия', t:'Иглопробивная линия для геотекстиля', p:'До 40 м/мин, от 1 700 кг/ч, 70–2 000 г/м², ширина до 6,5 м. Система ProDyn держит неравномерность CV ≤1% — меньше перерасхода волокна.', use:'→ Агент линии и профиль плотности', u:'https://www.andritz.com/products-en/nonwoven-textile/needlepunch-systems-by-application/geotextiles', ok:1},
+  {who:'ISRA VISION · Германия', t:'NoWo.Inspect — инспекция нетканого полотна', p:'Классифицирует дефекты по типу, тяжести и источнику, следит за массой на м² в реальном времени, одинаковые настройки для всех смен.', use:'→ Vision-контроль полотна', u:'https://www.isravision.com/en-en/company/newsroom/product-news/nowo-inspect', ok:1},
+  {who:'Hammer-IMS · Бельгия', t:'M-Ray: масса на м² без радиоактивного источника', p:'Датчики ставят на входе в чесальную машину, после чесания и после иглопробивания — плотность видна на каждом переделе.', use:'→ SPC-агент и экономия волокна', u:'https://hammer-ims.nimbu.io/industries/nonwoven-industry', ok:1},
+  {who:'ANDRITZ Metris', t:'Предиктивное обслуживание линий нетканых материалов', p:'Мониторинг состояния и удалённая диагностика; первая установка Metris PdM — у Welspun (Индия).', use:'→ Предиктивный ТО', u:'https://www.andritz.com/nonwoven-textile-en/blog/service-blog/service-recap-2025'},
+  {who:'DiloGroup + Siemens', t:'diloline 4.0', p:'Помощь оператору, сбор и анализ данных машин. Линия Geotex — от Dilo, поэтому это прямой путь подключения датчиков.', use:'→ Этап 3: данные с линии', u:'https://textalks.com/dilogroup-will-exhibit-a-complete-operating-production-line-at-itma/'},
+  {who:'Composite Group · Словакия', t:'Композитная арматура с паспортом на каждый диаметр', p:'Заводской контроль по AVCP 1+, сертификат на каждый диаметр, CO₂ на 70% ниже стальной арматуры (проверено EuCIA), 6+ млн м в год.', use:'→ Паспорт партии и экспорт в ЕС', u:'https://composite-website-dtu.pages.dev/product/manufacturing/', ok:1},
+  {who:'DATADVANCE', t:'ML-модель режимов пултрузии', p:'Модель на симуляциях процесса дала +18% к скорости протяжки при сохранении качества (расчёт, не замер на заводе).', use:'→ Агент режимов печи', u:'https://www.pseven.io/assets/files/publications/Benchmark-July-2018-How-Machine-learning-empowers-models-for-digital-twins-dmitry-frolov-opt.pdf'},
+  {who:'BCG', t:'Динамическое ценообразование в B2B-стройматериалах', p:'У дистрибьютора стройматериалов EBIT вырос на 100 б.п. после цен, привязанных к рынку и сырью.', use:'→ Мониторинг цен + решение «поднять цену»', u:'https://www.bcg.com/publications/2020/dynamic-pricing-b2b-myths'},
+  {who:'ЕС · CBAM с 2026', t:'Углеродный налог на импорт стали', p:'CBAM покрывает сталь, цемент, алюминий, но не FRP-арматуру и не геотекстиль. Для Rebar это аргумент при экспорте в ЕС против стальной арматуры.', use:'→ Экспорт-лидоген и ESG-данные', u:'https://www.ashurst.com/en/insights/eu-cbam-a-guide-for-importers-and-third-country-producers'},
+  {who:'ASTM D7957', t:'Контроль качества FRP-арматуры', p:'Содержание волокна ≥70% по массе, Tg ≥100 °C, степень отверждения ≥95%, влагопоглощение ≤0,25% — эти параметры SPC-агент держит по каждой партии.', use:'→ SPC-агент, паспорт Rebar', u:'https://www.boutique.afnor.org/en-gb/standard/astm-d7957-d7957m17/standard-specification-for-solid-round-glass-fiber-reinforced-polymer-bars-/am98160/272290'},
+  {who:'EDANA', t:'Энергоёмкость нетканых материалов', p:'От 0,52 МВт·ч/т (спанлейс) до 4,0 МВт·ч/т (мелтблаун); на лёгких плотностях энергия на 1 кг растёт.', use:'→ Агент энергии на термоскреплении', u:'https://www.edana.org/how-we-take-action/sustainability/energy-and-ets', ok:1},
+  {who:'APQC PCF 7.4', t:'Классификатор бизнес-процессов', p:'13 категорий процессов: стратегия, продажи, цепочка поставок, HR, финансы, активы и ТОиР, риски. На нём построена карта процессов SA GROUP.', use:'→ Карта процессов на вкладке AI-оргструктура', u:'https://solutions.ifrc.org/sites/default/files/2024-10/K014750_APQC%20Process%20Classification%20Framework%20(PCF)%20-%20Cross%20Industry%20-%20PDF%20Version%207.4.pdf', ok:1}
+];
+$('#v-world').innerHTML = `
+<div class="vh"><div class="eyebrow">Мировой опыт</div><h1>Что уже работает на похожих заводах в мире</h1>
+<p class="lede">Производители геосинтетики и композитной арматуры и поставщики их оборудования. Отсюда взяты идеи для агентов цеха и качества.</p></div>
+<div class="ws" id="worldList"></div>
+<div class="glass pad sec"><div class="sec-h"><h2>Ориентиры для целей</h2><p>что известно из открытых источников</p></div><div class="g3">
+  <div class="card kpi"><span class="l">Сырьё в затратах завода геотекстиля</span><span class="v">50–60<small>%</small></span><span class="d" style="color:var(--muted);font-weight:500">коммунальные 15–25% · <a href="https://www.imarcgroup.com/report/en/geotextiles-manufacturing-plant-project-report" target="_blank" rel="noopener">IMARC</a></span></div>
+  <div class="card kpi"><span class="l">OEE «мирового класса»</span><span class="v">85<small>%</small></span><span class="d" style="color:var(--muted);font-weight:500">общий ориентир, по нетканым данных нет · <a href="https://www.fabrico.io/pl/blog/oee-benchmarks-by-industry-what-good-looks-like-and-why-performance-gaps-persist/" target="_blank" rel="noopener">источник</a></span></div>
+  <div class="card kpi"><span class="l">Предиктивное ТО: меньше простоев</span><span class="v">30–50<small>%</small></span><span class="d" style="color:var(--muted);font-weight:500">часто цитируемая оценка McKinsey · <a href="https://www.mckinsey.com/capabilities/operations/our-insights/manufacturing-analytics-unleashes-productivity-and-profitability" target="_blank" rel="noopener">McKinsey</a></span></div>
+</div><p class="note">Чего в открытых данных нет: OEE и % брака именно для иглопробивных линий, доля сырья в себестоимости FRP-арматуры, частота испытаний по EN ISO (стандарты платные). Эти цифры берём с завода на аудите.</p></div>`;
+document.getElementById('worldList').innerHTML = WORLD.map(w => `<a class="card w" href="${w.u}" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none"><span class="who">${w.who}</span><b>${w.t}</b><p>${w.p}</p><span class="use">${w.use}</span><span class="note">Источник ↗${w.ok ? '' : ' · проверить перед показом'}</span></a>`).join('');
+
+/* ---------- routing ---------- */
+function go(id, push){
+  if (!VIEWS.find(v => v.id === id)) id = 'tour';
+  VIEWS.forEach(v => $('#v-' + v.id).hidden = v.id !== id);
+  document.querySelectorAll('.nav').forEach(b => b.setAttribute('aria-current', b.dataset.v === id ? 'page' : 'false'));
+  $('#crumb').textContent = VIEWS.find(v => v.id === id).n;
+  if (push !== false) { try { history.replaceState(null, '', '#' + id); } catch (e) {} }
+  const nb = document.querySelector(`.nav[data-v="${id}"]`); if (nb && innerWidth <= 960) nb.scrollIntoView({inline:'center', block:'nearest'});
+}
+window.__go = go;
+document.addEventListener('click', e => { const n = e.target.closest('.nav'); if (n) { go(n.dataset.v); scrollTo({top:0, behavior: RM ? 'auto' : 'smooth'}); } const s = e.target.closest('[data-go]'); if (s) { go(s.dataset.go); scrollTo({top:0, behavior: RM ? 'auto' : 'smooth'}); } });
+$('#askBtn').addEventListener('click', () => { go('founder'); setTimeout(() => { const q = document.querySelector('[data-q]'); if (q) { q.click(); q.scrollIntoView({block:'center'}); } }, 50); });
+window.addEventListener('hashchange', () => go(location.hash.slice(1), false));
+go(location.hash.slice(1) || 'tour', false);
+})();
+</script>
