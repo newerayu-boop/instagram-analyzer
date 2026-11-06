@@ -229,6 +229,56 @@ svg text{font-family:var(--f-body)}
 .skin-btn i{font-style:normal;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#074d52,#2be0cb)}
 :root[data-skin="sa"] .skin-btn i{background:linear-gradient(135deg,#0a7cff,#c3a6ff)}
 
+/* cockpit */
+.cockpit{--fg:#e8f4f4;--muted:#93aaae;--faint:#6f8589;--hair:rgba(255,255,255,.1);--glass-strong:rgba(255,255,255,.06);--bar:rgba(255,255,255,.14);--accent:#2be0cb;--accent-soft:rgba(43,224,203,.15);--good:#34d399;--warn:#fbbf24;--bad:#f87171;--good-soft:rgba(52,211,153,.14);--warn-soft:rgba(251,191,36,.14);--bad-soft:rgba(248,113,113,.14);
+  color:var(--fg);background:radial-gradient(120% 80% at 10% 0%,rgba(43,224,203,.16),transparent 55%),radial-gradient(90% 70% at 100% 100%,rgba(10,143,149,.22),transparent 60%),#061518;border-radius:var(--r-xl);padding:16px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);border:1px solid rgba(43,224,203,.18)}
+.ck{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s9{grid-column:span 9}
+@media (max-width:1150px){.s3{grid-column:span 4}.s9{grid-column:span 8}.s4{grid-column:span 12}.s5,.s7,.s6{grid-column:span 12}}
+@media (max-width:700px){.cockpit{padding:10px}.s3,.s9{grid-column:span 12}}
+.ck-l{font:600 10.5px/1.2 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ck-s{font-size:12px;color:var(--muted)}
+.ck-h{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.ck-h b{font-family:var(--f-display);font-size:15px}
+.ck-health{align-items:center;text-align:center;justify-content:center}
+.ck-health svg{max-width:220px}
+.ck-health b{font-family:var(--f-display);font-size:14px}
+.ck-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:520px){.ck-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ck-k{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04)}
+.ck-k b{font-family:var(--f-display);font-size:24px;font-weight:700;letter-spacing:-.01em;line-height:1.1}
+.ck-k b small{font-size:12px;font-weight:600;color:var(--muted)}
+.ck-k span:last-child{font-size:12px;font-weight:600}
+.ck-plant{border-top:3px solid var(--pc)}
+.ck-ph{display:flex;align-items:center;gap:10px}
+.ck-ph b{display:block;font-family:var(--f-display);font-size:15.5px}
+.ck-ph .btn{margin-left:auto;color:var(--fg);border-color:rgba(255,255,255,.15)}
+.ck-pg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:12px;align-items:center}
+.ck-rows{display:flex;flex-direction:column;gap:6px}
+.ck-rows > div:not(.bar-t){display:flex;justify-content:space-between;gap:8px;font-size:12.5px}
+.ck-rows span{color:var(--muted)}
+.ck-rows b{font-family:var(--f-mono);font-size:12.5px;white-space:nowrap}
+.ck-sig{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.04)}
+.lamp{width:9px;height:9px;border-radius:50%;flex:none;background:var(--good);box-shadow:0 0 10px var(--good)}
+.lamp.w{background:var(--warn);box-shadow:0 0 10px var(--warn)}
+.lamp.r{background:var(--bad);box-shadow:0 0 10px var(--bad)}
+.li .lamp{margin-top:6px}
+.ck-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted)}
+.ck-legend i{display:inline-block;width:14px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.stack{display:flex;height:12px;border-radius:99px;overflow:hidden;gap:2px}
+.stack i{display:block;height:100%}
+.ck-goals{display:flex;flex-direction:column;gap:10px}
+.ck-gr{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.ck-gr b{font-family:var(--f-mono);font-size:12.5px}
+.cockpit .bar-t i{background:linear-gradient(90deg,#0a8f95,#2be0cb)}
+.ck-mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ck-mini div{padding:10px;border-radius:12px;background:rgba(255,255,255,.04);display:flex;flex-direction:column;gap:2px}
+.ck-mini b{font-family:var(--f-display);font-size:20px}
+.ck-mini span{font-size:11.5px;color:var(--muted)}
+@media (max-width:520px){.ck-mini{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cockpit .li{border-color:rgba(255,255,255,.08)}
+.cockpit .btn.ghost{background:transparent}
+
 /* holding */
 .own{display:flex;flex-direction:column;gap:12px}
 .own-root{align-self:center;text-align:center;padding:14px 20px;border-radius:var(--r-lg);background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 65%,var(--a1)));color:#fff;max-width:520px}
@@ -449,7 +499,7 @@ svg text{font-family:var(--f-body)}
     <div class="top glass">
       <span class="crumb" id="crumb">Экскурсия</span>
       <button class="ask" id="askBtn" type="button">⌘ Спросить завод: «почему вырос брак на линии 1?»</button>
-      <span class="live">AI на связи · 31 агент</span>
+      <span class="live">AI на связи · 34 агента</span>
       <span class="demo">Демо-данные</span>
       <button class="skin-btn" id="skinBtn" type="button"><i></i><span id="skinLbl">Стиль: SA GROUP</span></button>
     </div>
@@ -470,6 +520,7 @@ const DEPT = [
   {id:'mkt', n:'Маркетинг', who:'маркетолог', c:'var(--a7)', ic:'M', agents:[['content','Контент-завод','Reels, карусели, SEO на UZ/RU',1],['price','Мониторинг цен','prom.uz, OLX, сайты конкурентов',2]]},
   {id:'gx', n:'Цех Geotex', who:'начальник цеха, 3 смены', c:'var(--a5)', ic:'G', agents:[['oee','Агент линии (OEE)','скорость, простои, причины — в реальном времени',3],['vis','Vision-контроль полотна','камеры ищут дыры и пятна по всей ширине',3],['pdm','Предиктивный ТО','износ игл и подшипников иглопробивных машин',4],['energy','Агент энергии','кВт·ч на м² на термоскреплении',3]]},
   {id:'rb', n:'Цех Rebar', who:'начальник цеха, 2 смены', c:'var(--a3)', ic:'R', agents:[['cure','Агент режимов печи','температура, скорость протяжки, смола',3],['rvis','Vision стержня','диаметр, шаг навивки, непропитка',3],['rpdm','ТО пултрузии','износ фильер и тянущего устройства',4]]},
+  {id:'kig', n:'Цех KIG', who:'начальник цеха, 3 смены', c:'var(--a4)', ic:'K', agents:[['melt','Агент печи плавления','расплав ~1500 °C, шихта, энергия',3],['kvis','Vision плиты','плотность, толщина, кромка, пятна связующего',3],['bind','Агент связующего','доля связующего и режим камеры полимеризации',3]]},
   {id:'qa', n:'Качество', who:'лаборатория', c:'var(--a6)', ic:'Q', agents:[['spc','SPC-агент','ловит дрейф плотности и прочности до брака',3],['pass','Паспорт партии','испытания → паспорт и сертификат сам',2],['claim','Агент рекламаций','разбирает жалобу, находит партию и причину',2]]},
   {id:'sup', n:'Снабжение и склад', who:'снабженец, кладовщик', c:'var(--a1)', ic:'S', agents:[['buy','Агент закупок','цены волокна, ровинга, смолы; когда покупать',2],['fc','Прогноз сырья','сколько заказать на 8 недель вперёд',2],['wh','Складской бот','остатки по запросу словами',2],['disp','Диспетчер рейсов','сборные рейсы из Ургенча и Сардобы',2]]},
   {id:'fin', n:'Финансы', who:'финдиректор, 2 бухгалтера', c:'var(--a5)', ic:'F', agents:[['cash','Казначей','касса и платёжный календарь на 8 недель',2],['ar','Дебиторка','кто должен, сколько и кому звонить первым',2],['acc','AI-бухгалтер','счета, акты сверки, ЭСФ',2],['sku','Маржа по продуктам','себестоимость и маржа по каждому SKU и клиенту',2]]},
@@ -481,14 +532,16 @@ const AG = {}; DEPT.forEach(d => d.agents.forEach(a => AG[a[0]] = {id:a[0], n:a[
 const VIEWS = [
   {id:'tour', n:'Экскурсия', ic:'★', c:'var(--a4)', g:'Старт'},
   {id:'holding', n:'Холдинг', ic:'◆', c:'var(--a7)', g:'Старт'},
+  {id:'cockpit', n:'Бортовая панель', ic:'◉', c:'var(--a1)', g:'Верх: управление'},
   {id:'founder', n:'Основатель', ic:'◎', c:'var(--a1)', g:'Верх: управление', ct:'5'},
   {id:'top', n:'Топ-менеджмент', ic:'▲', c:'var(--a2)', g:'Верх: управление', ct:'6'},
   {id:'geotex', n:'Завод Geotex', ic:'G', c:'var(--a5)', g:'Низ: завод и отделы'},
   {id:'rebar', n:'Завод Rebar', ic:'R', c:'var(--a3)', g:'Низ: завод и отделы'},
+  {id:'kig', n:'Завод KIG', ic:'K', c:'var(--a4)', g:'Низ: завод и отделы'},
   {id:'sales', n:'Продажи и тендеры', ic:'₽', c:'var(--a4)', g:'Низ: завод и отделы', ct:'72'},
   {id:'supply', n:'Снабжение и склад', ic:'S', c:'var(--a1)', g:'Низ: завод и отделы'},
   {id:'finance', n:'Финансы', ic:'F', c:'var(--a5)', g:'Низ: завод и отделы'},
-  {id:'agents', n:'AI-оргструктура', ic:'AI', c:'var(--a6)', g:'Связка', ct:'31'},
+  {id:'agents', n:'AI-оргструктура', ic:'AI', c:'var(--a6)', g:'Связка', ct:'34'},
   {id:'system', n:'Систематизация', ic:'▦', c:'var(--a3)', g:'Связка'},
   {id:'standards', n:'Стандарты', ic:'✓', c:'var(--a6)', g:'Связка'},
   {id:'road', n:'Этапы внедрения', ic:'→', c:'var(--a7)', g:'Связка'},
@@ -530,7 +583,7 @@ $('#v-tour').innerHTML = `
       <div class="tier t1" role="listitem"><div class="th"><b>Основатели</b><span>решают и утверждают · 2 человека</span></div><div class="tc"><i>Цены и скидки</i><i>Крупные закупки</i><i>Тендеры выше 1 млрд сум</i><i>Инвестиции</i><i>Экспорт</i></div></div>
       <div class="tier t2" role="listitem"><div class="th"><b>Топ-менеджмент</b><span>6 дашбордов и ритм дня</span></div><div class="tc"><i>Коммерция</i><i>Производство</i><i>Финансы</i><i>Снабжение и логистика</i><i>Качество</i><i>Люди</i></div></div>
       <div class="tier t3" role="listitem"><div class="th"><b>Главный AI-ассистент</b><span>штаб над всеми агентами</span></div><div class="tc"><i>Бриф 07:30</i><i>Очередь решений</i><i>Сверка цифр между отделами</i><i>«Спросить завод»</i><i>Бот контроля задач</i></div></div>
-      <div class="tier t4" role="listitem"><div class="th"><b>31 AI-агент в 9 отделах</b><span>работают круглые сутки</span></div><div class="tc"><i>Продажи · 5</i><i>Тендеры и экспорт · 3</i><i>Маркетинг · 2</i><i>Цех Geotex · 4</i><i>Цех Rebar · 3</i><i>Качество · 3</i><i>Снабжение и склад · 4</i><i>Финансы · 4</i><i>Люди · 3</i></div><button type="button" class="btn" data-go="agents" style="margin-top:2px">Открыть оргструктуру агентов →</button></div>
+      <div class="tier t4" role="listitem"><div class="th"><b>34 AI-агента в 10 отделах</b><span>работают круглые сутки</span></div><div class="tc"><i>Продажи · 5</i><i>Тендеры и экспорт · 3</i><i>Маркетинг · 2</i><i>Цех Geotex · 4</i><i>Цех Rebar · 3</i><i>Цех KIG · 3</i><i>Качество · 3</i><i>Снабжение и склад · 4</i><i>Финансы · 4</i><i>Люди · 3</i></div><button type="button" class="btn" data-go="agents" style="margin-top:2px">Открыть оргструктуру агентов →</button></div>
       <div class="tier t5" role="listitem"><div class="th"><b>Источники данных</b><span>то, что уже есть, + датчики</span></div><div class="tc"><i>1С</i><i>CRM и телефония</i><i>Telegram-чаты</i><i>Датчики линий Dilo и пултрузии</i><i>Камеры на линиях</i><i>Лаборатория</i><i>Банк</i><i>xarid.uzex.uz, etender</i><i>Цены конкурентов</i></div></div>
     </div>
     <div class="pyr-arrow down" aria-hidden="true"><span>утверждения, задачи, контроль исполнения</span></div>
@@ -556,7 +609,7 @@ $('#v-tour').innerHTML = `
 <div class="glass pad sec">
   <div class="sec-h"><h2>Маршрут экскурсии</h2><p>8 остановок, ~25 минут</p></div>
   <div class="stops">
-    ${[['founder','01','Рабочее место основателя','Бриф, деньги, решения на утверждение'],['top','02','Топ-менеджмент','6 директоров: дашборды, агенты, ритм дня'],['geotex','03','Завод Geotex','Линия Dilo с датчиками и камерами'],['rebar','04','Завод Rebar','Пултрузия: печь, протяжка, контроль стержня'],['sales','05','Продажи и тендеры','Воронка, тендерный радар, AI-менеджер'],['agents','06','AI-оргструктура','Люди + 31 агент, командный центр'],['road','07','Этапы внедрения','4 этапа за 12 месяцев'],['money','08','Экономика','Сколько времени и денег это даёт']].map(s => `<button class="stop" type="button" data-go="${s[0]}"><span class="k">${s[1]}</span><b>${s[2]}</b><span>${s[3]}</span></button>`).join('')}
+    ${[['founder','01','Рабочее место основателя','Бриф, деньги, решения на утверждение'],['top','02','Топ-менеджмент','6 директоров: дашборды, агенты, ритм дня'],['geotex','03','Завод Geotex','Линия Dilo с датчиками и камерами'],['rebar','04','Завод Rebar','Пултрузия: печь, протяжка, контроль стержня'],['sales','05','Продажи и тендеры','Воронка, тендерный радар, AI-менеджер'],['agents','06','AI-оргструктура','Люди + 34 агента, командный центр'],['road','07','Этапы внедрения','4 этапа за 12 месяцев'],['money','08','Экономика','Сколько времени и денег это даёт']].map(s => `<button class="stop" type="button" data-go="${s[0]}"><span class="k">${s[1]}</span><b>${s[2]}</b><span>${s[3]}</span></button>`).join('')}
   </div>
 </div>`;
 
@@ -582,7 +635,7 @@ $('#v-founder').innerHTML = `
     <div class="glass pad brief"><span class="av" style="background:linear-gradient(135deg,var(--accent),var(--a6))">AI</span><div><b>Утренний бриф от главного AI-ассистента</b>
       <p style="margin-top:6px">Доброе утро. За вчера: выручка 612 млн сум (+8% к плану), отгружено 18 400 м² Geotex и 11,6 т арматуры. Найдено 3 новых тендера, один подходит — А-380, лот 4. Брак на линии Geotex-1 вырос до 2,4% — причина найдена. Касса 18,4 млрд сум, разрыва на 8 недель нет. <b>Нужно ваше решение по 5 вопросам.</b></p></div></div>
     <div class="g4">
-      ${kpi('Выручка, месяц', '13,6', 'млрд сум', '▲ 9% к плану')}
+      ${kpi('Выручка Geotex + Rebar', '13,6', 'млрд сум', '▲ 9% к плану')}
       ${kpi('Валовая маржа', '28,4', '%', '▲ 1,6 п.п.')}
       ${kpi('Касса', '18,4', 'млрд сум', '8 недель без разрыва')}
       ${kpi('Дебиторка', '9,2', 'млрд сум', '1,1 млрд просрочено', 'wn')}
@@ -690,7 +743,7 @@ function plant(id, title, sub, stages, kpis, events, camLbl){
     <div class="line" id="${id}Line">${stages.map((s, i) => `<button type="button" class="stage" data-st="${id}:${i}" aria-pressed="${i === 3}"><span class="dot${s.w ? ' w' : ''}"></span><span class="no">${String(i + 1).padStart(2, '0')}</span><b>${s.n}</b><span class="s">${s.s[0][1]}</span><span class="ai">${s.a.length} агент${s.a.length > 1 ? 'а' : ''}</span></button>`).join('')}</div>
     <div id="${id}Detail"></div></div>
   <div class="g2">
-    <div class="glass pad sec"><div class="sec-h"><h2>Камера на линии</h2><p>${camLbl}</p></div><div class="cam"><span class="scan"></span><span class="box" style="left:62%;top:38%;width:46px;height:30px"><span>дефект 98%</span></span><span class="lbl">CAM-04 · 120 кадров/с · вся ширина</span></div><p class="note">Модель обучается на фото брака этого завода. Дефект — сигнал оператору и метка на рулоне или бухте.</p></div>
+    <div class="glass pad sec"><div class="sec-h"><h2>Камера на линии</h2><p>${camLbl}</p></div><div class="cam"><span class="scan"></span><span class="box" style="left:62%;top:38%;width:46px;height:30px"><span>дефект 98%</span></span><span class="lbl">CAM-04 · 120 кадров/с · вся ширина</span></div><p class="note">Модель обучается на фото брака этого завода. Дефект — сигнал оператору и метка на рулоне, бухте или пачке.</p></div>
     <div class="glass pad sec"><div class="sec-h"><h2>Лента событий линии</h2><p>обновляется сама</p></div><div class="list ticker" id="${id}Feed"></div></div>
   </div>`;
   const feed = $('#' + id + 'Feed'); let k = 0; const now = new Date(2026, 10, 7, 9, 12);
@@ -708,7 +761,87 @@ plant('geotex', 'Линия Dilo: от кипы волокна до паспор
   [['Выпуск сегодня','18 400','м²','план 17 000'],['OEE','78','%','▲ 21 п.п.'],['Плотность (σ)','±2,1','%','допуск ±3%'],['Брак','1,6','%','было ~4%']], EVENTS_G, 'Vision-контроль полотна');
 plant('rebar', 'Пултрузия: от ровинга до бухты с QR', 'Завод Rebar · Сардоба · базальтовая и стеклокомпозитная арматура', RB,
   [['Выпуск сегодня','11,6','т','6 линий'],['OEE','71','%','▲ 15 п.п.'],['Прочность','1 240','МПа','ГОСТ 31938'],['Брак','2,1','%','цель 1,5%','wn']], EVENTS_R, 'Vision стержня: диаметр и навивка');
-document.addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (!b) return; const [id, i] = b.dataset.st.split(':'); showStage(id, id === 'geotex' ? GX : RB, +i); });
+const KG = [
+  {n:'Карьер и приёмка базальта', s:[['Приход базальта','420 т/сут'],['Фракция','40–120 мм'],['Анализ партии','в норме']], ai:'Агент закупок проверяет каждую партию со своего карьера', a:['buy']},
+  {n:'Дробление и шихта', s:[['Подача шихты','2,6 т/ч'],['Состав','базальт + добавки'],['Модуль кислотности','в норме']], ai:'Агент печи подбирает шихту под марку плиты', a:['melt']},
+  {n:'Плавление ~1500 °C', s:[['Расплав','1 498 °C'],['Струя','стабильна'],['Энергия на тонну','−6% к кварталу']], ai:'Агент печи держит температуру и снижает расход энергии', a:['melt']},
+  {n:'Волокнообразование', s:[['Валков центрифуги','4'],['Скорость','в норме'],['Неволокнистые включения','норма']], ai:'Vision следит за качеством волокна', a:['kvis']},
+  {n:'Нанесение связующего', s:[['Связующее','2,8%'],['Цель','2,5–3,0%'],['Тренд','↑ 2 часа']], ai:'Агент связующего снижает подачу до перерасхода', a:['bind'], w:1},
+  {n:'Камера полимеризации', s:[['Температура','230 °C'],['Конвейер','12 м/мин'],['Плотность','80 кг/м³']], ai:'Режим камеры подбирается под плотность', a:['bind','melt']},
+  {n:'Резка и упаковка', s:[['Плита','1000 × 600 мм'],['Толщина','50–150 мм'],['Пачек за смену','2 400']], ai:'Паспорт и QR на каждую пачку', a:['pass','kvis']},
+  {n:'Склад и отгрузка', s:[['На складе','1 840 т'],['Рейсов сегодня','9'],['Торговые сети','с 09.2026']], ai:'Диспетчер собирает рейсы, бот отвечает дилерам', a:['disp','wh']}
+];
+const EVENTS_K = ['Печь: расплав 1 498 °C — в норме','Связующее 2,8% — у верхней границы, агент снижает подачу','Vision: пятно связующего, партия K80-1107, пачка 412','Камера полимеризации 230 °C — норма','Лаборатория: λ = 0,037 Вт/м·К, партия выпущена','Склад: 1 840 т, 9 рейсов на сегодня','Карьер: партия базальта принята, анализ в норме'];
+plant('kig', 'Базальтовая вата: от карьера до пачки с QR', 'Завод KIG · Thermo Plus · Ургенч · 30 000 т/год, цель 100 000 т', KG,
+  [['Выпуск сегодня','62','т','план 60'],['OEE','82','%','▲ 14 п.п.'],['Теплопроводность λ','0,037','Вт/м·К','норма 0,036–0,040'],['Брак','1,2','%','цель < 1,5%']], EVENTS_K, 'Vision плиты: плотность и кромка');
+document.getElementById('v-kig').insertAdjacentHTML('beforeend', `<div class="g2">
+  <div class="glass pad sec"><div class="sec-h"><h2>Продукция Thermo Plus</h2><p>по sagroup.uz и thermoplus.uz</p></div><div class="chips" style="display:flex;flex-wrap:wrap;gap:6px"><span class="chip">Стены</span><span class="chip">Кровля</span><span class="chip">Пол</span><span class="chip">Вентфасад</span><span class="chip">Универсальная</span><span class="chip">Сэндвич-панели</span></div>
+    <div class="list"><div class="li"><div class="t">Плавка базальта около <b>1 500 °C</b>, мощность <b>30 000 т в год</b> — <a href="https://thermoplus.uz/" target="_blank" rel="noopener">thermoplus.uz</a></div></div><div class="li"><div class="t">Теплопроводность <b>0,036–0,040 Вт/м·К</b> — <a href="https://www.spot.uz/ru/2025/12/10/thermo-plus/" target="_blank" rel="noopener">Spot.uz (реклама)</a></div></div><div class="li"><div class="t">Первая продукция в торговых сетях — <b>25.09.2026</b> (новость на thermoplus.uz)</div></div></div></div>
+  <div class="glass pad sec"><div class="sec-h"><h2>Рост завода</h2><p>что пульт должен выдержать</p></div><div class="list">
+    <div class="li"><span class="pill b">ЕБРР</span><div class="t"><b>Расширение с 30 до 100 тыс. т</b> — кредит до $29 млн, одобрен 26.05.2026. Пульт показывает ход проекта и отчёт для банка</div></div>
+    <div class="li"><span class="pill b">Knauf</span><div class="t"><b>OZIZOL</b> — объединение с Knauf Insulation Tashkent: общие стандарты отрасли</div></div>
+    <div class="li"><span class="pill w">Уточнить</span><div class="t"><b>Завод в Нукусе</b> — на thermoplus.uz новость о новом базальтовом заводе в Нукусе (25.09.2026). Связь с KIG уточнить на встрече</div></div>
+  </div></div></div>`);
+
+/* ---------- COCKPIT ---------- */
+function gauge(v, max, unit, color, big){
+  const c = Math.PI * 52, f = Math.max(0, Math.min(1, v / max));
+  return `<svg viewBox="0 0 140 86" width="100%" role="img" aria-label="${v}${unit}"><path d="M18 76 A52 52 0 0 1 122 76" fill="none" stroke="var(--hair)" stroke-width="11" stroke-linecap="round"/><path d="M18 76 A52 52 0 0 1 122 76" fill="none" stroke="${color}" stroke-width="11" stroke-linecap="round" stroke-dasharray="${(c * f).toFixed(1)} ${c.toFixed(1)}"/><text x="70" y="${big ? 70 : 68}" text-anchor="middle" font-size="${big ? 26 : 22}" font-weight="700" fill="var(--fg)">${String(v).replace('.', ',')}${unit}</text></svg>`;
+}
+const PL = [
+  {id:'geotex', n:'Geotex', w:'Ургенч · геотекстиль', c:'#19ac62', oee:78, load:74, out:'370 тыс. м²', rev:'1,6', q:'1,6%', sig:'NL-3: замена игл ночью', st:'w'},
+  {id:'rebar', n:'Rebar Uzbekistan', w:'Сардоба · композит', c:'#e31e24', oee:71, load:62, out:'260 т', rev:'12,0', q:'2,1%', sig:'Ø8: склад на 9 дней', st:'w'},
+  {id:'kig', n:'KIG · Thermo Plus', w:'Ургенч · базальтовая вата', c:'#2be0cb', oee:82, load:78, out:'1 950 т', rev:'9,4', q:'1,2%', sig:'Связующее у верхней границы', st:'g'}
+];
+const GOALS = [['Расширение KIG до 100 тыс. т (ЕБРР)', 22, 'проект идёт по плану'], ['Загрузка Geotex ≥ 70%', 100, 'достигнуто: 74%'], ['Экспорт — 25% выручки', 60, 'сейчас 15%'], ['ISO 14001 на трёх заводах', 33, '1 из 3'], ['Систематизация: уровень 5', 60, 'сейчас уровень 3']];
+$('#v-cockpit').innerHTML = `
+<div class="vh"><div class="eyebrow">Бортовая панель холдинга · идеальная картина · понедельник, 08:00</div><h1>Весь SA GROUP — <em>на одной панели</em></h1>
+<p class="lede">Так основатель видит холдинг, когда система работает полностью: три завода, деньги, рынки, цели и риски на одном экране. Каждая цифра обновляется сама, каждый прибор открывает свою вкладку с деталями.</p></div>
+<div class="cockpit">
+  <div class="ck s3 ck-health"><span class="ck-l">Состояние холдинга</span>${gauge(82, 100, '', 'url(#ckg)', 1)}<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="ckg" x1="0" x2="1"><stop offset="0" stop-color="#0a8f95"/><stop offset="1" stop-color="#2be0cb"/></linearGradient></defs></svg><b>из 100 · хорошее</b><span class="ck-s">3 сигнала, 5 решений ждут вас</span></div>
+  <div class="ck s9 ck-strip">
+    ${[['Выручка, месяц','23,0','млрд сум','▲ 9% к плану','up'],['Прогноз года','268','млрд сум','≈ $21 млн','up'],['Валовая маржа','27,6','%','▲ 1,4 п.п.','up'],['EBITDA','18','%','цель 20%','wn'],['Касса холдинга','31,2','млрд сум','разрыва нет','up'],['Дебиторка','14,6','млрд сум','просрочка 1,4 млрд','wn']].map(k => `<div class="ck-k"><span class="ck-l">${k[0]}</span><b>${k[1]}<small> ${k[2]}</small></b><span class="${k[4]}">${k[3]}</span></div>`).join('')}
+  </div>
+  ${PL.map(p => `<div class="ck s4 ck-plant" style="--pc:${p.c}"><div class="ck-ph"><span class="lamp ${p.st}"></span><div><b>${p.n}</b><span class="ck-s">${p.w}</span></div><button class="btn ghost" type="button" data-go="${p.id}">Открыть</button></div>
+    <div class="ck-pg"><div>${gauge(p.oee, 100, '%', p.c)}<span class="ck-s" style="text-align:center;display:block">OEE</span></div><div class="ck-rows"><div><span>Загрузка</span><b>${p.load}%</b></div><div class="bar-t"><i style="width:${p.load}%;background:${p.c}"></i></div><div><span>Выпуск, мес</span><b>${p.out}</b></div><div><span>Выручка, мес</span><b>${p.rev} млрд</b></div><div><span>Брак</span><b>${p.q}</b></div></div></div>
+    <div class="ck-sig"><span class="lamp ${p.st}"></span>${p.sig}</div></div>`).join('')}
+  <div class="ck s7"><div class="ck-h"><b>Рынки и потоки</b><span class="ck-s">схема, не карта · толщина линии — объём</span></div>
+    <svg viewBox="0 0 640 300" width="100%" role="img" aria-label="Схема поставок холдинга">
+      <g fill="none" stroke-linecap="round">
+        <path d="M150 140 Q120 110 92 92" stroke="#19ac62" stroke-width="5" stroke-opacity=".8"/>
+        <path d="M150 140 Q220 150 290 190" stroke="#19ac62" stroke-width="3" stroke-opacity=".8"/>
+        <path d="M150 140 Q130 200 122 262" stroke="#2be0cb" stroke-width="3" stroke-opacity=".8" stroke-dasharray="6 5"/>
+        <path d="M150 140 Q320 90 470 118" stroke="#2be0cb" stroke-width="6" stroke-opacity=".8"/>
+        <path d="M448 166 Q458 140 470 122" stroke="#e31e24" stroke-width="6" stroke-opacity=".8"/>
+        <path d="M448 166 Q520 120 598 64" stroke="#e31e24" stroke-width="4" stroke-opacity=".8" stroke-dasharray="6 5"/>
+        <path d="M448 166 Q520 140 560 100" stroke="#e31e24" stroke-width="2" stroke-opacity=".8" stroke-dasharray="6 5"/>
+        <path d="M448 166 Q420 220 400 258" stroke="#19ac62" stroke-width="2" stroke-opacity=".8" stroke-dasharray="6 5"/>
+        <path d="M448 166 Q410 175 370 190" stroke="#e31e24" stroke-width="3" stroke-opacity=".8"/>
+      </g>
+      ${[[150,140,'Ургенч','Geotex · KIG',1,162,128,'start'],[448,166,'Сардоба','Rebar',1,462,192,'start'],[470,118,'Ташкент','',0,482,108,'start'],[92,92,'Нукус','А-380',0,104,84,'start'],[290,190,'Бухара','',0,290,214,'middle'],[370,190,'Самарканд','',0,370,214,'middle'],[122,262,'Ашхабад','',0,134,266,'start'],[598,64,'Алматы','',0,586,50,'end'],[560,100,'Бишкек','',0,572,104,'start'],[400,258,'Душанбе','',0,412,262,'start']].map(n => `<g><circle cx="${n[0]}" cy="${n[1]}" r="${n[4] ? 9 : 5}" fill="${n[4] ? 'var(--accent)' : 'var(--fg)'}" fill-opacity="${n[4] ? 1 : .7}"/>${n[4] ? `<circle cx="${n[0]}" cy="${n[1]}" r="16" fill="none" stroke="var(--accent)" stroke-opacity=".4"/>` : ''}<text x="${n[5]}" y="${n[6]}" text-anchor="${n[7]}" font-size="12.5" font-weight="${n[4] ? 700 : 500}" fill="var(--fg)">${n[2]}</text>${n[3] ? `<text x="${n[5]}" y="${n[6] + 14}" text-anchor="${n[7]}" font-size="10.5" fill="var(--muted)">${n[3]}</text>` : ''}</g>`).join('')}
+    </svg>
+    <div class="ck-legend"><span><i style="background:#19ac62"></i>Geotex</span><span><i style="background:#e31e24"></i>Rebar</span><span><i style="background:#2be0cb"></i>KIG</span><span>пунктир — экспорт</span></div></div>
+  <div class="ck s5"><div class="ck-h"><b>Откуда выручка</b><span class="ck-s">месяц</span></div>
+    <span class="ck-l">По заводам</span><div class="stack">${[['Rebar',52,'#e31e24'],['KIG',41,'#2be0cb'],['Geotex',7,'#19ac62']].map(x => `<i style="width:${x[1]}%;background:${x[2]}" title="${x[0]} ${x[1]}%"></i>`).join('')}</div>
+    <div class="ck-rows">${[['Rebar','52%'],['KIG · Thermo Plus','41%'],['Geotex','7%']].map(x => `<div><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}</div>
+    <span class="ck-l" style="margin-top:8px">По каналам</span><div class="stack">${[31,28,26,15].map((x, i) => `<i style="width:${x}%;background:var(--accent);opacity:${1 - i * .2}"></i>`).join('')}</div>
+    <div class="ck-rows">${[['Тендеры и госзаказ','31%'],['Дилеры','28%'],['Прямые B2B','26%'],['Экспорт','15%']].map(x => `<div><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}</div></div>
+  <div class="ck s6"><div class="ck-h"><b>Стратегические цели</b><span class="ck-s">на 12–18 месяцев</span></div>
+    <div class="ck-goals">${GOALS.map(g => `<div><div class="ck-gr"><span>${g[0]}</span><b>${g[1]}%</b></div><div class="bar-t"><i style="width:${g[1]}%"></i></div><span class="ck-s">${g[2]}</span></div>`).join('')}</div></div>
+  <div class="ck s6"><div class="ck-h"><b>Сигналы и решения</b><button class="btn pri" type="button" data-go="founder">5 решений →</button></div>
+    <div class="list">
+      <div class="li"><span class="lamp w"></span><div class="t"><b>Geotex:</b> износ игл NL-3 — 92%, замена в плане на ночь</div></div>
+      <div class="li"><span class="lamp w"></span><div class="t"><b>Rebar:</b> Ø8 на 9 дней, дилеры Казахстана ждут 180 тыс. п.м</div></div>
+      <div class="li"><span class="lamp r"></span><div class="t"><b>Финансы:</b> просрочка Yo'l Qurilish Invest — 640 млн сум, 21 день</div></div>
+      <div class="li"><span class="lamp g"></span><div class="t"><b>KIG:</b> отчёт для ЕБРР за квартал готов, ждёт финдиректора</div></div>
+    </div></div>
+  <div class="ck s6"><div class="ck-h"><b>Касса холдинга на 90 дней</b><span class="ck-s">млрд сум · прогноз казначея</span></div>${spark([31.2,30.4,29.1,27.8,27.2,28.9,30.6,31.8,30.9,32.4,33.8,34.6,35.9], 110, 'var(--accent)')}<div class="ck-rows" style="grid-template-columns:repeat(3,minmax(0,1fr));display:grid;gap:8px"><div style="display:block"><span class="ck-s">Минимум</span><b style="display:block">27,2 · 5-я нед.</b></div><div style="display:block"><span class="ck-s">Через 90 дней</span><b style="display:block">35,9</b></div><div style="display:block"><span class="ck-s">Разрыв</span><b style="display:block" class="up">нет</b></div></div></div>
+  <div class="ck s6"><div class="ck-h"><b>AI, люди и стандарты</b><span class="ck-s">сутки</span></div>
+    <div class="ck-mini">${[['34','AI-агента в работе'],['1 284','задачи за сутки'],['312','сотрудников'],['146','дней без травм'],['−6%','энергия на тонну'],['7 / 12','план действий ЕБРР']].map(x => `<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div></div>
+</div>
+<p class="note">Идеальная картина через 12–18 месяцев. Цифры демонстрационные, связаны между собой: выручка трёх заводов = выручке холдинга.</p>`;
+
+document.addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (!b) return; const [id, i] = b.dataset.st.split(':'); showStage(id, {geotex:GX, rebar:RB, kig:KG}[id], +i); });
 
 /* ---------- SALES ---------- */
 const FUN = [['Заявки',412],['Квалифицированы AI',268],['КП отправлено',201],['Переговоры',134],['Сделки',95]];
@@ -790,7 +923,7 @@ const PROC = [
   ['ТОиР','обслуживание линий',[['Датчики вибрации и тока','pdm'],['Прогноз износа','pdm'],['План ТО',''],['Замена в ночную смену',''],['Отчёт по простоям','oee']]]
 ];
 $('#v-agents').innerHTML = `
-<div class="vh"><div class="eyebrow">AI-оргструктура</div><h1>Люди и 31 AI-агент в одной структуре</h1>
+<div class="vh"><div class="eyebrow">AI-оргструктура</div><h1>Люди и 34 AI-агента в одной структуре</h1>
 <p class="lede">У каждого отдела остаётся руководитель-человек. Рядом с ним работают агенты: делают рутину, следят за цифрами и готовят решения. Над всеми — главный AI-ассистент: сверяет цифры между отделами и собирает бриф для основателей. «Этап 1–4» — когда агент подключается.</p></div>
 <div class="glass pad org">
   <div class="lvl"><div class="person"><b>Основатели</b><span>стратегия, цены, крупные решения</span></div></div>
@@ -799,7 +932,7 @@ $('#v-agents').innerHTML = `
   <div class="vline"></div>
   <div class="hub"><b>Главный AI-ассистент (штаб)</b><span>утренний бриф · очередь решений · сверка цифр · «Спросить завод»</span></div>
   <div class="vline"></div>
-  <div class="tree-cap">↓ 9 агентов-руководителей отделов · у каждого свои суб-агенты · всего ${DEPT.reduce((n, d) => n + d.agents.length, 0)} агент</div>
+  <div class="tree-cap">↓ 10 агентов-руководителей отделов · у каждого свои суб-агенты · всего ${DEPT.reduce((n, d) => n + d.agents.length, 0)} агента</div>
   <div class="depts">${DEPT.map(d => `<div class="dept" style="--dc:${d.c}"><div class="hd"><span class="av" style="background:${d.c}">${d.ic}</span><div><b>${d.n}</b><div class="who">👤 ${d.who}</div></div><span class="dcount">${d.agents.length}</span></div><div class="lead"><span class="lead-tag">Агент-руководитель</span>${agentChip(d.agents[0][0])}</div><div class="subs">${d.agents.slice(1).map(a => `<div class="sub">${agentChip(a[0])}</div>`).join('')}</div></div>`).join('')}</div>
 </div>
 <div class="glass pad sec"><div class="sec-h"><h2>Карта бизнес-процессов</h2><p>6 сквозных процессов · ● — шаг делает или готовит агент</p></div><div class="sec" style="gap:10px">${PROC.map(pr => `<div class="card" style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:14px;align-items:center" data-proc><div><b style="font-family:var(--f-display)">${pr[0]}</b><div class="note">${pr[1]}</div></div><div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">${pr[2].map((st, i) => `${i ? '<span style="color:var(--faint)">→</span>' : ''}<span class="chip" style="${st[1] ? 'border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:var(--accent-soft)' : ''}">${st[1] ? '● ' : ''}${st[0]}${st[1] ? ` <span class="note" style="display:inline">· ${AG[st[1]].n}</span>` : ''}</span>`).join('')}</div></div>`).join('')}</div><p class="note">Структура процессов — по классификатору APQC PCF 7.4. Реальную оргструктуру и владельцев процессов SA GROUP уточняем на встрече: здесь она восстановлена по открытым данным (3 завода, торговый дом, 300+ сотрудников).</p></div>
@@ -903,7 +1036,7 @@ $('#v-holding').innerHTML = `
     <div class="hv-plants">
       <div class="hv-p" style="--dc:var(--a5)"><b>Завод Geotex</b><span>свой пульт · 4 агента цеха</span><button class="btn ghost" type="button" data-go="geotex">Открыть →</button></div>
       <div class="hv-p" style="--dc:var(--a3)"><b>Завод Rebar</b><span>свой пульт · 3 агента цеха</span><button class="btn ghost" type="button" data-go="rebar">Открыть →</button></div>
-      <div class="hv-p" style="--dc:var(--a4)"><b>Завод KIG · Thermoplus</b><span>подключаем третьим · расширение до 100 тыс. т</span><span class="pill w" style="align-self:flex-start">следующий этап</span></div>
+      <div class="hv-p" style="--dc:var(--a4)"><b>Завод KIG · Thermoplus</b><span>свой пульт · 3 агента цеха · расширение до 100 тыс. т</span><button class="btn ghost" type="button" data-go="kig">Открыть →</button></div>
     </div>
     <div class="hv-shared"><span class="own-tag" style="color:var(--muted)">Общие сервисы холдинга — делаем один раз на три завода</span><div class="chips"><span class="chip">Торговый дом и единая CRM</span><span class="chip">Финансы и МСФО-консолидация</span><span class="chip">Закупки и логистика</span><span class="chip">Стандарты и ESG-отчёт для ЕБРР</span><span class="chip">HR и обучение</span><span class="chip">Данные и AI-штаб</span></div></div>
   </div></div>
