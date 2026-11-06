@@ -187,6 +187,29 @@ svg text{font-family:var(--f-body)}
 @media (max-width:860px){.tier.t1{width:62%}.tier.t2{width:72%}.tier.t3{width:82%}.tier.t4{width:92%}}
 @media (max-width:600px){.pyr-wrap{grid-template-columns:14px minmax(0,1fr) 14px;gap:4px}.pyr-arrow span{display:none}.tier{padding:12px 10px}.tier.t1{width:82%}.tier.t2{width:88%}.tier.t3{width:94%}.tier.t4{width:98%}.tier .tc i{white-space:normal}}
 
+/* systematization */
+.ladder{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;align-items:end}
+.step-l{position:relative;display:flex;flex-direction:column;gap:4px;padding:14px;border-radius:var(--r-md);background:var(--glass-strong);border:1px solid var(--hair);min-height:calc(var(--h) + 96px);justify-content:flex-end}
+.step-l .lv{font:800 26px/1 var(--f-display);color:var(--faint)}
+.step-l b{font-family:var(--f-display);font-size:15px}
+.step-l span:not(.lv){font-size:12.5px;color:var(--muted)}
+.step-l.now{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 10%,var(--glass-strong))}
+.step-l.now .lv{color:var(--warn)}
+.step-l.goal{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--glass-strong))}
+.step-l.goal .lv{color:var(--accent)}
+.flag{position:absolute;top:10px;right:10px;font:600 10.5px/1 var(--f-body);font-style:normal;padding:5px 7px;border-radius:999px;background:var(--warn);color:#fff}
+.flag.g{background:var(--accent)}
+@media (max-width:860px){.ladder{grid-template-columns:minmax(0,1fr)}.step-l{min-height:0}.flag{position:static;align-self:flex-start;margin-top:4px}}
+.sysb{display:flex;flex-direction:column;gap:8px}
+.sysb .no{font:700 11px/1 var(--f-mono);color:var(--accent)}
+.sysb p{margin:0;font-size:13px;color:var(--muted)}
+.okc{font-size:12.5px;padding:9px 11px;border-radius:12px;background:var(--good-soft)}
+.okc b{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--good);margin-bottom:2px}
+.sysb .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.chk{cursor:pointer;align-items:center}
+.chk input{width:18px;height:18px;accent-color:var(--accent);flex:none;margin:0}
+.chk input:checked ~ .t{text-decoration:line-through;color:var(--muted)}
+
 /* founder */
 .brief{display:flex;gap:12px;align-items:flex-start}
 .brief .av{width:38px;height:38px;border-radius:12px;font-size:12px}
@@ -389,6 +412,7 @@ const VIEWS = [
   {id:'supply', n:'Снабжение и склад', ic:'S', c:'var(--a1)', g:'Низ: завод и отделы'},
   {id:'finance', n:'Финансы', ic:'F', c:'var(--a5)', g:'Низ: завод и отделы'},
   {id:'agents', n:'AI-оргструктура', ic:'AI', c:'var(--a6)', g:'Связка', ct:'31'},
+  {id:'system', n:'Систематизация', ic:'▦', c:'var(--a3)', g:'Связка'},
   {id:'road', n:'Этапы внедрения', ic:'→', c:'var(--a7)', g:'Связка'},
   {id:'money', n:'Экономика', ic:'$', c:'var(--a5)', g:'Итог'},
   {id:'world', n:'Мировой опыт', ic:'◍', c:'var(--a2)', g:'Итог'}
@@ -747,6 +771,77 @@ $('#v-road').innerHTML = `
   <div class="card"><h3>Люди</h3><p class="note" style="margin-top:6px">Владелец процесса в каждом отделе — 2 часа в неделю. Один ответственный за внедрение со стороны компании.</p></div>
   <div class="card"><h3>Оборудование (этап 3)</h3><p class="note" style="margin-top:6px">Камеры на выходе линий, датчики вибрации и тока на иглопробивных машинах, сбор данных с контроллеров линий.</p></div>
 </div></div>`;
+
+/* ---------- SYSTEMATIZATION ---------- */
+const LEVELS = [
+  ['1','Хаос','Всё держится на людях и их памяти. Цифры узнают звонком.'],
+  ['2','Учёт','Есть 1С и Excel, но данные разбросаны, отчёты собирают вручную.'],
+  ['3','Процессы','Процессы описаны, у каждого есть владелец, справочники едины.'],
+  ['4','Управление по цифрам','Дерево KPI, ритм встреч, решения по матрице полномочий.'],
+  ['5','AI-управление','Агенты готовят решения, люди утверждают. Точка B.']
+];
+const BLOCKS = [
+  {n:'Оргструктура и роли', w:'Утверждённая оргсхема холдинга и каждого завода, должности, кто кому подчиняется. У каждого процесса — один владелец.', ok:'Оргсхема утверждена, у 6 сквозных процессов есть владельцы', who:'Основатели + HR', t:'2 недели'},
+  {n:'Матрица полномочий', w:'Кто какие решения принимает и в каких пределах: скидки, закупки, отсрочки, выпуск партии, тендеры. Агенты готовят решение тому, у кого полномочия.', ok:'Таблица «решение — кто — лимит» подписана', who:'Основатели + ген. директор', t:'1 неделя'},
+  {n:'Регламенты процессов', w:'6 сквозных процессов описаны как «шаг — кто — срок — документ — система»: заявка → деньги, тендер, план → производство, закупка → оплата, качество, ТОиР.', ok:'6 схем на 1 странице каждая, команда работает по ним', who:'Владельцы процессов', t:'4 недели'},
+  {n:'Единые справочники', w:'Одна номенклатура: марки Geotex (сейчас две нумерации — 100–800 и NSF/NRC/NU/NP), диаметры АБК/АСК, сетки. Клиенты, поставщики, единицы: м², рулон, п.м, т.', ok:'Каждый продукт — один код во всех системах', who:'Коммерция + производство', t:'2 недели'},
+  {n:'Учёт в одной системе', w:'1С — ядро: заказ, отгрузка, выпуск, склад, оплаты. CRM — продажи. Правило: чего нет в системе — того не было. Excel и Telegram — не источник цифр.', ok:'Остатки сходятся с инвентаризацией (расхождение < 1%)', who:'Финансы + склад', t:'4–6 недель'},
+  {n:'Дерево KPI', w:'Цели основателей → цели директоров → цели отделов. У каждой цифры формула, источник и частота: выручка, маржа по SKU, OEE, брак, запас сырья, дебиторка.', ok:'20–25 KPI с формулами и источниками', who:'Основатели + финдиректор', t:'2 недели'},
+  {n:'Ритм управления', w:'Ежедневные 15-минутные планёрки по отделам, еженедельная встреча директоров, ежемесячный S&OP: продажи ↔ производство ↔ сырьё.', ok:'Встречи идут по календарю, решения записаны', who:'Ген. директор', t:'с 1-й недели'},
+  {n:'Документы и знания', w:'Шаблоны договоров и КП, прайс, сертификаты, паспорта, техкарты режимов по каждой марке и диаметру — в одной базе с версиями. Это память для агентов.', ok:'Любой документ находится за 1 минуту', who:'Качество + коммерция', t:'3 недели'},
+  {n:'Данные с производства', w:'Учёт смен, справочник причин простоев, QR на каждую партию, лабораторный журнал в цифре, история ТО и поломок.', ok:'100% партий с QR, каждый простой — с причиной', who:'Производство + качество', t:'4–8 недель'}
+];
+const PREREQ = [
+  ['Э1 · Продажи и контроль','CRM со стадиями воронки, единый прайс и скидочная политика, шаблон КП, справочник SKU, сертификаты в одной папке, матрица полномочий по скидкам','100% заявок в CRM, один прайс, сертификаты находятся за минуту'],
+  ['Э2 · Деньги и склад','Все отгрузки и оплаты в 1С, платёжный календарь, инвентаризация склада, нормы запаса сырья, лимиты дилеров','Расхождение склада < 1%, закрытие месяца ≤ 5 дней'],
+  ['Э3 · Цех','Справочник причин простоев, учёт смен, QR партий, лабораторный журнал, техкарты режимов печи и линии Dilo','Каждый простой с причиной, 100% партий с QR'],
+  ['Э4 · Предиктив и рост','История ТО и поломок за 6+ месяцев, датчики на машинах, ежемесячный S&OP, данные по экспортным рынкам','Есть 6 месяцев истории, S&OP проводится 3 месяца подряд']
+];
+const FIRST30 = [
+  ['Неделя 1','Назначить ответственного за систематизацию и внедрение'],
+  ['Неделя 1','Интервью с основателями и 6 директорами: цели, боли, решения'],
+  ['Неделя 1','Запустить ритм: планёрки 15 минут и встреча директоров по пятницам'],
+  ['Неделя 2','Нарисовать оргсхему холдинга и обоих заводов «как есть»'],
+  ['Неделя 2','Матрица полномочий: скидки, закупки, отсрочки, тендеры'],
+  ['Неделя 2','Свести номенклатуру Geotex и Rebar в один справочник'],
+  ['Неделя 3','Описать процесс «заявка → деньги» и «тендер → контракт»'],
+  ['Неделя 3','Собрать прайс, шаблоны КП и договоров, сертификаты в одну базу'],
+  ['Неделя 3','Подключить CRM, перенести открытые сделки'],
+  ['Неделя 4','Утвердить 20–25 KPI с формулами и источниками'],
+  ['Неделя 4','Проверить, что заявки и отгрузки идут только через систему'],
+  ['Неделя 4','Ворота: запуск этапа 1 — AI-менеджер, КП, тендерный радар']
+];
+let done30 = {}; try { done30 = JSON.parse(localStorage.getItem('sa-sys-30') || '{}'); } catch (e) {}
+$('#v-system').innerHTML = `
+<div class="vh"><div class="eyebrow">Систематизация бизнеса</div><h1>Сначала порядок, потом AI: <em>агенты работают только поверх системы</em></h1>
+<p class="lede">AI ускоряет то, что уже описано и учитывается. Если процесс живёт в голове у человека, а цифры — в Telegram, агенту не на что опереться. Поэтому план начинается с фундамента: роли, процессы, справочники, учёт и цифры.</p></div>
+<div class="glass pad sec"><div class="sec-h"><h2>Лестница зрелости</h2><p>оценка по открытым данным, уточним на аудите</p></div>
+  <div class="ladder">${LEVELS.map((l, i) => `<div class="step-l${i === 1 ? ' now' : ''}${i === 4 ? ' goal' : ''}" style="--h:${40 + i * 22}px"><span class="lv">${l[0]}</span><b>${l[1]}</b><span>${l[2]}</span>${i === 1 ? '<em class="flag">SA GROUP сейчас</em>' : ''}${i === 4 ? '<em class="flag g">цель через 12 мес</em>' : ''}</div>`).join('')}</div>
+  <p class="note">Почему уровень 2: есть 1С и производство на хорошем оборудовании, но на сайтах две нумерации марок Geotex, ссылки на сертификаты ведут не туда, у Rebar не заполнены мощности. Это признаки того, что справочники и документы пока не сведены в одно.</p></div>
+<div class="glass pad sec"><div class="sec-h"><h2>9 блоков фундамента</h2><p>что нужно, как понять, что готово, кто отвечает</p></div>
+  <div class="g3">${BLOCKS.map((b, i) => `<div class="card sysb"><span class="no">${String(i + 1).padStart(2, '0')}</span><h3>${b.n}</h3><p>${b.w}</p><div class="okc"><b>Готово, когда</b>${b.ok}</div><div class="meta"><span class="pill">👤 ${b.who}</span><span class="pill b">${b.t}</span></div></div>`).join('')}</div></div>
+<div class="glass pad sec"><div class="sec-h"><h2>Что систематизировать перед каждым этапом AI</h2><p>без этого этап не запускаем</p></div>
+  <div class="tbl"><table><thead><tr><th>Этап AI</th><th>Что должно быть готово</th><th>Ворота готовности</th></tr></thead><tbody>${PREREQ.map(r => `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table></div></div>
+<div class="g21">
+  <div class="glass pad sec"><div class="sec-h"><h2>Первые 30 дней</h2><p id="p30"></p></div><div class="list" id="list30">${FIRST30.map((f, i) => `<label class="li chk"><input type="checkbox" id="c30-${i}" data-c30="${i}"${done30[i] ? ' checked' : ''}><span class="tm">${f[0]}</span><span class="t">${f[1]}</span></label>`).join('')}</div></div>
+  <div class="sec">
+    <div class="glass pad sec"><h2>Что нужно от основателей</h2><div class="list">
+      <div class="li"><span class="pill b">1</span><div class="t"><b>Назначить ответственного</b> за систематизацию и внедрение с правом решать</div></div>
+      <div class="li"><span class="pill b">2</span><div class="t"><b>Утвердить правило</b> «чего нет в системе — того не было»</div></div>
+      <div class="li"><span class="pill b">3</span><div class="t"><b>Подписать матрицу полномочий</b> — кто что решает без основателя</div></div>
+      <div class="li"><span class="pill b">4</span><div class="t"><b>Выделить владельцев процессов</b> — по 2 часа в неделю</div></div>
+      <div class="li"><span class="pill b">5</span><div class="t"><b>Дать доступы</b> к 1С, CRM, банку только на чтение</div></div>
+    </div></div>
+    <div class="glass pad sec"><h2>Что может помешать</h2><div class="list">
+      <div class="li"><span class="pill w">Риск</span><div class="t"><b>Привычка к Excel и Telegram.</b> Мера: правило выше и отчёты только из системы.</div></div>
+      <div class="li"><span class="pill w">Риск</span><div class="t"><b>Знания в головах мастеров.</b> Мера: техкарты и Coach-агент записывают опыт.</div></div>
+      <div class="li"><span class="pill w">Риск</span><div class="t"><b>Страх «AI заменит».</b> Мера: AI готовит, человек утверждает; показать, что уходит рутина.</div></div>
+    </div></div>
+  </div>
+</div>`;
+function upd30(){ const n = Object.values(done30).filter(Boolean).length; $('#p30').textContent = n + ' из ' + FIRST30.length + ' сделано'; }
+upd30();
+document.addEventListener('change', e => { const c = e.target.closest('[data-c30]'); if (!c) return; done30[c.dataset.c30] = c.checked; try { localStorage.setItem('sa-sys-30', JSON.stringify(done30)); } catch (er) {} upd30(); });
 
 /* ---------- MONEY ---------- */
 const SL = [
