@@ -264,6 +264,18 @@ svg text{font-family:var(--f-body)}
 .agent b{font-weight:650;display:block}
 .agent span{color:var(--muted);font-size:11.5px}
 
+.tree-cap{text-align:center;font-size:12.5px;color:var(--muted);font-weight:600}
+.dept{position:relative}
+.dept::before{content:"";position:absolute;top:-12px;left:50%;width:2px;height:12px;background:var(--dc);opacity:.5}
+.dept .dcount{margin-left:auto;font:700 11px/1 var(--f-body);padding:5px 8px;border-radius:999px;background:var(--hair)}
+.lead{position:relative;display:flex;flex-direction:column;gap:4px}
+.lead-tag{font:600 10px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--dc)}
+.lead .agent{border:1.5px solid var(--dc);background:color-mix(in srgb,var(--dc) 12%,var(--glass-strong))}
+.subs{display:flex;flex-direction:column;gap:6px;margin-left:12px;padding-left:14px;position:relative}
+.subs::before{content:"";position:absolute;left:0;top:-6px;bottom:18px;width:2px;background:var(--dc);opacity:.35;border-radius:2px}
+.sub{position:relative}
+.sub::before{content:"";position:absolute;left:-14px;top:18px;width:12px;height:2px;background:var(--dc);opacity:.35}
+
 /* command center */
 .cc{display:grid;grid-template-columns:220px minmax(0,1fr) 280px;gap:14px;min-height:520px}
 @media (max-width:1200px){.cc{grid-template-columns:200px minmax(0,1fr)}.cc .feed{grid-column:1/-1}}
@@ -354,15 +366,15 @@ const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- data: agents ---------- */
 const DEPT = [
-  {id:'sales', n:'Продажи', who:'РОП + 4 менеджера', c:'var(--a4)', ic:'₽', agents:[['mgr','AI-менеджер 24/7','отвечает в Telegram/Instagram на UZ/RU, считает объём',1],['kp','AI-КП','калькулятор и КП в PDF за минуту',1],['calls','Разбор звонков','оценивает каждый звонок по скрипту',2],['crm','Бот контроля продаж','следит, чтобы у каждого лида были сумма и шаг',1]]},
+  {id:'sales', n:'Продажи', who:'РОП + 4 менеджера', c:'var(--a4)', ic:'₽', agents:[['crm','Агент-РОП','ведёт воронку, раздаёт лиды, следит за шагом и суммой',1],['mgr','AI-менеджер 24/7','отвечает в Telegram/Instagram на UZ/RU, считает объём',1],['kp','AI-КП','калькулятор и КП в PDF за минуту',1],['calls','Разбор звонков','оценивает каждый звонок по скрипту',2],['rep','Повторные продажи','напоминает клиенту, когда пора снова закупать',2]]},
   {id:'tender', n:'Тендеры и экспорт', who:'тендер-менеджер', c:'var(--a2)', ic:'T', agents:[['radar','Тендерный радар','xarid, etender, дорожные проекты — каждое утро',1],['tdoc','Пакет документов','собирает заявку и сертификаты под ТЗ',2],['exp','Экспорт-лидоген','подрядчики KZ, TM, KG, AF + письма',4]]},
   {id:'mkt', n:'Маркетинг', who:'маркетолог', c:'var(--a7)', ic:'M', agents:[['content','Контент-завод','Reels, карусели, SEO на UZ/RU',1],['price','Мониторинг цен','prom.uz, OLX, сайты конкурентов',2]]},
-  {id:'gx', n:'Цех Geotex', who:'начальник цеха, 3 смены', c:'var(--a5)', ic:'G', agents:[['oee','Агент линии (OEE)','скорость, простои, причины — в реальном времени',3],['vis','Vision-контроль полотна','камеры ищут дыры и пятна по всей ширине',3],['pdm','Предиктивный ТО','износ игл и подшипников иглопробивных машин',4]]},
-  {id:'rb', n:'Цех Rebar', who:'начальник цеха, 2 смены', c:'var(--a3)', ic:'R', agents:[['cure','Агент режимов печи','температура, скорость протяжки, смола',3],['rvis','Vision стержня','диаметр, шаг навивки, непропитка',3]]},
-  {id:'qa', n:'Качество', who:'лаборатория', c:'var(--a6)', ic:'Q', agents:[['pass','Паспорт партии','испытания → паспорт и сертификат сам',2],['spc','SPC-агент','ловит дрейф плотности и прочности до брака',3]]},
+  {id:'gx', n:'Цех Geotex', who:'начальник цеха, 3 смены', c:'var(--a5)', ic:'G', agents:[['oee','Агент линии (OEE)','скорость, простои, причины — в реальном времени',3],['vis','Vision-контроль полотна','камеры ищут дыры и пятна по всей ширине',3],['pdm','Предиктивный ТО','износ игл и подшипников иглопробивных машин',4],['energy','Агент энергии','кВт·ч на м² на термоскреплении',3]]},
+  {id:'rb', n:'Цех Rebar', who:'начальник цеха, 2 смены', c:'var(--a3)', ic:'R', agents:[['cure','Агент режимов печи','температура, скорость протяжки, смола',3],['rvis','Vision стержня','диаметр, шаг навивки, непропитка',3],['rpdm','ТО пултрузии','износ фильер и тянущего устройства',4]]},
+  {id:'qa', n:'Качество', who:'лаборатория', c:'var(--a6)', ic:'Q', agents:[['spc','SPC-агент','ловит дрейф плотности и прочности до брака',3],['pass','Паспорт партии','испытания → паспорт и сертификат сам',2],['claim','Агент рекламаций','разбирает жалобу, находит партию и причину',2]]},
   {id:'sup', n:'Снабжение и склад', who:'снабженец, кладовщик', c:'var(--a1)', ic:'S', agents:[['buy','Агент закупок','цены волокна, ровинга, смолы; когда покупать',2],['fc','Прогноз сырья','сколько заказать на 8 недель вперёд',2],['wh','Складской бот','остатки по запросу словами',2],['disp','Диспетчер рейсов','сборные рейсы из Ургенча и Сардобы',2]]},
-  {id:'fin', n:'Финансы', who:'финдиректор, 2 бухгалтера', c:'var(--a5)', ic:'F', agents:[['cash','Казначей','касса и платёжный календарь на 8 недель',2],['ar','Дебиторка','кто должен, сколько и кому звонить первым',2],['acc','AI-бухгалтер','счета, акты сверки, ЭСФ',2]]},
-  {id:'hr', n:'Люди', who:'HR', c:'var(--a2)', ic:'H', agents:[['coach','Coach-агент','обучает новичков на линии и в продажах',4],['tab','Табель-бот','смены, опоздания, KPI',1]]}
+  {id:'fin', n:'Финансы', who:'финдиректор, 2 бухгалтера', c:'var(--a5)', ic:'F', agents:[['cash','Казначей','касса и платёжный календарь на 8 недель',2],['ar','Дебиторка','кто должен, сколько и кому звонить первым',2],['acc','AI-бухгалтер','счета, акты сверки, ЭСФ',2],['sku','Маржа по продуктам','себестоимость и маржа по каждому SKU и клиенту',2]]},
+  {id:'hr', n:'Люди', who:'HR', c:'var(--a2)', ic:'H', agents:[['coach','Coach-агент','обучает новичков на линии и в продажах',4],['tab','Табель-бот','смены, опоздания, KPI',1],['hire','Агент найма','разбирает резюме операторов и менеджеров',4]]}
 ];
 const AG = {}; DEPT.forEach(d => d.agents.forEach(a => AG[a[0]] = {id:a[0], n:a[1], d:a[2], ph:a[3], dept:d.n, c:d.c}));
 
@@ -416,7 +428,7 @@ $('#v-tour').innerHTML = `
       <div class="tier t1" role="listitem"><div class="th"><b>Основатели</b><span>решают и утверждают · 2 человека</span></div><div class="tc"><i>Цены и скидки</i><i>Крупные закупки</i><i>Тендеры выше 1 млрд сум</i><i>Инвестиции</i><i>Экспорт</i></div></div>
       <div class="tier t2" role="listitem"><div class="th"><b>Топ-менеджмент</b><span>6 дашбордов и ритм дня</span></div><div class="tc"><i>Коммерция</i><i>Производство</i><i>Финансы</i><i>Снабжение и логистика</i><i>Качество</i><i>Люди</i></div></div>
       <div class="tier t3" role="listitem"><div class="th"><b>Главный AI-ассистент</b><span>штаб над всеми агентами</span></div><div class="tc"><i>Бриф 07:30</i><i>Очередь решений</i><i>Сверка цифр между отделами</i><i>«Спросить завод»</i><i>Бот контроля задач</i></div></div>
-      <div class="tier t4" role="listitem"><div class="th"><b>31 AI-агент в 9 отделах</b><span>работают круглые сутки</span></div><div class="tc"><i>Продажи · 4</i><i>Тендеры и экспорт · 3</i><i>Маркетинг · 2</i><i>Цех Geotex · 3</i><i>Цех Rebar · 2</i><i>Качество · 2</i><i>Снабжение и склад · 4</i><i>Финансы · 3</i><i>Люди · 2</i></div></div>
+      <div class="tier t4" role="listitem"><div class="th"><b>31 AI-агент в 9 отделах</b><span>работают круглые сутки</span></div><div class="tc"><i>Продажи · 5</i><i>Тендеры и экспорт · 3</i><i>Маркетинг · 2</i><i>Цех Geotex · 4</i><i>Цех Rebar · 3</i><i>Качество · 3</i><i>Снабжение и склад · 4</i><i>Финансы · 4</i><i>Люди · 3</i></div><button type="button" class="btn" data-go="agents" style="margin-top:2px">Открыть оргструктуру агентов →</button></div>
       <div class="tier t5" role="listitem"><div class="th"><b>Источники данных</b><span>то, что уже есть, + датчики</span></div><div class="tc"><i>1С</i><i>CRM и телефония</i><i>Telegram-чаты</i><i>Датчики линий Dilo и пултрузии</i><i>Камеры на линиях</i><i>Лаборатория</i><i>Банк</i><i>xarid.uzex.uz, etender</i><i>Цены конкурентов</i></div></div>
     </div>
     <div class="pyr-arrow down" aria-hidden="true"><span>утверждения, задачи, контроль исполнения</span></div>
@@ -685,7 +697,8 @@ $('#v-agents').innerHTML = `
   <div class="vline"></div>
   <div class="hub"><b>Главный AI-ассистент (штаб)</b><span>утренний бриф · очередь решений · сверка цифр · «Спросить завод»</span></div>
   <div class="vline"></div>
-  <div class="depts">${DEPT.map(d => `<div class="dept"><div class="hd"><span class="av" style="background:${d.c}">${d.ic}</span><div><b>${d.n}</b><div class="who">👤 ${d.who}</div></div></div>${d.agents.map(a => agentChip(a[0])).join('')}</div>`).join('')}</div>
+  <div class="tree-cap">↓ 9 агентов-руководителей отделов · у каждого свои суб-агенты · всего ${DEPT.reduce((n, d) => n + d.agents.length, 0)} агент</div>
+  <div class="depts">${DEPT.map(d => `<div class="dept" style="--dc:${d.c}"><div class="hd"><span class="av" style="background:${d.c}">${d.ic}</span><div><b>${d.n}</b><div class="who">👤 ${d.who}</div></div><span class="dcount">${d.agents.length}</span></div><div class="lead"><span class="lead-tag">Агент-руководитель</span>${agentChip(d.agents[0][0])}</div><div class="subs">${d.agents.slice(1).map(a => `<div class="sub">${agentChip(a[0])}</div>`).join('')}</div></div>`).join('')}</div>
 </div>
 <div class="glass pad sec"><div class="sec-h"><h2>Карта бизнес-процессов</h2><p>6 сквозных процессов · ● — шаг делает или готовит агент</p></div><div class="sec" style="gap:10px">${PROC.map(pr => `<div class="card" style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:14px;align-items:center" data-proc><div><b style="font-family:var(--f-display)">${pr[0]}</b><div class="note">${pr[1]}</div></div><div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">${pr[2].map((st, i) => `${i ? '<span style="color:var(--faint)">→</span>' : ''}<span class="chip" style="${st[1] ? 'border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:var(--accent-soft)' : ''}">${st[1] ? '● ' : ''}${st[0]}${st[1] ? ` <span class="note" style="display:inline">· ${AG[st[1]].n}</span>` : ''}</span>`).join('')}</div></div>`).join('')}</div><p class="note">Структура процессов — по классификатору APQC PCF 7.4. Реальную оргструктуру и владельцев процессов SA GROUP уточняем на встрече: здесь она восстановлена по открытым данным (3 завода, торговый дом, 300+ сотрудников).</p></div>
 <div class="glass pad sec"><div class="sec-h"><h2>Командный центр</h2><p>дайте агенту задачу — он покажет шаги и результат на утверждение</p></div>
