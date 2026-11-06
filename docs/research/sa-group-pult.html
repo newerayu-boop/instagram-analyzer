@@ -229,6 +229,49 @@ svg text{font-family:var(--f-body)}
 .skin-btn i{font-style:normal;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#074d52,#2be0cb)}
 :root[data-skin="sa"] .skin-btn i{background:linear-gradient(135deg,#0a7cff,#c3a6ff)}
 
+/* glossary, tour, telegram, what-if */
+body.touring .app{padding-bottom:240px}
+abbr.term{text-decoration:none;border-bottom:1.5px dotted var(--accent);cursor:help;border-radius:2px}
+abbr.term:hover,abbr.term:focus-visible{background:var(--accent-soft)}
+.tipbox{position:fixed;z-index:60;padding:12px 14px;border-radius:14px;background:var(--glass-strong);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid var(--stroke);box-shadow:0 16px 36px -12px var(--shadow);font-size:13px;line-height:1.45;color:var(--fg);pointer-events:none}
+.tipbox b{display:block;font-family:var(--f-display);font-size:13.5px;margin-bottom:3px;color:var(--accent)}
+.tour-btn{background:linear-gradient(135deg,var(--accent),var(--a6));color:#fff;border-color:transparent}
+.tour-panel{position:fixed;z-index:50;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(560px,calc(100vw - 24px));padding:16px 18px;border-radius:22px;display:flex;flex-direction:column;gap:8px;box-shadow:0 24px 60px -18px var(--shadow)}
+.tour-panel b{font-family:var(--f-display);font-size:17px}
+.tour-panel p{margin:0;font-size:14px;color:var(--muted)}
+.tp-top{display:flex;justify-content:space-between;align-items:center}
+.tp-n{font:600 11px/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.tp-x{border:0;background:var(--hair);width:28px;height:28px;border-radius:50%;cursor:pointer}
+.tp-bar{height:4px;border-radius:99px;background:var(--hair);overflow:hidden}
+.tp-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--a6));transition:width .3s}
+.tp-acts{display:flex;justify-content:space-between;gap:8px}
+.tg-wrap{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:760px){.tg-wrap{grid-template-columns:minmax(0,1fr)}}
+.tg{border-radius:22px;overflow:hidden;border:1px solid var(--hair);background:linear-gradient(180deg,#d7efe9,#cfe6ee)}
+:root[data-theme="dark"] .tg{background:linear-gradient(180deg,#0d2a2e,#0b2230)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tg{background:linear-gradient(180deg,#0d2a2e,#0b2230)}}
+.tg-h{display:flex;gap:10px;align-items:center;padding:10px 14px;background:var(--glass-strong)}
+.tg-h b{display:block;font-size:14px}.tg-h span{font-size:11.5px;color:var(--muted)}
+.tg-body{display:flex;flex-direction:column;gap:8px;padding:12px;max-height:380px;overflow:auto}
+.tg-m{align-self:flex-start;max-width:92%;padding:9px 12px;border-radius:14px 14px 14px 4px;background:var(--glass-strong);font-size:13px;line-height:1.45;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.tg-m.me{align-self:flex-end;border-radius:14px 14px 4px 14px;background:color-mix(in srgb,var(--accent) 22%,var(--glass-strong))}
+.tg-btns{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.tg-btns button{border:0;border-radius:10px;padding:8px;font-size:12.5px;font-weight:600;cursor:pointer;background:color-mix(in srgb,var(--accent) 14%,var(--glass-strong));color:var(--accent)}
+.tg-btns button:last-child{grid-column:1/-1}
+.wi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
+@media (max-width:600px){.wi{grid-template-columns:minmax(0,1fr)}}
+.cockpit .sl{border-color:rgba(255,255,255,.08)}
+.cockpit .sl label output{color:var(--accent)}
+.wi-out{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.wi-out div{display:flex;flex-direction:column;gap:2px;padding:10px;border-radius:12px;background:rgba(255,255,255,.05)}
+.wi-out b{font-family:var(--f-display);font-size:20px}
+.wi-out span:last-child{font-size:11.5px;font-weight:600}
+.rep-out{display:flex;flex-direction:column;gap:8px}
+.cockpit .artifact{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)}
+.cockpit .seg button{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);color:var(--fg)}
+.cockpit .seg button[aria-pressed="true"]{background:var(--accent);color:#061518;border-color:var(--accent)}
+.cockpit #repBtn{align-self:flex-start}
+
 /* cockpit */
 .cockpit{--fg:#e8f4f4;--muted:#93aaae;--faint:#6f8589;--hair:rgba(255,255,255,.1);--glass-strong:rgba(255,255,255,.06);--bar:rgba(255,255,255,.14);--accent:#2be0cb;--accent-soft:rgba(43,224,203,.15);--good:#34d399;--warn:#fbbf24;--bad:#f87171;--good-soft:rgba(52,211,153,.14);--warn-soft:rgba(251,191,36,.14);--bad-soft:rgba(248,113,113,.14);
   color:var(--fg);background:radial-gradient(120% 80% at 10% 0%,rgba(43,224,203,.16),transparent 55%),radial-gradient(90% 70% at 100% 100%,rgba(10,143,149,.22),transparent 60%),#061518;border-radius:var(--r-xl);padding:16px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);border:1px solid rgba(43,224,203,.18)}
@@ -501,6 +544,7 @@ svg text{font-family:var(--f-body)}
       <button class="ask" id="askBtn" type="button">⌘ Спросить завод: «почему вырос брак на линии 1?»</button>
       <span class="live">AI на связи · 34 агента</span>
       <span class="demo">Демо-данные</span>
+      <button class="skin-btn tour-btn" id="tourBtn" type="button">▶ Экскурсия</button>
       <button class="skin-btn" id="skinBtn" type="button"><i></i><span id="skinLbl">Стиль: SA GROUP</span></button>
     </div>
     <div id="views"></div>
@@ -632,8 +676,8 @@ $('#v-founder').innerHTML = `
 <p class="lede">Основатель не собирает цифры и не обзванивает людей. Он читает бриф, смотрит на отклонения и утверждает 3–5 решений, которые подготовили агенты. Всё остальное — у топ-менеджеров.</p></div>
 <div class="g21">
   <div class="sec">
-    <div class="glass pad brief"><span class="av" style="background:linear-gradient(135deg,var(--accent),var(--a6))">AI</span><div><b>Утренний бриф от главного AI-ассистента</b>
-      <p style="margin-top:6px">Доброе утро. За вчера: выручка 612 млн сум (+8% к плану), отгружено 18 400 м² Geotex и 11,6 т арматуры. Найдено 3 новых тендера, один подходит — А-380, лот 4. Брак на линии Geotex-1 вырос до 2,4% — причина найдена. Касса 18,4 млрд сум, разрыва на 8 недель нет. <b>Нужно ваше решение по 5 вопросам.</b></p></div></div>
+    <div class="glass pad brief"><span class="av" style="background:linear-gradient(135deg,var(--accent),var(--a6))">AI</span><div><b>Утренний бриф от главного AI-ассистента</b> <button class="btn ghost" type="button" id="speakBtn" style="margin-left:6px;padding:5px 10px;font-size:12px">▶ Прослушать</button>
+      <p style="margin-top:6px" id="briefText">Доброе утро. За вчера: выручка 612 млн сум (+8% к плану), отгружено 18 400 м² Geotex и 11,6 т арматуры. Найдено 3 новых тендера, один подходит — А-380, лот 4. Брак на линии Geotex-1 вырос до 2,4% — причина найдена. Касса 18,4 млрд сум, разрыва на 8 недель нет. <b>Нужно ваше решение по 5 вопросам.</b></p></div></div>
     <div class="g4">
       ${kpi('Выручка Geotex + Rebar', '13,6', 'млрд сум', '▲ 9% к плану')}
       ${kpi('Валовая маржа', '28,4', '%', '▲ 1,6 п.п.')}
@@ -683,6 +727,28 @@ document.addEventListener('click', e => {
   const q = e.target.closest('[data-q]');
   if (q) { const th = $('#askThread'); th.insertAdjacentHTML('beforeend', `<div class="bubble me fade">${q.dataset.q}</div>`); const id = 'a' + Date.now(); th.insertAdjacentHTML('beforeend', `<div class="bubble ai fade" id="${id}"><span class="steps"><div><span class="spin"></span>Смотрю 1С, линии и CRM…</div></span></div>`); th.scrollTop = th.scrollHeight;
     setTimeout(() => { const el = document.getElementById(id); if (el) { el.textContent = ASK[q.dataset.q]; th.scrollTop = th.scrollHeight; } }, RM ? 0 : 900); }
+});
+
+
+/* ---------- founder: Telegram + voice ---------- */
+document.getElementById('v-founder').insertAdjacentHTML('beforeend', `<div class="glass pad sec"><div class="sec-h"><h2>Пульт в Telegram</h2><p>решения утверждаются там, где основатель и так проводит день</p></div>
+<div class="tg-wrap"><div class="tg"><div class="tg-h"><span class="av" style="background:var(--brand,var(--accent))">SA</span><div><b>SA Пульт</b><span>бот холдинга</span></div></div>
+  <div class="tg-body" id="tgBody">
+    <div class="tg-m">☀️ <b>07:30 · Бриф</b><br>Выручка вчера 612 млн сум (+8% к плану). Касса 18,4 млрд. Нужно 5 решений.</div>
+    <div class="tg-m">💰 <b>Решение 1 из 5</b><br>Поднять цену Geotex 300–450 на 5%. Конкуренты подняли на 4–7%. Эффект: +96 млн сум в месяц.<div class="tg-btns"><button type="button" data-tg="ok">✅ Утвердить</button><button type="button" data-tg="later">⏸ Отложить</button><button type="button" data-tg="ask">💬 Почему?</button></div></div>
+  </div></div>
+  <div class="list tg-why"><div class="li"><span class="pill b">1</span><div class="t"><b>Ничего нового устанавливать не нужно</b> — бот в Telegram, которым уже пользуется вся компания</div></div><div class="li"><span class="pill b">2</span><div class="t"><b>Одно нажатие</b> — решение уходит исполнителю, агент отчитается вечером</div></div><div class="li"><span class="pill b">3</span><div class="t"><b>«Почему?»</b> — агент объясняет расчёт и даёт ссылку на цифры в пульте</div></div><div class="li"><span class="pill b">4</span><div class="t"><b>Голосом</b> — бриф можно прослушать по дороге на завод</div></div></div></div></div>`);
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-tg]'); if (!t) return; const body = $('#tgBody'); const k = t.dataset.tg;
+  const ans = {ok:'✅ Утверждено. Новый прайс уйдёт дилерам завтра в 08:00, КП пересчитаны. Отчёт — в 18:00.', later:'⏸ Отложено до понедельника. Напомню в 09:00.', ask:'📊 Наш прайс на 11% ниже рынка: Geo Guard +7%, Sanfa +4% за неделю. Спрос по тендерам +18% за месяц. При +5% теряем максимум 2 дилеров из 41, маржа растёт на 96 млн сум в месяц.'}[k];
+  if (k !== 'ask') t.parentElement.remove();
+  body.insertAdjacentHTML('beforeend', `<div class="tg-m me fade">${t.textContent}</div><div class="tg-m fade">${ans}</div>`); body.scrollTop = body.scrollHeight;
+});
+$('#speakBtn').addEventListener('click', () => {
+  const b = $('#speakBtn');
+  try { const ss = window.speechSynthesis; if (!ss) throw 0; if (ss.speaking) { ss.cancel(); b.textContent = '▶ Прослушать'; return; }
+    const u = new SpeechSynthesisUtterance($('#briefText').textContent); u.lang = 'ru-RU'; u.rate = 1.02; u.onend = () => b.textContent = '▶ Прослушать'; ss.speak(u); b.textContent = '■ Стоп';
+  } catch (er) { b.textContent = 'Голос недоступен в этом браузере'; }
 });
 
 /* ---------- TOP MANAGEMENT ---------- */
@@ -838,8 +904,46 @@ $('#v-cockpit').innerHTML = `
   <div class="ck s6"><div class="ck-h"><b>Касса холдинга на 90 дней</b><span class="ck-s">млрд сум · прогноз казначея</span></div>${spark([31.2,30.4,29.1,27.8,27.2,28.9,30.6,31.8,30.9,32.4,33.8,34.6,35.9], 110, 'var(--accent)')}<div class="ck-rows" style="grid-template-columns:repeat(3,minmax(0,1fr));display:grid;gap:8px"><div style="display:block"><span class="ck-s">Минимум</span><b style="display:block">27,2 · 5-я нед.</b></div><div style="display:block"><span class="ck-s">Через 90 дней</span><b style="display:block">35,9</b></div><div style="display:block"><span class="ck-s">Разрыв</span><b style="display:block" class="up">нет</b></div></div></div>
   <div class="ck s6"><div class="ck-h"><b>AI, люди и стандарты</b><span class="ck-s">сутки</span></div>
     <div class="ck-mini">${[['34','AI-агента в работе'],['1 284','задачи за сутки'],['312','сотрудников'],['146','дней без травм'],['−6%','энергия на тонну'],['7 / 12','план действий ЕБРР']].map(x => `<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div></div>
+  <div class="ck s7"><div class="ck-h"><b>Что если?</b><span class="ck-s">двигайте — прибыль и касса пересчитаются</span></div>
+    <div class="wi">${[['wiRaw','Цена сырья (волокно, ровинг, смола)',-20,20,0,'%'],['wiFx','Курс доллара',-15,15,0,'%'],['wiKig','Загрузка KIG',50,100,78,'%'],['wiGx','Цена Geotex',-10,10,0,'%']].map(w => `<div class="sl"><label for="${w[0]}"><span>${w[1]}</span><output id="${w[0]}o"></output></label><input type="range" id="${w[0]}" min="${w[2]}" max="${w[3]}" step="1" value="${w[4]}"></div>`).join('')}</div>
+    <div class="wi-out"><div><span class="ck-s">Валовая прибыль, мес</span><b id="wiP"></b><span id="wiPd"></span></div><div><span class="ck-s">Маржа</span><b id="wiM"></b><span id="wiMd"></span></div><div><span class="ck-s">Касса через 90 дней</span><b id="wiC"></b><span id="wiCd"></span></div></div>
+    <div class="ck-sig" id="wiAi"></div></div>
+  <div class="ck s5"><div class="ck-h"><b>Отчёт за 1 минуту</b><span class="ck-s">для совета директоров и ЕБРР</span></div>
+    <div class="seg" id="repSeg"><button type="button" data-rep="board" aria-pressed="true">Совет директоров</button><button type="button" data-rep="ebrd" aria-pressed="false">ЕБРР · KIG</button></div>
+    <button class="btn pri" type="button" id="repBtn">Подготовить отчёт</button><div id="repOut" class="rep-out"></div></div>
 </div>
 <p class="note">Идеальная картина через 12–18 месяцев. Цифры демонстрационные, связаны между собой: выручка трёх заводов = выручке холдинга.</p>`;
+const WB = {rev:{g:1.6, r:12.0, k:9.4}, raw:{g:.55, r:.45, k:.40}, gp:6.35, cash:35.9};
+function whatIf(){
+  const raw = +$('#wiRaw').value / 100, fx = +$('#wiFx').value / 100, kl = +$('#wiKig').value, gx = +$('#wiGx').value / 100;
+  [['wiRaw', raw * 100, '%'], ['wiFx', fx * 100, '%'], ['wiKig', kl, '%'], ['wiGx', gx * 100, '%']].forEach(x => $('#' + x[0] + 'o').textContent = (x[0] !== 'wiKig' && x[1] > 0 ? '+' : '') + x[1] + x[2]);
+  const rawCost = WB.rev.g * WB.raw.g + WB.rev.r * WB.raw.r + WB.rev.k * WB.raw.k;
+  const dRaw = -rawCost * raw;
+  const dFx = (WB.rev.g + WB.rev.r + WB.rev.k) * .15 * fx - rawCost * .6 * fx;
+  const kRev = WB.rev.k * (kl / 78 - 1), dKig = kRev * .4;
+  const e = .8, dGx = WB.rev.g * ((1 + gx) * (1 - e * gx) - 1) + WB.rev.g * .6 * e * gx;
+  const gp = WB.gp + dRaw + dFx + dKig + dGx, rev = WB.rev.g * (1 + gx) * (1 - e * gx) + WB.rev.r + WB.rev.k + kRev + (WB.rev.g + WB.rev.r + WB.rev.k) * .15 * fx;
+  const cash = WB.cash + 3 * (gp - WB.gp), m = gp / rev * 100;
+  const d = (v, u) => `<span class="${v >= 0 ? 'up' : 'dn'}">${v >= 0 ? '▲ +' : '▼ '}${fmt(v, 2)} ${u}</span>`;
+  $('#wiP').textContent = fmt(gp, 2) + ' млрд'; $('#wiPd').innerHTML = d(gp - WB.gp, 'млрд');
+  $('#wiM').textContent = fmt(m, 1) + '%'; $('#wiMd').innerHTML = d(m - WB.gp / 23 * 100, 'п.п.');
+  $('#wiC').textContent = fmt(cash, 1) + ' млрд'; $('#wiCd').innerHTML = d(cash - WB.cash, 'млрд');
+  const drivers = [['цена сырья', dRaw], ['курс доллара', dFx], ['загрузка KIG', dKig], ['цена Geotex', dGx]].sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]));
+  const top = drivers[0];
+  $('#wiAi').innerHTML = Math.abs(top[1]) < .01 ? '<span class="lamp g"></span>AI: базовый сценарий. Сдвиньте любой ползунок.' : `<span class="lamp ${gp >= WB.gp ? 'g' : 'w'}"></span>AI: сильнее всего влияет <b>&nbsp;${top[0]}&nbsp;</b> (${top[1] >= 0 ? '+' : ''}${fmt(top[1] * 1000)} млн сум в месяц).${gp < WB.gp ? ' Предлагаю закупить сырьё сейчас и пересмотреть прайс.' : ''}`;
+}
+['wiRaw', 'wiFx', 'wiKig', 'wiGx'].forEach(id => $('#' + id).addEventListener('input', whatIf)); whatIf();
+const REP = {
+  board:{steps:['Сверяю выручку и маржу трёх заводов…','Собираю отклонения от плана и причины…','Готовлю решения на утверждение…'], out:`<b>Отчёт совету директоров · октябрь</b><div class="list"><div class="li"><span class="pill g">Итог</span><div class="t">Выручка 23,0 млрд сум (+9% к плану), маржа 27,6%, касса 31,2 млрд</div></div><div class="li"><span class="pill b">Заводы</span><div class="t">KIG — лучший по OEE (82%); Rebar отстаёт по браку (2,1%), план исправления — режимы печи</div></div><div class="li"><span class="pill w">Риски</span><div class="t">Сырьё дорожает 3 недели; просрочка Yo'l Qurilish — 640 млн</div></div><div class="li"><span class="pill b">Решения</span><div class="t">Цена Geotex +5%, закупка 140 т волокна, тендер А-380 лот 4</div></div></div>`},
+  ebrd:{steps:['Беру энергию, выбросы, отходы KIG за квартал…','Сверяю с планом действий ЕБРР…','Собираю показатели охраны труда…'], out:`<b>Квартальный отчёт для ЕБРР · KIG</b><div class="list"><div class="li"><span class="pill g">ESR3</span><div class="t">Энергия на тонну −6% к кварталу, отходы учтены по каждой партии</div></div><div class="li"><span class="pill g">ESR4</span><div class="t">146 дней без травм, 100% персонала прошли инструктаж</div></div><div class="li"><span class="pill b">План</span><div class="t">Выполнено 7 из 12 пунктов плана действий, 2 — в работе</div></div><div class="li"><span class="pill b">Проект</span><div class="t">Расширение до 100 тыс. т: проект идёт по графику, освоено 22%</div></div></div>`}
+};
+let repCur = 'board';
+document.addEventListener('click', e => {
+  const sg = e.target.closest('[data-rep]'); if (sg) { repCur = sg.dataset.rep; document.querySelectorAll('[data-rep]').forEach(b => b.setAttribute('aria-pressed', b === sg)); $('#repOut').innerHTML = ''; }
+  if (e.target.closest('#repBtn')) { const r = REP[repCur], out = $('#repOut'); out.innerHTML = '<div class="steps"></div>'; const box = out.firstChild; let i = 0;
+    const step = () => { if (i > 0) box.lastElementChild.innerHTML = `<span class="ok">✓</span>${r.steps[i - 1]}`; if (i < r.steps.length) { box.insertAdjacentHTML('beforeend', `<div><span class="spin"></span>${r.steps[i]}</div>`); i++; setTimeout(step, RM ? 0 : 650); } else out.insertAdjacentHTML('beforeend', `<div class="artifact fade">${r.out}<div class="acts"><button class="btn pri" type="button" data-appr>Утвердить</button><button class="btn ghost" type="button" data-appr>Доработать</button></div></div>`); };
+    step(); }
+});
 
 document.addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (!b) return; const [id, i] = b.dataset.st.split(':'); showStage(id, {geotex:GX, rebar:RB, kig:KG}[id], +i); });
 
@@ -1165,6 +1269,16 @@ function upd30(){ const n = Object.values(done30).filter(Boolean).length; $('#p3
 upd30();
 document.addEventListener('change', e => { const c = e.target.closest('[data-c30]'); if (!c) return; done30[c.dataset.c30] = c.checked; try { localStorage.setItem('sa-sys-30', JSON.stringify(done30)); } catch (er) {} upd30(); });
 
+
+document.getElementById('v-system').insertAdjacentHTML('beforeend', `<div class="glass pad sec"><div class="sec-h"><h2>Доверие: данные, доступы и контроль AI</h2><p>ответы на вопросы, которые основатели зададут первыми</p></div><div class="g3">
+  <div class="card sysb"><span class="no">ДАННЫЕ</span><h3>Остаются в Узбекистане</h3><p>Сервер в Узбекистане или собственный сервер холдинга. Персональные данные граждан — в стране, как требует закон о персональных данных.</p></div>
+  <div class="card sysb"><span class="no">ДОСТУП</span><h3>Каждый видит своё</h3><p>Основатели — всё. Директор — свою зону. Менеджер — своих клиентов. Права меняются одним переключателем.</p></div>
+  <div class="card sysb"><span class="no">КОНТРОЛЬ</span><h3>AI готовит, человек решает</h3><p>Агент не отправляет платежи, не меняет цены и не подписывает договоры без утверждения ответственного.</p></div>
+  <div class="card sysb"><span class="no">ЖУРНАЛ</span><h3>Видно каждое действие агента</h3><p>Что сделал, на каких данных, кто утвердил. Любое решение можно разобрать задним числом.</p></div>
+  <div class="card sysb"><span class="no">ИСТОЧНИКИ</span><h3>1С и банк — только чтение</h3><p>Агенты читают учёт и выписки, но не меняют проводки. Главные системы остаются как есть.</p></div>
+  <div class="card sysb"><span class="no">ВЫХОД</span><h3>Данные принадлежат холдингу</h3><p>Все данные и настройки можно выгрузить. Нет зависимости от одного подрядчика.</p></div>
+</div></div>`);
+
 /* ---------- MONEY ---------- */
 const SL = [
   {id:'fh', g:'Время', l:'Часов в неделю у каждого основателя на операционный контроль', v:30, min:5, max:50, st:1, u:'ч'},
@@ -1278,6 +1392,111 @@ function go(id, push){
   const nb = document.querySelector(`.nav[data-v="${id}"]`); if (nb && innerWidth <= 960) nb.scrollIntoView({inline:'center', block:'nearest'});
 }
 window.__go = go;
+const GL = [
+  ['OEE','Общая эффективность оборудования: доступность × скорость × доля годной продукции. 85% — мировой уровень.'],
+  ['EBITDA','Прибыль до процентов, налогов и амортизации — сколько зарабатывает сам бизнес.'],
+  ['Валовая маржа','Выручка минус прямые затраты (сырьё, энергия, зарплата цеха), в % от выручки.'],
+  ['Дебиторк\\p{L}*','Деньги, которые клиенты должны за уже отгруженный товар.'],
+  ['S&OP','Ежемесячное согласование плана продаж, производства, сырья и денег.'],
+  ['SPC','Статистический контроль процесса: ловит дрейф параметров до того, как появится брак.'],
+  ['ESG','Экология, социальная ответственность и управление — то, что проверяют банки и иностранные покупатели.'],
+  ['ESR\\d*','Экологические и социальные требования ЕБРР (их 10). Обязательны для заёмщиков банка.'],
+  ['ЕБРР','Европейский банк реконструкции и развития. Одобрил KIG кредит до $29 млн на расширение.'],
+  ['МСФО','Международные стандарты финансовой отчётности — их ждут банки и иностранные инвесторы.'],
+  ['CBAM','Углеродный налог ЕС на импорт стали, цемента и др. Композит и геотекстиль в список не входят.'],
+  ['EPD','Экологическая декларация продукта: углеродный след по EN 15804. Нужна для экспорта в ЕС.'],
+  ['ISO 9001','Международный стандарт системы менеджмента качества.'],
+  ['ISO 14001','Международный стандарт экологического менеджмента.'],
+  ['ISO 45001','Международный стандарт охраны труда.'],
+  ['ISO 50001','Международный стандарт энергоменеджмента.'],
+  ['СТ-1','Сертификат происхождения «сделано в Узбекистане». Даёт преимущество в госзакупках.'],
+  ['UZ\\.SMT','Национальная система сертификации продукции Узбекистана.'],
+  ['ГОСТ 31938','Стандарт на композитную полимерную арматуру для бетона.'],
+  ['ASTM D7957','Американский стандарт на стеклопластиковую арматуру: волокно ≥70%, отверждение ≥95%.'],
+  ['EN 13249','Европейский стандарт геотекстиля для дорог — основа CE-маркировки.'],
+  ['EN 13162','Европейский стандарт на минеральную вату для зданий.'],
+  ['CE','Маркировка соответствия ЕС: без неё товар нельзя продавать в Евросоюзе.'],
+  ['Теплопроводность','Чем ниже, тем лучше утепляет. У базальтовой ваты 0,036–0,040 Вт/м·К.'],
+  ['Vision','Компьютерное зрение: камера и нейросеть находят дефекты на линии.'],
+  ['Предиктивный ТО','Обслуживание по фактическому износу (вибрация, ток), а не по графику или после поломки.'],
+  ['ТОиР','Техническое обслуживание и ремонт оборудования.'],
+  ['КП','Коммерческое предложение клиенту с ценой и условиями.'],
+  ['CRM','Система учёта клиентов и сделок: воронка, задачи, звонки.'],
+  ['SKU','Отдельная товарная позиция: марка, размер, упаковка.'],
+  ['ЭСФ','Электронная счёт-фактура в налоговой системе Узбекистана.'],
+  ['KPI','Ключевой показатель: цифра, по которой оценивают результат.'],
+  ['[Пп]ултрузи\\p{L}*','Нити ровинга протягивают через смолу и печь — так делают композитную арматуру.'],
+  ['ровинг\\p{L}*','Жгут непрерывных базальтовых или стеклянных нитей — сырьё арматуры.'],
+  ['[Ии]глопробивн\\p{L}*','Тысячи игл многократно протыкают слой волокна и сплетают его в прочное полотно.'],
+  ['[Сс]вязующ\\p{L}*','Смола, которая скрепляет волокна ваты в плиту.'],
+  ['[Шш]ихт\\p{L}*','Смесь сырья (базальт и добавки), которую загружают в печь.'],
+  ['[Кк]амер\\p{L}* полимеризации','Печь, где связующее твердеет и вата становится плитой.'],
+  ['[Аа]гент-руководитель','AI-агент, который ставит задачи суб-агентам отдела и отчитывается главному ассистенту.'],
+  ['суб-агент\\p{L}*','AI-агент с одной узкой задачей внутри отдела.'],
+  ['order-to-cash','Сквозной процесс: заявка → отгрузка → оплата.'],
+  ['procure-to-pay','Сквозной процесс: потребность → закупка → оплата поставщику.'],
+  ['APQC','Международный классификатор бизнес-процессов (13 групп).'],
+  ['OZIZOL','Объединение производителей утеплителя: KIG и Knauf Insulation Tashkent, 50/50.'],
+  ['п\\.п\\.','Процентные пункты: разница между процентами. С 20% до 74% — это +54 п.п.'],
+  ['Окупаемость','Через сколько месяцев денежный эффект вернёт вложения.'],
+  ['[Вв]орота','Измеримый критерий: пока он не выполнен, следующий этап не начинаем.'],
+  ['[Мм]атриц\\p{L}* полномочий','Таблица «какое решение — кто принимает — до какой суммы».'],
+  ['[Пп]лан\\p{L}* действий','План экологических и социальных мер, который заёмщик согласует с ЕБРР (ESAP).'],
+  ['Telegram-бот','Программа в Telegram, которая отвечает и выполняет задачи вместо человека.'],
+  ['[Дд]ашборд\\p{L}*','Экран с главными цифрами, которые обновляются сами.']
+].map(([src, tip], i) => ({k: 'g' + i, re: new RegExp('(?<![\\p{L}\\p{N}])(' + src + ')(?![\\p{L}\\p{N}])', 'u'), tip}));
+const SKIP = 'button,input,textarea,select,svg,script,style,a,label,h1,.term,.tipbox,.nav,.seg,.tour-panel,.tg-btns,option';
+function gloss(root){
+  if (!root) return;
+  for (const g of GL) {
+    if (root.querySelector(`.term[data-k="${g.k}"]`)) continue;
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode: n => (!n.nodeValue.trim() || n.parentElement.closest(SKIP)) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT});
+    let n; while ((n = w.nextNode())) { const m = g.re.exec(n.nodeValue); if (!m) continue;
+      const r = document.createRange(); r.setStart(n, m.index); r.setEnd(n, m.index + m[1].length);
+      const ab = document.createElement('abbr'); ab.className = 'term'; ab.dataset.k = g.k; ab.dataset.tip = g.tip; ab.tabIndex = 0; r.surroundContents(ab); break; }
+  }
+}
+const tipbox = document.createElement('div'); tipbox.className = 'tipbox'; tipbox.setAttribute('role', 'tooltip'); tipbox.hidden = true; document.body.appendChild(tipbox);
+let tipFor = null;
+function showTip(el){ tipFor = el; tipbox.innerHTML = `<b>${el.textContent}</b>${el.dataset.tip}`; tipbox.hidden = false; const r = el.getBoundingClientRect(), w = Math.min(300, innerWidth - 24); tipbox.style.width = w + 'px'; let x = r.left + r.width / 2 - w / 2; x = Math.max(12, Math.min(innerWidth - w - 12, x)); const h = tipbox.offsetHeight; let y = r.bottom + 8; if (y + h > innerHeight - 8) y = r.top - h - 8; tipbox.style.left = x + 'px'; tipbox.style.top = y + 'px'; }
+function hideTip(){ tipbox.hidden = true; tipFor = null; }
+document.addEventListener('mouseover', e => { const t = e.target.closest('.term'); if (t && matchMedia('(hover:hover)').matches) showTip(t); });
+document.addEventListener('mouseout', e => { const t = e.target.closest('.term'); if (t && matchMedia('(hover:hover)').matches) hideTip(); });
+document.addEventListener('focusin', e => { const t = e.target.closest('.term'); if (t) showTip(t); });
+document.addEventListener('focusout', e => { if (e.target.closest('.term')) hideTip(); });
+document.addEventListener('click', e => { const t = e.target.closest('.term'); if (t) { e.preventDefault(); if (matchMedia('(hover:hover)').matches || tipFor !== t) showTip(t); else hideTip(); } else if (!e.target.closest('.tipbox')) hideTip(); }, true);
+addEventListener('scroll', hideTip, {passive: true});
+let gT = null; const curView = () => document.querySelector('#views > .view:not([hidden])');
+new MutationObserver(() => { clearTimeout(gT); gT = setTimeout(() => gloss(curView()), 120); }).observe($('#views'), {subtree: true, childList: true, attributes: true, attributeFilter: ['hidden']});
+
+/* guided tour */
+const TOUR = [
+  ['tour','Точка А → точка B','Начинаем с пирамиды: снизу данные, посередине 34 агента, сверху решения основателей. Сравните «сейчас» и «через 12 месяцев».'],
+  ['holding','Холдинг SA GROUP','Три завода, ЕБРР, Knauf. Покажите синергии: один клиент — три продукта, одна площадка в Ургенче, свой базальт.'],
+  ['cockpit','Бортовая панель','Идеальная картина: весь холдинг на одном экране. Подвигайте «Что если?» и нажмите «Подготовить отчёт».'],
+  ['founder','Рабочее место основателя','20 минут утром: бриф, 8 цифр, 5 решений. Утвердите одно решение — и покажите Telegram внизу.'],
+  ['top','Топ-менеджмент','У каждого директора свой пульт, агенты и ритм дня. Переключите директоров сверху.'],
+  ['geotex','Завод Geotex','Линия Dilo в реальном времени. Нажмите на «Иглопробивание» — агент предупреждает о поломке до того, как она случится.'],
+  ['rebar','Завод Rebar','Пултрузия: печь, протяжка, контроль стержня камерой. Каждая бухта с QR и паспортом.'],
+  ['kig','Завод KIG · Thermo Plus','Базальтовая вата: от карьера до пачки. Агент связующего экономит сырьё, Vision ловит дефект плиты.'],
+  ['sales','Продажи и тендеры','Ни одна заявка не теряется: ответ за 48 секунд, тендерный радар каждое утро.'],
+  ['agents','AI-оргструктура','Дерево агентов: руководитель отдела и суб-агенты. Дайте агенту задачу в командном центре.'],
+  ['system','Систематизация','Главное: сначала порядок, потом AI. Лестница зрелости, 9 блоков фундамента и 30 дней старта.'],
+  ['standards','Стандарты','Требования ЕБРР, ISO и CE — не папка, а цифры в пульте.'],
+  ['road','Этапы внедрения','4 этапа за 12 месяцев: сначала деньги и продажи, потом цех.'],
+  ['money','Экономика','Подставьте их цифры в ползунки: эффект, окупаемость, время основателей.']
+];
+let tStep = -1;
+document.body.insertAdjacentHTML('beforeend', `<div class="tour-panel glass" id="tourPanel" hidden role="dialog" aria-label="Экскурсия"><div class="tp-top"><span class="tp-n" id="tpN"></span><button class="tp-x" type="button" id="tpX" aria-label="Закрыть экскурсию">✕</button></div><b id="tpT"></b><p id="tpD"></p><div class="tp-bar"><i id="tpBar"></i></div><div class="tp-acts"><button class="btn ghost" type="button" id="tpPrev">← Назад</button><button class="btn pri" type="button" id="tpNext">Дальше →</button></div></div>`);
+function tourShow(i){ tStep = Math.max(0, Math.min(TOUR.length - 1, i)); const t = TOUR[tStep]; go(t[0]); scrollTo({top: 0, behavior: RM ? 'auto' : 'smooth'});
+  $('#tourPanel').hidden = false; document.body.classList.add('touring'); $('#tpN').textContent = `Остановка ${tStep + 1} из ${TOUR.length}`; $('#tpT').textContent = t[1]; $('#tpD').textContent = t[2];
+  $('#tpBar').style.width = ((tStep + 1) / TOUR.length * 100) + '%'; $('#tpPrev').disabled = tStep === 0; $('#tpNext').textContent = tStep === TOUR.length - 1 ? 'Завершить ✓' : 'Дальше →'; }
+$('#tourBtn').addEventListener('click', () => tourShow(0));
+const tourEnd = () => { $('#tourPanel').hidden = true; document.body.classList.remove('touring'); };
+$('#tpNext').addEventListener('click', () => tStep === TOUR.length - 1 ? tourEnd() : tourShow(tStep + 1));
+$('#tpPrev').addEventListener('click', () => tourShow(tStep - 1));
+$('#tpX').addEventListener('click', tourEnd);
+document.addEventListener('keydown', e => { if ($('#tourPanel').hidden) return; if (e.key === 'ArrowRight') $('#tpNext').click(); if (e.key === 'ArrowLeft' && tStep > 0) $('#tpPrev').click(); if (e.key === 'Escape') tourEnd(); });
 function skinLabel(){ const sa = document.documentElement.dataset.skin === 'sa'; $('#skinLbl').textContent = sa ? 'Вернуть Liquid Glass' : 'Стиль SA GROUP'; $('#skinBtn').title = sa ? 'Сейчас: фирменный стиль SA GROUP' : 'Сейчас: Liquid Glass'; }
 skinLabel();
 $('#skinBtn').addEventListener('click', () => { const next = document.documentElement.dataset.skin === 'sa' ? 'glass' : 'sa'; document.documentElement.dataset.skin = next; try { localStorage.setItem('sa-skin', next); } catch (e) {} skinLabel(); });
