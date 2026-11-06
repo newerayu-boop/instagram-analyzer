@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Exo+2:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
 <style>
 /* Layout: app shell — glass sidebar of modules on the left, one view at a time on the right; phone: modules become a scrolling pill row. Liquid glass over a slow light field. */
 :root{
@@ -62,7 +62,7 @@ button{font:inherit;color:inherit}
 .nav{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;text-align:left;padding:9px 10px;border-radius:12px;cursor:pointer;font-weight:500;font-size:14px;color:var(--fg)}
 .nav:hover{background:var(--hair)}
 .nav[aria-current="page"]{background:var(--glass-strong);box-shadow:inset 0 1px 0 var(--sheen),0 4px 14px -6px var(--shadow);font-weight:650}
-.nav .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:13px;flex:none;color:#fff}
+.nav .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:13px;flex:none;color:#fff;background:var(--c)}
 .nav .ct{margin-left:auto;font:600 11px/1 var(--f-mono);color:var(--muted)}
 .main{display:flex;flex-direction:column;gap:16px;min-width:0}
 .top{position:sticky;top:calc(env(safe-area-inset-top,0px) + 14px);z-index:20;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 16px;border-radius:999px}
@@ -186,6 +186,48 @@ svg text{font-family:var(--f-body)}
 .pyr-arrow.down span{transform:none}
 @media (max-width:860px){.tier.t1{width:62%}.tier.t2{width:72%}.tier.t3{width:82%}.tier.t4{width:92%}}
 @media (max-width:600px){.pyr-wrap{grid-template-columns:14px minmax(0,1fr) 14px;gap:4px}.pyr-arrow span{display:none}.tier{padding:12px 10px}.tier.t1{width:82%}.tier.t2{width:88%}.tier.t3{width:94%}.tier.t4{width:98%}.tier .tc i{white-space:normal}}
+
+/* ===== SA GROUP skin: soft white cards on a mint-teal field, brand teal #074D52 + turquoise #2BE0CB ===== */
+:root[data-skin="sa"]{
+  --bg:#edf3f3; --fg:#14232a; --muted:#56656b; --faint:#8a989d;
+  --accent:#0a7a7f; --accent-soft:rgba(10,122,127,.11); --brand:#074d52; --brand-2:#2be0cb;
+  --good:#16a35f; --warn:#d98a00; --bad:#e31e24;
+  --good-soft:rgba(22,163,95,.12); --warn-soft:rgba(217,138,0,.13); --bad-soft:rgba(227,30,36,.1);
+  --glass:rgba(255,255,255,.66); --glass-strong:rgba(255,255,255,.92); --stroke:rgba(255,255,255,.95);
+  --hair:rgba(7,77,82,.09); --sheen:rgba(255,255,255,.9); --shadow:rgba(7,77,82,.16); --bar:rgba(7,77,82,.14);
+  --a1:#074d52; --a2:#7a5cf0; --a3:#e31e24; --a4:#0a8f95; --a5:#19ac62; --a6:#12b8a6; --a7:#f08a24;
+  --blob1:#b8ece4; --blob2:#d6f2e2; --blob3:#c3e3ef; --blob4:#e2f6f1;
+  --f-display:"Exo 2","Onest",-apple-system,system-ui,sans-serif;
+  --r-xl:24px; --r-lg:18px; --r-md:14px;
+}
+@media (prefers-color-scheme:dark){:root[data-skin="sa"]:not([data-theme="light"]){
+  --bg:#06171a; --fg:#e8f3f3; --muted:#93a8ac; --faint:#64787c; --accent:#2bd3c0; --accent-soft:rgba(43,211,192,.14); --brand:#2be0cb; --brand-2:#0a8f95;
+  --glass:rgba(12,38,42,.6); --glass-strong:rgba(16,46,51,.86); --stroke:rgba(255,255,255,.09); --hair:rgba(255,255,255,.08); --sheen:rgba(255,255,255,.08); --shadow:rgba(0,0,0,.5); --bar:rgba(180,230,226,.2);
+  --a1:#2be0cb; --a4:#24b6bd; --a6:#2bd3c0;
+  --blob1:#0b4a4f; --blob2:#0b3b2c; --blob3:#0c3346; --blob4:#0a2f33; color-scheme:dark}}
+:root[data-skin="sa"][data-theme="dark"]{
+  --bg:#06171a; --fg:#e8f3f3; --muted:#93a8ac; --faint:#64787c; --accent:#2bd3c0; --accent-soft:rgba(43,211,192,.14); --brand:#2be0cb; --brand-2:#0a8f95;
+  --glass:rgba(12,38,42,.6); --glass-strong:rgba(16,46,51,.86); --stroke:rgba(255,255,255,.09); --hair:rgba(255,255,255,.08); --sheen:rgba(255,255,255,.08); --shadow:rgba(0,0,0,.5); --bar:rgba(180,230,226,.2);
+  --a1:#2be0cb; --a4:#24b6bd; --a6:#2bd3c0;
+  --blob1:#0b4a4f; --blob2:#0b3b2c; --blob3:#0c3346; --blob4:#0a2f33; color-scheme:dark}
+:root[data-skin="sa"] .scene span{opacity:.85;filter:blur(90px)}
+:root[data-skin="sa"] .glass{-webkit-backdrop-filter:blur(22px) saturate(140%);backdrop-filter:blur(22px) saturate(140%);box-shadow:inset 0 1px 0 var(--sheen),0 12px 32px -14px var(--shadow)}
+:root[data-skin="sa"] .card{box-shadow:0 6px 18px -12px var(--shadow)}
+:root[data-skin="sa"] h1,:root[data-skin="sa"] h2,:root[data-skin="sa"] .kpi .v,:root[data-skin="sa"] .big{font-family:var(--f-display);letter-spacing:-.01em}
+:root[data-skin="sa"] h1 em{background:linear-gradient(100deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+:root[data-skin="sa"] .logo i{background:var(--brand);font-family:"Exo 2",sans-serif;font-style:italic;font-weight:800;letter-spacing:-.04em}
+:root[data-skin="sa"] .nav .ic{background:color-mix(in srgb,var(--c) 14%,var(--glass-strong));color:var(--c);font-weight:700}
+:root[data-skin="sa"] .nav[aria-current="page"]{background:color-mix(in srgb,var(--accent) 12%,var(--glass-strong));color:var(--accent);box-shadow:none}
+:root[data-skin="sa"] .btn.pri,:root[data-skin="sa"] .bubble.me,:root[data-skin="sa"] .filters button[aria-pressed="true"]{background:linear-gradient(135deg,var(--brand),var(--a4));border-color:transparent}
+:root[data-skin="sa"] .seg button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+:root[data-skin="sa"] .bar-t i{background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+:root[data-skin="sa"] .tier.t1,:root[data-skin="sa"] .own-root{background:linear-gradient(135deg,var(--brand),var(--a4));box-shadow:0 14px 30px -14px var(--brand)}
+:root[data-skin="sa"] .kpi .v{color:var(--fg)}
+:root[data-skin="sa"] .kpi{position:relative;overflow:hidden}
+:root[data-skin="sa"] .kpi::after{content:"";position:absolute;right:-26px;top:-26px;width:78px;height:78px;border-radius:50%;background:radial-gradient(circle,var(--accent-soft),transparent 70%)}
+.skin-btn{border:1px solid var(--hair);background:var(--glass-strong);padding:8px 12px;border-radius:999px;font:600 12px/1 var(--f-body);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.skin-btn i{font-style:normal;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#074d52,#2be0cb)}
+:root[data-skin="sa"] .skin-btn i{background:linear-gradient(135deg,#0a7cff,#c3a6ff)}
 
 /* holding */
 .own{display:flex;flex-direction:column;gap:12px}
@@ -394,6 +436,7 @@ svg text{font-family:var(--f-body)}
 @media (prefers-reduced-motion:reduce){.scene span,.belt,.cam .scan,.live::before,.spin,.fade{animation:none}}
 </style>
 
+<script>try{document.documentElement.dataset.skin=localStorage.getItem("sa-skin")||"sa"}catch(e){document.documentElement.dataset.skin="sa"}</script>
 <div class="scene" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></div>
 
 <div class="app" lang="ru">
@@ -408,6 +451,7 @@ svg text{font-family:var(--f-body)}
       <button class="ask" id="askBtn" type="button">⌘ Спросить завод: «почему вырос брак на линии 1?»</button>
       <span class="live">AI на связи · 31 агент</span>
       <span class="demo">Демо-данные</span>
+      <button class="skin-btn" id="skinBtn" type="button"><i></i><span id="skinLbl">Стиль: SA GROUP</span></button>
     </div>
     <div id="views"></div>
   </main>
@@ -453,7 +497,7 @@ const VIEWS = [
 ];
 let lastG = '';
 $('#navList').innerHTML = VIEWS.map(v => { const g = v.g !== lastG ? `<div class="grp">${v.g}</div>` : ''; lastG = v.g;
-  return g + `<button class="nav" type="button" data-v="${v.id}"><span class="ic" style="background:${v.c}">${v.ic}</span>${v.n}${v.ct ? `<span class="ct">${v.ct}</span>` : ''}</button>`; }).join('');
+  return g + `<button class="nav" type="button" data-v="${v.id}"><span class="ic" style="--c:${v.c}">${v.ic}</span>${v.n}${v.ct ? `<span class="ct">${v.ct}</span>` : ''}</button>`; }).join('');
 $('#views').innerHTML = VIEWS.map(v => `<section class="view" id="v-${v.id}" hidden></section>`).join('');
 
 /* ---------- helpers ---------- */
@@ -1101,6 +1145,9 @@ function go(id, push){
   const nb = document.querySelector(`.nav[data-v="${id}"]`); if (nb && innerWidth <= 960) nb.scrollIntoView({inline:'center', block:'nearest'});
 }
 window.__go = go;
+function skinLabel(){ const sa = document.documentElement.dataset.skin === 'sa'; $('#skinLbl').textContent = sa ? 'Вернуть Liquid Glass' : 'Стиль SA GROUP'; $('#skinBtn').title = sa ? 'Сейчас: фирменный стиль SA GROUP' : 'Сейчас: Liquid Glass'; }
+skinLabel();
+$('#skinBtn').addEventListener('click', () => { const next = document.documentElement.dataset.skin === 'sa' ? 'glass' : 'sa'; document.documentElement.dataset.skin = next; try { localStorage.setItem('sa-skin', next); } catch (e) {} skinLabel(); });
 document.addEventListener('click', e => { const n = e.target.closest('.nav'); if (n) { go(n.dataset.v); scrollTo({top:0, behavior: RM ? 'auto' : 'smooth'}); } const s = e.target.closest('[data-go]'); if (s) { go(s.dataset.go); scrollTo({top:0, behavior: RM ? 'auto' : 'smooth'}); } });
 $('#askBtn').addEventListener('click', () => { go('founder'); setTimeout(() => { const q = document.querySelector('[data-q]'); if (q) { q.click(); q.scrollIntoView({block:'center'}); } }, 50); });
 window.addEventListener('hashchange', () => go(location.hash.slice(1), false));
