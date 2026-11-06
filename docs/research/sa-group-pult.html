@@ -161,6 +161,32 @@ svg text{font-family:var(--f-body)}
 .ab .card h3{margin-bottom:8px}
 .ab ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:13.5px}
 
+/* pyramid */
+.pyr-wrap{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:10px;align-items:stretch}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+.tier{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:14px 18px;border-radius:16px;border:1px solid var(--hair);min-width:0}
+.tier .th b{display:block;font-family:var(--f-display);font-size:16px;letter-spacing:-.01em}
+.tier .th span{font-size:12px;opacity:.75}
+.tier .tc{display:flex;flex-wrap:wrap;justify-content:center;gap:5px}
+.tier .tc i{font-style:normal;font-size:12px;padding:5px 9px;border-radius:999px;background:var(--glass-strong);border:1px solid var(--hair);white-space:nowrap}
+.tier.t1{width:40%;background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 70%,var(--a1)));color:#fff;border-color:transparent;box-shadow:0 14px 30px -14px var(--accent)}
+.tier.t1 .tc i{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.3);color:#fff}
+.tier.t2{width:56%;background:color-mix(in srgb,var(--accent) 20%,var(--glass-strong))}
+.tier.t3{width:70%;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 14%,var(--glass-strong)),color-mix(in srgb,var(--a6) 18%,var(--glass-strong)));border-color:color-mix(in srgb,var(--a6) 40%,transparent)}
+.tier.t4{width:85%;background:color-mix(in srgb,var(--a6) 10%,var(--glass-strong))}
+.tier.t5{width:100%;background:var(--glass-strong)}
+.pyr-arrow{position:relative;display:flex;justify-content:center}
+.pyr-arrow::before{content:"";position:absolute;top:12px;bottom:12px;left:50%;width:2px;transform:translateX(-50%);border-radius:2px}
+.pyr-arrow.up::before{background:linear-gradient(to top,var(--a6),var(--accent))}
+.pyr-arrow.down::before{background:linear-gradient(to bottom,var(--accent),var(--a1))}
+.pyr-arrow::after{content:"";position:absolute;left:50%;width:12px;height:12px;border-left:2px solid;border-top:2px solid;transform:translateX(-50%) rotate(45deg)}
+.pyr-arrow.up::after{top:12px;color:var(--accent)}
+.pyr-arrow.down::after{bottom:12px;color:var(--a1);transform:translateX(-50%) rotate(225deg)}
+.pyr-arrow span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);padding:8px 0;border-radius:99px;position:relative;z-index:1;align-self:center}
+.pyr-arrow.down span{transform:none}
+@media (max-width:860px){.tier.t1{width:62%}.tier.t2{width:72%}.tier.t3{width:82%}.tier.t4{width:92%}}
+@media (max-width:600px){.pyr-wrap{grid-template-columns:14px minmax(0,1fr) 14px;gap:4px}.pyr-arrow span{display:none}.tier{padding:12px 10px}.tier.t1{width:82%}.tier.t2{width:88%}.tier.t3{width:94%}.tier.t4{width:98%}.tier .tc i{white-space:normal}}
+
 /* founder */
 .brief{display:flex;gap:12px;align-items:flex-start}
 .brief .av{width:38px;height:38px;border-radius:12px;font-size:12px}
@@ -384,14 +410,18 @@ $('#v-tour').innerHTML = `
 <p class="lede">Так может выглядеть SA GROUP после полной интеграции: каждая линия, каждый отдел и каждый руководитель подключены к одной системе. Снизу данные идут от станков, лаборатории, 1С и Telegram к AI-агентам. Сверху основатели и топ-менеджеры видят готовые цифры и утверждают решения.</p></div>
 <div class="glass pad sec">
   <div class="sec-h"><h2>Как соединены верх и низ</h2><p>Данные поднимаются вверх, решения и задачи спускаются вниз</p></div>
-  <div class="layers">
-    <div class="layer top1"><div class="ln"><b>Основатели</b><span>решают и утверждают</span></div><div class="chips"><span class="chip">Цены и скидки</span><span class="chip">Крупные закупки сырья</span><span class="chip">Тендеры выше 1 млрд сум</span><span class="chip">Инвестиции и вторая линия</span><span class="chip">Экспорт</span></div></div>
-    <div class="layer"><div class="ln"><b>Топ-менеджмент</b><span>6 дашбордов, ритм дня</span></div><div class="chips"><span class="chip">Коммерция</span><span class="chip">Производство</span><span class="chip">Финансы</span><span class="chip">Снабжение и логистика</span><span class="chip">Качество</span><span class="chip">Люди</span></div></div>
-    <div class="layer"><div class="ln"><b>Главный AI-ассистент</b><span>штаб над всеми агентами</span></div><div class="chips"><span class="chip">Утренний бриф 07:30</span><span class="chip">Очередь решений</span><span class="chip">Сверка цифр между отделами</span><span class="chip">«Спросить завод»</span><span class="chip">Бот контроля задач</span></div></div>
-    <div class="layer"><div class="ln"><b>31 AI-агент в 9 отделах</b><span>работают круглые сутки</span></div><div class="chips"><span class="chip">Продажи · 4</span><span class="chip">Тендеры и экспорт · 3</span><span class="chip">Маркетинг · 2</span><span class="chip">Цех Geotex · 3</span><span class="chip">Цех Rebar · 2</span><span class="chip">Качество · 2</span><span class="chip">Снабжение и склад · 4</span><span class="chip">Финансы · 3</span><span class="chip">Люди · 2</span></div></div>
-    <div class="layer"><div class="ln"><b>Источники данных</b><span>то, что уже есть + датчики</span></div><div class="chips"><span class="chip">1С</span><span class="chip">CRM и телефония</span><span class="chip">Telegram-чаты</span><span class="chip">Датчики линий Dilo и пултрузии</span><span class="chip">Камеры на линиях</span><span class="chip">Лаборатория</span><span class="chip">Банк</span><span class="chip">xarid.uzex.uz, etender</span><span class="chip">Цены конкурентов</span></div></div>
+  <div class="pyr-wrap">
+    <div class="pyr-arrow up" aria-hidden="true"><span>цифры, отклонения, черновики решений</span></div>
+    <div class="pyr" role="list" aria-label="Пирамида управления: от данных к решениям">
+      <div class="tier t1" role="listitem"><div class="th"><b>Основатели</b><span>решают и утверждают · 2 человека</span></div><div class="tc"><i>Цены и скидки</i><i>Крупные закупки</i><i>Тендеры выше 1 млрд сум</i><i>Инвестиции</i><i>Экспорт</i></div></div>
+      <div class="tier t2" role="listitem"><div class="th"><b>Топ-менеджмент</b><span>6 дашбордов и ритм дня</span></div><div class="tc"><i>Коммерция</i><i>Производство</i><i>Финансы</i><i>Снабжение и логистика</i><i>Качество</i><i>Люди</i></div></div>
+      <div class="tier t3" role="listitem"><div class="th"><b>Главный AI-ассистент</b><span>штаб над всеми агентами</span></div><div class="tc"><i>Бриф 07:30</i><i>Очередь решений</i><i>Сверка цифр между отделами</i><i>«Спросить завод»</i><i>Бот контроля задач</i></div></div>
+      <div class="tier t4" role="listitem"><div class="th"><b>31 AI-агент в 9 отделах</b><span>работают круглые сутки</span></div><div class="tc"><i>Продажи · 4</i><i>Тендеры и экспорт · 3</i><i>Маркетинг · 2</i><i>Цех Geotex · 3</i><i>Цех Rebar · 2</i><i>Качество · 2</i><i>Снабжение и склад · 4</i><i>Финансы · 3</i><i>Люди · 2</i></div></div>
+      <div class="tier t5" role="listitem"><div class="th"><b>Источники данных</b><span>то, что уже есть, + датчики</span></div><div class="tc"><i>1С</i><i>CRM и телефония</i><i>Telegram-чаты</i><i>Датчики линий Dilo и пултрузии</i><i>Камеры на линиях</i><i>Лаборатория</i><i>Банк</i><i>xarid.uzex.uz, etender</i><i>Цены конкурентов</i></div></div>
+    </div>
+    <div class="pyr-arrow down" aria-hidden="true"><span>утверждения, задачи, контроль исполнения</span></div>
   </div>
-  <div class="updown"><span>↑ цифры, отклонения, черновики решений</span><span>↓ утверждения, задачи, контроль исполнения</span></div>
+  <p class="note" style="text-align:center">Чем выше ярус, тем меньше людей и тем меньше, но важнее решения. Внизу — всё, что собирает данные. Посередине — агенты, которые превращают данные в готовые решения.</p>
 </div>
 <div class="ab">
   <div class="card"><h3>Точка А — сейчас</h3><ul>
