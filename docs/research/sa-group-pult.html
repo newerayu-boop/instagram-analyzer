@@ -187,6 +187,38 @@ svg text{font-family:var(--f-body)}
 @media (max-width:860px){.tier.t1{width:62%}.tier.t2{width:72%}.tier.t3{width:82%}.tier.t4{width:92%}}
 @media (max-width:600px){.pyr-wrap{grid-template-columns:14px minmax(0,1fr) 14px;gap:4px}.pyr-arrow span{display:none}.tier{padding:12px 10px}.tier.t1{width:82%}.tier.t2{width:88%}.tier.t3{width:94%}.tier.t4{width:98%}.tier .tc i{white-space:normal}}
 
+/* holding */
+.own{display:flex;flex-direction:column;gap:12px}
+.own-root{align-self:center;text-align:center;padding:14px 20px;border-radius:var(--r-lg);background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 65%,var(--a1)));color:#fff;max-width:520px}
+.own-root b{display:block;font-family:var(--f-display);font-size:16px}
+.own-root span{font-size:12.5px;opacity:.85}
+.own-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;position:relative}
+@media (max-width:860px){.own-row{grid-template-columns:minmax(0,1fr)}}
+.own-co{display:flex;flex-direction:column;gap:6px;padding:14px;border-radius:var(--r-md);background:var(--glass-strong);border:1px solid var(--hair);border-top:3px solid var(--dc,var(--hair));min-width:0}
+.own-co > b{font-family:var(--f-display);font-size:15px}
+.own-tag{font:600 10.5px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--dc,var(--muted))}
+.own-sh{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:5px 0;border-bottom:1px solid var(--hair)}
+.own-sh b{font-family:var(--f-mono);font-size:12.5px;white-space:nowrap}
+.own-sub{font-size:12px;color:var(--muted)}
+.own-co a{font-size:12px;font-weight:600}
+.own-small .own-co{padding:10px 12px}
+.own-small .own-co b{font-size:13.5px}
+.hv{display:flex;flex-direction:column;gap:10px}
+.hv-top{text-align:center;padding:16px;border-radius:var(--r-lg);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 20%,var(--glass-strong)),color-mix(in srgb,var(--a6) 16%,var(--glass-strong)));border:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+.hv-top b{display:block;font-family:var(--f-display);font-size:17px}
+.hv-top span{font-size:13px;color:var(--muted)}
+.hv-plants{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.hv-plants{grid-template-columns:minmax(0,1fr)}}
+.hv-p{display:flex;flex-direction:column;gap:6px;padding:14px;border-radius:var(--r-md);background:var(--glass-strong);border:1px solid var(--hair);border-left:4px solid var(--dc)}
+.hv-p b{font-family:var(--f-display);font-size:15px}
+.hv-p span{font-size:12.5px;color:var(--muted)}
+.hv-p .btn{align-self:flex-start;margin-top:4px}
+.hv-shared{display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:var(--r-md);background:var(--glass);border:1px dashed var(--muted)}
+.hv-shared .chips{display:flex;flex-wrap:wrap;gap:6px}
+.stdm td{vertical-align:middle}
+.cap3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:560px){.cap3{grid-template-columns:minmax(0,1fr)}}
+
 /* systematization */
 .ladder{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;align-items:end}
 .step-l{position:relative;display:flex;flex-direction:column;gap:4px;padding:14px;border-radius:var(--r-md);background:var(--glass-strong);border:1px solid var(--hair);min-height:calc(var(--h) + 96px);justify-content:flex-end}
@@ -404,6 +436,7 @@ const AG = {}; DEPT.forEach(d => d.agents.forEach(a => AG[a[0]] = {id:a[0], n:a[
 /* ---------- views registry ---------- */
 const VIEWS = [
   {id:'tour', n:'Экскурсия', ic:'★', c:'var(--a4)', g:'Старт'},
+  {id:'holding', n:'Холдинг', ic:'◆', c:'var(--a7)', g:'Старт'},
   {id:'founder', n:'Основатель', ic:'◎', c:'var(--a1)', g:'Верх: управление', ct:'5'},
   {id:'top', n:'Топ-менеджмент', ic:'▲', c:'var(--a2)', g:'Верх: управление', ct:'6'},
   {id:'geotex', n:'Завод Geotex', ic:'G', c:'var(--a5)', g:'Низ: завод и отделы'},
@@ -413,6 +446,7 @@ const VIEWS = [
   {id:'finance', n:'Финансы', ic:'F', c:'var(--a5)', g:'Низ: завод и отделы'},
   {id:'agents', n:'AI-оргструктура', ic:'AI', c:'var(--a6)', g:'Связка', ct:'31'},
   {id:'system', n:'Систематизация', ic:'▦', c:'var(--a3)', g:'Связка'},
+  {id:'standards', n:'Стандарты', ic:'✓', c:'var(--a6)', g:'Связка'},
   {id:'road', n:'Этапы внедрения', ic:'→', c:'var(--a7)', g:'Связка'},
   {id:'money', n:'Экономика', ic:'$', c:'var(--a5)', g:'Итог'},
   {id:'world', n:'Мировой опыт', ic:'◍', c:'var(--a2)', g:'Итог'}
@@ -770,6 +804,117 @@ $('#v-road').innerHTML = `
   <div class="card"><h3>Доступы</h3><p class="note" style="margin-top:6px">1С, CRM/телефония, Telegram-боты, банк-клиент только на чтение, папка сертификатов.</p></div>
   <div class="card"><h3>Люди</h3><p class="note" style="margin-top:6px">Владелец процесса в каждом отделе — 2 часа в неделю. Один ответственный за внедрение со стороны компании.</p></div>
   <div class="card"><h3>Оборудование (этап 3)</h3><p class="note" style="margin-top:6px">Камеры на выходе линий, датчики вибрации и тока на иглопробивных машинах, сбор данных с контроллеров линий.</p></div>
+</div></div>`;
+
+/* ---------- HOLDING ---------- */
+const OI = 'https://orginfo.uz/ru/organization/';
+const HIST = [
+  ['02.2020','Basalt and Composite Group, Джизак — первый базальтовый проект (позже ликвидирован)', OI + 'a2090de6c0ec/'],
+  ['07.2020','SA Finance Invest Group — инвестиционная компания основателя (100%)', OI + '28d42eb56af6/'],
+  ['08.2020','SA Sardoba Rebar Mesh Production и SA Group Build Materials, Сырдарья', OI + 'bd19a6c670d2/'],
+  ['04.2021','Khorezm Insulation Group (Thermoplus), Ургенч — базальтовая вата', OI + 'f295662c342c/'],
+  ['07.2021','Geoteks Productions — геотекстиль, Ургенч', OI + 'be7fad360bc3/'],
+  ['09.2023','Khorezm Orient Ceramik — производственная «дочка» Geoteks', OI + 'f3e237c34a5a/'],
+  ['02.2024','Запуск KIG при Президенте: €41 млн, 300 рабочих мест, экспорт $10 млн', 'https://president.uz/en/lists/view/7062'],
+  ['04.2026','OZIZOL — объединение производителей утеплителя с Knauf Insulation Tashkent (50/50)', OI + '1ab0b157dd03/'],
+  ['05.2026','ЕБРР одобрил до $29 млн на расширение KIG с 30 до 100 тыс. т в год', 'https://www.ebrd.com/home/news-and-events/news/2026/ebrd-boosts-production-of-building-materials-in-uzbekistan.html'],
+  ['04–07.2026','Rebar выигрывает тендеры МЧС на базальтовую продукцию', OI + 'bd19a6c670d2/']
+];
+$('#v-holding').innerHTML = `
+<div class="vh"><div class="eyebrow">Холдинг SA GROUP · кто за ним стоит и как мы его видим</div><h1>Три завода одного основателя — <em>один пульт холдинга</em></h1>
+<p class="lede">SA GROUP собрал за 6 лет три завода стройматериалов, получил кредит ЕБРР и партнёрство с Knauf. Следующий шаг роста — управлять холдингом как одной компанией: общие продажи, деньги, закупки и стандарты, а сверху — один пульт для основателя.</p></div>
+<div class="glass pad sec"><div class="sec-h"><h2>Структура владения</h2><p>по реестру orginfo.uz (неофициальный, 2024–2025) и Spot.uz (06.2026)</p></div>
+  <div class="own">
+    <div class="own-root"><b>Турсунов Сардоржон Юсуф угли</b><span>основатель SA GROUP · 100% SA Finance Invest Group</span></div>
+    <div class="own-row">
+      <div class="own-co" style="--dc:var(--a5)"><span class="own-tag">Геотекстиль · Ургенч</span><b>Geoteks Productions</b><div class="own-sh"><span>Seramiksan (Турция)</span><b>70,8%</b></div><div class="own-sh"><span>Назаров И.Д. (директор)</span><b>29,2%</b></div><div class="own-sub">↳ Khorezm Orient Ceramik — производство, 98%</div><a href="${OI}be7fad360bc3/" target="_blank" rel="noopener">реестр ↗</a></div>
+      <div class="own-co" style="--dc:var(--a3)"><span class="own-tag">Композит · Сардоба</span><b>SA Sardoba Rebar Mesh</b><div class="own-sh"><span>Ottomans Investment (Турция)</span><b>79,1%</b></div><div class="own-sh"><span>Турсунов Ж.Х.</span><b>20,6%</b></div><div class="own-sh"><span>SA Finance Invest</span><b>0,3%</b></div><a href="${OI}bd19a6c670d2/" target="_blank" rel="noopener">реестр ↗</a></div>
+      <div class="own-co" style="--dc:var(--a4)"><span class="own-tag">Утеплитель · Ургенч</span><b>Khorezm Insulation Group</b><div class="own-sh"><span>Турсунов С.Ю. (напрямую + SA Finance)</span><b>≈68,7%</b></div><div class="own-sh"><span>Хамидов А.</span><b>30,2%</b></div><div class="own-sub">по Spot.uz 06.2026; в реестре 2025 — Actera (Турция) 61,7%</div><a href="https://www.spot.uz/ru/2026/06/20/khorezm-insulation/" target="_blank" rel="noopener">Spot.uz ↗</a></div>
+    </div>
+    <div class="own-row own-small">
+      <div class="own-co"><b>SA Group Build Materials</b><span class="note">100% Ottomans Investment · опт стройматериалов</span></div>
+      <div class="own-co"><b>OZIZOL</b><span class="note">KIG 50% + Knauf Insulation Tashkent 50% · руководит Турсунов С.Ю.</span></div>
+      <div class="own-co"><b>Jizzax Zomin Avto</b><span class="note">металлоконструкции · SA Finance Invest 0,4%</span></div>
+    </div>
+  </div>
+  <p class="note">Кто стоит за тремя турецкими компаниями, по открытым данным не установлено. Состав KIG расходится между реестром 2025 года и Spot.uz 2026 года — сверить с госреестром перед встречей.</p></div>
+<div class="g2">
+  <div class="glass pad sec"><div class="sec-h"><h2>История проектов</h2><p>от первого базальтового проекта до ЕБРР</p></div><div class="list">${HIST.map(h => `<div class="li"><span class="tm" style="min-width:64px">${h[0]}</span><div class="t">${h[1]} <a href="${h[2]}" target="_blank" rel="noopener">↗</a></div></div>`).join('')}</div></div>
+  <div class="sec">
+    <div class="glass pad sec"><div class="sec-h"><h2>Мощности холдинга</h2><p>заявленные</p></div><div class="cap3">
+      <div class="card kpi"><span class="l">Geotex</span><span class="v">6<small>млн м²/год</small></span><span class="d wn">загрузка ~20% (оценка)</span></div>
+      <div class="card kpi"><span class="l">Rebar</span><span class="v">5 000<small>т/год</small></span><span class="d" style="color:var(--muted);font-weight:500">загрузка не раскрыта</span></div>
+      <div class="card kpi"><span class="l">KIG</span><span class="v">100<small>тыс. т/год</small></span><span class="d up">цель с ЕБРР, сейчас 30</span></div></div></div>
+    <div class="glass pad sec"><h2>Что это говорит о собственнике</h2><div class="list">
+      <div class="li"><span class="pill b">1</span><div class="t"><b>Мыслит заводами, а не магазинами</b> — за 6 лет три производства и ставка на базальт</div></div>
+      <div class="li"><span class="pill b">2</span><div class="t"><b>Привык к требованиям ЕБРР</b> — отчётность, ESG, прозрачность ему знакомы</div></div>
+      <div class="li"><span class="pill b">3</span><div class="t"><b>Работает с лидерами рынка</b> — объединение с Knauf через OZIZOL</div></div>
+      <div class="li"><span class="pill b">4</span><div class="t"><b>Публично почти не выступает</b> — интервью не найдено; на встрече важнее цифры, чем презентация</div></div>
+    </div></div>
+  </div>
+</div>
+<div class="glass pad sec"><div class="sec-h"><h2>Как мы видим холдинг: пульт SA GROUP</h2><p>точка B для всего холдинга</p></div>
+  <div class="hv">
+    <div class="hv-top"><b>Пульт холдинга</b><span>основатель видит 3 завода как одну компанию: выручка, маржа, касса, загрузка, риски, решения</span></div>
+    <div class="hv-plants">
+      <div class="hv-p" style="--dc:var(--a5)"><b>Завод Geotex</b><span>свой пульт · 4 агента цеха</span><button class="btn ghost" type="button" data-go="geotex">Открыть →</button></div>
+      <div class="hv-p" style="--dc:var(--a3)"><b>Завод Rebar</b><span>свой пульт · 3 агента цеха</span><button class="btn ghost" type="button" data-go="rebar">Открыть →</button></div>
+      <div class="hv-p" style="--dc:var(--a4)"><b>Завод KIG · Thermoplus</b><span>подключаем третьим · расширение до 100 тыс. т</span><span class="pill w" style="align-self:flex-start">следующий этап</span></div>
+    </div>
+    <div class="hv-shared"><span class="own-tag" style="color:var(--muted)">Общие сервисы холдинга — делаем один раз на три завода</span><div class="chips"><span class="chip">Торговый дом и единая CRM</span><span class="chip">Финансы и МСФО-консолидация</span><span class="chip">Закупки и логистика</span><span class="chip">Стандарты и ESG-отчёт для ЕБРР</span><span class="chip">HR и обучение</span><span class="chip">Данные и AI-штаб</span></div></div>
+  </div></div>
+<div class="glass pad sec"><div class="sec-h"><h2>Где холдинг может заработать на синергии</h2><p>гипотезы для разговора</p></div><div class="g3">
+  <div class="card sysb"><span class="no">01</span><h3>Один клиент — три продукта</h3><p>Дорожник берёт геотекстиль и арматуру, застройщик — утеплитель, арматуру и сетку. Один торговый дом и одна CRM продают комплект на объект.</p></div>
+  <div class="card sysb"><span class="no">02</span><h3>Одна площадка в Ургенче</h3><p>KIG и производство Geotex указаны по одному адресу (ул. Саноатчилар, 1-Д): общие склад, рейсы, энергия и охрана труда.</p></div>
+  <div class="card sysb"><span class="no">03</span><h3>Свой базальт</h3><p>У KIG собственный базальтовый карьер. Стоит проверить, может ли он стать сырьём для базальтовой арматуры Rebar.</p></div>
+  <div class="card sysb"><span class="no">04</span><h3>Одна отчётность для банков</h3><p>Система данных, которую требует ЕБРР для KIG, сразу покрывает Geotex и Rebar — проще получить следующее финансирование.</p></div>
+  <div class="card sysb"><span class="no">05</span><h3>Экспорт под одним брендом</h3><p>SA GROUP уже экспортирует в Центральную Азию. Один экспорт-агент и один каталог на три продукта.</p></div>
+  <div class="card sysb"><span class="no">06</span><h3>Сила партнёрства с Knauf</h3><p>Через OZIZOL — доступ к стандартам и практикам мирового лидера. Пульт делает их измеримыми на всех трёх заводах.</p></div>
+</div></div>`;
+
+/* ---------- STANDARDS ---------- */
+const ST = {y:['есть','g'], p:['в процессе','b'], n:['не указан','w'], m:['обязательно','r'], q:['уточнить',''], e:['для экспорта','b'], a:['заявлен','b']};
+const STROWS = [
+  ['Система менеджмента', 'ISO 9001 · качество', 'p','y','y', 'SPC-агент, паспорт партии'],
+  ['Система менеджмента', 'ISO 14001 · экология', 'p','n','q', 'Агент энергии, ESG-отчёт'],
+  ['Система менеджмента', 'ISO 45001 · охрана труда', 'q','q','q', 'Табель-бот, Coach-агент, журнал инцидентов'],
+  ['Система менеджмента', 'ISO 50001 · энергия', 'q','q','q', 'Агент энергии: кВт·ч на м² и на тонну'],
+  ['Банк', 'Требования ЕБРР ESR1–ESR10', 'q','q','m', 'Главный ассистент: квартальный отчёт по плану действий'],
+  ['Банк', 'МСФО-отчётность', 'q','q','q', 'AI-бухгалтер, казначей: консолидация холдинга'],
+  ['Продукт', 'ГОСТ и UZ.SMT', 'y','n','q', 'Паспорт партии, база сертификатов'],
+  ['Продукт', 'СТ-1 · происхождение для тендеров', 'y','q','q', 'Пакет тендерных документов'],
+  ['Продукт', 'ГОСТ 31938 / ASTM D7957 · FRP-арматура', '—','n','—', 'SPC: волокно ≥70%, отверждение ≥95%'],
+  ['Продукт', 'EN 13249 и др. · CE для геотекстиля', 'a','—','—', 'Протоколы EN ISO по каждой партии'],
+  ['Продукт', 'EN 13162 · минвата для ЕС', '—','—','e', 'Паспорт партии KIG'],
+  ['Экспорт', 'EPD (EN 15804) · углеродный след', 'e','e','e', 'ESG-агент собирает данные с линий']
+];
+const cell = k => k === '—' ? '<span class="note">—</span>' : `<span class="pill ${ST[k][1]}">${ST[k][0]}</span>`;
+$('#v-standards').innerHTML = `
+<div class="vh"><div class="eyebrow">Стандарты холдинга</div><h1>Стандарты — <em>не папка с сертификатами, а цифры в пульте</em></h1>
+<p class="lede">Кредит ЕБРР обязывает KIG выполнять экологические и социальные требования банка. Экспорт в ЕС требует CE и экологических деклараций, тендеры — ГОСТ и СТ-1. В точке B каждое требование — это показатель с владельцем и агентом, который его собирает, а не отчёт раз в год.</p></div>
+<div class="glass pad sec"><div class="sec-h"><h2>Карта стандартов по заводам</h2><p>статус — по открытым данным, уточняем на аудите</p></div>
+  <div class="tbl"><table class="stdm"><thead><tr><th>Группа</th><th>Стандарт</th><th>Geotex</th><th>Rebar</th><th>KIG</th><th>Кто держит в пульте</th></tr></thead><tbody>${STROWS.map(r => `<tr><td class="note">${r[0]}</td><td><b>${r[1]}</b></td><td>${cell(r[2])}</td><td>${cell(r[3])}</td><td>${cell(r[4])}</td><td>${r[5]}</td></tr>`).join('')}</tbody></table></div>
+  <p class="note">Откуда статусы: ISO 9001 Rebar — сертификат TUV на rebar.uz; ISO 9001 KIG — документ ЕБРР по проекту 57466; Geotex — сайт geoteks.uz («ISO скоро», UZ.SMT, СТ-1, EN 13249 в тендерном разделе); ГОСТ 31938 на rebar.uz не указан. Остальное не раскрыто публично.</p></div>
+<div class="g2">
+  <div class="glass pad sec"><div class="sec-h"><h2>Требования ЕБРР к KIG</h2><p>политика 2024 года, действует с 2025</p></div><div class="list">
+    <div class="li"><span class="pill r">ESR1</span><div class="t"><b>Оценка и управление экологическими и социальными рисками</b> — система управления и план действий</div></div>
+    <div class="li"><span class="pill r">ESR2</span><div class="t"><b>Труд и условия работы</b> — договоры, часы, жалобы сотрудников</div></div>
+    <div class="li"><span class="pill r">ESR3</span><div class="t"><b>Ресурсы и загрязнение</b> — энергия, вода, выбросы, отходы</div></div>
+    <div class="li"><span class="pill r">ESR4</span><div class="t"><b>Здоровье и безопасность</b> — травмы, инциденты, обучение</div></div>
+    <div class="li"><span class="pill r">ESR10</span><div class="t"><b>Раскрытие информации</b> — диалог с жителями и заинтересованными сторонами</div></div>
+  </div><p class="note">Полный перечень — 10 требований: <a href="https://www.ebrd.com/home/news-and-events/publications/institutional-documents/environmental-and-social-policy-2024.html" target="_blank" rel="noopener">политика ЕБРР 2024</a>. Проект KIG: <a href="https://www.ebrd.com/content/dam/ebrd_dxp/documents/project/57466/PSD%2057466%20(Uzbek).pdf" target="_blank" rel="noopener">ЕБРР 57466</a>. Какие пункты плана действий записаны для KIG, видно только в договоре.</p></div>
+  <div class="glass pad sec"><div class="sec-h"><h2>Как пульт держит стандарты</h2><p>что меняется для команды</p></div><div class="list">
+    <div class="li"><span class="pill w">Сейчас</span><div class="t">Сертификаты в папках, отчёт для банка собирают неделю, срок сертификата вспоминают, когда он истёк</div></div>
+    <div class="li"><span class="pill b">Точка B</span><div class="t"><b>Реестр всех сертификатов</b> с датами: агент предупреждает о продлении за 60 дней</div></div>
+    <div class="li"><span class="pill b">Точка B</span><div class="t"><b>Протокол на каждую партию</b> собирается сам из лаборатории — готов для тендера и CE</div></div>
+    <div class="li"><span class="pill b">Точка B</span><div class="t"><b>Энергия, отходы, травмы</b> — показатели в пульте каждый день, а не раз в год</div></div>
+    <div class="li"><span class="pill b">Точка B</span><div class="t"><b>Отчёт для ЕБРР</b> — черновик готовит главный ассистент, финдиректор утверждает</div></div>
+  </div></div>
+</div>
+<div class="glass pad sec"><div class="sec-h"><h2>С чего начать по стандартам</h2><p>в порядке пользы</p></div><div class="g3">
+  <div class="card sysb"><span class="no">01 · месяц 1</span><h3>Реестр сертификатов</h3><p>Собрать все сертификаты, протоколы и декларации трёх заводов в одну базу со сроками. Исправить ссылки на сайтах.</p></div>
+  <div class="card sysb"><span class="no">02 · месяцы 2–4</span><h3>ГОСТ 31938 и ISO для Geotex</h3><p>Rebar: показать соответствие ГОСТ 31938 на сайте и в тендерах. Geotex: довести ISO 9001 и 14001 до сертификата.</p></div>
+  <div class="card sysb"><span class="no">03 · месяцы 4–8</span><h3>ESG-данные холдинга</h3><p>Энергия, выбросы, отходы, травмы по трём заводам в пульте — основа для ЕБРР, EPD и экспорта в ЕС.</p></div>
 </div></div>`;
 
 /* ---------- SYSTEMATIZATION ---------- */
